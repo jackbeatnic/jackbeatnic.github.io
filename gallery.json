@@ -72,7 +72,8 @@
       "listing_currency": "AVAX",
       "display_rank": 1,
       "share_url": "https://jackbeatnic.github.io/nft/1.html",
-      "og_image": "assets/og/nft-1.jpg"
+      "og_image": "assets/og/nft-1.jpg",
+      "medium": "ai_art"
     },
     {
       "token_id": 2,
@@ -122,7 +123,8 @@
       "listing_currency": "AVAX",
       "display_rank": 2,
       "share_url": "https://jackbeatnic.github.io/nft/2.html",
-      "og_image": "assets/og/nft-2.jpg"
+      "og_image": "assets/og/nft-2.jpg",
+      "medium": "ai_art"
     },
     {
       "token_id": 3,
@@ -172,7 +174,8 @@
       "listing_currency": "AVAX",
       "display_rank": 3,
       "share_url": "https://jackbeatnic.github.io/nft/3.html",
-      "og_image": "assets/og/nft-3.jpg"
+      "og_image": "assets/og/nft-3.jpg",
+      "medium": "ai_art"
     },
     {
       "token_id": 4,
@@ -221,7 +224,8 @@
       "listing_currency": "AVAX",
       "display_rank": 4,
       "share_url": "https://jackbeatnic.github.io/nft/4.html",
-      "og_image": "assets/og/nft-4.jpg"
+      "og_image": "assets/og/nft-4.jpg",
+      "medium": "ai_art"
     },
     {
       "token_id": 5,
@@ -270,7 +274,8 @@
       "listing_currency": "AVAX",
       "display_rank": 5,
       "share_url": "https://jackbeatnic.github.io/nft/5.html",
-      "og_image": "assets/og/nft-5.jpg"
+      "og_image": "assets/og/nft-5.jpg",
+      "medium": "ai_art"
     },
     {
       "token_id": 6,
@@ -319,7 +324,8 @@
       "listing_currency": "AVAX",
       "display_rank": 6,
       "share_url": "https://jackbeatnic.github.io/nft/6.html",
-      "og_image": "assets/og/nft-6.jpg"
+      "og_image": "assets/og/nft-6.jpg",
+      "medium": "ai_art"
     },
     {
       "token_id": 7,
@@ -368,7 +374,8 @@
       "listing_currency": "AVAX",
       "display_rank": 7,
       "share_url": "https://jackbeatnic.github.io/nft/7.html",
-      "og_image": "assets/og/nft-7.jpg"
+      "og_image": "assets/og/nft-7.jpg",
+      "medium": "ai_art"
     },
     {
       "token_id": 8,
@@ -417,7 +424,8 @@
       "listing_currency": "AVAX",
       "display_rank": 8,
       "share_url": "https://jackbeatnic.github.io/nft/8.html",
-      "og_image": "assets/og/nft-8.jpg"
+      "og_image": "assets/og/nft-8.jpg",
+      "medium": "ai_art"
     },
     {
       "token_id": 9,
@@ -466,7 +474,8 @@
       "listing_currency": "AVAX",
       "display_rank": 9,
       "share_url": "https://jackbeatnic.github.io/nft/9.html",
-      "og_image": "assets/og/nft-9.jpg"
+      "og_image": "assets/og/nft-9.jpg",
+      "medium": "ai_art"
     },
     {
       "token_id": 10,
@@ -515,7 +524,40 @@
       "listing_currency": "AVAX",
       "display_rank": 10,
       "share_url": "https://jackbeatnic.github.io/nft/10.html",
-      "og_image": "assets/og/nft-10.jpg"
+      "og_image": "assets/og/nft-10.jpg",
+      "medium": "ai_art"
     }
-  ]
+  ],
+  "site": {
+    "default_section": "ai_art",
+    "sections": {
+      "ai_art": {
+        "label": "AI Art",
+        "hero_tagline": "Generative intelligence",
+        "hero_intro": "Quiet landscapes and contemplative works where photography meets the machine — color, light, and mood across Polygon, Base, Avalanche & more.",
+        "explore_title": "Explore AI Art"
+      },
+      "photography": {
+        "label": "Photography",
+        "hero_tagline": "Light & landscape",
+        "hero_intro": "Classical photography — the camera first. Wander by mood and composition; when a piece blends photo with collage or hand-drawn marks, you'll find it under Other.",
+        "explore_title": "Explore Photography",
+        "subsections": [
+          {
+            "id": "photo",
+            "label": "Photography"
+          },
+          {
+            "id": "other",
+            "label": "Other"
+          }
+        ],
+        "default_subsection": "photo",
+        "empty_messages": {
+          "photo": "Photography works will appear here soon.",
+          "other": "Collage, hand-drawn elements, and mixed media — coming soon."
+        }
+      }
+    }
+  }
 }

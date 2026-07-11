@@ -1,0 +1,61 @@
+STRUKTURA SEKCJI — AI Art / Photography / Other
+================================================
+
+Strona ma dwie główne sekcje (AI Art domyślnie na wejściu).
+W Photography są podzakładki: Photography + Other (kolaż, rysunek odręczny).
+
+
+POLA W gallery.json (każdy NFT)
+--------------------------------
+  medium       "ai_art" | "photography"
+  photo_kind   tylko gdy medium=photography:
+                 "photo"  — czysta fotografia
+                 "other"  — grafika, kolaż foto+rysunek, mixed media
+
+Przykład — AI (obecne Nature Stories):
+  "medium": "ai_art"
+
+Przykład — fotografia:
+  "medium": "photography",
+  "photo_kind": "photo"
+
+Przykład — kolaż / odręczne:
+  "medium": "photography",
+  "photo_kind": "other"
+
+
+BLOK site W gallery.json
+------------------------
+  site.default_section     "ai_art"
+  site.sections.ai_art     hero_intro, explore_title, …
+  site.sections.photography
+    subsections            Photo + Other
+    empty_messages         tekst gdy brak prac w podsekcji
+
+
+URL
+---
+  /                          → AI Art (domyślnie)
+  /?section=photography      → Photography / Photo
+  /?section=photography&photo=other   → Other
+
+
+NAWIGACJA
+---------
+  Desktop: nagłówek — AI Art | Photography | About
+  Mobile:  pasek pod nagłówkiem — AI Art | Photography
+  Photography: pill buttons — Photography | Other
+
+
+DODAWANIE NOWYCH PRAC
+---------------------
+  1. Wpis do gallery.json z medium (+ photo_kind jeśli trzeba)
+  2. Sync cen: ./odswiez_i_wgraj.sh (jak dotąd)
+  3. Push na GitHub Pages
+
+Nie trzeba zmieniać HTML — sekcje czytają dane z JSON.
+
+
+PREZENTACJA (osobna noga)
+-------------------------
+  Skrypt tablic social: ../prezentacja/ — patrz INSTRUKCJA.txt tam.

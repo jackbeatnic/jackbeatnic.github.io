@@ -82,7 +82,8 @@ AKTUALIZACJA CEN (ręcznie, krok po kroku)
 CO UZUPEŁNIA SKRYPT?
 --------------------
   Dla każdego NFT w gallery.json (dopasowanie: chain + kontrakt + token_id):
-    • current_price_avax / current_price_eth / … (z waluty raportu)
+    • current_price_avax / current_price_eth / … — CENA ZA 1 SZTUKĘ z raportu
+      (raportuj_kolekcje normalizuje API OpenSea: total order ÷ remaining_quantity)
     • listing_status  (For Sale / Not Listed)
     • listing_currency
     • opensea_url, name (jeśli zmienione w raporcie)

@@ -67,6 +67,16 @@ const Gallery = (() => {
         return { text: '—', hint: 'Check OpenSea', kind: 'unknown' };
     }
 
+    function getDisplayList() {
+        const sorted = GalleryLikes.sortForDisplay(nfts);
+        const filtered = GalleryFilters.apply(sorted);
+        return GalleryLikes.filterSaved(filtered);
+    }
+
+    function refresh() {
+        render(getDisplayList());
+    }
+
     async function load() {
         const grid = document.getElementById('gallery-grid');
         try {
@@ -80,42 +90,37 @@ const Gallery = (() => {
             applyHero(nfts[0], collectionInfo);
             GalleryFilters.init(nfts);
             TipCreator.init(collectionInfo.creator_wallet);
-            render(nfts);
+            refresh();
 
-            document.addEventListener('gallery:filter', () => {
-                render(GalleryFilters.apply(nfts));
-            });
+            document.addEventListener('gallery:filter', refresh);
+            document.addEventListener('gallery:likes', refresh);
         } catch (error) {
             console.error('Gallery load error:', error);
             grid.innerHTML = '<p class="gallery-error">Failed to load the gallery.</p>';
         }
     }
 
-    function collectionCopy(info) {
-        const parts = (info.description || '').split(/\s*[–—]\s*/).map((s) => s.trim());
-        return {
-            title: parts[0] || info.project_name || '',
-            description: parts[1] || info.description || '',
-        };
-    }
-
     function applyHero(featured, info) {
         if (!info) return;
-        const copy = collectionCopy(info);
         const titleEl = document.getElementById('hero-title');
         const descEl = document.getElementById('hero-description');
         const imgEl = document.getElementById('hero-image');
-        if (titleEl) titleEl.textContent = copy.title;
-        if (descEl) descEl.textContent = copy.description;
+        const title = info.hero_title || info.project_name || 'Jack Beatnic Gallery';
+        const intro =
+            info.hero_intro ||
+            (info.description || '').split(/\s*[–—]\s*/).slice(1).join(' — ').trim() ||
+            info.description ||
+            '';
+        if (titleEl) titleEl.textContent = title;
+        if (descEl) descEl.textContent = intro;
         if (imgEl && featured?.image_url) {
             imgEl.src = ImageProxy.displayUrl(featured.image_url, IMAGE_PROXY, 1280, 640);
-            imgEl.alt = featured.name || copy.title;
+            imgEl.alt = featured.name || title;
         }
     }
 
     function applyCollectionInfo(info) {
         if (!info) return;
-        const copy = collectionCopy(info);
 
         const aboutEl = document.getElementById('about-content');
         const aboutParas = Array.isArray(info.about)
@@ -141,33 +146,64 @@ const Gallery = (() => {
         container.innerHTML = '';
 
         if (countEl) {
+            const total = nfts.length;
             countEl.textContent =
-                filtered.length === nfts.length
+                filtered.length === total
                     ? `${filtered.length} works`
-                    : `${filtered.length} of ${nfts.length}`;
+                    : `${filtered.length} of ${total}`;
         }
 
         if (filtered.length === 0) {
-            container.innerHTML =
-                '<p class="gallery-empty">No works match the selected filters.</p>';
+            const msg = GalleryLikes.getSavedOnly()
+                ? 'No saved works yet — bookmark pieces to find them here.'
+                : 'No works match the selected filters.';
+            container.innerHTML = `<p class="gallery-empty">${msg}</p>`;
             return;
         }
 
         filtered.forEach((nft) => container.appendChild(buildCard(nft)));
     }
 
+    function bindEngage(card, nft, key) {
+        const likeBtn = card.querySelector('.nft-like');
+        const saveBtn = card.querySelector('.nft-save');
+
+        const syncState = () => {
+            if (likeBtn) {
+                likeBtn.classList.toggle('is-active', GalleryLikes.isLiked(key));
+                likeBtn.setAttribute('aria-pressed', String(GalleryLikes.isLiked(key)));
+            }
+            if (saveBtn) {
+                saveBtn.classList.toggle('is-active', GalleryLikes.isSaved(key));
+                saveBtn.setAttribute('aria-pressed', String(GalleryLikes.isSaved(key)));
+            }
+        };
+
+        likeBtn?.addEventListener('click', () => {
+            GalleryLikes.toggleLike(key);
+            syncState();
+        });
+        saveBtn?.addEventListener('click', () => {
+            GalleryLikes.toggleSaved(key);
+            syncState();
+        });
+        syncState();
+    }
+
     function buildCard(nft) {
         const card = document.createElement('article');
         card.className = 'nft-card';
 
+        const key = GalleryLikes.nftKey(nft);
         const thumbSrc = ImageProxy.displayUrl(nft.image_url, IMAGE_PROXY);
+        const viewSrc = ImageProxy.displayUrl(nft.image_url, IMAGE_PROXY, 880, 660);
         const name = escapeHtml(nft.name);
         const description = escapeHtml(nft.ai?.description);
         const category = escapeHtml((nft.ai?.category || '').toUpperCase());
         const mood = nft.ai?.mood_score ?? '—';
-        const buyHref = escapeHtml(OpenSeaLinks.buyUrl(nft.opensea_url));
-        const offerHref = escapeHtml(OpenSeaLinks.offerUrl(nft.opensea_url));
+        const osHref = escapeHtml(OpenSeaLinks.buyUrl(nft.opensea_url));
         const price = formatPrice(nft);
+        const likesCount = nft.likes_count ?? 0;
 
         const colorsHtml = (nft.ai?.dominant_colors || [])
             .map(
@@ -180,8 +216,6 @@ const Gallery = (() => {
             .slice(0, 4)
             .map((tag) => `<span class="nft-tag">${escapeHtml(tag)}</span>`)
             .join('');
-
-        const viewSrc = ImageProxy.displayUrl(nft.image_url, IMAGE_PROXY, 880, 660);
 
         card.innerHTML = `
             <div class="nft-image-wrap">
@@ -202,16 +236,24 @@ const Gallery = (() => {
                         <h3 class="nft-card__title">${name}</h3>
                         <p class="nft-card__token">Token #${escapeHtml(String(nft.token_id))}</p>
                     </div>
-                    <div class="color-dots">${colorsHtml}</div>
+                    <div class="nft-card__engage">
+                        <button type="button" class="nft-like" aria-label="Like ${name}" aria-pressed="false">
+                            <span class="nft-like__icon" aria-hidden="true">♥</span>
+                            <span class="nft-like__count">${likesCount}</span>
+                        </button>
+                        <button type="button" class="nft-save" aria-label="Save ${name} for later" aria-pressed="false" title="Save for later">
+                            <span class="nft-save__icon" aria-hidden="true">☆</span>
+                        </button>
+                    </div>
                 </div>
                 <p class="nft-card__price" title="${escapeHtml(price.hint)}">
                     <span class="nft-card__price-value">${escapeHtml(price.text)}</span>
                 </p>
                 <p class="nft-card__description">${description}</p>
                 <div class="nft-card__tags">${tagsHtml}</div>
+                <div class="color-dots nft-card__palette">${colorsHtml}</div>
                 <div class="nft-card__actions">
-                    <a class="btn btn--primary" href="${buyHref}" target="_blank" rel="noopener noreferrer">Buy now</a>
-                    <a class="btn btn--ghost" href="${offerHref}" target="_blank" rel="noopener noreferrer">Make offer</a>
+                    <a class="btn btn--primary btn--block" href="${osHref}" target="_blank" rel="noopener noreferrer">View on OpenSea</a>
                 </div>
                 <div class="nft-card__footer">
                     <div>
@@ -222,16 +264,10 @@ const Gallery = (() => {
             </div>
         `;
 
-        const viewBtn = card.querySelector('.nft-card__view');
-        if (viewBtn) {
-            viewBtn.addEventListener('click', () => {
-                Lightbox.open({
-                    src: viewSrc,
-                    alt: nft.name,
-                    label: nft.name,
-                });
-            });
-        }
+        card.querySelector('.nft-card__view')?.addEventListener('click', () => {
+            Lightbox.open({ src: viewSrc, alt: nft.name, label: nft.name });
+        });
+        bindEngage(card, nft, key);
 
         return card;
     }

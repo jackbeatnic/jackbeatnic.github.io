@@ -92,6 +92,18 @@ CO UZUPEŁNIA SKRYPT?
   Pola AI (opisy, kolory, tagi) — NIE rusza. Edytujesz ręcznie / Grok.com.
 
 
+LIKES I KOLEJNOŚĆ (LocalStorage + cron)
+---------------------------------------
+  Na stronie: serduszko (like) i gwiazdka (save) — dane w przeglądarce.
+  Filtr „Saved for later” w Explore.
+
+  Raz dziennie (po aktualizacji likes_count w JSON lub stats/):
+    python3 aktualizuj_pozycje_z_likes.py
+    git add gallery.json && git commit -m "chore: daily likes sort" && git push
+
+  Szczegóły: POMYSL_LIKES_CRON.txt
+
+
 PLIKI STRONY
 ------------
   index.html, css/gallery.css, js/*.js, gallery.json, assets/

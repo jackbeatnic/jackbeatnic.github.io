@@ -147,10 +147,13 @@ const GalleryFilters = (() => {
 
         activeVibes.clear();
         activeColors.clear();
+        GalleryLikes.setSavedOnly(false);
 
         document.querySelectorAll('.color-filter.is-active, .vibe-filter.is-active').forEach((el) => {
             el.classList.remove('is-active');
         });
+        const savedBtn = document.getElementById('filter-saved');
+        if (savedBtn) savedBtn.classList.remove('is-active');
 
         dispatchChange();
     }
@@ -162,6 +165,12 @@ const GalleryFilters = (() => {
             dispatchChange();
         });
         document.getElementById('reset-filters')?.addEventListener('click', reset);
+        document.getElementById('filter-saved')?.addEventListener('click', (e) => {
+            const btn = e.currentTarget;
+            const on = !GalleryLikes.getSavedOnly();
+            GalleryLikes.setSavedOnly(on);
+            btn.classList.toggle('is-active', on);
+        });
     }
 
     function init(nfts) {

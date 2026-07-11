@@ -1,14 +1,13 @@
-Źródło: Google Drive → Grok NFT - Jack Beatnic Gallery Layout
-Użyte w gallery.json: hero_title, hero_tagline, hero_intro
+Current Hero (Google Drive: Current_Hero.txt)
+Użyte w gallery.json: hero_title, hero_tagline, hero_intro (tablica akapitów)
 
 hero_title: Jack Beatnic
-hero_tagline (AI Art): From the Lens to AI
-hero_intro (AI Art): From the lens to AI: photographs as reference, memory, and imagination — while pure photography keeps its own gallery here. Wind-swept seas, forests and peaks, wildlife in quiet light, Flower Stories' fresh femininity, and collages where modern meets classical. Whether generated or shot on the street, I follow detail, natural abstraction, and the beauty found in between.
+hero_tagline: From the Lens to AI
 
-Jack Beatnic
-AI Artist & Photographer
+Akapit 1:
+Nature and landscape photographer weaving photography, memory, and imagination into AI-crafted digital art. My lens captures wind-swept seas, ancient forests, mountain peaks, wildlife in quiet light, street scenes, and classic black-and-white details. These moments become the living source for the AI works: Nature Stories — serene minimalist landscapes in flowing layers of deep blues and teals, rich studies of nature, animals, and blooming forms, delicate Flower Stories celebrating fresh femininity, vibrant collages where modern forms meet classical grace.
 
-Quiet landscapes and contemplative works where photography meets generative intelligence.
-Color, light, and mood — across Polygon, Base, Avalanche & more.
+Akapit 2:
+Pure photography keeps its own dedicated space here — unfiltered, real-world moments. Every so often, pencil and pastel find their way in — playful explorations where photography, drawing, and collage begin to meet. Whether generated or shot on location, every piece follows the same pursuit: detail, natural abstraction, light, and the quiet poetry found in between.
 
-CTA: Explore the Gallery | View on OpenSea
+Układ: nazwa + tagline wyśrodkowane; opis lekki, wyrównany do lewej; jeden hero dla całej strony.

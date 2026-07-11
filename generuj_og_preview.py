@@ -13,15 +13,15 @@ from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parent
 GALLERY_JSON = ROOT / "gallery.json"
-SIGNATURE_PATH = ROOT / "assets" / "signature.png"
 OUTPUT_PATH = ROOT / "assets" / "og-preview.jpg"
 FONTS_DIR = ROOT / "assets" / "fonts"
 
 WIDTH = 1200
 HEIGHT = 630
 BAR_HEIGHT = 200
-SIGNATURE_MAX_W = 340
-SIGNATURE_PAD = 36
+
+OG_TITLE = "Jack Beatnic Gallery"
+OG_BLURB = "Quiet landscapes · AI art & photography"
 
 
 def load_gallery() -> dict:
@@ -57,15 +57,6 @@ def cover_crop(img: Image.Image, width: int, height: int, focus_y: float = 0.4) 
     return cropped.resize((width, height), Image.Resampling.LANCZOS)
 
 
-def fit_signature(sig: Image.Image, max_width: int) -> Image.Image:
-    sig = sig.convert("RGBA")
-    w, h = sig.size
-    if w <= max_width:
-        return sig
-    scale = max_width / w
-    return sig.resize((max_width, int(h * scale)), Image.Resampling.LANCZOS)
-
-
 def draw_gradient_bar(base: Image.Image) -> Image.Image:
     """Dark bottom bar with soft fade into artwork."""
     overlay = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
@@ -85,55 +76,40 @@ def draw_gradient_bar(base: Image.Image) -> Image.Image:
     return Image.alpha_composite(base.convert("RGBA"), overlay)
 
 
-def place_signature(canvas: Image.Image, sig: Image.Image) -> Image.Image:
-    """Signature on a subtle light panel (matches site header)."""
-    sig = fit_signature(sig, SIGNATURE_MAX_W)
-    sw, sh = sig.size
-    pad_x, pad_y = 22, 14
-    panel_w = sw + pad_x * 2
-    panel_h = sh + pad_y * 2
-    panel = Image.new("RGBA", (panel_w, panel_h), (255, 255, 255, 230))
-    panel.paste(sig, (pad_x, pad_y), sig)
-
-    x = SIGNATURE_PAD
-    y = SIGNATURE_PAD
-    out = canvas.copy()
-    out.paste(panel, (x, y), panel)
-    return out
-
-
-def draw_text(canvas: Image.Image, title: str, tagline: str) -> Image.Image:
-    playfair = ImageFont.truetype(str(FONTS_DIR / "PlayfairDisplay.ttf"), 56)
-    inter = ImageFont.truetype(str(FONTS_DIR / "Inter.ttf"), 22)
+def draw_text(canvas: Image.Image, title: str, blurb: str) -> Image.Image:
+    title_font = ImageFont.truetype(str(FONTS_DIR / "Inter.ttf"), 46)
+    blurb_font = ImageFont.truetype(str(FONTS_DIR / "Inter.ttf"), 26)
 
     draw = ImageDraw.Draw(canvas)
     bar_top = HEIGHT - BAR_HEIGHT
     text_x = 72
-    title_y = bar_top + 52
-    tag_y = title_y + 68
+    title_y = bar_top + 54
+    blurb_y = title_y + 62
+    white = (255, 255, 255, 255)
 
-    draw.text((text_x, title_y), title, font=playfair, fill=(255, 255, 255, 255))
-    draw.text((text_x, tag_y), tagline.upper(), font=inter, fill=(154, 154, 154, 255))
+    # Faux-bold title (variable Inter has no weight axis in PIL).
+    for dx, dy in ((0, 0), (1, 0), (0, 1)):
+        draw.text((text_x + dx, title_y + dy), title, font=title_font, fill=white)
+    draw.text((text_x, blurb_y), blurb, font=blurb_font, fill=white)
     return canvas
 
 
 def generate(output: Path = OUTPUT_PATH) -> Path:
     data = load_gallery()
-    info = data["collection_info"]
     nfts = data.get("nfts") or []
     if not nfts:
         raise SystemExit("gallery.json: brak NFT do tła")
 
     bg_url = nfts[0]["image_url"]
-    title = info.get("hero_title") or info.get("artist") or "Jack Beatnic"
-    tagline = info.get("hero_tagline") or "AI Artist & Photographer"
+    info = data["collection_info"]
+    title = info.get("project_name") or OG_TITLE
+    blurb = OG_BLURB
 
     print(f"Tło: {nfts[0].get('name', bg_url)}")
     bg = fetch_image(bg_url)
     canvas = cover_crop(bg, WIDTH, HEIGHT, focus_y=0.4)
     canvas = draw_gradient_bar(canvas)
-    canvas = place_signature(canvas, Image.open(SIGNATURE_PATH))
-    canvas = draw_text(canvas, title, tagline)
+    canvas = draw_text(canvas, title, blurb)
 
     output.parent.mkdir(parents=True, exist_ok=True)
     canvas.convert("RGB").save(output, "JPEG", quality=92, optimize=True, subsampling=0)

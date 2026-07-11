@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noimageindex">
     <title>Jack Beatnic Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/gallery.css">
 </head>
 <body class="gallery-protected">
-    <header class="site-header">
+    <header class="site-header site-header--sticky">
         <div class="site-header__inner">
             <div class="site-brand">
                 <h1 class="site-logo">
@@ -46,12 +49,26 @@
     </header>
 
     <main id="gallery-root" class="main">
-        <section class="collection-intro">
-            <h2 id="collection-title" class="collection-title">…</h2>
-            <p id="collection-description" class="collection-description">…</p>
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero__media">
+                <img id="hero-image"
+                     class="hero__image"
+                     alt=""
+                     width="1280"
+                     height="640"
+                     decoding="async"
+                     draggable="false"
+                     referrerpolicy="no-referrer">
+                <div class="hero__veil" aria-hidden="true"></div>
+            </div>
+            <div class="hero__content">
+                <h2 id="hero-title" class="hero__title">…</h2>
+                <p id="hero-description" class="hero__description">…</p>
+                <a href="#explore" class="btn btn--primary hero__cta">Explore the gallery</a>
+            </div>
         </section>
 
-        <section class="filters-panel" aria-label="Filters">
+        <section id="explore" class="filters-panel" aria-label="Filters">
             <div class="filters-panel__head">
                 <span class="filters-panel__title">Explore</span>
                 <span id="filter-count" class="filters-panel__count"></span>
@@ -87,9 +104,18 @@
             <h2 id="about-title" class="about-section__title">About</h2>
             <div id="about-content" class="about-section__body"></div>
             <p class="about-section__link">
-                <a id="about-opensea" href="https://opensea.io/JackBeatnic" target="_blank" rel="noopener noreferrer">OpenSea — JackBeatnic</a>
+                <a id="about-opensea" class="btn btn--primary" href="https://opensea.io/JackBeatnic" target="_blank" rel="noopener noreferrer">View on OpenSea</a>
             </p>
         </section>
+
+        <div id="lightbox" class="lightbox" hidden role="dialog" aria-modal="true" aria-label="Artwork preview">
+            <button type="button" class="lightbox__close" aria-label="Close">×</button>
+            <div class="lightbox__backdrop" aria-hidden="true"></div>
+            <figure class="lightbox__figure">
+                <img id="lightbox-image" class="lightbox__image" alt="" draggable="false" referrerpolicy="no-referrer">
+                <figcaption id="lightbox-caption" class="lightbox__caption"></figcaption>
+            </figure>
+        </div>
 
         <footer class="site-footer">
             <p>Jack Beatnic Gallery — 2026</p>
@@ -98,6 +124,7 @@
 
     <script src="js/images.js"></script>
     <script src="js/opensea-links.js"></script>
+    <script src="js/lightbox.js"></script>
     <script src="js/filters.js"></script>
     <script src="js/tip.js"></script>
     <script src="js/gallery.js"></script>

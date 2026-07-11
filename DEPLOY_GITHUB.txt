@@ -1,0 +1,86 @@
+================================================================================
+  Jack Beatnic Gallery — deploy na GitHub Pages
+  Najkrótszy adres: https://TWOJ-LOGIN.github.io/
+================================================================================
+
+WARUNEK NA KRÓTKI URL
+---------------------
+  Repozytorium MUSI nazywać się dokładnie:
+
+    TWOJ-LOGIN.github.io
+
+  (np. JackBeatnic.github.io — wielkość liter w nazwie repo bywa dowolna,
+   ale URL w przeglądarce zwykle jest małymi: jackbeatnic.github.io)
+
+  Zawartość katalogu www/ trafia do ROOT repozytorium (nie podfolder www/).
+
+
+PIERWSZE WDROŻENIE (jednorazowo)
+--------------------------------
+  1. github.com → New repository
+     • Name: TWOJ-LOGIN.github.io
+     • Public
+     • Bez README / .gitignore (masz już pliki lokalnie)
+
+  2. W terminalu:
+
+     cd /home/jb/jb_nft/www
+     git init
+     git branch -M main
+     git add .
+     git commit -m "Jack Beatnic Gallery — initial deploy"
+     git remote add origin https://github.com/TWOJ-LOGIN/TWOJ-LOGIN.github.io.git
+     git push -u origin main
+
+  3. github.com → repo → Settings → Pages
+     • Source: Deploy from a branch
+     • Branch: main
+     • Folder: / (root)
+     • Save
+
+  4. Po 1–2 min: https://TWOJ-LOGIN.github.io/
+
+
+CO TRAFIA DO REPO (tylko www/)
+------------------------------
+  index.html, css/, js/, assets/, gallery.json, INSTRUKCJA.txt, …
+
+  NIE wgrywaj: raportowanie/, listing/, venv/, kluczy API.
+
+
+AKTUALIZACJA CEN + PUBLIKACJA (na co dzień)
+-------------------------------------------
+  export OPENSEA_API_KEY="twój-klucz"
+  cd /home/jb/jb_nft/www
+  ./odswiez_i_wgraj.sh
+
+  Skrypt:
+    [1] raport OpenSea (--krok report, ~1–2 min)
+    [2] aktualizuj_ceny_z_raportu.py → gallery.json
+    [3] git commit + push (tylko jeśli gallery.json się zmienił)
+
+  Warianty:
+    ./odswiez_i_wgraj.sh --dry-run     # test bez zapisu i push
+    ./odswiez_i_wgraj.sh --no-push     # sync lokalnie, bez GitHub
+    ./odswiez_i_wgraj.sh -m "po partii listingów"
+
+
+AKTUALIZACJA SAMEJ STRONY (bez cen)
+-----------------------------------
+  cd /home/jb/jb_nft/www
+  git add .
+  git commit -m "update gallery UI"
+  git push
+
+
+WŁASNA DOMENA (później, opcjonalnie)
+------------------------------------
+  Settings → Pages → Custom domain → np. jackbeatnic.com
+  DNS u rejestratora → rekordy według instrukcji GitHub.
+
+
+POMYSŁ NA AUTOMATYZACJĘ
+-----------------------
+  Zobacz: POMYSL_GITHUB_ACTIONS_CENY.txt (codzienny cron — na później).
+
+================================================================================

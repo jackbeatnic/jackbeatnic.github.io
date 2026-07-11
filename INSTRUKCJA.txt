@@ -1,0 +1,65 @@
+================================================================================
+  Jack Beatnic Gallery — strona www/
+  Podgląd lokalny + synchronizacja cen z raportów OpenSea
+================================================================================
+
+
+PODGLĄD LOKALNY
+---------------
+  cd /home/jb/jb_nft/www
+  python3 -m http.server 8080
+
+  Przeglądarka: http://localhost:8080
+  Zatrzymanie: Ctrl+C
+
+
+AKTUALIZACJA CEN + GITHUB PAGES (jedna komenda)
+-----------------------------------------------
+  export OPENSEA_API_KEY="twój-klucz"
+  cd /home/jb/jb_nft/www
+  ./odswiez_i_wgraj.sh
+
+  Robi: raport OS (--krok report) → gallery.json → git push (jeśli są zmiany).
+
+  Warianty:
+    ./odswiez_i_wgraj.sh --dry-run
+    ./odswiez_i_wgraj.sh --no-push
+    ./odswiez_i_wgraj.sh --kolekcja avalanche_nature_stories
+
+  Pierwszy deploy: DEPLOY_GITHUB.txt  (adres: https://LOGIN.github.io/)
+  Automatyzacja cron: POMYSL_GITHUB_ACTIONS_CENY.txt (na później)
+
+
+AKTUALIZACJA CEN (ręcznie, krok po kroku)
+-----------------------------------------
+  1. cd /home/jb/jb_nft/raportowanie
+     export OPENSEA_API_KEY="twój-klucz"
+     python3 raportuj_kolekcje.py --kolekcja avalanche_nature_stories --krok report
+
+  2. cd /home/jb/jb_nft/www
+     python3 aktualizuj_ceny_z_raportu.py --kolekcja avalanche_nature_stories
+
+  3. git add gallery.json && git commit -m "sync prices" && git push
+
+  Test bez zapisu:
+     python3 aktualizuj_ceny_z_raportu.py --kolekcja avalanche_nature_stories --dry-run
+
+
+CO UZUPEŁNIA SKRYPT?
+--------------------
+  Dla każdego NFT w gallery.json (dopasowanie: chain + kontrakt + token_id):
+    • current_price_avax / current_price_eth / … (z waluty raportu)
+    • listing_status  (For Sale / Not Listed)
+    • listing_currency
+    • opensea_url, name (jeśli zmienione w raporcie)
+    • collection_info.last_price_sync
+
+  Pola AI (opisy, kolory, tagi) — NIE rusza. Edytujesz ręcznie / Grok.com.
+
+
+PLIKI STRONY
+------------
+  index.html, css/gallery.css, js/*.js, gallery.json, assets/
+
+
+================================================================================

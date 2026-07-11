@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noimageindex">
+    <title>Jack Beatnic Gallery</title>
+    <link rel="stylesheet" href="css/gallery.css">
+</head>
+<body class="gallery-protected">
+    <header class="site-header">
+        <div class="site-header__inner">
+            <div class="site-brand">
+                <h1 class="site-logo">
+                    <span class="visually-hidden">Jack Beatnic</span>
+                    <div class="signature-logo-wrap" aria-hidden="true">
+                        <img src="assets/signature.png"
+                             alt=""
+                             width="360"
+                             height="150"
+                             decoding="async"
+                             draggable="false"
+                             referrerpolicy="no-referrer">
+                        <div class="signature-shield"></div>
+                    </div>
+                </h1>
+                <p class="artist-subtitle">Digital Art · NFT</p>
+            </div>
+            <nav class="site-nav" aria-label="Main">
+                <a href="#gallery-root">Works</a>
+                <a href="#about">About</a>
+                <button type="button" id="tip-open" class="site-nav__tip" aria-expanded="false" aria-controls="tip-panel">Tip</button>
+            </nav>
+        </div>
+        <div id="tip-panel" class="tip-panel" hidden>
+            <div class="tip-panel__inner">
+                <button type="button" id="tip-close" class="tip-panel__close" aria-label="Close">×</button>
+                <p class="tip-panel__title">Tip the artist</p>
+                <p class="tip-panel__hint">Send AVAX / ETH / any token to this wallet</p>
+                <img id="tip-qr" class="tip-panel__qr" width="140" height="140" alt="">
+                <p id="tip-address" class="tip-panel__address"></p>
+                <button type="button" id="tip-copy" class="btn btn--ghost btn--small">Copy address</button>
+            </div>
+        </div>
+        <div class="site-header__rule" aria-hidden="true"></div>
+    </header>
+
+    <main id="gallery-root" class="main">
+        <section class="collection-intro">
+            <h2 id="collection-title" class="collection-title">…</h2>
+            <p id="collection-description" class="collection-description">…</p>
+        </section>
+
+        <section class="filters-panel" aria-label="Filters">
+            <div class="filters-panel__head">
+                <span class="filters-panel__title">Explore</span>
+                <span id="filter-count" class="filters-panel__count"></span>
+                <button type="button" id="reset-filters" class="filters__reset">Clear all</button>
+            </div>
+
+            <div class="filters-row">
+                <label class="filters-row__label" for="search-filter">Search</label>
+                <input type="search" id="search-filter" class="filters-search" placeholder="Name, mood, keyword, color…" autocomplete="off">
+            </div>
+
+            <div class="filters-row">
+                <label class="filters-row__label" for="category-filter">Category</label>
+                <select id="category-filter" class="filters__select" aria-label="Category">
+                    <option value="">All categories</option>
+                </select>
+            </div>
+
+            <div class="filters-row">
+                <span class="filters-row__label">Colors</span>
+                <div id="color-filters" class="color-filters"></div>
+            </div>
+
+            <div class="filters-row">
+                <span class="filters-row__label">Mood</span>
+                <div id="vibe-filters" class="filters__tags"></div>
+            </div>
+        </section>
+
+        <div id="gallery-grid" class="gallery-grid"></div>
+
+        <section id="about" class="about-section" aria-labelledby="about-title">
+            <h2 id="about-title" class="about-section__title">About</h2>
+            <div id="about-content" class="about-section__body"></div>
+            <p class="about-section__link">
+                <a id="about-opensea" href="https://opensea.io/JackBeatnic" target="_blank" rel="noopener noreferrer">OpenSea — JackBeatnic</a>
+            </p>
+        </section>
+
+        <footer class="site-footer">
+            <p>Jack Beatnic Gallery — 2026</p>
+        </footer>
+    </main>
+
+    <script src="js/images.js"></script>
+    <script src="js/opensea-links.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/tip.js"></script>
+    <script src="js/gallery.js"></script>
+</body>
+</html>

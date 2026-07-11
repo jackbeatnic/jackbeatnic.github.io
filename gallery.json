@@ -1,0 +1,473 @@
+{
+  "collection_info": {
+    "project_name": "Jack Beatnic Gallery",
+    "artist": "Jack Beatnic",
+    "description": "Nature Stories – Minimalist landscapes in deep blues and turquoise. Works inspired by nature, silence, and movement.",
+    "about": [
+      "I'm Jack Beatnic — in NFTs since 2022, a photographer who opened the door to AI art without leaving the classical path: light, landscape, quiet composition.",
+      "Wander the works above — let mood and color lead you. Most pieces grow where photography meets the machine; now and then, something is drawn by hand. Glad you're exploring with me."
+    ],
+    "opensea_profile": "https://opensea.io/JackBeatnic",
+    "chain": "avalanche",
+    "native_currency": "AVAX",
+    "creator_wallet": "0xf0b840349b3f285fc05c89eac594ddd254183fb9",
+    "last_updated": "2026-07-03T17:50:00Z",
+    "version": "0.1",
+    "collection_id": "avalanche_nature_stories",
+    "last_price_sync": "2026-07-11T15:36:59Z"
+  },
+  "nfts": [
+    {
+      "token_id": 1,
+      "name": "Nature stories #0001",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/1",
+      "image_url": "https://ipfs.io/ipfs/bafybeiemw7ftfgifx3kiynqyt6lx2cub7d7t24c62cbe25ddztxl5khewq",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": null,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "A serene, abstract seascape rendered in flowing layers of deep navy and turquoise. Gentle, undulating waves move across the foreground while a large, glowing celestial form rises behind stylized hills. Delicate particle textures and scattered dots create a sense of mist and movement, giving the composition a quiet, meditative rhythm.",
+        "dominant_colors": [
+          "#0A1628",
+          "#1E90FF",
+          "#00CED1",
+          "#F0F8FF"
+        ],
+        "vibe_tags": [
+          "serene",
+          "minimalist",
+          "ethereal",
+          "contemplative",
+          "harmonious"
+        ],
+        "category": "landscape",
+        "mood_score": 8,
+        "keywords": [
+          "abstract landscape",
+          "seascape",
+          "flowing forms",
+          "particle texture",
+          "blue tones",
+          "minimalist illustration",
+          "zen",
+          "nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "Not Listed"
+    },
+    {
+      "token_id": 2,
+      "name": "Nature stories #0002",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/2",
+      "image_url": "https://ipfs.io/ipfs/bafybeiakpgsvolupwjgqjtuc4zhn7u4uuxd3ajchmik3hziyd2wi2jqebm",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": null,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "A tranquil mountainous landscape bathed in cool blue tones. A solitary, windswept tree stands on a rolling hill in the foreground, while layered mountain ranges recede into the distance under a soft, glowing orb. Subtle dotted textures and negative space evoke mist and vastness, creating a peaceful, introspective atmosphere.",
+        "dominant_colors": [
+          "#0B1E3D",
+          "#4169E1",
+          "#5F9EA0",
+          "#E6F3FF"
+        ],
+        "vibe_tags": [
+          "serene",
+          "minimalist",
+          "ethereal",
+          "contemplative",
+          "harmonious",
+          "meditative"
+        ],
+        "category": "landscape",
+        "mood_score": 8,
+        "keywords": [
+          "mountain landscape",
+          "lone tree",
+          "layered hills",
+          "blue palette",
+          "minimalist art",
+          "nature illustration",
+          "peaceful",
+          "atmospheric"
+        ]
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "Not Listed"
+    },
+    {
+      "token_id": 3,
+      "name": "Nature stories #0003",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/3",
+      "image_url": "https://ipfs.io/ipfs/bafybeifbwhr7uo5al4kmfkdtvlku4vzs56tigzekelrddnpsd4pcy2hnv4",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": null,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "A crisp, winter-inspired mountain scene with a prominent snow-capped peak. Stylized pine trees and delicate leafy branches frame the composition on both sides, while flowing white and blue forms suggest wind and snow. The cool color palette and scattered particle effects create a clean, refreshing, and quietly majestic mood.",
+        "dominant_colors": [
+          "#0C2A4A",
+          "#00BFFF",
+          "#E0FFFF",
+          "#4682B4"
+        ],
+        "vibe_tags": [
+          "serene",
+          "crisp",
+          "ethereal",
+          "minimalist",
+          "refreshing",
+          "contemplative"
+        ],
+        "category": "landscape",
+        "mood_score": 8,
+        "keywords": [
+          "winter landscape",
+          "mountain peak",
+          "pine trees",
+          "snow",
+          "blue tones",
+          "minimalist illustration",
+          "nature",
+          "serene"
+        ]
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "Not Listed"
+    },
+    {
+      "token_id": 4,
+      "name": "Nature stories #0004",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/4",
+      "image_url": "https://ipfs.io/ipfs/bafybeicsz4fje4aafvuucaol2sy5wj6xoes6bvwq3g44eq6cvqcxnzbhmy",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": null,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "A rhythmic, wave-like landscape composed of undulating blue and teal layers. Dark silhouetted pine trees emerge from the rolling forms, while a dense cluster of particles in the upper section suggests wind, mist or falling elements. The strong horizontal movement and rich blue gradients give the piece a dynamic yet calming presence.",
+        "dominant_colors": [
+          "#0A1F3D",
+          "#1E90FF",
+          "#20B2AA",
+          "#F5F5F5"
+        ],
+        "vibe_tags": [
+          "serene",
+          "rhythmic",
+          "minimalist",
+          "ethereal",
+          "harmonious",
+          "contemplative"
+        ],
+        "category": "landscape",
+        "mood_score": 8,
+        "keywords": [
+          "abstract landscape",
+          "flowing hills",
+          "pine trees",
+          "blue gradient",
+          "particle effects",
+          "minimalist",
+          "nature art"
+        ]
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "Not Listed"
+    },
+    {
+      "token_id": 5,
+      "name": "Nature stories #0005",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/5",
+      "image_url": "https://ipfs.io/ipfs/bafybeig2axxvryzzoagi4tsjs7h3ol4dfivw4z3uwfiq2xzf6lv6zcjg44",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": null,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "A majestic layered mountain range under a bright circular sun or moon. The composition uses smooth, flowing shapes in varying shades of blue and teal, with two small silhouetted trees on a distant hill. Delicate white and dark particle textures add depth and a sense of atmosphere, resulting in a balanced, harmonious and uplifting scene.",
+        "dominant_colors": [
+          "#0B2340",
+          "#4169E1",
+          "#48D1CC",
+          "#FFFAF0"
+        ],
+        "vibe_tags": [
+          "serene",
+          "majestic",
+          "minimalist",
+          "ethereal",
+          "harmonious",
+          "uplifting"
+        ],
+        "category": "landscape",
+        "mood_score": 8,
+        "keywords": [
+          "mountain landscape",
+          "celestial",
+          "layered forms",
+          "blue tones",
+          "minimalist illustration",
+          "nature",
+          "peaceful"
+        ]
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "Not Listed"
+    },
+    {
+      "token_id": 6,
+      "name": "Nature stories #0006",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/6",
+      "image_url": "https://ipfs.io/ipfs/bafybeiem6jesdvzgyvdaxywmobicxvehwzserxhw34d7qie5hq4hvkzgjm",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": null,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "A dramatic yet peaceful mountain vista dominated by a large snow-capped peak. The scene features bare trees and stylized foliage in the foreground, with flowing blue and teal layers suggesting wind-swept terrain. A textured circular element in the background and scattered particles create a sense of vast, quiet wilderness.",
+        "dominant_colors": [
+          "#0A1E38",
+          "#00CED1",
+          "#4682B4",
+          "#F0FFFF"
+        ],
+        "vibe_tags": [
+          "serene",
+          "dramatic",
+          "minimalist",
+          "ethereal",
+          "contemplative",
+          "wild"
+        ],
+        "category": "landscape",
+        "mood_score": 7,
+        "keywords": [
+          "mountain",
+          "snow peak",
+          "bare trees",
+          "blue landscape",
+          "particle texture",
+          "minimalist art",
+          "nature illustration"
+        ]
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "Not Listed"
+    },
+    {
+      "token_id": 7,
+      "name": "Nature stories #0007",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/7",
+      "image_url": "https://ipfs.io/ipfs/bafybeifolltzcp4cbysiwppghbtkadlk3w35ocualiz6se47z5daicsiem",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": null,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "An elegant, wave-dominated composition in rich blues and teals. Organic, curving forms flow across the image like water or rolling hills, accented by a large dark circular shape and delicate particle splashes. The piece feels fluid, modern and deeply calming, with a strong graphic quality.",
+        "dominant_colors": [
+          "#0B1C35",
+          "#1E90FF",
+          "#20B2AA",
+          "#E6F7FF"
+        ],
+        "vibe_tags": [
+          "serene",
+          "fluid",
+          "minimalist",
+          "ethereal",
+          "harmonious",
+          "modern"
+        ],
+        "category": "landscape",
+        "mood_score": 8,
+        "keywords": [
+          "abstract waves",
+          "flowing forms",
+          "blue tones",
+          "particle effects",
+          "minimalist illustration",
+          "nature",
+          "graphic art"
+        ]
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "Not Listed"
+    },
+    {
+      "token_id": 8,
+      "name": "Nature stories #0008",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/8",
+      "image_url": "https://ipfs.io/ipfs/bafybeigfcwnabhyhwmlrmyisuglpi2zov6hovzdhhhl5z6d7yaefted72e",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": null,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "A soft, dreamlike landscape with gentle rolling hills and a prominent circular celestial body. Delicate silhouetted plants and trees appear in the foreground, while layered blue and teal shapes create depth. The generous use of negative space and fine particle textures gives the work a light, airy and meditative quality.",
+        "dominant_colors": [
+          "#0C2542",
+          "#5F9EA0",
+          "#87CEEB",
+          "#F5F5F5"
+        ],
+        "vibe_tags": [
+          "serene",
+          "dreamlike",
+          "minimalist",
+          "ethereal",
+          "light",
+          "meditative"
+        ],
+        "category": "landscape",
+        "mood_score": 9,
+        "keywords": [
+          "rolling hills",
+          "celestial",
+          "blue landscape",
+          "minimalist",
+          "particle texture",
+          "peaceful nature",
+          "illustration"
+        ]
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "Not Listed"
+    },
+    {
+      "token_id": 9,
+      "name": "Nature stories #0009",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/9",
+      "image_url": "https://ipfs.io/ipfs/bafybeibpcsauefmrepb6jyhmkealzsa2ytccelzmvkpmcaln7iyezo3vpq",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": null,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "A balanced, graphic landscape featuring stylized mountains and hills in cool blue tones. Dark, elegant tree and plant silhouettes punctuate the composition, while a large blue circular form hovers above. The combination of clean shapes, subtle textures and harmonious color relationships creates a modern, contemplative nature scene.",
+        "dominant_colors": [
+          "#0A1F3A",
+          "#4169E1",
+          "#48D1CC",
+          "#F8F8FF"
+        ],
+        "vibe_tags": [
+          "serene",
+          "graphic",
+          "minimalist",
+          "harmonious",
+          "contemplative",
+          "modern"
+        ],
+        "category": "landscape",
+        "mood_score": 8,
+        "keywords": [
+          "stylized landscape",
+          "mountains",
+          "blue tones",
+          "tree silhouettes",
+          "minimalist illustration",
+          "nature art",
+          "balanced composition"
+        ]
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "Not Listed"
+    },
+    {
+      "token_id": 10,
+      "name": "Nature stories #0010",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/10",
+      "image_url": "https://ipfs.io/ipfs/bafybeibaiuhysv5eq3foih3vvws62ovwfjpidaqcmzi636mbkan7efwyge",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": null,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "A poetic, atmospheric landscape with flowing blue forms and delicate botanical elements. Layered hills and mountains create depth, while fine white and dark particles suggest wind, mist or light. The overall composition feels quiet, refined and emotionally resonant, like a visual haiku about nature.",
+        "dominant_colors": [
+          "#0B1E3D",
+          "#1E90FF",
+          "#20B2AA",
+          "#FFFAFA"
+        ],
+        "vibe_tags": [
+          "serene",
+          "poetic",
+          "minimalist",
+          "ethereal",
+          "contemplative",
+          "refined"
+        ],
+        "category": "landscape",
+        "mood_score": 8,
+        "keywords": [
+          "abstract landscape",
+          "flowing forms",
+          "botanical elements",
+          "blue palette",
+          "minimalist art",
+          "nature",
+          "atmospheric"
+        ]
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "Not Listed"
+    }
+  ]
+}

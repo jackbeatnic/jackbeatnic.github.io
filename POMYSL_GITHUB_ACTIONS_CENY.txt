@@ -1,0 +1,122 @@
+================================================================================
+  POMYSŁ NA PÓŹNIEJ — codzienna automatyczna aktualizacja cen
+  Jack Beatnic Gallery · GitHub Actions
+  Data notatki: 2026-07-11
+================================================================================
+
+CEL
+---
+  Zero ręcznych kroków: raz dziennie (np. 06:00 UTC) odświeżyć ceny z OpenSea,
+  zaktualizować gallery.json i wypchnąć na GitHub Pages.
+
+
+DLACZEGO NIE „LIVE Z OS” NA STRONIE
+-----------------------------------
+  GitHub Pages = statyczne pliki. Klucz OPENSEA_API_KEY nie może być w JS
+  w przeglądarce. GitHub Action uruchamia skrypt po stronie serwera GitHub
+  (sekret w repo) — bezpiecznie i bez Twojego terminala.
+
+
+ARCHITEKTURA
+------------
+  Cron (schedule) w .github/workflows/sync-gallery-prices.yml
+       ↓
+  checkout repo TWOJ-LOGIN.github.io
+       ↓
+  checkout jb_nft (drugi repo LUB skopiowane skrypty do gallery repo)
+       ↓
+  python3 raportuj_kolekcje.py --krok report
+       ↓
+  python3 aktualizuj_ceny_z_raportu.py
+       ↓
+  git commit gallery.json + push (GITHUB_TOKEN)
+
+
+WARIANT A — DWA REPO (obecna struktura jb_nft)
+----------------------------------------------
+  • Repo 1: jb_nft (private) — raportowanie/, listing/, skrypty
+  • Repo 2: LOGIN.github.io (public) — tylko www/
+
+  Action w jb_nft:
+    - secrets: OPENSEA_API_KEY
+    - krok report + sync do gallery.json
+    - push do LOGIN.github.io przez PAT (Personal Access Token) lub
+      deploy key z uprawnieniem write
+
+  Plus: jeden pipeline, pełna historia operacji w jb_nft.
+  Minus: dwa repozytoria do spięcia.
+
+
+WARIANT B — SKRYPTY W REPO GALERII (prostszy)
+---------------------------------------------
+  Skopiować do LOGIN.github.io (np. scripts/):
+    - odchudzony raportuj_kolekcje.py (tylko --krok report dla 1 kolekcji)
+    - aktualizuj_ceny_z_raportu.py
+    - kolekcje.json (fragment z 1 kolekcją)
+
+  Action w tym samym repo — jeden checkout, jeden push.
+
+  Plus: prostsza konfiguracja.
+  Minus: duplikacja skryptów (zmiany w jb_nft trzeba ręcznie przenosić).
+
+
+SEKRETY W GITHUB
+----------------
+  Settings → Secrets and variables → Actions:
+    OPENSEA_API_KEY     — klucz OpenSea (wymagany)
+    (opcjonalnie PAT jeśli push z innego repo)
+
+
+SZKIC WORKFLOW (wariant B, do wdrożenia gdy zechcesz)
+-----------------------------------------------------
+
+  # .github/workflows/sync-gallery-prices.yml
+  name: Sync gallery prices
+  on:
+    schedule:
+      - cron: '0 6 * * *'    # codziennie 06:00 UTC
+    workflow_dispatch:       # ręczne „Run workflow” z UI GitHub
+
+  jobs:
+    sync:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
+        - uses: actions/setup-python@v5
+          with:
+            python-version: '3.12'
+        - run: pip install requests  # zależności raportuj_kolekcje
+        - env:
+            OPENSEA_API_KEY: ${{ secrets.OPENSEA_API_KEY }}
+          run: |
+            python3 scripts/raportuj_kolekcje.py \
+              --kolekcja avalanche_nature_stories --krok report
+            python3 scripts/aktualizuj_ceny_z_raportu.py \
+              --kolekcja avalanche_nature_stories
+        - uses: stefanzweifel/git-auto-commit-action@v5
+          with:
+            commit_message: 'chore: daily price sync'
+            file_pattern: gallery.json
+
+
+KIEDY WDROŻYĆ
+-------------
+  • Gdy galeria jest już na GitHub Pages i działa ręczny ./odswiez_i_wgraj.sh
+  • Gdy listingi są regularne i chcesz, żeby ceny na stronie same się odświeżały
+  • Nie jest pilne przy 10 NFT i rzadkich zmianach cen
+
+
+DO SPRAWDZENIA PRZED WDROŻENIEM
+-------------------------------
+  [ ] Limity OpenSea API (ile tokenów / ile wywołań dziennie)
+  [ ] Czy --krok report wystarczy bez dane/ w repo (może wymagać commit dane/)
+  [ ] Czy Action ma dostęp do raportowanie/dane/ z dysku (wariant A: checkout jb_nft)
+  [ ] Powiadomienie e-mail gdy Action się wywali (GitHub domyślnie wysyła)
+
+
+TERAZ (MVP)
+-----------
+  Ręcznie: ./odswiez_i_wgraj.sh po wystawieniu / zmianie cen na OpenSea.
+  To wystarczy na start.
+
+================================================================================

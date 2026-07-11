@@ -1,0 +1,111 @@
+================================================================================
+  GitHub Pages — przeprowadzenie krok po kroku (tylko to, co potrzebne)
+  Jack Beatnic Gallery · adres docelowy: https://TWOJ-LOGIN.github.io/
+================================================================================
+
+IGNORUJ na razie: Actions, Codespaces, Wikis, Projects, Packages, Discussions,
+Copilot, branch protection, environments — nic z tego nie jest potrzebne.
+
+
+── CZĘŚĆ A: LOGOWANIE (jednorazowo, ~3 min) ───────────────────────────────
+
+  1. Zainstaluj GitHub CLI (w swoim terminalu, poza Grok — potrzebuje hasła):
+
+     sudo apt install gh
+
+  2. Zaloguj się (otworzy się przeglądarka):
+
+     gh auth login
+
+     Wybierz DOKŁADNIE:
+       ✓ GitHub.com
+       ✓ HTTPS
+       ✓ Yes (authenticate Git with GitHub credentials)
+       ✓ Login with a web browser
+     Skopiuj kod → Enter → wklej w przeglądarce → Authorize.
+
+  3. Sprawdź:
+
+     gh auth status
+
+     Powinno być: Logged in to github.com as TWOJ-LOGIN
+
+
+── CZĘŚĆ B: AUTOMATYCZNY SETUP (ja przygotowałem skrypt) ───────────────────
+
+  Podstaw swój login GitHub (ten sam co w kroku A):
+
+     cd /home/jb/jb_nft/www
+     ./setup_github.sh TWOJ-LOGIN
+
+  Przykład jeśli login to JackBeatnic:
+
+     ./setup_github.sh JackBeatnic
+
+  Skrypt sam:
+    • tworzy commit (jeśli brak)
+    • tworzy repo TWOJ-LOGIN.github.io na GitHub
+    • pushuje pliki
+    • próbuje włączyć Pages (main / root)
+
+  Po ~2 min otwórz: https://twoj-login.github.io/
+  (URL zwykle małymi literami)
+
+
+── CZĘŚĆ C: JEŚLI PAGES NIE WŁĄCZY SIĘ SAM ────────────────────────────────
+
+  Tylko 3 kliknięcia — jednorazowo:
+
+  1. https://github.com/TWOJ-LOGIN/TWOJ-LOGIN.github.io
+  2. Settings (zakładka u góry repo)
+  3. Po lewej: Pages
+  4. Build and deployment:
+       Source: Deploy from a branch
+       Branch: main    Folder: / (root)
+  5. Save
+
+  Reszty opcji na tej stronie NIE ruszaj.
+
+
+── CZĘŚĆ D: NA CO DZIEŃ (po wystawieniu / zmianie cen) ────────────────────
+
+     export OPENSEA_API_KEY="twój-klucz"
+     cd /home/jb/jb_nft/www
+     ./odswiez_i_wgraj.sh
+
+  Jedna komenda: OpenSea → gallery.json → GitHub.
+
+
+── RĘCZNIE (gdy nie chcesz gh) ─────────────────────────────────────────────
+
+  Zamiast setup_github.sh:
+
+  1. github.com → + → New repository
+     Name: TWOJ-LOGIN.github.io
+     Public, BEZ README
+
+  2. W terminalu:
+
+     cd /home/jb/jb_nft/www
+     git remote add origin https://github.com/TWOJ-LOGIN/TWOJ-LOGIN.github.io.git
+     git push -u origin main
+
+  3. Settings → Pages → main / (root)  (jak w części C)
+
+
+── PROBLEMY ────────────────────────────────────────────────────────────────
+
+  „Repository not found”
+    → zły login w URL lub repo nie utworzone
+
+  „Authentication failed” przy push
+    → gh auth login  (część A)
+
+  Strona 404 po pushu
+    → poczekaj 2 min; sprawdź Pages w Settings
+
+  Chcesz żebym dokończył w Grok po Twoim logowaniu
+    → napisz „zalogowany, login to X” — uruchomię setup_github.sh za Ciebie
+
+
+================================================================================

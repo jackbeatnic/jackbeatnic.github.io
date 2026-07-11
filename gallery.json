@@ -3,6 +3,8 @@
     "project_name": "Jack Beatnic Gallery",
     "artist": "Jack Beatnic",
     "description": "Nature Stories – Minimalist landscapes in deep blues and turquoise. Works inspired by nature, silence, and movement.",
+    "hero_title": "Photography, AI & the quiet image",
+    "hero_intro": "A living gallery across my NFT collections — nature and flower stories, abstract moods, and hand-made pieces. Wander by color and feeling; every work opens on OpenSea.",
     "about": [
       "I'm Jack Beatnic — in NFTs since 2022, a photographer who opened the door to AI art without leaving the classical path: light, landscape, quiet composition.",
       "Wander the works above — let mood and color lead you. Most pieces grow where photography meets the machine; now and then, something is drawn by hand. Glad you're exploring with me."
@@ -14,7 +16,8 @@
     "last_updated": "2026-07-03T17:50:00Z",
     "version": "0.1",
     "collection_id": "avalanche_nature_stories",
-    "last_price_sync": "2026-07-11T16:29:01Z"
+    "last_price_sync": "2026-07-11T16:29:01Z",
+    "last_likes_sort": "2026-07-11T17:02:45Z"
   },
   "nfts": [
     {
@@ -61,7 +64,8 @@
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
       "listing_status": "For Sale",
-      "listing_currency": "AVAX"
+      "listing_currency": "AVAX",
+      "display_rank": 1
     },
     {
       "token_id": 2,
@@ -108,7 +112,8 @@
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
       "listing_status": "For Sale",
-      "listing_currency": "AVAX"
+      "listing_currency": "AVAX",
+      "display_rank": 2
     },
     {
       "token_id": 3,
@@ -155,7 +160,8 @@
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
       "listing_status": "For Sale",
-      "listing_currency": "AVAX"
+      "listing_currency": "AVAX",
+      "display_rank": 3
     },
     {
       "token_id": 4,
@@ -201,7 +207,8 @@
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
       "listing_status": "For Sale",
-      "listing_currency": "AVAX"
+      "listing_currency": "AVAX",
+      "display_rank": 4
     },
     {
       "token_id": 5,
@@ -247,7 +254,8 @@
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
       "listing_status": "For Sale",
-      "listing_currency": "AVAX"
+      "listing_currency": "AVAX",
+      "display_rank": 5
     },
     {
       "token_id": 6,
@@ -293,7 +301,8 @@
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
       "listing_status": "For Sale",
-      "listing_currency": "AVAX"
+      "listing_currency": "AVAX",
+      "display_rank": 6
     },
     {
       "token_id": 7,
@@ -339,7 +348,8 @@
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
       "listing_status": "For Sale",
-      "listing_currency": "AVAX"
+      "listing_currency": "AVAX",
+      "display_rank": 7
     },
     {
       "token_id": 8,
@@ -385,7 +395,8 @@
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
       "listing_status": "For Sale",
-      "listing_currency": "AVAX"
+      "listing_currency": "AVAX",
+      "display_rank": 8
     },
     {
       "token_id": 9,
@@ -431,7 +442,8 @@
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
       "listing_status": "For Sale",
-      "listing_currency": "AVAX"
+      "listing_currency": "AVAX",
+      "display_rank": 9
     },
     {
       "token_id": 10,
@@ -477,7 +489,8 @@
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
       "listing_status": "For Sale",
-      "listing_currency": "AVAX"
+      "listing_currency": "AVAX",
+      "display_rank": 10
     }
   ]
 }

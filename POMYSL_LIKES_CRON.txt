@@ -1,0 +1,36 @@
+================================================================================
+  Likes & pozycjonowanie — workflow (blueprint Faza 4)
+================================================================================
+
+NA STRONIE (już działa)
+-----------------------
+  • Serduszko = like w LocalStorage (per przeglądarka)
+  • Zakładka = „Save for later” w LocalStorage
+  • Filtr „Saved” w panelu Explore
+  • likes_count + display_rank w gallery.json = kolejność kart
+
+STATYSTYKI DLA CIEBIE (nie live)
+--------------------------------
+  LocalStorage jest u każdego odwiedzającego osobno — bez backendu nie
+  zbierzesz globalnych like’ów automatycznie z internetu.
+
+  Na razie:
+    1. Ręcznie aktualizuj likes_count w gallery.json (lub plik stats/)
+    2. Uruchom raz dziennie:
+
+       cd /home/jb/jb_nft/www
+       python3 aktualizuj_pozycje_z_likes.py
+       git add gallery.json && git commit -m "chore: daily likes sort" && git push
+
+  Później (opcjonalnie):
+    • Eksport z analytics / prosty formularz → stats/likes_aggregate.json
+    • GitHub Action cron (jak w POMYSL_GITHUB_ACTIONS_CENY.txt)
+
+FORMAT stats/likes_aggregate.json (przykład)
+--------------------------------------------
+  {
+    "avalanche:0x87e7...4d:1": 5,
+    "avalanche:0x87e7...4d:2": 12
+  }
+
+================================================================================

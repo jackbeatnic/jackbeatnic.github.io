@@ -103,16 +103,21 @@ const Gallery = (() => {
     function applyHero(featured, info) {
         if (!info) return;
         const titleEl = document.getElementById('hero-title');
+        const taglineEl = document.getElementById('hero-tagline');
         const descEl = document.getElementById('hero-description');
         const imgEl = document.getElementById('hero-image');
-        const title = info.hero_title || info.project_name || 'Jack Beatnic Gallery';
+        const openseaEl = document.getElementById('hero-opensea');
+        const title = info.hero_title || info.artist || info.project_name || 'Jack Beatnic';
+        const tagline = info.hero_tagline || '';
         const intro =
             info.hero_intro ||
             (info.description || '').split(/\s*[–—]\s*/).slice(1).join(' — ').trim() ||
             info.description ||
             '';
         if (titleEl) titleEl.textContent = title;
+        if (taglineEl) taglineEl.textContent = tagline;
         if (descEl) descEl.textContent = intro;
+        if (openseaEl && info.opensea_profile) openseaEl.href = info.opensea_profile;
         if (imgEl && featured?.image_url) {
             imgEl.src = ImageProxy.displayUrl(featured.image_url, IMAGE_PROXY, 1280, 640);
             imgEl.alt = featured.name || title;

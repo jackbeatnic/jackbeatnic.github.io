@@ -1,0 +1,10 @@
+Źródło: Google Drive → Grok NFT - Jack Beatnic Gallery Layout
+Użyte w gallery.json: hero_title, hero_tagline, hero_intro
+
+Jack Beatnic
+AI Artist & Photographer
+
+Quiet landscapes and contemplative works where photography meets generative intelligence.
+Color, light, and mood — across Polygon, Base, Avalanche & more.
+
+CTA: Explore the Gallery | View on OpenSea

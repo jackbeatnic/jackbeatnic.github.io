@@ -4,8 +4,8 @@
     "artist": "Jack Beatnic",
     "description": "Nature Stories – Minimalist landscapes in deep blues and turquoise. Works inspired by nature, silence, and movement.",
     "hero_title": "Jack Beatnic",
-    "hero_tagline": "AI Artist & Photographer",
-    "hero_intro": "Quiet landscapes and contemplative works where photography meets generative intelligence. Color, light, and mood — across Polygon, Base, Avalanche & more.",
+    "hero_tagline": "From the Lens to AI",
+    "hero_intro": "From the lens to AI: photographs as reference, memory, and imagination — while pure photography keeps its own gallery here. Wind-swept seas, forests and peaks, wildlife in quiet light, Flower Stories' fresh femininity, and collages where modern meets classical. Whether generated or shot on the street, I follow detail, natural abstraction, and the beauty found in between.",
     "about": [
       "I'm Jack Beatnic — in NFTs since 2022, a photographer who opened the door to AI art without leaving the classical path: light, landscape, quiet composition.",
       "Wander the works above — let mood and color lead you. Most pieces grow where photography meets the machine; now and then, something is drawn by hand. Glad you're exploring with me."
@@ -533,14 +533,14 @@
     "sections": {
       "ai_art": {
         "label": "AI Art",
-        "hero_tagline": "Generative intelligence",
-        "hero_intro": "Quiet landscapes and contemplative works where photography meets the machine — color, light, and mood across Polygon, Base, Avalanche & more.",
+        "hero_tagline": "From the Lens to AI",
+        "hero_intro": "From the lens to AI: photographs as reference, memory, and imagination — while pure photography keeps its own gallery here. Wind-swept seas, forests and peaks, wildlife in quiet light, Flower Stories' fresh femininity, and collages where modern meets classical. Whether generated or shot on the street, I follow detail, natural abstraction, and the beauty found in between.",
         "explore_title": "Explore AI Art"
       },
       "photography": {
         "label": "Photography",
-        "hero_tagline": "Light & landscape",
-        "hero_intro": "Classical photography — the camera first. Wander by mood and composition; when a piece blends photo with collage or hand-drawn marks, you'll find it under Other.",
+        "hero_tagline": "The camera first",
+        "hero_intro": "Landscapes, floral detail, and street scenes — drawn to natural abstraction and the small truths in light. When photography meets collage or hand-drawn marks, those works live under Other.",
         "explore_title": "Explore Photography",
         "subsections": [
           {

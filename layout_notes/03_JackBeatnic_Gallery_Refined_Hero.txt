@@ -1,6 +1,10 @@
 Źródło: Google Drive → Grok NFT - Jack Beatnic Gallery Layout
 Użyte w gallery.json: hero_title, hero_tagline, hero_intro
 
+hero_title: Jack Beatnic
+hero_tagline (AI Art): From the Lens to AI
+hero_intro (AI Art): From the lens to AI: photographs as reference, memory, and imagination — while pure photography keeps its own gallery here. Wind-swept seas, forests and peaks, wildlife in quiet light, Flower Stories' fresh femininity, and collages where modern meets classical. Whether generated or shot on the street, I follow detail, natural abstraction, and the beauty found in between.
+
 Jack Beatnic
 AI Artist & Photographer
 

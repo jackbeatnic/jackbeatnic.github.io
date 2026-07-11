@@ -1,6 +1,8 @@
 ================================================================================
   Jack Beatnic Gallery — strona www/
   Podgląd lokalny + synchronizacja cen z raportów OpenSea
+  Strona live: https://jackbeatnic.github.io/
+  Repo:         https://github.com/jackbeatnic/jackbeatnic.github.io
 ================================================================================
 
 
@@ -26,8 +28,40 @@ AKTUALIZACJA CEN + GITHUB PAGES (jedna komenda)
     ./odswiez_i_wgraj.sh --no-push
     ./odswiez_i_wgraj.sh --kolekcja avalanche_nature_stories
 
-  Pierwszy deploy: DEPLOY_GITHUB.txt  (adres: https://LOGIN.github.io/)
+  Pierwszy deploy: DEPLOY_GITHUB.txt
+  Przeprowadzenie GitHub: GITHUB_KROK_PO_KROKU.txt
   Automatyzacja cron: POMYSL_GITHUB_ACTIONS_CENY.txt (na później)
+
+
+CO DOKŁADNIE ROBI odswiez_i_wgraj.sh (żeby się nie zgubić)
+----------------------------------------------------------
+  To NIE jest „podwójna robota” — to łańcuch 3 kroków:
+
+  [1] raportuj_kolekcje.py --krok report
+        → zapisuje LOKALNIE (w jb_nft/, NIE na GitHub):
+          raportowanie/raporty/avalanche_nature_stories_raport.csv
+        → odświeża CAŁĄ kolekcję (wszystkie tokeny z dane/), nie tylko 10 z galerii
+        → ~1–2 min; ten sam raport używasz też do listingu
+
+  [2] aktualizuj_ceny_z_raportu.py
+        → czyta ten CSV i aktualizuje TYLKO NFT z gallery.json
+          (dopasowanie: chain + kontrakt + token_id)
+        → zapisuje www/gallery.json
+
+  [3] git commit + push
+        → na GitHub leci WYŁĄCZNIE gallery.json (jeśli się zmienił)
+        → raport CSV zostaje u Ciebie na dysku, nigdy nie trafia na stronę publiczną
+
+  W skrócie:
+    OpenSea → raport CSV (lokalnie, cała kolekcja)
+            → gallery.json (tylko 10 NFT w galerii)
+            → jackbeatnic.github.io
+
+  Gdy raport masz już świeży (np. przed chwilą robiłeś go pod listing):
+    pomiń krok 1 — uruchom tylko krok 2 i 3 (sekcja poniżej).
+
+  Gdy chcesz sync lokalnie, bez publikacji na stronie:
+    ./odswiez_i_wgraj.sh --no-push
 
 
 AKTUALIZACJA CEN (ręcznie, krok po kroku)
@@ -60,6 +94,33 @@ CO UZUPEŁNIA SKRYPT?
 PLIKI STRONY
 ------------
   index.html, css/gallery.css, js/*.js, gallery.json, assets/
+
+
+GITHUB I TERMINAL — CZY SIĘ WYLOGOWYWAĆ?
+----------------------------------------
+  Możesz ZOSTAĆ zalogowany — to ułatwia dalszą pracę (push, setup, Grok w terminalu).
+
+  Co to znaczy „zalogowany”:
+    • gh auth login zapisał token w systemowym keyring (nie w venv, nie w repo)
+    • git push/pull działa bez wpisywania hasła za każdym razem
+    • token NIE jest w plikach www/ ani na stronie publicznej
+
+  Sprawdzenie:
+    gh auth status
+
+  Wylogowanie (opcjonalne, np. na cudzym komputerze):
+    gh auth logout
+
+  Bezpieczeństwo na co dzień:
+    • NIE commituj OPENSEA_API_KEY ani kluczy portfela — tylko export w terminalu
+    • repo jackbeatnic.github.io jest publiczne — tam tylko pliki strony (www/)
+    • jb_nft/ (raportowanie, listing, venv) zostaje lokalnie / w osobnym repo później
+
+  Aktualizacja samej strony (HTML/CSS/JS, bez cen):
+    cd /home/jb/jb_nft/www
+    git add .
+    git commit -m "opis zmiany"
+    git push
 
 
 ================================================================================

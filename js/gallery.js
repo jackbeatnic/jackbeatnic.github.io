@@ -77,6 +77,7 @@ const Gallery = (() => {
             collectionInfo = data.collection_info || {};
 
             applyCollectionInfo(collectionInfo);
+            applyHero(nfts[0], collectionInfo);
             GalleryFilters.init(nfts);
             TipCreator.init(collectionInfo.creator_wallet);
             render(nfts);
@@ -90,13 +91,31 @@ const Gallery = (() => {
         }
     }
 
+    function collectionCopy(info) {
+        const parts = (info.description || '').split(/\s*[–—]\s*/).map((s) => s.trim());
+        return {
+            title: parts[0] || info.project_name || '',
+            description: parts[1] || info.description || '',
+        };
+    }
+
+    function applyHero(featured, info) {
+        if (!info) return;
+        const copy = collectionCopy(info);
+        const titleEl = document.getElementById('hero-title');
+        const descEl = document.getElementById('hero-description');
+        const imgEl = document.getElementById('hero-image');
+        if (titleEl) titleEl.textContent = copy.title;
+        if (descEl) descEl.textContent = copy.description;
+        if (imgEl && featured?.image_url) {
+            imgEl.src = ImageProxy.displayUrl(featured.image_url, IMAGE_PROXY, 1280, 640);
+            imgEl.alt = featured.name || copy.title;
+        }
+    }
+
     function applyCollectionInfo(info) {
         if (!info) return;
-        const parts = (info.description || '').split(/\s*[–—]\s*/).map((s) => s.trim());
-        const titleEl = document.getElementById('collection-title');
-        const descEl = document.getElementById('collection-description');
-        if (titleEl) titleEl.textContent = parts[0] || info.project_name || '';
-        if (descEl) descEl.textContent = parts[1] || info.description || '';
+        const copy = collectionCopy(info);
 
         const aboutEl = document.getElementById('about-content');
         const aboutParas = Array.isArray(info.about)
@@ -162,6 +181,8 @@ const Gallery = (() => {
             .map((tag) => `<span class="nft-tag">${escapeHtml(tag)}</span>`)
             .join('');
 
+        const viewSrc = ImageProxy.displayUrl(nft.image_url, IMAGE_PROXY, 880, 660);
+
         card.innerHTML = `
             <div class="nft-image-wrap">
                 <img src="${thumbSrc}"
@@ -172,6 +193,7 @@ const Gallery = (() => {
                      decoding="async"
                      draggable="false"
                      referrerpolicy="no-referrer">
+                <button type="button" class="nft-card__view" aria-label="View ${name}">View</button>
                 <div class="nft-image-shield" aria-hidden="true"></div>
             </div>
             <div class="nft-card__body">
@@ -199,6 +221,17 @@ const Gallery = (() => {
                 </div>
             </div>
         `;
+
+        const viewBtn = card.querySelector('.nft-card__view');
+        if (viewBtn) {
+            viewBtn.addEventListener('click', () => {
+                Lightbox.open({
+                    src: viewSrc,
+                    alt: nft.name,
+                    label: nft.name,
+                });
+            });
+        }
 
         return card;
     }

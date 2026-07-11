@@ -104,6 +104,19 @@ LIKES I KOLEJNOŚĆ (LocalStorage + cron)
   Szczegóły: POMYSL_LIKES_CRON.txt
 
 
+PODGLĄD NA X / FACEBOOK / DISCORD (Open Graph)
+----------------------------------------------
+  Plik: assets/og-preview.jpg (1200×630) + meta tagi w index.html
+
+  Po zmianie obrazka hero / miniatury:
+    1. Wygeneruj nowy og-preview.jpg (np. z weserv, 1200×630)
+    2. git add assets/og-preview.jpg && git push
+    3. Odśwież cache X: https://cards-dev.twitter.com/validator
+       (wpisz https://jackbeatnic.github.io/ → Preview card)
+
+  X pokazuje starą miniaturę dopóki nie zwalidujesz ponownie (cache).
+
+
 PLIKI STRONY
 ------------
   index.html, css/gallery.css, js/*.js, gallery.json, assets/

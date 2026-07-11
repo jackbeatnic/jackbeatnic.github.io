@@ -10,6 +10,8 @@ const GalleryFilters = (() => {
         const select = document.getElementById('category-filter');
         if (!select) return;
 
+        select.innerHTML = '<option value="">All categories</option>';
+
         const categories = [
             ...new Set(nfts.map((n) => n.ai?.category).filter(Boolean)),
         ].sort();
@@ -173,12 +175,40 @@ const GalleryFilters = (() => {
         });
     }
 
-    function init(nfts) {
+    function clearState() {
+        const select = document.getElementById('category-filter');
+        if (select) select.value = '';
+        searchQuery = '';
+        const search = document.getElementById('search-filter');
+        if (search) search.value = '';
+        activeVibes.clear();
+        activeColors.clear();
+        GalleryLikes.setSavedOnly(false);
+        document.querySelectorAll('.color-filter.is-active, .vibe-filter.is-active').forEach((el) => {
+            el.classList.remove('is-active');
+        });
+        const savedBtn = document.getElementById('filter-saved');
+        if (savedBtn) savedBtn.classList.remove('is-active');
+    }
+
+    function init(nfts, { rebind = false } = {}) {
         setupCategory(nfts);
         setupColors(nfts);
         setupVibes(nfts);
+        if (rebind) bind();
+    }
+
+    function reinit(nfts) {
+        clearState();
+        init(nfts);
+    }
+
+    let bound = false;
+    function bindOnce() {
+        if (bound) return;
+        bound = true;
         bind();
     }
 
-    return { init, apply, reset };
+    return { init, reinit, apply, reset, bindOnce };
 })();

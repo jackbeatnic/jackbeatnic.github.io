@@ -45,7 +45,8 @@
                 <p class="artist-subtitle">Digital Art · NFT</p>
             </div>
             <nav class="site-nav" aria-label="Main">
-                <a href="#gallery-root">Works</a>
+                <a href="#gallery-root" data-section="ai_art">AI Art</a>
+                <a href="#gallery-root" data-section="photography">Photography</a>
                 <a href="#about">About</a>
                 <button type="button" id="tip-open" class="site-nav__tip" aria-expanded="false" aria-controls="tip-panel">Tip</button>
             </nav>
@@ -64,6 +65,16 @@
     </header>
 
     <main id="gallery-root" class="main">
+        <nav class="section-nav" aria-label="Gallery sections">
+            <a href="#gallery-root" class="section-nav__tab" data-section="ai_art">AI Art</a>
+            <a href="#gallery-root" class="section-nav__tab" data-section="photography">Photography</a>
+        </nav>
+
+        <div id="photo-subnav" class="section-subnav" hidden aria-label="Photography categories">
+            <button type="button" class="section-subnav__tab" data-photo-kind="photo">Photography</button>
+            <button type="button" class="section-subnav__tab" data-photo-kind="other">Other</button>
+        </div>
+
         <section class="hero" aria-labelledby="hero-title">
             <div class="hero__media">
                 <img id="hero-image"
@@ -153,6 +164,7 @@
     <script src="js/lightbox.js"></script>
     <script src="js/likes.js"></script>
     <script src="js/filters.js"></script>
+    <script src="js/sections.js"></script>
     <script src="js/tip.js"></script>
     <script src="js/gallery.js"></script>
 </body>

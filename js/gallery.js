@@ -4,8 +4,10 @@
 const Gallery = (() => {
     const IMAGE_PROXY = 'weserv';
 
-    let nfts = [];
+    let allNfts = [];
+    let sectionNfts = [];
     let collectionInfo = {};
+    let siteConfig = {};
 
     function escapeHtml(text) {
         const div = document.createElement('div');
@@ -26,8 +28,8 @@ const Gallery = (() => {
         document.addEventListener('dragstart', blockImageActions);
     }
 
-    function currencySuffix(symbol) {
-        return symbol.toLowerCase();
+    function currencyForNft(nft) {
+        return nft.listing_currency || collectionInfo.native_currency || 'AVAX';
     }
 
     function priceField(nft, prefix, symbol) {
@@ -37,8 +39,12 @@ const Gallery = (() => {
         return null;
     }
 
+    function currencySuffix(symbol) {
+        return symbol.toLowerCase();
+    }
+
     function formatPrice(nft) {
-        const symbol = collectionInfo.native_currency || 'AVAX';
+        const symbol = currencyForNft(nft);
         const listed = priceField(nft, 'current_price', symbol);
         const mint = priceField(nft, 'mint_price', symbol);
         const lastSale = priceField(nft, 'last_sale_price', symbol);
@@ -67,8 +73,19 @@ const Gallery = (() => {
         return { text: '—', hint: 'Check OpenSea', kind: 'unknown' };
     }
 
+    function syncSectionNfts() {
+        sectionNfts = GallerySections.filterNfts(allNfts);
+        const exploreTitle = document.querySelector('.filters-panel__title');
+        const meta = GallerySections.getSectionMeta();
+        if (exploreTitle) {
+            exploreTitle.textContent = meta.explore_title || 'Explore';
+        }
+        GalleryFilters.reinit(sectionNfts);
+        applyHero(sectionNfts[0], meta);
+    }
+
     function getDisplayList() {
-        const sorted = GalleryLikes.sortForDisplay(nfts);
+        const sorted = GalleryLikes.sortForDisplay(sectionNfts);
         const filtered = GalleryFilters.apply(sorted);
         return GalleryLikes.filterSaved(filtered);
     }
@@ -83,45 +100,66 @@ const Gallery = (() => {
             const response = await fetch('gallery.json');
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const data = await response.json();
-            nfts = data.nfts || [];
+            allNfts = data.nfts || [];
             collectionInfo = data.collection_info || {};
+            siteConfig = data.site || {};
 
+            GallerySections.init(siteConfig);
             applyCollectionInfo(collectionInfo);
-            applyHero(nfts[0], collectionInfo);
-            GalleryFilters.init(nfts);
+            GalleryFilters.bindOnce();
+            preselectWorkSection();
+            syncSectionNfts();
             TipCreator.init(collectionInfo.creator_wallet);
             refresh();
-            openWorkFromUrl();
+            scrollToWorkFromUrl();
 
             document.addEventListener('gallery:filter', refresh);
             document.addEventListener('gallery:likes', refresh);
+            document.addEventListener('gallery:section', () => {
+                syncSectionNfts();
+                refresh();
+            });
         } catch (error) {
             console.error('Gallery load error:', error);
             grid.innerHTML = '<p class="gallery-error">Failed to load the gallery.</p>';
         }
     }
 
-    function applyHero(featured, info) {
-        if (!info) return;
+    function applyHero(featured, sectionMeta) {
+        const info = collectionInfo;
         const titleEl = document.getElementById('hero-title');
         const taglineEl = document.getElementById('hero-tagline');
         const descEl = document.getElementById('hero-description');
         const imgEl = document.getElementById('hero-image');
         const openseaEl = document.getElementById('hero-opensea');
+
         const title = info.hero_title || info.artist || info.project_name || 'Jack Beatnic';
-        const tagline = info.hero_tagline || '';
+        const tagline = sectionMeta.hero_tagline || info.hero_tagline || '';
         const intro =
+            sectionMeta.hero_intro ||
             info.hero_intro ||
             (info.description || '').split(/\s*[–—]\s*/).slice(1).join(' — ').trim() ||
             info.description ||
             '';
+
         if (titleEl) titleEl.textContent = title;
         if (taglineEl) taglineEl.textContent = tagline;
         if (descEl) descEl.textContent = intro;
         if (openseaEl && info.opensea_profile) openseaEl.href = info.opensea_profile;
-        if (imgEl && featured?.image_url) {
-            imgEl.src = ImageProxy.displayUrl(featured.image_url, IMAGE_PROXY, 1280, 640);
-            imgEl.alt = featured.name || title;
+
+        const hero = document.querySelector('.hero');
+        if (imgEl) {
+            if (featured?.image_url) {
+                imgEl.src = ImageProxy.displayUrl(featured.image_url, IMAGE_PROXY, 1280, 640);
+                imgEl.alt = featured.name || title;
+                imgEl.hidden = false;
+                hero?.classList.remove('hero--text-only');
+            } else {
+                imgEl.removeAttribute('src');
+                imgEl.alt = title;
+                imgEl.hidden = true;
+                hero?.classList.add('hero--text-only');
+            }
         }
     }
 
@@ -152,7 +190,7 @@ const Gallery = (() => {
         container.innerHTML = '';
 
         if (countEl) {
-            const total = nfts.length;
+            const total = sectionNfts.length;
             countEl.textContent =
                 filtered.length === total
                     ? `${filtered.length} works`
@@ -160,10 +198,13 @@ const Gallery = (() => {
         }
 
         if (filtered.length === 0) {
-            const msg = GalleryLikes.getSavedOnly()
-                ? 'No saved works yet — bookmark pieces to find them here.'
-                : 'No works match the selected filters.';
-            container.innerHTML = `<p class="gallery-empty">${msg}</p>`;
+            let msg = GallerySections.emptyMessage();
+            if (GalleryLikes.getSavedOnly()) {
+                msg = 'No saved works yet — bookmark pieces to find them here.';
+            } else if (sectionNfts.length > 0) {
+                msg = 'No works match the selected filters.';
+            }
+            container.innerHTML = `<p class="gallery-empty">${escapeHtml(msg)}</p>`;
             return;
         }
 
@@ -196,23 +237,33 @@ const Gallery = (() => {
         syncState();
     }
 
-    function openWorkFromUrl() {
+    function findWorkNft() {
         const params = new URLSearchParams(window.location.search);
         const work = params.get('work') || params.get('token');
-        if (!work) return;
-
+        if (!work) return null;
         const tokenId = Number(work);
-        if (!Number.isFinite(tokenId)) return;
+        if (!Number.isFinite(tokenId)) return null;
+        return allNfts.find((item) => Number(item.token_id) === tokenId) || null;
+    }
 
-        const nft = nfts.find((item) => Number(item.token_id) === tokenId);
+    function preselectWorkSection() {
+        const nft = findWorkNft();
+        if (nft) GallerySections.activateForNft(nft, { silent: true });
+    }
+
+    function scrollToWorkFromUrl() {
+        const nft = findWorkNft();
         if (!nft) return;
 
-        const card = document.querySelector(`[data-token-id="${tokenId}"]`);
-        if (card) {
-            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            card.classList.add('nft-card--highlight');
-            window.setTimeout(() => card.classList.remove('nft-card--highlight'), 2400);
-        }
+        window.requestAnimationFrame(() => {
+            const key = GalleryLikes.nftKey(nft);
+            const card = document.querySelector(`[data-nft-key="${CSS.escape(key)}"]`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                card.classList.add('nft-card--highlight');
+                window.setTimeout(() => card.classList.remove('nft-card--highlight'), 2400);
+            }
+        });
     }
 
     function buildCard(nft) {
@@ -221,6 +272,8 @@ const Gallery = (() => {
         card.dataset.tokenId = String(nft.token_id);
 
         const key = GalleryLikes.nftKey(nft);
+        card.dataset.nftKey = key;
+
         const thumbSrc = ImageProxy.displayUrl(nft.image_url, IMAGE_PROXY);
         const viewSrc = ImageProxy.displayUrl(nft.image_url, IMAGE_PROXY, 880, 660);
         const name = escapeHtml(nft.name);

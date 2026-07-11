@@ -124,6 +124,11 @@ PODGLĄD NA X / FACEBOOK / DISCORD (Open Graph)
   Cache X: https://cards-dev.twitter.com/validator
 
 
+SEKCJE AI ART / PHOTOGRAPHY
+---------------------------
+  Patrz STRUKTURA_SEKCJI.txt — pola medium, photo_kind, blok site w gallery.json.
+
+
 PLIKI STRONY
 ------------
   index.html, css/gallery.css, js/*.js, gallery.json, assets/

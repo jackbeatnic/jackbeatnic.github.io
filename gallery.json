@@ -14,7 +14,7 @@
     "last_updated": "2026-07-03T17:50:00Z",
     "version": "0.1",
     "collection_id": "avalanche_nature_stories",
-    "last_price_sync": "2026-07-11T15:36:59Z"
+    "last_price_sync": "2026-07-11T16:15:08Z"
   },
   "nfts": [
     {
@@ -24,7 +24,7 @@
       "image_url": "https://ipfs.io/ipfs/bafybeiemw7ftfgifx3kiynqyt6lx2cub7d7t24c62cbe25ddztxl5khewq",
       "supply": 7000,
       "mint_price_avax": 2.2,
-      "current_price_avax": null,
+      "current_price_avax": 1596.0,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -60,7 +60,8 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed"
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX"
     },
     {
       "token_id": 2,
@@ -69,7 +70,7 @@
       "image_url": "https://ipfs.io/ipfs/bafybeiakpgsvolupwjgqjtuc4zhn7u4uuxd3ajchmik3hziyd2wi2jqebm",
       "supply": 7000,
       "mint_price_avax": 2.2,
-      "current_price_avax": null,
+      "current_price_avax": 1596.0,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -106,7 +107,8 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed"
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX"
     },
     {
       "token_id": 3,
@@ -115,7 +117,7 @@
       "image_url": "https://ipfs.io/ipfs/bafybeifbwhr7uo5al4kmfkdtvlku4vzs56tigzekelrddnpsd4pcy2hnv4",
       "supply": 7000,
       "mint_price_avax": 2.2,
-      "current_price_avax": null,
+      "current_price_avax": 1596.0,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -152,7 +154,8 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed"
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX"
     },
     {
       "token_id": 4,
@@ -161,7 +164,7 @@
       "image_url": "https://ipfs.io/ipfs/bafybeicsz4fje4aafvuucaol2sy5wj6xoes6bvwq3g44eq6cvqcxnzbhmy",
       "supply": 7000,
       "mint_price_avax": 2.2,
-      "current_price_avax": null,
+      "current_price_avax": 1596.0,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -197,7 +200,8 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed"
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX"
     },
     {
       "token_id": 5,
@@ -206,7 +210,7 @@
       "image_url": "https://ipfs.io/ipfs/bafybeig2axxvryzzoagi4tsjs7h3ol4dfivw4z3uwfiq2xzf6lv6zcjg44",
       "supply": 7000,
       "mint_price_avax": 2.2,
-      "current_price_avax": null,
+      "current_price_avax": 1596.0,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -242,7 +246,8 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed"
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX"
     },
     {
       "token_id": 6,
@@ -251,7 +256,7 @@
       "image_url": "https://ipfs.io/ipfs/bafybeiem6jesdvzgyvdaxywmobicxvehwzserxhw34d7qie5hq4hvkzgjm",
       "supply": 7000,
       "mint_price_avax": 2.2,
-      "current_price_avax": null,
+      "current_price_avax": 1596.0,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -287,7 +292,8 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed"
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX"
     },
     {
       "token_id": 7,
@@ -296,7 +302,7 @@
       "image_url": "https://ipfs.io/ipfs/bafybeifolltzcp4cbysiwppghbtkadlk3w35ocualiz6se47z5daicsiem",
       "supply": 7000,
       "mint_price_avax": 2.2,
-      "current_price_avax": null,
+      "current_price_avax": 1596.0,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -332,7 +338,8 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed"
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX"
     },
     {
       "token_id": 8,
@@ -341,7 +348,7 @@
       "image_url": "https://ipfs.io/ipfs/bafybeigfcwnabhyhwmlrmyisuglpi2zov6hovzdhhhl5z6d7yaefted72e",
       "supply": 7000,
       "mint_price_avax": 2.2,
-      "current_price_avax": null,
+      "current_price_avax": 1596.0,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -377,7 +384,8 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed"
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX"
     },
     {
       "token_id": 9,
@@ -386,7 +394,7 @@
       "image_url": "https://ipfs.io/ipfs/bafybeibpcsauefmrepb6jyhmkealzsa2ytccelzmvkpmcaln7iyezo3vpq",
       "supply": 7000,
       "mint_price_avax": 2.2,
-      "current_price_avax": null,
+      "current_price_avax": 1596.0,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -422,7 +430,8 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed"
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX"
     },
     {
       "token_id": 10,
@@ -431,7 +440,7 @@
       "image_url": "https://ipfs.io/ipfs/bafybeibaiuhysv5eq3foih3vvws62ovwfjpidaqcmzi636mbkan7efwyge",
       "supply": 7000,
       "mint_price_avax": 2.2,
-      "current_price_avax": null,
+      "current_price_avax": 1596.0,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -467,7 +476,8 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed"
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX"
     }
   ]
 }

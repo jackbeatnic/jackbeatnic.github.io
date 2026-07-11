@@ -81,7 +81,15 @@ const Gallery = (() => {
             exploreTitle.textContent = meta.explore_title || 'Explore';
         }
         GalleryFilters.reinit(sectionNfts);
-        applyHero(sectionNfts[0], meta);
+        applyHero();
+    }
+
+    function heroFeaturedNft() {
+        return (
+            allNfts.find((nft) => (nft.medium || 'ai_art') === 'ai_art') ||
+            sectionNfts[0] ||
+            allNfts[0]
+        );
     }
 
     function getDisplayList() {
@@ -125,8 +133,24 @@ const Gallery = (() => {
         }
     }
 
-    function applyHero(featured, sectionMeta) {
+    function heroIntroParagraphs(info) {
+        const intro = info.hero_intro;
+        if (Array.isArray(intro)) {
+            return intro.map((p) => String(p).trim()).filter(Boolean);
+        }
+        if (typeof intro === 'string' && intro.trim()) {
+            return intro.split(/\n\n+/).map((p) => p.trim()).filter(Boolean);
+        }
+        const fallback =
+            (info.description || '').split(/\s*[–—]\s*/).slice(1).join(' — ').trim() ||
+            info.description ||
+            '';
+        return fallback ? [fallback] : [];
+    }
+
+    function applyHero() {
         const info = collectionInfo;
+        const featured = heroFeaturedNft();
         const titleEl = document.getElementById('hero-title');
         const taglineEl = document.getElementById('hero-tagline');
         const descEl = document.getElementById('hero-description');
@@ -134,17 +158,16 @@ const Gallery = (() => {
         const openseaEl = document.getElementById('hero-opensea');
 
         const title = info.hero_title || info.artist || info.project_name || 'Jack Beatnic';
-        const tagline = sectionMeta.hero_tagline || info.hero_tagline || '';
-        const intro =
-            sectionMeta.hero_intro ||
-            info.hero_intro ||
-            (info.description || '').split(/\s*[–—]\s*/).slice(1).join(' — ').trim() ||
-            info.description ||
-            '';
+        const tagline = info.hero_tagline || '';
+        const paragraphs = heroIntroParagraphs(info);
 
         if (titleEl) titleEl.textContent = title;
         if (taglineEl) taglineEl.textContent = tagline;
-        if (descEl) descEl.textContent = intro;
+        if (descEl) {
+            descEl.innerHTML = paragraphs
+                .map((text) => `<p>${escapeHtml(text)}</p>`)
+                .join('');
+        }
         if (openseaEl && info.opensea_profile) openseaEl.href = info.opensea_profile;
 
         const hero = document.querySelector('.hero');

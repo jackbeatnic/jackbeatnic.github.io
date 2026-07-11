@@ -372,7 +372,7 @@ a {
 .hero {
     position: relative;
     margin: 0 -1.25rem 2rem;
-    min-height: clamp(14rem, 42vw, 22rem);
+    min-height: clamp(18rem, 52vw, 28rem);
     display: grid;
     align-items: end;
     overflow: hidden;
@@ -398,8 +398,9 @@ a {
     inset: 0;
     background: linear-gradient(
         to top,
-        rgba(255, 255, 255, 0.97) 0%,
-        rgba(255, 255, 255, 0.72) 38%,
+        rgba(255, 255, 255, 0.98) 0%,
+        rgba(255, 255, 255, 0.94) 28%,
+        rgba(255, 255, 255, 0.72) 48%,
         rgba(255, 255, 255, 0.2) 100%
     );
 }
@@ -407,9 +408,13 @@ a {
 .hero__content {
     position: relative;
     z-index: 1;
-    max-width: 38.75rem;
+    width: 100%;
+    max-width: 44rem;
     margin: 0 auto;
-    padding: 1.5rem 1.25rem 1.75rem;
+    padding: 1.35rem 1.25rem 1.85rem;
+}
+
+.hero__brand {
     text-align: center;
 }
 
@@ -431,21 +436,34 @@ a {
     text-transform: uppercase;
 }
 
+.hero__prose {
+    margin-top: 1.15rem;
+    text-align: left;
+}
+
 .hero__description {
-    margin: 0.9rem auto 0;
-    font-size: clamp(0.8rem, 1.7vw, 0.9rem);
+    margin: 0;
+    font-size: clamp(0.76rem, 1.45vw, 0.84rem);
     font-weight: 300;
     color: var(--gray-500);
-    line-height: 1.75;
-    max-width: 34rem;
+    line-height: 1.82;
+    max-width: 42rem;
+}
+
+.hero__description p {
+    margin: 0;
+}
+
+.hero__description p + p {
+    margin-top: 0.85rem;
 }
 
 .hero__actions {
     display: flex;
     flex-wrap: wrap;
     gap: 0.55rem;
-    justify-content: center;
-    margin-top: 1.15rem;
+    justify-content: flex-start;
+    margin-top: 1.2rem;
 }
 
 .hero__actions .btn {

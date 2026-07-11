@@ -63,20 +63,31 @@ if [[ -z "${OPENSEA_API_KEY:-}" ]]; then
     exit 1
 fi
 
-echo "=== [1/3] Raport OpenSea (--krok report) — $KOLEKCJA ==="
+echo "=== [1/4] Raport OpenSea (--krok report) — $KOLEKCJA ==="
 (
     cd "$RAPORT_DIR"
     python3 raportuj_kolekcje.py --kolekcja "$KOLEKCJA" --krok report
 )
 
 echo ""
-echo "=== [2/3] Sync gallery.json ==="
+echo "=== [2/4] Sync gallery.json ==="
 (
     cd "$WWW_DIR"
     if $DRY_RUN; then
         python3 aktualizuj_ceny_z_raportu.py --kolekcja "$KOLEKCJA" --dry-run
     else
         python3 aktualizuj_ceny_z_raportu.py --kolekcja "$KOLEKCJA"
+    fi
+)
+
+echo ""
+echo "=== [3/4] OG preview (site + per-NFT) ==="
+(
+    cd "$WWW_DIR"
+    if $DRY_RUN; then
+        echo "[dry-run] Pominięto generuj_og_preview.py"
+    else
+        python3 generuj_og_preview.py
     fi
 )
 
@@ -93,7 +104,7 @@ if $NO_PUSH; then
 fi
 
 echo ""
-echo "=== [3/3] Git commit + push (GitHub Pages) ==="
+echo "=== [4/4] Git commit + push (GitHub Pages) ==="
 cd "$WWW_DIR"
 
 if ! git rev-parse --git-dir >/dev/null 2>&1; then
@@ -107,12 +118,13 @@ if ! git remote get-url origin >/dev/null 2>&1; then
     exit 1
 fi
 
-if git diff --quiet -- gallery.json && git diff --cached --quiet -- gallery.json; then
-    echo "gallery.json bez zmian — pomijam commit i push."
+if git diff --quiet -- gallery.json assets/og-preview.jpg assets/og nft/ js/gallery.js \
+    && git diff --cached --quiet -- gallery.json assets/og-preview.jpg assets/og nft/ js/gallery.js; then
+    echo "Brak zmian (gallery / OG) — pomijam commit i push."
     exit 0
 fi
 
-git add gallery.json
+git add gallery.json assets/og-preview.jpg assets/og nft/ js/gallery.js generuj_og_preview.py
 if [[ -z "$COMMIT_MSG" ]]; then
     COMMIT_MSG="sync prices ($KOLEKCJA) $(date -u +%Y-%m-%dT%H:%MZ)"
 fi

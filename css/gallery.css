@@ -431,7 +431,7 @@ a {
     margin: 0.4rem 0 0;
     font-size: clamp(0.68rem, 1.6vw, 0.78rem);
     font-weight: 500;
-    color: #383838;
+    color: #2e2e2e;
     letter-spacing: 0.14em;
     text-transform: uppercase;
 }
@@ -445,7 +445,7 @@ a {
     margin: 0;
     font-size: clamp(0.76rem, 1.45vw, 0.84rem);
     font-weight: 300;
-    color: #5a5a5a;
+    color: #4f4f4f;
     line-height: 1.82;
     max-width: 42rem;
 }

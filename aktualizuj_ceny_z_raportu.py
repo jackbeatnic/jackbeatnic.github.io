@@ -5,6 +5,8 @@ Synchronizuje ceny listingów OpenSea z raportów CSV -> www/gallery.json
 Źródło: raportowanie/raporty/{collection_id}_raport.csv
 Cel:    current_price_{waluta}, listing_status, opensea_url
 
+Uwaga:  kolumna price w raporcie = cena za 1 szt. (nie wartość całej partii).
+
 Najpierw wygeneruj świeży raport:
   cd /home/jb/jb_nft/raportowanie
   export OPENSEA_API_KEY="..."

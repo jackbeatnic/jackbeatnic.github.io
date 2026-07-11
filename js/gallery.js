@@ -91,6 +91,7 @@ const Gallery = (() => {
             GalleryFilters.init(nfts);
             TipCreator.init(collectionInfo.creator_wallet);
             refresh();
+            openWorkFromUrl();
 
             document.addEventListener('gallery:filter', refresh);
             document.addEventListener('gallery:likes', refresh);
@@ -195,9 +196,29 @@ const Gallery = (() => {
         syncState();
     }
 
+    function openWorkFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+        const work = params.get('work') || params.get('token');
+        if (!work) return;
+
+        const tokenId = Number(work);
+        if (!Number.isFinite(tokenId)) return;
+
+        const nft = nfts.find((item) => Number(item.token_id) === tokenId);
+        if (!nft) return;
+
+        const card = document.querySelector(`[data-token-id="${tokenId}"]`);
+        if (card) {
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            card.classList.add('nft-card--highlight');
+            window.setTimeout(() => card.classList.remove('nft-card--highlight'), 2400);
+        }
+    }
+
     function buildCard(nft) {
         const card = document.createElement('article');
         card.className = 'nft-card';
+        card.dataset.tokenId = String(nft.token_id);
 
         const key = GalleryLikes.nftKey(nft);
         const thumbSrc = ImageProxy.displayUrl(nft.image_url, IMAGE_PROXY);

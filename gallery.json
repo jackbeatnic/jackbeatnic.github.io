@@ -21,7 +21,8 @@
     "version": "0.1",
     "collection_id": "avalanche_nature_stories",
     "last_price_sync": "2026-07-11T16:29:01Z",
-    "last_likes_sort": "2026-07-11T17:02:45Z"
+    "last_likes_sort": "2026-07-11T17:02:45Z",
+    "og_generated_at": "2026-07-11T17:39:25Z"
   },
   "nfts": [
     {
@@ -69,7 +70,9 @@
       "collection_id": "avalanche_nature_stories",
       "listing_status": "For Sale",
       "listing_currency": "AVAX",
-      "display_rank": 1
+      "display_rank": 1,
+      "share_url": "https://jackbeatnic.github.io/nft/1.html",
+      "og_image": "assets/og/nft-1.jpg"
     },
     {
       "token_id": 2,
@@ -117,7 +120,9 @@
       "collection_id": "avalanche_nature_stories",
       "listing_status": "For Sale",
       "listing_currency": "AVAX",
-      "display_rank": 2
+      "display_rank": 2,
+      "share_url": "https://jackbeatnic.github.io/nft/2.html",
+      "og_image": "assets/og/nft-2.jpg"
     },
     {
       "token_id": 3,
@@ -165,7 +170,9 @@
       "collection_id": "avalanche_nature_stories",
       "listing_status": "For Sale",
       "listing_currency": "AVAX",
-      "display_rank": 3
+      "display_rank": 3,
+      "share_url": "https://jackbeatnic.github.io/nft/3.html",
+      "og_image": "assets/og/nft-3.jpg"
     },
     {
       "token_id": 4,
@@ -212,7 +219,9 @@
       "collection_id": "avalanche_nature_stories",
       "listing_status": "For Sale",
       "listing_currency": "AVAX",
-      "display_rank": 4
+      "display_rank": 4,
+      "share_url": "https://jackbeatnic.github.io/nft/4.html",
+      "og_image": "assets/og/nft-4.jpg"
     },
     {
       "token_id": 5,
@@ -259,7 +268,9 @@
       "collection_id": "avalanche_nature_stories",
       "listing_status": "For Sale",
       "listing_currency": "AVAX",
-      "display_rank": 5
+      "display_rank": 5,
+      "share_url": "https://jackbeatnic.github.io/nft/5.html",
+      "og_image": "assets/og/nft-5.jpg"
     },
     {
       "token_id": 6,
@@ -306,7 +317,9 @@
       "collection_id": "avalanche_nature_stories",
       "listing_status": "For Sale",
       "listing_currency": "AVAX",
-      "display_rank": 6
+      "display_rank": 6,
+      "share_url": "https://jackbeatnic.github.io/nft/6.html",
+      "og_image": "assets/og/nft-6.jpg"
     },
     {
       "token_id": 7,
@@ -353,7 +366,9 @@
       "collection_id": "avalanche_nature_stories",
       "listing_status": "For Sale",
       "listing_currency": "AVAX",
-      "display_rank": 7
+      "display_rank": 7,
+      "share_url": "https://jackbeatnic.github.io/nft/7.html",
+      "og_image": "assets/og/nft-7.jpg"
     },
     {
       "token_id": 8,
@@ -400,7 +415,9 @@
       "collection_id": "avalanche_nature_stories",
       "listing_status": "For Sale",
       "listing_currency": "AVAX",
-      "display_rank": 8
+      "display_rank": 8,
+      "share_url": "https://jackbeatnic.github.io/nft/8.html",
+      "og_image": "assets/og/nft-8.jpg"
     },
     {
       "token_id": 9,
@@ -447,7 +464,9 @@
       "collection_id": "avalanche_nature_stories",
       "listing_status": "For Sale",
       "listing_currency": "AVAX",
-      "display_rank": 9
+      "display_rank": 9,
+      "share_url": "https://jackbeatnic.github.io/nft/9.html",
+      "og_image": "assets/og/nft-9.jpg"
     },
     {
       "token_id": 10,
@@ -494,7 +513,9 @@
       "collection_id": "avalanche_nature_stories",
       "listing_status": "For Sale",
       "listing_currency": "AVAX",
-      "display_rank": 10
+      "display_rank": 10,
+      "share_url": "https://jackbeatnic.github.io/nft/10.html",
+      "og_image": "assets/og/nft-10.jpg"
     }
   ]
 }

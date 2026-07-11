@@ -106,15 +106,22 @@ LIKES I KOLEJNOŚĆ (LocalStorage + cron)
 
 PODGLĄD NA X / FACEBOOK / DISCORD (Open Graph)
 ----------------------------------------------
-  Plik: assets/og-preview.jpg (1200×630) + meta tagi w index.html
+  Strona główna: assets/og-preview.jpg (1200×630) + meta w index.html
+  Per NFT (jak OpenSea — miniatura + cena):
+    assets/og/nft-{id}.jpg  +  nft/{id}.html  (share_url w gallery.json)
 
-  Po zmianie obrazka hero / miniatury:
-    1. Wygeneruj nowy og-preview.jpg (np. z weserv, 1200×630)
-    2. git add assets/og-preview.jpg && git push
-    3. Odśwież cache X: https://cards-dev.twitter.com/validator
-       (wpisz https://jackbeatnic.github.io/ → Preview card)
+  Generowanie (wszystko naraz):
+    python3 generuj_og_preview.py
+    # tylko karty NFT:  python3 generuj_og_preview.py --nft-only
+    # jeden token:      python3 generuj_og_preview.py --token 3
 
-  X pokazuje starą miniaturę dopóki nie zwalidujesz ponownie (cache).
+  Przy syncu cen (odswiez_i_wgraj.sh) OG odświeża się automatycznie.
+
+  Link do udostępnienia pojedynczego dzieła:
+    https://jackbeatnic.github.io/nft/1.html
+    (przekierowuje na galerię ?work=1)
+
+  Cache X: https://cards-dev.twitter.com/validator
 
 
 PLIKI STRONY

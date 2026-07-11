@@ -612,6 +612,12 @@ a {
 }
 
 /* ── Card ── */
+.nft-card--highlight {
+    outline: 2px solid var(--black);
+    outline-offset: 3px;
+    transition: outline-color 0.4s var(--ease-out);
+}
+
 .nft-card {
     display: flex;
     flex-direction: column;

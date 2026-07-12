@@ -14,6 +14,29 @@
       "Wander the works above — let mood and color lead you. Most pieces grow where photography meets the machine; now and then, something is drawn by hand. Glad you're exploring with me."
     ],
     "opensea_profile": "https://opensea.io/JackBeatnic",
+    "marketplace_links": [
+      {
+        "id": "opensea",
+        "label": "OpenSea",
+        "url": "https://opensea.io/JackBeatnic",
+        "note": "Primary — EVM collections"
+      },
+      {
+        "id": "objkt",
+        "label": "OBJKT",
+        "url": "https://objkt.com/@jackbeatnic/"
+      },
+      {
+        "id": "objkt-ai",
+        "label": "OBJKT AI",
+        "url": "https://objkt.com/@jackbeatnicai/"
+      },
+      {
+        "id": "xrp-cafe",
+        "label": "XRP.Cafe",
+        "url": "https://xrp.cafe/user/rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn"
+      }
+    ],
     "site_url": "https://jackbeatnic.github.io/",
     "twitter_handle": "@JackBeatnicAI",
     "social_links": [
@@ -108,8 +131,8 @@
     "collection_id": "avalanche_nature_stories",
     "last_price_sync": "2026-07-11T16:29:01Z",
     "last_likes_sort": "2026-07-11T17:02:45Z",
-    "og_generated_at": "2026-07-12T15:17:19Z",
-    "og_cache_version": "202607121517",
+    "og_generated_at": "2026-07-12T15:40:19Z",
+    "og_cache_version": "202607121540",
     "last_objkt_sync": "2026-07-12T12:09:39Z"
   },
   "nfts": [

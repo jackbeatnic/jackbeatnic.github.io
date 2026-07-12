@@ -118,6 +118,25 @@ def draw_bold(draw: ImageDraw.ImageDraw, xy: tuple[int, int], text: str, font, f
         draw.text((x + dx, y + dy), text, font=font, fill=fill)
 
 
+CHAIN_LABELS = {
+    "avalanche": "Avalanche",
+    "tezos": "Tezos",
+    "polygon": "Polygon",
+    "base": "Base",
+    "ethereum": "Ethereum",
+    "sui": "Sui",
+    "xrpl": "XRPL",
+}
+
+CHAIN_CURRENCIES = {
+    "avalanche": "AVAX",
+    "tezos": "XTZ",
+    "polygon": "MATIC",
+    "base": "ETH",
+    "ethereum": "ETH",
+}
+
+
 def collection_display_name(info: dict) -> str:
     desc = info.get("description") or ""
     head = re.split(r"\s*[–—-]\s*", desc, maxsplit=1)[0].strip()
@@ -125,6 +144,28 @@ def collection_display_name(info: dict) -> str:
         return head
     cid = info.get("collection_id") or ""
     return cid.replace("_", " ").title() or "Collection"
+
+
+def nft_collection_name(nft: dict, info: dict) -> str:
+    name = (nft.get("collection_name") or "").strip()
+    if name:
+        return name
+    return collection_display_name(info)
+
+
+def nft_chain(nft: dict, info: dict) -> str:
+    return (nft.get("chain") or info.get("chain") or "avalanche").lower()
+
+
+def nft_currency(nft: dict, info: dict) -> str:
+    if nft.get("listing_currency"):
+        return str(nft["listing_currency"]).upper()
+    return CHAIN_CURRENCIES.get(nft_chain(nft, info), "AVAX")
+
+
+def nft_chain_label(nft: dict, info: dict) -> str:
+    chain = nft_chain(nft, info)
+    return CHAIN_LABELS.get(chain, chain.title())
 
 
 def parse_nft_labels(nft: dict) -> tuple[str, str]:
@@ -147,18 +188,21 @@ def price_field(nft: dict, prefix: str, symbol: str):
 
 
 def format_share_price(nft: dict, info: dict) -> tuple[str, str]:
-    symbol = info.get("native_currency") or "AVAX"
+    symbol = nft_currency(nft, info)
     listed = price_field(nft, "current_price", symbol)
     last_sale = price_field(nft, "last_sale_price", symbol)
     mint = price_field(nft, "mint_price", symbol)
 
+    if listed is None and symbol == "XTZ" and nft.get("current_price_xtz") not in (None, ""):
+        listed = nft["current_price_xtz"]
+
     if listed is not None and nft.get("listing_status") == "For Sale":
-        return f"{listed:g} {symbol}", "Listed on OpenSea"
+        return f"{listed:g} {symbol}", "Listed"
     if last_sale is not None:
         return f"{last_sale:g} {symbol}", "Last sale"
     if mint is not None:
         return f"{mint:g} {symbol}", "Mint price"
-    return "View on OpenSea", "Check listing"
+    return nft_chain_label(nft, info), "Jack Beatnic Gallery"
 
 
 def draw_site_brand_overlay(
@@ -275,7 +319,7 @@ def rounded_thumb(img: Image.Image, size: int, radius: int = 18) -> Image.Image:
 
 def generate_nft_og(nft: dict, info: dict, thumb: Image.Image | None = None) -> Image.Image:
     f = fonts()
-    collection = collection_display_name(info)
+    collection = nft_collection_name(nft, info)
     artwork_name, token_label = parse_nft_labels(nft)
     price_text, _ = format_share_price(nft, info)
     white = (255, 255, 255, 255)
@@ -324,7 +368,7 @@ def generate_nft_ogs(
 
 def share_page_html(nft: dict, info: dict, base_url: str, og_version: str) -> str:
     token_id = int(nft["token_id"])
-    collection = collection_display_name(info)
+    collection = nft_collection_name(nft, info)
     artwork_name, token_label = parse_nft_labels(nft)
     price_text, price_hint = format_share_price(nft, info)
     share_url = f"{base_url}/nft/{token_id}.html"

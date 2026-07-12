@@ -887,6 +887,52 @@ body.tip-open {
     background: var(--white);
 }
 
+.about-section__marketplaces {
+    margin-top: 1.35rem;
+}
+
+.marketplace-links__lead {
+    margin: 0 0 0.65rem;
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: var(--gray-500);
+    line-height: 1.55;
+    max-width: 36rem;
+}
+
+.marketplace-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.marketplace-links__link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    background: var(--gray-50);
+    border: 1px solid var(--gray-100);
+    border-radius: 999px;
+    padding: 0.35rem 0.75rem;
+    transition: color 0.2s var(--ease-out), border-color 0.2s var(--ease-out), background 0.2s var(--ease-out);
+}
+
+.marketplace-links__link:hover {
+    color: var(--black);
+    border-color: var(--gray-200);
+    background: var(--white);
+}
+
+.marketplace-links__link--primary {
+    color: var(--black);
+    border-color: var(--black);
+    background: var(--white);
+}
+
 .about-section__wallets {
     margin-top: 0.85rem;
 }

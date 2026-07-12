@@ -43,16 +43,36 @@ const Gallery = (() => {
         return symbol.toLowerCase();
     }
 
+    function isObjktNft(nft) {
+        return nft.chain === 'tezos' || nft.marketplace === 'objkt';
+    }
+
+    function marketplaceLabel(nft) {
+        return isObjktNft(nft) ? 'View on OBJKT' : 'View on OpenSea';
+    }
+
+    function marketplaceUrl(nft) {
+        return nft.objkt_url || nft.opensea_url || '';
+    }
+
+    function tokenLabel(nft) {
+        if (isObjktNft(nft) && nft.tezos_token_id != null && nft.tezos_token_id !== '') {
+            return `Tezos #${nft.tezos_token_id}`;
+        }
+        return `Token #${nft.token_id}`;
+    }
+
     function formatPrice(nft) {
         const symbol = currencyForNft(nft);
         const listed = priceField(nft, 'current_price', symbol);
         const mint = priceField(nft, 'mint_price', symbol);
         const lastSale = priceField(nft, 'last_sale_price', symbol);
+        const market = isObjktNft(nft) ? 'OBJKT' : 'OpenSea';
 
         if (listed != null && nft.listing_status === 'For Sale') {
             return {
                 text: `${listed} ${symbol}`,
-                hint: 'Listed on OpenSea',
+                hint: `Listed on ${market}`,
                 kind: 'listed',
             };
         }
@@ -70,7 +90,7 @@ const Gallery = (() => {
                 kind: 'mint',
             };
         }
-        return { text: '—', hint: 'Check OpenSea', kind: 'unknown' };
+        return { text: '—', hint: `Check ${market}`, kind: 'unknown' };
     }
 
     function syncSectionNfts() {
@@ -386,7 +406,9 @@ const Gallery = (() => {
         const description = escapeHtml(nft.ai?.description);
         const category = escapeHtml((nft.ai?.category || '').toUpperCase());
         const mood = nft.ai?.mood_score ?? '—';
-        const osHref = escapeHtml(OpenSeaLinks.buyUrl(nft.opensea_url));
+        const osHref = escapeHtml(OpenSeaLinks.buyUrl(marketplaceUrl(nft)));
+        const marketLabel = marketplaceLabel(nft);
+        const tokenLabelText = tokenLabel(nft);
         const price = formatPrice(nft);
         const likesCount = nft.likes_count ?? 0;
 
@@ -419,7 +441,7 @@ const Gallery = (() => {
                 <div class="nft-card__head">
                     <div>
                         <h3 class="nft-card__title">${name}</h3>
-                        <p class="nft-card__token">Token #${escapeHtml(String(nft.token_id))}</p>
+                        <p class="nft-card__token">${escapeHtml(tokenLabelText)}</p>
                     </div>
                     <div class="nft-card__engage">
                         <button type="button" class="nft-like" aria-label="Like ${name}" aria-pressed="false">
@@ -441,7 +463,7 @@ const Gallery = (() => {
                 <div class="nft-card__tags">${tagsHtml}</div>
                 <div class="color-dots nft-card__palette">${colorsHtml}</div>
                 <div class="nft-card__actions">
-                    <a class="btn btn--primary btn--block" href="${osHref}" target="_blank" rel="noopener noreferrer">View on OpenSea</a>
+                    <a class="btn btn--primary btn--block" href="${osHref}" target="_blank" rel="noopener noreferrer">${escapeHtml(marketLabel)}</a>
                 </div>
                 <div class="nft-card__footer">
                     <div>

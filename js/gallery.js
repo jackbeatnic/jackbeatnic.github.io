@@ -144,6 +144,9 @@ const Gallery = (() => {
                 evm_domains: collectionInfo.evm_domains,
                 tezos_domains: collectionInfo.tezos_domains,
             });
+            GalleryShare.init({
+                site_url: collectionInfo.site_url,
+            });
             syncSectionPromo();
             refresh();
             scrollToWorkFromUrl();
@@ -401,6 +404,7 @@ const Gallery = (() => {
         card.querySelector('.nft-tip')?.addEventListener('click', () => {
             TipCreator.open();
         });
+        GalleryShare.bindButton(card.querySelector('.nft-share'), nft);
         syncState();
     }
 
@@ -491,6 +495,9 @@ const Gallery = (() => {
                         </button>
                         <button type="button" class="nft-save" aria-label="Save ${name} for later" aria-pressed="false" title="Save for later">
                             <span class="nft-save__icon" aria-hidden="true">☆</span>
+                        </button>
+                        <button type="button" class="nft-share" aria-label="Share ${name}" title="Share">
+                            <span class="nft-share__icon" aria-hidden="true">↗</span>
                         </button>
                         <button type="button" class="nft-tip" aria-label="Tip the artist" title="Tip the artist">
                             <span class="nft-tip__icon" aria-hidden="true">◎</span>

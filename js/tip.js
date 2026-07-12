@@ -8,7 +8,7 @@ const TipCreator = (() => {
     let openButtons = [];
 
     function qrUrl(value) {
-        return `https://api.qrserver.com/v1/create-qr-code/?size=160x160&margin=10&data=${encodeURIComponent(value)}`;
+        return `https://api.qrserver.com/v1/create-qr-code/?size=140x140&margin=8&data=${encodeURIComponent(value)}`;
     }
 
     function shortAddress(addr) {

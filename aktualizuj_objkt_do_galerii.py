@@ -38,7 +38,7 @@ SKIP_COLLECTIONS = {
 }
 
 FADE_DIARY_RE = re.compile(r"\bfade\s+diary\b", re.I)
-CLASSIC_DIARY_RE = re.compile(r"\bclassic\s+diary\b", re.I)
+ANALOG_NATURE_RE = re.compile(r"\banalog\s+nature\b", re.I)
 
 TOKEN_QUERY = """
 query FetchCreated($address: String!, $limit: Int!, $offset: Int!) {
@@ -168,14 +168,11 @@ def classify_photo_kind(token: dict) -> str | None:
 
 def ai_category(token: dict, photo_kind: str) -> str:
     name = (token.get("name") or "").strip()
-    fa_name = ((token.get("fa") or {}).get("name") or "").strip()
 
     if photo_kind == "other":
         return "collage"
-    if fa_name == "Jack's nature":
+    if ANALOG_NATURE_RE.search(name):
         return "analog nature"
-    if CLASSIC_DIARY_RE.search(name):
-        return "photography"
     return "photography"
 
 

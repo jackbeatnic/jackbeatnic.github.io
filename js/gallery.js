@@ -36,6 +36,9 @@ const Gallery = (() => {
         const key = `${prefix}_${currencySuffix(symbol)}`;
         if (nft[key] != null && nft[key] !== '') return nft[key];
         if (symbol === 'AVAX' && nft[`${prefix}_avax`] != null) return nft[`${prefix}_avax`];
+        if (symbol === 'XTZ' && prefix === 'current_price' && nft.current_price_xtz != null) {
+            return nft.current_price_xtz;
+        }
         return null;
     }
 
@@ -43,16 +46,44 @@ const Gallery = (() => {
         return symbol.toLowerCase();
     }
 
+    const MARKETPLACE_NAMES = {
+        objkt: 'OBJKT',
+        opensea: 'OpenSea',
+        salvor: 'Salvor',
+        xrp_cafe: 'XRP.Cafe',
+        tradeport: 'TradePort',
+    };
+
+    const CHAIN_LABELS = {
+        avalanche: 'Avalanche',
+        tezos: 'Tezos',
+        polygon: 'Polygon',
+        base: 'Base',
+        ethereum: 'Ethereum',
+        sui: 'Sui',
+        xrpl: 'XRPL',
+    };
+
     function isObjktNft(nft) {
         return nft.chain === 'tezos' || nft.marketplace === 'objkt';
     }
 
+    function chainLabel(nft) {
+        const chain = nft.chain || collectionInfo.chain || 'avalanche';
+        return CHAIN_LABELS[chain] || chain;
+    }
+
+    function marketplaceName(nft) {
+        const key = nft.marketplace || (isObjktNft(nft) ? 'objkt' : 'opensea');
+        return MARKETPLACE_NAMES[key] || key;
+    }
+
     function marketplaceLabel(nft) {
-        return isObjktNft(nft) ? 'View on OBJKT' : 'View on OpenSea';
+        return `View on ${marketplaceName(nft)}`;
     }
 
     function marketplaceUrl(nft) {
-        return nft.objkt_url || nft.opensea_url || '';
+        return nft.marketplace_url || nft.objkt_url || nft.opensea_url || '';
     }
 
     function tokenLabel(nft) {
@@ -67,12 +98,10 @@ const Gallery = (() => {
         const listed = priceField(nft, 'current_price', symbol);
         const mint = priceField(nft, 'mint_price', symbol);
         const lastSale = priceField(nft, 'last_sale_price', symbol);
-        const market = isObjktNft(nft) ? 'OBJKT' : 'OpenSea';
-
         if (listed != null && nft.listing_status === 'For Sale') {
             return {
                 text: `${listed} ${symbol}`,
-                hint: `Listed on ${market}`,
+                hint: `Listed · ${chainLabel(nft)}`,
                 kind: 'listed',
             };
         }
@@ -90,7 +119,7 @@ const Gallery = (() => {
                 kind: 'mint',
             };
         }
-        return { text: '—', hint: `Check ${market}`, kind: 'unknown' };
+        return { text: '—', hint: chainLabel(nft), kind: 'unknown' };
     }
 
     function syncSectionNfts() {
@@ -186,7 +215,7 @@ const Gallery = (() => {
         const taglineEl = document.getElementById('hero-tagline');
         const descEl = document.getElementById('hero-description');
         const imgEl = document.getElementById('hero-image');
-        const openseaEl = document.getElementById('hero-opensea');
+        const marketplacesEl = document.getElementById('hero-marketplaces');
 
         const title = info.hero_title || info.artist || info.project_name || 'Jack Beatnic';
         const tagline = info.hero_tagline || '';
@@ -199,7 +228,7 @@ const Gallery = (() => {
                 .map((text) => `<p>${escapeHtml(text)}</p>`)
                 .join('');
         }
-        if (openseaEl && info.opensea_profile) openseaEl.href = info.opensea_profile;
+        if (marketplacesEl) marketplacesEl.hidden = !(info.marketplace_links || []).length;
 
         const hero = document.querySelector('.hero');
         if (imgEl) {
@@ -328,6 +357,29 @@ const Gallery = (() => {
         renderWalletNames('about-wallets', info?.wallet_names || info?.domain_links);
     }
 
+    function renderMarketplaceLinks(info) {
+        const el = document.getElementById('about-marketplaces-nav');
+        if (!el) return;
+
+        const items = (info?.marketplace_links || []).filter((item) => item?.url);
+        if (!items.length) {
+            el.hidden = true;
+            el.innerHTML = '';
+            return;
+        }
+
+        el.innerHTML = items
+            .map((item, index) => {
+                const label = escapeHtml(item.label || item.id || 'Marketplace');
+                const url = escapeHtml(item.url);
+                const primary = index === 0 ? ' marketplace-links__link--primary' : '';
+                const note = item.note ? ` title="${escapeHtml(item.note)}"` : '';
+                return `<a class="marketplace-links__link${primary}" href="${url}" target="_blank" rel="noopener noreferrer"${note}>${label}</a>`;
+            })
+            .join('');
+        el.hidden = false;
+    }
+
     function applyCollectionInfo(info) {
         if (!info) return;
 
@@ -343,12 +395,8 @@ const Gallery = (() => {
                 .join('');
         }
 
-        const openseaEl = document.getElementById('about-opensea');
-        if (openseaEl && info.opensea_profile) {
-            openseaEl.href = info.opensea_profile;
-        }
-
         renderSocialLinks(info);
+        renderMarketplaceLinks(info);
     }
 
     function render(filtered) {

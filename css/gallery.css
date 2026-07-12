@@ -1314,6 +1314,10 @@ body.tip-open {
 }
 
 /* ── Share popover ── */
+.share-popover[hidden] {
+    display: none !important;
+}
+
 .share-popover {
     position: fixed;
     z-index: 1200;

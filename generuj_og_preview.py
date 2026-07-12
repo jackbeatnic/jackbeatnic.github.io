@@ -95,6 +95,14 @@ def fit_square(img: Image.Image, size: int) -> Image.Image:
     return cover_crop(img, size, size, focus_y=0.42)
 
 
+def fit_contain(img: Image.Image, max_w: int, max_h: int) -> Image.Image:
+    src_w, src_h = img.size
+    scale = min(max_w / src_w, max_h / src_h)
+    new_w = max(1, int(src_w * scale))
+    new_h = max(1, int(src_h * scale))
+    return img.resize((new_w, new_h), Image.Resampling.LANCZOS)
+
+
 def fonts() -> dict[str, ImageFont.FreeTypeFont]:
     return {
         "title_lg": ImageFont.truetype(str(FONTS_DIR / "Inter.ttf"), 52),
@@ -168,14 +176,62 @@ def nft_chain_label(nft: dict, info: dict) -> str:
     return CHAIN_LABELS.get(chain, chain.title())
 
 
-def parse_nft_labels(nft: dict) -> tuple[str, str]:
-    name = nft.get("name") or f"Token #{nft.get('token_id', '?')}"
-    match = re.match(r"^(.*?)\s*(#\d+)\s*$", name, re.I)
-    if match:
-        return match.group(1).strip(), match.group(2)
-    token_id = nft.get("token_id")
-    suffix = f"#{int(token_id):04d}" if token_id is not None else ""
-    return name, suffix
+def nft_artwork_title(nft: dict) -> str:
+    name = (nft.get("name") or "").strip()
+    if name:
+        return name
+    return f"Token #{nft.get('token_id', '?')}"
+
+
+def wrap_text_lines(text: str, font, max_width: int) -> list[str]:
+    words = text.split()
+    if not words:
+        return [text]
+
+    lines: list[str] = []
+    current = ""
+    for word in words:
+        trial = f"{current} {word}".strip()
+        bbox = font.getbbox(trial)
+        if bbox[2] - bbox[0] <= max_width:
+            current = trial
+        else:
+            if current:
+                lines.append(current)
+            current = word
+    if current:
+        lines.append(current)
+    return lines or [text]
+
+
+def pick_title_layout(text: str, max_width: int, max_lines: int = 2) -> tuple[ImageFont.FreeTypeFont, list[str]]:
+    for size in (40, 34, 28, 24):
+        font = ImageFont.truetype(str(FONTS_DIR / "Inter.ttf"), size)
+        lines = wrap_text_lines(text, font, max_width)
+        if len(lines) <= max_lines:
+            return font, lines
+    font = ImageFont.truetype(str(FONTS_DIR / "Inter.ttf"), 24)
+    lines = wrap_text_lines(text, font, max_width)[:max_lines]
+    if len(lines) == max_lines:
+        last = lines[-1]
+        while len(last) > 1:
+            trial = f"{last}…"
+            bbox = font.getbbox(trial)
+            if bbox[2] - bbox[0] <= max_width:
+                lines[-1] = trial
+                break
+            last = last[:-1]
+    return font, lines
+
+
+def draw_title_block(draw, x: int, y: int, text: str, max_width: int, fill) -> int:
+    font, lines = pick_title_layout(text, max_width)
+    cursor_y = y
+    for line in lines:
+        draw_bold(draw, (x, cursor_y), line, font, fill)
+        bbox = font.getbbox(line)
+        cursor_y += (bbox[3] - bbox[1]) + 8
+    return cursor_y
 
 
 def price_field(nft: dict, prefix: str, symbol: str):
@@ -306,12 +362,18 @@ def nft_card_background() -> Image.Image:
 
 
 def rounded_thumb(img: Image.Image, size: int, radius: int = 18) -> Image.Image:
-    thumb = fit_square(img, size)
+    inner = size - 8
+    fitted = fit_contain(img, inner, inner)
+    tile = Image.new("RGBA", (size, size), (20, 32, 48, 255))
+    ox = (size - fitted.width) // 2
+    oy = (size - fitted.height) // 2
+    tile.paste(fitted, (ox, oy))
+
     mask = Image.new("L", (size, size), 0)
     draw = ImageDraw.Draw(mask)
     draw.rounded_rectangle((0, 0, size - 1, size - 1), radius=radius, fill=255)
     bordered = Image.new("RGBA", (size + 4, size + 4), (255, 255, 255, 255))
-    bordered.paste(thumb, (2, 2))
+    bordered.paste(tile, (2, 2))
     bordered.putalpha(Image.new("L", bordered.size, 255))
     bordered.putalpha(mask.resize(bordered.size))
     return bordered
@@ -320,10 +382,11 @@ def rounded_thumb(img: Image.Image, size: int, radius: int = 18) -> Image.Image:
 def generate_nft_og(nft: dict, info: dict, thumb: Image.Image | None = None) -> Image.Image:
     f = fonts()
     collection = nft_collection_name(nft, info)
-    artwork_name, token_label = parse_nft_labels(nft)
+    artwork_title = nft_artwork_title(nft)
     price_text, _ = format_share_price(nft, info)
     white = (255, 255, 255, 255)
     muted = (210, 220, 235, 255)
+    text_max_w = WIDTH - NFT_TEXT_X - NFT_PAD
 
     if thumb is None:
         thumb = fetch_image(nft["image_url"])
@@ -334,9 +397,7 @@ def generate_nft_og(nft: dict, info: dict, thumb: Image.Image | None = None) -> 
 
     draw = ImageDraw.Draw(canvas)
     draw.text((NFT_TEXT_X, NFT_PAD + 8), collection, font=f["label"], fill=muted)
-    draw_bold(draw, (NFT_TEXT_X, NFT_PAD + 52), artwork_name, f["title_lg"], white)
-    if token_label:
-        draw_bold(draw, (NFT_TEXT_X, NFT_PAD + 128), token_label, f["title_lg"], white)
+    draw_title_block(draw, NFT_TEXT_X, NFT_PAD + 48, artwork_title, text_max_w, white)
     draw_bold(draw, (NFT_TEXT_X, HEIGHT - NFT_PAD - 62), price_text, f["price"], white)
     return canvas
 
@@ -369,12 +430,12 @@ def generate_nft_ogs(
 def share_page_html(nft: dict, info: dict, base_url: str, og_version: str) -> str:
     token_id = int(nft["token_id"])
     collection = nft_collection_name(nft, info)
-    artwork_name, token_label = parse_nft_labels(nft)
+    artwork_title = nft_artwork_title(nft)
     price_text, price_hint = format_share_price(nft, info)
     share_url = f"{base_url}/nft/{token_id}.html"
     og_image = og_url_with_version(base_url, f"assets/og/nft-{token_id}.jpg", og_version)
     gallery_url = f"{base_url}/?work={token_id}"
-    title = f"{nft.get('name') or artwork_name} | Jack Beatnic Gallery"
+    title = f"{artwork_title} | Jack Beatnic Gallery"
     description = f"{price_text} · {collection} — {price_hint}"
 
     return f"""<!DOCTYPE html>

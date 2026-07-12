@@ -58,7 +58,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/gallery.css?v=20260712k">
+    <link rel="stylesheet" href="css/gallery.css?v=20260712m">
 </head>
 <body class="gallery-protected">
     <header class="site-header site-header--sticky">
@@ -100,6 +100,18 @@
             <button type="button" class="section-subnav__tab" data-photo-kind="photo">Photography</button>
             <button type="button" class="section-subnav__tab" data-photo-kind="other">Other</button>
         </div>
+
+        <aside id="section-promo" class="section-promo" hidden aria-label="Community token">
+            <p id="section-promo-eyebrow" class="section-promo__eyebrow"></p>
+            <h2 id="section-promo-title" class="section-promo__title"></h2>
+            <p id="section-promo-text" class="section-promo__text"></p>
+            <p class="section-promo__token">
+                <span id="section-promo-symbol" class="section-promo__symbol"></span>
+                <span id="section-promo-chain" class="section-promo__chain"></span>
+            </p>
+            <p id="section-promo-contract" class="section-promo__contract"></p>
+            <a id="section-promo-link" class="btn btn--ghost btn--small section-promo__cta" href="#" target="_blank" rel="noopener noreferrer"></a>
+        </aside>
 
         <section class="hero" aria-labelledby="hero-title">
             <div class="hero__media">
@@ -165,18 +177,6 @@
             </div>
         </section>
 
-        <aside id="section-promo" class="section-promo" hidden aria-label="Section token">
-            <p id="section-promo-eyebrow" class="section-promo__eyebrow"></p>
-            <h2 id="section-promo-title" class="section-promo__title"></h2>
-            <p id="section-promo-text" class="section-promo__text"></p>
-            <p class="section-promo__token">
-                <span id="section-promo-symbol" class="section-promo__symbol"></span>
-                <span id="section-promo-chain" class="section-promo__chain"></span>
-            </p>
-            <p id="section-promo-contract" class="section-promo__contract"></p>
-            <a id="section-promo-link" class="btn btn--ghost btn--small section-promo__cta" href="#" target="_blank" rel="noopener noreferrer"></a>
-        </aside>
-
         <div id="gallery-grid" class="gallery-grid"></div>
 
         <section id="about" class="about-section" aria-labelledby="about-title">
@@ -186,9 +186,10 @@
                 <span class="social-links__label">Connect</span>
                 <nav id="about-social" class="social-links" aria-label="Social and community profiles" hidden></nav>
             </div>
-            <div class="about-section__domains">
-                <span class="social-links__label">Domains</span>
-                <nav id="about-domains" class="social-links" aria-label="Web3 domains" hidden></nav>
+            <div class="about-section__wallets">
+                <span class="social-links__label">Wallets</span>
+                <p class="wallet-names__hint">On-chain names — find, tip, or search on Zora, Base, OpenSea, OBJKT</p>
+                <div id="about-wallets" class="wallet-names" aria-label="Wallet names" hidden></div>
             </div>
             <p class="about-section__link">
                 <a id="about-opensea" class="btn btn--primary" href="https://opensea.io/JackBeatnic" target="_blank" rel="noopener noreferrer">View on OpenSea</a>
@@ -250,13 +251,13 @@
         </div>
     </div>
 
-    <script src="js/images.js?v=20260712k"></script>
-    <script src="js/opensea-links.js?v=20260712k"></script>
-    <script src="js/lightbox.js?v=20260712k"></script>
-    <script src="js/likes.js?v=20260712k"></script>
-    <script src="js/filters.js?v=20260712k"></script>
-    <script src="js/sections.js?v=20260712k"></script>
-    <script src="js/tip.js?v=20260712k"></script>
-    <script src="js/gallery.js?v=20260712k"></script>
+    <script src="js/images.js?v=20260712m"></script>
+    <script src="js/opensea-links.js?v=20260712m"></script>
+    <script src="js/lightbox.js?v=20260712m"></script>
+    <script src="js/likes.js?v=20260712m"></script>
+    <script src="js/filters.js?v=20260712m"></script>
+    <script src="js/sections.js?v=20260712m"></script>
+    <script src="js/tip.js?v=20260712m"></script>
+    <script src="js/gallery.js?v=20260712m"></script>
 </body>
 </html>

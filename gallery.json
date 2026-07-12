@@ -49,7 +49,7 @@
       },
       {
         "id": "objkt-main",
-        "label": "OBJKT/@ jackbeatnic",
+        "label": "OBJKT/@jackbeatnic",
         "url": "https://objkt.com/@jackbeatnic/"
       },
       {
@@ -63,31 +63,26 @@
         "url": "https://xrp.cafe/user/rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn"
       }
     ],
-    "domain_links": [
+    "wallet_names": [
       {
         "id": "base-eth-main",
-        "label": "jackbeatnic.base.eth",
-        "url": "https://jackbeatnic.base.eth"
+        "label": "jackbeatnic.base.eth"
       },
       {
         "id": "base-eth-ai",
-        "label": "jackbeatnicai.base.eth",
-        "url": "https://jackbeatnicai.base.eth"
+        "label": "jackbeatnicai.base.eth"
       },
       {
         "id": "base-eth-photo",
-        "label": "jackbeatnicphoto.base.eth",
-        "url": "https://jackbeatnicphoto.base.eth"
+        "label": "jackbeatnicphoto.base.eth"
       },
       {
         "id": "tez-main",
-        "label": "jackbeatnic.tez",
-        "url": "https://jackbeatnic.tez"
+        "label": "jackbeatnic.tez"
       },
       {
         "id": "tez-ai",
-        "label": "jackbeatnicai.tez",
-        "url": "https://jackbeatnicai.tez"
+        "label": "jackbeatnicai.tez"
       }
     ],
     "evm_domains": [
@@ -115,7 +110,7 @@
     "last_likes_sort": "2026-07-11T17:02:45Z",
     "og_generated_at": "2026-07-12T09:54:29Z",
     "og_cache_version": "202607120954",
-    "last_objkt_sync": "2026-07-12T11:25:55Z"
+    "last_objkt_sync": "2026-07-12T11:42:41Z"
   },
   "nfts": [
     {
@@ -639,7 +634,7 @@
           "diary",
           "rose"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "love",
@@ -662,7 +657,7 @@
       "listing_currency": "XTZ",
       "display_rank": 1,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 2.5
@@ -706,7 +701,7 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 2,
+      "display_rank": 1,
       "medium": "photography",
       "photo_kind": "other",
       "source": "objkt",
@@ -730,7 +725,7 @@
           "classic",
           "diary"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -748,9 +743,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 3,
+      "display_rank": 2,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 1.0
@@ -773,7 +768,7 @@
           "classic",
           "diary"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -792,9 +787,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 4,
+      "display_rank": 3,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 2.0
@@ -818,7 +813,7 @@
           "photo",
           "diary"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -840,9 +835,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 5,
+      "display_rank": 4,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 1.0
@@ -866,7 +861,7 @@
           "photo",
           "diary"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -888,9 +883,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 6,
+      "display_rank": 5,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 1.0
@@ -914,7 +909,7 @@
           "heart",
           "photo"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "love",
@@ -936,9 +931,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 7,
+      "display_rank": 6,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 1.0
@@ -982,7 +977,7 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 8,
+      "display_rank": 2,
       "medium": "photography",
       "photo_kind": "other",
       "source": "objkt",
@@ -1028,7 +1023,7 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 9,
+      "display_rank": 3,
       "medium": "photography",
       "photo_kind": "other",
       "source": "objkt",
@@ -1074,7 +1069,7 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 10,
+      "display_rank": 4,
       "medium": "photography",
       "photo_kind": "other",
       "source": "objkt",
@@ -1120,7 +1115,7 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 11,
+      "display_rank": 5,
       "medium": "photography",
       "photo_kind": "other",
       "source": "objkt",
@@ -1166,7 +1161,7 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 12,
+      "display_rank": 6,
       "medium": "photography",
       "photo_kind": "other",
       "source": "objkt",
@@ -1213,7 +1208,7 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 13,
+      "display_rank": 7,
       "medium": "photography",
       "photo_kind": "other",
       "source": "objkt",
@@ -1239,7 +1234,7 @@
           "photo",
           "nature"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -1261,9 +1256,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 14,
+      "display_rank": 7,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 5.0
@@ -1287,7 +1282,7 @@
           "photo",
           "nature"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -1309,9 +1304,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 15,
+      "display_rank": 8,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 7.0
@@ -1335,7 +1330,7 @@
           "photo",
           "nature"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -1357,9 +1352,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 16,
+      "display_rank": 9,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 7.0
@@ -1383,7 +1378,7 @@
           "photo",
           "nature"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -1405,9 +1400,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 17,
+      "display_rank": 10,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 7.0
@@ -1431,7 +1426,7 @@
           "photo",
           "nature"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -1453,9 +1448,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 18,
+      "display_rank": 11,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 7.0
@@ -1479,7 +1474,7 @@
           "photo",
           "nature"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -1501,9 +1496,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 19,
+      "display_rank": 12,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 10.0
@@ -1527,7 +1522,7 @@
           "black",
           "photo"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "moon",
@@ -1549,9 +1544,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 20,
+      "display_rank": 13,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 25.0
@@ -1575,7 +1570,7 @@
           "photo",
           "nature"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -1597,9 +1592,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 21,
+      "display_rank": 14,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 15.0
@@ -1623,7 +1618,7 @@
           "photo",
           "classic"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -1644,9 +1639,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 22,
+      "display_rank": 15,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 5.0
@@ -1670,7 +1665,7 @@
           "photo",
           "nature"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -1692,9 +1687,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 23,
+      "display_rank": 16,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 3.0
@@ -1718,7 +1713,7 @@
           "classic",
           "jackbeatnic"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "monochrome",
@@ -1738,9 +1733,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 24,
+      "display_rank": 17,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 10.0
@@ -1764,7 +1759,7 @@
           "mononchrome",
           "jackbeatnic"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -1784,9 +1779,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 25,
+      "display_rank": 18,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 10.0
@@ -1810,7 +1805,7 @@
           "classic",
           "jackbeatnic"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "monochrome",
@@ -1830,9 +1825,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 26,
+      "display_rank": 19,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 10.0
@@ -1856,7 +1851,7 @@
           "classic",
           "jackbeatnic"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "monochrome",
@@ -1876,9 +1871,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 27,
+      "display_rank": 20,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 10.0
@@ -1902,7 +1897,7 @@
           "photo",
           "nature"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -1924,9 +1919,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 28,
+      "display_rank": 21,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 10.0
@@ -1950,7 +1945,7 @@
           "photo",
           "nature"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -1972,9 +1967,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 29,
+      "display_rank": 22,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 10.0
@@ -1998,7 +1993,7 @@
           "photo",
           "nature"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -2020,9 +2015,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 30,
+      "display_rank": 23,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 10.0
@@ -2046,7 +2041,7 @@
           "classic",
           "jackbeatnic"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "monochrome",
@@ -2066,9 +2061,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 31,
+      "display_rank": 24,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 7.0
@@ -2092,7 +2087,7 @@
           "sea",
           "summer"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "port",
@@ -2114,9 +2109,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 32,
+      "display_rank": 25,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 3.0
@@ -2140,7 +2135,7 @@
           "photo",
           "sea"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "port",
@@ -2162,9 +2157,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 33,
+      "display_rank": 26,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 4.0
@@ -2188,7 +2183,7 @@
           "photo",
           "sea"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "blue",
@@ -2210,9 +2205,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 34,
+      "display_rank": 27,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 4.0
@@ -2236,7 +2231,7 @@
           "sea",
           "summer"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "blue",
@@ -2258,9 +2253,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 35,
+      "display_rank": 28,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 4.0
@@ -2284,7 +2279,7 @@
           "summer",
           "classic"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "port",
@@ -2306,9 +2301,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 36,
+      "display_rank": 29,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 7.0
@@ -2332,7 +2327,7 @@
           "sea",
           "classic"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "port",
@@ -2354,9 +2349,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 37,
+      "display_rank": 30,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 3.0
@@ -2380,7 +2375,7 @@
           "classic",
           "35mm"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -2402,9 +2397,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 38,
+      "display_rank": 31,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 6.0
@@ -2428,7 +2423,7 @@
           "nature",
           "river"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "green",
@@ -2450,9 +2445,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 39,
+      "display_rank": 32,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 3.0
@@ -2476,7 +2471,7 @@
           "river",
           "35mm"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -2498,9 +2493,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 40,
+      "display_rank": 33,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 6.0
@@ -2524,7 +2519,7 @@
           "photo",
           "classic"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "green",
@@ -2546,9 +2541,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 41,
+      "display_rank": 34,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 5.0
@@ -2572,7 +2567,7 @@
           "35mm",
           "analog"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "rain",
@@ -2594,9 +2589,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 42,
+      "display_rank": 35,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 7.0
@@ -2620,7 +2615,7 @@
           "nature",
           "35mm"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "green",
@@ -2642,9 +2637,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 43,
+      "display_rank": 36,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 3.0
@@ -2668,7 +2663,7 @@
           "classic",
           "35mm"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "green",
@@ -2690,9 +2685,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 44,
+      "display_rank": 37,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 4.0
@@ -2716,7 +2711,7 @@
           "35mm",
           "frame"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "green",
@@ -2738,9 +2733,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 45,
+      "display_rank": 38,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 3.0
@@ -2764,7 +2759,7 @@
           "nature",
           "classic"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "green",
@@ -2786,9 +2781,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 46,
+      "display_rank": 39,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 3.0
@@ -2812,7 +2807,7 @@
           "summer",
           "classic"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "green",
@@ -2834,9 +2829,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 47,
+      "display_rank": 40,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 3.0
@@ -2860,7 +2855,7 @@
           "flowers",
           "classic"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "green",
@@ -2882,9 +2877,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 48,
+      "display_rank": 41,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 5.0
@@ -2908,7 +2903,7 @@
           "classic",
           "35mm"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -2930,9 +2925,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 49,
+      "display_rank": 42,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 5.0
@@ -2956,7 +2951,7 @@
           "bnw",
           "jackbeatnic"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "monochrome",
@@ -2976,9 +2971,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 50,
+      "display_rank": 43,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt"
     },
@@ -3001,7 +2996,7 @@
           "photo",
           "nature"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -3023,9 +3018,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 51,
+      "display_rank": 44,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 7.0
@@ -3049,7 +3044,7 @@
           "photo",
           "nature"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -3071,9 +3066,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 52,
+      "display_rank": 45,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt"
     },
@@ -3095,7 +3090,7 @@
           "greenery",
           "jackbeatnic"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "green",
@@ -3114,9 +3109,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 53,
+      "display_rank": 46,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 5.0
@@ -3140,7 +3135,7 @@
           "photo",
           "nature"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -3162,9 +3157,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 54,
+      "display_rank": 47,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 7.0
@@ -3188,7 +3183,7 @@
           "photo",
           "nature"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -3210,9 +3205,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 55,
+      "display_rank": 48,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt"
     },
@@ -3235,7 +3230,7 @@
           "photo",
           "nature"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -3257,9 +3252,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 56,
+      "display_rank": 49,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 5.0
@@ -3276,7 +3271,7 @@
         "description": "Tezos LE | @jackbeatnic | 5919 x 7892",
         "dominant_colors": [],
         "vibe_tags": [],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "Jack Beatnic Open Editions",
@@ -3293,9 +3288,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 57,
+      "display_rank": 50,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt"
     },
@@ -3318,7 +3313,7 @@
           "black",
           "photo"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "street",
@@ -3340,9 +3335,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 58,
+      "display_rank": 51,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 11.0
@@ -3366,7 +3361,7 @@
           "bnw",
           "jackbeatnic"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "street",
@@ -3386,9 +3381,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 59,
+      "display_rank": 52,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 7.0
@@ -3412,7 +3407,7 @@
           "bnw",
           "jackbeatnic"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "street",
@@ -3432,9 +3427,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 60,
+      "display_rank": 53,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 5.0
@@ -3458,7 +3453,7 @@
           "black",
           "photo"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "street",
@@ -3480,9 +3475,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 61,
+      "display_rank": 54,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 5.0
@@ -3506,7 +3501,7 @@
           "black",
           "city"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "street",
@@ -3528,9 +3523,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 62,
+      "display_rank": 55,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 5.0
@@ -3554,7 +3549,7 @@
           "photo",
           "nature"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -3576,9 +3571,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 63,
+      "display_rank": 56,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 9.0
@@ -3602,7 +3597,7 @@
           "photo",
           "nature"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -3624,9 +3619,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 64,
+      "display_rank": 57,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 9.0
@@ -3650,7 +3645,7 @@
           "photo",
           "nature"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -3672,9 +3667,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 65,
+      "display_rank": 58,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 7.0
@@ -3698,7 +3693,7 @@
           "photo",
           "nature"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -3720,9 +3715,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 66,
+      "display_rank": 59,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 9.0
@@ -3746,7 +3741,7 @@
           "nature",
           "blackandwhite"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -3768,9 +3763,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 67,
+      "display_rank": 60,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 7.0
@@ -3794,7 +3789,7 @@
           "photo",
           "nature"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -3816,9 +3811,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 68,
+      "display_rank": 61,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 8.0
@@ -3842,7 +3837,7 @@
           "blackandwhite",
           "bnw"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -3864,9 +3859,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 69,
+      "display_rank": 62,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt"
     },
@@ -3889,7 +3884,7 @@
           "photo",
           "nature"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -3911,9 +3906,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 70,
+      "display_rank": 63,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt"
     },
@@ -3936,7 +3931,7 @@
           "photo",
           "nature"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "blue",
@@ -3958,9 +3953,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 71,
+      "display_rank": 64,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 8.0
@@ -3984,7 +3979,7 @@
           "nature",
           "classic"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "blue",
@@ -4006,9 +4001,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 72,
+      "display_rank": 65,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 10.0
@@ -4032,7 +4027,7 @@
           "garden",
           "bnw"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "monochrome",
@@ -4054,9 +4049,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 73,
+      "display_rank": 66,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt"
     },
@@ -4079,7 +4074,7 @@
           "blackandwhite",
           "bnw"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "monochrome",
@@ -4101,9 +4096,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 74,
+      "display_rank": 67,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 7.0
@@ -4149,7 +4144,7 @@
       "collection_name": "JB: Soul Shots | 1/1 ed",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 1,
+      "display_rank": 68,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -4197,7 +4192,7 @@
       "collection_name": "JB: Soul Shots | 1/1 ed",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 2,
+      "display_rank": 69,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -4245,7 +4240,7 @@
       "collection_name": "JB: Soul Shots | 1/1 ed",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 3,
+      "display_rank": 70,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -4271,7 +4266,7 @@
           "pink",
           "flowers"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "green",
@@ -4293,7 +4288,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 4,
+      "display_rank": 71,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -4319,7 +4314,7 @@
           "rose",
           "roses"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -4341,7 +4336,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 5,
+      "display_rank": 72,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -4367,7 +4362,7 @@
           "garden",
           "photos"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "green",
@@ -4389,7 +4384,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 6,
+      "display_rank": 73,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -4415,7 +4410,7 @@
           "photo",
           "nature"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "blue",
@@ -4437,7 +4432,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 7,
+      "display_rank": 74,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -4463,7 +4458,7 @@
           "flowers",
           "garden"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "art",
@@ -4485,7 +4480,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 8,
+      "display_rank": 75,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -4511,7 +4506,7 @@
           "nature",
           "grass"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "green",
@@ -4533,9 +4528,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 75,
+      "display_rank": 76,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt"
     },
@@ -4558,7 +4553,7 @@
           "nature",
           "spring"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "green",
@@ -4580,7 +4575,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 9,
+      "display_rank": 77,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -4606,7 +4601,7 @@
           "photo",
           "spring"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "colorful",
@@ -4628,7 +4623,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 10,
+      "display_rank": 78,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -4664,7 +4659,7 @@
       "collection_name": "DNS Marketplace",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 11,
+      "display_rank": 79,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -4699,7 +4694,7 @@
       "collection_name": "DNS Marketplace",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 12,
+      "display_rank": 80,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -4734,7 +4729,7 @@
       "collection_name": "DNS Marketplace",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 13,
+      "display_rank": 81,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -4759,7 +4754,7 @@
           "apple",
           "spring"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "green",
@@ -4780,7 +4775,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 14,
+      "display_rank": 82,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -4805,7 +4800,7 @@
           "bnw",
           "bnwphotography"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -4827,9 +4822,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 76,
+      "display_rank": 83,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 4.25
@@ -4875,7 +4870,7 @@
       "collection_name": "JB: Soul Shots | 1/1 ed",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 15,
+      "display_rank": 84,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -4922,7 +4917,7 @@
       "collection_name": "JB: Soul Shots | 1/1 ed",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 16,
+      "display_rank": 85,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -4947,7 +4942,7 @@
           "flowers",
           "garden"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "green",
@@ -4968,7 +4963,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 17,
+      "display_rank": 86,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -4993,7 +4988,7 @@
           "garden",
           "bnw"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "peace",
@@ -5015,7 +5010,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 18,
+      "display_rank": 87,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -5041,7 +5036,7 @@
           "heron",
           "riverbank"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -5063,7 +5058,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 19,
+      "display_rank": 88,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -5089,7 +5084,7 @@
           "garden",
           "iris"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "green",
@@ -5110,7 +5105,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 20,
+      "display_rank": 89,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -5135,7 +5130,7 @@
           "river",
           "fog"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "green",
@@ -5157,7 +5152,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 21,
+      "display_rank": 90,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -5183,7 +5178,7 @@
           "meadow",
           "bnwphotography"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -5204,7 +5199,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 22,
+      "display_rank": 91,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -5229,7 +5224,7 @@
           "mountain",
           "pond"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "green",
@@ -5251,7 +5246,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 23,
+      "display_rank": 92,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -5276,7 +5271,7 @@
           "bnw",
           "bnwphotography"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -5298,7 +5293,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 24,
+      "display_rank": 93,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -5323,7 +5318,7 @@
           "photo",
           "cloud"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "blue",
@@ -5345,7 +5340,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 25,
+      "display_rank": 94,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -5370,7 +5365,7 @@
           "meadow",
           "dandelions"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "green",
@@ -5391,7 +5386,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 26,
+      "display_rank": 95,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -5416,7 +5411,7 @@
           "summer",
           "meadow"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "green",
@@ -5438,7 +5433,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 27,
+      "display_rank": 96,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -5463,7 +5458,7 @@
           "macro",
           "bumblebee"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -5484,7 +5479,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 28,
+      "display_rank": 97,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -5509,7 +5504,7 @@
           "fern",
           "bnwphoto"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -5530,7 +5525,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 29,
+      "display_rank": 98,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -5548,7 +5543,7 @@
         "description": "The charming flower exudes delicacy and beauty, creating a beautiful contrast with intensely green leaves. The petals of the flower are soft, and its scent is sweet. It is a symbol of love, gentleness, care, and beauty. It is the quintessence of subtlety, beauty, and feelings. It's hard not to love it.\n\n20 ed | X/IG: @jackbeatnic | 5184 x 7776 digital photography",
         "dominant_colors": [],
         "vibe_tags": [],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "Jack's nature",
@@ -5565,7 +5560,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 30,
+      "display_rank": 99,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -5591,7 +5586,7 @@
           "meadow",
           "crocus"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -5612,7 +5607,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 31,
+      "display_rank": 100,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -5638,7 +5633,7 @@
           "spring",
           "meadow"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -5659,7 +5654,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 32,
+      "display_rank": 101,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -5677,7 +5672,7 @@
         "description": "The bee reminds us of the necessity to nurture what matters most. The blossoming fruit tree symbolizes abundance and life that flourishes with the arrival of spring. Contrasts between nature and urban reality provide us with balance in our environment.\n\n15 ed | twitter/IG: @jackbeatnic | 2592 x 3888 digital photography",
         "dominant_colors": [],
         "vibe_tags": [],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "Jack's nature",
@@ -5694,7 +5689,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 33,
+      "display_rank": 102,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -5720,7 +5715,7 @@
           "black&white",
           "bnwphotography"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "light",
@@ -5742,7 +5737,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 34,
+      "display_rank": 103,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -5768,7 +5763,7 @@
           "summer",
           "meadow"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "blue",
@@ -5790,7 +5785,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 35,
+      "display_rank": 104,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -5815,7 +5810,7 @@
           "spring",
           "dandelion"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "yellow",
@@ -5837,7 +5832,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 36,
+      "display_rank": 105,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -5862,7 +5857,7 @@
           "grass",
           "spring"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "green",
@@ -5884,7 +5879,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 37,
+      "display_rank": 106,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -5909,7 +5904,7 @@
           "grass",
           "dandelion"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -5931,7 +5926,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 38,
+      "display_rank": 107,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -5956,7 +5951,7 @@
           "magenta",
           "twilight"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "moon",
@@ -5977,7 +5972,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 39,
+      "display_rank": 108,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -6003,7 +5998,7 @@
           "garden",
           "macro"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "white",
@@ -6025,7 +6020,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 40,
+      "display_rank": 109,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -6051,7 +6046,7 @@
           "macro",
           "spring"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "blue",
@@ -6073,7 +6068,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 41,
+      "display_rank": 110,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -6099,7 +6094,7 @@
           "garden",
           "macro"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -6121,7 +6116,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 42,
+      "display_rank": 111,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -6147,7 +6142,7 @@
           "summer",
           "meadow"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "green",
@@ -6169,7 +6164,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 43,
+      "display_rank": 112,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -6194,7 +6189,7 @@
           "golden",
           "mountains"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "sunset",
@@ -6216,9 +6211,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 77,
+      "display_rank": 113,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
       "current_price_xtz": 7.0
@@ -6235,7 +6230,7 @@
         "description": "Pink Crocuses symbolize the awakening of spring, standing tall amidst lush green foliage, creating a vivid contrast. Bathed in gentle sunlight, their intricate petals come to life — a celebration of nature's cycle and a reminder of hope. The composition harmoniously blends colors, capturing the wonder of changing seasons and the resilience of life. A mesmerizing glimpse into the delicate balance and beauty of the natural world.\n\n1/1 ed | twitter/IG: @jackbeatnic | 2592 px x 3888px digital photography",
         "dominant_colors": [],
         "vibe_tags": [],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "Jack's nature",
@@ -6252,7 +6247,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 44,
+      "display_rank": 114,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -6277,7 +6272,7 @@
           "snowflakes",
           "trial"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "winter",
@@ -6299,9 +6294,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 78,
+      "display_rank": 115,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt"
     },
@@ -6324,7 +6319,7 @@
           "crocus",
           "jackbeatnic"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -6344,7 +6339,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 45,
+      "display_rank": 116,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -6370,7 +6365,7 @@
           "photo",
           "spring"
         ],
-        "category": "collage",
+        "category": "photography",
         "mood_score": 6,
         "keywords": [
           "love",
@@ -6392,9 +6387,9 @@
       "collection_name": "Jack Beatnic Open Editions",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 79,
+      "display_rank": 117,
       "medium": "photography",
-      "photo_kind": "other",
+      "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt"
     },
@@ -6417,7 +6412,7 @@
           "bnw",
           "mountains"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -6439,7 +6434,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 46,
+      "display_rank": 118,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -6464,7 +6459,7 @@
           "bnw",
           "mountains"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -6486,7 +6481,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 47,
+      "display_rank": 119,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -6512,7 +6507,7 @@
           "bnw",
           "bnwphotography"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -6534,7 +6529,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 48,
+      "display_rank": 120,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -6559,7 +6554,7 @@
           "bnw",
           "mountains"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -6581,7 +6576,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 49,
+      "display_rank": 121,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -6606,7 +6601,7 @@
           "bnw",
           "mountains"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -6628,7 +6623,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 50,
+      "display_rank": 122,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -6653,7 +6648,7 @@
           "bnw",
           "mountains"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -6675,7 +6670,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 51,
+      "display_rank": 123,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -6700,7 +6695,7 @@
           "bnw",
           "mountains"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -6722,7 +6717,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 52,
+      "display_rank": 124,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -6747,7 +6742,7 @@
           "bnw",
           "ice"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -6769,7 +6764,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 53,
+      "display_rank": 125,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -6794,7 +6789,7 @@
           "winter",
           "bnw"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -6816,7 +6811,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 54,
+      "display_rank": 126,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -6841,7 +6836,7 @@
           "bnw",
           "mountains"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -6863,7 +6858,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 55,
+      "display_rank": 127,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -6888,7 +6883,7 @@
           "winter",
           "bnw"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -6910,7 +6905,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 56,
+      "display_rank": 128,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -6935,7 +6930,7 @@
           "bnw",
           "bnwphotography"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -6957,7 +6952,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 57,
+      "display_rank": 129,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -6982,7 +6977,7 @@
           "bnwphotography",
           "monument"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -7004,7 +6999,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 58,
+      "display_rank": 130,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -7030,7 +7025,7 @@
           "bnwphotography",
           "monument"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -7052,7 +7047,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 59,
+      "display_rank": 131,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -7077,7 +7072,7 @@
           "bnwphotography",
           "monument"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -7099,7 +7094,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 60,
+      "display_rank": 132,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -7125,7 +7120,7 @@
           "lion",
           "bnwphotography"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -7147,7 +7142,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 61,
+      "display_rank": 133,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -7172,7 +7167,7 @@
           "bnwphotography",
           "monument"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -7193,7 +7188,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 62,
+      "display_rank": 134,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -7218,7 +7213,7 @@
           "bnw",
           "mountains"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -7240,7 +7235,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 63,
+      "display_rank": 135,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -7266,7 +7261,7 @@
           "garden",
           "dahlia"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -7287,7 +7282,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 64,
+      "display_rank": 136,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -7313,7 +7308,7 @@
           "garden",
           "dahlia"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -7334,7 +7329,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 65,
+      "display_rank": 137,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -7360,7 +7355,7 @@
           "nature",
           "mountains"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "light",
@@ -7381,7 +7376,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 66,
+      "display_rank": 138,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -7406,7 +7401,7 @@
           "trail",
           "lilium"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "flower",
@@ -7427,7 +7422,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 67,
+      "display_rank": 139,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -7452,7 +7447,7 @@
           "bnw",
           "bnwphotography"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -7474,7 +7469,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 68,
+      "display_rank": 140,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -7500,7 +7495,7 @@
           "bnw",
           "bnwphotography"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -7522,7 +7517,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 69,
+      "display_rank": 141,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -7548,7 +7543,7 @@
           "photo",
           "nature"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "green",
@@ -7570,7 +7565,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 70,
+      "display_rank": 142,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -7596,7 +7591,7 @@
           "winter",
           "bnw"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -7618,7 +7613,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 71,
+      "display_rank": 143,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -7644,7 +7639,7 @@
           "autumn",
           "jackbeatnic"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -7664,7 +7659,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 72,
+      "display_rank": 144,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -7689,7 +7684,7 @@
           "autumn",
           "jackbeatnic"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -7709,7 +7704,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "For Sale",
       "listing_currency": "XTZ",
-      "display_rank": 73,
+      "display_rank": 145,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -7735,7 +7730,7 @@
           "garden",
           "autumn"
         ],
-        "category": "photography",
+        "category": "analog nature",
         "mood_score": 6,
         "keywords": [
           "photography",
@@ -7756,7 +7751,7 @@
       "collection_name": "Jack's nature",
       "listing_status": "Not Listed",
       "listing_currency": "XTZ",
-      "display_rank": 74,
+      "display_rank": 146,
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
@@ -7771,13 +7766,13 @@
         "explore_title": "Explore AI Art",
         "promo": {
           "enabled": true,
-          "eyebrow": "AI Art",
+          "eyebrow": "AI Art & Photography",
           "symbol": "$jackbeatnic",
           "chain": "Zora",
           "contract": "0x30c29a999b9265515129215ebbf1dd57d991544d",
           "community_url": "https://zora.co/@jackbeatnic/creator-coin",
           "title": "Creator Coin on Zora",
-          "text": "Trade and support the gallery through the Zora Creator Coin — on-chain identity for collectors following Jack Beatnic across AI art releases.",
+          "text": "Trade and support the gallery through the Zora Creator Coin — on-chain identity for collectors following Jack Beatnic across AI art and photography releases.",
           "cta_label": "Zora creator coin →"
         }
       },
@@ -7797,18 +7792,18 @@
         "default_subsection": "photo",
         "empty_messages": {
           "photo": "Photography works will appear here soon.",
-          "other": "Collage, hand-drawn elements, and mixed media — coming soon."
+          "other": "Fade Diary — collage series. More mixed media coming soon."
         },
-        "other_promo": {
+        "promo": {
           "enabled": true,
+          "eyebrow": "AI Art & Photography",
           "symbol": "$PHOTO",
           "chain": "Avalanche",
           "contract": "0x548B2af6Ae458ea588260b3A07cc0DdB4E74aa1a",
           "community_url": "https://arena.social/community/0x548B2af6Ae458ea588260b3A07cc0DdB4E74aa1a?ref=JackBeatnic",
-          "title": "Photography lives on-chain",
-          "text": "Join the $PHOTO community on Arena — Avalanche ERC-20 for collectors, supporters, and new releases in this space.",
-          "cta_label": "Arena community →",
-          "eyebrow": "Photography · Other"
+          "title": "$PHOTO on Arena",
+          "text": "Photography community token on Avalanche — join collectors and supporters, follow new releases, and stay close to the lens-side of the gallery.",
+          "cta_label": "Arena community →"
         }
       }
     }

@@ -81,7 +81,7 @@
             </div>
             <nav class="site-nav" aria-label="Main">
                 <a href="#gallery-root" data-section="ai_art">AI Art</a>
-                <a href="#gallery-root" data-section="photography">Photography</a>
+                <a href="#gallery-root" data-section="photography">Photography &amp; Artworks</a>
                 <a href="#about">About</a>
                 <button type="button" class="site-nav__tip" data-tip-open aria-expanded="false">Tip</button>
             </nav>
@@ -92,12 +92,15 @@
     <main id="gallery-root" class="main">
         <nav class="section-nav" aria-label="Gallery sections">
             <a href="#gallery-root" class="section-nav__tab" data-section="ai_art">AI Art</a>
-            <a href="#gallery-root" class="section-nav__tab" data-section="photography">Photography</a>
+            <a href="#gallery-root" class="section-nav__tab" data-section="photography">
+                <span class="section-nav__label section-nav__label--full">Photography &amp; Artworks</span>
+                <span class="section-nav__label section-nav__label--short">Photo &amp; Artworks</span>
+            </a>
             <button type="button" class="section-nav__tab section-nav__tab--tip" data-tip-open aria-expanded="false">Tip</button>
         </nav>
 
         <div id="photo-subnav" class="section-subnav" hidden aria-label="Photography categories">
-            <button type="button" class="section-subnav__tab" data-photo-kind="photo">Photography &amp; Artworks</button>
+            <button type="button" class="section-subnav__tab" data-photo-kind="photo">Photography</button>
             <button type="button" class="section-subnav__tab" data-photo-kind="other">Other</button>
         </div>
 

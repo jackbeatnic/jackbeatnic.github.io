@@ -189,6 +189,29 @@ const Gallery = (() => {
         }
     }
 
+    function renderSocialLinks(info) {
+        const links = info?.social_links;
+        if (!Array.isArray(links) || links.length === 0) return;
+
+        const markup = links
+            .filter((item) => item?.url)
+            .map((item) => {
+                const label = escapeHtml(item.label || item.id || 'Link');
+                const url = escapeHtml(item.url);
+                return `<a class="social-links__link" href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+            })
+            .join('');
+
+        if (!markup) return;
+
+        for (const id of ['about-social', 'footer-social']) {
+            const el = document.getElementById(id);
+            if (!el) continue;
+            el.innerHTML = markup;
+            el.hidden = false;
+        }
+    }
+
     function applyCollectionInfo(info) {
         if (!info) return;
 
@@ -208,6 +231,8 @@ const Gallery = (() => {
         if (openseaEl && info.opensea_profile) {
             openseaEl.href = info.opensea_profile;
         }
+
+        renderSocialLinks(info);
     }
 
     function render(filtered) {

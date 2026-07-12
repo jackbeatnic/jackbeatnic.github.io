@@ -252,6 +252,68 @@ a {
     border-color: var(--black);
 }
 
+/* ── Photography / Other — $PHOTO promo ── */
+.section-promo {
+    margin: 0 0 1.25rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--gray-200);
+    border-radius: 4px;
+    background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+}
+
+.section-promo__eyebrow {
+    margin: 0 0 0.35rem;
+    font-size: 0.56rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+}
+
+.section-promo__title {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--black);
+    line-height: 1.3;
+}
+
+.section-promo__text {
+    margin: 0.45rem 0 0;
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: var(--gray-600);
+    line-height: 1.55;
+    max-width: 36rem;
+}
+
+.section-promo__token {
+    margin: 0.55rem 0 0;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+}
+
+.section-promo__symbol {
+    font-weight: 600;
+    color: var(--black);
+}
+
+.section-promo__contract {
+    margin: 0.25rem 0 0;
+    font-size: 0.52rem;
+    font-family: ui-monospace, monospace;
+    color: var(--gray-500);
+    word-break: break-all;
+    line-height: 1.4;
+}
+
+.section-promo__cta {
+    margin-top: 0.65rem;
+}
+
 @media (min-width: 768px) {
     .section-nav {
         display: none;
@@ -383,8 +445,19 @@ body.tip-open {
 
 @media (min-width: 768px) {
     .tip-modal__wallets {
-        gap: 1.15rem;
+        gap: 0.65rem;
         grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 960px) {
+    .tip-modal__dialog {
+        width: min(52rem, 100%);
+    }
+
+    .tip-modal__wallets {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.55rem;
     }
 }
 
@@ -489,45 +562,32 @@ body.tip-open {
         font-size: 0.78rem;
         line-height: 1.55;
     }
+}
 
-    .tip-modal__wallets {
-        gap: 1.15rem;
+.tip-modal .tip-wallet {
+    padding: 0.55rem;
+}
+
+@media (min-width: 960px) {
+    .tip-modal .tip-wallet {
+        padding: 0.5rem;
     }
 
-    .tip-wallet {
-        display: block;
-        padding: 0.85rem;
+    .tip-modal .tip-wallet__qr {
+        width: 5.5rem;
+        height: 5.5rem;
     }
 
-    .tip-wallet__label,
-    .tip-wallet__hint,
-    .tip-wallet__address,
-    .tip-wallet .btn--small {
-        grid-column: auto;
+    .tip-modal .tip-wallet__label {
+        font-size: 0.6rem;
     }
 
-    .tip-wallet__hint {
-        margin: 0.25rem 0 0.65rem;
-        font-size: 0.68rem;
-        line-height: 1.45;
+    .tip-modal .tip-wallet__hint {
+        font-size: 0.56rem;
     }
 
-    .tip-wallet__qr {
-        width: auto;
-        height: auto;
-        max-width: 10rem;
-        margin-bottom: 0.55rem;
-    }
-
-    .tip-wallet__address {
-        margin-bottom: 0.55rem;
-        font-size: 0.58rem;
-        line-height: 1.45;
-    }
-
-    .tip-wallet .btn--small {
-        padding: inherit;
-        font-size: inherit;
+    .tip-modal .tip-wallet__address {
+        font-size: 0.48rem;
     }
 }
 

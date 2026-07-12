@@ -46,7 +46,8 @@
                 "https://www.instagram.com/jackbeatnicai/",
                 "https://base.app/profile/jackbeatnic",
                 "https://farcaster.xyz/jackbeatnic",
-                "https://arena.social/jackbeatnic"
+                "https://arena.social/JackBeatnic",
+                "https://zora.co/@jackbeatnic"
             ]
         }
     }
@@ -54,7 +55,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/gallery.css?v=20260712e">
+    <link rel="stylesheet" href="css/gallery.css?v=20260712f">
 </head>
 <body class="gallery-protected">
     <header class="site-header site-header--sticky">
@@ -161,6 +162,18 @@
             </div>
         </section>
 
+        <aside id="photo-other-promo" class="section-promo" hidden aria-label="PHOTO token community">
+            <p class="section-promo__eyebrow">Photography · Other</p>
+            <h2 id="photo-promo-title" class="section-promo__title"></h2>
+            <p id="photo-promo-text" class="section-promo__text"></p>
+            <p class="section-promo__token">
+                <span id="photo-promo-symbol" class="section-promo__symbol"></span>
+                <span id="photo-promo-chain" class="section-promo__chain"></span>
+            </p>
+            <p id="photo-promo-contract" class="section-promo__contract"></p>
+            <a id="photo-promo-link" class="btn btn--ghost btn--small section-promo__cta" href="#" target="_blank" rel="noopener noreferrer">Arena community →</a>
+        </aside>
+
         <div id="gallery-grid" class="gallery-grid"></div>
 
         <section id="about" class="about-section" aria-labelledby="about-title">
@@ -213,17 +226,25 @@
                     <p id="tip-address-btc" class="tip-wallet__address"></p>
                     <button type="button" id="tip-copy-btc" class="btn btn--ghost btn--small">Copy address</button>
                 </section>
+
+                <section id="tip-sol-block" class="tip-wallet" hidden>
+                    <h3 class="tip-wallet__label">Solana</h3>
+                    <p class="tip-wallet__hint">SOL &amp; SPL tokens</p>
+                    <img id="tip-qr-sol" class="tip-wallet__qr" width="140" height="140" alt="">
+                    <p id="tip-address-sol" class="tip-wallet__address"></p>
+                    <button type="button" id="tip-copy-sol" class="btn btn--ghost btn--small">Copy address</button>
+                </section>
             </div>
         </div>
     </div>
 
-    <script src="js/images.js?v=20260712e"></script>
-    <script src="js/opensea-links.js?v=20260712e"></script>
-    <script src="js/lightbox.js?v=20260712e"></script>
-    <script src="js/likes.js?v=20260712e"></script>
-    <script src="js/filters.js?v=20260712e"></script>
-    <script src="js/sections.js?v=20260712e"></script>
-    <script src="js/tip.js?v=20260712e"></script>
-    <script src="js/gallery.js?v=20260712e"></script>
+    <script src="js/images.js?v=20260712f"></script>
+    <script src="js/opensea-links.js?v=20260712f"></script>
+    <script src="js/lightbox.js?v=20260712f"></script>
+    <script src="js/likes.js?v=20260712f"></script>
+    <script src="js/filters.js?v=20260712f"></script>
+    <script src="js/sections.js?v=20260712f"></script>
+    <script src="js/tip.js?v=20260712f"></script>
+    <script src="js/gallery.js?v=20260712f"></script>
 </body>
 </html>

@@ -117,7 +117,10 @@ const Gallery = (() => {
             GalleryFilters.bindOnce();
             preselectWorkSection();
             syncSectionNfts();
-            TipCreator.init(collectionInfo.creator_wallet);
+            TipCreator.init({
+                evm_wallet: collectionInfo.creator_wallet,
+                btc_wallet: collectionInfo.btc_tip_wallet,
+            });
             refresh();
             scrollToWorkFromUrl();
 
@@ -257,6 +260,9 @@ const Gallery = (() => {
             GalleryLikes.toggleSaved(key);
             syncState();
         });
+        card.querySelector('.nft-tip')?.addEventListener('click', () => {
+            TipCreator.open();
+        });
         syncState();
     }
 
@@ -345,6 +351,9 @@ const Gallery = (() => {
                         </button>
                         <button type="button" class="nft-save" aria-label="Save ${name} for later" aria-pressed="false" title="Save for later">
                             <span class="nft-save__icon" aria-hidden="true">☆</span>
+                        </button>
+                        <button type="button" class="nft-tip" aria-label="Tip the artist" title="Tip the artist">
+                            <span class="nft-tip__icon" aria-hidden="true">◎</span>
                         </button>
                     </div>
                 </div>

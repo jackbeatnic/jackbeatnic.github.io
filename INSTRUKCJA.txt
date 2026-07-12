@@ -124,6 +124,13 @@ PODGLĄD NA X / FACEBOOK / DISCORD (Open Graph)
   Cache X: https://cards-dev.twitter.com/validator
 
 
+TIP (modal)
+-----------
+  Tip w nagłówku (desktop) i pasku sekcji (mobile) + ikona ◎ na każdej karcie NFT.
+  EVM: creator_wallet w gallery.json | BTC: btc_tip_wallet
+  Odśwież cache X po zmianie og-preview.jpg
+
+
 SEKCJE AI ART / PHOTOGRAPHY
 ---------------------------
   Patrz STRUKTURA_SEKCJI.txt — pola medium, photo_kind, blok site w gallery.json.

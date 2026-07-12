@@ -20,6 +20,7 @@
     "chain": "avalanche",
     "native_currency": "AVAX",
     "creator_wallet": "0xf0b840349b3f285fc05c89eac594ddd254183fb9",
+    "btc_tip_wallet": "bc1qa3wxew65zzt6egqnuaxyj9aaw3pzhwrslevp7c",
     "last_updated": "2026-07-03T17:50:00Z",
     "version": "0.1",
     "collection_id": "avalanche_nature_stories",

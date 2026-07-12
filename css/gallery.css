@@ -290,63 +290,140 @@ a {
     text-shadow: 0 0 18px rgba(0, 0, 0, 0.12);
 }
 
-.tip-panel {
-    position: relative;
-    border-bottom: 1px solid var(--gray-100);
-    background: var(--gray-50);
-}
-
-.tip-panel__inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 1rem 1.25rem 1.25rem;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 0.35rem 1rem;
-    align-items: center;
-    position: relative;
-}
-
-.tip-panel__close {
-    position: absolute;
-    top: 0.5rem;
-    right: 1rem;
-    border: none;
+.section-nav__tab--tip {
+    font-family: inherit;
     background: none;
-    font-size: 1.25rem;
-    line-height: 1;
-    color: var(--gray-400);
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    flex: 0 0 auto;
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+}
+
+.section-nav__tab--tip.is-active,
+.section-nav__tab--tip:hover {
+    border-bottom-color: transparent;
+    color: var(--black);
+}
+
+/* ── Tip modal ── */
+.tip-modal[hidden] {
+    display: none !important;
+}
+
+body.tip-open {
+    overflow: hidden;
+}
+
+.tip-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 450;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+}
+
+.tip-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.55);
+    backdrop-filter: blur(4px);
     cursor: pointer;
 }
 
-.tip-panel__qr {
-    grid-row: 1 / span 4;
-    border: 1px solid var(--gray-200);
+.tip-modal__dialog {
+    position: relative;
+    z-index: 1;
+    width: min(40rem, 100%);
+    max-height: min(90vh, 720px);
+    overflow-y: auto;
     background: var(--white);
-    border-radius: 3px;
+    border: 1px solid var(--gray-100);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+    padding: 1.35rem 1.25rem 1.5rem;
 }
 
-.tip-panel__title {
+.tip-modal__close {
+    position: absolute;
+    top: 0.65rem;
+    right: 0.65rem;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--gray-200);
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--gray-500);
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.tip-modal__title {
+    margin: 0 2rem 0.35rem 0;
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+.tip-modal__lead {
+    margin: 0 0 1.1rem;
+    font-size: 0.78rem;
+    font-weight: 300;
+    color: var(--gray-500);
+    line-height: 1.55;
+}
+
+.tip-modal__wallets {
+    display: grid;
+    gap: 1.15rem;
+}
+
+@media (min-width: 640px) {
+    .tip-modal__wallets {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.tip-wallet {
+    padding: 0.85rem;
+    border: 1px solid var(--gray-100);
+    background: var(--gray-50);
+}
+
+.tip-wallet__label {
     margin: 0;
-    font-size: 0.75rem;
+    font-size: 0.68rem;
     font-weight: 500;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
 }
 
-.tip-panel__hint {
-    margin: 0;
+.tip-wallet__hint {
+    margin: 0.25rem 0 0.65rem;
     font-size: 0.68rem;
-    color: var(--gray-500);
     font-weight: 300;
+    color: var(--gray-500);
+    line-height: 1.45;
 }
 
-.tip-panel__address {
-    margin: 0;
-    font-size: 0.62rem;
+.tip-wallet__qr {
+    display: block;
+    border: 1px solid var(--gray-200);
+    background: var(--white);
+    border-radius: 3px;
+    margin-bottom: 0.55rem;
+}
+
+.tip-wallet__address {
+    margin: 0 0 0.55rem;
+    font-size: 0.58rem;
     font-family: ui-monospace, monospace;
     color: var(--gray-600);
     word-break: break-all;
+    line-height: 1.45;
 }
 
 .site-header__rule {
@@ -860,7 +937,8 @@ a {
 }
 
 .nft-like,
-.nft-save {
+.nft-save,
+.nft-tip {
     display: inline-flex;
     align-items: center;
     gap: 0.2rem;
@@ -880,9 +958,16 @@ a {
 }
 
 .nft-like__icon,
-.nft-save__icon {
+.nft-save__icon,
+.nft-tip__icon {
     font-size: 0.72rem;
     line-height: 1;
+}
+
+.nft-tip:hover {
+    color: var(--black);
+    border-color: var(--gray-300);
+    background: var(--white);
 }
 
 .nft-like.is-active {

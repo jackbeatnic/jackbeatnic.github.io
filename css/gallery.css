@@ -426,6 +426,79 @@ body.tip-open {
     line-height: 1.45;
 }
 
+/* Mobile: compact horizontal rows — QR 112px still scans fine */
+@media (max-width: 639px) {
+    .tip-modal {
+        padding: 0.5rem;
+        align-items: center;
+    }
+
+    .tip-modal__dialog {
+        padding: 0.85rem 0.75rem 0.9rem;
+        max-height: none;
+        overflow-y: visible;
+    }
+
+    .tip-modal__title {
+        font-size: 1rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .tip-modal__lead {
+        margin-bottom: 0.65rem;
+        font-size: 0.7rem;
+        line-height: 1.4;
+    }
+
+    .tip-modal__wallets {
+        gap: 0.55rem;
+    }
+
+    .tip-wallet {
+        display: grid;
+        grid-template-columns: 7rem minmax(0, 1fr);
+        grid-template-rows: auto auto minmax(0, 1fr) auto;
+        column-gap: 0.55rem;
+        row-gap: 0.15rem;
+        padding: 0.55rem;
+        align-items: start;
+    }
+
+    .tip-wallet__qr {
+        grid-row: 1 / -1;
+        grid-column: 1;
+        width: 7rem;
+        height: 7rem;
+        margin: 0;
+        object-fit: contain;
+    }
+
+    .tip-wallet__label {
+        grid-column: 2;
+    }
+
+    .tip-wallet__hint {
+        grid-column: 2;
+        margin-bottom: 0.2rem;
+        font-size: 0.62rem;
+        line-height: 1.35;
+    }
+
+    .tip-wallet__address {
+        grid-column: 2;
+        margin-bottom: 0.3rem;
+        font-size: 0.52rem;
+        line-height: 1.35;
+    }
+
+    .tip-wallet .btn--small {
+        grid-column: 2;
+        justify-self: start;
+        padding: 0.35rem 0.55rem;
+        font-size: 0.62rem;
+    }
+}
+
 .site-header__rule {
     height: 1px;
     background: var(--black);

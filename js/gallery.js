@@ -121,8 +121,10 @@ const Gallery = (() => {
                 evm_wallet: collectionInfo.creator_wallet,
                 btc_wallet: collectionInfo.btc_tip_wallet,
                 solana_wallet: collectionInfo.solana_tip_wallet,
+                evm_domains: collectionInfo.evm_domains,
+                tezos_domains: collectionInfo.tezos_domains,
             });
-            syncPhotoOtherPromo();
+            syncSectionPromo();
             refresh();
             scrollToWorkFromUrl();
 
@@ -130,7 +132,7 @@ const Gallery = (() => {
             document.addEventListener('gallery:likes', refresh);
             document.addEventListener('gallery:section', () => {
                 syncSectionNfts();
-                syncPhotoOtherPromo();
+                syncSectionPromo();
                 refresh();
             });
         } catch (error) {
@@ -192,22 +194,35 @@ const Gallery = (() => {
         }
     }
 
-    function syncPhotoOtherPromo() {
-        const el = document.getElementById('photo-other-promo');
-        const promo = siteConfig?.sections?.photography?.other_promo;
+    function activeSectionPromo() {
+        const sections = siteConfig?.sections || {};
+        if (GallerySections.getCurrentSection() === 'ai_art') {
+            return sections.ai_art?.promo;
+        }
+        if (GallerySections.isPhotoOther()) {
+            return sections.photography?.other_promo;
+        }
+        return null;
+    }
+
+    function syncSectionPromo() {
+        const el = document.getElementById('section-promo');
+        const promo = activeSectionPromo();
         if (!el) return;
 
-        const show = Boolean(promo?.enabled) && GallerySections.isPhotoOther();
+        const show = Boolean(promo?.enabled);
         el.hidden = !show;
         if (!show || !promo) return;
 
-        const titleEl = document.getElementById('photo-promo-title');
-        const textEl = document.getElementById('photo-promo-text');
-        const symbolEl = document.getElementById('photo-promo-symbol');
-        const chainEl = document.getElementById('photo-promo-chain');
-        const contractEl = document.getElementById('photo-promo-contract');
-        const linkEl = document.getElementById('photo-promo-link');
+        const eyebrowEl = document.getElementById('section-promo-eyebrow');
+        const titleEl = document.getElementById('section-promo-title');
+        const textEl = document.getElementById('section-promo-text');
+        const symbolEl = document.getElementById('section-promo-symbol');
+        const chainEl = document.getElementById('section-promo-chain');
+        const contractEl = document.getElementById('section-promo-contract');
+        const linkEl = document.getElementById('section-promo-link');
 
+        if (eyebrowEl) eyebrowEl.textContent = promo.eyebrow || '';
         if (titleEl) titleEl.textContent = promo.title || '';
         if (textEl) textEl.textContent = promo.text || '';
         if (symbolEl) symbolEl.textContent = promo.symbol || '';
@@ -216,32 +231,37 @@ const Gallery = (() => {
             contractEl.textContent = promo.contract || '';
             contractEl.title = promo.contract || '';
         }
-        if (linkEl && promo.community_url) {
-            linkEl.href = promo.community_url;
+        if (linkEl) {
+            if (promo.community_url) linkEl.href = promo.community_url;
+            linkEl.textContent = promo.cta_label || 'Learn more →';
         }
     }
 
-    function renderSocialLinks(info) {
-        const links = info?.social_links;
-        if (!Array.isArray(links) || links.length === 0) return;
+    function renderLinkPills(containerId, items) {
+        const el = document.getElementById(containerId);
+        if (!el) return;
 
-        const markup = links
-            .filter((item) => item?.url)
+        const markup = (items || [])
+            .filter((item) => item?.url || typeof item === 'string')
             .map((item) => {
+                if (typeof item === 'string') {
+                    const label = escapeHtml(item);
+                    const url = escapeHtml(`https://${item}`);
+                    return `<a class="social-links__link" href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+                }
                 const label = escapeHtml(item.label || item.id || 'Link');
                 const url = escapeHtml(item.url);
                 return `<a class="social-links__link" href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`;
             })
             .join('');
 
-        if (!markup) return;
+        el.innerHTML = markup;
+        el.hidden = !markup;
+    }
 
-        for (const id of ['about-social', 'footer-social']) {
-            const el = document.getElementById(id);
-            if (!el) continue;
-            el.innerHTML = markup;
-            el.hidden = false;
-        }
+    function renderSocialLinks(info) {
+        renderLinkPills('about-social', info?.social_links);
+        renderLinkPills('about-domains', info?.domain_links);
     }
 
     function applyCollectionInfo(info) {

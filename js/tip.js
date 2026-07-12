@@ -87,6 +87,23 @@ const TipCreator = (() => {
         bindCopy(copyBtn, wallet, copyLabel);
     }
 
+    function renderDomainLinks(container, domains, linkClass) {
+        if (!container || !Array.isArray(domains) || domains.length === 0) {
+            if (container) container.hidden = true;
+            return;
+        }
+
+        container.innerHTML = domains
+            .map((domain) => {
+                const safe = domain.replace(/[<>"']/g, '');
+                const href = safe.startsWith('http') ? safe : `https://${safe}`;
+                return `<a class="${linkClass}" href="${href}" target="_blank" rel="noopener noreferrer">${safe}</a>`;
+            })
+            .join('');
+
+        container.hidden = false;
+    }
+
     function init(config = {}) {
         evmWallet = config.evm_wallet || config.wallet || '';
         btcWallet = config.btc_wallet || '';
@@ -126,6 +143,28 @@ const TipCreator = (() => {
         );
 
         bindCopy(document.getElementById('tip-copy-evm'), evmWallet, 'EVM address');
+
+        renderDomainLinks(
+            document.getElementById('tip-evm-domains'),
+            config.evm_domains,
+            'tip-wallet__domain',
+        );
+
+        const tezLine = document.getElementById('tip-tez-line');
+        const tezLinks = document.getElementById('tip-tez-domains');
+        if (Array.isArray(config.tezos_domains) && config.tezos_domains.length > 0 && tezLine && tezLinks) {
+            tezLinks.innerHTML = config.tezos_domains
+                .map((domain, index) => {
+                    const safe = domain.replace(/[<>"']/g, '');
+                    const href = safe.startsWith('http') ? safe : `https://${safe}`;
+                    const sep = index > 0 ? '<span class="tip-modal__tez-sep">·</span>' : '';
+                    return `${sep}<a class="tip-modal__tez-link" href="${href}" target="_blank" rel="noopener noreferrer">${safe}</a>`;
+                })
+                .join('');
+            tezLine.hidden = false;
+        } else if (tezLine) {
+            tezLine.hidden = true;
+        }
 
         document.querySelectorAll('[data-tip-open]').forEach(registerOpener);
 

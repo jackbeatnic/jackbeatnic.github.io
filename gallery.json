@@ -48,6 +48,42 @@
         "url": "https://zora.co/@jackbeatnic"
       }
     ],
+    "domain_links": [
+      {
+        "id": "base-eth-main",
+        "label": "jackbeatnic.base.eth",
+        "url": "https://jackbeatnic.base.eth"
+      },
+      {
+        "id": "base-eth-ai",
+        "label": "jackbeatnicai.base.eth",
+        "url": "https://jackbeatnicai.base.eth"
+      },
+      {
+        "id": "base-eth-photo",
+        "label": "jackbeatnicphoto.base.eth",
+        "url": "https://jackbeatnicphoto.base.eth"
+      },
+      {
+        "id": "tez-main",
+        "label": "jackbeatnic.tez",
+        "url": "https://jackbeatnic.tez"
+      },
+      {
+        "id": "tez-ai",
+        "label": "jackbeatnicai.tez",
+        "url": "https://jackbeatnicai.tez"
+      }
+    ],
+    "evm_domains": [
+      "jackbeatnic.base.eth",
+      "jackbeatnicai.base.eth",
+      "jackbeatnicphoto.base.eth"
+    ],
+    "tezos_domains": [
+      "jackbeatnic.tez",
+      "jackbeatnicai.tez"
+    ],
     "og_image": "assets/og-preview.jpg",
     "chain": "avalanche",
     "native_currency": "AVAX",
@@ -571,7 +607,18 @@
     "sections": {
       "ai_art": {
         "label": "AI Art",
-        "explore_title": "Explore AI Art"
+        "explore_title": "Explore AI Art",
+        "promo": {
+          "enabled": true,
+          "eyebrow": "AI Art",
+          "symbol": "$jackbeatnic",
+          "chain": "Zora",
+          "contract": "0x30c29a999b9265515129215ebbf1dd57d991544d",
+          "community_url": "https://zora.co/@jackbeatnic/creator-coin",
+          "title": "Creator Coin on Zora",
+          "text": "Trade and support the gallery through the Zora Creator Coin — on-chain identity for collectors following Jack Beatnic across AI art releases.",
+          "cta_label": "Zora creator coin →"
+        }
       },
       "photography": {
         "label": "Photography",
@@ -598,7 +645,9 @@
           "contract": "0x548B2af6Ae458ea588260b3A07cc0DdB4E74aa1a",
           "community_url": "https://arena.social/community/0x548B2af6Ae458ea588260b3A07cc0DdB4E74aa1a?ref=JackBeatnic",
           "title": "Photography lives on-chain",
-          "text": "Join the $PHOTO community on Arena — Avalanche ERC-20 for collectors, supporters, and new releases in this space."
+          "text": "Join the $PHOTO community on Arena — Avalanche ERC-20 for collectors, supporters, and new releases in this space.",
+          "cta_label": "Arena community →",
+          "eyebrow": "Photography · Other"
         }
       }
     }

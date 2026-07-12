@@ -314,6 +314,10 @@ a {
     margin-top: 0.65rem;
 }
 
+.section-promo[hidden] {
+    display: none !important;
+}
+
 @media (min-width: 768px) {
     .section-nav {
         display: none;
@@ -514,11 +518,80 @@ body.tip-open {
     line-height: 1.35;
 }
 
+.tip-wallet__domains {
+    grid-column: 2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem 0.35rem;
+    margin: 0 0 0.28rem;
+}
+
+.tip-wallet__domains::before {
+    content: 'Base names';
+    width: 100%;
+    font-size: 0.52rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+}
+
+.tip-wallet__domain {
+    font-size: 0.5rem;
+    font-family: ui-monospace, monospace;
+    color: var(--gray-600);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.tip-wallet__domain:hover {
+    color: var(--black);
+}
+
 .tip-wallet .btn--small {
     grid-column: 2;
     justify-self: start;
     padding: 0.35rem 0.55rem;
     font-size: 0.62rem;
+}
+
+.tip-modal__tez {
+    margin: 0.65rem 0 0;
+    padding-top: 0.55rem;
+    border-top: 1px solid var(--gray-100);
+    font-size: 0.58rem;
+    line-height: 1.45;
+    color: var(--gray-500);
+}
+
+.tip-modal__tez-label {
+    display: block;
+    margin-bottom: 0.2rem;
+    font-size: 0.52rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+}
+
+.tip-modal__tez-links {
+    display: inline;
+}
+
+.tip-modal__tez-link {
+    font-family: ui-monospace, monospace;
+    color: var(--gray-600);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.tip-modal__tez-link:hover {
+    color: var(--black);
+}
+
+.tip-modal__tez-sep {
+    margin: 0 0.2rem;
+    color: var(--gray-400);
 }
 
 @media (max-width: 767px) {
@@ -792,15 +865,8 @@ body.tip-open {
     background: var(--white);
 }
 
-.social-links--footer {
-    justify-content: center;
-    margin-bottom: 0.65rem;
-}
-
-.social-links--footer .social-links__link {
-    font-size: 0.56rem;
-    padding: 0.28rem 0.6rem;
-    letter-spacing: 0.1em;
+.about-section__domains {
+    margin-top: 0.85rem;
 }
 
 .about-section__link {

@@ -55,7 +55,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/gallery.css?v=20260712g">
+    <link rel="stylesheet" href="css/gallery.css?v=20260712h">
 </head>
 <body class="gallery-protected">
     <header class="site-header site-header--sticky">
@@ -162,16 +162,16 @@
             </div>
         </section>
 
-        <aside id="photo-other-promo" class="section-promo" hidden aria-label="PHOTO token community">
-            <p class="section-promo__eyebrow">Photography · Other</p>
-            <h2 id="photo-promo-title" class="section-promo__title"></h2>
-            <p id="photo-promo-text" class="section-promo__text"></p>
+        <aside id="section-promo" class="section-promo" hidden aria-label="Section token">
+            <p id="section-promo-eyebrow" class="section-promo__eyebrow"></p>
+            <h2 id="section-promo-title" class="section-promo__title"></h2>
+            <p id="section-promo-text" class="section-promo__text"></p>
             <p class="section-promo__token">
-                <span id="photo-promo-symbol" class="section-promo__symbol"></span>
-                <span id="photo-promo-chain" class="section-promo__chain"></span>
+                <span id="section-promo-symbol" class="section-promo__symbol"></span>
+                <span id="section-promo-chain" class="section-promo__chain"></span>
             </p>
-            <p id="photo-promo-contract" class="section-promo__contract"></p>
-            <a id="photo-promo-link" class="btn btn--ghost btn--small section-promo__cta" href="#" target="_blank" rel="noopener noreferrer">Arena community →</a>
+            <p id="section-promo-contract" class="section-promo__contract"></p>
+            <a id="section-promo-link" class="btn btn--ghost btn--small section-promo__cta" href="#" target="_blank" rel="noopener noreferrer"></a>
         </aside>
 
         <div id="gallery-grid" class="gallery-grid"></div>
@@ -182,6 +182,10 @@
             <div class="about-section__social">
                 <span class="social-links__label">Connect</span>
                 <nav id="about-social" class="social-links" aria-label="Social and community profiles" hidden></nav>
+            </div>
+            <div class="about-section__domains">
+                <span class="social-links__label">Domains</span>
+                <nav id="about-domains" class="social-links" aria-label="Web3 domains" hidden></nav>
             </div>
             <p class="about-section__link">
                 <a id="about-opensea" class="btn btn--primary" href="https://opensea.io/JackBeatnic" target="_blank" rel="noopener noreferrer">View on OpenSea</a>
@@ -198,8 +202,7 @@
         </div>
 
         <footer class="site-footer">
-            <nav id="footer-social" class="social-links social-links--footer" aria-label="Social profiles" hidden></nav>
-            <p class="site-footer__copy">Jack Beatnic Gallery — 2026</p>
+            <p class="site-footer__copy">© Jack Beatnic — 2026</p>
         </footer>
     </main>
 
@@ -216,6 +219,7 @@
                     <p class="tip-wallet__hint">AVAX · ETH · Polygon · Base · ERC-20 tokens</p>
                     <img id="tip-qr-evm" class="tip-wallet__qr" width="140" height="140" alt="">
                     <p id="tip-address-evm" class="tip-wallet__address"></p>
+                    <div id="tip-evm-domains" class="tip-wallet__domains" hidden></div>
                     <button type="button" id="tip-copy-evm" class="btn btn--ghost btn--small">Copy address</button>
                 </section>
 
@@ -235,16 +239,21 @@
                     <button type="button" id="tip-copy-sol" class="btn btn--ghost btn--small">Copy address</button>
                 </section>
             </div>
+
+            <p id="tip-tez-line" class="tip-modal__tez" hidden>
+                <span class="tip-modal__tez-label">Tezos domains</span>
+                <span id="tip-tez-domains" class="tip-modal__tez-links"></span>
+            </p>
         </div>
     </div>
 
-    <script src="js/images.js?v=20260712g"></script>
-    <script src="js/opensea-links.js?v=20260712g"></script>
-    <script src="js/lightbox.js?v=20260712g"></script>
-    <script src="js/likes.js?v=20260712g"></script>
-    <script src="js/filters.js?v=20260712g"></script>
-    <script src="js/sections.js?v=20260712g"></script>
-    <script src="js/tip.js?v=20260712g"></script>
-    <script src="js/gallery.js?v=20260712g"></script>
+    <script src="js/images.js?v=20260712h"></script>
+    <script src="js/opensea-links.js?v=20260712h"></script>
+    <script src="js/lightbox.js?v=20260712h"></script>
+    <script src="js/likes.js?v=20260712h"></script>
+    <script src="js/filters.js?v=20260712h"></script>
+    <script src="js/sections.js?v=20260712h"></script>
+    <script src="js/tip.js?v=20260712h"></script>
+    <script src="js/gallery.js?v=20260712h"></script>
 </body>
 </html>

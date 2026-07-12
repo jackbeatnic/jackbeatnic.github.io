@@ -494,7 +494,12 @@ const Gallery = (() => {
         card.dataset.nftKey = key;
 
         const thumbSrc = ImageProxy.displayUrl(nft.image_url, IMAGE_PROXY);
-        const viewSrc = ImageProxy.displayUrl(nft.image_url, IMAGE_PROXY, 880, 660);
+        const viewSrc = ImageProxy.displayUrl(
+            nft.image_url,
+            IMAGE_PROXY,
+            ImageProxy.VIEW_MAX_WIDTH,
+            ImageProxy.VIEW_MAX_HEIGHT,
+        );
         const name = escapeHtml(nft.name);
         const description = escapeHtml(nft.ai?.description);
         const category = escapeHtml((nft.ai?.category || '').toUpperCase());

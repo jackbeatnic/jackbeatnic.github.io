@@ -46,6 +46,21 @@
         "id": "zora",
         "label": "Zora",
         "url": "https://zora.co/@jackbeatnic"
+      },
+      {
+        "id": "objkt-main",
+        "label": "OBJKT/@ jackbeatnic",
+        "url": "https://objkt.com/@jackbeatnic/"
+      },
+      {
+        "id": "objkt-ai",
+        "label": "OBJKT/@jackbeatnicai",
+        "url": "https://objkt.com/@jackbeatnicai/"
+      },
+      {
+        "id": "xrp-cafe",
+        "label": "XRP.Cafe",
+        "url": "https://xrp.cafe/user/rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn"
       }
     ],
     "domain_links": [

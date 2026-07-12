@@ -16,6 +16,33 @@
     "opensea_profile": "https://opensea.io/JackBeatnic",
     "site_url": "https://jackbeatnic.github.io/",
     "twitter_handle": "@JackBeatnicAI",
+    "social_links": [
+      {
+        "id": "x",
+        "label": "X",
+        "url": "https://twitter.com/JackBeatnicAI"
+      },
+      {
+        "id": "instagram",
+        "label": "Instagram",
+        "url": "https://www.instagram.com/jackbeatnicai/"
+      },
+      {
+        "id": "base",
+        "label": "Base",
+        "url": "https://base.app/profile/jackbeatnic"
+      },
+      {
+        "id": "farcaster",
+        "label": "Farcaster",
+        "url": "https://farcaster.xyz/jackbeatnic"
+      },
+      {
+        "id": "arena",
+        "label": "Arena",
+        "url": "https://arena.social/jackbeatnic"
+      }
+    ],
     "og_image": "assets/og-preview.jpg",
     "chain": "avalanche",
     "native_currency": "AVAX",

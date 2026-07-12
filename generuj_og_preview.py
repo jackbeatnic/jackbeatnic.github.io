@@ -30,7 +30,8 @@ FONTS_DIR = ROOT / "assets" / "fonts"
 WIDTH = 1200
 HEIGHT = 630
 SITE_BRAND_TITLE = "Jack Beatnic"
-SITE_BRAND_SUBTITLE = "AI art & Photography Gallery"
+SITE_BRAND_TAGLINE = "From the Lens to AI"
+SITE_GALLERY_LABEL = "AI Art and Photography Gallery"
 INDEX_HTML = ROOT / "index.html"
 
 NFT_PAD = 36
@@ -153,8 +154,13 @@ def format_share_price(nft: dict, info: dict) -> tuple[str, str]:
     return "View on OpenSea", "Check listing"
 
 
-def draw_site_brand_overlay(base: Image.Image, title: str, subtitle: str) -> Image.Image:
-    """Top-right brand text; bottom-left kept clear for X link overlay."""
+def draw_site_brand_overlay(
+    base: Image.Image,
+    title: str,
+    tagline: str,
+    gallery_label: str,
+) -> Image.Image:
+    """Top-right: name + claim; bottom-left: gallery label."""
     overlay = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
     draw = ImageDraw.Draw(overlay)
 
@@ -167,16 +173,14 @@ def draw_site_brand_overlay(base: Image.Image, title: str, subtitle: str) -> Ima
             if alpha > 0:
                 overlay.putpixel((x, y), (10, 10, 10, alpha))
 
-    # Bottom-left: very light fade only (no text — X shows URL there)
-    for y in range(HEIGHT - 90, HEIGHT):
-        for x in range(0, 320):
-            tx = 1 - x / 320
-            ty = (y - (HEIGHT - 90)) / 90
-            alpha = int(55 * tx * ty)
+    # Bottom-left readability gradient
+    for y in range(int(HEIGHT * 0.58), HEIGHT):
+        for x in range(0, int(WIDTH * 0.55)):
+            tx = 1 - x / max(1, WIDTH * 0.55)
+            ty = (y - HEIGHT * 0.58) / max(1, HEIGHT * 0.42)
+            alpha = int(165 * tx * ty)
             if alpha > 0:
-                existing = overlay.getpixel((x, y))
-                merged = min(255, existing[3] + alpha)
-                overlay.putpixel((x, y), (10, 10, 10, merged))
+                overlay.putpixel((x, y), (10, 10, 10, alpha))
 
     canvas = Image.alpha_composite(base.convert("RGBA"), overlay)
     draw = ImageDraw.Draw(canvas)
@@ -185,23 +189,29 @@ def draw_site_brand_overlay(base: Image.Image, title: str, subtitle: str) -> Ima
     muted = (230, 230, 230, 255)
 
     pad_r = 56
+    pad_l = 56
     title_font = f["title_md"]
-    sub_font = ImageFont.truetype(str(FONTS_DIR / "Inter.ttf"), 22)
+    tagline_font = ImageFont.truetype(str(FONTS_DIR / "Inter.ttf"), 22)
+    label_font = ImageFont.truetype(str(FONTS_DIR / "Inter.ttf"), 24)
 
-    sub_bbox = sub_font.getbbox(subtitle)
+    tagline_bbox = tagline_font.getbbox(tagline)
     title_bbox = title_font.getbbox(title)
-    sub_w = sub_bbox[2] - sub_bbox[0]
+    tagline_w = tagline_bbox[2] - tagline_bbox[0]
     title_w = title_bbox[2] - title_bbox[0]
-    block_w = max(title_w, sub_w)
 
     text_right = WIDTH - pad_r
     title_x = text_right - title_w
-    sub_x = text_right - sub_w
+    tagline_x = text_right - tagline_w
     title_y = 48
-    sub_y = title_y + 58
+    tagline_y = title_y + 58
 
     draw_bold(draw, (title_x, title_y), title, title_font, white)
-    draw.text((sub_x, sub_y), subtitle, font=sub_font, fill=muted)
+    draw.text((tagline_x, tagline_y), tagline, font=tagline_font, fill=muted)
+
+    label_bbox = label_font.getbbox(gallery_label)
+    label_h = label_bbox[3] - label_bbox[1]
+    label_y = HEIGHT - 56 - label_h
+    draw_bold(draw, (pad_l, label_y), gallery_label, label_font, white)
     return canvas
 
 
@@ -211,15 +221,17 @@ def generate_site_og(data: dict, output: Path = SITE_OG_PATH) -> Path:
         raise SystemExit("gallery.json: brak NFT do tła strony")
 
     info = data["collection_info"]
-    title = info.get("hero_title") or info.get("artist") or SITE_BRAND_TITLE
-    subtitle = SITE_BRAND_SUBTITLE
+    title = html.unescape(info.get("hero_title") or info.get("artist") or SITE_BRAND_TITLE)
+    tagline = html.unescape(info.get("hero_tagline") or SITE_BRAND_TAGLINE)
+    gallery_label = SITE_GALLERY_LABEL
 
     print(f"[site] Tło: {nfts[0].get('name', '—')}")
     bg = fetch_image(nfts[0]["image_url"])
     canvas = draw_site_brand_overlay(
         cover_crop(bg, WIDTH, HEIGHT, focus_y=0.4),
         title,
-        subtitle,
+        tagline,
+        gallery_label,
     )
 
     output.parent.mkdir(parents=True, exist_ok=True)

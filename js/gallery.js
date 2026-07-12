@@ -214,48 +214,52 @@ const Gallery = (() => {
         }
     }
 
-    function activeSectionPromo() {
-        const sections = siteConfig?.sections || {};
+    function showCommunityTokens() {
         const section = GallerySections.getCurrentSection();
-        if (section === 'ai_art') {
-            return sections.ai_art?.promo;
-        }
-        if (section === 'photography') {
-            return sections.photography?.promo;
-        }
-        return null;
+        return section === 'ai_art' || section === 'photography';
     }
 
     function syncSectionPromo() {
         const el = document.getElementById('section-promo');
-        const promo = activeSectionPromo();
+        const cfg = siteConfig?.community_tokens;
         if (!el) return;
 
-        const show = Boolean(promo?.enabled);
+        const tokens = (cfg?.tokens || []).filter((item) => item?.title);
+        const show = Boolean(cfg?.enabled) && showCommunityTokens() && tokens.length > 0;
         el.hidden = !show;
-        if (!show || !promo) return;
+        if (!show) return;
 
         const eyebrowEl = document.getElementById('section-promo-eyebrow');
-        const titleEl = document.getElementById('section-promo-title');
-        const textEl = document.getElementById('section-promo-text');
-        const symbolEl = document.getElementById('section-promo-symbol');
-        const chainEl = document.getElementById('section-promo-chain');
-        const contractEl = document.getElementById('section-promo-contract');
-        const linkEl = document.getElementById('section-promo-link');
+        const leadEl = document.getElementById('section-promo-lead');
+        const listEl = document.getElementById('section-promo-tokens');
 
-        if (eyebrowEl) eyebrowEl.textContent = promo.eyebrow || '';
-        if (titleEl) titleEl.textContent = promo.title || '';
-        if (textEl) textEl.textContent = promo.text || '';
-        if (symbolEl) symbolEl.textContent = promo.symbol || '';
-        if (chainEl) chainEl.textContent = promo.chain ? `· ${promo.chain}` : '';
-        if (contractEl) {
-            contractEl.textContent = promo.contract || '';
-            contractEl.title = promo.contract || '';
-        }
-        if (linkEl) {
-            if (promo.community_url) linkEl.href = promo.community_url;
-            linkEl.textContent = promo.cta_label || 'Learn more →';
-        }
+        if (eyebrowEl) eyebrowEl.textContent = cfg.eyebrow || '';
+        if (leadEl) leadEl.textContent = cfg.lead || '';
+
+        if (!listEl) return;
+
+        listEl.innerHTML = tokens
+            .map((token) => {
+                const title = escapeHtml(token.title || '');
+                const symbol = escapeHtml(token.symbol || '');
+                const chain = escapeHtml(token.chain || '');
+                const contract = escapeHtml(token.contract || '');
+                const url = escapeHtml(token.community_url || '#');
+                const cta = escapeHtml(token.cta_label || 'Learn more →');
+                const chainBit = chain ? `<span class="section-promo__chain"> · ${chain}</span>` : '';
+
+                return `
+                    <article class="section-promo__item">
+                        <h3 class="section-promo__title">${title}</h3>
+                        <p class="section-promo__token">
+                            <span class="section-promo__symbol">${symbol}</span>${chainBit}
+                        </p>
+                        <p class="section-promo__contract" title="${contract}">${contract}</p>
+                        <a class="btn btn--ghost btn--small section-promo__cta" href="${url}" target="_blank" rel="noopener noreferrer">${cta}</a>
+                    </article>
+                `;
+            })
+            .join('');
     }
 
     function renderLinkPills(containerId, items) {

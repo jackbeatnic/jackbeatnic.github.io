@@ -7760,21 +7760,35 @@
   ],
   "site": {
     "default_section": "ai_art",
-    "sections": {
-      "ai_art": {
-        "label": "AI Art",
-        "explore_title": "Explore AI Art",
-        "promo": {
-          "enabled": true,
-          "eyebrow": "AI Art & Photography",
+    "community_tokens": {
+      "enabled": true,
+      "eyebrow": "AI Art & Photography Tokens",
+      "lead": "Trade and support the gallery through on-chain community tokens — follow releases, support the work, and stay close across AI art and photography.",
+      "tokens": [
+        {
+          "id": "zora-cc",
+          "title": "Creator Coin on Zora",
           "symbol": "$jackbeatnic",
           "chain": "Zora",
           "contract": "0x30c29a999b9265515129215ebbf1dd57d991544d",
           "community_url": "https://zora.co/@jackbeatnic/creator-coin",
-          "title": "Creator Coin on Zora",
-          "text": "Trade and support the gallery through the Zora Creator Coin — on-chain identity for collectors following Jack Beatnic across AI art and photography releases.",
           "cta_label": "Zora creator coin →"
+        },
+        {
+          "id": "photo-arena",
+          "title": "$PHOTO on Arena",
+          "symbol": "$PHOTO",
+          "chain": "Avalanche",
+          "contract": "0x548B2af6Ae458ea588260b3A07cc0DdB4E74aa1a",
+          "community_url": "https://arena.social/community/0x548B2af6Ae458ea588260b3A07cc0DdB4E74aa1a?ref=JackBeatnic",
+          "cta_label": "Arena community →"
         }
+      ]
+    },
+    "sections": {
+      "ai_art": {
+        "label": "AI Art",
+        "explore_title": "Explore AI Art"
       },
       "photography": {
         "label": "Photography",
@@ -7793,17 +7807,6 @@
         "empty_messages": {
           "photo": "Photography works will appear here soon.",
           "other": "Fade Diary — collage series. More mixed media coming soon."
-        },
-        "promo": {
-          "enabled": true,
-          "eyebrow": "AI Art & Photography",
-          "symbol": "$PHOTO",
-          "chain": "Avalanche",
-          "contract": "0x548B2af6Ae458ea588260b3A07cc0DdB4E74aa1a",
-          "community_url": "https://arena.social/community/0x548B2af6Ae458ea588260b3A07cc0DdB4E74aa1a?ref=JackBeatnic",
-          "title": "$PHOTO on Arena",
-          "text": "Photography community token on Avalanche — join collectors and supporters, follow new releases, and stay close to the lens-side of the gallery.",
-          "cta_label": "Arena community →"
         }
       }
     }

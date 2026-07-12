@@ -4,3 +4,10 @@ Thumbs.db
 *.swp
 .env
 .env.*
+
+# Lokalne notatki / przypadkowe pliki (nie deploy)
+layout_notes/*.docx
+/*.jpg
+/*.jpeg
+/*.png
+!assets/**

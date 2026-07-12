@@ -31,6 +31,7 @@ WIDTH = 1200
 HEIGHT = 630
 SITE_BRAND_TITLE = "Jack Beatnic"
 SITE_BRAND_SUBTITLE = "AI art & Photography Gallery"
+INDEX_HTML = ROOT / "index.html"
 
 NFT_PAD = 36
 NFT_THUMB = HEIGHT - NFT_PAD * 2
@@ -51,6 +52,16 @@ def save_gallery(data: dict) -> None:
 def site_base_url(info: dict) -> str:
     url = (info.get("site_url") or "https://jackbeatnic.github.io/").rstrip("/")
     return url
+
+
+def og_cache_version(when: datetime | None = None) -> str:
+    when = when or datetime.now(timezone.utc)
+    return when.strftime("%Y%m%d%H%M")
+
+
+def og_url_with_version(base_url: str, asset_path: str, version: str) -> str:
+    path = asset_path.lstrip("/")
+    return f"{base_url}/{path}?v={version}"
 
 
 def fetch_image(url: str) -> Image.Image:
@@ -292,13 +303,13 @@ def generate_nft_ogs(
     return written
 
 
-def share_page_html(nft: dict, info: dict, base_url: str) -> str:
+def share_page_html(nft: dict, info: dict, base_url: str, og_version: str) -> str:
     token_id = int(nft["token_id"])
     collection = collection_display_name(info)
     artwork_name, token_label = parse_nft_labels(nft)
     price_text, price_hint = format_share_price(nft, info)
     share_url = f"{base_url}/nft/{token_id}.html"
-    og_image = f"{base_url}/assets/og/nft-{token_id}.jpg"
+    og_image = og_url_with_version(base_url, f"assets/og/nft-{token_id}.jpg", og_version)
     gallery_url = f"{base_url}/?work={token_id}"
     title = f"{nft.get('name') or artwork_name} | Jack Beatnic Gallery"
     description = f"{price_text} · {collection} — {price_hint}"
@@ -339,6 +350,7 @@ def generate_share_pages(
 ) -> list[Path]:
     info = data["collection_info"]
     base_url = site_base_url(info)
+    og_version = info.get("og_cache_version") or og_cache_version()
     nfts = data.get("nfts") or []
     output_dir.mkdir(parents=True, exist_ok=True)
     written: list[Path] = []
@@ -351,7 +363,7 @@ def generate_share_pages(
             continue
 
         out = output_dir / f"{token_id}.html"
-        out.write_text(share_page_html(nft, info, base_url), encoding="utf-8")
+        out.write_text(share_page_html(nft, info, base_url, og_version), encoding="utf-8")
         written.append(out)
         nft["share_url"] = f"{base_url}/nft/{token_id}.html"
         nft["og_image"] = f"assets/og/nft-{token_id}.jpg"
@@ -364,9 +376,29 @@ def generate_share_pages(
     return written
 
 
-def stamp_gallery_meta(data: dict) -> None:
+def stamp_gallery_meta(data: dict, when: datetime | None = None) -> str:
+    when = when or datetime.now(timezone.utc)
     info = data["collection_info"]
-    info["og_generated_at"] = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+    version = og_cache_version(when)
+    info["og_generated_at"] = when.replace(microsecond=0).isoformat().replace("+00:00", "Z")
+    info["og_cache_version"] = version
+    return version
+
+
+def update_site_index_og(data: dict, version: str) -> None:
+    info = data["collection_info"]
+    base_url = site_base_url(info)
+    og_image = og_url_with_version(base_url, "assets/og-preview.jpg", version)
+    html_text = INDEX_HTML.read_text(encoding="utf-8")
+
+    for attr in ("property=\"og:image\"", "name=\"twitter:image\""):
+        pattern = rf'(<meta {attr} content=")[^"]*(")'
+        html_text, count = re.subn(pattern, rf"\1{og_image}\2", html_text, count=1)
+        if count != 1:
+            raise SystemExit(f"index.html: nie znaleziono meta {attr}")
+
+    INDEX_HTML.write_text(html_text, encoding="utf-8")
+    print(f"[site] index.html — og:image?v={version}")
 
 
 def generate_all(
@@ -379,17 +411,19 @@ def generate_all(
 ) -> None:
     data = load_gallery()
 
+    version = stamp_gallery_meta(data)
+
     if site:
         generate_site_og(data)
+        update_site_index_og(data, version)
     if nft:
         generate_nft_ogs(data, token_ids=token_ids)
     if pages:
         generate_share_pages(data, token_ids=token_ids)
 
-    if write_gallery and pages:
-        stamp_gallery_meta(data)
+    if write_gallery and (site or pages):
         save_gallery(data)
-        print("[meta] gallery.json — share_url / og_image / og_generated_at")
+        print("[meta] gallery.json — og_cache_version / share_url / og_generated_at")
 
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
@@ -407,15 +441,19 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.site_only:
         data = load_gallery()
+        version = stamp_gallery_meta(data)
         generate_site_og(data)
+        update_site_index_og(data, version)
+        if not args.no_gallery_json:
+            save_gallery(data)
         return 0
 
     if args.nft_only:
         data = load_gallery()
+        version = stamp_gallery_meta(data)
         generate_nft_ogs(data, token_ids=token_ids)
         generate_share_pages(data, token_ids=token_ids)
         if not args.no_gallery_json:
-            stamp_gallery_meta(data)
             save_gallery(data)
         return 0
 

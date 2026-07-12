@@ -14,11 +14,23 @@ const GallerySections = (() => {
         return Object.keys(config());
     }
 
+    function syncPhotoSubnavLabels() {
+        const subnav = document.getElementById('photo-subnav');
+        const subsections = config().photography?.subsections;
+        if (!subnav || !subsections?.length) return;
+
+        subsections.forEach(({ id, label }) => {
+            const tab = subnav.querySelector(`[data-photo-kind="${id}"]`);
+            if (tab && label) tab.textContent = label;
+        });
+    }
+
     function init(siteConfig) {
         site = siteConfig || {};
         currentSection = site.default_section || 'ai_art';
         const photoCfg = config().photography;
         currentPhotoKind = photoCfg?.default_subsection || 'photo';
+        syncPhotoSubnavLabels();
         bindNav();
         readUrl();
         syncNavUi();

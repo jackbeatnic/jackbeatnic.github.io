@@ -108,8 +108,8 @@
     "collection_id": "avalanche_nature_stories",
     "last_price_sync": "2026-07-11T16:29:01Z",
     "last_likes_sort": "2026-07-11T17:02:45Z",
-    "og_generated_at": "2026-07-12T12:16:45Z",
-    "og_cache_version": "202607121216",
+    "og_generated_at": "2026-07-12T15:17:19Z",
+    "og_cache_version": "202607121517",
     "last_objkt_sync": "2026-07-12T12:09:39Z"
   },
   "nfts": [
@@ -660,7 +660,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 2.5
+      "current_price_xtz": 2.5,
+      "share_url": "https://jackbeatnic.github.io/nft/75758508.html",
+      "og_image": "assets/og/nft-75758508.jpg"
     },
     {
       "token_id": 75531282,
@@ -706,7 +708,9 @@
       "photo_kind": "other",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 2.0
+      "current_price_xtz": 2.0,
+      "share_url": "https://jackbeatnic.github.io/nft/75531282.html",
+      "og_image": "assets/og/nft-75531282.jpg"
     },
     {
       "token_id": 75504153,
@@ -748,7 +752,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 1.0
+      "current_price_xtz": 1.0,
+      "share_url": "https://jackbeatnic.github.io/nft/75504153.html",
+      "og_image": "assets/og/nft-75504153.jpg"
     },
     {
       "token_id": 75240452,
@@ -792,7 +798,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 2.0
+      "current_price_xtz": 2.0,
+      "share_url": "https://jackbeatnic.github.io/nft/75240452.html",
+      "og_image": "assets/og/nft-75240452.jpg"
     },
     {
       "token_id": 75240437,
@@ -840,7 +848,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 1.0
+      "current_price_xtz": 1.0,
+      "share_url": "https://jackbeatnic.github.io/nft/75240437.html",
+      "og_image": "assets/og/nft-75240437.jpg"
     },
     {
       "token_id": 75240413,
@@ -888,7 +898,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 1.0
+      "current_price_xtz": 1.0,
+      "share_url": "https://jackbeatnic.github.io/nft/75240413.html",
+      "og_image": "assets/og/nft-75240413.jpg"
     },
     {
       "token_id": 75232891,
@@ -936,7 +948,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 1.0
+      "current_price_xtz": 1.0,
+      "share_url": "https://jackbeatnic.github.io/nft/75232891.html",
+      "og_image": "assets/og/nft-75232891.jpg"
     },
     {
       "token_id": 75013149,
@@ -982,7 +996,9 @@
       "photo_kind": "other",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 12.0
+      "current_price_xtz": 12.0,
+      "share_url": "https://jackbeatnic.github.io/nft/75013149.html",
+      "og_image": "assets/og/nft-75013149.jpg"
     },
     {
       "token_id": 75013139,
@@ -1028,7 +1044,9 @@
       "photo_kind": "other",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 10.0
+      "current_price_xtz": 10.0,
+      "share_url": "https://jackbeatnic.github.io/nft/75013139.html",
+      "og_image": "assets/og/nft-75013139.jpg"
     },
     {
       "token_id": 75013125,
@@ -1074,7 +1092,9 @@
       "photo_kind": "other",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 1.0
+      "current_price_xtz": 1.0,
+      "share_url": "https://jackbeatnic.github.io/nft/75013125.html",
+      "og_image": "assets/og/nft-75013125.jpg"
     },
     {
       "token_id": 75013107,
@@ -1120,7 +1140,9 @@
       "photo_kind": "other",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 2.0
+      "current_price_xtz": 2.0,
+      "share_url": "https://jackbeatnic.github.io/nft/75013107.html",
+      "og_image": "assets/og/nft-75013107.jpg"
     },
     {
       "token_id": 75013102,
@@ -1166,7 +1188,9 @@
       "photo_kind": "other",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 15.0
+      "current_price_xtz": 15.0,
+      "share_url": "https://jackbeatnic.github.io/nft/75013102.html",
+      "og_image": "assets/og/nft-75013102.jpg"
     },
     {
       "token_id": 75013082,
@@ -1213,7 +1237,9 @@
       "photo_kind": "other",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 2.0
+      "current_price_xtz": 2.0,
+      "share_url": "https://jackbeatnic.github.io/nft/75013082.html",
+      "og_image": "assets/og/nft-75013082.jpg"
     },
     {
       "token_id": 69441704,
@@ -1261,7 +1287,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 5.0
+      "current_price_xtz": 5.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69441704.html",
+      "og_image": "assets/og/nft-69441704.jpg"
     },
     {
       "token_id": 69441661,
@@ -1309,7 +1337,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 7.0
+      "current_price_xtz": 7.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69441661.html",
+      "og_image": "assets/og/nft-69441661.jpg"
     },
     {
       "token_id": 69441642,
@@ -1357,7 +1387,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 7.0
+      "current_price_xtz": 7.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69441642.html",
+      "og_image": "assets/og/nft-69441642.jpg"
     },
     {
       "token_id": 69441614,
@@ -1405,7 +1437,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 7.0
+      "current_price_xtz": 7.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69441614.html",
+      "og_image": "assets/og/nft-69441614.jpg"
     },
     {
       "token_id": 69441596,
@@ -1453,7 +1487,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 7.0
+      "current_price_xtz": 7.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69441596.html",
+      "og_image": "assets/og/nft-69441596.jpg"
     },
     {
       "token_id": 69441564,
@@ -1501,7 +1537,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 10.0
+      "current_price_xtz": 10.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69441564.html",
+      "og_image": "assets/og/nft-69441564.jpg"
     },
     {
       "token_id": 69441534,
@@ -1549,7 +1587,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 25.0
+      "current_price_xtz": 25.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69441534.html",
+      "og_image": "assets/og/nft-69441534.jpg"
     },
     {
       "token_id": 69441389,
@@ -1597,7 +1637,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 15.0
+      "current_price_xtz": 15.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69441389.html",
+      "og_image": "assets/og/nft-69441389.jpg"
     },
     {
       "token_id": 69441250,
@@ -1644,7 +1686,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 5.0
+      "current_price_xtz": 5.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69441250.html",
+      "og_image": "assets/og/nft-69441250.jpg"
     },
     {
       "token_id": 69441171,
@@ -1692,7 +1736,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 3.0
+      "current_price_xtz": 3.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69441171.html",
+      "og_image": "assets/og/nft-69441171.jpg"
     },
     {
       "token_id": 69423425,
@@ -1738,7 +1784,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 10.0
+      "current_price_xtz": 10.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69423425.html",
+      "og_image": "assets/og/nft-69423425.jpg"
     },
     {
       "token_id": 69423371,
@@ -1784,7 +1832,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 10.0
+      "current_price_xtz": 10.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69423371.html",
+      "og_image": "assets/og/nft-69423371.jpg"
     },
     {
       "token_id": 69423255,
@@ -1830,7 +1880,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 10.0
+      "current_price_xtz": 10.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69423255.html",
+      "og_image": "assets/og/nft-69423255.jpg"
     },
     {
       "token_id": 69423233,
@@ -1876,7 +1928,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 10.0
+      "current_price_xtz": 10.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69423233.html",
+      "og_image": "assets/og/nft-69423233.jpg"
     },
     {
       "token_id": 69419444,
@@ -1924,7 +1978,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 10.0
+      "current_price_xtz": 10.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69419444.html",
+      "og_image": "assets/og/nft-69419444.jpg"
     },
     {
       "token_id": 69419432,
@@ -1972,7 +2028,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 10.0
+      "current_price_xtz": 10.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69419432.html",
+      "og_image": "assets/og/nft-69419432.jpg"
     },
     {
       "token_id": 69419420,
@@ -2020,7 +2078,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 10.0
+      "current_price_xtz": 10.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69419420.html",
+      "og_image": "assets/og/nft-69419420.jpg"
     },
     {
       "token_id": 69411470,
@@ -2066,7 +2126,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 7.0
+      "current_price_xtz": 7.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69411470.html",
+      "og_image": "assets/og/nft-69411470.jpg"
     },
     {
       "token_id": 69407509,
@@ -2114,7 +2176,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 3.0
+      "current_price_xtz": 3.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69407509.html",
+      "og_image": "assets/og/nft-69407509.jpg"
     },
     {
       "token_id": 69407478,
@@ -2162,7 +2226,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 4.0
+      "current_price_xtz": 4.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69407478.html",
+      "og_image": "assets/og/nft-69407478.jpg"
     },
     {
       "token_id": 69407436,
@@ -2210,7 +2276,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 4.0
+      "current_price_xtz": 4.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69407436.html",
+      "og_image": "assets/og/nft-69407436.jpg"
     },
     {
       "token_id": 69407351,
@@ -2258,7 +2326,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 4.0
+      "current_price_xtz": 4.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69407351.html",
+      "og_image": "assets/og/nft-69407351.jpg"
     },
     {
       "token_id": 69407309,
@@ -2306,7 +2376,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 7.0
+      "current_price_xtz": 7.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69407309.html",
+      "og_image": "assets/og/nft-69407309.jpg"
     },
     {
       "token_id": 69407283,
@@ -2354,7 +2426,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 3.0
+      "current_price_xtz": 3.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69407283.html",
+      "og_image": "assets/og/nft-69407283.jpg"
     },
     {
       "token_id": 69407260,
@@ -2402,7 +2476,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 6.0
+      "current_price_xtz": 6.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69407260.html",
+      "og_image": "assets/og/nft-69407260.jpg"
     },
     {
       "token_id": 69407229,
@@ -2450,7 +2526,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 3.0
+      "current_price_xtz": 3.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69407229.html",
+      "og_image": "assets/og/nft-69407229.jpg"
     },
     {
       "token_id": 69405359,
@@ -2498,7 +2576,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 6.0
+      "current_price_xtz": 6.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69405359.html",
+      "og_image": "assets/og/nft-69405359.jpg"
     },
     {
       "token_id": 69405323,
@@ -2546,7 +2626,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 5.0
+      "current_price_xtz": 5.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69405323.html",
+      "og_image": "assets/og/nft-69405323.jpg"
     },
     {
       "token_id": 69405269,
@@ -2594,7 +2676,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 7.0
+      "current_price_xtz": 7.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69405269.html",
+      "og_image": "assets/og/nft-69405269.jpg"
     },
     {
       "token_id": 69405244,
@@ -2642,7 +2726,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 3.0
+      "current_price_xtz": 3.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69405244.html",
+      "og_image": "assets/og/nft-69405244.jpg"
     },
     {
       "token_id": 69404917,
@@ -2690,7 +2776,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 4.0
+      "current_price_xtz": 4.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69404917.html",
+      "og_image": "assets/og/nft-69404917.jpg"
     },
     {
       "token_id": 69404881,
@@ -2738,7 +2826,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 3.0
+      "current_price_xtz": 3.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69404881.html",
+      "og_image": "assets/og/nft-69404881.jpg"
     },
     {
       "token_id": 69404839,
@@ -2786,7 +2876,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 3.0
+      "current_price_xtz": 3.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69404839.html",
+      "og_image": "assets/og/nft-69404839.jpg"
     },
     {
       "token_id": 69363338,
@@ -2834,7 +2926,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 3.0
+      "current_price_xtz": 3.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69363338.html",
+      "og_image": "assets/og/nft-69363338.jpg"
     },
     {
       "token_id": 69355245,
@@ -2882,7 +2976,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 5.0
+      "current_price_xtz": 5.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69355245.html",
+      "og_image": "assets/og/nft-69355245.jpg"
     },
     {
       "token_id": 69352779,
@@ -2930,7 +3026,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 5.0
+      "current_price_xtz": 5.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69352779.html",
+      "og_image": "assets/og/nft-69352779.jpg"
     },
     {
       "token_id": 69214332,
@@ -2975,7 +3073,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/69214332.html",
+      "og_image": "assets/og/nft-69214332.jpg"
     },
     {
       "token_id": 69191922,
@@ -3023,7 +3123,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 7.0
+      "current_price_xtz": 7.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69191922.html",
+      "og_image": "assets/og/nft-69191922.jpg"
     },
     {
       "token_id": 69191704,
@@ -3070,7 +3172,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/69191704.html",
+      "og_image": "assets/og/nft-69191704.jpg"
     },
     {
       "token_id": 69190015,
@@ -3114,7 +3218,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 5.0
+      "current_price_xtz": 5.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69190015.html",
+      "og_image": "assets/og/nft-69190015.jpg"
     },
     {
       "token_id": 69188046,
@@ -3162,7 +3268,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 7.0
+      "current_price_xtz": 7.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69188046.html",
+      "og_image": "assets/og/nft-69188046.jpg"
     },
     {
       "token_id": 69186578,
@@ -3209,7 +3317,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/69186578.html",
+      "og_image": "assets/og/nft-69186578.jpg"
     },
     {
       "token_id": 69184133,
@@ -3257,7 +3367,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 5.0
+      "current_price_xtz": 5.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69184133.html",
+      "og_image": "assets/og/nft-69184133.jpg"
     },
     {
       "token_id": 69176770,
@@ -3292,7 +3404,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/69176770.html",
+      "og_image": "assets/og/nft-69176770.jpg"
     },
     {
       "token_id": 69173197,
@@ -3340,7 +3454,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 11.0
+      "current_price_xtz": 11.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69173197.html",
+      "og_image": "assets/og/nft-69173197.jpg"
     },
     {
       "token_id": 69171324,
@@ -3386,7 +3502,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 7.0
+      "current_price_xtz": 7.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69171324.html",
+      "og_image": "assets/og/nft-69171324.jpg"
     },
     {
       "token_id": 69168303,
@@ -3432,7 +3550,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 5.0
+      "current_price_xtz": 5.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69168303.html",
+      "og_image": "assets/og/nft-69168303.jpg"
     },
     {
       "token_id": 69159715,
@@ -3480,7 +3600,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 5.0
+      "current_price_xtz": 5.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69159715.html",
+      "og_image": "assets/og/nft-69159715.jpg"
     },
     {
       "token_id": 69158656,
@@ -3528,7 +3650,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 5.0
+      "current_price_xtz": 5.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69158656.html",
+      "og_image": "assets/og/nft-69158656.jpg"
     },
     {
       "token_id": 69140375,
@@ -3576,7 +3700,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 9.0
+      "current_price_xtz": 9.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69140375.html",
+      "og_image": "assets/og/nft-69140375.jpg"
     },
     {
       "token_id": 69135044,
@@ -3624,7 +3750,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 9.0
+      "current_price_xtz": 9.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69135044.html",
+      "og_image": "assets/og/nft-69135044.jpg"
     },
     {
       "token_id": 69134057,
@@ -3672,7 +3800,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 7.0
+      "current_price_xtz": 7.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69134057.html",
+      "og_image": "assets/og/nft-69134057.jpg"
     },
     {
       "token_id": 69130697,
@@ -3720,7 +3850,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 9.0
+      "current_price_xtz": 9.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69130697.html",
+      "og_image": "assets/og/nft-69130697.jpg"
     },
     {
       "token_id": 69126899,
@@ -3768,7 +3900,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 7.0
+      "current_price_xtz": 7.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69126899.html",
+      "og_image": "assets/og/nft-69126899.jpg"
     },
     {
       "token_id": 69124192,
@@ -3816,7 +3950,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 8.0
+      "current_price_xtz": 8.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69124192.html",
+      "og_image": "assets/og/nft-69124192.jpg"
     },
     {
       "token_id": 69123934,
@@ -3863,7 +3999,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/69123934.html",
+      "og_image": "assets/og/nft-69123934.jpg"
     },
     {
       "token_id": 69118762,
@@ -3910,7 +4048,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/69118762.html",
+      "og_image": "assets/og/nft-69118762.jpg"
     },
     {
       "token_id": 69117512,
@@ -3958,7 +4098,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 8.0
+      "current_price_xtz": 8.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69117512.html",
+      "og_image": "assets/og/nft-69117512.jpg"
     },
     {
       "token_id": 69100094,
@@ -4006,7 +4148,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 10.0
+      "current_price_xtz": 10.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69100094.html",
+      "og_image": "assets/og/nft-69100094.jpg"
     },
     {
       "token_id": 69100061,
@@ -4053,7 +4197,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/69100061.html",
+      "og_image": "assets/og/nft-69100061.jpg"
     },
     {
       "token_id": 69091132,
@@ -4101,7 +4247,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 7.0
+      "current_price_xtz": 7.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69091132.html",
+      "og_image": "assets/og/nft-69091132.jpg"
     },
     {
       "token_id": 69086526,
@@ -4149,7 +4297,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 30.0
+      "current_price_xtz": 30.0,
+      "share_url": "https://jackbeatnic.github.io/nft/69086526.html",
+      "og_image": "assets/og/nft-69086526.jpg"
     },
     {
       "token_id": 68969290,
@@ -4197,7 +4347,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 25.0
+      "current_price_xtz": 25.0,
+      "share_url": "https://jackbeatnic.github.io/nft/68969290.html",
+      "og_image": "assets/og/nft-68969290.jpg"
     },
     {
       "token_id": 68933257,
@@ -4245,7 +4397,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 25.0
+      "current_price_xtz": 25.0,
+      "share_url": "https://jackbeatnic.github.io/nft/68933257.html",
+      "og_image": "assets/og/nft-68933257.jpg"
     },
     {
       "token_id": 68480012,
@@ -4293,7 +4447,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 5.0
+      "current_price_xtz": 5.0,
+      "share_url": "https://jackbeatnic.github.io/nft/68480012.html",
+      "og_image": "assets/og/nft-68480012.jpg"
     },
     {
       "token_id": 68258155,
@@ -4341,7 +4497,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 5.0
+      "current_price_xtz": 5.0,
+      "share_url": "https://jackbeatnic.github.io/nft/68258155.html",
+      "og_image": "assets/og/nft-68258155.jpg"
     },
     {
       "token_id": 68258070,
@@ -4389,7 +4547,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 5.0
+      "current_price_xtz": 5.0,
+      "share_url": "https://jackbeatnic.github.io/nft/68258070.html",
+      "og_image": "assets/og/nft-68258070.jpg"
     },
     {
       "token_id": 68113923,
@@ -4437,7 +4597,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 2.0
+      "current_price_xtz": 2.0,
+      "share_url": "https://jackbeatnic.github.io/nft/68113923.html",
+      "og_image": "assets/og/nft-68113923.jpg"
     },
     {
       "token_id": 67760968,
@@ -4485,7 +4647,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 3.0
+      "current_price_xtz": 3.0,
+      "share_url": "https://jackbeatnic.github.io/nft/67760968.html",
+      "og_image": "assets/og/nft-67760968.jpg"
     },
     {
       "token_id": 67726429,
@@ -4532,7 +4696,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/67726429.html",
+      "og_image": "assets/og/nft-67726429.jpg"
     },
     {
       "token_id": 67574841,
@@ -4580,7 +4746,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 1.5
+      "current_price_xtz": 1.5,
+      "share_url": "https://jackbeatnic.github.io/nft/67574841.html",
+      "og_image": "assets/og/nft-67574841.jpg"
     },
     {
       "token_id": 67532294,
@@ -4628,7 +4796,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 3.0
+      "current_price_xtz": 3.0,
+      "share_url": "https://jackbeatnic.github.io/nft/67532294.html",
+      "og_image": "assets/og/nft-67532294.jpg"
     },
     {
       "token_id": 67303891,
@@ -4663,7 +4833,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/67303891.html",
+      "og_image": "assets/og/nft-67303891.jpg"
     },
     {
       "token_id": 67259402,
@@ -4698,7 +4870,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/67259402.html",
+      "og_image": "assets/og/nft-67259402.jpg"
     },
     {
       "token_id": 67168104,
@@ -4733,7 +4907,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/67168104.html",
+      "og_image": "assets/og/nft-67168104.jpg"
     },
     {
       "token_id": 66165452,
@@ -4779,7 +4955,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/66165452.html",
+      "og_image": "assets/og/nft-66165452.jpg"
     },
     {
       "token_id": 65682904,
@@ -4827,7 +5005,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 4.25
+      "current_price_xtz": 4.25,
+      "share_url": "https://jackbeatnic.github.io/nft/65682904.html",
+      "og_image": "assets/og/nft-65682904.jpg"
     },
     {
       "token_id": 65633045,
@@ -4874,7 +5054,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/65633045.html",
+      "og_image": "assets/og/nft-65633045.jpg"
     },
     {
       "token_id": 65622530,
@@ -4921,7 +5103,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/65622530.html",
+      "og_image": "assets/og/nft-65622530.jpg"
     },
     {
       "token_id": 65568394,
@@ -4967,7 +5151,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/65568394.html",
+      "og_image": "assets/og/nft-65568394.jpg"
     },
     {
       "token_id": 65563008,
@@ -5015,7 +5201,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 1.0
+      "current_price_xtz": 1.0,
+      "share_url": "https://jackbeatnic.github.io/nft/65563008.html",
+      "og_image": "assets/og/nft-65563008.jpg"
     },
     {
       "token_id": 64988508,
@@ -5063,7 +5251,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 0.75
+      "current_price_xtz": 0.75,
+      "share_url": "https://jackbeatnic.github.io/nft/64988508.html",
+      "og_image": "assets/og/nft-64988508.jpg"
     },
     {
       "token_id": 64784940,
@@ -5109,7 +5299,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/64784940.html",
+      "og_image": "assets/og/nft-64784940.jpg"
     },
     {
       "token_id": 64784553,
@@ -5157,7 +5349,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 1.0
+      "current_price_xtz": 1.0,
+      "share_url": "https://jackbeatnic.github.io/nft/64784553.html",
+      "og_image": "assets/og/nft-64784553.jpg"
     },
     {
       "token_id": 64783502,
@@ -5203,7 +5397,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/64783502.html",
+      "og_image": "assets/og/nft-64783502.jpg"
     },
     {
       "token_id": 62720948,
@@ -5250,7 +5446,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/62720948.html",
+      "og_image": "assets/og/nft-62720948.jpg"
     },
     {
       "token_id": 62006027,
@@ -5297,7 +5495,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/62006027.html",
+      "og_image": "assets/og/nft-62006027.jpg"
     },
     {
       "token_id": 61928571,
@@ -5344,7 +5544,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/61928571.html",
+      "og_image": "assets/og/nft-61928571.jpg"
     },
     {
       "token_id": 61741178,
@@ -5390,7 +5592,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/61741178.html",
+      "og_image": "assets/og/nft-61741178.jpg"
     },
     {
       "token_id": 61711919,
@@ -5437,7 +5641,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/61711919.html",
+      "og_image": "assets/og/nft-61711919.jpg"
     },
     {
       "token_id": 61307085,
@@ -5483,7 +5689,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/61307085.html",
+      "og_image": "assets/og/nft-61307085.jpg"
     },
     {
       "token_id": 61107152,
@@ -5529,7 +5737,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/61107152.html",
+      "og_image": "assets/og/nft-61107152.jpg"
     },
     {
       "token_id": 61061162,
@@ -5565,7 +5775,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 3.0
+      "current_price_xtz": 3.0,
+      "share_url": "https://jackbeatnic.github.io/nft/61061162.html",
+      "og_image": "assets/og/nft-61061162.jpg"
     },
     {
       "token_id": 55036730,
@@ -5612,7 +5824,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 3.0
+      "current_price_xtz": 3.0,
+      "share_url": "https://jackbeatnic.github.io/nft/55036730.html",
+      "og_image": "assets/og/nft-55036730.jpg"
     },
     {
       "token_id": 54625939,
@@ -5658,7 +5872,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/54625939.html",
+      "og_image": "assets/og/nft-54625939.jpg"
     },
     {
       "token_id": 54549133,
@@ -5694,7 +5910,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 1.0
+      "current_price_xtz": 1.0,
+      "share_url": "https://jackbeatnic.github.io/nft/54549133.html",
+      "og_image": "assets/og/nft-54549133.jpg"
     },
     {
       "token_id": 54227377,
@@ -5742,7 +5960,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 7.0
+      "current_price_xtz": 7.0,
+      "share_url": "https://jackbeatnic.github.io/nft/54227377.html",
+      "og_image": "assets/og/nft-54227377.jpg"
     },
     {
       "token_id": 54117713,
@@ -5789,7 +6009,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/54117713.html",
+      "og_image": "assets/og/nft-54117713.jpg"
     },
     {
       "token_id": 54065447,
@@ -5836,7 +6058,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/54065447.html",
+      "og_image": "assets/og/nft-54065447.jpg"
     },
     {
       "token_id": 54006639,
@@ -5883,7 +6107,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/54006639.html",
+      "og_image": "assets/og/nft-54006639.jpg"
     },
     {
       "token_id": 53997410,
@@ -5930,7 +6156,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/53997410.html",
+      "og_image": "assets/og/nft-53997410.jpg"
     },
     {
       "token_id": 53903874,
@@ -5977,7 +6205,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 30.0
+      "current_price_xtz": 30.0,
+      "share_url": "https://jackbeatnic.github.io/nft/53903874.html",
+      "og_image": "assets/og/nft-53903874.jpg"
     },
     {
       "token_id": 53877335,
@@ -6025,7 +6255,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 0.4
+      "current_price_xtz": 0.4,
+      "share_url": "https://jackbeatnic.github.io/nft/53877335.html",
+      "og_image": "assets/og/nft-53877335.jpg"
     },
     {
       "token_id": 53873582,
@@ -6073,7 +6305,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 3.0
+      "current_price_xtz": 3.0,
+      "share_url": "https://jackbeatnic.github.io/nft/53873582.html",
+      "og_image": "assets/og/nft-53873582.jpg"
     },
     {
       "token_id": 53864049,
@@ -6121,7 +6355,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 3.0
+      "current_price_xtz": 3.0,
+      "share_url": "https://jackbeatnic.github.io/nft/53864049.html",
+      "og_image": "assets/og/nft-53864049.jpg"
     },
     {
       "token_id": 53832182,
@@ -6168,7 +6404,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/53832182.html",
+      "og_image": "assets/og/nft-53832182.jpg"
     },
     {
       "token_id": 53187178,
@@ -6216,7 +6454,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 7.0
+      "current_price_xtz": 7.0,
+      "share_url": "https://jackbeatnic.github.io/nft/53187178.html",
+      "og_image": "assets/og/nft-53187178.jpg"
     },
     {
       "token_id": 52837845,
@@ -6251,7 +6491,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/52837845.html",
+      "og_image": "assets/og/nft-52837845.jpg"
     },
     {
       "token_id": 52824807,
@@ -6298,7 +6540,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/52824807.html",
+      "og_image": "assets/og/nft-52824807.jpg"
     },
     {
       "token_id": 52569422,
@@ -6344,7 +6588,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 3.0
+      "current_price_xtz": 3.0,
+      "share_url": "https://jackbeatnic.github.io/nft/52569422.html",
+      "og_image": "assets/og/nft-52569422.jpg"
     },
     {
       "token_id": 52521107,
@@ -6391,7 +6637,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/52521107.html",
+      "og_image": "assets/og/nft-52521107.jpg"
     },
     {
       "token_id": 52164334,
@@ -6438,7 +6686,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/52164334.html",
+      "og_image": "assets/og/nft-52164334.jpg"
     },
     {
       "token_id": 52164125,
@@ -6486,7 +6736,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 5.0
+      "current_price_xtz": 5.0,
+      "share_url": "https://jackbeatnic.github.io/nft/52164125.html",
+      "og_image": "assets/og/nft-52164125.jpg"
     },
     {
       "token_id": 52164015,
@@ -6533,7 +6785,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/52164015.html",
+      "og_image": "assets/og/nft-52164015.jpg"
     },
     {
       "token_id": 52162519,
@@ -6580,7 +6834,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/52162519.html",
+      "og_image": "assets/og/nft-52162519.jpg"
     },
     {
       "token_id": 52162479,
@@ -6627,7 +6883,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/52162479.html",
+      "og_image": "assets/og/nft-52162479.jpg"
     },
     {
       "token_id": 52161142,
@@ -6674,7 +6932,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/52161142.html",
+      "og_image": "assets/og/nft-52161142.jpg"
     },
     {
       "token_id": 52161021,
@@ -6721,7 +6981,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/52161021.html",
+      "og_image": "assets/og/nft-52161021.jpg"
     },
     {
       "token_id": 49216448,
@@ -6768,7 +7030,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/49216448.html",
+      "og_image": "assets/og/nft-49216448.jpg"
     },
     {
       "token_id": 49215564,
@@ -6815,7 +7079,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/49215564.html",
+      "og_image": "assets/og/nft-49215564.jpg"
     },
     {
       "token_id": 49201418,
@@ -6862,7 +7128,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/49201418.html",
+      "og_image": "assets/og/nft-49201418.jpg"
     },
     {
       "token_id": 49200660,
@@ -6909,7 +7177,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/49200660.html",
+      "og_image": "assets/og/nft-49200660.jpg"
     },
     {
       "token_id": 49200534,
@@ -6956,7 +7226,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/49200534.html",
+      "og_image": "assets/og/nft-49200534.jpg"
     },
     {
       "token_id": 49200476,
@@ -7004,7 +7276,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 3.0
+      "current_price_xtz": 3.0,
+      "share_url": "https://jackbeatnic.github.io/nft/49200476.html",
+      "og_image": "assets/og/nft-49200476.jpg"
     },
     {
       "token_id": 49200387,
@@ -7051,7 +7325,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/49200387.html",
+      "og_image": "assets/og/nft-49200387.jpg"
     },
     {
       "token_id": 49200283,
@@ -7099,7 +7375,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 5.0
+      "current_price_xtz": 5.0,
+      "share_url": "https://jackbeatnic.github.io/nft/49200283.html",
+      "og_image": "assets/og/nft-49200283.jpg"
     },
     {
       "token_id": 49166484,
@@ -7146,7 +7424,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/49166484.html",
+      "og_image": "assets/og/nft-49166484.jpg"
     },
     {
       "token_id": 49140136,
@@ -7192,7 +7472,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/49140136.html",
+      "og_image": "assets/og/nft-49140136.jpg"
     },
     {
       "token_id": 49139451,
@@ -7240,7 +7522,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 0.8978
+      "current_price_xtz": 0.8978,
+      "share_url": "https://jackbeatnic.github.io/nft/49139451.html",
+      "og_image": "assets/og/nft-49139451.jpg"
     },
     {
       "token_id": 48772931,
@@ -7287,7 +7571,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 2.0
+      "current_price_xtz": 2.0,
+      "share_url": "https://jackbeatnic.github.io/nft/48772931.html",
+      "og_image": "assets/og/nft-48772931.jpg"
     },
     {
       "token_id": 48772889,
@@ -7334,7 +7620,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 3.0
+      "current_price_xtz": 3.0,
+      "share_url": "https://jackbeatnic.github.io/nft/48772889.html",
+      "og_image": "assets/og/nft-48772889.jpg"
     },
     {
       "token_id": 48710966,
@@ -7380,7 +7668,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/48710966.html",
+      "og_image": "assets/og/nft-48710966.jpg"
     },
     {
       "token_id": 48687324,
@@ -7426,7 +7716,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/48687324.html",
+      "og_image": "assets/og/nft-48687324.jpg"
     },
     {
       "token_id": 48134481,
@@ -7474,7 +7766,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 5.0
+      "current_price_xtz": 5.0,
+      "share_url": "https://jackbeatnic.github.io/nft/48134481.html",
+      "og_image": "assets/og/nft-48134481.jpg"
     },
     {
       "token_id": 48122002,
@@ -7522,7 +7816,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 5.0
+      "current_price_xtz": 5.0,
+      "share_url": "https://jackbeatnic.github.io/nft/48122002.html",
+      "og_image": "assets/og/nft-48122002.jpg"
     },
     {
       "token_id": 48041118,
@@ -7570,7 +7866,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 5.0
+      "current_price_xtz": 5.0,
+      "share_url": "https://jackbeatnic.github.io/nft/48041118.html",
+      "og_image": "assets/og/nft-48041118.jpg"
     },
     {
       "token_id": 29651951,
@@ -7618,7 +7916,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 3.0
+      "current_price_xtz": 3.0,
+      "share_url": "https://jackbeatnic.github.io/nft/29651951.html",
+      "og_image": "assets/og/nft-29651951.jpg"
     },
     {
       "token_id": 29649929,
@@ -7663,7 +7963,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/29649929.html",
+      "og_image": "assets/og/nft-29649929.jpg"
     },
     {
       "token_id": 29649551,
@@ -7709,7 +8011,9 @@
       "photo_kind": "photo",
       "source": "objkt",
       "marketplace": "objkt",
-      "current_price_xtz": 0.1
+      "current_price_xtz": 0.1,
+      "share_url": "https://jackbeatnic.github.io/nft/29649551.html",
+      "og_image": "assets/og/nft-29649551.jpg"
     },
     {
       "token_id": 29649115,
@@ -7755,7 +8059,9 @@
       "medium": "photography",
       "photo_kind": "photo",
       "source": "objkt",
-      "marketplace": "objkt"
+      "marketplace": "objkt",
+      "share_url": "https://jackbeatnic.github.io/nft/29649115.html",
+      "og_image": "assets/og/nft-29649115.jpg"
     }
   ],
   "site": {

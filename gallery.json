@@ -7791,12 +7791,13 @@
         "explore_title": "Explore AI Art"
       },
       "photography": {
-        "label": "Photography",
-        "explore_title": "Explore Photography",
+        "label": "Photography & Artworks",
+        "label_short": "Photo & Artworks",
+        "explore_title": "Explore Photography & Artworks",
         "subsections": [
           {
             "id": "photo",
-            "label": "Photography & Artworks"
+            "label": "Photography"
           },
           {
             "id": "other",

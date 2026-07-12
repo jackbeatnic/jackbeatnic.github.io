@@ -14,6 +14,18 @@ const GallerySections = (() => {
         return Object.keys(config());
     }
 
+    function syncSectionNavLabels() {
+        Object.entries(config()).forEach(([id, meta]) => {
+            document.querySelectorAll(`[data-section="${id}"]`).forEach((el) => {
+                const full = el.querySelector('.section-nav__label--full');
+                const short = el.querySelector('.section-nav__label--short');
+                if (full && meta.label) full.textContent = meta.label;
+                if (short) short.textContent = meta.label_short || meta.label || '';
+                if (!full && !short && meta.label) el.textContent = meta.label;
+            });
+        });
+    }
+
     function syncPhotoSubnavLabels() {
         const subnav = document.getElementById('photo-subnav');
         const subsections = config().photography?.subsections;
@@ -30,6 +42,7 @@ const GallerySections = (() => {
         currentSection = site.default_section || 'ai_art';
         const photoCfg = config().photography;
         currentPhotoKind = photoCfg?.default_subsection || 'photo';
+        syncSectionNavLabels();
         syncPhotoSubnavLabels();
         bindNav();
         readUrl();

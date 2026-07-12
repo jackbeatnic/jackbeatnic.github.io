@@ -105,6 +105,13 @@ def fonts() -> dict[str, ImageFont.FreeTypeFont]:
     }
 
 
+def og_plain_text(text: str) -> str:
+    """Strip HTML entities and spell out ampersands for OG overlay text."""
+    plain = html.unescape(text or "")
+    plain = re.sub(r"\s*&\s*", " and ", plain)
+    return re.sub(r"\s+", " ", plain).strip()
+
+
 def draw_bold(draw: ImageDraw.ImageDraw, xy: tuple[int, int], text: str, font, fill) -> None:
     x, y = xy
     for dx, dy in ((0, 0), (1, 0), (0, 1)):
@@ -221,9 +228,9 @@ def generate_site_og(data: dict, output: Path = SITE_OG_PATH) -> Path:
         raise SystemExit("gallery.json: brak NFT do tła strony")
 
     info = data["collection_info"]
-    title = html.unescape(info.get("hero_title") or info.get("artist") or SITE_BRAND_TITLE)
-    tagline = html.unescape(info.get("hero_tagline") or SITE_BRAND_TAGLINE)
-    gallery_label = SITE_GALLERY_LABEL
+    title = og_plain_text(info.get("hero_title") or info.get("artist") or SITE_BRAND_TITLE)
+    tagline = og_plain_text(info.get("hero_tagline") or SITE_BRAND_TAGLINE)
+    gallery_label = og_plain_text(SITE_GALLERY_LABEL)
 
     print(f"[site] Tło: {nfts[0].get('name', '—')}")
     bg = fetch_image(nfts[0]["image_url"])

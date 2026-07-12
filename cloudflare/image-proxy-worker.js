@@ -32,6 +32,7 @@ export default {
     const target = searchParams.get('url');
     const w = searchParams.get('w') || '560';
     const h = searchParams.get('h') || '420';
+    const fit = searchParams.get('fit') || 'inside';
 
     if (!target) {
       return new Response('Missing url parameter', { status: 400 });
@@ -52,7 +53,7 @@ export default {
     proxy.searchParams.set('url', target);
     proxy.searchParams.set('w', w);
     proxy.searchParams.set('h', h);
-    proxy.searchParams.set('fit', 'cover');
+    proxy.searchParams.set('fit', fit);
     proxy.searchParams.set('output', 'webp');
     proxy.searchParams.set('q', '82');
     proxy.searchParams.set('n', '-1');

@@ -9,6 +9,8 @@
 const ImageProxy = (() => {
     const THUMB_WIDTH = 440;
     const THUMB_HEIGHT = 330;
+    const VIEW_MAX_WIDTH = 1200;
+    const VIEW_MAX_HEIGHT = 1600;
     const WEBP_QUALITY = 82;
 
     /** Po wdrożeniu Workera: https://img.twoja-domena.com */
@@ -19,21 +21,22 @@ const ImageProxy = (() => {
         return /ipfs\.io|gateway\.pinata|cloudflare-ipfs|dweb\.link|arweave/i.test(url);
     }
 
-    function weservUrl(originalUrl, w, h) {
+    function weservUrl(originalUrl, w, h, fit = 'inside') {
         const encoded = encodeURIComponent(originalUrl);
         return (
             `https://images.weserv.nl/?url=${encoded}` +
-            `&w=${w}&h=${h}&fit=cover&output=webp&q=${WEBP_QUALITY}&n=-1`
+            `&w=${w}&h=${h}&fit=${fit}&output=webp&q=${WEBP_QUALITY}&n=-1`
         );
     }
 
-    function cloudflareUrl(originalUrl, w, h) {
+    function cloudflareUrl(originalUrl, w, h, fit = 'inside') {
         const base = CLOUDFLARE_WORKER_BASE.replace(/\/$/, '');
-        if (!base) return weservUrl(originalUrl, w, h);
+        if (!base) return weservUrl(originalUrl, w, h, fit);
         const params = new URLSearchParams({
             url: originalUrl,
             w: String(w),
             h: String(h),
+            fit,
         });
         return `${base}?${params.toString()}`;
     }
@@ -42,18 +45,24 @@ const ImageProxy = (() => {
      * URL do atrybutu src — miniatura, nie oryginał.
      * W HTML nigdy nie wstawiaj nft.image_url bezpośrednio.
      */
-    function displayUrl(originalUrl, mode = 'weserv', w = THUMB_WIDTH, h = THUMB_HEIGHT) {
+    function displayUrl(
+        originalUrl,
+        mode = 'weserv',
+        w = THUMB_WIDTH,
+        h = THUMB_HEIGHT,
+        fit = 'inside',
+    ) {
         if (!originalUrl) return '';
         if (!isIpfsOrGateway(originalUrl)) return originalUrl;
 
         switch (mode) {
             case 'cloudflare':
-                return cloudflareUrl(originalUrl, w, h);
+                return cloudflareUrl(originalUrl, w, h, fit);
             case 'direct':
                 return originalUrl;
             case 'weserv':
             default:
-                return weservUrl(originalUrl, w, h);
+                return weservUrl(originalUrl, w, h, fit);
         }
     }
 
@@ -61,6 +70,8 @@ const ImageProxy = (() => {
         displayUrl,
         THUMB_WIDTH,
         THUMB_HEIGHT,
+        VIEW_MAX_WIDTH,
+        VIEW_MAX_HEIGHT,
         isIpfsOrGateway,
     };
 })();

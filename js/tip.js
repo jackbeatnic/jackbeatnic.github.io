@@ -1,9 +1,10 @@
 /**
- * Tip the artist — modal overlay, EVM + BTC wallets
+ * Tip the artist — modal overlay, EVM + BTC + Solana wallets
  */
 const TipCreator = (() => {
     let evmWallet = '';
     let btcWallet = '';
+    let solWallet = '';
     let modal;
     let openButtons = [];
 
@@ -63,17 +64,38 @@ const TipCreator = (() => {
         });
     }
 
+    function setupWallet(blockId, qrId, addrId, copyId, wallet, qrAlt, copyLabel) {
+        const block = document.getElementById(blockId);
+        const qr = document.getElementById(qrId);
+        const addr = document.getElementById(addrId);
+        const copyBtn = document.getElementById(copyId);
+
+        if (!wallet || !block) {
+            if (block) block.hidden = true;
+            return;
+        }
+
+        block.hidden = false;
+        if (qr) {
+            qr.src = qrUrl(wallet);
+            qr.alt = qrAlt;
+        }
+        if (addr) {
+            addr.textContent = wallet;
+            addr.title = wallet;
+        }
+        bindCopy(copyBtn, wallet, copyLabel);
+    }
+
     function init(config = {}) {
         evmWallet = config.evm_wallet || config.wallet || '';
         btcWallet = config.btc_wallet || '';
+        solWallet = config.solana_wallet || config.sol_wallet || '';
         modal = document.getElementById('tip-modal');
         if (!modal || !evmWallet) return;
 
         const evmQr = document.getElementById('tip-qr-evm');
-        const btcQr = document.getElementById('tip-qr-btc');
         const evmAddr = document.getElementById('tip-address-evm');
-        const btcAddr = document.getElementById('tip-address-btc');
-        const btcBlock = document.getElementById('tip-btc-block');
 
         if (evmQr) {
             evmQr.src = qrUrl(evmWallet);
@@ -84,22 +106,26 @@ const TipCreator = (() => {
             evmAddr.title = evmWallet;
         }
 
-        if (btcWallet && btcBlock) {
-            btcBlock.hidden = false;
-            if (btcQr) {
-                btcQr.src = qrUrl(btcWallet);
-                btcQr.alt = 'QR code for Bitcoin wallet';
-            }
-            if (btcAddr) {
-                btcAddr.textContent = btcWallet;
-                btcAddr.title = btcWallet;
-            }
-        } else if (btcBlock) {
-            btcBlock.hidden = true;
-        }
+        setupWallet(
+            'tip-btc-block',
+            'tip-qr-btc',
+            'tip-address-btc',
+            'tip-copy-btc',
+            btcWallet,
+            'QR code for Bitcoin wallet',
+            'BTC address',
+        );
+        setupWallet(
+            'tip-sol-block',
+            'tip-qr-sol',
+            'tip-address-sol',
+            'tip-copy-sol',
+            solWallet,
+            'QR code for Solana wallet',
+            'Solana address',
+        );
 
         bindCopy(document.getElementById('tip-copy-evm'), evmWallet, 'EVM address');
-        bindCopy(document.getElementById('tip-copy-btc'), btcWallet, 'BTC address');
 
         document.querySelectorAll('[data-tip-open]').forEach(registerOpener);
 

@@ -151,6 +151,14 @@ const GallerySections = (() => {
         return currentSection;
     }
 
+    function getPhotoKind() {
+        return currentPhotoKind;
+    }
+
+    function isPhotoOther() {
+        return currentSection === 'photography' && currentPhotoKind === 'other';
+    }
+
     function getSectionMeta() {
         return config()[currentSection] || {};
     }
@@ -186,6 +194,8 @@ const GallerySections = (() => {
         init,
         filterNfts,
         getCurrentSection,
+        getPhotoKind,
+        isPhotoOther,
         getSectionMeta,
         emptyMessage,
         activateForNft,

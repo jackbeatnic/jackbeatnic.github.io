@@ -120,7 +120,9 @@ const Gallery = (() => {
             TipCreator.init({
                 evm_wallet: collectionInfo.creator_wallet,
                 btc_wallet: collectionInfo.btc_tip_wallet,
+                solana_wallet: collectionInfo.solana_tip_wallet,
             });
+            syncPhotoOtherPromo();
             refresh();
             scrollToWorkFromUrl();
 
@@ -128,6 +130,7 @@ const Gallery = (() => {
             document.addEventListener('gallery:likes', refresh);
             document.addEventListener('gallery:section', () => {
                 syncSectionNfts();
+                syncPhotoOtherPromo();
                 refresh();
             });
         } catch (error) {
@@ -186,6 +189,35 @@ const Gallery = (() => {
                 imgEl.hidden = true;
                 hero?.classList.add('hero--text-only');
             }
+        }
+    }
+
+    function syncPhotoOtherPromo() {
+        const el = document.getElementById('photo-other-promo');
+        const promo = siteConfig?.sections?.photography?.other_promo;
+        if (!el) return;
+
+        const show = Boolean(promo?.enabled) && GallerySections.isPhotoOther();
+        el.hidden = !show;
+        if (!show || !promo) return;
+
+        const titleEl = document.getElementById('photo-promo-title');
+        const textEl = document.getElementById('photo-promo-text');
+        const symbolEl = document.getElementById('photo-promo-symbol');
+        const chainEl = document.getElementById('photo-promo-chain');
+        const contractEl = document.getElementById('photo-promo-contract');
+        const linkEl = document.getElementById('photo-promo-link');
+
+        if (titleEl) titleEl.textContent = promo.title || '';
+        if (textEl) textEl.textContent = promo.text || '';
+        if (symbolEl) symbolEl.textContent = promo.symbol || '';
+        if (chainEl) chainEl.textContent = promo.chain ? `· ${promo.chain}` : '';
+        if (contractEl) {
+            contractEl.textContent = promo.contract || '';
+            contractEl.title = promo.contract || '';
+        }
+        if (linkEl && promo.community_url) {
+            linkEl.href = promo.community_url;
         }
     }
 

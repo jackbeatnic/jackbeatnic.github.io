@@ -29,7 +29,7 @@
       },
       {
         "id": "base",
-        "label": "Base",
+        "label": "BaseApp",
         "url": "https://base.app/profile/jackbeatnic"
       },
       {
@@ -40,7 +40,12 @@
       {
         "id": "arena",
         "label": "Arena",
-        "url": "https://arena.social/jackbeatnic"
+        "url": "https://arena.social/JackBeatnic"
+      },
+      {
+        "id": "zora",
+        "label": "Zora",
+        "url": "https://zora.co/@jackbeatnic"
       }
     ],
     "og_image": "assets/og-preview.jpg",
@@ -48,6 +53,7 @@
     "native_currency": "AVAX",
     "creator_wallet": "0xf0b840349b3f285fc05c89eac594ddd254183fb9",
     "btc_tip_wallet": "bc1qa3wxew65zzt6egqnuaxyj9aaw3pzhwrslevp7c",
+    "solana_tip_wallet": "4fg1ZVkvL1Bk3sDQ6H4gX69exaNUUb2bugYAPjZQGnaH",
     "last_updated": "2026-07-03T17:50:00Z",
     "version": "0.1",
     "collection_id": "avalanche_nature_stories",
@@ -584,6 +590,15 @@
         "empty_messages": {
           "photo": "Photography works will appear here soon.",
           "other": "Collage, hand-drawn elements, and mixed media — coming soon."
+        },
+        "other_promo": {
+          "enabled": true,
+          "symbol": "$PHOTO",
+          "chain": "Avalanche",
+          "contract": "0x548B2af6Ae458ea588260b3A07cc0DdB4E74aa1a",
+          "community_url": "https://arena.social/community/0x548B2af6Ae458ea588260b3A07cc0DdB4E74aa1a?ref=JackBeatnic",
+          "title": "Photography lives on-chain",
+          "text": "Join the $PHOTO community on Arena — Avalanche ERC-20 for collectors, supporters, and new releases in this space."
         }
       }
     }

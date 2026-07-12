@@ -87,21 +87,35 @@ const TipCreator = (() => {
         bindCopy(copyBtn, wallet, copyLabel);
     }
 
-    function renderDomainLinks(container, domains, linkClass) {
-        if (!container || !Array.isArray(domains) || domains.length === 0) {
+    function renderCopyPills(container, names) {
+        if (!container || !Array.isArray(names) || names.length === 0) {
             if (container) container.hidden = true;
             return;
         }
 
-        container.innerHTML = domains
-            .map((domain) => {
-                const safe = domain.replace(/[<>"']/g, '');
-                const href = safe.startsWith('http') ? safe : `https://${safe}`;
-                return `<a class="${linkClass}" href="${href}" target="_blank" rel="noopener noreferrer">${safe}</a>`;
+        container.innerHTML = names
+            .map((name) => {
+                const safe = String(name).replace(/[<>"']/g, '');
+                return `<button type="button" class="wallet-names__pill tip-copy-pill" data-copy="${safe}" title="Copy ${safe}">${safe}</button>`;
             })
             .join('');
 
         container.hidden = false;
+        container.querySelectorAll('[data-copy]').forEach((btn) => {
+            btn.addEventListener('click', async () => {
+                const value = btn.getAttribute('data-copy') || '';
+                const original = btn.textContent;
+                try {
+                    await navigator.clipboard.writeText(value);
+                    btn.textContent = 'Copied';
+                } catch {
+                    btn.textContent = 'Copy failed';
+                }
+                window.setTimeout(() => {
+                    btn.textContent = original;
+                }, 1400);
+            });
+        });
     }
 
     function init(config = {}) {
@@ -144,23 +158,13 @@ const TipCreator = (() => {
 
         bindCopy(document.getElementById('tip-copy-evm'), evmWallet, 'EVM address');
 
-        renderDomainLinks(
-            document.getElementById('tip-evm-domains'),
-            config.evm_domains,
-            'tip-wallet__domain',
-        );
+        const evmDomains = document.getElementById('tip-evm-domains');
+        renderCopyPills(evmDomains, config.evm_domains);
 
         const tezLine = document.getElementById('tip-tez-line');
-        const tezLinks = document.getElementById('tip-tez-domains');
-        if (Array.isArray(config.tezos_domains) && config.tezos_domains.length > 0 && tezLine && tezLinks) {
-            tezLinks.innerHTML = config.tezos_domains
-                .map((domain, index) => {
-                    const safe = domain.replace(/[<>"']/g, '');
-                    const href = safe.startsWith('http') ? safe : `https://${safe}`;
-                    const sep = index > 0 ? '<span class="tip-modal__tez-sep">·</span>' : '';
-                    return `${sep}<a class="tip-modal__tez-link" href="${href}" target="_blank" rel="noopener noreferrer">${safe}</a>`;
-                })
-                .join('');
+        const tezPills = document.getElementById('tip-tez-domains');
+        if (Array.isArray(config.tezos_domains) && config.tezos_domains.length > 0 && tezLine && tezPills) {
+            renderCopyPills(tezPills, config.tezos_domains);
             tezLine.hidden = false;
         } else if (tezLine) {
             tezLine.hidden = true;

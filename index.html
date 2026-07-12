@@ -3,23 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noimageindex">
-    <meta name="description" content="Quiet landscapes and contemplative AI art by Jack Beatnic — photography meets generative intelligence. Polygon, Base, Avalanche &amp; more.">
-    <title>Jack Beatnic Gallery — AI Artist &amp; Photographer</title>
+    <meta name="robots" content="index, follow, noimageindex">
+    <meta name="description" content="Jack Beatnic — AI art &amp; photography NFT gallery. From the lens to AI: Nature Stories, Flower Stories, landscapes and collages on Avalanche, Polygon, Base &amp; Ethereum.">
+    <meta name="keywords" content="Jack Beatnic, AI art, NFT photography, Nature Stories, Flower Stories, Avalanche NFT, Polygon NFT, generative art, landscape photography">
+    <meta name="author" content="Jack Beatnic">
+    <link rel="canonical" href="https://jackbeatnic.github.io/">
+    <title>Jack Beatnic — AI Art &amp; Photography Gallery | NFT Artist</title>
 
-    <!-- Open Graph / X (Twitter) link preview -->
+    <!-- Open Graph / X (Twitter) + Meta -->
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Jack Beatnic Gallery">
+    <meta property="og:locale" content="en_US">
     <meta property="og:url" content="https://jackbeatnic.github.io/">
-    <meta property="og:title" content="Jack Beatnic Gallery — AI Artist &amp; Photographer">
-    <meta property="og:description" content="Quiet landscapes and contemplative works where photography meets generative intelligence. Color, light, and mood — across Polygon, Base, Avalanche &amp; more.">
+    <meta property="og:title" content="Jack Beatnic — AI Art &amp; Photography Gallery">
+    <meta property="og:description" content="From the lens to AI — photography, memory and imagination. AI-crafted digital art &amp; pure photography by Jack Beatnic. NFTs on Avalanche, Polygon, Base &amp; more.">
     <meta property="og:image" content="https://jackbeatnic.github.io/assets/og-preview.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Jack Beatnic Gallery — AI art and photography">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@JackBeatnicAI">
-    <meta name="twitter:title" content="Jack Beatnic Gallery">
-    <meta name="twitter:description" content="AI art &amp; photography — quiet landscapes across Polygon, Base, Avalanche &amp; more.">
+    <meta name="twitter:creator" content="@JackBeatnicAI">
+    <meta name="twitter:title" content="Jack Beatnic — AI Art &amp; Photography Gallery">
+    <meta name="twitter:description" content="From the lens to AI. Photography meets generative art — Nature Stories, landscapes, collages &amp; more.">
     <meta name="twitter:image" content="https://jackbeatnic.github.io/assets/og-preview.jpg">
+    <meta name="twitter:image:alt" content="Jack Beatnic Gallery preview">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "name": "Jack Beatnic Gallery",
+        "url": "https://jackbeatnic.github.io/",
+        "description": "AI art and photography NFT gallery by Jack Beatnic — from the lens to generative intelligence.",
+        "mainEntity": {
+            "@type": "Person",
+            "name": "Jack Beatnic",
+            "url": "https://jackbeatnic.github.io/",
+            "jobTitle": "AI Artist & Photographer",
+            "sameAs": [
+                "https://opensea.io/JackBeatnic",
+                "https://twitter.com/JackBeatnicAI"
+            ]
+        }
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
@@ -48,18 +75,8 @@
                 <a href="#gallery-root" data-section="ai_art">AI Art</a>
                 <a href="#gallery-root" data-section="photography">Photography</a>
                 <a href="#about">About</a>
-                <button type="button" id="tip-open" class="site-nav__tip" aria-expanded="false" aria-controls="tip-panel">Tip</button>
+                <button type="button" class="site-nav__tip" data-tip-open aria-expanded="false">Tip</button>
             </nav>
-        </div>
-        <div id="tip-panel" class="tip-panel" hidden>
-            <div class="tip-panel__inner">
-                <button type="button" id="tip-close" class="tip-panel__close" aria-label="Close">×</button>
-                <p class="tip-panel__title">Tip the artist</p>
-                <p class="tip-panel__hint">Send AVAX / ETH / any token to this wallet</p>
-                <img id="tip-qr" class="tip-panel__qr" width="140" height="140" alt="">
-                <p id="tip-address" class="tip-panel__address"></p>
-                <button type="button" id="tip-copy" class="btn btn--ghost btn--small">Copy address</button>
-            </div>
         </div>
         <div class="site-header__rule" aria-hidden="true"></div>
     </header>
@@ -68,6 +85,7 @@
         <nav class="section-nav" aria-label="Gallery sections">
             <a href="#gallery-root" class="section-nav__tab" data-section="ai_art">AI Art</a>
             <a href="#gallery-root" class="section-nav__tab" data-section="photography">Photography</a>
+            <button type="button" class="section-nav__tab section-nav__tab--tip" data-tip-open aria-expanded="false">Tip</button>
         </nav>
 
         <div id="photo-subnav" class="section-subnav" hidden aria-label="Photography categories">
@@ -162,6 +180,33 @@
             <p>Jack Beatnic Gallery — 2026</p>
         </footer>
     </main>
+
+    <div id="tip-modal" class="tip-modal" hidden role="dialog" aria-modal="true" aria-labelledby="tip-modal-title">
+        <div class="tip-modal__backdrop" aria-hidden="true"></div>
+        <div class="tip-modal__dialog">
+            <button type="button" class="tip-modal__close" aria-label="Close">×</button>
+            <h2 id="tip-modal-title" class="tip-modal__title">Tip the artist</h2>
+            <p class="tip-modal__lead">Enjoying the work? Send a tip directly — no marketplace, no middleman.</p>
+
+            <div class="tip-modal__wallets">
+                <section class="tip-wallet">
+                    <h3 class="tip-wallet__label">EVM chains</h3>
+                    <p class="tip-wallet__hint">AVAX · ETH · Polygon · Base · ERC-20 tokens</p>
+                    <img id="tip-qr-evm" class="tip-wallet__qr" width="160" height="160" alt="">
+                    <p id="tip-address-evm" class="tip-wallet__address"></p>
+                    <button type="button" id="tip-copy-evm" class="btn btn--ghost btn--small">Copy address</button>
+                </section>
+
+                <section id="tip-btc-block" class="tip-wallet" hidden>
+                    <h3 class="tip-wallet__label">Bitcoin</h3>
+                    <p class="tip-wallet__hint">BTC only — native SegWit</p>
+                    <img id="tip-qr-btc" class="tip-wallet__qr" width="160" height="160" alt="">
+                    <p id="tip-address-btc" class="tip-wallet__address"></p>
+                    <button type="button" id="tip-copy-btc" class="btn btn--ghost btn--small">Copy address</button>
+                </section>
+            </div>
+        </div>
+    </div>
 
     <script src="js/images.js"></script>
     <script src="js/opensea-links.js"></script>

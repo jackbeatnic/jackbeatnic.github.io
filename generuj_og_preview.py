@@ -29,10 +29,8 @@ FONTS_DIR = ROOT / "assets" / "fonts"
 
 WIDTH = 1200
 HEIGHT = 630
-SITE_BAR_HEIGHT = 200
-
-SITE_TITLE = "Jack Beatnic Gallery"
-SITE_BLURB = "Quiet landscapes · AI art & photography"
+SITE_BRAND_TITLE = "Jack Beatnic"
+SITE_BRAND_SUBTITLE = "AI art & Photography Gallery"
 
 NFT_PAD = 36
 NFT_THUMB = HEIGHT - NFT_PAD * 2
@@ -144,21 +142,56 @@ def format_share_price(nft: dict, info: dict) -> tuple[str, str]:
     return "View on OpenSea", "Check listing"
 
 
-def draw_site_gradient_bar(base: Image.Image) -> Image.Image:
+def draw_site_brand_overlay(base: Image.Image, title: str, subtitle: str) -> Image.Image:
+    """Top-right brand text; bottom-left kept clear for X link overlay."""
     overlay = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
     draw = ImageDraw.Draw(overlay)
-    fade_start = HEIGHT - SITE_BAR_HEIGHT - 120
 
-    for y in range(fade_start, HEIGHT - SITE_BAR_HEIGHT):
-        t = (y - fade_start) / max(1, (HEIGHT - SITE_BAR_HEIGHT) - fade_start)
-        alpha = int(220 * (t**1.4))
-        draw.line([(0, y), (WIDTH, y)], fill=(10, 10, 10, alpha))
+    # Top-right readability gradient
+    for y in range(0, int(HEIGHT * 0.42)):
+        for x in range(int(WIDTH * 0.45), WIDTH):
+            tx = (x - WIDTH * 0.45) / max(1, WIDTH * 0.55)
+            ty = 1 - y / max(1, HEIGHT * 0.42)
+            alpha = int(175 * tx * ty)
+            if alpha > 0:
+                overlay.putpixel((x, y), (10, 10, 10, alpha))
 
-    draw.rectangle(
-        [(0, HEIGHT - SITE_BAR_HEIGHT), (WIDTH, HEIGHT)],
-        fill=(10, 10, 10, 245),
-    )
-    return Image.alpha_composite(base.convert("RGBA"), overlay)
+    # Bottom-left: very light fade only (no text — X shows URL there)
+    for y in range(HEIGHT - 90, HEIGHT):
+        for x in range(0, 320):
+            tx = 1 - x / 320
+            ty = (y - (HEIGHT - 90)) / 90
+            alpha = int(55 * tx * ty)
+            if alpha > 0:
+                existing = overlay.getpixel((x, y))
+                merged = min(255, existing[3] + alpha)
+                overlay.putpixel((x, y), (10, 10, 10, merged))
+
+    canvas = Image.alpha_composite(base.convert("RGBA"), overlay)
+    draw = ImageDraw.Draw(canvas)
+    f = fonts()
+    white = (255, 255, 255, 255)
+    muted = (230, 230, 230, 255)
+
+    pad_r = 56
+    title_font = f["title_md"]
+    sub_font = ImageFont.truetype(str(FONTS_DIR / "Inter.ttf"), 22)
+
+    sub_bbox = sub_font.getbbox(subtitle)
+    title_bbox = title_font.getbbox(title)
+    sub_w = sub_bbox[2] - sub_bbox[0]
+    title_w = title_bbox[2] - title_bbox[0]
+    block_w = max(title_w, sub_w)
+
+    text_right = WIDTH - pad_r
+    title_x = text_right - title_w
+    sub_x = text_right - sub_w
+    title_y = 48
+    sub_y = title_y + 58
+
+    draw_bold(draw, (title_x, title_y), title, title_font, white)
+    draw.text((sub_x, sub_y), subtitle, font=sub_font, fill=muted)
+    return canvas
 
 
 def generate_site_og(data: dict, output: Path = SITE_OG_PATH) -> Path:
@@ -167,22 +200,16 @@ def generate_site_og(data: dict, output: Path = SITE_OG_PATH) -> Path:
         raise SystemExit("gallery.json: brak NFT do tła strony")
 
     info = data["collection_info"]
-    title = info.get("project_name") or SITE_TITLE
-    f = fonts()
+    title = info.get("hero_title") or info.get("artist") or SITE_BRAND_TITLE
+    subtitle = SITE_BRAND_SUBTITLE
 
     print(f"[site] Tło: {nfts[0].get('name', '—')}")
     bg = fetch_image(nfts[0]["image_url"])
-    canvas = draw_site_gradient_bar(cover_crop(bg, WIDTH, HEIGHT, focus_y=0.4))
-
-    draw = ImageDraw.Draw(canvas)
-    bar_top = HEIGHT - SITE_BAR_HEIGHT
-    text_x = 72
-    title_y = bar_top + 54
-    blurb_y = title_y + 62
-    white = (255, 255, 255, 255)
-
-    draw_bold(draw, (text_x, title_y), title, f["title_md"], white)
-    draw.text((text_x, blurb_y), SITE_BLURB, font=f["body"], fill=white)
+    canvas = draw_site_brand_overlay(
+        cover_crop(bg, WIDTH, HEIGHT, focus_y=0.4),
+        title,
+        subtitle,
+    )
 
     output.parent.mkdir(parents=True, exist_ok=True)
     canvas.convert("RGB").save(output, "JPEG", quality=92, optimize=True, subsampling=0)

@@ -4,8 +4,12 @@
 const GalleryShare = (() => {
     let siteUrl = 'https://jackbeatnic.github.io/';
     let popover = null;
+    let grid = null;
     let anchor = null;
     let activeNft = null;
+    let activeUrl = '';
+    let activeText = '';
+    let outsideHandler = null;
 
     function enc(value) {
         return encodeURIComponent(value || '');
@@ -40,21 +44,46 @@ const GalleryShare = (() => {
         return `${nft.name || 'Artwork'} — Jack Beatnic Gallery`;
     }
 
+    function canNativeShare() {
+        return typeof navigator.share === 'function';
+    }
+
+    async function copyToClipboard(text) {
+        if (navigator.clipboard?.writeText) {
+            try {
+                await navigator.clipboard.writeText(text);
+                return true;
+            } catch {
+                /* fall through */
+            }
+        }
+
+        const area = document.createElement('textarea');
+        area.value = text;
+        area.setAttribute('readonly', '');
+        area.style.position = 'fixed';
+        area.style.left = '-9999px';
+        document.body.appendChild(area);
+        area.select();
+        area.setSelectionRange(0, text.length);
+
+        let ok = false;
+        try {
+            ok = document.execCommand('copy');
+        } catch {
+            ok = false;
+        }
+        area.remove();
+        return ok;
+    }
+
     function channels(nft, url, text) {
         const items = [
-            {
-                id: 'copy',
-                label: 'Copy link',
-                action: 'copy',
-            },
+            { id: 'copy', label: 'Copy link', action: 'copy' },
         ];
 
-        if (typeof navigator.share === 'function') {
-            items.push({
-                id: 'native',
-                label: 'Share…',
-                action: 'native',
-            });
+        if (canNativeShare()) {
+            items.push({ id: 'native', label: 'Share…', action: 'native' });
         }
 
         items.push(
@@ -123,48 +152,57 @@ const GalleryShare = (() => {
         `;
         document.body.appendChild(popover);
 
-        popover.addEventListener('click', (e) => e.stopPropagation());
+        grid = popover.querySelector('.share-popover__grid');
+        grid.addEventListener('click', onGridClick);
+    }
+
+    function onGridClick(e) {
+        const btn = e.target.closest('[data-share-action]');
+        if (!btn || !grid.contains(btn)) return;
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        const action = btn.dataset.shareAction;
+        if (action === 'copy') {
+            handleCopy(btn);
+            return;
+        }
+        if (action === 'native') {
+            nativeShare(activeNft, activeUrl, activeText);
+        }
+    }
+
+    async function handleCopy(btn) {
+        const original = btn.textContent;
+        const ok = await copyToClipboard(activeUrl);
+        btn.textContent = ok ? 'Copied' : 'Copy failed';
+        window.setTimeout(() => {
+            btn.textContent = original;
+        }, 1600);
     }
 
     function renderPopover(nft) {
-        const url = workUrl(nft);
-        const text = shareText(nft);
-        const grid = popover.querySelector('.share-popover__grid');
-        const workEl = popover.querySelector('.share-popover__work');
+        activeUrl = workUrl(nft);
+        activeText = shareText(nft);
 
+        const workEl = popover.querySelector('.share-popover__work');
         workEl.textContent = nft.name || 'Artwork';
-        grid.innerHTML = channels(nft, url, text)
+        grid.innerHTML = channels(nft, activeUrl, activeText)
             .map((item) => {
-                if (item.action === 'copy') {
-                    return `<button type="button" class="share-popover__btn" data-share-action="copy">Copy link</button>`;
-                }
-                if (item.action === 'native') {
-                    return `<button type="button" class="share-popover__btn" data-share-action="native">Share…</button>`;
+                if (item.action) {
+                    return `<button type="button" class="share-popover__btn" data-share-action="${item.action}">${item.label}</button>`;
                 }
                 return `<a class="share-popover__btn" href="${item.href}" target="_blank" rel="noopener noreferrer" data-share-channel="${item.id}">${item.label}</a>`;
             })
             .join('');
-
-        grid.querySelector('[data-share-action="copy"]')?.addEventListener('click', () => copyLink(url));
-        grid.querySelector('[data-share-action="native"]')?.addEventListener('click', () => nativeShare(nft, url, text));
-    }
-
-    async function copyLink(url) {
-        const btn = popover.querySelector('[data-share-action="copy"]');
-        const original = btn?.textContent || 'Copy link';
-        try {
-            await navigator.clipboard.writeText(url);
-            if (btn) btn.textContent = 'Copied';
-        } catch {
-            if (btn) btn.textContent = 'Copy failed';
-        }
-        window.setTimeout(() => {
-            if (btn) btn.textContent = original;
-        }, 1600);
     }
 
     async function nativeShare(nft, url, text) {
-        if (typeof navigator.share !== 'function') return;
+        if (!canNativeShare()) {
+            openMenu(nft, anchor);
+            return;
+        }
         try {
             await navigator.share({
                 title: shareText(nft),
@@ -173,14 +211,14 @@ const GalleryShare = (() => {
             });
             close();
         } catch (err) {
-            if (err?.name !== 'AbortError') console.warn('Share failed', err);
+            if (err?.name === 'AbortError') return;
+            openMenu(nft, anchor);
         }
     }
 
     function positionPopover() {
         if (!anchor || !popover) return;
 
-        popover.hidden = false;
         const rect = anchor.getBoundingClientRect();
         const margin = 8;
         const width = popover.offsetWidth;
@@ -197,8 +235,26 @@ const GalleryShare = (() => {
         popover.style.top = `${top}px`;
     }
 
-    function open(nft, button) {
-        if (!popover || !nft) return;
+    function bindOutsideClick() {
+        unbindOutsideClick();
+        outsideHandler = (e) => {
+            if (!popover || popover.hidden) return;
+            if (popover.contains(e.target) || e.target === anchor || anchor?.contains(e.target)) return;
+            close();
+        };
+        window.setTimeout(() => {
+            document.addEventListener('click', outsideHandler, true);
+        }, 0);
+    }
+
+    function unbindOutsideClick() {
+        if (!outsideHandler) return;
+        document.removeEventListener('click', outsideHandler, true);
+        outsideHandler = null;
+    }
+
+    function openMenu(nft, button) {
+        if (!popover || !nft || !button) return;
 
         if (!popover.hidden && anchor === button) {
             close();
@@ -211,23 +267,36 @@ const GalleryShare = (() => {
         popover.hidden = false;
         positionPopover();
         button.setAttribute('aria-expanded', 'true');
+        bindOutsideClick();
+    }
 
-        const onOutside = (e) => {
-            if (popover.contains(e.target) || e.target === button || button.contains(e.target)) return;
-            close();
-            document.removeEventListener('click', onOutside, true);
-        };
-        window.requestAnimationFrame(() => {
-            document.addEventListener('click', onOutside, true);
-        });
+    async function open(nft, button) {
+        if (!nft || !button) return;
+
+        const url = workUrl(nft);
+        const text = shareText(nft);
+
+        if (canNativeShare()) {
+            try {
+                await navigator.share({ title: text, text, url });
+                return;
+            } catch (err) {
+                if (err?.name === 'AbortError') return;
+            }
+        }
+
+        openMenu(nft, button);
     }
 
     function close() {
         if (!popover) return;
         popover.hidden = true;
         anchor?.setAttribute('aria-expanded', 'false');
+        unbindOutsideClick();
         anchor = null;
         activeNft = null;
+        activeUrl = '';
+        activeText = '';
     }
 
     function onKeydown(e) {

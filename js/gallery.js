@@ -216,11 +216,12 @@ const Gallery = (() => {
 
     function activeSectionPromo() {
         const sections = siteConfig?.sections || {};
-        if (GallerySections.getCurrentSection() === 'ai_art') {
+        const section = GallerySections.getCurrentSection();
+        if (section === 'ai_art') {
             return sections.ai_art?.promo;
         }
-        if (GallerySections.isPhotoOther()) {
-            return sections.photography?.other_promo;
+        if (section === 'photography') {
+            return sections.photography?.promo;
         }
         return null;
     }
@@ -279,9 +280,45 @@ const Gallery = (() => {
         el.hidden = !markup;
     }
 
+    function renderWalletNames(containerId, items) {
+        const el = document.getElementById(containerId);
+        if (!el) return;
+
+        const names = (items || []).filter((item) => item?.label).map((item) => item.label);
+        if (!names.length) {
+            el.hidden = true;
+            el.innerHTML = '';
+            return;
+        }
+
+        el.innerHTML = names
+            .map((name) => {
+                const safe = escapeHtml(name);
+                return `<button type="button" class="wallet-names__pill" data-copy="${safe}" title="Copy ${safe}">${safe}</button>`;
+            })
+            .join('');
+
+        el.hidden = false;
+        el.querySelectorAll('[data-copy]').forEach((btn) => {
+            btn.addEventListener('click', async () => {
+                const value = btn.getAttribute('data-copy') || '';
+                const original = btn.textContent;
+                try {
+                    await navigator.clipboard.writeText(value);
+                    btn.textContent = 'Copied';
+                } catch {
+                    btn.textContent = 'Copy failed';
+                }
+                window.setTimeout(() => {
+                    btn.textContent = original;
+                }, 1400);
+            });
+        });
+    }
+
     function renderSocialLinks(info) {
         renderLinkPills('about-social', info?.social_links);
-        renderLinkPills('about-domains', info?.domain_links);
+        renderWalletNames('about-wallets', info?.wallet_names || info?.domain_links);
     }
 
     function applyCollectionInfo(info) {

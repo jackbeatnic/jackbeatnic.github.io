@@ -26,21 +26,19 @@ GALLERY_JSON = ROOT / "gallery.json"
 GRAPHQL_URL = "https://data.objkt.com/v3/graphql"
 USER_AGENT = "JackBeatnicGallery/1.0"
 
-COLLECTION_PHOTO_KIND: dict[str, str] = {
-    "Jack's nature": "photo",
-    "JB: Soul Shots | 1/1 ed": "photo",
-    "DNS Marketplace": "photo",
-    "Jack Beatnic Open Editions": "other",
+PHOTO_COLLECTIONS = {
+    "Jack's nature",
+    "JB: Soul Shots | 1/1 ed",
+    "DNS Marketplace",
+    "Jack Beatnic Open Editions",
 }
 
 SKIP_COLLECTIONS = {
     "JB: AI Art Jam",
 }
 
-OTHER_NAME_HINTS = re.compile(
-    r"\b(classic diary|fade diary|collage|sketch|drawn|pastel|pencil|mixed|diary)\b",
-    re.I,
-)
+FADE_DIARY_RE = re.compile(r"\bfade\s+diary\b", re.I)
+CLASSIC_DIARY_RE = re.compile(r"\bclassic\s+diary\b", re.I)
 
 TOKEN_QUERY = """
 query FetchCreated($address: String!, $limit: Int!, $offset: Int!) {
@@ -151,25 +149,34 @@ def tag_names(token: dict) -> list[str]:
 
 
 def classify_photo_kind(token: dict) -> str | None:
+    name = (token.get("name") or "").strip()
     fa_name = ((token.get("fa") or {}).get("name") or "").strip()
     if fa_name in SKIP_COLLECTIONS:
         return None
-    if fa_name in COLLECTION_PHOTO_KIND:
-        return COLLECTION_PHOTO_KIND[fa_name]
 
-    blob = " ".join(
-        [
-            token.get("name") or "",
-            token.get("description") or "",
-            " ".join(tag_names(token)),
-            fa_name,
-        ]
-    )
-    if OTHER_NAME_HINTS.search(blob):
+    # Other / Collage: Fade Diary series only
+    if FADE_DIARY_RE.search(name):
         return "other"
+
+    if fa_name in PHOTO_COLLECTIONS:
+        return "photo"
+
     if (token.get("mime") or "").startswith("image/"):
         return "photo"
     return None
+
+
+def ai_category(token: dict, photo_kind: str) -> str:
+    name = (token.get("name") or "").strip()
+    fa_name = ((token.get("fa") or {}).get("name") or "").strip()
+
+    if photo_kind == "other":
+        return "collage"
+    if fa_name == "Jack's nature":
+        return "analog nature"
+    if CLASSIC_DIARY_RE.search(name):
+        return "photography"
+    return "photography"
 
 
 def fetch_created_tokens(address: str) -> list[dict]:
@@ -215,7 +222,7 @@ def build_nft_entry(token: dict, photo_kind: str, display_rank: int) -> dict:
     price = price_xtz_from_listing(token)
 
     ai_description = description or f"{name} — photography on Tezos from {fa_name}."
-    category = "collage" if photo_kind == "other" else "photography"
+    category = ai_category(token, photo_kind)
 
     entry = {
         "token_id": pk,

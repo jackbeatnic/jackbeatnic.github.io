@@ -865,8 +865,43 @@ body.tip-open {
     background: var(--white);
 }
 
-.about-section__domains {
+.about-section__wallets {
     margin-top: 0.85rem;
+}
+
+.wallet-names__hint {
+    margin: 0 0 0.5rem;
+    font-size: 0.62rem;
+    font-weight: 300;
+    color: var(--gray-500);
+    line-height: 1.45;
+    max-width: 32rem;
+}
+
+.wallet-names {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.wallet-names__pill {
+    font-family: inherit;
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--gray-500);
+    background: var(--gray-50);
+    border: 1px solid var(--gray-100);
+    border-radius: 999px;
+    padding: 0.35rem 0.75rem;
+    cursor: pointer;
+    transition: color 0.2s var(--ease-out), border-color 0.2s var(--ease-out), background 0.2s var(--ease-out);
+}
+
+.wallet-names__pill:hover {
+    color: var(--black);
+    border-color: var(--gray-200);
+    background: var(--white);
 }
 
 .about-section__link {

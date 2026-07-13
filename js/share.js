@@ -33,6 +33,8 @@ const GalleryShare = (() => {
             params.set('section', 'photography');
             const kind = nft.photo_kind || 'photo';
             if (kind !== 'photo') params.set('photo', kind);
+        } else if (medium === 'xrpl_ai') {
+            params.set('section', 'xrpl');
         } else if (medium !== 'ai_art') {
             params.set('section', medium);
         }

@@ -1,0 +1,3874 @@
+{
+  "collection_info": {
+    "issuer_wallet": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+    "nft_taxon": 0,
+    "collection_name": "JB AI Nature",
+    "chain": "xrpl",
+    "native_currency": "XRP",
+    "marketplace": "xrp_cafe",
+    "xrp_cafe_profile": "https://xrp.cafe/user/rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+    "xrp_cafe_collection": "https://xrp.cafe/usercollection/rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn/rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn/0",
+    "last_xrp_sync": "2026-07-13T18:10:11Z"
+  },
+  "site": {
+    "sections": {
+      "xrpl": {
+        "label": "AI on XRPL",
+        "label_short": "XRPL",
+        "explore_title": "Explore AI on XRPL · XRP.Cafe",
+        "empty_message": "JB AI Nature on XRP.Cafe will appear here after sync."
+      }
+    }
+  },
+  "nfts": [
+    {
+      "token_id": 96366858,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD879F9A4A505BE710A",
+      "nft_serial": 96366858,
+      "name": "JB Nature #001",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD879F9A4A505BE710A",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD879F9A4A505BE710A",
+      "image_url": "https://ipfs.io/ipfs/QmfM7XmfnQAnHu6g3c6sxGMfsSHvSCjx6XbaXucotXiToo",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "City"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential.\n\nXRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#F1F1F1",
+          "#798071",
+          "#1B1B1B",
+          "#B0B4AA"
+        ],
+        "vibe_tags": [
+          "city",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "urban",
+        "mood_score": 6,
+        "keywords": [
+          "city",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 1,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366859,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD890DF75A605BE710B",
+      "nft_serial": 96366859,
+      "name": "JB Nature #002",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD890DF75A605BE710B",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD890DF75A605BE710B",
+      "image_url": "https://ipfs.io/ipfs/QmXesDuiUUGXQJ3hYGC3JCDMtJ744tG6Fn9ZUDWgNkYc58",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Lake"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. \n\nXRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#BCBDC6",
+          "#030305",
+          "#E6E4E5",
+          "#E6E5E4"
+        ],
+        "vibe_tags": [
+          "lake",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "lake",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 2,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366860,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8A7C546A705BE710C",
+      "nft_serial": 96366860,
+      "name": "JB Nature #003",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8A7C546A705BE710C",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8A7C546A705BE710C",
+      "image_url": "https://ipfs.io/ipfs/QmRpuWDvZMKVwfFFfecPjfj8Y3p7qbj7padZSpHiYMgvEr",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#F3EBDE",
+          "#234438",
+          "#081B1E",
+          "#122D29"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 3,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366861,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8BEAB17A805BE710D",
+      "nft_serial": 96366861,
+      "name": "JB Nature #004",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8BEAB17A805BE710D",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8BEAB17A805BE710D",
+      "image_url": "https://ipfs.io/ipfs/QmP1kjEC4p7gPNtsjai6woXSHXGLCtRHtEPpGCQaR8Q4Qd",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#F1E9DC",
+          "#0A221F",
+          "#334941",
+          "#516459"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 4,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366862,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8D590E8A905BE710E",
+      "nft_serial": 96366862,
+      "name": "JB Nature #005",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8D590E8A905BE710E",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8D590E8A905BE710E",
+      "image_url": "https://ipfs.io/ipfs/QmWCg5g7QR13f4zwqU3Y8zGE887s2XuCGnBxrgruQg2TPk",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#D3DEDB",
+          "#74A9BC",
+          "#0E3A59",
+          "#5D9CB5"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 5,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366864,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8035C8AAB05BE7110",
+      "nft_serial": 96366864,
+      "name": "JB Nature #007",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8035C8AAB05BE7110",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8035C8AAB05BE7110",
+      "image_url": "https://ipfs.io/ipfs/QmPPod3MYQxjJUAKxY33kag7TktTX7vnRNyFTEuRDcCmXD",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#93C3C7",
+          "#1D6176",
+          "#94C4C8",
+          "#093750"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 7,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366866,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD831282CAD05BE7112",
+      "nft_serial": 96366866,
+      "name": "JB Nature #009",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD831282CAD05BE7112",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD831282CAD05BE7112",
+      "image_url": "https://ipfs.io/ipfs/QmUUqTvspWRWfGJE4quLyQG8BGKoNvFTxdqXBHVWgKemAW",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Forest"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#030E16",
+          "#8AA391",
+          "#153D3A",
+          "#354D42"
+        ],
+        "vibe_tags": [
+          "forest",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "forest",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 9,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366867,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8480DFDAE05BE7113",
+      "nft_serial": 96366867,
+      "name": "JB Nature #010",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8480DFDAE05BE7113",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8480DFDAE05BE7113",
+      "image_url": "https://ipfs.io/ipfs/QmcHqZ4syfVVM74jGEWhpWWA1DnMo8jgZjZV7xg4Gk9AoR",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Forest"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#1D2A26",
+          "#0E2117",
+          "#24432F",
+          "#060909"
+        ],
+        "vibe_tags": [
+          "forest",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "forest",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 10,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366869,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD875D99FB005BE7115",
+      "nft_serial": 96366869,
+      "name": "JB Nature #012",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD875D99FB005BE7115",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD875D99FB005BE7115",
+      "image_url": "https://ipfs.io/ipfs/Qmd56cFbzcanPjn4iPg9wTPsAcC2TEJVXR1TszaYhbP2SE",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#F7EEDE",
+          "#10262B",
+          "#627F6B",
+          "#12343A"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 12,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366871,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8A3A541B205BE7117",
+      "nft_serial": 96366871,
+      "name": "JB Nature #014",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8A3A541B205BE7117",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8A3A541B205BE7117",
+      "image_url": "https://ipfs.io/ipfs/QmNvEnVjTFmMme3LwLJwtjrTmJyjVKHx5XuUJcXJkN7LV2",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Forest"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#090A09",
+          "#141613",
+          "#D5D4D0",
+          "#363832"
+        ],
+        "vibe_tags": [
+          "forest",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "forest",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 14,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366873,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8D170E3B405BE7119",
+      "nft_serial": 96366873,
+      "name": "JB Nature #016",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8D170E3B405BE7119",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8D170E3B405BE7119",
+      "image_url": "https://ipfs.io/ipfs/QmXRjDa9eAvdu2p3FceCdZe5pqvpjaQzx1C71193S2t2hj",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Forest"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#040604",
+          "#061109",
+          "#495444",
+          "#798073"
+        ],
+        "vibe_tags": [
+          "forest",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "forest",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 16,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366875,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8FF3C85B605BE711B",
+      "nft_serial": 96366875,
+      "name": "JB Nature #018",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8FF3C85B605BE711B",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8FF3C85B605BE711B",
+      "image_url": "https://ipfs.io/ipfs/QmQekoAa3DsgnhytU7j3EN9RgtbvEb8hy8mRQRD9erVPNR",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Lake"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#EBE6E0",
+          "#457989",
+          "#050E14",
+          "#EBE6E2"
+        ],
+        "vibe_tags": [
+          "lake",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "lake",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 18,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366876,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8162256B705BE711C",
+      "nft_serial": 96366876,
+      "name": "JB Nature #019",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8162256B705BE711C",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8162256B705BE711C",
+      "image_url": "https://ipfs.io/ipfs/QmT6H4FC19WNAH8Y3Q614PoRjT9e2dk5xtTfe5N3nh8vmQ",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#1A2623",
+          "#E1E4D7",
+          "#48806C",
+          "#D3DCCD"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 19,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366877,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD82D0827B805BE711D",
+      "nft_serial": 96366877,
+      "name": "JB Nature #020",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD82D0827B805BE711D",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD82D0827B805BE711D",
+      "image_url": "https://ipfs.io/ipfs/QmUQpCS1NkWAH1KosAUokgugYvVrPpLTtoTWq3V2qKKan4",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#080805",
+          "#F3F3F0",
+          "#242422",
+          "#BDBCBA"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 20,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366885,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8E436AFC005BE7125",
+      "nft_serial": 96366885,
+      "name": "JB Nature #028",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8E436AFC005BE7125",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8E436AFC005BE7125",
+      "image_url": "https://ipfs.io/ipfs/QmXTmJVXPYteMauVBpV9QjNRaxeALPz4Vc49FmmSmHkSQQ",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Lake"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#D9DFDD",
+          "#092623",
+          "#D8DEDC",
+          "#3F8D78"
+        ],
+        "vibe_tags": [
+          "lake",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "lake",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 28,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366888,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD828E822C305BE7128",
+      "nft_serial": 96366888,
+      "name": "JB Nature #031",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD828E822C305BE7128",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD828E822C305BE7128",
+      "image_url": "https://ipfs.io/ipfs/QmSNyTKQaiKNx3xfyW1STKt59oVRuiQkw8Zk5LdNB7KscW",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Forest"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#E8EBE4",
+          "#1F5546",
+          "#ACC5B4",
+          "#0C2220"
+        ],
+        "vibe_tags": [
+          "forest",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "forest",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 31,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366893,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD89B6537C805BE712D",
+      "nft_serial": 96366893,
+      "name": "JB Nature #034",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD89B6537C805BE712D",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD89B6537C805BE712D",
+      "image_url": "https://ipfs.io/ipfs/QmTRZSbtHmxgQJSw9jj4k6hSJeQME6nd6c48jVn9PFDz7p",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#DBE0E8",
+          "#132137",
+          "#1F3043",
+          "#909F9A"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 34,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366895,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8C930D9CA05BE712F",
+      "nft_serial": 96366895,
+      "name": "JB Nature #036",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8C930D9CA05BE712F",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8C930D9CA05BE712F",
+      "image_url": "https://ipfs.io/ipfs/QmfBe1s7HwPtHo3xq6pRWKy8P1RcVvBDd64Zg6zooTjF7D",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#D8E4EA",
+          "#161F30",
+          "#465451",
+          "#607A76"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 36,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366898,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD80DE24CCD05BE7132",
+      "nft_serial": 96366898,
+      "name": "JB Nature #039",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD80DE24CCD05BE7132",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD80DE24CCD05BE7132",
+      "image_url": "https://ipfs.io/ipfs/QmP4pDVF7zaZSDnZw3TTVRmRKQt4PJArqeRCfyW2c748T5",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Moutains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#FDFDFD",
+          "#101010",
+          "#5A5A69",
+          "#8F8F97"
+        ],
+        "vibe_tags": [
+          "moutains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "moutains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 39,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366901,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD85293BFD005BE7135",
+      "nft_serial": 96366901,
+      "name": "JB Nature #042",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD85293BFD005BE7135",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD85293BFD005BE7135",
+      "image_url": "https://ipfs.io/ipfs/QmQAZAPuqWhFN9iDA6pBrViRzdAG2MZS9axtANvecBVw3c",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#BBD2CF",
+          "#071F39",
+          "#8DB2AD",
+          "#F9F9F8"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 42,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366903,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8805F61D205BE7137",
+      "nft_serial": 96366903,
+      "name": "JB Nature #044",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8805F61D205BE7137",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8805F61D205BE7137",
+      "image_url": "https://ipfs.io/ipfs/QmRfWUzgmSV9DbJZWm3D1cgPAniGukCWLrPDMMHow4ehNY",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#071C2F",
+          "#1C3856",
+          "#1F5F73",
+          "#6F9D99"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 44,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366904,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8974532D305BE7138",
+      "nft_serial": 96366904,
+      "name": "JB Nature #045",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8974532D305BE7138",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8974532D305BE7138",
+      "image_url": "https://ipfs.io/ipfs/QmZ1CFXv9NxvWpAd9vkNjo7jgQHLfdcUmc5YwhXnD3vZLg",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#D8DCDE",
+          "#DDE0E1",
+          "#141F31",
+          "#537670"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 45,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366905,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8AE2B03D405BE7139",
+      "nft_serial": 96366905,
+      "name": "JB Nature #046",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8AE2B03D405BE7139",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8AE2B03D405BE7139",
+      "image_url": "https://ipfs.io/ipfs/QmfLtTt8sbuzZviENQkVkS9BCNpzuv7Vwcuii9wVtPCT87",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#D0DBE4",
+          "#121E34",
+          "#D3DBE4",
+          "#51797B"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 46,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366906,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8C510D4D505BE713A",
+      "nft_serial": 96366906,
+      "name": "JB Nature #047",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8C510D4D505BE713A",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8C510D4D505BE713A",
+      "image_url": "https://ipfs.io/ipfs/QmWfdqWNtTzyfqPmQ4WG7om6HwnNk34CVnVPwv17TZ22XJ",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Nature"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#F8F9FB",
+          "#D5D6DE",
+          "#142436",
+          "#4A5958"
+        ],
+        "vibe_tags": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 47,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366908,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8F2DC76D705BE713C",
+      "nft_serial": 96366908,
+      "name": "JB Nature #049",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8F2DC76D705BE713C",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8F2DC76D705BE713C",
+      "image_url": "https://ipfs.io/ipfs/QmcdNfkJ4nxUsBy6JRLNeCCUY5qaB8Kktjjn1C3pKGAvhf",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#E1E1E4",
+          "#131A26",
+          "#2B4046",
+          "#B4BBB1"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 49,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366913,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD865598BDC05BE7141",
+      "nft_serial": 96366913,
+      "name": "JB Nature #054",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD865598BDC05BE7141",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD865598BDC05BE7141",
+      "image_url": "https://ipfs.io/ipfs/Qme7azVUE5VBsfNxdPfkY8ZDTdYuYRwVrL2kV3Rq4591SN",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Forest"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#DCE5CA",
+          "#042A29",
+          "#2C6D4D",
+          "#093E36"
+        ],
+        "vibe_tags": [
+          "forest",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "forest",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 54,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366923,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD84A53B5E605BE714B",
+      "nft_serial": 96366923,
+      "name": "JB Nature #056",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD84A53B5E605BE714B",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD84A53B5E605BE714B",
+      "image_url": "https://ipfs.io/ipfs/QmSMWqeZCk9sUGduqgrUWiDnjNXpuyinJNbYuorgosMGmJ",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Forest"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#EDEEED",
+          "#EAECEC",
+          "#ECECEC",
+          "#EDEDED"
+        ],
+        "vibe_tags": [
+          "forest",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "forest",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 56,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366925,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8781F57E805BE714D",
+      "nft_serial": 96366925,
+      "name": "JB Nature #058",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8781F57E805BE714D",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8781F57E805BE714D",
+      "image_url": "https://ipfs.io/ipfs/QmQwciXnjN2zhqgULe2X8g6yQ2mekQ4eJXraHeQfkvwG1B",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Forest"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#F9F9F9",
+          "#4E7471",
+          "#AFC1BF",
+          "#244044"
+        ],
+        "vibe_tags": [
+          "forest",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "forest",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 58,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366929,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8D3B69BEC05BE7151",
+      "nft_serial": 96366929,
+      "name": "JB Nature #062",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8D3B69BEC05BE7151",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8D3B69BEC05BE7151",
+      "image_url": "https://ipfs.io/ipfs/QmVRBimf1zUzCN2FGN1GVTQ1LRkvDZrUs7o7hxoVbxT9HV",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#F4F0EC",
+          "#222B38",
+          "#F6F1ED",
+          "#F5F1ED"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 62,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366934,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD84633B0F105BE7156",
+      "nft_serial": 96366934,
+      "name": "JB Nature #067",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD84633B0F105BE7156",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD84633B0F105BE7156",
+      "image_url": "https://ipfs.io/ipfs/QmaHV3sdESQKaHehkq7ayTQALkCKvNAV8BE2dYgNFD9eaw",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#E3DFD3",
+          "#202A31",
+          "#41494E",
+          "#AFB1B0"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 67,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366938,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8A1CAF4F505BE715A",
+      "nft_serial": 96366938,
+      "name": "JB Nature #071",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8A1CAF4F505BE715A",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8A1CAF4F505BE715A",
+      "image_url": "https://ipfs.io/ipfs/QmWbE4UZ6pEz6dqi1KbUaMDbf5YcFcfB1NAvLLfgRwkjhX",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Abstraction"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#F6F7F2",
+          "#5D8960",
+          "#649565",
+          "#EEEBE6"
+        ],
+        "vibe_tags": [
+          "abstraction",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "abstract",
+        "mood_score": 6,
+        "keywords": [
+          "abstraction",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 71,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366939,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8B8B0C5F605BE715B",
+      "nft_serial": 96366939,
+      "name": "JB Nature #072",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8B8B0C5F605BE715B",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8B8B0C5F605BE715B",
+      "image_url": "https://ipfs.io/ipfs/QmXkQ9snXKLpPRXakMaM7rknQ7JQuX1ziPfnvH4NUDtzYq",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Abstraction"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#97AA94",
+          "#285F44",
+          "#454B48",
+          "#373535"
+        ],
+        "vibe_tags": [
+          "abstraction",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "abstract",
+        "mood_score": 6,
+        "keywords": [
+          "abstraction",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 72,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366940,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8CF9696F705BE715C",
+      "nft_serial": 96366940,
+      "name": "JB Nature #073",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8CF9696F705BE715C",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8CF9696F705BE715C",
+      "image_url": "https://ipfs.io/ipfs/QmagYJDZNXyhpm2KJeN1SMWgMD7jPjvnq5YyxD6DoxkAoj",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Abstracion"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#1D8B70",
+          "#E9EDDF",
+          "#AECCC1",
+          "#7FA199"
+        ],
+        "vibe_tags": [
+          "abstracion",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "abstracion",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 73,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366941,
+      "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8E67C67F805BE715D",
+      "nft_serial": 96366941,
+      "name": "JB Nature #074",
+      "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8E67C67F805BE715D",
+      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8E67C67F805BE715D",
+      "image_url": "https://ipfs.io/ipfs/QmReqbfPpTYg7yaEnwvJXcqKqa7xrTSP4n65G4XZw99wCe",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Abstraction"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#63926C",
+          "#F0EBE5",
+          "#B5ACA3",
+          "#212E27"
+        ],
+        "vibe_tags": [
+          "abstraction",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "abstract",
+        "mood_score": 6,
+        "keywords": [
+          "abstraction",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 74,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366945,
+      "xrpl_nft_id": "000861A8C991C993639BFB85813235F2175B16ADADDCDBD84213ABFC05BE7161",
+      "nft_serial": 96366945,
+      "name": "JB Nature #076",
+      "marketplace_url": "https://xrp.cafe/nft/000861A8C991C993639BFB85813235F2175B16ADADDCDBD84213ABFC05BE7161",
+      "opensea_url": "https://xrp.cafe/nft/000861A8C991C993639BFB85813235F2175B16ADADDCDBD84213ABFC05BE7161",
+      "image_url": "https://ipfs.io/ipfs/QmRJMqRYJR4XkE7fgWYzhKz67gixmWznmKCAQubhX35tfV",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#0E1E28",
+          "#C7D6DD",
+          "#153F54",
+          "#78A08F"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 76,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366946,
+      "xrpl_nft_id": "000861A8C991C993639BFB85813235F2175B16ADADDCDBD858F97CFD05BE7162",
+      "nft_serial": 96366946,
+      "name": "JB Nature #077",
+      "marketplace_url": "https://xrp.cafe/nft/000861A8C991C993639BFB85813235F2175B16ADADDCDBD858F97CFD05BE7162",
+      "opensea_url": "https://xrp.cafe/nft/000861A8C991C993639BFB85813235F2175B16ADADDCDBD858F97CFD05BE7162",
+      "image_url": "https://ipfs.io/ipfs/QmQuPfHmESe51T66Uhb1ZfGE6SyGr3DupKfvSengcBYiPT",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#3D8BA7",
+          "#162339",
+          "#1B374D",
+          "#21546F"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 77,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366947,
+      "xrpl_nft_id": "00087530C991C993639BFB85813235F2175B16ADADDCDBD86FDF4DFE05BE7163",
+      "nft_serial": 96366947,
+      "name": "JB Nature #078",
+      "marketplace_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD86FDF4DFE05BE7163",
+      "opensea_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD86FDF4DFE05BE7163",
+      "image_url": "https://ipfs.io/ipfs/QmZVr487p4KfJ2xxWsxdqG4XihyAoXaP1XsiqqmywQ9VB4",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#D7DFE2",
+          "#0D223D",
+          "#D8E1E3",
+          "#1B6284"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 78,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366948,
+      "xrpl_nft_id": "00087530C991C993639BFB85813235F2175B16ADADDCDBD886C51EFF05BE7164",
+      "nft_serial": 96366948,
+      "name": "JB Nature #079",
+      "marketplace_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD886C51EFF05BE7164",
+      "opensea_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD886C51EFF05BE7164",
+      "image_url": "https://ipfs.io/ipfs/Qmb8tQPqp7eKLDFKmsBTqWCFe5hssHxZ8C9Qeig3Kjk7x6",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#D0DEE9",
+          "#13253F",
+          "#D4DEE8",
+          "#71ACAA"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 79,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366949,
+      "xrpl_nft_id": "00087530C991C993639BFB85813235F2175B16ADADDCDBD89DAAF00005BE7165",
+      "nft_serial": 96366949,
+      "name": "JB Nature #080",
+      "marketplace_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD89DAAF00005BE7165",
+      "opensea_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD89DAAF00005BE7165",
+      "image_url": "https://ipfs.io/ipfs/QmY3uagy69Yf1JSeMVXYdZaKkN3VrX7Wzu6pxhEmU4scH2",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#CBDCE4",
+          "#182D4B",
+          "#204662",
+          "#18759D"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 80,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366950,
+      "xrpl_nft_id": "00089C40C991C993639BFB85813235F2175B16ADADDCDBD8B490C10105BE7166",
+      "nft_serial": 96366950,
+      "name": "JB Nature #081",
+      "marketplace_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD8B490C10105BE7166",
+      "opensea_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD8B490C10105BE7166",
+      "image_url": "https://ipfs.io/ipfs/QmSXKfAAZnDPDPRzD4mSC78VqrX3nFUXqSGNDMFy6xRhP5",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Moutains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#0F1C3D",
+          "#CEE0E9",
+          "#105070",
+          "#CDDFE8"
+        ],
+        "vibe_tags": [
+          "moutains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "moutains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 81,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366951,
+      "xrpl_nft_id": "00087530C991C993639BFB85813235F2175B16ADADDCDBD8CB76920205BE7167",
+      "nft_serial": 96366951,
+      "name": "JB Nature #082",
+      "marketplace_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD8CB76920205BE7167",
+      "opensea_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD8CB76920205BE7167",
+      "image_url": "https://ipfs.io/ipfs/QmbzpxUNjTzNZrpnsxUKiz9k6MFa4QE2GfzBTrKviXyAkA",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#8EC1CC",
+          "#0F1B2F",
+          "#2B6778",
+          "#33454E"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 82,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366952,
+      "xrpl_nft_id": "00089C40C991C993639BFB85813235F2175B16ADADDCDBD8E25C630305BE7168",
+      "nft_serial": 96366952,
+      "name": "JB Nature #083",
+      "marketplace_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD8E25C630305BE7168",
+      "opensea_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD8E25C630305BE7168",
+      "image_url": "https://ipfs.io/ipfs/QmSF6tC7kA7DaYGZUYZ69LhrP5LUs1xYnEsnDCEbFdxwxe",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#163251",
+          "#F2F5F6",
+          "#F2F4F6",
+          "#F2F3F4"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 83,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366953,
+      "xrpl_nft_id": "00089C40C991C993639BFB85813235F2175B16ADADDCDBD8F942340405BE7169",
+      "nft_serial": 96366953,
+      "name": "JB Nature #084",
+      "marketplace_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD8F942340405BE7169",
+      "opensea_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD8F942340405BE7169",
+      "image_url": "https://ipfs.io/ipfs/QmX7TD3azMBBcLFK4a5ydPgDDxmWys6CSWD1jKJzscJBMy",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#172436",
+          "#E5EAEF",
+          "#296583",
+          "#6C9395"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 84,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366954,
+      "xrpl_nft_id": "00089C40C991C993639BFB85813235F2175B16ADADDCDBD81028050505BE716A",
+      "nft_serial": 96366954,
+      "name": "JB Nature #085",
+      "marketplace_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD81028050505BE716A",
+      "opensea_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD81028050505BE716A",
+      "image_url": "https://ipfs.io/ipfs/QmRn1A9QU6XfBUbokUoC3ikUMijGyJ4RGv2qBMpDwxEkez",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#E8E3DF",
+          "#0F294A",
+          "#5380A2",
+          "#162C4F"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 85,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366955,
+      "xrpl_nft_id": "00087530C991C993639BFB85813235F2175B16ADADDCDBD8270DD60605BE716B",
+      "nft_serial": 96366955,
+      "name": "JB Nature #086",
+      "marketplace_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD8270DD60605BE716B",
+      "opensea_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD8270DD60605BE716B",
+      "image_url": "https://ipfs.io/ipfs/QmeaV4BZxEAkgQS4AsCC8qEwxNNd33a42fVBRH66ZH3zXS",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#EDEEF0",
+          "#266C9A",
+          "#1C446B",
+          "#132E4E"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 86,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366956,
+      "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD83DF3A70705BE716C",
+      "nft_serial": 96366956,
+      "name": "JB Nature #087",
+      "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD83DF3A70705BE716C",
+      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD83DF3A70705BE716C",
+      "image_url": "https://ipfs.io/ipfs/Qmci4QDDBirQkhWPSxpYbeG2DF3RYg8nx3QaFvKap8T6do",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#17253C",
+          "#28618D",
+          "#7393AE",
+          "#567A9A"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 87,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366957,
+      "xrpl_nft_id": "00087530C991C993639BFB85813235F2175B16ADADDCDBD854D9780805BE716D",
+      "nft_serial": 96366957,
+      "name": "JB Nature #088",
+      "marketplace_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD854D9780805BE716D",
+      "opensea_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD854D9780805BE716D",
+      "image_url": "https://ipfs.io/ipfs/QmbfNjGeJd68Bqi2yRucmcqBHP1ndhYK5sKzc3YdmaxjCG",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#1D2132",
+          "#F2EDEA",
+          "#536D82",
+          "#374457"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 88,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366958,
+      "xrpl_nft_id": "00089C40C991C993639BFB85813235F2175B16ADADDCDBD86BBF490905BE716E",
+      "nft_serial": 96366958,
+      "name": "JB Nature #089",
+      "marketplace_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD86BBF490905BE716E",
+      "opensea_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD86BBF490905BE716E",
+      "image_url": "https://ipfs.io/ipfs/QmNNcRwV2Q1h6bTosA6ozkywAyAwfFVeXPq2vLhMMkCTcL",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#0A2641",
+          "#E1E1E4",
+          "#6CAEB5",
+          "#E7E7E9"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 89,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366959,
+      "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD882A51A0A05BE716F",
+      "nft_serial": 96366959,
+      "name": "JB Nature #090",
+      "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD882A51A0A05BE716F",
+      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD882A51A0A05BE716F",
+      "image_url": "https://ipfs.io/ipfs/QmZPZxLnCvDqFznGgUpoqQqVJsaHKP2uujBNuCW4CMJyVy",
+      "supply": 1,
+      "traits": {
+        "Size": "2048 x 2048",
+        "Topic": "Mountains"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. XRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#9EC8D5",
+          "#0D2034",
+          "#ECEDED",
+          "#2B5978"
+        ],
+        "vibe_tags": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "mountains",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 90,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366960,
+      "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD8998AEB0B05BE7170",
+      "nft_serial": 96366960,
+      "name": "JB Nature #091",
+      "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8998AEB0B05BE7170",
+      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8998AEB0B05BE7170",
+      "image_url": "https://ipfs.io/ipfs/QmUD2FSFzMXg8LKGozV6pHaWGf93PL5wLEHrowG2F5Rq8W",
+      "supply": 1,
+      "traits": {
+        "Topic": "Nature",
+        "Size": "2048 x 2048"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. \n\nXRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#1A212F",
+          "#243C4D",
+          "#256383",
+          "#539399"
+        ],
+        "vibe_tags": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 91,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366961,
+      "xrpl_nft_id": "0008889AC991C993639BFB85813235F2175B16ADADDCDBD8B070BC0C05BE7171",
+      "nft_serial": 96366961,
+      "name": "JB Nature #092",
+      "marketplace_url": "https://xrp.cafe/nft/0008889AC991C993639BFB85813235F2175B16ADADDCDBD8B070BC0C05BE7171",
+      "opensea_url": "https://xrp.cafe/nft/0008889AC991C993639BFB85813235F2175B16ADADDCDBD8B070BC0C05BE7171",
+      "image_url": "https://ipfs.io/ipfs/QmcDFYojyQqsNtAdu8JHxrhTXkmcPqnaSRr3qqbDDoE2u4",
+      "supply": 1,
+      "traits": {
+        "Topic": "Nature",
+        "Size": "2048 x 2048"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. \n\nXRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#132638",
+          "#1B3F59",
+          "#186283",
+          "#388EA4"
+        ],
+        "vibe_tags": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 92,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366962,
+      "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD8C7568D0D05BE7172",
+      "nft_serial": 96366962,
+      "name": "JB Nature #093",
+      "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8C7568D0D05BE7172",
+      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8C7568D0D05BE7172",
+      "image_url": "https://ipfs.io/ipfs/QmVNoxqaod8NhtAh9dofpycWnVqxKnBEJAr13p9asqM8qc",
+      "supply": 1,
+      "traits": {
+        "Topic": "Nature",
+        "Size": "2048 x 2048"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. \n\nXRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#0E213C",
+          "#5D8E98",
+          "#155D7F",
+          "#D3DDE5"
+        ],
+        "vibe_tags": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 93,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366963,
+      "xrpl_nft_id": "000888A4C991C993639BFB85813235F2175B16ADADDCDBD8DE3C5E0E05BE7173",
+      "nft_serial": 96366963,
+      "name": "JB Nature #094",
+      "marketplace_url": "https://xrp.cafe/nft/000888A4C991C993639BFB85813235F2175B16ADADDCDBD8DE3C5E0E05BE7173",
+      "opensea_url": "https://xrp.cafe/nft/000888A4C991C993639BFB85813235F2175B16ADADDCDBD8DE3C5E0E05BE7173",
+      "image_url": "https://ipfs.io/ipfs/QmQmXYYmgtBVHdkrGg8T4YBoqVdN7xhg2XP2Ss4BoL28R6",
+      "supply": 1,
+      "traits": {
+        "Topic": "Nature",
+        "Size": "2048 x 2048"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. \n\nXRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#BFDDE6",
+          "#10263F",
+          "#5B9D95",
+          "#396877"
+        ],
+        "vibe_tags": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 94,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366965,
+      "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD80C08001005BE7175",
+      "nft_serial": 96366965,
+      "name": "JB Nature #096",
+      "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD80C08001005BE7175",
+      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD80C08001005BE7175",
+      "image_url": "https://ipfs.io/ipfs/QmNwfa8wtfECeTJd3XgJDH2gUnmKYGEDAzdW2F7D1SzcsM",
+      "supply": 1,
+      "traits": {
+        "Topic": "Nature",
+        "Size": "2048 x 2048"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. \n\nXRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#1A3041",
+          "#397C97",
+          "#69837D",
+          "#F2F3F3"
+        ],
+        "vibe_tags": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 96,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366966,
+      "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD822EDD11105BE7176",
+      "nft_serial": 96366966,
+      "name": "JB Nature #097",
+      "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD822EDD11105BE7176",
+      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD822EDD11105BE7176",
+      "image_url": "https://ipfs.io/ipfs/QmTLjj56NjEWtjqm7fpdoHF1hg2uX2GguzRoNrD3zG5ChU",
+      "supply": 1,
+      "traits": {
+        "Topic": "Nature",
+        "Size": "2048 x 2048"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. \n\nXRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#121F34",
+          "#EAEAEB",
+          "#152D47",
+          "#4A8497"
+        ],
+        "vibe_tags": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 97,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366967,
+      "xrpl_nft_id": "0008889AC991C993639BFB85813235F2175B16ADADDCDBD839D3A21205BE7177",
+      "nft_serial": 96366967,
+      "name": "JB Nature #098",
+      "marketplace_url": "https://xrp.cafe/nft/0008889AC991C993639BFB85813235F2175B16ADADDCDBD839D3A21205BE7177",
+      "opensea_url": "https://xrp.cafe/nft/0008889AC991C993639BFB85813235F2175B16ADADDCDBD839D3A21205BE7177",
+      "image_url": "https://ipfs.io/ipfs/QmQQve4PqsrytTghcrEDWVoFqDzuHBk9Qe8c96htCdfT4B",
+      "supply": 1,
+      "traits": {
+        "Topic": "Nature",
+        "Size": "2048 x 2048"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. \n\nXRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#121F27",
+          "#0E5367",
+          "#699196",
+          "#2F7A88"
+        ],
+        "vibe_tags": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 98,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366968,
+      "xrpl_nft_id": "0008889AC991C993639BFB85813235F2175B16ADADDCDBD850B9731305BE7178",
+      "nft_serial": 96366968,
+      "name": "JB Nature #099",
+      "marketplace_url": "https://xrp.cafe/nft/0008889AC991C993639BFB85813235F2175B16ADADDCDBD850B9731305BE7178",
+      "opensea_url": "https://xrp.cafe/nft/0008889AC991C993639BFB85813235F2175B16ADADDCDBD850B9731305BE7178",
+      "image_url": "https://ipfs.io/ipfs/QmYCGeKWhjE2DhiCvQ1dDYBsLqFo9rbohQsXQB2cEGi8Xw",
+      "supply": 1,
+      "traits": {
+        "Topic": "Nature",
+        "Size": "2048 x 2048"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. \n\nXRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#112035",
+          "#E9F1F7",
+          "#236681",
+          "#6BACA8"
+        ],
+        "vibe_tags": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 99,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366969,
+      "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD8679F441405BE7179",
+      "nft_serial": 96366969,
+      "name": "JB Nature #100",
+      "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8679F441405BE7179",
+      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8679F441405BE7179",
+      "image_url": "https://ipfs.io/ipfs/Qmf4tkovR1BeNWAe3WnXXurD18iNvi9nY8GbCM6SQK46CC",
+      "supply": 1,
+      "traits": {
+        "Topic": "Nature",
+        "Size": "2048 x 2048"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. \n\nXRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#182E45",
+          "#2B6A7E",
+          "#EFEFF1",
+          "#E4E8EB"
+        ],
+        "vibe_tags": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 100,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366970,
+      "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD87E85151505BE717A",
+      "nft_serial": 96366970,
+      "name": "JB Nature #101",
+      "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD87E85151505BE717A",
+      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD87E85151505BE717A",
+      "image_url": "https://ipfs.io/ipfs/QmSmZd9wAkN9AUPepGMiEn8Rf84QFLSSDT6YB33g61djak",
+      "supply": 1,
+      "traits": {
+        "Topic": "Nature",
+        "Size": "2048 x 2048"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. \n\nXRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#2C82A8",
+          "#0C192A",
+          "#175170",
+          "#21363C"
+        ],
+        "vibe_tags": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 101,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366971,
+      "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD8956AE61605BE717B",
+      "nft_serial": 96366971,
+      "name": "JB Nature #102",
+      "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8956AE61605BE717B",
+      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8956AE61605BE717B",
+      "image_url": "https://ipfs.io/ipfs/QmeQc9gFEqf9bvTvfBxuQDAp7eDqGot9ozs8JwFTivHCCh",
+      "supply": 1,
+      "traits": {
+        "Topic": "Nature",
+        "Size": "2048 x 2048"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. \n\nXRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#0E1D30",
+          "#2A5475",
+          "#DBE5ED",
+          "#183751"
+        ],
+        "vibe_tags": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 102,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366972,
+      "xrpl_nft_id": "000888AEC991C993639BFB85813235F2175B16ADADDCDBD8AC50B71705BE717C",
+      "nft_serial": 96366972,
+      "name": "JB Nature #103",
+      "marketplace_url": "https://xrp.cafe/nft/000888AEC991C993639BFB85813235F2175B16ADADDCDBD8AC50B71705BE717C",
+      "opensea_url": "https://xrp.cafe/nft/000888AEC991C993639BFB85813235F2175B16ADADDCDBD8AC50B71705BE717C",
+      "image_url": "https://ipfs.io/ipfs/QmXUwYwnS7HcFBngdhMkrri8Q68gQEf1QS51Yrq1aMpYe6",
+      "supply": 1,
+      "traits": {
+        "Topic": "Nature",
+        "Size": "2048 x 2048"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. \n\nXRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#DDECF3",
+          "#0E2746",
+          "#E4E3E4",
+          "#64888A"
+        ],
+        "vibe_tags": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 103,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366973,
+      "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD8C336881805BE717D",
+      "nft_serial": 96366973,
+      "name": "JB Nature #104",
+      "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8C336881805BE717D",
+      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8C336881805BE717D",
+      "image_url": "https://ipfs.io/ipfs/QmRb3VVnaAe4xaijjJksxXrxTvNCbnTF1SSoZ6Kvhp625L",
+      "supply": 1,
+      "traits": {
+        "Topic": "Nature",
+        "Size": "2048 x 2048"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. \n\nXRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#13293F",
+          "#E2E5E9",
+          "#21688A",
+          "#98B099"
+        ],
+        "vibe_tags": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 104,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366974,
+      "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD8DA1C591905BE717E",
+      "nft_serial": 96366974,
+      "name": "JB Nature #105",
+      "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8DA1C591905BE717E",
+      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8DA1C591905BE717E",
+      "image_url": "https://ipfs.io/ipfs/QmXMu1CaQGNorzWJraDebWfKnEbiQNRsbGigtWgMmYrXho",
+      "supply": 1,
+      "traits": {
+        "Topic": "Animal",
+        "Size": "2048 x 2048"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. \n\nXRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#167073",
+          "#F5E4C6",
+          "#0A1421",
+          "#182636"
+        ],
+        "vibe_tags": [
+          "animal",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "wildlife",
+        "mood_score": 6,
+        "keywords": [
+          "animal",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 105,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366975,
+      "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD8F1022A1A05BE717F",
+      "nft_serial": 96366975,
+      "name": "JB Nature #106",
+      "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8F1022A1A05BE717F",
+      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8F1022A1A05BE717F",
+      "image_url": "https://ipfs.io/ipfs/QmS5ZY7YPSV8hrHFL4b9S4ixj8LDBSararqsP4KnTrAV14",
+      "supply": 1,
+      "traits": {
+        "Topic": "Animal",
+        "Size": "2048 x 2048"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. \n\nXRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#F9F2E3",
+          "#131425",
+          "#183144",
+          "#1D1E30"
+        ],
+        "vibe_tags": [
+          "animal",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "wildlife",
+        "mood_score": 6,
+        "keywords": [
+          "animal",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 106,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366976,
+      "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD807E7FB1B05BE7180",
+      "nft_serial": 96366976,
+      "name": "JB Nature #107",
+      "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD807E7FB1B05BE7180",
+      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD807E7FB1B05BE7180",
+      "image_url": "https://ipfs.io/ipfs/QmRTszsaXFK2aFapaWepgv8PLQ9YzqRNv8ahbdFjiMymjP",
+      "supply": 1,
+      "traits": {
+        "Topic": "Animal",
+        "Size": "2048 x 2048"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. \n\nXRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#22918F",
+          "#302335",
+          "#0B1923",
+          "#22535C"
+        ],
+        "vibe_tags": [
+          "animal",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "wildlife",
+        "mood_score": 6,
+        "keywords": [
+          "animal",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 107,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366982,
+      "xrpl_nft_id": "000888AEC991C993639BFB85813235F2175B16ADADDCDBD8914AE12105BE7186",
+      "nft_serial": 96366982,
+      "name": "JB Nature #113",
+      "marketplace_url": "https://xrp.cafe/nft/000888AEC991C993639BFB85813235F2175B16ADADDCDBD8914AE12105BE7186",
+      "opensea_url": "https://xrp.cafe/nft/000888AEC991C993639BFB85813235F2175B16ADADDCDBD8914AE12105BE7186",
+      "image_url": "https://ipfs.io/ipfs/QmRxrHfMAuiSyBWHfaAWczu12Fj1S18zkWMrDdV473gm5v",
+      "supply": 1,
+      "traits": {
+        "Topic": "Animal",
+        "Size": "2048 x 2048"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. \n\nXRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#E3E1D5",
+          "#295C62",
+          "#1B232E",
+          "#3F958E"
+        ],
+        "vibe_tags": [
+          "animal",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "wildlife",
+        "mood_score": 6,
+        "keywords": [
+          "animal",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 113,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366988,
+      "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD81AADC72705BE718C",
+      "nft_serial": 96366988,
+      "name": "JB Nature #119",
+      "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD81AADC72705BE718C",
+      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD81AADC72705BE718C",
+      "image_url": "https://ipfs.io/ipfs/QmPw311MdJBQTF7aHLg88FgTejU6jqcceK7wJpPnH3DKtc",
+      "supply": 1,
+      "traits": {
+        "Topic": "Animal",
+        "Size": "2048 x 2048"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. \n\nXRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#E7E4DD",
+          "#1A2C39",
+          "#72A8A6",
+          "#E8E6DE"
+        ],
+        "vibe_tags": [
+          "animal",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "wildlife",
+        "mood_score": 6,
+        "keywords": [
+          "animal",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 119,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366992,
+      "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD876450B2B05BE7190",
+      "nft_serial": 96366992,
+      "name": "JB Nature #123",
+      "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD876450B2B05BE7190",
+      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD876450B2B05BE7190",
+      "image_url": "https://ipfs.io/ipfs/QmX1hwup6TNPPmZpSeGYMjUH2MCgJSAmEBSivWhAoJDzHp",
+      "supply": 1,
+      "traits": {
+        "Topic": "Animal",
+        "Size": "2048 x 2048"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. \n\nXRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#F0EFE3",
+          "#2B4A54",
+          "#EBECEC",
+          "#DFE2E5"
+        ],
+        "vibe_tags": [
+          "animal",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "wildlife",
+        "mood_score": 6,
+        "keywords": [
+          "animal",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "nature",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 123,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    },
+    {
+      "token_id": 96366995,
+      "xrpl_nft_id": "000888AEC991C993639BFB85813235F2175B16ADADDCDBD8BAF67E2E05BE7193",
+      "nft_serial": 96366995,
+      "name": "JB Nature #126",
+      "marketplace_url": "https://xrp.cafe/nft/000888AEC991C993639BFB85813235F2175B16ADADDCDBD8BAF67E2E05BE7193",
+      "opensea_url": "https://xrp.cafe/nft/000888AEC991C993639BFB85813235F2175B16ADADDCDBD8BAF67E2E05BE7193",
+      "image_url": "https://ipfs.io/ipfs/QmYWiCKpjfR7sc2JtZNMYqhX6Tx5SXne3iHjx7dz5zAhkP",
+      "supply": 1,
+      "traits": {
+        "Topic": "Nature",
+        "Size": "2048 x 2048"
+      },
+      "ai": {
+        "description": "Created based on my photos and memories, transformed into playful AI creations with a unique touch and Content Credential. \n\nXRP Edition | (c) Jack Beatnic 2024 | 2048 x 2048",
+        "dominant_colors": [
+          "#E3E4E9",
+          "#101B2B",
+          "#264149",
+          "#F8F9FB"
+        ],
+        "vibe_tags": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe"
+        ],
+        "category": "landscape",
+        "mood_score": 6,
+        "keywords": [
+          "nature",
+          "playful",
+          "ai art",
+          "xrpl",
+          "xrp cafe",
+          "2048 x 2048",
+          "jackbeatnic",
+          "jb ai nature"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "listing_status": "Not Listed",
+      "listing_currency": "XRP",
+      "display_rank": 126,
+      "medium": "xrpl_ai",
+      "source": "xrp_cafe",
+      "marketplace": "xrp_cafe"
+    }
+  ]
+}

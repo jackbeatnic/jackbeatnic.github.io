@@ -58,7 +58,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/gallery.css?v=20260712r">
+    <link rel="stylesheet" href="css/gallery.css?v=20260713f">
 </head>
 <body class="gallery-protected">
     <header class="site-header site-header--sticky">
@@ -82,7 +82,7 @@
             <nav class="site-nav" aria-label="Main">
                 <a href="#gallery-root" data-section="ai_art">AI Art</a>
                 <a href="#gallery-root" data-section="photography">Photography &amp; Artworks</a>
-                <a href="#gallery-root" data-section="auctions">Auctions</a>
+                <a href="#gallery-root" data-section="atelier">The Atelier</a>
                 <a href="#about">About</a>
                 <button type="button" class="site-nav__tip" data-tip-open aria-expanded="false">Tip</button>
             </nav>
@@ -97,9 +97,9 @@
                 <span class="section-nav__label section-nav__label--full">Photography &amp; Artworks</span>
                 <span class="section-nav__label section-nav__label--short">Photo &amp; Artworks</span>
             </a>
-            <a href="#gallery-root" class="section-nav__tab" data-section="auctions">
-                <span class="section-nav__label section-nav__label--full">Auctions</span>
-                <span class="section-nav__label section-nav__label--short">Auctions</span>
+            <a href="#gallery-root" class="section-nav__tab" data-section="atelier">
+                <span class="section-nav__label section-nav__label--full">The Atelier</span>
+                <span class="section-nav__label section-nav__label--short">Atelier</span>
             </a>
             <button type="button" class="section-nav__tab section-nav__tab--tip" data-tip-open aria-expanded="false">Tip</button>
         </nav>
@@ -109,9 +109,15 @@
             <button type="button" class="section-subnav__tab" data-ai-kind="xrpl">XRPL</button>
         </div>
 
-        <div id="auction-subnav" class="section-subnav" hidden aria-label="Auction networks">
-            <button type="button" class="section-subnav__tab" data-auction-chain="base">Base</button>
-            <button type="button" class="section-subnav__tab" data-auction-chain="ethereum">Ethereum</button>
+        <div id="market-subnav" class="section-subnav section-subnav--market" hidden aria-label="The Atelier">
+            <div class="section-subnav__row" role="group" aria-label="Listing type">
+                <button type="button" class="section-subnav__tab" data-market-kind="auctions">Auctions</button>
+                <button type="button" class="section-subnav__tab" data-market-kind="editions">Limited Editions</button>
+            </div>
+            <div class="section-subnav__row" role="group" aria-label="Network">
+                <button type="button" class="section-subnav__tab" data-market-chain="base">Base</button>
+                <button type="button" class="section-subnav__tab" data-market-chain="ethereum">Ethereum</button>
+            </div>
         </div>
 
         <div id="photo-subnav" class="section-subnav" hidden aria-label="Photography categories">
@@ -271,9 +277,10 @@
     <script src="js/likes.js?v=20260712p"></script>
     <script src="js/color-groups.js?v=20260713b"></script>
     <script src="js/filters.js?v=20260713b"></script>
-    <script src="js/sections.js?v=20260713c"></script>
+    <script src="js/sections.js?v=20260713e"></script>
+    <script src="js/wallet.js?v=20260713e"></script>
     <script src="js/tip.js?v=20260712p"></script>
-    <script src="js/share.js?v=20260713c"></script>
-    <script src="js/gallery.js?v=20260713c"></script>
+    <script src="js/share.js?v=20260713e"></script>
+    <script src="js/gallery.js?v=20260713f"></script>
 </body>
 </html>

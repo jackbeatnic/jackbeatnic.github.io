@@ -1,15 +1,20 @@
 /**
- * Sekcje galerii: AI Art, Photography, Auctions (Manifold) + Tip.
+ * Sekcje galerii: AI Art, Photography, The Atelier + Tip.
  */
 const GallerySections = (() => {
     let site = {};
     let currentSection = 'ai_art';
     let currentAiKind = 'opensea';
     let currentPhotoKind = 'photo';
-    let currentAuctionChain = 'base';
+    let currentMarketKind = 'auctions';
+    let currentMarketChain = 'base';
 
     function config() {
         return site.sections || {};
+    }
+
+    function atelierCfg() {
+        return config().atelier || config().studio_market || {};
     }
 
     function syncSectionNavLabels() {
@@ -46,13 +51,18 @@ const GallerySections = (() => {
         });
     }
 
-    function syncAuctionSubnavLabels() {
-        const subnav = document.getElementById('auction-subnav');
-        const subsections = config().auctions?.subsections;
-        if (!subnav || !subsections?.length) return;
+    function syncMarketSubnavLabels() {
+        const wrap = document.getElementById('market-subnav');
+        const cfg = atelierCfg();
+        if (!wrap) return;
 
-        subsections.forEach(({ id, label }) => {
-            const tab = subnav.querySelector(`[data-auction-chain="${id}"]`);
+        (cfg.kind_subsections || []).forEach(({ id, label }) => {
+            const tab = wrap.querySelector(`[data-market-kind="${id}"]`);
+            if (tab && label) tab.textContent = label;
+        });
+
+        (cfg.chain_subsections || []).forEach(({ id, label }) => {
+            const tab = wrap.querySelector(`[data-market-chain="${id}"]`);
             if (tab && label) tab.textContent = label;
         });
     }
@@ -62,14 +72,15 @@ const GallerySections = (() => {
         currentSection = site.default_section || 'ai_art';
         const aiCfg = config().ai_art;
         const photoCfg = config().photography;
-        const auctionCfg = config().auctions;
+        const mCfg = atelierCfg();
         currentAiKind = aiCfg?.default_subsection || 'opensea';
         currentPhotoKind = photoCfg?.default_subsection || 'photo';
-        currentAuctionChain = auctionCfg?.default_subsection || 'base';
+        currentMarketKind = mCfg?.default_kind || 'auctions';
+        currentMarketChain = mCfg?.default_chain || 'base';
         syncSectionNavLabels();
         syncAiSubnavLabels();
         syncPhotoSubnavLabels();
-        syncAuctionSubnavLabels();
+        syncMarketSubnavLabels();
         bindNav();
         readUrl();
         syncNavUi();
@@ -103,12 +114,21 @@ const GallerySections = (() => {
             });
         });
 
-        document.querySelectorAll('[data-auction-chain]').forEach((el) => {
+        document.querySelectorAll('[data-market-kind]').forEach((el) => {
             el.addEventListener('click', (e) => {
                 e.preventDefault();
-                const chain = el.dataset.auctionChain;
+                const kind = el.dataset.marketKind;
+                if (!kind || el.disabled) return;
+                setMarketKind(kind);
+            });
+        });
+
+        document.querySelectorAll('[data-market-chain]').forEach((el) => {
+            el.addEventListener('click', (e) => {
+                e.preventDefault();
+                const chain = el.dataset.marketChain;
                 if (!chain || el.disabled) return;
-                setAuctionChain(chain);
+                setMarketChain(chain);
             });
         });
 
@@ -120,11 +140,14 @@ const GallerySections = (() => {
         const section = params.get('section');
         const ai = params.get('ai');
         const photo = params.get('photo');
-        const auction = params.get('auction');
+        const market = params.get('market');
+        const chain = params.get('chain') || params.get('auction');
 
         if (section === 'xrpl') {
             currentSection = 'ai_art';
             currentAiKind = 'xrpl';
+        } else if (section === 'auctions' || section === 'studio_market') {
+            currentSection = 'atelier';
         } else if (section && config()[section]) {
             currentSection = section;
         } else {
@@ -143,10 +166,12 @@ const GallerySections = (() => {
             currentPhotoKind = config().photography?.default_subsection || 'photo';
         }
 
-        if (currentSection === 'auctions') {
-            currentAuctionChain = auction || config().auctions?.default_subsection || 'base';
+        if (currentSection === 'atelier') {
+            currentMarketKind = market || atelierCfg()?.default_kind || 'auctions';
+            currentMarketChain = chain || atelierCfg()?.default_chain || 'base';
         } else {
-            currentAuctionChain = config().auctions?.default_subsection || 'base';
+            currentMarketKind = atelierCfg()?.default_kind || 'auctions';
+            currentMarketChain = atelierCfg()?.default_chain || 'base';
         }
 
         syncNavUi();
@@ -160,6 +185,8 @@ const GallerySections = (() => {
         params.delete('section');
         params.delete('ai');
         params.delete('photo');
+        params.delete('market');
+        params.delete('chain');
         params.delete('auction');
         if (currentSection !== (site.default_section || 'ai_art')) {
             params.set('section', currentSection);
@@ -176,10 +203,14 @@ const GallerySections = (() => {
                 params.set('photo', currentPhotoKind);
             }
         }
-        if (currentSection === 'auctions') {
-            const def = config().auctions?.default_subsection || 'base';
-            if (currentAuctionChain !== def) {
-                params.set('auction', currentAuctionChain);
+        if (currentSection === 'atelier') {
+            const defKind = atelierCfg()?.default_kind || 'auctions';
+            const defChain = atelierCfg()?.default_chain || 'base';
+            if (currentMarketKind !== defKind) {
+                params.set('market', currentMarketKind);
+            }
+            if (currentMarketChain !== defChain) {
+                params.set('chain', currentMarketChain);
             }
         }
         if (work) params.set('work', work);
@@ -198,8 +229,9 @@ const GallerySections = (() => {
         if (id === 'photography') {
             currentPhotoKind = config().photography?.default_subsection || 'photo';
         }
-        if (id === 'auctions') {
-            currentAuctionChain = config().auctions?.default_subsection || 'base';
+        if (id === 'atelier') {
+            currentMarketKind = atelierCfg()?.default_kind || 'auctions';
+            currentMarketChain = atelierCfg()?.default_chain || 'base';
         }
         syncNavUi();
         writeUrl();
@@ -222,9 +254,17 @@ const GallerySections = (() => {
         document.dispatchEvent(new CustomEvent('gallery:section'));
     }
 
-    function setAuctionChain(chain) {
-        currentSection = 'auctions';
-        currentAuctionChain = chain;
+    function setMarketKind(kind) {
+        currentSection = 'atelier';
+        currentMarketKind = kind;
+        syncNavUi();
+        writeUrl();
+        document.dispatchEvent(new CustomEvent('gallery:section'));
+    }
+
+    function setMarketChain(chain) {
+        currentSection = 'atelier';
+        currentMarketChain = chain;
         syncNavUi();
         writeUrl();
         document.dispatchEvent(new CustomEvent('gallery:section'));
@@ -242,19 +282,13 @@ const GallerySections = (() => {
         });
 
         const aiSubnav = document.getElementById('ai-subnav');
-        if (aiSubnav) {
-            aiSubnav.hidden = currentSection !== 'ai_art';
-        }
+        if (aiSubnav) aiSubnav.hidden = currentSection !== 'ai_art';
 
         const photoSubnav = document.getElementById('photo-subnav');
-        if (photoSubnav) {
-            photoSubnav.hidden = currentSection !== 'photography';
-        }
+        if (photoSubnav) photoSubnav.hidden = currentSection !== 'photography';
 
-        const auctionSubnav = document.getElementById('auction-subnav');
-        if (auctionSubnav) {
-            auctionSubnav.hidden = currentSection !== 'auctions';
-        }
+        const marketSubnav = document.getElementById('market-subnav');
+        if (marketSubnav) marketSubnav.hidden = currentSection !== 'atelier';
 
         document.querySelectorAll('[data-ai-kind]').forEach((el) => {
             const active = currentSection === 'ai_art' && el.dataset.aiKind === currentAiKind;
@@ -269,18 +303,39 @@ const GallerySections = (() => {
             el.setAttribute('aria-pressed', String(active));
         });
 
-        const disabledAuctionChains = new Set(config().auctions?.disabled_subsections || []);
-        document.querySelectorAll('[data-auction-chain]').forEach((el) => {
-            const chain = el.dataset.auctionChain;
-            const disabled = disabledAuctionChains.has(chain);
+        const disabledKinds = new Set(atelierCfg()?.disabled_kinds || ['editions']);
+        document.querySelectorAll('[data-market-kind]').forEach((el) => {
+            const kind = el.dataset.marketKind;
+            const disabled = disabledKinds.has(kind);
             const active =
-                currentSection === 'auctions' && chain === currentAuctionChain && !disabled;
+                currentSection === 'atelier' &&
+                kind === currentMarketKind &&
+                !disabled;
             el.classList.toggle('is-active', active);
             el.classList.toggle('is-disabled', disabled);
             el.disabled = disabled;
             el.setAttribute('aria-pressed', String(active));
             if (disabled) {
-                el.title = config().auctions?.empty_messages?.[chain] || 'Coming soon';
+                el.title = atelierCfg()?.kind_notes?.[kind] || 'Coming soon';
+            } else {
+                el.removeAttribute('title');
+            }
+        });
+
+        const disabledChains = new Set(atelierCfg()?.disabled_chains || ['ethereum']);
+        document.querySelectorAll('[data-market-chain]').forEach((el) => {
+            const chain = el.dataset.marketChain;
+            const disabled = disabledChains.has(chain);
+            const active =
+                currentSection === 'atelier' &&
+                chain === currentMarketChain &&
+                !disabled;
+            el.classList.toggle('is-active', active);
+            el.classList.toggle('is-disabled', disabled);
+            el.disabled = disabled;
+            el.setAttribute('aria-pressed', String(active));
+            if (disabled) {
+                el.title = atelierCfg()?.chain_notes?.[chain] || 'Coming soon';
             } else {
                 el.removeAttribute('title');
             }
@@ -299,10 +354,16 @@ const GallerySections = (() => {
                 const kind = nft.photo_kind || 'photo';
                 return kind === currentPhotoKind;
             }
-            if (currentSection === 'auctions') {
-                if (medium !== 'manifold_auction') return false;
+            if (currentSection === 'atelier') {
                 const chainKey = nft.chain_key || nft.chain || 'base';
-                return chainKey === currentAuctionChain;
+                if (chainKey !== currentMarketChain) return false;
+                if (currentMarketKind === 'auctions') {
+                    return medium === 'manifold_auction';
+                }
+                if (currentMarketKind === 'editions') {
+                    return medium === 'manifold_edition';
+                }
+                return false;
             }
             return medium === currentSection;
         });
@@ -320,12 +381,30 @@ const GallerySections = (() => {
         return currentPhotoKind;
     }
 
+    function getMarketKind() {
+        return currentMarketKind;
+    }
+
+    function getMarketChain() {
+        return currentMarketChain;
+    }
+
+    /** @deprecated use getMarketChain */
     function getAuctionChain() {
-        return currentAuctionChain;
+        return currentMarketChain;
+    }
+
+    function isAtelierSection() {
+        return currentSection === 'atelier';
+    }
+
+    /** @deprecated use isAtelierSection */
+    function isStudioMarketSection() {
+        return isAtelierSection();
     }
 
     function isAuctionsSection() {
-        return currentSection === 'auctions';
+        return isAtelierSection();
     }
 
     function isPhotoOther() {
@@ -339,12 +418,26 @@ const GallerySections = (() => {
             const explore = titles[currentAiKind] || base.explore_title;
             return { ...base, explore_title: explore };
         }
-        if (currentSection === 'auctions') {
+        if (currentSection === 'atelier') {
             const titles = base.explore_titles || {};
-            const explore = titles[currentAuctionChain] || base.explore_title;
+            const explore = titles[currentMarketKind] || base.explore_title;
             return { ...base, explore_title: explore };
         }
         return base;
+    }
+
+    function emptyMessageForMarket() {
+        const msgs = atelierCfg()?.empty_messages || {};
+        const kindBlock = msgs[currentMarketKind];
+        if (typeof kindBlock === 'string') return kindBlock;
+        if (kindBlock && typeof kindBlock === 'object') {
+            return (
+                kindBlock[currentMarketChain] ||
+                kindBlock.base ||
+                'Nothing here yet.'
+            );
+        }
+        return 'Nothing here yet.';
     }
 
     function emptyMessage() {
@@ -356,9 +449,8 @@ const GallerySections = (() => {
             const msgs = config().photography?.empty_messages || {};
             return msgs[currentPhotoKind] || 'No works in this section yet.';
         }
-        if (currentSection === 'auctions') {
-            const msgs = config().auctions?.empty_messages || {};
-            return msgs[currentAuctionChain] || 'No live auctions right now.';
+        if (currentSection === 'atelier') {
+            return emptyMessageForMarket();
         }
         return 'No works in this section yet.';
     }
@@ -368,30 +460,36 @@ const GallerySections = (() => {
         const kind = nft.photo_kind || 'photo';
 
         if (medium === 'xrpl_ai') {
-            const same = currentSection === 'ai_art' && currentAiKind === 'xrpl';
-            if (same) return;
+            if (currentSection === 'ai_art' && currentAiKind === 'xrpl') return;
             currentSection = 'ai_art';
             currentAiKind = 'xrpl';
         } else if (medium === 'ai_art') {
-            const same = currentSection === 'ai_art' && currentAiKind === 'opensea';
-            if (same) return;
+            if (currentSection === 'ai_art' && currentAiKind === 'opensea') return;
             currentSection = 'ai_art';
             currentAiKind = 'opensea';
         } else if (medium === 'photography') {
-            const same = currentSection === 'photography' && kind === currentPhotoKind;
-            if (same) return;
+            if (currentSection === 'photography' && kind === currentPhotoKind) return;
             currentSection = 'photography';
             currentPhotoKind = kind;
         } else if (medium === 'manifold_auction') {
             const chainKey = nft.chain_key || nft.chain || 'base';
-            const same =
-                currentSection === 'auctions' && chainKey === currentAuctionChain;
-            if (same) return;
-            currentSection = 'auctions';
-            currentAuctionChain = chainKey;
+            if (
+                currentSection === 'atelier' &&
+                currentMarketKind === 'auctions' &&
+                chainKey === currentMarketChain
+            ) {
+                return;
+            }
+            currentSection = 'atelier';
+            currentMarketKind = 'auctions';
+            currentMarketChain = chainKey;
+        } else if (medium === 'manifold_edition') {
+            const chainKey = nft.chain_key || nft.chain || 'base';
+            currentSection = 'atelier';
+            currentMarketKind = 'editions';
+            currentMarketChain = chainKey;
         } else {
-            const same = medium === currentSection;
-            if (same) return;
+            if (medium === currentSection) return;
             currentSection = medium;
         }
 
@@ -408,7 +506,11 @@ const GallerySections = (() => {
         getCurrentSection,
         getAiKind,
         getPhotoKind,
+        getMarketKind,
+        getMarketChain,
         getAuctionChain,
+        isAtelierSection,
+        isStudioMarketSection,
         isAuctionsSection,
         isPhotoOther,
         getSectionMeta,

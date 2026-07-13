@@ -37,9 +37,15 @@ const GalleryShare = (() => {
             params.set('section', 'ai_art');
             params.set('ai', 'xrpl');
         } else if (medium === 'manifold_auction') {
-            params.set('section', 'auctions');
+            params.set('section', 'atelier');
+            params.set('market', 'auctions');
             const chain = nft.chain_key || nft.chain || 'base';
-            if (chain !== 'base') params.set('auction', chain);
+            if (chain !== 'base') params.set('chain', chain);
+        } else if (medium === 'manifold_edition') {
+            params.set('section', 'atelier');
+            params.set('market', 'editions');
+            const chain = nft.chain_key || nft.chain || 'base';
+            if (chain !== 'base') params.set('chain', chain);
         } else if (medium !== 'ai_art') {
             params.set('section', medium);
         }

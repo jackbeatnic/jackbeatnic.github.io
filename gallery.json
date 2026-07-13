@@ -32,6 +32,16 @@
         "url": "https://objkt.com/@jackbeatnicai/"
       },
       {
+        "id": "salvor-main",
+        "label": "Salvor / JackBeatnic",
+        "url": "https://salvor.io/profile/JackBeatnic"
+      },
+      {
+        "id": "salvor-ai",
+        "label": "Salvor / JackBeatnicAI",
+        "url": "https://salvor.io/profile/JackBeatnicAI"
+      },
+      {
         "id": "xrp-cafe",
         "label": "XRP.Cafe",
         "url": "https://xrp.cafe/user/rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn"
@@ -8550,7 +8560,7 @@
         },
         "empty_messages_series": {
           "nature_stories": "Nature Stories — serene landscapes across Avalanche, Base and Polygon.",
-          "nature_jam": "Nature Jam — expressive studies on Avalanche.",
+          "nature_jam": "Nature Jam — expressive studies on Avalanche (OpenSea & Salvor).",
           "flower_stories": "Flower Stories — botanical forms across three chains.",
           "based_ai": "Based AI — 1/1 and editions on Base.",
           "jb_ai_play": "AI Play — experimental ERC-1155 on Polygon (OpenSea).",

@@ -1594,6 +1594,11 @@ body.tip-open {
     margin-bottom: 0.55rem;
 }
 
+.nft-card__actions--dual {
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
 .btn {
     display: inline-flex;
     align-items: center;

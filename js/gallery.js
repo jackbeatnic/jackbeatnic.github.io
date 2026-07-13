@@ -88,6 +88,16 @@ const Gallery = (() => {
         );
     }
 
+    function isDualMarketplaceNft(nft) {
+        return (
+            nft.marketplace === 'dual' ||
+            (nft.salvor_url && nft.opensea_url) ||
+            (Array.isArray(nft.marketplaces) &&
+                nft.marketplaces.includes('salvor') &&
+                nft.marketplaces.includes('opensea'))
+        );
+    }
+
     function chainLabel(nft) {
         const chain = nft.chain || collectionInfo.chain || 'avalanche';
         return CHAIN_LABELS[chain] || chain;
@@ -117,7 +127,30 @@ const Gallery = (() => {
                 (nft.xrpl_nft_id ? `https://xrp.cafe/nft/${nft.xrpl_nft_id}` : '')
             );
         }
+        if (isDualMarketplaceNft(nft)) {
+            return nft.salvor_url || nft.marketplace_url || nft.opensea_url || '';
+        }
         return nft.marketplace_url || nft.objkt_url || nft.opensea_url || '';
+    }
+
+    function buildMarketActionsHtml(nft) {
+        if (isDualMarketplaceNft(nft)) {
+            const salvorHref = escapeHtml(nft.salvor_url || nft.marketplace_url || '');
+            const osHref = escapeHtml(
+                OpenSeaLinks.buyUrl(nft.opensea_url || nft.marketplace_url || ''),
+            );
+            return `
+                <div class="nft-card__actions nft-card__actions--dual">
+                    <a class="btn btn--primary btn--block" href="${salvorHref}" target="_blank" rel="noopener noreferrer">View on Salvor</a>
+                    <a class="btn btn--ghost btn--block" href="${osHref}" target="_blank" rel="noopener noreferrer">View on OpenSea</a>
+                </div>`;
+        }
+        const href = escapeHtml(OpenSeaLinks.buyUrl(marketplaceUrl(nft)));
+        const label = escapeHtml(marketplaceLabel(nft));
+        return `
+                <div class="nft-card__actions">
+                    <a class="btn btn--primary btn--block" href="${href}" target="_blank" rel="noopener noreferrer">${label}</a>
+                </div>`;
     }
 
     function tokenLabel(nft) {
@@ -135,6 +168,33 @@ const Gallery = (() => {
     }
 
     function formatPrice(nft) {
+        if (isDualMarketplaceNft(nft)) {
+            const symbol = currencyForNft(nft);
+            const salvor =
+                nft.salvor_price_avax ??
+                (symbol === 'AVAX' ? nft.current_price_avax : null) ??
+                priceField(nft, 'salvor_price', symbol);
+            const opensea =
+                nft.opensea_price_avax ?? priceField(nft, 'opensea_price', symbol);
+            if (salvor != null) {
+                const hint =
+                    opensea != null
+                        ? `Salvor · OpenSea ${opensea} ${symbol}`
+                        : 'Listed on Salvor';
+                return {
+                    text: `${salvor} ${symbol}`,
+                    hint,
+                    kind: 'listed',
+                };
+            }
+            if (opensea != null) {
+                return {
+                    text: `${opensea} ${symbol}`,
+                    hint: 'OpenSea',
+                    kind: 'listed',
+                };
+            }
+        }
         if (isManifoldAuction(nft)) {
             const symbol = currencyForNft(nft);
             const bid = nft.current_bid_eth;
@@ -222,22 +282,25 @@ const Gallery = (() => {
     async function load() {
         const grid = document.getElementById('gallery-grid');
         try {
-            const [mainRes, xrpRes, aiPlayRes, auctionRes] = await Promise.all([
+            const [mainRes, xrpRes, aiPlayRes, natureJamRes, auctionRes] = await Promise.all([
                 fetch('gallery.json'),
                 fetch('xrp_gallery.json'),
                 fetch('ai_play_gallery.json'),
+                fetch('nature_jam_gallery.json'),
                 fetch('auctions_gallery.json'),
             ]);
             if (!mainRes.ok) throw new Error(`HTTP ${mainRes.status}`);
             const data = await mainRes.json();
             const xrpData = xrpRes.ok ? await xrpRes.json() : { nfts: [] };
             const aiPlayData = aiPlayRes.ok ? await aiPlayRes.json() : { nfts: [] };
+            const natureJamData = natureJamRes.ok ? await natureJamRes.json() : { nfts: [] };
             const auctionData = auctionRes.ok ? await auctionRes.json() : { nfts: [] };
 
             allNfts = [
                 ...(data.nfts || []),
                 ...(xrpData.nfts || []),
                 ...(aiPlayData.nfts || []),
+                ...(natureJamData.nfts || []),
                 ...(auctionData.nfts || []),
             ];
             collectionInfo = {
@@ -806,10 +869,9 @@ const Gallery = (() => {
             ? `<p class="nft-card__description">${description}</p>`
             : '';
         const category = escapeHtml((nft.ai?.category || '').toUpperCase());
-        const osHref = escapeHtml(OpenSeaLinks.buyUrl(marketplaceUrl(nft)));
-        const marketLabel = marketplaceLabel(nft);
         const tokenLabelText = tokenLabel(nft);
         const price = formatPrice(nft);
+        const marketActionsHtml = buildMarketActionsHtml(nft);
         const likesCount = nft.likes_count ?? 0;
 
         const colorsHtml = (nft.ai?.dominant_colors || [])
@@ -863,9 +925,7 @@ const Gallery = (() => {
                 ${descriptionHtml}
                 <div class="nft-card__tags">${tagsHtml}</div>
                 <div class="color-dots nft-card__palette">${colorsHtml}</div>
-                <div class="nft-card__actions">
-                    <a class="btn btn--primary btn--block" href="${osHref}" target="_blank" rel="noopener noreferrer">${escapeHtml(marketLabel)}</a>
-                </div>
+                ${marketActionsHtml}
                 <div class="nft-card__footer">
                     <div>
                         <span class="nft-card__category">${category}</span>

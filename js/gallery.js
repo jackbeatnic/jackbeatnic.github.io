@@ -219,19 +219,29 @@ const Gallery = (() => {
         render(getDisplayList());
     }
 
+    function isAiPlayGalleryEnabledInData(data) {
+        const catalog = data?.collection_info?.ai_series_catalog || {};
+        if (catalog.series?.jb_ai_play?.enabled === false) return false;
+        const disabled = data?.site?.sections?.ai_art?.disabled_series || [];
+        return !disabled.includes('jb_ai_play');
+    }
+
     async function load() {
         const grid = document.getElementById('gallery-grid');
         try {
-            const [mainRes, xrpRes, aiPlayRes, auctionRes] = await Promise.all([
-                fetch('gallery.json'),
-                fetch('xrp_gallery.json'),
-                fetch('ai_play_gallery.json'),
-                fetch('auctions_gallery.json'),
-            ]);
+            const mainRes = await fetch('gallery.json');
             if (!mainRes.ok) throw new Error(`HTTP ${mainRes.status}`);
             const data = await mainRes.json();
+            const aiPlayEnabled = isAiPlayGalleryEnabledInData(data);
+
+            const [xrpRes, aiPlayRes, auctionRes] = await Promise.all([
+                fetch('xrp_gallery.json'),
+                aiPlayEnabled ? fetch('ai_play_gallery.json') : Promise.resolve(null),
+                fetch('auctions_gallery.json'),
+            ]);
             const xrpData = xrpRes.ok ? await xrpRes.json() : { nfts: [] };
-            const aiPlayData = aiPlayRes.ok ? await aiPlayRes.json() : { nfts: [] };
+            const aiPlayData =
+                aiPlayEnabled && aiPlayRes?.ok ? await aiPlayRes.json() : { nfts: [] };
             const auctionData = auctionRes.ok ? await auctionRes.json() : { nfts: [] };
 
             allNfts = [

@@ -1283,6 +1283,9 @@ body.tip-open {
 
 .nft-image-wrap {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     aspect-ratio: var(--thumb-ratio);
     background: var(--gray-50);
     overflow: hidden;
@@ -1315,22 +1318,20 @@ body.tip-open {
 
 .nft-image-wrap img {
     display: block;
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
     object-fit: contain;
     object-position: center;
     pointer-events: none;
     -webkit-user-drag: none;
     user-drag: none;
-    transform: scale(1);
     filter: saturate(1) brightness(1);
-    transition:
-        transform 0.7s var(--ease-out),
-        filter 0.55s var(--ease-out);
+    transition: filter 0.55s var(--ease-out);
 }
 
 .nft-card:hover .nft-image-wrap img {
-    transform: scale(1.02);
     filter: saturate(1.04) brightness(1.02);
 }
 
@@ -1782,9 +1783,12 @@ body.lightbox-open {
 .lightbox__figure {
     position: relative;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 0;
     max-width: min(960px, 100%);
-    width: 100%;
+    width: auto;
     padding: 0.75rem;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1793,9 +1797,12 @@ body.lightbox-open {
 
 .lightbox__image {
     display: block;
-    width: 100%;
+    max-width: min(92vw, 960px);
     max-height: min(82vh, 900px);
+    width: auto;
+    height: auto;
     object-fit: contain;
+    object-position: center;
     border-radius: 2px;
     box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
     pointer-events: none;

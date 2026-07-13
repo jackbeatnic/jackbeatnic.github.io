@@ -738,12 +738,7 @@ const Gallery = (() => {
         card.dataset.nftKey = key;
 
         const thumbSrc = ImageProxy.displayUrl(nft.image_url, IMAGE_PROXY);
-        const viewSrc = ImageProxy.displayUrl(
-            nft.image_url,
-            IMAGE_PROXY,
-            ImageProxy.VIEW_MAX_WIDTH,
-            ImageProxy.VIEW_MAX_HEIGHT,
-        );
+        const viewSrc = ImageProxy.viewUrl(nft.image_url, IMAGE_PROXY);
         const name = escapeHtml(nft.name);
         const description = escapeHtml((nft.ai?.description || '').trim());
         const descriptionHtml = description
@@ -758,8 +753,6 @@ const Gallery = (() => {
                 <span class="nft-card__badge">Live auction</span>
                 <img src="${thumbSrc}"
                      alt="${name}"
-                     width="${ImageProxy.THUMB_WIDTH}"
-                     height="${ImageProxy.THUMB_HEIGHT}"
                      loading="lazy"
                      decoding="async"
                      draggable="false"
@@ -806,12 +799,7 @@ const Gallery = (() => {
         card.dataset.nftKey = key;
 
         const thumbSrc = ImageProxy.displayUrl(nft.image_url, IMAGE_PROXY);
-        const viewSrc = ImageProxy.displayUrl(
-            nft.image_url,
-            IMAGE_PROXY,
-            ImageProxy.VIEW_MAX_WIDTH,
-            ImageProxy.VIEW_MAX_HEIGHT,
-        );
+        const viewSrc = ImageProxy.viewUrl(nft.image_url, IMAGE_PROXY);
         const name = escapeHtml(nft.name);
         const description = escapeHtml((nft.ai?.description || '').trim());
         const descriptionHtml = description
@@ -840,8 +828,6 @@ const Gallery = (() => {
             <div class="nft-image-wrap">
                 <img src="${thumbSrc}"
                      alt="${name}"
-                     width="${ImageProxy.THUMB_WIDTH}"
-                     height="${ImageProxy.THUMB_HEIGHT}"
                      loading="lazy"
                      decoding="async"
                      draggable="false"

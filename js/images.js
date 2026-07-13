@@ -27,10 +27,10 @@ const ImageProxy = (() => {
 
     function weservUrl(originalUrl, w, h, fit = 'inside') {
         const encoded = encodeURIComponent(originalUrl);
-        return (
-            `https://images.weserv.nl/?url=${encoded}` +
-            `&w=${w}&h=${h}&fit=${fit}&output=webp&q=${WEBP_QUALITY}&n=-1`
-        );
+        let url = `https://images.weserv.nl/?url=${encoded}`;
+        if (w) url += `&w=${w}`;
+        if (h) url += `&h=${h}`;
+        return `${url}&fit=${fit}&output=webp&q=${WEBP_QUALITY}&n=-1`;
     }
 
     function cloudflareUrl(originalUrl, w, h, fit = 'inside') {
@@ -70,8 +70,29 @@ const ImageProxy = (() => {
         }
     }
 
+    /**
+     * URL do lightboxa (View) — pełny obraz bez przycinania ramki proxy.
+     * CDN OpenSea: oryginał; IPFS: proxy z limitem jednej osi.
+     */
+    function viewUrl(originalUrl, mode = 'weserv') {
+        if (!originalUrl) return '';
+        if (/seadn\.io/i.test(originalUrl)) return originalUrl;
+        if (!shouldProxy(originalUrl)) return originalUrl;
+
+        switch (mode) {
+            case 'cloudflare':
+                return cloudflareUrl(originalUrl, VIEW_MAX_WIDTH, 0, 'inside');
+            case 'direct':
+                return originalUrl;
+            case 'weserv':
+            default:
+                return weservUrl(originalUrl, VIEW_MAX_WIDTH, 0, 'inside');
+        }
+    }
+
     return {
         displayUrl,
+        viewUrl,
         THUMB_WIDTH,
         THUMB_HEIGHT,
         VIEW_MAX_WIDTH,

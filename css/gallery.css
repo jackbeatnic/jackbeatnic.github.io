@@ -305,6 +305,18 @@ a {
     border-top: 1px solid var(--rule, rgba(0, 0, 0, 0.08));
 }
 
+.section-subnav--wrap {
+    flex-wrap: wrap;
+    row-gap: 0.35rem;
+}
+
+.section-subnav--wrap .section-subnav__tab {
+    flex: 0 1 auto;
+    min-width: 7.5rem;
+    padding-left: 0.65rem;
+    padding-right: 0.65rem;
+}
+
 /* ── Photography / Other — $PHOTO promo ── */
 .section-promo {
     margin: 0 0 1.25rem;

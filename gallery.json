@@ -8502,6 +8502,9 @@
       "ai_art": {
         "label": "AI Art",
         "explore_title": "Explore AI Art · OpenSea",
+        "default_subsection": "opensea",
+        "default_series": "nature_stories",
+        "all_series_label": "All",
         "subsections": [
           {
             "id": "opensea",
@@ -8512,14 +8515,29 @@
             "label": "XRPL"
           }
         ],
-        "default_subsection": "opensea",
         "explore_titles": {
           "opensea": "Explore AI Art · OpenSea",
           "xrpl": "Explore AI Art · XRP.Cafe"
         },
+        "series_explore_titles": {
+          "nature_stories": "Nature Stories",
+          "nature_jam": "Nature Jam",
+          "flower_stories": "Flower Stories",
+          "based_ai": "Based AI",
+          "jb_ai_play": "AI Play",
+          "all": "All series"
+        },
         "empty_messages": {
           "opensea": "No works in this section yet.",
           "xrpl": "JB AI Nature on XRP.Cafe will appear here after sync."
+        },
+        "empty_messages_series": {
+          "nature_stories": "Nature Stories — serene landscapes across Avalanche, Base and Polygon.",
+          "nature_jam": "Nature Jam — expressive studies on Avalanche.",
+          "flower_stories": "Flower Stories — botanical forms across three chains.",
+          "based_ai": "Based AI — 1/1 and editions on Base.",
+          "jb_ai_play": "AI Play — experimental 1/1 works on Polygon and Base Manifold.",
+          "all": "No works match this view."
         }
       },
       "photography": {

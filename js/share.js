@@ -36,6 +36,12 @@ const GalleryShare = (() => {
         } else if (medium === 'xrpl_ai') {
             params.set('section', 'ai_art');
             params.set('ai', 'xrpl');
+        } else if (medium === 'ai_art') {
+            params.set('section', 'ai_art');
+            params.set('ai', 'opensea');
+            const series = nft.ai_series;
+            const defSeries = 'nature_stories';
+            if (series && series !== defSeries) params.set('series', series);
         } else if (medium === 'manifold_auction') {
             params.set('section', 'atelier');
             params.set('market', 'auctions');

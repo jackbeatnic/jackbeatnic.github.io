@@ -147,12 +147,13 @@ CO NIE ROBIMY TERAZ
 CHECKLIST IMPLEMENTACJI
 -----------------------
   [ ] Zweryfikować slug OpenSea dla base_jb_ai_play (raportowanie)
-  [ ] Dodać base_jb_ai_play do kolekcje.json
-  [ ] Utworzyć ai_play_gallery.json (pusty szkielet + 1 test token)
-  [ ] aktualizuj_ai_play_do_galerii.py
-  [ ] UI: ai-series-subnav + ?series= w URL
-  [ ] Domyślny series=nature_stories w sections.js
-  [ ] Opcjonalnie: migracja ai_series na stare tokeny w gallery.json (skrypt jednorazowy)
+  [x] Dodać base_jb_ai_play do kolekcje.json
+  [x] ai_play_gallery.json (186 tokenów: 150 Polygon + 36 Base)
+  [x] aktualizuj_ai_play_do_galerii.py
+  [x] UI: ai-series-subnav + ?series= w URL
+  [x] Domyślny series=nature_stories w sections.js
+  [x] ai_series z collection_id (bez ręcznej edycji gallery.json)
+  [ ] Ceny OpenSea: raportuj_kolekcje.py + ponowny sync (gdy OPENSEA_API_KEY)
 
 
 POWIĄZANIE Z ATELIER

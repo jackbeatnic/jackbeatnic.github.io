@@ -1,0 +1,172 @@
+================================================================================
+  PLAN: Nurty AI Art + Manifold (base_jb_ai_play) w sekcji AI
+  Katalog: /home/jb/jb_nft/www/
+  Powiązane: raportowanie/kolekcje.json, gallery.json, PLAN_ATELIER.txt
+  Data: 2026-07-13
+================================================================================
+
+
+PROBLEM
+-------
+  • gallery.json zaczyna się od Nature Stories (Avalanche) — dobrze.
+  • Manifold (kontrakt 231786736 / base_jb_ai_play) ma live prace — inny nurt.
+  • Wszystko w jednej siatce „AI Art → OpenSea” = bałagan na górze i w filtrach.
+  • Mamy ~5 nurty + XRPL + później Manifold Atelier (aukcje) — każde inne tempo.
+
+
+NURTY (kanoniczna mapa)
+-----------------------
+  Nurty to SERIE — nie sieci. Sieć jest atrybutem karty (chain).
+
+  ┌─────────────────┬──────────┬──────────────────────────────────────────────┐
+  │ Nurty (ai_series)│ Standard │ Kolekcje (collection_id w kolekcje.json)   │
+  ├─────────────────┼──────────┼──────────────────────────────────────────────┤
+  │ nature_stories  │ ERC-1155 │ avalanche_nature_stories                   │
+  │                 │          │ polygon_nature_stories_vol2                │
+  │                 │          │ base_nature_stories_vol3                   │
+  │                 │          │ (+ Sui TradePort — inny portfel, osobno)   │
+  ├─────────────────┼──────────┼──────────────────────────────────────────────┤
+  │ nature_jam      │ ERC-721  │ avalanche_nature_jam                       │
+  │                 │ +1155 v2 │ avalanche_nature_jam_vol2                    │
+  ├─────────────────┼──────────┼──────────────────────────────────────────────┤
+  │ flower_stories  │ ERC-1155 │ avalanche_flower_stories                   │
+  │                 │          │ polygon_flower_stories_vol2                │
+  │                 │          │ base_flower_stories_vol3                   │
+  ├─────────────────┼──────────┼──────────────────────────────────────────────┤
+  │ based_ai        │ 721+1155 │ base_jb_based_ai, base_jb_based_ai_vol2    │
+  ├─────────────────┼──────────┼──────────────────────────────────────────────┤
+  │ jb_ai_play      │ 1/1 play │ polygon_jb_ai_play (Polygon, OpenSea)     │
+  │                 │          │ base_jb_ai_play (Base, Manifold kontrakt)  │
+  └─────────────────┴──────────┴──────────────────────────────────────────────┘
+
+  Manifold kontrakt (JB AI Play na Base):
+    On-chain:     0x3ae3dd0baa83dfcb8f07e55ae6737bcd0d694347
+    Manifold ID:  231786736
+    Hub:          https://manifold.xyz/@jbeatnic/contract/231786736
+    Przykład:     …/contract/231786736/161
+
+
+PROPOZYCJA UI — DWA POZIOMY (jak Photo / Atelier)
+-------------------------------------------------
+  Poziom 1 (już jest):     OpenSea  |  XRPL
+  Poziom 2 (NOWY, tylko gdy OpenSea):
+
+    Nature Stories | Nature Jam | Flower Stories | Based AI | AI Play | All
+
+  DOMYŚLNY nurt przy wejściu w AI Art → OpenSea:
+    nature_stories   (NIE „All” — unikamy mieszania z AI Play / Manifold)
+
+  URL:
+    ?section=ai_art&ai=opensea&series=nature_stories
+    ?section=ai_art&ai=opensea&series=jb_ai_play
+    ?section=ai_art&ai=opensea&series=all
+
+  XRPL: bez drugiego rzędu (osobny plik xrp_gallery.json — bez zmian).
+
+  Atelier (aukcje Manifold): osobna zakładka — NIE tutaj.
+  Atelier listingi Studio: tylko linki — NIE siatka AI.
+
+
+POLA W JSON (każdy token AI)
+----------------------------
+  Obowiązkowe dla nowych wpisów:
+    medium:        "ai_art"
+    ai_series:     "nature_stories" | "jb_ai_play" | …
+    collection_id: jak w kolekcje.json
+    source:        "opensea" | "manifold"   (skąd metadane / link buy)
+
+  Istniejące tokeny w gallery.json:
+    ai_series można NALICZYĆ przy syncu z collection_id (bez ręcznej edycji 200+ kart na start).
+
+
+SKĄD DANE — base_jb_ai_play (Manifold + OpenSea)
+------------------------------------------------
+  1) METADANE (obraz, nazwa, opis):
+     • OpenSea API przez raportowanie (ten sam kontrakt na Base jest listowany)
+     • Zapasowo: tokenURI on-chain / IPFS
+     • Link do pracy: manifold.xyz/@jbeatnic/contract/231786736/{tokenId}
+
+  2) CENY / listing:
+     • raportuj_kolekcje.py --kolekcja base_jb_ai_play → CSV
+     • aktualizuj_ceny_z_raportu.py (rozszerzyć o base_jb_ai_play)
+
+  3) NIE mieszać z Atelier:
+     • purchase listingi na Manifold → link „Works for sale” (już jest)
+     • live AUKCJE → auctions_gallery.json / Atelier
+     • AI Play w galerii = katalog 1/1 do kolekcjonowania (OpenSea + Manifold URL)
+
+
+PLIKI — PODZIAŁ (wzorzec jak XRPL)
+----------------------------------
+  gallery.json              — Nature Stories, Jam, Flower, Based (OpenSea bulk)
+  ai_play_gallery.json      — NOWY: polygon_jb_ai_play + base_jb_ai_play
+  xrp_gallery.json          — XRPL (bez zmian)
+  auctions_gallery.json     — live aukcje Atelier (bez zmian)
+
+  gallery.js ładuje:
+    [...data.nfts, ...xrpData.nfts, ...aiPlayData.nfts, ...auctionData.nfts]
+
+  Zalety:
+    • Nature Stories zostaje na początku gallery.json
+    • AI Play rośnie osobno — zero ryzyka „wstrzyknięcia” w #0001–#0010
+    • Sync Manifold/OpenSea tylko w ai_play_gallery.json
+
+
+SKRYPTY (kolejność prac)
+------------------------
+  [1] kolekcje.json — wpis base_jb_ai_play (contract Base, slug OpenSea do weryfikacji)
+  [2] raportuj_kolekcje.py --kolekcja base_jb_ai_play
+  [3] aktualizuj_ai_play_do_galerii.py — NOWY
+        • merge raport CSV + opcjonalnie wzbogacenie URL Manifold
+        • output: ai_play_gallery.json
+        • każdy token: ai_series: "jb_ai_play", source: opensea|manifold
+  [4] sections.js + index.html — drugi rząd subnav (series)
+  [5] gallery.js — load ai_play_gallery.json, filter po ai_series
+  [6] (później) to samo dla innych nurtów jeśli chcesz osobne pliki per seria
+
+
+FILTR „ALL”
+-----------
+  Pokazuje wszystkie nurty, ale SORTOWANIE:
+    1) wg ai_series_catalog.order (nurty)
+    2) wewnątrz nurtu: display_rank / token_id
+
+  Dzięki temu Nature Stories nadal „prowadzi”, a AI Play jest na końcu listy All,
+  nie na górze.
+
+
+CO NIE ROBIMY TERAZ
+-------------------
+  ✗ Import listingów Studio (/p/jackbeatnic) do siatki AI
+  ✗ Mieszanie aukcji Atelier z AI Play
+  ✗ Automatyczny sync całego kontraktu Manifold bez OpenSea (API Manifold publiczne
+    do token list jest ograniczone — OpenSea raport + link Manifold wystarczy na start)
+  ✗ Sui / TradePort w tym samym nurcie (osobny portfel — osobna faza)
+
+
+CHECKLIST IMPLEMENTACJI
+-----------------------
+  [ ] Zweryfikować slug OpenSea dla base_jb_ai_play (raportowanie)
+  [ ] Dodać base_jb_ai_play do kolekcje.json
+  [ ] Utworzyć ai_play_gallery.json (pusty szkielet + 1 test token)
+  [ ] aktualizuj_ai_play_do_galerii.py
+  [ ] UI: ai-series-subnav + ?series= w URL
+  [ ] Domyślny series=nature_stories w sections.js
+  [ ] Opcjonalnie: migracja ai_series na stare tokeny w gallery.json (skrypt jednorazowy)
+
+
+POWIĄZANIE Z ATELIER
+--------------------
+  Ten sam kontrakt 0x3ae3… na Base:
+    • AI Art → AI Play     = katalog 1/1 (kolekcjonowanie)
+    • The Atelier          = tylko live aukcje (type 1) + przyszłe LE
+
+  To ten sam smart contract, inne typy listingów — rozdzielone sekcjami UI.
+
+
+KONFIGURACJA W gallery.json
+---------------------------
+  collection_info.ai_series_catalog — mapa nurtów (patrz plik JSON).
+  Jedno źródło prawdy dla etykiet subnav i collection_id → ai_series.
+
+================================================================================

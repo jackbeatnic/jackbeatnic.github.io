@@ -5,7 +5,9 @@ const GallerySections = (() => {
     let site = {};
     let currentSection = 'ai_art';
     let currentAiKind = 'opensea';
+    let currentAiSeries = 'nature_stories';
     let currentPhotoKind = 'photo';
+    let collectionToSeries = {};
     let currentMarketKind = 'auctions';
     let currentMarketChain = 'base';
 
@@ -15,6 +17,57 @@ const GallerySections = (() => {
 
     function atelierCfg() {
         return config().atelier || config().studio_market || {};
+    }
+
+    function aiSeriesCatalog() {
+        return site.ai_series_catalog || config().ai_art?.series_catalog || {};
+    }
+
+    function defaultAiSeries() {
+        return (
+            config().ai_art?.default_series ||
+            aiSeriesCatalog().default ||
+            'nature_stories'
+        );
+    }
+
+    function rebuildCollectionToSeries() {
+        collectionToSeries = {};
+        const series = aiSeriesCatalog().series || {};
+        Object.entries(series).forEach(([seriesId, cfg]) => {
+            (cfg.collection_ids || []).forEach((colId) => {
+                collectionToSeries[colId] = seriesId;
+            });
+        });
+    }
+
+    function resolveAiSeries(nft) {
+        if (nft?.ai_series) return nft.ai_series;
+        const colId = nft?.collection_id;
+        if (colId && collectionToSeries[colId]) return collectionToSeries[colId];
+        return null;
+    }
+
+    function seriesOrder() {
+        const order = aiSeriesCatalog().order || [];
+        return [...order, 'all'];
+    }
+
+    function seriesSortIndex(seriesId) {
+        const order = seriesOrder();
+        const idx = order.indexOf(seriesId);
+        return idx >= 0 ? idx : order.length;
+    }
+
+    function sortBySeriesOrder(nfts) {
+        return [...nfts].sort((a, b) => {
+            const sa = seriesSortIndex(resolveAiSeries(a) || 'zzz');
+            const sb = seriesSortIndex(resolveAiSeries(b) || 'zzz');
+            if (sa !== sb) return sa - sb;
+            const ra = Number(a.display_rank) || Number(a.token_id) || 0;
+            const rb = Number(b.display_rank) || Number(b.token_id) || 0;
+            return ra - rb;
+        });
     }
 
     function syncSectionNavLabels() {
@@ -38,6 +91,22 @@ const GallerySections = (() => {
             const tab = subnav.querySelector(`[data-ai-kind="${id}"]`);
             if (tab && label) tab.textContent = label;
         });
+    }
+
+    function syncAiSeriesSubnavLabels() {
+        const subnav = document.getElementById('ai-series-subnav');
+        const catalog = aiSeriesCatalog();
+        if (!subnav) return;
+
+        (catalog.order || []).forEach((id) => {
+            const tab = subnav.querySelector(`[data-ai-series="${id}"]`);
+            const label = catalog.series?.[id]?.label;
+            if (tab && label) tab.textContent = label;
+        });
+
+        const allTab = subnav.querySelector('[data-ai-series="all"]');
+        const allLabel = config().ai_art?.all_series_label || 'All';
+        if (allTab) allTab.textContent = allLabel;
     }
 
     function syncPhotoSubnavLabels() {
@@ -74,11 +143,14 @@ const GallerySections = (() => {
         const photoCfg = config().photography;
         const mCfg = atelierCfg();
         currentAiKind = aiCfg?.default_subsection || 'opensea';
+        currentAiSeries = defaultAiSeries();
         currentPhotoKind = photoCfg?.default_subsection || 'photo';
         currentMarketKind = mCfg?.default_kind || 'auctions';
         currentMarketChain = mCfg?.default_chain || 'base';
+        rebuildCollectionToSeries();
         syncSectionNavLabels();
         syncAiSubnavLabels();
+        syncAiSeriesSubnavLabels();
         syncPhotoSubnavLabels();
         syncMarketSubnavLabels();
         bindNav();
@@ -102,6 +174,15 @@ const GallerySections = (() => {
                 const kind = el.dataset.aiKind;
                 if (!kind) return;
                 setAiKind(kind);
+            });
+        });
+
+        document.querySelectorAll('[data-ai-series]').forEach((el) => {
+            el.addEventListener('click', (e) => {
+                e.preventDefault();
+                const series = el.dataset.aiSeries;
+                if (!series) return;
+                setAiSeries(series);
             });
         });
 
@@ -142,6 +223,7 @@ const GallerySections = (() => {
         const photo = params.get('photo');
         const market = params.get('market');
         const chain = params.get('chain') || params.get('auction');
+        const series = params.get('series');
 
         if (section === 'xrpl') {
             currentSection = 'ai_art';
@@ -156,8 +238,14 @@ const GallerySections = (() => {
 
         if (currentSection === 'ai_art') {
             currentAiKind = ai || config().ai_art?.default_subsection || 'opensea';
+            if (currentAiKind === 'opensea') {
+                currentAiSeries = series || defaultAiSeries();
+            } else {
+                currentAiSeries = defaultAiSeries();
+            }
         } else {
             currentAiKind = config().ai_art?.default_subsection || 'opensea';
+            currentAiSeries = defaultAiSeries();
         }
 
         if (currentSection === 'photography' && photo) {
@@ -188,6 +276,7 @@ const GallerySections = (() => {
         params.delete('market');
         params.delete('chain');
         params.delete('auction');
+        params.delete('series');
         if (currentSection !== (site.default_section || 'ai_art')) {
             params.set('section', currentSection);
         }
@@ -195,6 +284,9 @@ const GallerySections = (() => {
             const def = config().ai_art?.default_subsection || 'opensea';
             if (currentAiKind !== def) {
                 params.set('ai', currentAiKind);
+            }
+            if (currentAiKind === 'opensea' && currentAiSeries !== defaultAiSeries()) {
+                params.set('series', currentAiSeries);
             }
         }
         if (currentSection === 'photography') {
@@ -225,6 +317,7 @@ const GallerySections = (() => {
         currentSection = id;
         if (id === 'ai_art') {
             currentAiKind = config().ai_art?.default_subsection || 'opensea';
+            currentAiSeries = defaultAiSeries();
         }
         if (id === 'photography') {
             currentPhotoKind = config().photography?.default_subsection || 'photo';
@@ -242,6 +335,18 @@ const GallerySections = (() => {
     function setAiKind(kind) {
         currentSection = 'ai_art';
         currentAiKind = kind;
+        if (kind === 'opensea') {
+            currentAiSeries = defaultAiSeries();
+        }
+        syncNavUi();
+        writeUrl();
+        document.dispatchEvent(new CustomEvent('gallery:section'));
+    }
+
+    function setAiSeries(series) {
+        currentSection = 'ai_art';
+        currentAiKind = 'opensea';
+        currentAiSeries = series;
         syncNavUi();
         writeUrl();
         document.dispatchEvent(new CustomEvent('gallery:section'));
@@ -284,6 +389,12 @@ const GallerySections = (() => {
         const aiSubnav = document.getElementById('ai-subnav');
         if (aiSubnav) aiSubnav.hidden = currentSection !== 'ai_art';
 
+        const aiSeriesSubnav = document.getElementById('ai-series-subnav');
+        if (aiSeriesSubnav) {
+            aiSeriesSubnav.hidden =
+                currentSection !== 'ai_art' || currentAiKind !== 'opensea';
+        }
+
         const photoSubnav = document.getElementById('photo-subnav');
         if (photoSubnav) photoSubnav.hidden = currentSection !== 'photography';
 
@@ -299,6 +410,15 @@ const GallerySections = (() => {
         document.querySelectorAll('[data-photo-kind]').forEach((el) => {
             const active =
                 currentSection === 'photography' && el.dataset.photoKind === currentPhotoKind;
+            el.classList.toggle('is-active', active);
+            el.setAttribute('aria-pressed', String(active));
+        });
+
+        document.querySelectorAll('[data-ai-series]').forEach((el) => {
+            const active =
+                currentSection === 'ai_art' &&
+                currentAiKind === 'opensea' &&
+                el.dataset.aiSeries === currentAiSeries;
             el.classList.toggle('is-active', active);
             el.setAttribute('aria-pressed', String(active));
         });
@@ -343,11 +463,15 @@ const GallerySections = (() => {
     }
 
     function filterNfts(allNfts) {
-        return allNfts.filter((nft) => {
+        const filtered = allNfts.filter((nft) => {
             const medium = nft.medium || 'ai_art';
             if (currentSection === 'ai_art') {
                 if (currentAiKind === 'xrpl') return medium === 'xrpl_ai';
-                return medium === 'ai_art';
+                if (medium !== 'ai_art') return false;
+                if (currentAiKind === 'opensea' && currentAiSeries !== 'all') {
+                    return resolveAiSeries(nft) === currentAiSeries;
+                }
+                return true;
             }
             if (currentSection === 'photography') {
                 if (medium !== 'photography') return false;
@@ -367,6 +491,15 @@ const GallerySections = (() => {
             }
             return medium === currentSection;
         });
+
+        if (
+            currentSection === 'ai_art' &&
+            currentAiKind === 'opensea' &&
+            currentAiSeries === 'all'
+        ) {
+            return sortBySeriesOrder(filtered);
+        }
+        return filtered;
     }
 
     function getCurrentSection() {
@@ -375,6 +508,10 @@ const GallerySections = (() => {
 
     function getAiKind() {
         return currentAiKind;
+    }
+
+    function getAiSeries() {
+        return currentAiSeries;
     }
 
     function getPhotoKind() {
@@ -415,7 +552,17 @@ const GallerySections = (() => {
         const base = config()[currentSection] || {};
         if (currentSection === 'ai_art') {
             const titles = base.explore_titles || {};
-            const explore = titles[currentAiKind] || base.explore_title;
+            let explore = titles[currentAiKind] || base.explore_title;
+            if (currentAiKind === 'opensea') {
+                const seriesTitles = base.series_explore_titles || {};
+                explore =
+                    seriesTitles[currentAiSeries] ||
+                    aiSeriesCatalog().series?.[currentAiSeries]?.label ||
+                    explore;
+                if (currentAiSeries !== 'all' && explore) {
+                    explore = `Explore ${explore}`;
+                }
+            }
             return { ...base, explore_title: explore };
         }
         if (currentSection === 'atelier') {
@@ -442,6 +589,10 @@ const GallerySections = (() => {
 
     function emptyMessage() {
         if (currentSection === 'ai_art') {
+            if (currentAiKind === 'opensea') {
+                const seriesMsgs = config().ai_art?.empty_messages_series || {};
+                if (seriesMsgs[currentAiSeries]) return seriesMsgs[currentAiSeries];
+            }
             const msgs = config().ai_art?.empty_messages || {};
             return msgs[currentAiKind] || 'No works in this section yet.';
         }
@@ -464,9 +615,17 @@ const GallerySections = (() => {
             currentSection = 'ai_art';
             currentAiKind = 'xrpl';
         } else if (medium === 'ai_art') {
-            if (currentSection === 'ai_art' && currentAiKind === 'opensea') return;
+            const series = resolveAiSeries(nft) || defaultAiSeries();
+            if (
+                currentSection === 'ai_art' &&
+                currentAiKind === 'opensea' &&
+                currentAiSeries === series
+            ) {
+                return;
+            }
             currentSection = 'ai_art';
             currentAiKind = 'opensea';
+            currentAiSeries = series;
         } else if (medium === 'photography') {
             if (currentSection === 'photography' && kind === currentPhotoKind) return;
             currentSection = 'photography';
@@ -505,7 +664,11 @@ const GallerySections = (() => {
         filterNfts,
         getCurrentSection,
         getAiKind,
+        getAiSeries,
+        resolveAiSeries,
+        sortBySeriesOrder,
         getPhotoKind,
+        setAiSeries,
         getMarketKind,
         getMarketChain,
         getAuctionChain,

@@ -102,11 +102,12 @@ const Gallery = (() => {
 
     function marketplaceLabel(nft) {
         if (isManifoldAuction(nft)) return 'Bid on Manifold';
+        if (nft.source === 'manifold' && nft.manifold_url) return 'View on Manifold';
         return `View on ${marketplaceName(nft)}`;
     }
 
     function marketplaceUrl(nft) {
-        if (isManifoldAuction(nft)) {
+        if (isManifoldAuction(nft) || nft.manifold_url) {
             return nft.manifold_url || nft.marketplace_url || '';
         }
         if (isXrpCafeNft(nft)) {
@@ -221,19 +222,22 @@ const Gallery = (() => {
     async function load() {
         const grid = document.getElementById('gallery-grid');
         try {
-            const [mainRes, xrpRes, auctionRes] = await Promise.all([
+            const [mainRes, xrpRes, aiPlayRes, auctionRes] = await Promise.all([
                 fetch('gallery.json'),
                 fetch('xrp_gallery.json'),
+                fetch('ai_play_gallery.json'),
                 fetch('auctions_gallery.json'),
             ]);
             if (!mainRes.ok) throw new Error(`HTTP ${mainRes.status}`);
             const data = await mainRes.json();
             const xrpData = xrpRes.ok ? await xrpRes.json() : { nfts: [] };
+            const aiPlayData = aiPlayRes.ok ? await aiPlayRes.json() : { nfts: [] };
             const auctionData = auctionRes.ok ? await auctionRes.json() : { nfts: [] };
 
             allNfts = [
                 ...(data.nfts || []),
                 ...(xrpData.nfts || []),
+                ...(aiPlayData.nfts || []),
                 ...(auctionData.nfts || []),
             ];
             collectionInfo = {
@@ -266,6 +270,7 @@ const Gallery = (() => {
                 {};
             siteConfig = {
                 ...(data.site || {}),
+                ai_series_catalog: data.collection_info?.ai_series_catalog || {},
                 sections: {
                     ...mainSections,
                     ...xrpSections,

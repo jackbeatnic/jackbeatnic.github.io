@@ -1,0 +1,145 @@
+================================================================================
+  STATUS: Galeria — AI Play (Polygon) + Nature Jam (Salvor) + UI
+  Katalog: /home/jb/jb_nft/www/
+  Powiązane: raportowanie/raporty/, gallery.json, PLAN_AI_SERIES.txt
+  Data zapisu: 2026-07-14
+================================================================================
+
+UWAGA NA TERAZ (2026-07-14)
+---------------------------
+  • Użytkownik korzysta z OPENSEA_API_KEY w innym oknie — NIE uruchamiać
+    synchronizacji OpenSea API / masowego scrape do czasu zakończenia tamtego
+    procesu (ryzyko rate-limit, przerwania, nadużycia klucza).
+  • Dotyczy m.in.: aktualizuj_ai_play_do_galerii.py --images api,
+    raportuj_kolekcje.py, ponowny pełny scrape 2000+ tokenów AI Play.
+
+
+================================================================================
+CO ZROBILIŚMY (wdrożone na jackbeatnic.github.io)
+================================================================================
+
+EVM / nawigacja
+  • Zakładka AI Art: OpenSea → EVM (obok XRPL; Tezos/Sui jako placeholdery).
+  • Subnav serii: Nature Stories, Nature Jam, Flower Stories, Based AI, AI Play.
+
+AI PLAY (Polygon, jb-ai-play)
+  • Plik: ai_play_gallery.json (~988 tokenów od #036; tokeny 1–35 spalone).
+  • Skrypt: aktualizuj_ai_play_do_galerii.py
+      - excluded_burned_through: 35 (kolekcje.json + filtr w syncu)
+      - obrazy: scrape OpenSea seadn.io z ?w=1000 (pełna proporcja, nie kwadrat 500×500)
+      - opisy: wyczyszczone (puste do czasu analizy jak Nature Stories / XRPL)
+  • Miniatury / View: stała ramka 5:4, object-fit contain, proxy weserv fit=inside
+    (jak OBJKT/Photo); View zawsze przez proxy, bez obcinania zakresu obrazu.
+
+NATURE JAM (Avalanche ERC-721, Salvor + OpenSea)
+  • Plik: nature_jam_gallery.json — 827 tokenów.
+  • Skrypt: aktualizuj_nature_jam_do_galerii.py
+      - raport: raportowanie/raporty/avalanche_nature_jam_raport.csv
+      - ceny Salvor: raportowanie/raporty/avalanche_nature_jam_salvor.csv
+      - obrazy: OpenSea seadn ?w=1000 (ta sama zasada co AI Play)
+  • UI karty:
+      - widoczna cena Salvor (AVAX) jako główna; w hint cena OpenSea
+      - dwa przyciski: View on Salvor + View on OpenSea (ten sam portfel AI)
+  • Stopka Marketplaces (jak OBJKT):
+      - Salvor / JackBeatnic  → https://salvor.io/profile/JackBeatnic (photo)
+      - Salvor / JackBeatnicAI → https://salvor.io/profile/JackBeatnicAI (AI)
+
+gallery.js
+  • Ładuje: gallery.json + xrp_gallery.json + ai_play_gallery.json
+            + nature_jam_gallery.json + auctions_gallery.json
+  • Dual marketplace (Salvor+OS), formatPrice z ceną Salvor, buildMarketActionsHtml.
+
+Commity (orientacyjnie, main www):
+  • EVM rename, AI Play launch, burned 1–35, thumb contain, ?w=1000 seadn,
+    Nature Jam 827 + Salvor dual listing (a69b811).
+
+
+================================================================================
+CO JESZCZE W TYM ZAKRESIE — NIE ROBIĆ OD RAZU (kolejność sugerowana)
+================================================================================
+
+1) AI PLAY — dociąganie pozostałych tokenów (Polygon)
+   • Obecnie w galerii ~988 z obrazem (z ~2049 on-chain po wykluczeniu 1–35).
+   • Brakujące głównie przez rate-limit scrape OpenSea (nie pełny sync).
+   • Po zakończeniu pracy z API w innym oknie:
+       ./venv/bin/python3 aktualizuj_ai_play_do_galerii.py --workers 16
+     ewentualnie --images api (gdy OPENSEA_API_KEY wolny).
+   • Nie uruchamiać równolegle z innymi zadaniami OpenSea.
+
+2) AI PLAY — opisy i kolory (jak XRPL / Nature Stories)
+   • Obecnie ai.description = "" (celowo bez powtarzalnych placeholderów).
+   • Docelowo: własna analiza obrazu → dominant_colors + vibe_tags + opis
+     zapisane do JSON (nie surowe metadane OpenSea).
+   • Wzór: xrp_gallery.json + pipeline prezentacja/ (jeśli dotyczy).
+
+3) NATURE JAM — traity z OpenSea vs własna analiza kolorów
+   • Na OpenSea / w metadanych są traity wskazujące mniej więcej kolor
+     dominujący — można je ściągnąć (API lub raport).
+   • ALE: użytkownik WOLI analizę jak przy XRPL:
+       - przeanalizować obraz (JPEG z ?w=1000 lub proxy)
+       - własne dominant_colors w ai.dominant_colors
+       - dopiero wtedy filtry kolorów na stronie (ColorGroups)
+   • Traity OS traktować co najwyżej jako pomocnicze / do weryfikacji,
+     nie jako źródło filtrów w UI.
+   • NIE pobierać traitów teraz (konflikt z API OpenSea w innym oknie).
+
+4) NATURE JAM vol. 2 (ERC-1155)
+   • avalanche_nature_jam_vol2 — osobna kolekcja w kolekcje.json;
+     jeszcze nie w nature_jam_gallery.json (tylko vol. 1 ERC-721).
+   • Wymaga osobnego syncu lub rozszerzenia skryptu + ewentualnie Salvor.
+
+5) Ceny — odświeżanie
+   • Salvor/OS: ponowny eksport CSV w raportowanie, potem:
+       aktualizuj_nature_jam_do_galerii.py --skip-images  (szybko, same ceny/URL)
+   • AI Play ceny: raportuj_kolekcje.py + aktualizuj_ceny_z_raportu.py
+     (gdy API wolne).
+
+6) Nature Jam — opisy AI (jak Nature Stories)
+   • Puste ai.description — miejsce na późniejszą analizę / generowanie tekstu.
+   • Nie kopiować powtarzalnych szablonów z nazwą tokenu 3×.
+
+7) Inne serie EVM (bez zmian w tej sesji)
+   • Flower Stories, Based AI — jak dotąd głównie z gallery.json / raportów.
+   • Sui TradePort — osobny portfel, poza EVM subnav (notatka w PLAN_AI_SERIES).
+
+
+================================================================================
+PLIKI KLUCZOWE
+================================================================================
+
+  www/ai_play_gallery.json
+  www/nature_jam_gallery.json
+  www/aktualizuj_ai_play_do_galerii.py
+  www/aktualizuj_nature_jam_do_galerii.py
+  www/js/gallery.js
+  www/js/images.js          (proxy weserv, viewUrl, seadn ?w=)
+  www/gallery.json          (ai_series_catalog, marketplace_links Salvor)
+  raportowanie/raporty/avalanche_nature_jam_raport.csv
+  raportowanie/raporty/avalanche_nature_jam_salvor.csv
+  raportowanie/kolekcje.json  (polygon_jb_ai_play excluded_burned_through: 35)
+
+
+================================================================================
+SZYBKA ŚCIĄGAWKA (gdy API OpenSea wolne)
+================================================================================
+
+  # Nature Jam — pełny sync (obrazy + ceny)
+  ./venv/bin/python3 www/aktualizuj_nature_jam_do_galerii.py --workers 16
+
+  # Nature Jam — tylko ceny/URL (bez scrape obrazów)
+  ./venv/bin/python3 www/aktualizuj_nature_jam_do_galerii.py --skip-images
+
+  # AI Play — dociąganie tokenów / obrazów (bez API)
+  ./venv/bin/python3 www/aktualizuj_ai_play_do_galerii.py --workers 16
+
+  # AI Play — z API (TYLKO gdy klucz nie jest używany gdzie indziej)
+  export OPENSEA_API_KEY="..."
+  ./venv/bin/python3 www/aktualizuj_ai_play_do_galerii.py --images api
+
+  # Deploy www
+  cd www && git add … && git commit && git push
+
+
+================================================================================
+KONIEC NOTATKI
+================================================================================

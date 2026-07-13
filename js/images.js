@@ -7,8 +7,8 @@
  *   'direct'     — tylko dev / awaryjnie (pełny IPFS w źródle strony)
  */
 const ImageProxy = (() => {
-    const THUMB_WIDTH = 440;
-    const THUMB_HEIGHT = 330;
+    const THUMB_WIDTH = 400;
+    const THUMB_HEIGHT = 400;
     const VIEW_MAX_WIDTH = 1200;
     const VIEW_MAX_HEIGHT = 1600;
     const WEBP_QUALITY = 82;
@@ -19,6 +19,10 @@ const ImageProxy = (() => {
     function isIpfsOrGateway(url) {
         if (!url || typeof url !== 'string') return false;
         return /ipfs\.io|gateway\.pinata|cloudflare-ipfs|dweb\.link|arweave/i.test(url);
+    }
+
+    function shouldProxy(url) {
+        return isIpfsOrGateway(url) || /seadn\.io/i.test(url);
     }
 
     function weservUrl(originalUrl, w, h, fit = 'inside') {
@@ -53,7 +57,7 @@ const ImageProxy = (() => {
         fit = 'inside',
     ) {
         if (!originalUrl) return '';
-        if (!isIpfsOrGateway(originalUrl)) return originalUrl;
+        if (!shouldProxy(originalUrl)) return originalUrl;
 
         switch (mode) {
             case 'cloudflare':

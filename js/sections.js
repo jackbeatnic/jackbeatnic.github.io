@@ -4,7 +4,7 @@
 const GallerySections = (() => {
     let site = {};
     let currentSection = 'ai_art';
-    let currentAiKind = 'opensea';
+    let currentAiKind = 'evm';
     let currentAiSeries = 'nature_stories';
     let currentPhotoKind = 'photo';
     let collectionToSeries = {};
@@ -29,6 +29,21 @@ const GallerySections = (() => {
             aiSeriesCatalog().default ||
             'nature_stories'
         );
+    }
+
+    const LEGACY_AI_KINDS = { opensea: 'evm' };
+
+    function defaultAiKind() {
+        return config().ai_art?.default_subsection || 'evm';
+    }
+
+    function normalizeAiKind(kind) {
+        if (!kind) return defaultAiKind();
+        return LEGACY_AI_KINDS[kind] || kind;
+    }
+
+    function isEvmAiKind(kind = currentAiKind) {
+        return normalizeAiKind(kind) === 'evm';
     }
 
     function disabledAiSeries() {
@@ -171,7 +186,7 @@ const GallerySections = (() => {
         const aiCfg = config().ai_art;
         const photoCfg = config().photography;
         const mCfg = atelierCfg();
-        currentAiKind = aiCfg?.default_subsection || 'opensea';
+        currentAiKind = defaultAiKind();
         currentAiSeries = defaultAiSeries();
         currentPhotoKind = photoCfg?.default_subsection || 'photo';
         currentMarketKind = mCfg?.default_kind || 'auctions';
@@ -266,14 +281,14 @@ const GallerySections = (() => {
         }
 
         if (currentSection === 'ai_art') {
-            currentAiKind = ai || config().ai_art?.default_subsection || 'opensea';
-            if (currentAiKind === 'opensea') {
+            currentAiKind = normalizeAiKind(ai || defaultAiKind());
+            if (isEvmAiKind()) {
                 currentAiSeries = normalizeAiSeries(series || defaultAiSeries());
             } else {
                 currentAiSeries = defaultAiSeries();
             }
         } else {
-            currentAiKind = config().ai_art?.default_subsection || 'opensea';
+            currentAiKind = defaultAiKind();
             currentAiSeries = defaultAiSeries();
         }
 
@@ -310,11 +325,11 @@ const GallerySections = (() => {
             params.set('section', currentSection);
         }
         if (currentSection === 'ai_art') {
-            const def = config().ai_art?.default_subsection || 'opensea';
+            const def = defaultAiKind();
             if (currentAiKind !== def) {
                 params.set('ai', currentAiKind);
             }
-            if (currentAiKind === 'opensea' && currentAiSeries !== defaultAiSeries()) {
+            if (isEvmAiKind() && currentAiSeries !== defaultAiSeries()) {
                 params.set('series', currentAiSeries);
             }
         }
@@ -345,7 +360,7 @@ const GallerySections = (() => {
         if (!config()[id]) return;
         currentSection = id;
         if (id === 'ai_art') {
-            currentAiKind = config().ai_art?.default_subsection || 'opensea';
+            currentAiKind = defaultAiKind();
             currentAiSeries = defaultAiSeries();
         }
         if (id === 'photography') {
@@ -362,9 +377,12 @@ const GallerySections = (() => {
     }
 
     function setAiKind(kind) {
+        kind = normalizeAiKind(kind);
+        const disabled = new Set(config().ai_art?.disabled_subsections || []);
+        if (disabled.has(kind)) return;
         currentSection = 'ai_art';
         currentAiKind = kind;
-        if (kind === 'opensea') {
+        if (isEvmAiKind(kind)) {
             currentAiSeries = defaultAiSeries();
         }
         syncNavUi();
@@ -375,7 +393,7 @@ const GallerySections = (() => {
     function setAiSeries(series) {
         if (!isSeriesEnabled(series)) return;
         currentSection = 'ai_art';
-        currentAiKind = 'opensea';
+        currentAiKind = 'evm';
         currentAiSeries = series;
         syncNavUi();
         writeUrl();
@@ -422,7 +440,7 @@ const GallerySections = (() => {
         const aiSeriesSubnav = document.getElementById('ai-series-subnav');
         if (aiSeriesSubnav) {
             aiSeriesSubnav.hidden =
-                currentSection !== 'ai_art' || currentAiKind !== 'opensea';
+                currentSection !== 'ai_art' || !isEvmAiKind();
         }
 
         const photoSubnav = document.getElementById('photo-subnav');
@@ -431,10 +449,24 @@ const GallerySections = (() => {
         const marketSubnav = document.getElementById('market-subnav');
         if (marketSubnav) marketSubnav.hidden = currentSection !== 'atelier';
 
+        const disabledAiKinds = new Set(config().ai_art?.disabled_subsections || []);
+        const aiKindNotes = config().ai_art?.subsection_notes || {};
         document.querySelectorAll('[data-ai-kind]').forEach((el) => {
-            const active = currentSection === 'ai_art' && el.dataset.aiKind === currentAiKind;
+            const kind = el.dataset.aiKind;
+            const disabled = disabledAiKinds.has(kind);
+            const active =
+                currentSection === 'ai_art' &&
+                kind === currentAiKind &&
+                !disabled;
             el.classList.toggle('is-active', active);
+            el.classList.toggle('is-disabled', disabled);
+            el.disabled = disabled;
             el.setAttribute('aria-pressed', String(active));
+            if (disabled) {
+                el.title = aiKindNotes[kind] || 'Coming soon';
+            } else {
+                el.removeAttribute('title');
+            }
         });
 
         document.querySelectorAll('[data-photo-kind]').forEach((el) => {
@@ -451,7 +483,7 @@ const GallerySections = (() => {
             el.hidden = disabled;
             const active =
                 currentSection === 'ai_art' &&
-                currentAiKind === 'opensea' &&
+                isEvmAiKind() &&
                 series === currentAiSeries &&
                 !disabled;
             el.classList.toggle('is-active', active);
@@ -513,7 +545,7 @@ const GallerySections = (() => {
                 if (medium !== 'ai_art') return false;
                 const nftSeries = resolveAiSeries(nft);
                 if (nftSeries && hiddenSeries.has(nftSeries)) return false;
-                if (currentAiKind === 'opensea' && currentAiSeries !== 'all') {
+                if (isEvmAiKind() && currentAiSeries !== 'all') {
                     return nftSeries === currentAiSeries;
                 }
                 return true;
@@ -539,7 +571,7 @@ const GallerySections = (() => {
 
         if (
             currentSection === 'ai_art' &&
-            currentAiKind === 'opensea' &&
+            isEvmAiKind() &&
             currentAiSeries === 'all'
         ) {
             return sortBySeriesOrder(filtered);
@@ -598,7 +630,7 @@ const GallerySections = (() => {
         if (currentSection === 'ai_art') {
             const titles = base.explore_titles || {};
             let explore = titles[currentAiKind] || base.explore_title;
-            if (currentAiKind === 'opensea') {
+            if (isEvmAiKind()) {
                 const seriesTitles = base.series_explore_titles || {};
                 explore =
                     seriesTitles[currentAiSeries] ||
@@ -634,7 +666,7 @@ const GallerySections = (() => {
 
     function emptyMessage() {
         if (currentSection === 'ai_art') {
-            if (currentAiKind === 'opensea') {
+            if (isEvmAiKind()) {
                 const seriesMsgs = config().ai_art?.empty_messages_series || {};
                 if (seriesMsgs[currentAiSeries]) return seriesMsgs[currentAiSeries];
             }
@@ -663,13 +695,13 @@ const GallerySections = (() => {
             const series = normalizeAiSeries(resolveAiSeries(nft) || defaultAiSeries());
             if (
                 currentSection === 'ai_art' &&
-                currentAiKind === 'opensea' &&
+                isEvmAiKind() &&
                 currentAiSeries === series
             ) {
                 return;
             }
             currentSection = 'ai_art';
-            currentAiKind = 'opensea';
+            currentAiKind = 'evm';
             currentAiSeries = series;
         } else if (medium === 'photography') {
             if (currentSection === 'photography' && kind === currentPhotoKind) return;

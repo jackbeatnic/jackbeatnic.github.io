@@ -387,7 +387,7 @@ const Gallery = (() => {
     function showCommunityTokens() {
         const section = GallerySections.getCurrentSection();
         if (section === 'photography') return true;
-        return section === 'ai_art' && GallerySections.getAiKind() === 'opensea';
+        return section === 'ai_art' && GallerySections.getAiKind() === 'evm';
     }
 
     function syncSectionPromo() {

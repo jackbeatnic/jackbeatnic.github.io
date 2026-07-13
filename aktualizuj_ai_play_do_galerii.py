@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Sync JB AI Play → ai_play_gallery.json (Polygon + Base Manifold).
+"""Sync JB AI Play → ai_play_gallery.json (Polygon OpenSea).
+
+Domyślnie tylko polygon_jb_ai_play (slug jb-ai-play). Kontrakt Base/Manifold
+miesza fotografie — nie jest ciągnięty automatycznie; użyj --only base_jb_ai_play
+gdy będzie osobny filtr.
 
 Źródła (w kolejności):
   1. raportowanie/raporty/{collection_id}_raport.csv (ceny OpenSea)
@@ -8,7 +12,8 @@
 Usage:
   python3 aktualizuj_ai_play_do_galerii.py
   python3 aktualizuj_ai_play_do_galerii.py --dry-run
-  python3 aktualizuj_ai_play_do_galerii.py --max-scan 250
+  python3 aktualizuj_ai_play_do_galerii.py --only polygon_jb_ai_play
+  python3 aktualizuj_ai_play_do_galerii.py --only base_jb_ai_play
 """
 
 from __future__ import annotations
@@ -32,7 +37,8 @@ RAPORTY_DIR = JB_NFT / "raportowanie" / "raporty"
 MAIN_GALLERY_JSON = ROOT / "gallery.json"
 AI_PLAY_JSON = ROOT / "ai_play_gallery.json"
 
-PLAY_COLLECTIONS = ("polygon_jb_ai_play", "base_jb_ai_play")
+PLAY_COLLECTIONS = ("polygon_jb_ai_play",)
+ALL_PLAY_COLLECTIONS = ("polygon_jb_ai_play", "base_jb_ai_play")
 TOKEN_ID_BASE = {
     "polygon_jb_ai_play": 700_000_000,
     "base_jb_ai_play": 710_000_000,
@@ -302,9 +308,8 @@ def sync(
     only: str | None = None,
 ) -> int:
     collections = load_collections()
-    if len(collections) < len(PLAY_COLLECTIONS):
-        missing = set(PLAY_COLLECTIONS) - set(collections)
-        raise SystemExit(f"Brak kolekcji w kolekcje.json: {', '.join(sorted(missing))}")
+    if only and only not in collections:
+        raise SystemExit(f"Nieznana kolekcja: {only}")
 
     old_data = load_json(AI_PLAY_JSON) if AI_PLAY_JSON.exists() else {}
     old_by_key = {
@@ -313,10 +318,7 @@ def sync(
         if row.get("collection_id") and row.get("onchain_token_id") is not None
     }
 
-    col_ids = list(PLAY_COLLECTIONS)
     if only:
-        if only not in collections:
-            raise SystemExit(f"Nieznana kolekcja: {only}")
         col_ids = [only]
         keep = [
             row
@@ -324,6 +326,7 @@ def sync(
             if row.get("collection_id") != only
         ]
     else:
+        col_ids = list(PLAY_COLLECTIONS)
         keep = []
 
     all_entries: list[dict] = list(keep)
@@ -370,8 +373,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--meta-delay", type=float, default=0.15)
     parser.add_argument(
         "--only",
-        choices=PLAY_COLLECTIONS,
-        help="Sync a single collection (merge with existing JSON)",
+        choices=ALL_PLAY_COLLECTIONS,
+        help="Sync one collection; default run keeps Polygon only and drops Base/Manifold",
     )
     args = parser.parse_args(argv)
     return sync(

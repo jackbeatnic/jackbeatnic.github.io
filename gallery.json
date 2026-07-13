@@ -276,21 +276,16 @@
           ]
         },
         "jb_ai_play": {
-          "enabled": false,
           "label": "AI Play",
-          "note": "Paused — Manifold contract includes photo; resync with filter before re-enable",
+          "note": "Polygon OpenSea (slug jb-ai-play). Base Manifold excluded — mixed photo on that contract.",
           "standard": "1/1 experimental",
           "collection_ids": [
-            "polygon_jb_ai_play",
-            "base_jb_ai_play"
+            "polygon_jb_ai_play"
           ],
           "sources": [
-            "opensea",
-            "manifold"
+            "opensea"
           ],
-          "manifold_contract": "0x3ae3dd0baa83dfcb8f07e55ae6737bcd0d694347",
-          "manifold_id": "231786736",
-          "manifold_hub": "https://manifold.xyz/@jbeatnic/contract/231786736"
+          "opensea_slug": "jb-ai-play"
         }
       }
     },
@@ -8506,13 +8501,7 @@
         "explore_title": "Explore AI Art · OpenSea",
         "default_subsection": "opensea",
         "default_series": "nature_stories",
-        "disabled_series": [
-          "jb_ai_play"
-        ],
         "all_series_label": "All",
-        "series_notes": {
-          "jb_ai_play": "Paused — Manifold contract mixed photo; resync with filter before re-enable"
-        },
         "subsections": [
           {
             "id": "opensea",
@@ -8544,7 +8533,7 @@
           "nature_jam": "Nature Jam — expressive studies on Avalanche.",
           "flower_stories": "Flower Stories — botanical forms across three chains.",
           "based_ai": "Based AI — 1/1 and editions on Base.",
-          "jb_ai_play": "AI Play — experimental 1/1 works on Polygon and Base Manifold.",
+          "jb_ai_play": "AI Play — experimental 1/1 works on Polygon (OpenSea).",
           "all": "No works match this view."
         }
       },

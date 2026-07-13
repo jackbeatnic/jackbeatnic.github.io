@@ -59,8 +59,10 @@ ERC1155_ABI = [
 ]
 
 SEADN_RE = re.compile(
-    r"https://i2c\.seadn\.io/polygon/0xb7f10[a-fA-F0-9]+/[a-f0-9]+/[a-f0-9]+\.jpeg"
+    r"https://i2c\.seadn\.io/polygon/0xb7f10[a-fA-F0-9]+/[a-f0-9]+/[a-f0-9]+\.jpeg(?:\?w=\d+)?",
+    re.I,
 )
+SEADN_DISPLAY_WIDTH = 1000
 TITLE_RE = re.compile(r"<title>([^<]+)</title>", re.I)
 
 
@@ -172,6 +174,27 @@ def opensea_asset_url(contract: str, token_id: int) -> str:
     return f"https://opensea.io/assets/matic/{contract}/{token_id}"
 
 
+def normalize_seadn_image_url(url: str) -> str:
+    """OpenSea podaje kwadrat 500×500 bez ?w=; pełna proporcja jest przy ?w=1000."""
+    if not url or "seadn.io" not in url:
+        return url
+    base = url.split("?", 1)[0]
+    return f"{base}?w={SEADN_DISPLAY_WIDTH}"
+
+
+def pick_seadn_image(html: str) -> str:
+    matches = SEADN_RE.findall(html)
+    if not matches:
+        return ""
+    for img in matches:
+        if f"?w={SEADN_DISPLAY_WIDTH}" in img:
+            return normalize_seadn_image_url(img)
+    for img in matches:
+        if "?w=" in img:
+            return normalize_seadn_image_url(img)
+    return normalize_seadn_image_url(matches[0])
+
+
 def parse_opensea_title(title: str) -> str:
     raw = title.split("|")[0].strip()
     if " - " in raw:
@@ -197,8 +220,7 @@ def fetch_opensea_page(contract: str, token_id: int) -> tuple[str, str]:
 
     title_m = TITLE_RE.search(html)
     name = parse_opensea_title(title_m.group(1)) if title_m else ""
-    imgs = SEADN_RE.findall(html)
-    image = imgs[0] if imgs else ""
+    image = pick_seadn_image(html)
     return name, image
 
 

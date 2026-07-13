@@ -264,18 +264,6 @@ def infer_vibe_tags(meta: dict, traits: dict) -> list[str]:
     return out[:8]
 
 
-def infer_mood_score(vibe_tags: list[str], description: str) -> int:
-    score = 6
-    text = " ".join(vibe_tags) + " " + (description or "").lower()
-    if any(w in text for w in ("serene", "peaceful", "quiet", "contemplative")):
-        score += 1
-    if any(w in text for w in ("dramatic", "bold", "vibrant")):
-        score += 1
-    if "moody" in text:
-        score -= 1
-    return max(4, min(9, score))
-
-
 def traits_from_attributes(attrs: list[dict]) -> dict:
     traits: dict[str, str] = {}
     for row in attrs or []:
@@ -396,7 +384,6 @@ def build_entry(
     traits = traits_from_attributes(meta.get("attributes") or [])
     category = infer_category(meta, traits)
     vibe_tags = infer_vibe_tags(meta, traits)
-    mood = infer_mood_score(vibe_tags, description)
     colors = dominant_colors(image_url) if (with_colors and image_url) else []
 
     listing_status, current_price = listing_from_cafe(cafe, collection_row)
@@ -421,7 +408,6 @@ def build_entry(
             "dominant_colors": colors,
             "vibe_tags": vibe_tags,
             "category": category,
-            "mood_score": mood,
             "keywords": keywords_from(meta, traits, vibe_tags),
         },
         "likes_count": 0,
@@ -544,11 +530,19 @@ def sync(*, dry_run: bool = False, limit: int | None = None, skip_colors: bool =
         },
         "site": {
             "sections": {
-                "xrpl": {
-                    "label": "AI on XRPL",
-                    "label_short": "XRPL",
-                    "explore_title": "Explore AI on XRPL · XRP.Cafe",
-                    "empty_message": "JB AI Nature on XRP.Cafe will appear here after sync.",
+                "ai_art": {
+                    "subsections": [
+                        {"id": "opensea", "label": "OpenSea"},
+                        {"id": "xrpl", "label": "XRPL"},
+                    ],
+                    "default_subsection": "opensea",
+                    "explore_titles": {
+                        "opensea": "Explore AI Art · OpenSea",
+                        "xrpl": "Explore AI Art · XRP.Cafe",
+                    },
+                    "empty_messages": {
+                        "xrpl": "JB AI Nature on XRP.Cafe will appear here after sync.",
+                    },
                     "promo_eyebrow": "JB AI Nature on XRPL",
                     "promo_lead": "Collect and trade on XRP.Cafe — every work links to the marketplace.",
                     "collection_url": cafe_collection_vanity_url(vanity),

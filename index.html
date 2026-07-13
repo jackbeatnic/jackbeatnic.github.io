@@ -82,7 +82,6 @@
             <nav class="site-nav" aria-label="Main">
                 <a href="#gallery-root" data-section="ai_art">AI Art</a>
                 <a href="#gallery-root" data-section="photography">Photography &amp; Artworks</a>
-                <a href="#gallery-root" data-section="xrpl">AI on XRPL</a>
                 <a href="#about">About</a>
                 <button type="button" class="site-nav__tip" data-tip-open aria-expanded="false">Tip</button>
             </nav>
@@ -97,12 +96,13 @@
                 <span class="section-nav__label section-nav__label--full">Photography &amp; Artworks</span>
                 <span class="section-nav__label section-nav__label--short">Photo &amp; Artworks</span>
             </a>
-            <a href="#gallery-root" class="section-nav__tab" data-section="xrpl">
-                <span class="section-nav__label section-nav__label--full">AI on XRPL</span>
-                <span class="section-nav__label section-nav__label--short">XRPL</span>
-            </a>
             <button type="button" class="section-nav__tab section-nav__tab--tip" data-tip-open aria-expanded="false">Tip</button>
         </nav>
+
+        <div id="ai-subnav" class="section-subnav" hidden aria-label="AI Art marketplaces">
+            <button type="button" class="section-subnav__tab" data-ai-kind="opensea">OpenSea</button>
+            <button type="button" class="section-subnav__tab" data-ai-kind="xrpl">XRPL</button>
+        </div>
 
         <div id="photo-subnav" class="section-subnav" hidden aria-label="Photography categories">
             <button type="button" class="section-subnav__tab" data-photo-kind="photo">Photography</button>
@@ -151,7 +151,7 @@
 
             <div class="filters-row">
                 <label class="filters-row__label" for="search-filter">Search</label>
-                <input type="search" id="search-filter" class="filters-search" placeholder="Name, mood, keyword, color…" autocomplete="off">
+                <input type="search" id="search-filter" class="filters-search" placeholder="Name, keyword, tag, color…" autocomplete="off">
             </div>
 
             <div class="filters-row">

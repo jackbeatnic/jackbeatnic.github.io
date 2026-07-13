@@ -1626,12 +1626,6 @@ body.tip-open {
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.18);
 }
 
-.nft-card__mood {
-    color: var(--gray-400);
-    margin-left: 0.35rem;
-    font-weight: 300;
-}
-
 .nft-card__opensea {
     color: var(--gray-400);
     letter-spacing: 0.05em;

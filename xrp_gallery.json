@@ -13,11 +13,25 @@
   },
   "site": {
     "sections": {
-      "xrpl": {
-        "label": "AI on XRPL",
-        "label_short": "XRPL",
-        "explore_title": "Explore AI on XRPL · XRP.Cafe",
-        "empty_message": "JB AI Nature on XRP.Cafe will appear here after sync.",
+      "ai_art": {
+        "subsections": [
+          {
+            "id": "opensea",
+            "label": "OpenSea"
+          },
+          {
+            "id": "xrpl",
+            "label": "XRPL"
+          }
+        ],
+        "default_subsection": "opensea",
+        "explore_titles": {
+          "opensea": "Explore AI Art · OpenSea",
+          "xrpl": "Explore AI Art · XRP.Cafe"
+        },
+        "empty_messages": {
+          "xrpl": "JB AI Nature on XRP.Cafe will appear here after sync."
+        },
         "promo_eyebrow": "JB AI Nature on XRPL",
         "promo_lead": "Collect and trade on XRP.Cafe — every work links to the marketplace.",
         "collection_url": "https://xrp.cafe/collection/jb-ai-nature",

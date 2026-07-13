@@ -234,7 +234,6 @@ def build_nft_entry(token: dict, photo_kind: str, display_rank: int) -> dict:
             "dominant_colors": [],
             "vibe_tags": tags[:6],
             "category": category,
-            "mood_score": 6,
             "keywords": tags[:8] or [fa_name, "tezos", "photography"],
         },
         "likes_count": 0,
@@ -256,10 +255,28 @@ def build_nft_entry(token: dict, photo_kind: str, display_rank: int) -> dict:
     if price is not None:
         entry["current_price_xtz"] = price
 
+    mint_ts = (token.get("timestamp") or "").strip()
+    if mint_ts:
+        entry["mint_timestamp"] = mint_ts
+
     return entry
 
 
 def merge_photography(data: dict, objkt_entries: list[dict]) -> tuple[int, int]:
+    preserve_keys = ("share_url", "og_image", "likes_count")
+    old_by_id = {
+        int(nft["token_id"]): nft
+        for nft in data.get("nfts") or []
+        if nft.get("source") == "objkt" and nft.get("token_id") is not None
+    }
+    for entry in objkt_entries:
+        old = old_by_id.get(int(entry["token_id"]))
+        if not old:
+            continue
+        for key in preserve_keys:
+            if old.get(key) not in (None, "") and not entry.get(key):
+                entry[key] = old[key]
+
     kept = [
         nft
         for nft in data.get("nfts") or []

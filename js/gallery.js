@@ -192,11 +192,28 @@ const Gallery = (() => {
                 ...(data.collection_info || {}),
                 xrpl: xrpData.collection_info || {},
             };
+            const mainSections = data.site?.sections || {};
+            const xrpSections = xrpData.site?.sections || {};
             siteConfig = {
                 ...(data.site || {}),
                 sections: {
-                    ...(data.site?.sections || {}),
-                    ...(xrpData.site?.sections || {}),
+                    ...mainSections,
+                    ...xrpSections,
+                    ai_art: {
+                        ...(mainSections.ai_art || {}),
+                        ...(xrpSections.ai_art || {}),
+                        subsections:
+                            xrpSections.ai_art?.subsections ||
+                            mainSections.ai_art?.subsections,
+                        empty_messages: {
+                            ...(mainSections.ai_art?.empty_messages || {}),
+                            ...(xrpSections.ai_art?.empty_messages || {}),
+                        },
+                        explore_titles: {
+                            ...(mainSections.ai_art?.explore_titles || {}),
+                            ...(xrpSections.ai_art?.explore_titles || {}),
+                        },
+                    },
                 },
             };
 
@@ -287,7 +304,8 @@ const Gallery = (() => {
 
     function showCommunityTokens() {
         const section = GallerySections.getCurrentSection();
-        return section === 'ai_art' || section === 'photography';
+        if (section === 'photography') return true;
+        return section === 'ai_art' && GallerySections.getAiKind() === 'opensea';
     }
 
     function syncSectionPromo() {
@@ -298,7 +316,10 @@ const Gallery = (() => {
         const leadEl = document.getElementById('section-promo-lead');
         const listEl = document.getElementById('section-promo-tokens');
 
-        if (GallerySections.getCurrentSection() === 'xrpl') {
+        if (
+            GallerySections.getCurrentSection() === 'ai_art' &&
+            GallerySections.getAiKind() === 'xrpl'
+        ) {
             const meta = GallerySections.getSectionMeta();
             const xrplInfo = collectionInfo.xrpl || {};
             const collectionUrl =
@@ -576,7 +597,6 @@ const Gallery = (() => {
         const name = escapeHtml(nft.name);
         const description = escapeHtml(nft.ai?.description);
         const category = escapeHtml((nft.ai?.category || '').toUpperCase());
-        const mood = nft.ai?.mood_score ?? '—';
         const osHref = escapeHtml(OpenSeaLinks.buyUrl(marketplaceUrl(nft)));
         const marketLabel = marketplaceLabel(nft);
         const tokenLabelText = tokenLabel(nft);
@@ -642,7 +662,6 @@ const Gallery = (() => {
                 <div class="nft-card__footer">
                     <div>
                         <span class="nft-card__category">${category}</span>
-                        <span class="nft-card__mood">Mood ${mood}/10</span>
                     </div>
                 </div>
             </div>

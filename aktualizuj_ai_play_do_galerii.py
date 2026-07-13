@@ -35,6 +35,7 @@ AI_PLAY_JSON = ROOT / "ai_play_gallery.json"
 COLLECTION_ID = "polygon_jb_ai_play"
 TOKEN_ID_BASE = 700_000_000
 OPENSEA_SLUG = "jb-ai-play"
+DEFAULT_EXCLUDED_BURNED_THROUGH = 35
 
 RPC = {"polygon": "https://polygon-bor.publicnode.com"}
 OPENSEA_API = "https://api.opensea.io/api/v2"
@@ -383,6 +384,16 @@ def sync(
         max_scan=max_scan,
         dense_through=int(dense) if dense else None,
     )
+    excluded_burned = int(
+        collection.get("excluded_burned_through", DEFAULT_EXCLUDED_BURNED_THROUGH)
+    )
+    if excluded_burned > 0:
+        before = len(minted)
+        minted = [tid for tid in minted if tid > excluded_burned]
+        print(
+            f"  wykluczono spalone 1..{excluded_burned}: "
+            f"{before - len(minted)} tokenów"
+        )
     print(f"  on-chain minted: {len(minted)} tokenów")
 
     page_data: dict[int, tuple[str, str]] = {}
@@ -454,6 +465,7 @@ def sync(
             .replace("+00:00", "Z"),
             "token_count": len(entries),
             "onchain_minted": len(minted),
+            "excluded_burned_through": excluded_burned or None,
         },
         "nfts": entries,
     }

@@ -7,8 +7,8 @@
  *   'direct'     — tylko dev / awaryjnie (pełny IPFS w źródle strony)
  */
 const ImageProxy = (() => {
-    const THUMB_WIDTH = 400;
-    const THUMB_HEIGHT = 400;
+    const THUMB_WIDTH = 440;
+    const THUMB_HEIGHT = 352;
     const VIEW_MAX_WIDTH = 1200;
     const VIEW_MAX_HEIGHT = 1600;
     const WEBP_QUALITY = 82;

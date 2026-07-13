@@ -745,7 +745,10 @@ const Gallery = (() => {
             ImageProxy.VIEW_MAX_HEIGHT,
         );
         const name = escapeHtml(nft.name);
-        const description = escapeHtml(nft.ai?.description);
+        const description = escapeHtml((nft.ai?.description || '').trim());
+        const descriptionHtml = description
+            ? `<p class="nft-card__description">${description}</p>`
+            : '';
         const bidHref = escapeHtml(marketplaceUrl(nft));
         const price = formatPrice(nft);
         const tokenLabelText = tokenLabel(nft);
@@ -779,7 +782,7 @@ const Gallery = (() => {
                 <p class="nft-card__price" title="${escapeHtml(price.hint)}">
                     <span class="nft-card__price-value">${escapeHtml(price.text)}</span>
                 </p>
-                <p class="nft-card__description">${description}</p>
+                ${descriptionHtml}
                 <div class="nft-card__actions">
                     <a class="btn btn--primary btn--block" href="${bidHref}" target="_blank" rel="noopener noreferrer">Bid on Manifold</a>
                 </div>
@@ -810,7 +813,10 @@ const Gallery = (() => {
             ImageProxy.VIEW_MAX_HEIGHT,
         );
         const name = escapeHtml(nft.name);
-        const description = escapeHtml(nft.ai?.description);
+        const description = escapeHtml((nft.ai?.description || '').trim());
+        const descriptionHtml = description
+            ? `<p class="nft-card__description">${description}</p>`
+            : '';
         const category = escapeHtml((nft.ai?.category || '').toUpperCase());
         const osHref = escapeHtml(OpenSeaLinks.buyUrl(marketplaceUrl(nft)));
         const marketLabel = marketplaceLabel(nft);
@@ -868,7 +874,7 @@ const Gallery = (() => {
                 <p class="nft-card__price" title="${escapeHtml(price.hint)}">
                     <span class="nft-card__price-value">${escapeHtml(price.text)}</span>
                 </p>
-                <p class="nft-card__description">${description}</p>
+                ${descriptionHtml}
                 <div class="nft-card__tags">${tagsHtml}</div>
                 <div class="color-dots nft-card__palette">${colorsHtml}</div>
                 <div class="nft-card__actions">

@@ -1,0 +1,233 @@
+================================================================================
+  PLAN: The Atelier — własna sekcja sprzedaży (Jack Beatnic Gallery)
+  Katalog: /home/jb/jb_nft/www/
+  Live:    https://jackbeatnic.github.io/?section=atelier
+  Blueprint: Faza 5 (portfel) + Faza 6 (Manifold / własne listingi na stronie)
+  Data:    2026-07-13
+  Ostatni deploy: commit eec25bc (rebrand z Ghost Slot / Auctions)
+================================================================================
+
+
+CO TO JEST
+----------
+  The Atelier = ekskluzywny mikro-marketplace w galerii.
+  Klimat: atelier artystyczny — mała skala, bezpośrednio od twórcy, bez pośrednika.
+
+  NIE używamy już terminów: Ghost Slot, Studio Market.
+  W menu: „The Atelier” (skrót: „Atelier”).
+
+
+STRUKTURA W UI
+--------------
+  Zakładka główna:     The Atelier          (?section=atelier)
+
+  Podsekcja typu:      Auctions             (?market=auctions)     ← AKTYWNA
+                       Limited Editions     (?market=editions)     ← WYŁĄCZONA (coming soon)
+
+  Podsekcja sieci:     Base                 (?chain=base)          ← AKTYWNA
+                       Ethereum             (?chain=ethereum)      ← WYŁĄCZONA (L1 później)
+
+  Przykładowy URL:
+    https://jackbeatnic.github.io/?section=atelier&market=auctions&chain=base
+
+  Stare linki (działają — przekierowanie w js/sections.js):
+    ?section=auctions
+    ?section=studio_market
+
+
+JAK TO DZIAŁA DZIŚ (Faza 6 — bez licytacji w galerii)
+----------------------------------------------------
+  1. Wystawiasz aukcję w Manifold Studio (portfel AI, kontrakt Base).
+  2. Uruchamiasz sync:
+       cd /home/jb/jb_nft/www
+       python3 aktualizuj_manifold_do_galerii.py
+  3. Skrypt skanuje API Manifold → zapis auctions_gallery.json.
+  4. Galeria ładuje gallery.json + auctions_gallery.json → karty w Atelier.
+  5. Kolekcjoner klika „Bid on Manifold” → licytacja na manifold.xyz.
+
+  Na dziś: 0 live aukcji na Base → empty state w UI.
+
+  Sync skanuje:
+    • portfel:  0xf0b840349b3f285fc05c89eac594ddd254183fb9  (AI)
+    • kontrakt: 0x3ae3dd0baa83dfcb8f07e55ae6737bcd0d694347  (Manifold Base)
+    • marketplace Base: 0x5246807fB65d87b0D0a234E0f3D42374DE83b421
+
+
+PORTFELE — MAPA (ważne!)
+------------------------
+  Znany portfel 0xf0b8… to głównie AI (jackbeatnicai.base.eth), NIE Photo.
+
+  ┌─────────────┬──────────────────────────┬─────────────────────────────┐
+  │ Rola        │ ENS                      │ Adres                       │
+  ├─────────────┼──────────────────────────┼─────────────────────────────┤
+  │ AI (aktywny)│ jackbeatnicai.base.eth   │ 0xf0b840349b3f285fc05c89…  │
+  │ Photo       │ jackbeatnicphoto.base.eth│ 0xDD4b91ad6A86Dbcaa03221…  │
+  │ Main        │ jackbeatnic.base.eth     │ 0x6C1c25057045b3e9B38A25…  │
+  │ Priv EVM    │ (OpenSea-generated)      │ TBD                         │
+  │ Priv Solana │ (OpenSea-generated)      │ TBD                         │
+  └─────────────┴──────────────────────────┴─────────────────────────────┘
+
+  Konto OpenSea JackBeatnic — 4 jawne portfele (powiązane w gallery.json:
+  opensea_linked_wallets).
+
+  Zasada Manifold: JEDEN portfel = JEDEN kontrakt twórcy.
+  Nie da się podpiąć dwóch portfeli do tego samego kontraktu Manifold.
+
+  Strategia:
+    TERAZ     → Atelier na portfelu AI + kontrakcie Base (Manifold).
+                Małe sprzedaże Photo TYMCZASOWO też tu (interim_photo_sales).
+    PÓŹNIEJ   → Osobny kontrakt Manifold na portfelu Photo (jackbeatnicphoto).
+                Włączenie atelier_wallets.photo.enabled + nowy adres kontraktu.
+
+
+KONFIGURACJA W gallery.json
+---------------------------
+  collection_info.atelier_wallets
+    • ai    — enabled: true,  Manifold Base, wallet_id syncu
+    • photo — enabled: false, adres znany, kontrakt Base: [] (pusty = czeka)
+
+  collection_info.manifold_auctions
+    • wallet_id: "ai"
+    • creator_wallet, chains.base / chains.ethereum
+
+  collection_info.collector_access  (Faza 5 — szkielet, enabled: false)
+    • scan_wallet_ids: ["ai", "photo"]
+    • tier Collector: min 3 NFT od Jack Beatnic
+    • tier Patron:    min 10 NFT
+
+  site.sections.atelier
+    • label, podsekcje, empty_messages, promo copy
+
+
+LIMITED EDITIONS (plan — nie zaimplementowane)
+----------------------------------------------
+  Inspiracja: Foundation, Transient.xyz, Manifold purchase listings.
+
+  Typ w Manifold: listing type 2 (purchase), nie aukcja (type 1).
+  Opcje do wsparcia:
+    • seria 100–1000 sztuk
+    • cena stała bezterminowo
+    • cena rosnąca: każda kolejna sztuka +X% (escalating price)
+
+  Wymaga:
+    • osobny sync (purchase listings) — nowy skrypt lub rozszerzenie
+    • medium: manifold_edition w gallery JSON
+    • ewentualnie osobny kontrakt na Photo
+
+  W UI: zakładka „Limited Editions” jest widoczna, ale disabled (coming soon).
+
+
+FAZA 5 — PORTFEL ODBIORCY (plan)
+--------------------------------
+  Cel: logowanie BEZ danych osobowych — tylko adres portfela (MetaMask itd.).
+
+  Przepływ:
+    1. „Connect wallet” w sekcji Atelier (js/wallet.js → AtelierWallet).
+    2. viem sprawdza on-chain: ile NFT od Jack Beatnic ma ten adres.
+       Skan po kontraktach z atelier_wallets + kolekcje OpenSea (AI + Photo).
+    3. ≥3 sztuki → tier Collector:
+         • ekskluzywne dropy na portfel
+         • wcześniejszy dostęp do limited editions
+         • prywatne listingi przed publiką
+    4. ≥10 sztuk → tier Patron:
+         • wszystko z Collector +
+         • rezerwacja na wybrane edycje
+         • bezpośrednie ogłoszenia z Atelier
+
+  Plik: www/js/wallet.js (szkielet — connect i scan jeszcze nieaktywne).
+  Włączenie: collector_access.enabled: true w gallery.json.
+
+
+FAZA 5b — LICYTACJA W GALERII (później)
+---------------------------------------
+  Obecnie: link „Bid on Manifold”.
+  Docelowo: podpis transakcji bid w galerii (viem + Manifold marketplace contract).
+  Wymaga: Connect wallet + integracja z listing API / kontraktem.
+
+
+SIECI
+-----
+  Base      — aktywna, niski gas, Manifold creator contract (teraz).
+  Ethereum  — planowana na high-end 1/1, gdy opłaca się gas L1.
+              Włączenie: manifold_auctions.chains.ethereum.enabled: true
+              + deploy kontraktu + adres w contracts[].
+
+
+PLIKI PROJEKTU
+--------------
+  www/index.html                      — nav, market-subnav (2 rzędy)
+  www/js/sections.js                  — routing ?section=atelier, filtry
+  www/js/gallery.js                   — karty aukcji, promo Atelier
+  www/js/wallet.js                    — AtelierWallet (Faza 5)
+  www/js/share.js                     — linki share z ?section=atelier
+  www/gallery.json                    — atelier_wallets, collector_access, sekcja UI
+  www/auctions_gallery.json           — live aukcje (generowany synciem)
+  www/aktualizuj_manifold_do_galerii.py
+  www/css/gallery.css                 — subnav market, promo collector
+
+  Powiązane (hosting ogólnie):
+  ../ROZWAZANIA_HOSTING_I_MINIAPP.txt
+
+
+NA CO DZIEŃ
+-----------
+  Nowa / zakończona aukcja w Manifold:
+    python3 aktualizuj_manifold_do_galerii.py
+    git add auctions_gallery.json
+    git commit -m "sync Manifold auctions"
+    git push
+
+  Zmiana UI / copy / portfeli:
+    git add .
+    git commit -m "opis"
+    git push
+    (repo: /home/jb/jb_nft/www → jackbeatnic.github.io)
+
+
+CHECKLIST — DEDYKOWANY PHOTO ATELIER (gdy będziesz gotowy)
+----------------------------------------------------------
+  [ ] Deploy nowego kontraktu Manifold z portfela jackbeatnicphoto.base.eth
+  [ ] W gallery.json:
+        atelier_wallets.photo.contracts.base: ["0x...nowy"]
+        atelier_wallets.photo.enabled: true
+  [ ] Rozszerzyć aktualizuj_manifold_do_galerii.py o drugi wallet_id (photo)
+      LUB osobny skrypt + merge do auctions_gallery.json
+  [ ] Wyłączyć interim_photo_sales na AI (opcjonalnie)
+  [ ] Dopisać adresy Priv EVM / Priv Solana do opensea_linked_wallets
+
+
+CHECKLIST — LIMITED EDITIONS
+----------------------------
+  [ ] Sync Manifold purchase listings (type 2)
+  [ ] medium: manifold_edition w JSON
+  [ ] UI: włączyć market=editions (disabled_kinds bez "editions")
+  [ ] Opcja escalating price w metadanych karty
+
+
+CHECKLIST — FAZA 5 COLLECTOR ACCESS
+-----------------------------------
+  [ ] viem w przeglądarce (CDN lub bundle)
+  [ ] AtelierWallet.connect() — eth_requestAccounts
+  [ ] scanHoldings() — balanceOf po kontraktach AI + Photo + OpenSea
+  [ ] collector_access.enabled: true
+  [ ] UI: status tieru po connect (Collector / Patron)
+  [ ] (Opcja) gated content — ukryte listingi, early access
+
+
+HISTORIA NAZEWNICTWA (żeby nie wracać)
+--------------------------------------
+  Ghost Slot     → termin z Blueprintu Fazy 6, usunięty z UI (niejasny dla odbiorcy)
+  Studio Market  → robocza nazwa, zastąpiona przez The Atelier
+  The Atelier    → nazwa docelowa (2026-07-13)
+
+
+LINKI
+-----
+  Galeria:          https://jackbeatnic.github.io/
+  Atelier:          https://jackbeatnic.github.io/?section=atelier
+  Manifold profil:  https://manifold.gallery/jbeatnic
+  Manifold Studio:  https://manifold.xyz/@jbeatnic
+  OpenSea:          https://opensea.io/JackBeatnic
+  Repo:             https://github.com/jackbeatnic/jackbeatnic.github.io
+
+================================================================================

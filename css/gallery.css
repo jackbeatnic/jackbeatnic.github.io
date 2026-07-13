@@ -288,6 +288,23 @@ a {
     border-bottom-color: var(--black);
 }
 
+.section-subnav--market {
+    flex-direction: column;
+    gap: 0;
+}
+
+.section-subnav__row {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.section-subnav__row + .section-subnav__row {
+    margin-top: 0.35rem;
+    padding-top: 0.35rem;
+    border-top: 1px solid var(--rule, rgba(0, 0, 0, 0.08));
+}
+
 /* ── Photography / Other — $PHOTO promo ── */
 .section-promo {
     margin: 0 0 1.25rem;
@@ -324,6 +341,17 @@ a {
     max-width: 36rem;
 }
 
+.section-promo__wallet {
+    margin: 0.15rem 0 0;
+    font-size: 0.82rem;
+    color: var(--muted, #666);
+}
+
+.section-promo__ens {
+    font-size: 0.76rem;
+    opacity: 0.85;
+}
+
 .section-promo__token {
     margin: 0.55rem 0 0;
     font-size: 0.62rem;
@@ -358,6 +386,25 @@ a {
     margin-top: 0.75rem;
     padding-top: 0.85rem;
     border-top: 1px solid var(--gray-100);
+}
+
+.section-promo__collector {
+    margin: 0.5rem 0 0;
+    font-size: 0.8rem;
+    line-height: 1.45;
+    color: var(--muted, #666);
+}
+
+.section-promo__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.65rem;
+}
+
+.section-promo__connect:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
 }
 
 .section-promo__item .section-promo__cta {

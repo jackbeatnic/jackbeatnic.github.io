@@ -185,7 +185,7 @@ const Gallery = (() => {
     function syncFiltersPanel() {
         const panel = document.getElementById('explore');
         if (!panel) return;
-        panel.hidden = GallerySections.isAuctionsSection();
+        panel.hidden = GallerySections.isAtelierSection();
     }
 
     function syncSectionNfts() {
@@ -240,14 +240,29 @@ const Gallery = (() => {
                 ...(data.collection_info || {}),
                 xrpl: xrpData.collection_info || {},
                 manifold: auctionData.collection_info || {},
+                atelier_wallets:
+                    data.collection_info?.atelier_wallets ||
+                    data.collection_info?.studio_market_wallets ||
+                    {},
+                collector_access: data.collection_info?.collector_access || {},
             };
             const mainSections = data.site?.sections || {};
             const xrpSections = xrpData.site?.sections || {};
             const auctionSections = auctionData.site?.sections || {};
             const manifoldChains = collectionInfo.manifold?.chains || {};
-            const disabledAuctionChains = Object.entries(manifoldChains)
+            const disabledMarketChains = Object.entries(manifoldChains)
                 .filter(([, cfg]) => cfg && cfg.enabled === false)
                 .map(([key]) => key);
+            const mainMarket =
+                mainSections.atelier ||
+                mainSections.studio_market ||
+                mainSections.auctions ||
+                {};
+            const auctionMarket =
+                auctionSections.atelier ||
+                auctionSections.studio_market ||
+                auctionSections.auctions ||
+                {};
             siteConfig = {
                 ...(data.site || {}),
                 sections: {
@@ -269,15 +284,16 @@ const Gallery = (() => {
                             ...(xrpSections.ai_art?.explore_titles || {}),
                         },
                     },
-                    auctions: {
-                        ...(mainSections.auctions || {}),
-                        ...(auctionSections.auctions || {}),
-                        disabled_subsections: disabledAuctionChains,
+                    atelier: {
+                        ...mainMarket,
+                        ...auctionMarket,
+                        disabled_chains: disabledMarketChains,
                     },
                 },
             };
 
             GallerySections.init(siteConfig);
+            AtelierWallet.init(collectionInfo);
             applyCollectionInfo(collectionInfo);
             GalleryFilters.bindOnce();
             preselectWorkSection();
@@ -376,9 +392,12 @@ const Gallery = (() => {
         const leadEl = document.getElementById('section-promo-lead');
         const listEl = document.getElementById('section-promo-tokens');
 
-        if (GallerySections.isAuctionsSection()) {
+        if (GallerySections.isAtelierSection()) {
             const meta = GallerySections.getSectionMeta();
             const manifoldInfo = collectionInfo.manifold || {};
+            const wallets =
+                collectionInfo.atelier_wallets || collectionInfo.studio_market_wallets || {};
+            const access = AtelierWallet.accessConfig();
             const collectionUrl =
                 meta.collection_url ||
                 manifoldInfo.profile_url ||
@@ -388,24 +407,80 @@ const Gallery = (() => {
             el.hidden = !show;
             if (!show) return;
 
-            if (eyebrowEl) eyebrowEl.textContent = meta.promo_eyebrow || 'Ghost Slot · Manifold';
+            const marketKind = GallerySections.getMarketKind();
+            const chainLabel =
+                GallerySections.getMarketChain() === 'ethereum' ? 'Ethereum' : 'Base';
+            const kindLabel = marketKind === 'editions' ? 'Limited Editions' : 'Auctions';
+
+            if (eyebrowEl) eyebrowEl.textContent = meta.promo_eyebrow || 'The Atelier · Direct from the artist';
             if (leadEl) {
                 leadEl.textContent =
-                    meta.promo_lead || 'Live auctions on your Manifold contract.';
+                    meta.promo_lead ||
+                    'Small-batch sales straight from the studio — auctions and limited editions on Manifold.';
             }
             if (listEl) {
                 const url = escapeHtml(collectionUrl);
                 const cta = escapeHtml(meta.collection_cta || 'Manifold Gallery');
+                const studioUrl = escapeHtml(
+                    manifoldInfo.studio_url || 'https://manifold.xyz/@jbeatnic',
+                );
+                const walletRows = Object.entries(wallets)
+                    .filter(([, cfg]) => cfg?.label)
+                    .map(([, cfg]) => {
+                        const enabled = cfg.enabled !== false;
+                        let status = cfg.status_short;
+                        if (!status) {
+                            status = enabled
+                                ? `${chainLabel} · Manifold`
+                                : cfg.note || 'Coming soon';
+                        }
+                        if (enabled && cfg.interim_photo_sales) {
+                            status = `${status} · interim Photo`;
+                        }
+                        const ensBit = cfg.ens
+                            ? ` <span class="section-promo__ens">(${escapeHtml(cfg.ens)})</span>`
+                            : '';
+                        return `
+                            <p class="section-promo__wallet" title="${escapeHtml(cfg.note || '')}">
+                                <span class="section-promo__symbol">${escapeHtml(cfg.label)}</span>${ensBit}
+                                <span class="section-promo__chain"> · ${escapeHtml(status)}</span>
+                            </p>
+                        `;
+                    })
+                    .join('');
+
+                const collectorTier = AtelierWallet.tiers().find((t) => t.min_nfts != null);
+                const collectorHint = collectorTier
+                    ? `Connect your wallet (no personal data) — ${collectorTier.min_nfts}+ works unlock ${collectorTier.label || 'collector'} perks: exclusive drops and early access.`
+                    : access.note || 'Wallet connect for collector perks — coming soon.';
+                const connectLabel = escapeHtml(AtelierWallet.connectLabel());
+                const connectDisabled = AtelierWallet.connectEnabled() ? '' : ' disabled';
+
                 listEl.innerHTML = `
                     <article class="section-promo__item">
-                        <h3 class="section-promo__title">Manifold</h3>
+                        <h3 class="section-promo__title">The Atelier</h3>
                         <p class="section-promo__token">
-                            <span class="section-promo__symbol">Ghost Slot</span>
-                            <span class="section-promo__chain"> · ${escapeHtml(GallerySections.getAuctionChain() === 'ethereum' ? 'Ethereum' : 'Base')}</span>
+                            <span class="section-promo__symbol">${escapeHtml(kindLabel)}</span>
+                            <span class="section-promo__chain"> · ${escapeHtml(chainLabel)}</span>
                         </p>
-                        <a class="btn btn--ghost btn--small section-promo__cta" href="${url}" target="_blank" rel="noopener noreferrer">${cta}</a>
+                        ${walletRows}
+                        <p class="section-promo__collector">${escapeHtml(collectorHint)}</p>
+                        <div class="section-promo__actions">
+                            <button type="button" class="btn btn--primary btn--small section-promo__connect" id="atelier-connect-wallet"${connectDisabled} title="${escapeHtml(access.note || 'Phase 5')}">${connectLabel}</button>
+                            <a class="btn btn--ghost btn--small section-promo__cta" href="${url}" target="_blank" rel="noopener noreferrer">${cta}</a>
+                            <a class="btn btn--ghost btn--small section-promo__cta" href="${studioUrl}" target="_blank" rel="noopener noreferrer">Manifold Studio</a>
+                        </div>
                     </article>
                 `;
+
+                const connectBtn = listEl.querySelector('#atelier-connect-wallet');
+                connectBtn?.addEventListener('click', async () => {
+                    try {
+                        await AtelierWallet.connect();
+                    } catch (err) {
+                        connectBtn.title = err?.message || 'Coming soon';
+                    }
+                });
             }
             return;
         }

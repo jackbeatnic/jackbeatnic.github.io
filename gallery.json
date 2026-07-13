@@ -138,8 +138,101 @@
     "xrpl_nft_taxon": 0,
     "xrpl_collection_name": "JB AI Nature",
     "xrp_cafe_profile": "https://xrp.cafe/user/rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+    "atelier_wallets": {
+      "ai": {
+        "enabled": true,
+        "label": "AI Art",
+        "creator_wallet": "0xf0b840349b3f285fc05c89eac594ddd254183fb9",
+        "ens": "jackbeatnicai.base.eth",
+        "contracts": {
+          "base": [
+            "0x3ae3dd0baa83dfcb8f07e55ae6737bcd0d694347"
+          ]
+        },
+        "interim_photo_sales": true,
+        "status_short": "Base · Manifold",
+        "note": "Primary Atelier wallet — Manifold contract on Base. Small Photo sales here for now until a dedicated Photo contract exists."
+      },
+      "photo": {
+        "enabled": false,
+        "label": "Photography",
+        "creator_wallet": "0xDD4b91ad6A86Dbcaa032217a269d34E07F9957F0",
+        "ens": "jackbeatnicphoto.base.eth",
+        "opensea_profile": "https://opensea.io/JackBeatnic",
+        "contracts": {
+          "base": []
+        },
+        "status_short": "OpenSea · own contract later",
+        "note": "Dedicated Photo wallet — separate Manifold contract planned (one wallet per Manifold contract)."
+      }
+    },
+    "opensea_linked_wallets": {
+      "profile": "https://opensea.io/JackBeatnic",
+      "wallets": [
+        {
+          "id": "photo",
+          "label": "Photography",
+          "address": "0xDD4b91ad6A86Dbcaa032217a269d34E07F9957F0",
+          "ens": "jackbeatnicphoto.base.eth"
+        },
+        {
+          "id": "ai",
+          "label": "AI Art",
+          "address": "0xf0b840349b3f285fc05c89eac594ddd254183fb9",
+          "ens": "jackbeatnicai.base.eth"
+        },
+        {
+          "id": "main",
+          "label": "Main",
+          "address": "0x6C1c25057045b3e9B38A25F130E7AaDB7B940949",
+          "ens": "jackbeatnic.base.eth"
+        },
+        {
+          "id": "priv_evm",
+          "label": "Private EVM",
+          "note": "OpenSea-generated wallet — address TBD"
+        },
+        {
+          "id": "priv_solana",
+          "label": "Private Solana",
+          "note": "OpenSea-generated wallet — address TBD"
+        }
+      ]
+    },
+    "collector_access": {
+      "enabled": false,
+      "connect_label": "Connect wallet",
+      "note": "Phase 5 — wallet address only, no email or personal data. On-chain check across your collections.",
+      "scan_wallet_ids": [
+        "ai",
+        "photo"
+      ],
+      "tiers": [
+        {
+          "id": "collector",
+          "min_nfts": 3,
+          "label": "Collector",
+          "benefits": [
+            "Exclusive drops sent to your wallet",
+            "Early access to limited editions",
+            "Private listings before public release"
+          ]
+        },
+        {
+          "id": "patron",
+          "min_nfts": 10,
+          "label": "Patron",
+          "benefits": [
+            "All Collector perks",
+            "Reserved allocation on select editions",
+            "Direct atelier announcements"
+          ]
+        }
+      ]
+    },
     "manifold_auctions": {
       "creator_wallet": "0xf0b840349b3f285fc05c89eac594ddd254183fb9",
+      "wallet_id": "ai",
       "profile_url": "https://manifold.gallery/jbeatnic",
       "studio_url": "https://manifold.xyz/@jbeatnic",
       "chains": {
@@ -8347,11 +8440,23 @@
           "other": "Fade Diary — collage series. More mixed media coming soon."
         }
       },
-      "auctions": {
-        "label": "Auctions",
-        "label_short": "Auctions",
-        "explore_title": "Ghost Slot · Manifold Auctions",
-        "subsections": [
+      "atelier": {
+        "label": "The Atelier",
+        "label_short": "Atelier",
+        "explore_title": "The Atelier",
+        "default_kind": "auctions",
+        "default_chain": "base",
+        "kind_subsections": [
+          {
+            "id": "auctions",
+            "label": "Auctions"
+          },
+          {
+            "id": "editions",
+            "label": "Limited Editions"
+          }
+        ],
+        "chain_subsections": [
           {
             "id": "base",
             "label": "Base"
@@ -8361,20 +8466,34 @@
             "label": "Ethereum"
           }
         ],
-        "default_subsection": "base",
-        "disabled_subsections": [
+        "disabled_kinds": [
+          "editions"
+        ],
+        "disabled_chains": [
           "ethereum"
         ],
+        "kind_notes": {
+          "editions": "Fixed-price limited editions with optional escalating price — coming soon."
+        },
+        "chain_notes": {
+          "ethereum": "Ethereum L1 — planned for high-end 1/1 works."
+        },
         "explore_titles": {
-          "base": "Auctions on Base · Manifold",
-          "ethereum": "Auctions on Ethereum · Manifold"
+          "auctions": "Auctions · The Atelier",
+          "editions": "Limited Editions · The Atelier"
         },
         "empty_messages": {
-          "base": "No live Manifold auctions on Base right now. New Ghost Slot drops will appear here.",
-          "ethereum": "Ethereum L1 auctions are planned for high-end 1/1 works — coming when the new contract is live."
+          "auctions": {
+            "base": "No live auctions on Base right now. List in Manifold Studio, run sync, and they appear here.",
+            "ethereum": "Ethereum L1 auctions are planned — coming when the contract is live."
+          },
+          "editions": {
+            "base": "Limited editions coming soon — fixed or escalating price series via Manifold purchase listings.",
+            "ethereum": "Ethereum L1 editions — planned for a separate contract."
+          }
         },
-        "promo_eyebrow": "Ghost Slot · Manifold",
-        "promo_lead": "Own auctions on your Manifold contract — bid on Manifold. Base today; Ethereum L1 when demand justifies the gas.",
+        "promo_eyebrow": "The Atelier · Direct from the artist",
+        "promo_lead": "Small-batch sales from the studio — Manifold on the AI wallet (Base) for now; interim Photo sales there too. Dedicated Photo wallet and contract on OpenSea later. Connect your wallet for collector perks (3+ works) — no personal data.",
         "collection_url": "https://manifold.gallery/jbeatnic",
         "collection_cta": "Manifold Gallery"
       }

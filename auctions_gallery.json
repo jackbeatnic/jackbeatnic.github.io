@@ -34,11 +34,23 @@
   },
   "site": {
     "sections": {
-      "auctions": {
-        "label": "Auctions",
-        "label_short": "Auctions",
-        "explore_title": "Ghost Slot · Manifold Auctions",
-        "subsections": [
+      "atelier": {
+        "label": "The Atelier",
+        "label_short": "Atelier",
+        "explore_title": "The Atelier",
+        "default_kind": "auctions",
+        "default_chain": "base",
+        "kind_subsections": [
+          {
+            "id": "auctions",
+            "label": "Auctions"
+          },
+          {
+            "id": "editions",
+            "label": "Limited Editions"
+          }
+        ],
+        "chain_subsections": [
           {
             "id": "base",
             "label": "Base"
@@ -48,20 +60,34 @@
             "label": "Ethereum"
           }
         ],
-        "default_subsection": "base",
-        "disabled_subsections": [
+        "disabled_kinds": [
+          "editions"
+        ],
+        "disabled_chains": [
           "ethereum"
         ],
+        "kind_notes": {
+          "editions": "Fixed-price limited editions with optional escalating price — coming soon."
+        },
+        "chain_notes": {
+          "ethereum": "Ethereum L1 — planned for high-end 1/1 works."
+        },
         "explore_titles": {
-          "base": "Auctions on Base · Manifold",
-          "ethereum": "Auctions on Ethereum · Manifold"
+          "auctions": "Auctions · The Atelier",
+          "editions": "Limited Editions · The Atelier"
         },
         "empty_messages": {
-          "base": "No live Manifold auctions on Base right now. New Ghost Slot drops will appear here.",
-          "ethereum": "Ethereum L1 auctions are planned for high-end 1/1 works — coming when the new contract is live."
+          "auctions": {
+            "base": "No live auctions on Base right now. List in Manifold Studio, run sync, and they appear here.",
+            "ethereum": "Ethereum L1 auctions are planned — coming when the contract is live."
+          },
+          "editions": {
+            "base": "Limited editions coming soon — fixed or escalating price series via Manifold purchase listings.",
+            "ethereum": "Ethereum L1 editions — planned for a separate contract."
+          }
         },
-        "promo_eyebrow": "Ghost Slot · Manifold",
-        "promo_lead": "Own auctions on your Manifold contract — bid directly on Manifold. Base today; Ethereum L1 when demand justifies the gas.",
+        "promo_eyebrow": "The Atelier · Direct from the artist",
+        "promo_lead": "Small-batch sales from the studio — Manifold on the AI wallet (Base) for now; interim Photo sales there too. Dedicated Photo wallet and contract on OpenSea later. Connect your wallet for collector perks (3+ works) — no personal data.",
         "collection_url": "https://manifold.gallery/jbeatnic",
         "collection_cta": "Manifold Gallery"
       }

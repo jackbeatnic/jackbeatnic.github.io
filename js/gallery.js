@@ -240,6 +240,7 @@ const Gallery = (() => {
                 ...(data.collection_info || {}),
                 xrpl: xrpData.collection_info || {},
                 manifold: auctionData.collection_info || {},
+                manifold_links: data.collection_info?.manifold_links || {},
                 atelier_wallets:
                     data.collection_info?.atelier_wallets ||
                     data.collection_info?.studio_market_wallets ||
@@ -394,17 +395,9 @@ const Gallery = (() => {
 
         if (GallerySections.isAtelierSection()) {
             const meta = GallerySections.getSectionMeta();
-            const manifoldInfo = collectionInfo.manifold || {};
-            const access = AtelierWallet.accessConfig();
-            const collectionUrl =
-                meta.collection_url ||
-                manifoldInfo.profile_url ||
-                manifoldInfo.studio_url ||
-                '';
-            const listingsUrl =
-                meta.studio_listings_url ||
-                'https://manifold.xyz/@jbeatnic/p/jackbeatnic';
-            const show = Boolean(collectionUrl || listingsUrl);
+            const linkPack = collectionInfo.manifold_links || {};
+            const navLinks = (linkPack.nav || []).filter((item) => item?.url && item?.label);
+            const show = navLinks.length > 0;
             el.hidden = !show;
             if (!show) return;
 
@@ -420,10 +413,6 @@ const Gallery = (() => {
                     'A private room for those who collect closely — rare auctions and numbered editions in small batches, offered straight from the studio.';
             }
             if (listEl) {
-                const url = escapeHtml(collectionUrl);
-                const cta = escapeHtml(meta.collection_cta || 'Manifold Gallery');
-                const listingsHref = escapeHtml(listingsUrl);
-                const listingsCta = escapeHtml(meta.studio_listings_cta || 'Studio catalogue');
                 const collectorHint =
                     meta.promo_collector ||
                     'Returning collectors may soon unlock early access and quiet releases — nothing personal, only your wallet.';
@@ -431,6 +420,15 @@ const Gallery = (() => {
                 const connectBlock = AtelierWallet.connectEnabled()
                     ? `<button type="button" class="btn btn--primary btn--small section-promo__connect" id="atelier-connect-wallet">${connectLabel}</button>`
                     : '';
+                const linkButtons = navLinks
+                    .map((item) => {
+                        const href = escapeHtml(item.url);
+                        const label = escapeHtml(item.label);
+                        const hint = item.hint ? ` title="${escapeHtml(item.hint)}"` : '';
+                        const primary = item.id === 'studio' ? ' btn--primary' : ' btn--ghost';
+                        return `<a class="btn btn--small section-promo__cta${primary}" href="${href}" target="_blank" rel="noopener noreferrer"${hint}>${label}</a>`;
+                    })
+                    .join('');
 
                 listEl.innerHTML = `
                     <article class="section-promo__item">
@@ -442,8 +440,7 @@ const Gallery = (() => {
                         <p class="section-promo__collector">${escapeHtml(collectorHint)}</p>
                         <div class="section-promo__actions">
                             ${connectBlock}
-                            <a class="btn btn--ghost btn--small section-promo__cta" href="${url}" target="_blank" rel="noopener noreferrer">${cta}</a>
-                            <a class="btn btn--ghost btn--small section-promo__cta" href="${listingsHref}" target="_blank" rel="noopener noreferrer">${listingsCta}</a>
+                            ${linkButtons}
                         </div>
                     </article>
                 `;

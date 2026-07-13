@@ -230,6 +230,46 @@
         }
       ]
     },
+    "manifold_links": {
+      "creator": "@jbeatnic",
+      "wallet_ens": "jackbeatnicai.base.eth",
+      "contract": {
+        "address": "0x3ae3dd0baa83dfcb8f07e55ae6737bcd0d694347",
+        "chain": "base",
+        "manifold_id": "231786736",
+        "hub_url": "https://manifold.xyz/@jbeatnic/contract/231786736",
+        "example_token": {
+          "manifold_token_id": "161",
+          "url": "https://manifold.xyz/@jbeatnic/contract/231786736/161"
+        }
+      },
+      "nav": [
+        {
+          "id": "studio",
+          "label": "On Manifold",
+          "url": "https://manifold.xyz/@jbeatnic",
+          "hint": "Creator studio — your home on Manifold"
+        },
+        {
+          "id": "listings",
+          "label": "Works for sale",
+          "url": "https://manifold.xyz/@jbeatnic/p/jackbeatnic",
+          "hint": "Open Studio listings (not live auctions)"
+        },
+        {
+          "id": "contract",
+          "label": "Creator contract",
+          "url": "https://manifold.xyz/@jbeatnic/contract/231786736",
+          "hint": "All works on jackbeatnicai.base.eth (Base)"
+        },
+        {
+          "id": "gallery",
+          "label": "Gallery view",
+          "url": "https://manifold.gallery/jbeatnic",
+          "hint": "Alternate browse on manifold.gallery"
+        }
+      ]
+    },
     "manifold_auctions": {
       "creator_wallet": "0xf0b840349b3f285fc05c89eac594ddd254183fb9",
       "wallet_id": "ai",
@@ -8494,11 +8534,7 @@
         },
         "promo_eyebrow": "The Atelier",
         "promo_lead": "A private room for those who collect closely — rare auctions and numbered editions in small batches, offered straight from the studio. Only live sales appear here; the wider studio catalogue lives on Manifold.",
-        "promo_collector": "Returning collectors may soon unlock early access and quiet releases — nothing personal, only your wallet.",
-        "collection_url": "https://manifold.gallery/jbeatnic",
-        "collection_cta": "Manifold Gallery",
-        "studio_listings_url": "https://manifold.xyz/@jbeatnic/p/jackbeatnic",
-        "studio_listings_cta": "Studio catalogue"
+        "promo_collector": "Returning collectors may soon unlock early access and quiet releases — nothing personal, only your wallet."
       }
     }
   }

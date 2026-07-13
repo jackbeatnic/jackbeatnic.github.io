@@ -404,10 +404,6 @@ def sync(*, dry_run: bool = False) -> int:
                     "promo_eyebrow": "The Atelier",
                     "promo_lead": "A private room for those who collect closely — rare auctions and numbered editions in small batches, offered straight from the studio. Only live sales appear here; the wider studio catalogue lives on Manifold.",
                     "promo_collector": "Returning collectors may soon unlock early access and quiet releases — nothing personal, only your wallet.",
-                    "collection_url": cfg.get("profile_url"),
-                    "collection_cta": "Manifold Gallery",
-                    "studio_listings_url": "https://manifold.xyz/@jbeatnic/p/jackbeatnic",
-                    "studio_listings_cta": "Studio catalogue",
                 }
             }
         },

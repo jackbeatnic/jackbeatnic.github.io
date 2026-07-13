@@ -28,9 +28,14 @@ const Gallery = (() => {
         document.addEventListener('dragstart', blockImageActions);
     }
 
+    function isManifoldAuction(nft) {
+        return nft.medium === 'manifold_auction' || nft.marketplace === 'manifold';
+    }
+
     function currencyForNft(nft) {
         if (nft.listing_currency) return nft.listing_currency;
         if (nft.chain === 'xrpl' || nft.medium === 'xrpl_ai') return 'XRP';
+        if (isManifoldAuction(nft)) return nft.listing_currency || 'ETH';
         return collectionInfo.native_currency || 'AVAX';
     }
 
@@ -56,6 +61,7 @@ const Gallery = (() => {
         opensea: 'OpenSea',
         salvor: 'Salvor',
         xrp_cafe: 'XRP.Cafe',
+        manifold: 'Manifold',
         tradeport: 'TradePort',
     };
 
@@ -88,16 +94,21 @@ const Gallery = (() => {
     }
 
     function marketplaceName(nft) {
+        if (isManifoldAuction(nft)) return MARKETPLACE_NAMES.manifold;
         if (isXrpCafeNft(nft)) return MARKETPLACE_NAMES.xrp_cafe;
         const key = nft.marketplace || (isObjktNft(nft) ? 'objkt' : 'opensea');
         return MARKETPLACE_NAMES[key] || key;
     }
 
     function marketplaceLabel(nft) {
+        if (isManifoldAuction(nft)) return 'Bid on Manifold';
         return `View on ${marketplaceName(nft)}`;
     }
 
     function marketplaceUrl(nft) {
+        if (isManifoldAuction(nft)) {
+            return nft.manifold_url || nft.marketplace_url || '';
+        }
         if (isXrpCafeNft(nft)) {
             return (
                 nft.xrp_cafe_url ||
@@ -115,10 +126,34 @@ const Gallery = (() => {
         if (nft.chain === 'xrpl' || nft.medium === 'xrpl_ai') {
             return nft.name || `XRPL #${nft.nft_serial || nft.token_id}`;
         }
+        if (isManifoldAuction(nft)) {
+            const chain = chainLabel(nft);
+            return `Manifold · ${chain}`;
+        }
         return `Token #${nft.token_id}`;
     }
 
     function formatPrice(nft) {
+        if (isManifoldAuction(nft)) {
+            const symbol = currencyForNft(nft);
+            const bid = nft.current_bid_eth;
+            const reserve = nft.reserve_eth;
+            if (bid != null && reserve != null && bid > reserve) {
+                return {
+                    text: `${bid} ${symbol}`,
+                    hint: `Current bid · reserve ${reserve} ${symbol}`,
+                    kind: 'listed',
+                };
+            }
+            if (reserve != null) {
+                return {
+                    text: `${reserve} ${symbol}`,
+                    hint: 'Reserve · live auction',
+                    kind: 'listed',
+                };
+            }
+            return { text: 'Live auction', hint: chainLabel(nft), kind: 'listed' };
+        }
         const symbol = currencyForNft(nft);
         const listed = priceField(nft, 'current_price', symbol);
         const mint = priceField(nft, 'mint_price', symbol);
@@ -147,6 +182,12 @@ const Gallery = (() => {
         return { text: '—', hint: chainLabel(nft), kind: 'unknown' };
     }
 
+    function syncFiltersPanel() {
+        const panel = document.getElementById('explore');
+        if (!panel) return;
+        panel.hidden = GallerySections.isAuctionsSection();
+    }
+
     function syncSectionNfts() {
         sectionNfts = GallerySections.filterNfts(allNfts);
         const exploreTitle = document.querySelector('.filters-panel__title');
@@ -154,6 +195,7 @@ const Gallery = (() => {
         if (exploreTitle) {
             exploreTitle.textContent = meta.explore_title || 'Explore';
         }
+        syncFiltersPanel();
         GalleryFilters.reinit(sectionNfts);
         applyHero();
     }
@@ -179,26 +221,39 @@ const Gallery = (() => {
     async function load() {
         const grid = document.getElementById('gallery-grid');
         try {
-            const [mainRes, xrpRes] = await Promise.all([
+            const [mainRes, xrpRes, auctionRes] = await Promise.all([
                 fetch('gallery.json'),
                 fetch('xrp_gallery.json'),
+                fetch('auctions_gallery.json'),
             ]);
             if (!mainRes.ok) throw new Error(`HTTP ${mainRes.status}`);
             const data = await mainRes.json();
             const xrpData = xrpRes.ok ? await xrpRes.json() : { nfts: [] };
+            const auctionData = auctionRes.ok ? await auctionRes.json() : { nfts: [] };
 
-            allNfts = [...(data.nfts || []), ...(xrpData.nfts || [])];
+            allNfts = [
+                ...(data.nfts || []),
+                ...(xrpData.nfts || []),
+                ...(auctionData.nfts || []),
+            ];
             collectionInfo = {
                 ...(data.collection_info || {}),
                 xrpl: xrpData.collection_info || {},
+                manifold: auctionData.collection_info || {},
             };
             const mainSections = data.site?.sections || {};
             const xrpSections = xrpData.site?.sections || {};
+            const auctionSections = auctionData.site?.sections || {};
+            const manifoldChains = collectionInfo.manifold?.chains || {};
+            const disabledAuctionChains = Object.entries(manifoldChains)
+                .filter(([, cfg]) => cfg && cfg.enabled === false)
+                .map(([key]) => key);
             siteConfig = {
                 ...(data.site || {}),
                 sections: {
                     ...mainSections,
                     ...xrpSections,
+                    ...auctionSections,
                     ai_art: {
                         ...(mainSections.ai_art || {}),
                         ...(xrpSections.ai_art || {}),
@@ -213,6 +268,11 @@ const Gallery = (() => {
                             ...(mainSections.ai_art?.explore_titles || {}),
                             ...(xrpSections.ai_art?.explore_titles || {}),
                         },
+                    },
+                    auctions: {
+                        ...(mainSections.auctions || {}),
+                        ...(auctionSections.auctions || {}),
+                        disabled_subsections: disabledAuctionChains,
                     },
                 },
             };
@@ -315,6 +375,40 @@ const Gallery = (() => {
         const eyebrowEl = document.getElementById('section-promo-eyebrow');
         const leadEl = document.getElementById('section-promo-lead');
         const listEl = document.getElementById('section-promo-tokens');
+
+        if (GallerySections.isAuctionsSection()) {
+            const meta = GallerySections.getSectionMeta();
+            const manifoldInfo = collectionInfo.manifold || {};
+            const collectionUrl =
+                meta.collection_url ||
+                manifoldInfo.profile_url ||
+                manifoldInfo.studio_url ||
+                '';
+            const show = Boolean(collectionUrl);
+            el.hidden = !show;
+            if (!show) return;
+
+            if (eyebrowEl) eyebrowEl.textContent = meta.promo_eyebrow || 'Ghost Slot · Manifold';
+            if (leadEl) {
+                leadEl.textContent =
+                    meta.promo_lead || 'Live auctions on your Manifold contract.';
+            }
+            if (listEl) {
+                const url = escapeHtml(collectionUrl);
+                const cta = escapeHtml(meta.collection_cta || 'Manifold Gallery');
+                listEl.innerHTML = `
+                    <article class="section-promo__item">
+                        <h3 class="section-promo__title">Manifold</h3>
+                        <p class="section-promo__token">
+                            <span class="section-promo__symbol">Ghost Slot</span>
+                            <span class="section-promo__chain"> · ${escapeHtml(GallerySections.getAuctionChain() === 'ethereum' ? 'Ethereum' : 'Base')}</span>
+                        </p>
+                        <a class="btn btn--ghost btn--small section-promo__cta" href="${url}" target="_blank" rel="noopener noreferrer">${cta}</a>
+                    </article>
+                `;
+            }
+            return;
+        }
 
         if (
             GallerySections.getCurrentSection() === 'ai_art' &&
@@ -517,7 +611,11 @@ const Gallery = (() => {
             return;
         }
 
-        filtered.forEach((nft) => container.appendChild(buildCard(nft)));
+        filtered.forEach((nft) => {
+            container.appendChild(
+                isManifoldAuction(nft) ? buildAuctionCard(nft) : buildCard(nft)
+            );
+        });
     }
 
     function bindEngage(card, nft, key) {
@@ -577,6 +675,71 @@ const Gallery = (() => {
                 window.setTimeout(() => card.classList.remove('nft-card--highlight'), 2400);
             }
         });
+    }
+
+    function buildAuctionCard(nft) {
+        const card = document.createElement('article');
+        card.className = 'nft-card nft-card--auction';
+        card.dataset.tokenId = String(nft.token_id);
+
+        const key = GalleryLikes.nftKey(nft);
+        card.dataset.nftKey = key;
+
+        const thumbSrc = ImageProxy.displayUrl(nft.image_url, IMAGE_PROXY);
+        const viewSrc = ImageProxy.displayUrl(
+            nft.image_url,
+            IMAGE_PROXY,
+            ImageProxy.VIEW_MAX_WIDTH,
+            ImageProxy.VIEW_MAX_HEIGHT,
+        );
+        const name = escapeHtml(nft.name);
+        const description = escapeHtml(nft.ai?.description);
+        const bidHref = escapeHtml(marketplaceUrl(nft));
+        const price = formatPrice(nft);
+        const tokenLabelText = tokenLabel(nft);
+
+        card.innerHTML = `
+            <div class="nft-image-wrap">
+                <span class="nft-card__badge">Live auction</span>
+                <img src="${thumbSrc}"
+                     alt="${name}"
+                     width="${ImageProxy.THUMB_WIDTH}"
+                     height="${ImageProxy.THUMB_HEIGHT}"
+                     loading="lazy"
+                     decoding="async"
+                     draggable="false"
+                     referrerpolicy="no-referrer">
+                <button type="button" class="nft-card__view" aria-label="View ${name}">View</button>
+                <div class="nft-image-shield" aria-hidden="true"></div>
+            </div>
+            <div class="nft-card__body">
+                <div class="nft-card__head">
+                    <div>
+                        <h3 class="nft-card__title">${name}</h3>
+                        <p class="nft-card__token">${escapeHtml(tokenLabelText)}</p>
+                    </div>
+                    <div class="nft-card__engage">
+                        <button type="button" class="nft-share" aria-label="Share ${name}" title="Share">
+                            <span class="nft-share__icon" aria-hidden="true">↗</span>
+                        </button>
+                    </div>
+                </div>
+                <p class="nft-card__price" title="${escapeHtml(price.hint)}">
+                    <span class="nft-card__price-value">${escapeHtml(price.text)}</span>
+                </p>
+                <p class="nft-card__description">${description}</p>
+                <div class="nft-card__actions">
+                    <a class="btn btn--primary btn--block" href="${bidHref}" target="_blank" rel="noopener noreferrer">Bid on Manifold</a>
+                </div>
+            </div>
+        `;
+
+        card.querySelector('.nft-card__view')?.addEventListener('click', () => {
+            Lightbox.open({ src: viewSrc, alt: nft.name, label: nft.name });
+        });
+        GalleryShare.bindButton(card.querySelector('.nft-share'), nft);
+
+        return card;
     }
 
     function buildCard(nft) {

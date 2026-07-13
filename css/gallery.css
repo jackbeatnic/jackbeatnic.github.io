@@ -278,6 +278,12 @@ a {
     color: var(--black);
 }
 
+.section-subnav__tab.is-disabled,
+.section-subnav__tab:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
 .section-subnav__tab.is-active {
     border-bottom-color: var(--black);
 }
@@ -1482,6 +1488,26 @@ body.tip-open {
     text-transform: uppercase;
     color: var(--gray-400);
     font-weight: 300;
+}
+
+.nft-card--auction .nft-image-wrap {
+    position: relative;
+}
+
+.nft-card__badge {
+    position: absolute;
+    top: 0.55rem;
+    left: 0.55rem;
+    z-index: 2;
+    padding: 0.2rem 0.45rem;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: rgba(0, 0, 0, 0.72);
+    border-radius: 2px;
+    pointer-events: none;
 }
 
 .nft-card__price {

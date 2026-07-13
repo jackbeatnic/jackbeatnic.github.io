@@ -82,6 +82,7 @@
             <nav class="site-nav" aria-label="Main">
                 <a href="#gallery-root" data-section="ai_art">AI Art</a>
                 <a href="#gallery-root" data-section="photography">Photography &amp; Artworks</a>
+                <a href="#gallery-root" data-section="auctions">Auctions</a>
                 <a href="#about">About</a>
                 <button type="button" class="site-nav__tip" data-tip-open aria-expanded="false">Tip</button>
             </nav>
@@ -96,12 +97,21 @@
                 <span class="section-nav__label section-nav__label--full">Photography &amp; Artworks</span>
                 <span class="section-nav__label section-nav__label--short">Photo &amp; Artworks</span>
             </a>
+            <a href="#gallery-root" class="section-nav__tab" data-section="auctions">
+                <span class="section-nav__label section-nav__label--full">Auctions</span>
+                <span class="section-nav__label section-nav__label--short">Auctions</span>
+            </a>
             <button type="button" class="section-nav__tab section-nav__tab--tip" data-tip-open aria-expanded="false">Tip</button>
         </nav>
 
         <div id="ai-subnav" class="section-subnav" hidden aria-label="AI Art marketplaces">
             <button type="button" class="section-subnav__tab" data-ai-kind="opensea">OpenSea</button>
             <button type="button" class="section-subnav__tab" data-ai-kind="xrpl">XRPL</button>
+        </div>
+
+        <div id="auction-subnav" class="section-subnav" hidden aria-label="Auction networks">
+            <button type="button" class="section-subnav__tab" data-auction-chain="base">Base</button>
+            <button type="button" class="section-subnav__tab" data-auction-chain="ethereum">Ethereum</button>
         </div>
 
         <div id="photo-subnav" class="section-subnav" hidden aria-label="Photography categories">
@@ -261,9 +271,9 @@
     <script src="js/likes.js?v=20260712p"></script>
     <script src="js/color-groups.js?v=20260713b"></script>
     <script src="js/filters.js?v=20260713b"></script>
-    <script src="js/sections.js?v=20260713a"></script>
+    <script src="js/sections.js?v=20260713c"></script>
     <script src="js/tip.js?v=20260712p"></script>
-    <script src="js/share.js?v=20260713a"></script>
-    <script src="js/gallery.js?v=20260713a"></script>
+    <script src="js/share.js?v=20260713c"></script>
+    <script src="js/gallery.js?v=20260713c"></script>
 </body>
 </html>

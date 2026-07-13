@@ -8,7 +8,8 @@
     "marketplace": "xrp_cafe",
     "xrp_cafe_profile": "https://xrp.cafe/user/rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
     "xrp_cafe_collection": "https://xrp.cafe/usercollection/rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn/rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn/0",
-    "last_xrp_sync": "2026-07-13T18:10:11Z"
+    "xrp_cafe_collection_vanity": "https://xrp.cafe/collection/jb-ai-nature",
+    "last_xrp_sync": "2026-07-13T18:17:19Z"
   },
   "site": {
     "sections": {
@@ -16,7 +17,11 @@
         "label": "AI on XRPL",
         "label_short": "XRPL",
         "explore_title": "Explore AI on XRPL · XRP.Cafe",
-        "empty_message": "JB AI Nature on XRP.Cafe will appear here after sync."
+        "empty_message": "JB AI Nature on XRP.Cafe will appear here after sync.",
+        "promo_eyebrow": "JB AI Nature on XRPL",
+        "promo_lead": "Collect and trade on XRP.Cafe — every work links to the marketplace.",
+        "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+        "collection_cta": "View collection on XRP.Cafe"
       }
     }
   },
@@ -26,9 +31,10 @@
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD879F9A4A505BE710A",
       "nft_serial": 96366858,
       "name": "JB Nature #001",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD879F9A4A505BE710A",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD879F9A4A505BE710A",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD879F9A4A505BE710A",
-      "image_url": "https://ipfs.io/ipfs/QmfM7XmfnQAnHu6g3c6sxGMfsSHvSCjx6XbaXucotXiToo",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/806761c2658f-4c15-b71f-7ffe6532cf18e8321d07a17e-414a-89ad-e1ec07bffa0ccf77a1d43877-45d2-a5cf-67be2d2393bc.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -75,16 +81,18 @@
       "display_rank": 1,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-06-14T19:10:00.000Z"
     },
     {
       "token_id": 96366859,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD890DF75A605BE710B",
       "nft_serial": 96366859,
       "name": "JB Nature #002",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD890DF75A605BE710B",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD890DF75A605BE710B",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD890DF75A605BE710B",
-      "image_url": "https://ipfs.io/ipfs/QmXesDuiUUGXQJ3hYGC3JCDMtJ744tG6Fn9ZUDWgNkYc58",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/2de472651121-4e09-8724-98580e6bde35a0d1510553db-48b6-b48f-68db1dce8982b8dff3131fb7-43b4-a346-642fde1db139.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -131,16 +139,18 @@
       "display_rank": 2,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-06-15T11:45:04.000Z"
     },
     {
       "token_id": 96366860,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8A7C546A705BE710C",
       "nft_serial": 96366860,
       "name": "JB Nature #003",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8A7C546A705BE710C",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8A7C546A705BE710C",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8A7C546A705BE710C",
-      "image_url": "https://ipfs.io/ipfs/QmRpuWDvZMKVwfFFfecPjfj8Y3p7qbj7padZSpHiYMgvEr",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/c4ca8ff5ce65-467d-b24d-eecb8c2c6930620a70e15200-419e-a215-3237fe79f2102ad2fb3956e0-425a-be2f-a8477a52257a.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -187,16 +197,18 @@
       "display_rank": 3,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-06-16T11:35:35.000Z"
     },
     {
       "token_id": 96366861,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8BEAB17A805BE710D",
       "nft_serial": 96366861,
       "name": "JB Nature #004",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8BEAB17A805BE710D",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8BEAB17A805BE710D",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8BEAB17A805BE710D",
-      "image_url": "https://ipfs.io/ipfs/QmP1kjEC4p7gPNtsjai6woXSHXGLCtRHtEPpGCQaR8Q4Qd",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/ff1819c248eb-4043-8b5a-52d00d7aa916e428cb539275-4bde-b6dd-f6bb9a5c0e17762dda450e5c-4be6-8332-4d4a1845b0e7.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -243,16 +255,18 @@
       "display_rank": 4,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-06-16T11:38:47.000Z"
     },
     {
       "token_id": 96366862,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8D590E8A905BE710E",
       "nft_serial": 96366862,
       "name": "JB Nature #005",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8D590E8A905BE710E",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8D590E8A905BE710E",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8D590E8A905BE710E",
-      "image_url": "https://ipfs.io/ipfs/QmWCg5g7QR13f4zwqU3Y8zGE887s2XuCGnBxrgruQg2TPk",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/2138e17a5d2f-4af1-8839-4972a2153b0d3b1a0273aeac-477c-a1f6-989d7a16504de4a803987a75-481a-9d62-d55a2d296c1b.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -299,16 +313,18 @@
       "display_rank": 5,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-06-16T11:41:07.000Z"
     },
     {
       "token_id": 96366864,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8035C8AAB05BE7110",
       "nft_serial": 96366864,
       "name": "JB Nature #007",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8035C8AAB05BE7110",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8035C8AAB05BE7110",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8035C8AAB05BE7110",
-      "image_url": "https://ipfs.io/ipfs/QmPPod3MYQxjJUAKxY33kag7TktTX7vnRNyFTEuRDcCmXD",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/91a85435db33-44b6-bad6-7e2535184aa1223099c024e8-4bb8-b2df-c4b524e793cc506954e26295-4ac4-80bf-8356d3b2327a.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -355,16 +371,18 @@
       "display_rank": 7,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-06-16T11:46:55.000Z"
     },
     {
       "token_id": 96366866,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD831282CAD05BE7112",
       "nft_serial": 96366866,
       "name": "JB Nature #009",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD831282CAD05BE7112",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD831282CAD05BE7112",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD831282CAD05BE7112",
-      "image_url": "https://ipfs.io/ipfs/QmUUqTvspWRWfGJE4quLyQG8BGKoNvFTxdqXBHVWgKemAW",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/1774107751d0-468c-b177-806d37d94bae4c2ad21f9c34-495b-8efe-1a92b0caed6aa39ceb8d6c37-4c44-9cbf-918d991960e0.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -411,16 +429,18 @@
       "display_rank": 9,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-06-16T11:51:39.000Z"
     },
     {
       "token_id": 96366867,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8480DFDAE05BE7113",
       "nft_serial": 96366867,
       "name": "JB Nature #010",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8480DFDAE05BE7113",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8480DFDAE05BE7113",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8480DFDAE05BE7113",
-      "image_url": "https://ipfs.io/ipfs/QmcHqZ4syfVVM74jGEWhpWWA1DnMo8jgZjZV7xg4Gk9AoR",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/0b53216a6f4a-4b77-9133-b274579910323f69920ec4e8-491e-8ad7-0135372d353b2c7cbbddf0ac-4e20-becb-c2faeb21ee66.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -467,16 +487,18 @@
       "display_rank": 10,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-06-16T11:53:18.000Z"
     },
     {
       "token_id": 96366869,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD875D99FB005BE7115",
       "nft_serial": 96366869,
       "name": "JB Nature #012",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD875D99FB005BE7115",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD875D99FB005BE7115",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD875D99FB005BE7115",
-      "image_url": "https://ipfs.io/ipfs/Qmd56cFbzcanPjn4iPg9wTPsAcC2TEJVXR1TszaYhbP2SE",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/2baa030abbba-455e-a561-ac106b1352bc3915ddc3159a-48ac-90bd-922d2d64a3a2eca27864483d-462f-b9a1-1c522fd9a18a.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -523,16 +545,18 @@
       "display_rank": 12,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-06-16T12:00:36.000Z"
     },
     {
       "token_id": 96366871,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8A3A541B205BE7117",
       "nft_serial": 96366871,
       "name": "JB Nature #014",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8A3A541B205BE7117",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8A3A541B205BE7117",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8A3A541B205BE7117",
-      "image_url": "https://ipfs.io/ipfs/QmNvEnVjTFmMme3LwLJwtjrTmJyjVKHx5XuUJcXJkN7LV2",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/ad8ffe025f47-4fd9-a515-036fa13a0c74651b4ca55f0f-42bd-b003-846f631acf31044b5eb59e48-4ad5-8d70-46ac24873269.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -579,16 +603,18 @@
       "display_rank": 14,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-06-16T14:44:07.000Z"
     },
     {
       "token_id": 96366873,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8D170E3B405BE7119",
       "nft_serial": 96366873,
       "name": "JB Nature #016",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8D170E3B405BE7119",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8D170E3B405BE7119",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8D170E3B405BE7119",
-      "image_url": "https://ipfs.io/ipfs/QmXRjDa9eAvdu2p3FceCdZe5pqvpjaQzx1C71193S2t2hj",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/1475a58754d5-4f8d-b9ee-064c39c3f4cf052ea0c81209-4ca6-b025-5325c31f8af71f119b2e406d-4822-9c7a-1f48a64ce2a0.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -630,21 +656,24 @@
       "nft_taxon": 0,
       "collection_id": "xrpl_jb_ai_nature",
       "collection_name": "JB AI Nature",
-      "listing_status": "Not Listed",
+      "listing_status": "For Sale",
       "listing_currency": "XRP",
       "display_rank": 16,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-06-16T14:48:56.000Z",
+      "current_price_xrp": 2.95233
     },
     {
       "token_id": 96366875,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8FF3C85B605BE711B",
       "nft_serial": 96366875,
       "name": "JB Nature #018",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8FF3C85B605BE711B",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8FF3C85B605BE711B",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8FF3C85B605BE711B",
-      "image_url": "https://ipfs.io/ipfs/QmQekoAa3DsgnhytU7j3EN9RgtbvEb8hy8mRQRD9erVPNR",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/f6d14a436d40-4172-b11a-ab60d6ecbfeadc5e429cb13a-48f0-a5cf-cd07ac491e9895c4dd471377-4b6d-80b2-c636ec827d7e.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -686,21 +715,24 @@
       "nft_taxon": 0,
       "collection_id": "xrpl_jb_ai_nature",
       "collection_name": "JB AI Nature",
-      "listing_status": "Not Listed",
+      "listing_status": "For Sale",
       "listing_currency": "XRP",
       "display_rank": 18,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-06-16T14:52:24.000Z",
+      "current_price_xrp": 20.0
     },
     {
       "token_id": 96366876,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8162256B705BE711C",
       "nft_serial": 96366876,
       "name": "JB Nature #019",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8162256B705BE711C",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8162256B705BE711C",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8162256B705BE711C",
-      "image_url": "https://ipfs.io/ipfs/QmT6H4FC19WNAH8Y3Q614PoRjT9e2dk5xtTfe5N3nh8vmQ",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/1e871600a2ac-4add-a32a-4758c2589bddd0901db43fb6-42e4-ba04-511a4cd929054b7ef2f50b8a-4425-8773-052babb35cc4.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -747,16 +779,18 @@
       "display_rank": 19,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-07-09T11:41:50.000Z"
     },
     {
       "token_id": 96366877,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD82D0827B805BE711D",
       "nft_serial": 96366877,
       "name": "JB Nature #020",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD82D0827B805BE711D",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD82D0827B805BE711D",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD82D0827B805BE711D",
-      "image_url": "https://ipfs.io/ipfs/QmUQpCS1NkWAH1KosAUokgugYvVrPpLTtoTWq3V2qKKan4",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/5965397641ac-401a-90dd-3f82d9171a0acabb119922b3-441a-930a-ffa217184903b1f5a7dde3f6-4f7a-b6c4-18921b78df32.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -803,16 +837,18 @@
       "display_rank": 20,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-07-09T11:42:58.000Z"
     },
     {
       "token_id": 96366885,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8E436AFC005BE7125",
       "nft_serial": 96366885,
       "name": "JB Nature #028",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8E436AFC005BE7125",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8E436AFC005BE7125",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8E436AFC005BE7125",
-      "image_url": "https://ipfs.io/ipfs/QmXTmJVXPYteMauVBpV9QjNRaxeALPz4Vc49FmmSmHkSQQ",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/ee56d2da3c3e-46a9-a9fb-2ea94be0563c2aeb2546a80d-4c4b-a16f-c984f5958a266377ce16df00-49f5-803c-6519cb537541.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -859,16 +895,18 @@
       "display_rank": 28,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-07-09T14:28:35.000Z"
     },
     {
       "token_id": 96366888,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD828E822C305BE7128",
       "nft_serial": 96366888,
       "name": "JB Nature #031",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD828E822C305BE7128",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD828E822C305BE7128",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD828E822C305BE7128",
-      "image_url": "https://ipfs.io/ipfs/QmSNyTKQaiKNx3xfyW1STKt59oVRuiQkw8Zk5LdNB7KscW",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/21e3db1e5144-4aaa-8fc6-ed4c0895f10ba3fb59a9940d-4483-94c6-e92e81429a660e6fdd889bba-4eb9-8d0b-a04c0053e3bd.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -915,16 +953,18 @@
       "display_rank": 31,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-07-09T21:19:48.000Z"
     },
     {
       "token_id": 96366893,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD89B6537C805BE712D",
       "nft_serial": 96366893,
       "name": "JB Nature #034",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD89B6537C805BE712D",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD89B6537C805BE712D",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD89B6537C805BE712D",
-      "image_url": "https://ipfs.io/ipfs/QmTRZSbtHmxgQJSw9jj4k6hSJeQME6nd6c48jVn9PFDz7p",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/c1b26a46d284-442e-b989-8d5f166db2c21d5e6482114b-4a3f-b456-f629f53497a3ed4ac8b728cd-46cb-ad76-c1185dce3038.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -971,16 +1011,18 @@
       "display_rank": 34,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-07-10T16:24:59.000Z"
     },
     {
       "token_id": 96366895,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8C930D9CA05BE712F",
       "nft_serial": 96366895,
       "name": "JB Nature #036",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8C930D9CA05BE712F",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8C930D9CA05BE712F",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8C930D9CA05BE712F",
-      "image_url": "https://ipfs.io/ipfs/QmfBe1s7HwPtHo3xq6pRWKy8P1RcVvBDd64Zg6zooTjF7D",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/d2880458d4d2-4648-a6af-5e0701c8ca0c0820e67f895e-46a6-a892-3379183dd7ef9d952d9a928c-48ed-b94c-cba11b85e1d8.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -1027,16 +1069,18 @@
       "display_rank": 36,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-07-10T16:27:44.000Z"
     },
     {
       "token_id": 96366898,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD80DE24CCD05BE7132",
       "nft_serial": 96366898,
       "name": "JB Nature #039",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD80DE24CCD05BE7132",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD80DE24CCD05BE7132",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD80DE24CCD05BE7132",
-      "image_url": "https://ipfs.io/ipfs/QmP4pDVF7zaZSDnZw3TTVRmRKQt4PJArqeRCfyW2c748T5",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/6167df8a2a41-4a66-8bda-726b0441b75bf934d5a85de3-4c15-9ad6-9d3bba9115fdbe23f89157be-4c07-a267-878797cf8a5c.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -1083,16 +1127,18 @@
       "display_rank": 39,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-07-10T17:02:22.000Z"
     },
     {
       "token_id": 96366901,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD85293BFD005BE7135",
       "nft_serial": 96366901,
       "name": "JB Nature #042",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD85293BFD005BE7135",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD85293BFD005BE7135",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD85293BFD005BE7135",
-      "image_url": "https://ipfs.io/ipfs/QmQAZAPuqWhFN9iDA6pBrViRzdAG2MZS9axtANvecBVw3c",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/caec1a227cbe-472d-ba40-62ec9c6693db1af347cc1b8c-45a6-ad09-7f85e56357557963820f59c2-4d35-810c-ffbc198ce30c.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -1139,16 +1185,18 @@
       "display_rank": 42,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-07-10T17:50:40.000Z"
     },
     {
       "token_id": 96366903,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8805F61D205BE7137",
       "nft_serial": 96366903,
       "name": "JB Nature #044",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8805F61D205BE7137",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8805F61D205BE7137",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8805F61D205BE7137",
-      "image_url": "https://ipfs.io/ipfs/QmRfWUzgmSV9DbJZWm3D1cgPAniGukCWLrPDMMHow4ehNY",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/d76648d988f2-4f9c-a8dd-49604591b6abfe957ad4d970-43ff-a0ad-0d5a0b086a79884ee0f81b38-4d6e-b588-7789062d5190.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -1195,16 +1243,18 @@
       "display_rank": 44,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-07-10T18:31:55.000Z"
     },
     {
       "token_id": 96366904,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8974532D305BE7138",
       "nft_serial": 96366904,
       "name": "JB Nature #045",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8974532D305BE7138",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8974532D305BE7138",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8974532D305BE7138",
-      "image_url": "https://ipfs.io/ipfs/QmZ1CFXv9NxvWpAd9vkNjo7jgQHLfdcUmc5YwhXnD3vZLg",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/69725f5d0125-4d75-aefc-c1cdcaaf60101574e85ec79f-4b48-9bc3-30ff0373e17345cd77f31875-4008-be31-993bfba5fc88.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -1251,16 +1301,18 @@
       "display_rank": 45,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-07-10T18:43:15.000Z"
     },
     {
       "token_id": 96366905,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8AE2B03D405BE7139",
       "nft_serial": 96366905,
       "name": "JB Nature #046",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8AE2B03D405BE7139",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8AE2B03D405BE7139",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8AE2B03D405BE7139",
-      "image_url": "https://ipfs.io/ipfs/QmfLtTt8sbuzZviENQkVkS9BCNpzuv7Vwcuii9wVtPCT87",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/094c963d9cff-43e4-99b6-c859f2ac433c752c5d1207e2-4c2d-bb5c-c5116f2be1e3f3591c78d41a-418e-8652-a56f62fbfa75.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -1307,16 +1359,18 @@
       "display_rank": 46,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-07-10T18:45:17.000Z"
     },
     {
       "token_id": 96366906,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8C510D4D505BE713A",
       "nft_serial": 96366906,
       "name": "JB Nature #047",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8C510D4D505BE713A",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8C510D4D505BE713A",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8C510D4D505BE713A",
-      "image_url": "https://ipfs.io/ipfs/QmWfdqWNtTzyfqPmQ4WG7om6HwnNk34CVnVPwv17TZ22XJ",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/6d1e36c701cb-4df4-abd2-c15c29d00bc2a22fa6d12d04-477b-a95a-8c87456a204fa9a7d6a36005-4c30-b2d5-417dcc79fca5.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -1362,16 +1416,18 @@
       "display_rank": 47,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-07-10T18:46:07.000Z"
     },
     {
       "token_id": 96366908,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8F2DC76D705BE713C",
       "nft_serial": 96366908,
       "name": "JB Nature #049",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8F2DC76D705BE713C",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8F2DC76D705BE713C",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8F2DC76D705BE713C",
-      "image_url": "https://ipfs.io/ipfs/QmcdNfkJ4nxUsBy6JRLNeCCUY5qaB8Kktjjn1C3pKGAvhf",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/9285c8ba6216-4ef4-8105-514d71e82f1903fb9beaa2f4-4e3d-a2c7-0ff49104f5c98cc912cc52fb-4ed5-80e1-73ebf7191851.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -1418,16 +1474,18 @@
       "display_rank": 49,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-07-10T18:48:09.000Z"
     },
     {
       "token_id": 96366913,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD865598BDC05BE7141",
       "nft_serial": 96366913,
       "name": "JB Nature #054",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD865598BDC05BE7141",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD865598BDC05BE7141",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD865598BDC05BE7141",
-      "image_url": "https://ipfs.io/ipfs/Qme7azVUE5VBsfNxdPfkY8ZDTdYuYRwVrL2kV3Rq4591SN",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/276a215e7059-4e3e-a402-aaf7214c12e92ceeeb725fea-484f-9bbd-37ecb256a71fb49ded7a3f95-43ca-9bbd-5931b0e3755f.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -1474,16 +1532,18 @@
       "display_rank": 54,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-07-12T09:55:41.000Z"
     },
     {
       "token_id": 96366923,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD84A53B5E605BE714B",
       "nft_serial": 96366923,
       "name": "JB Nature #056",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD84A53B5E605BE714B",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD84A53B5E605BE714B",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD84A53B5E605BE714B",
-      "image_url": "https://ipfs.io/ipfs/QmSMWqeZCk9sUGduqgrUWiDnjNXpuyinJNbYuorgosMGmJ",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/c7e0bac51cc5-4e8a-b079-8a365749dbc892954f4b1899-4e6f-b8e5-fc2f3ef12acf16967a31bf20-4fb1-817c-09d8fa4e5e66.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -1530,16 +1590,18 @@
       "display_rank": 56,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-07-31T23:58:50.000Z"
     },
     {
       "token_id": 96366925,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8781F57E805BE714D",
       "nft_serial": 96366925,
       "name": "JB Nature #058",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8781F57E805BE714D",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8781F57E805BE714D",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8781F57E805BE714D",
-      "image_url": "https://ipfs.io/ipfs/QmQwciXnjN2zhqgULe2X8g6yQ2mekQ4eJXraHeQfkvwG1B",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/2c05be5f5f15-4962-be9f-164c870a9d72562f5c36c754-47fb-b22a-a573a617f45de3a44f450988-451b-827b-bd311d2e2464.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -1586,16 +1648,18 @@
       "display_rank": 58,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-08-01T00:14:57.000Z"
     },
     {
       "token_id": 96366929,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8D3B69BEC05BE7151",
       "nft_serial": 96366929,
       "name": "JB Nature #062",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8D3B69BEC05BE7151",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8D3B69BEC05BE7151",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8D3B69BEC05BE7151",
-      "image_url": "https://ipfs.io/ipfs/QmVRBimf1zUzCN2FGN1GVTQ1LRkvDZrUs7o7hxoVbxT9HV",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/e95349bd5d0f-49c5-9fe2-454061fa1d54c30a937ed7ec-44e8-b9f1-b61bfcdd9b8bd982725d621c-4862-890a-c8439c237373.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -1642,16 +1706,18 @@
       "display_rank": 62,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-08-01T00:20:03.000Z"
     },
     {
       "token_id": 96366934,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD84633B0F105BE7156",
       "nft_serial": 96366934,
       "name": "JB Nature #067",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD84633B0F105BE7156",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD84633B0F105BE7156",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD84633B0F105BE7156",
-      "image_url": "https://ipfs.io/ipfs/QmaHV3sdESQKaHehkq7ayTQALkCKvNAV8BE2dYgNFD9eaw",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/db76f5a916e7-4ea6-b0da-6915919b85c69103ca80fe5e-48af-9d68-81a78eb3305b1fc976eaf006-4bc1-8e3f-38c23520ad31.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -1698,16 +1764,18 @@
       "display_rank": 67,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-08-01T10:39:11.000Z"
     },
     {
       "token_id": 96366938,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8A1CAF4F505BE715A",
       "nft_serial": 96366938,
       "name": "JB Nature #071",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8A1CAF4F505BE715A",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8A1CAF4F505BE715A",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8A1CAF4F505BE715A",
-      "image_url": "https://ipfs.io/ipfs/QmWbE4UZ6pEz6dqi1KbUaMDbf5YcFcfB1NAvLLfgRwkjhX",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/2b1975f7b65e-44ec-a70d-3fbbe537ce1ca0ae3594e991-4186-9e3f-8d02715afc8d3bdf873fa076-4966-99a3-4af7364957bf.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -1754,16 +1822,18 @@
       "display_rank": 71,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-08-04T14:02:38.000Z"
     },
     {
       "token_id": 96366939,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8B8B0C5F605BE715B",
       "nft_serial": 96366939,
       "name": "JB Nature #072",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8B8B0C5F605BE715B",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8B8B0C5F605BE715B",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8B8B0C5F605BE715B",
-      "image_url": "https://ipfs.io/ipfs/QmXkQ9snXKLpPRXakMaM7rknQ7JQuX1ziPfnvH4NUDtzYq",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/27ff312c9016-4d07-ab7f-d76cf36f48b64a8ff8306ac7-49cf-b8f4-91f23c96d3c9c64d1277bc47-4557-a3c9-2464ed572a9c.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -1810,16 +1880,18 @@
       "display_rank": 72,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-08-04T14:04:35.000Z"
     },
     {
       "token_id": 96366940,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8CF9696F705BE715C",
       "nft_serial": 96366940,
       "name": "JB Nature #073",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8CF9696F705BE715C",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8CF9696F705BE715C",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8CF9696F705BE715C",
-      "image_url": "https://ipfs.io/ipfs/QmagYJDZNXyhpm2KJeN1SMWgMD7jPjvnq5YyxD6DoxkAoj",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/a27d8e00dbf7-4e1a-943a-2e9f6a124f9aee7309a1dc83-4344-b85a-b6158b6d4450d3571a767f75-4d24-a030-90254a1a5dec.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -1866,16 +1938,18 @@
       "display_rank": 73,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-08-04T14:05:47.000Z"
     },
     {
       "token_id": 96366941,
       "xrpl_nft_id": "00082710C991C993639BFB85813235F2175B16ADADDCDBD8E67C67F805BE715D",
       "nft_serial": 96366941,
       "name": "JB Nature #074",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8E67C67F805BE715D",
       "marketplace_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8E67C67F805BE715D",
-      "opensea_url": "https://xrp.cafe/nft/00082710C991C993639BFB85813235F2175B16ADADDCDBD8E67C67F805BE715D",
-      "image_url": "https://ipfs.io/ipfs/QmReqbfPpTYg7yaEnwvJXcqKqa7xrTSP4n65G4XZw99wCe",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/ab039d7e4942-423f-9d8d-b41c21f8be4135e2a0bde935-4a99-91f4-968f00432f5a293d117e2d5e-430a-889b-a4af11d9e8b8.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -1922,16 +1996,18 @@
       "display_rank": 74,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-08-04T14:07:08.000Z"
     },
     {
       "token_id": 96366945,
       "xrpl_nft_id": "000861A8C991C993639BFB85813235F2175B16ADADDCDBD84213ABFC05BE7161",
       "nft_serial": 96366945,
       "name": "JB Nature #076",
+      "xrp_cafe_url": "https://xrp.cafe/nft/000861A8C991C993639BFB85813235F2175B16ADADDCDBD84213ABFC05BE7161",
       "marketplace_url": "https://xrp.cafe/nft/000861A8C991C993639BFB85813235F2175B16ADADDCDBD84213ABFC05BE7161",
-      "opensea_url": "https://xrp.cafe/nft/000861A8C991C993639BFB85813235F2175B16ADADDCDBD84213ABFC05BE7161",
-      "image_url": "https://ipfs.io/ipfs/QmRJMqRYJR4XkE7fgWYzhKz67gixmWznmKCAQubhX35tfV",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/c05a56c8c68f-4aef-9d1e-01d647bf3f918f2c96f78f7a-4677-acb4-7fc59fb042e2ac17f7c897dc-4508-8aa2-1359edc4d68f.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -1978,16 +2054,18 @@
       "display_rank": 76,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-08-04T14:45:39.000Z"
     },
     {
       "token_id": 96366946,
       "xrpl_nft_id": "000861A8C991C993639BFB85813235F2175B16ADADDCDBD858F97CFD05BE7162",
       "nft_serial": 96366946,
       "name": "JB Nature #077",
+      "xrp_cafe_url": "https://xrp.cafe/nft/000861A8C991C993639BFB85813235F2175B16ADADDCDBD858F97CFD05BE7162",
       "marketplace_url": "https://xrp.cafe/nft/000861A8C991C993639BFB85813235F2175B16ADADDCDBD858F97CFD05BE7162",
-      "opensea_url": "https://xrp.cafe/nft/000861A8C991C993639BFB85813235F2175B16ADADDCDBD858F97CFD05BE7162",
-      "image_url": "https://ipfs.io/ipfs/QmQuPfHmESe51T66Uhb1ZfGE6SyGr3DupKfvSengcBYiPT",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/c48ca62e6dce-415b-8f0e-d3f087164acedb78d85959a2-498f-b487-e7d92fdb205afa3bb85abb6c-475e-ba38-e2825759f7a9.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -2029,21 +2107,24 @@
       "nft_taxon": 0,
       "collection_id": "xrpl_jb_ai_nature",
       "collection_name": "JB AI Nature",
-      "listing_status": "Not Listed",
+      "listing_status": "For Sale",
       "listing_currency": "XRP",
       "display_rank": 77,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-08-04T14:46:26.000Z",
+      "current_price_xrp": 10.0
     },
     {
       "token_id": 96366947,
       "xrpl_nft_id": "00087530C991C993639BFB85813235F2175B16ADADDCDBD86FDF4DFE05BE7163",
       "nft_serial": 96366947,
       "name": "JB Nature #078",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD86FDF4DFE05BE7163",
       "marketplace_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD86FDF4DFE05BE7163",
-      "opensea_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD86FDF4DFE05BE7163",
-      "image_url": "https://ipfs.io/ipfs/QmZVr487p4KfJ2xxWsxdqG4XihyAoXaP1XsiqqmywQ9VB4",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/e8f7c1a6ee3a-4c42-9df8-1964bb8b457bd04ca0fe6237-4718-a181-121c297a74ecfce9aaf55155-4beb-a20a-57889bc6d382.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -2090,16 +2171,18 @@
       "display_rank": 78,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-08-04T14:47:17.000Z"
     },
     {
       "token_id": 96366948,
       "xrpl_nft_id": "00087530C991C993639BFB85813235F2175B16ADADDCDBD886C51EFF05BE7164",
       "nft_serial": 96366948,
       "name": "JB Nature #079",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD886C51EFF05BE7164",
       "marketplace_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD886C51EFF05BE7164",
-      "opensea_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD886C51EFF05BE7164",
-      "image_url": "https://ipfs.io/ipfs/Qmb8tQPqp7eKLDFKmsBTqWCFe5hssHxZ8C9Qeig3Kjk7x6",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/81d0131573be-4299-aa62-9247b2936832dcc76f5204eb-4452-9d85-d63865c55c538f54078ed411-4626-9630-015c7890f62d.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -2141,21 +2224,24 @@
       "nft_taxon": 0,
       "collection_id": "xrpl_jb_ai_nature",
       "collection_name": "JB AI Nature",
-      "listing_status": "Not Listed",
+      "listing_status": "For Sale",
       "listing_currency": "XRP",
       "display_rank": 79,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-08-04T14:48:51.000Z",
+      "current_price_xrp": 5.0
     },
     {
       "token_id": 96366949,
       "xrpl_nft_id": "00087530C991C993639BFB85813235F2175B16ADADDCDBD89DAAF00005BE7165",
       "nft_serial": 96366949,
       "name": "JB Nature #080",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD89DAAF00005BE7165",
       "marketplace_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD89DAAF00005BE7165",
-      "opensea_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD89DAAF00005BE7165",
-      "image_url": "https://ipfs.io/ipfs/QmY3uagy69Yf1JSeMVXYdZaKkN3VrX7Wzu6pxhEmU4scH2",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/79ad90635eae-4fc4-a418-e266da1828743fb007c545a3-4476-a558-d187ea39c1a80bb0d9951b33-43d8-97dd-6c11be340231.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -2202,16 +2288,18 @@
       "display_rank": 80,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-08-04T14:51:13.000Z"
     },
     {
       "token_id": 96366950,
       "xrpl_nft_id": "00089C40C991C993639BFB85813235F2175B16ADADDCDBD8B490C10105BE7166",
       "nft_serial": 96366950,
       "name": "JB Nature #081",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD8B490C10105BE7166",
       "marketplace_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD8B490C10105BE7166",
-      "opensea_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD8B490C10105BE7166",
-      "image_url": "https://ipfs.io/ipfs/QmSXKfAAZnDPDPRzD4mSC78VqrX3nFUXqSGNDMFy6xRhP5",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/4381945d7ab8-4f56-9eb1-0bc75de77330f21a9b568fb7-4753-ab09-8edd911c4b5aab450d3b92bf-40f5-bed7-d40e22afb05a.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -2258,16 +2346,18 @@
       "display_rank": 81,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-08-04T14:52:02.000Z"
     },
     {
       "token_id": 96366951,
       "xrpl_nft_id": "00087530C991C993639BFB85813235F2175B16ADADDCDBD8CB76920205BE7167",
       "nft_serial": 96366951,
       "name": "JB Nature #082",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD8CB76920205BE7167",
       "marketplace_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD8CB76920205BE7167",
-      "opensea_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD8CB76920205BE7167",
-      "image_url": "https://ipfs.io/ipfs/QmbzpxUNjTzNZrpnsxUKiz9k6MFa4QE2GfzBTrKviXyAkA",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/7bac009c57cb-42c0-a9cb-c0464b512571e4e895641159-4104-b340-44921bf583081acbdf116890-46c2-94ec-2ff6163c503e.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -2314,16 +2404,18 @@
       "display_rank": 82,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-08-04T14:53:40.000Z"
     },
     {
       "token_id": 96366952,
       "xrpl_nft_id": "00089C40C991C993639BFB85813235F2175B16ADADDCDBD8E25C630305BE7168",
       "nft_serial": 96366952,
       "name": "JB Nature #083",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD8E25C630305BE7168",
       "marketplace_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD8E25C630305BE7168",
-      "opensea_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD8E25C630305BE7168",
-      "image_url": "https://ipfs.io/ipfs/QmSF6tC7kA7DaYGZUYZ69LhrP5LUs1xYnEsnDCEbFdxwxe",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/66e03893efb5-463e-b86e-b62dec33792f6e2e2db7ff57-46c2-9a55-4d7569c0a96824dbb73f5af7-4fd6-9ada-93f29db713c5.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -2370,16 +2462,18 @@
       "display_rank": 83,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-08-04T14:55:15.000Z"
     },
     {
       "token_id": 96366953,
       "xrpl_nft_id": "00089C40C991C993639BFB85813235F2175B16ADADDCDBD8F942340405BE7169",
       "nft_serial": 96366953,
       "name": "JB Nature #084",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD8F942340405BE7169",
       "marketplace_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD8F942340405BE7169",
-      "opensea_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD8F942340405BE7169",
-      "image_url": "https://ipfs.io/ipfs/QmX7TD3azMBBcLFK4a5ydPgDDxmWys6CSWD1jKJzscJBMy",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/35abe51d125b-4257-bb5b-68954db74155e0dbd8cc0c91-496f-8cd7-1be15ef6d9a289f42db83cf8-4ed4-8cdf-82d073ef5274.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -2426,16 +2520,18 @@
       "display_rank": 84,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-08-07T13:43:37.000Z"
     },
     {
       "token_id": 96366954,
       "xrpl_nft_id": "00089C40C991C993639BFB85813235F2175B16ADADDCDBD81028050505BE716A",
       "nft_serial": 96366954,
       "name": "JB Nature #085",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD81028050505BE716A",
       "marketplace_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD81028050505BE716A",
-      "opensea_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD81028050505BE716A",
-      "image_url": "https://ipfs.io/ipfs/QmRn1A9QU6XfBUbokUoC3ikUMijGyJ4RGv2qBMpDwxEkez",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/d8e64c2fbe72-4fee-b38b-a8c12fa489c7cdc8cd515f1b-4053-a2b2-2bdaa4343b1116ecd882f3cb-4567-879a-244045df59d6.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -2482,16 +2578,18 @@
       "display_rank": 85,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-08-07T13:44:24.000Z"
     },
     {
       "token_id": 96366955,
       "xrpl_nft_id": "00087530C991C993639BFB85813235F2175B16ADADDCDBD8270DD60605BE716B",
       "nft_serial": 96366955,
       "name": "JB Nature #086",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD8270DD60605BE716B",
       "marketplace_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD8270DD60605BE716B",
-      "opensea_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD8270DD60605BE716B",
-      "image_url": "https://ipfs.io/ipfs/QmeaV4BZxEAkgQS4AsCC8qEwxNNd33a42fVBRH66ZH3zXS",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/c20114164996-40e7-9e3e-0a9f14afdca6c5e9f7058d8b-4a58-bef6-5463f5c6b84387b9d4cd920c-4510-b8c9-3bd03effbffc.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -2538,16 +2636,18 @@
       "display_rank": 86,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-08-07T13:45:11.000Z"
     },
     {
       "token_id": 96366956,
       "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD83DF3A70705BE716C",
       "nft_serial": 96366956,
       "name": "JB Nature #087",
+      "xrp_cafe_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD83DF3A70705BE716C",
       "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD83DF3A70705BE716C",
-      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD83DF3A70705BE716C",
-      "image_url": "https://ipfs.io/ipfs/Qmci4QDDBirQkhWPSxpYbeG2DF3RYg8nx3QaFvKap8T6do",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/21a73148d77a-4c5f-abfe-b8f9c164b7a080fa2b342ae3-435d-aa8b-63164f3dbb171b0ae07604bd-4ca5-80f8-97b1ee949d58.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -2594,16 +2694,18 @@
       "display_rank": 87,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-08-07T13:46:51.000Z"
     },
     {
       "token_id": 96366957,
       "xrpl_nft_id": "00087530C991C993639BFB85813235F2175B16ADADDCDBD854D9780805BE716D",
       "nft_serial": 96366957,
       "name": "JB Nature #088",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD854D9780805BE716D",
       "marketplace_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD854D9780805BE716D",
-      "opensea_url": "https://xrp.cafe/nft/00087530C991C993639BFB85813235F2175B16ADADDCDBD854D9780805BE716D",
-      "image_url": "https://ipfs.io/ipfs/QmbfNjGeJd68Bqi2yRucmcqBHP1ndhYK5sKzc3YdmaxjCG",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/c9a7af9d32b1-4df3-b49f-04f157b7eb532992f25a5f52-4d92-8488-f15db87c20a3ea9f4a3c3916-4948-aba9-4f5b4abea940.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -2650,16 +2752,18 @@
       "display_rank": 88,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-08-07T13:47:38.000Z"
     },
     {
       "token_id": 96366958,
       "xrpl_nft_id": "00089C40C991C993639BFB85813235F2175B16ADADDCDBD86BBF490905BE716E",
       "nft_serial": 96366958,
       "name": "JB Nature #089",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD86BBF490905BE716E",
       "marketplace_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD86BBF490905BE716E",
-      "opensea_url": "https://xrp.cafe/nft/00089C40C991C993639BFB85813235F2175B16ADADDCDBD86BBF490905BE716E",
-      "image_url": "https://ipfs.io/ipfs/QmNNcRwV2Q1h6bTosA6ozkywAyAwfFVeXPq2vLhMMkCTcL",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/6cd43ba133f6-4764-ae5b-3707c33fd81f61914c6818c4-48c5-b611-ed6757c4b7ea96d869efe90a-489b-bffc-c20b97ff6ae9.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -2706,16 +2810,18 @@
       "display_rank": 89,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-08-07T13:49:04.000Z"
     },
     {
       "token_id": 96366959,
       "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD882A51A0A05BE716F",
       "nft_serial": 96366959,
       "name": "JB Nature #090",
+      "xrp_cafe_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD882A51A0A05BE716F",
       "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD882A51A0A05BE716F",
-      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD882A51A0A05BE716F",
-      "image_url": "https://ipfs.io/ipfs/QmZPZxLnCvDqFznGgUpoqQqVJsaHKP2uujBNuCW4CMJyVy",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/f09ff4542c9e-4345-963f-e86d9ea6c4b6e547cd3abd5b-409b-8a4e-df2458118771e7494c47ec4e-46c2-8444-085cff8a1a7b.webp",
       "supply": 1,
       "traits": {
         "Size": "2048 x 2048",
@@ -2762,16 +2868,18 @@
       "display_rank": 90,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-08-07T13:49:59.000Z"
     },
     {
       "token_id": 96366960,
       "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD8998AEB0B05BE7170",
       "nft_serial": 96366960,
       "name": "JB Nature #091",
+      "xrp_cafe_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8998AEB0B05BE7170",
       "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8998AEB0B05BE7170",
-      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8998AEB0B05BE7170",
-      "image_url": "https://ipfs.io/ipfs/QmUD2FSFzMXg8LKGozV6pHaWGf93PL5wLEHrowG2F5Rq8W",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/000393da3ad4-4f72-a055-462ae223eb3af4925b6a2d22-4f09-81a1-e9bfe434c947684afbff08f1-4741-97ec-cdf8ea359ebc.webp",
       "supply": 1,
       "traits": {
         "Topic": "Nature",
@@ -2817,16 +2925,18 @@
       "display_rank": 91,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-12-05T12:13:41.000Z"
     },
     {
       "token_id": 96366961,
       "xrpl_nft_id": "0008889AC991C993639BFB85813235F2175B16ADADDCDBD8B070BC0C05BE7171",
       "nft_serial": 96366961,
       "name": "JB Nature #092",
+      "xrp_cafe_url": "https://xrp.cafe/nft/0008889AC991C993639BFB85813235F2175B16ADADDCDBD8B070BC0C05BE7171",
       "marketplace_url": "https://xrp.cafe/nft/0008889AC991C993639BFB85813235F2175B16ADADDCDBD8B070BC0C05BE7171",
-      "opensea_url": "https://xrp.cafe/nft/0008889AC991C993639BFB85813235F2175B16ADADDCDBD8B070BC0C05BE7171",
-      "image_url": "https://ipfs.io/ipfs/QmcDFYojyQqsNtAdu8JHxrhTXkmcPqnaSRr3qqbDDoE2u4",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/eb85e356d051-4de0-948f-c59fce36a2d0b809057c3e9d-4607-8f88-421214b20cc619139e5b20e0-4763-b68e-2674a8d7bbb2.webp",
       "supply": 1,
       "traits": {
         "Topic": "Nature",
@@ -2872,16 +2982,18 @@
       "display_rank": 92,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-12-05T12:15:04.000Z"
     },
     {
       "token_id": 96366962,
       "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD8C7568D0D05BE7172",
       "nft_serial": 96366962,
       "name": "JB Nature #093",
+      "xrp_cafe_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8C7568D0D05BE7172",
       "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8C7568D0D05BE7172",
-      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8C7568D0D05BE7172",
-      "image_url": "https://ipfs.io/ipfs/QmVNoxqaod8NhtAh9dofpycWnVqxKnBEJAr13p9asqM8qc",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/a9d8651132f8-4340-b99b-fa2f77646ce653e152521f9b-40bd-80b8-4798bd81476dea7cc0f7d8f7-48dd-bd51-8cf8a88ae014.webp",
       "supply": 1,
       "traits": {
         "Topic": "Nature",
@@ -2927,16 +3039,18 @@
       "display_rank": 93,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-12-05T12:15:57.000Z"
     },
     {
       "token_id": 96366963,
       "xrpl_nft_id": "000888A4C991C993639BFB85813235F2175B16ADADDCDBD8DE3C5E0E05BE7173",
       "nft_serial": 96366963,
       "name": "JB Nature #094",
+      "xrp_cafe_url": "https://xrp.cafe/nft/000888A4C991C993639BFB85813235F2175B16ADADDCDBD8DE3C5E0E05BE7173",
       "marketplace_url": "https://xrp.cafe/nft/000888A4C991C993639BFB85813235F2175B16ADADDCDBD8DE3C5E0E05BE7173",
-      "opensea_url": "https://xrp.cafe/nft/000888A4C991C993639BFB85813235F2175B16ADADDCDBD8DE3C5E0E05BE7173",
-      "image_url": "https://ipfs.io/ipfs/QmQmXYYmgtBVHdkrGg8T4YBoqVdN7xhg2XP2Ss4BoL28R6",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/ff501ccccd4a-43e4-b23d-112a8f18ffd93249684837f0-4d70-8267-748b455ed580e4e18877c40c-491f-b0f2-1fc82f53095f.webp",
       "supply": 1,
       "traits": {
         "Topic": "Nature",
@@ -2982,16 +3096,18 @@
       "display_rank": 94,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-12-05T12:17:20.000Z"
     },
     {
       "token_id": 96366965,
       "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD80C08001005BE7175",
       "nft_serial": 96366965,
       "name": "JB Nature #096",
+      "xrp_cafe_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD80C08001005BE7175",
       "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD80C08001005BE7175",
-      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD80C08001005BE7175",
-      "image_url": "https://ipfs.io/ipfs/QmNwfa8wtfECeTJd3XgJDH2gUnmKYGEDAzdW2F7D1SzcsM",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/6f7d744fbae0-4804-a802-8817607a2b03750e368fce1a-41fe-a896-a7da9f8526c136f7e53d0ad6-49f4-b86e-1fc775a473c2.webp",
       "supply": 1,
       "traits": {
         "Topic": "Nature",
@@ -3037,16 +3153,18 @@
       "display_rank": 96,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-12-05T12:19:01.000Z"
     },
     {
       "token_id": 96366966,
       "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD822EDD11105BE7176",
       "nft_serial": 96366966,
       "name": "JB Nature #097",
+      "xrp_cafe_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD822EDD11105BE7176",
       "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD822EDD11105BE7176",
-      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD822EDD11105BE7176",
-      "image_url": "https://ipfs.io/ipfs/QmTLjj56NjEWtjqm7fpdoHF1hg2uX2GguzRoNrD3zG5ChU",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/fdb22e43ee85-4adc-899b-05ac0e423aa576c92565cde7-4cdb-8143-c0768b785bf90caf58c65d92-4f88-8876-de993e2d60f8.webp",
       "supply": 1,
       "traits": {
         "Topic": "Nature",
@@ -3092,16 +3210,18 @@
       "display_rank": 97,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-12-05T12:22:01.000Z"
     },
     {
       "token_id": 96366967,
       "xrpl_nft_id": "0008889AC991C993639BFB85813235F2175B16ADADDCDBD839D3A21205BE7177",
       "nft_serial": 96366967,
       "name": "JB Nature #098",
+      "xrp_cafe_url": "https://xrp.cafe/nft/0008889AC991C993639BFB85813235F2175B16ADADDCDBD839D3A21205BE7177",
       "marketplace_url": "https://xrp.cafe/nft/0008889AC991C993639BFB85813235F2175B16ADADDCDBD839D3A21205BE7177",
-      "opensea_url": "https://xrp.cafe/nft/0008889AC991C993639BFB85813235F2175B16ADADDCDBD839D3A21205BE7177",
-      "image_url": "https://ipfs.io/ipfs/QmQQve4PqsrytTghcrEDWVoFqDzuHBk9Qe8c96htCdfT4B",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/cb46a641dd98-4931-868a-194321ad591b56eb701e0ddb-48b0-a8e5-a8d8aefaf183d827f54fcb3e-4509-8b00-a8b602408605.webp",
       "supply": 1,
       "traits": {
         "Topic": "Nature",
@@ -3147,16 +3267,18 @@
       "display_rank": 98,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-12-05T12:23:33.000Z"
     },
     {
       "token_id": 96366968,
       "xrpl_nft_id": "0008889AC991C993639BFB85813235F2175B16ADADDCDBD850B9731305BE7178",
       "nft_serial": 96366968,
       "name": "JB Nature #099",
+      "xrp_cafe_url": "https://xrp.cafe/nft/0008889AC991C993639BFB85813235F2175B16ADADDCDBD850B9731305BE7178",
       "marketplace_url": "https://xrp.cafe/nft/0008889AC991C993639BFB85813235F2175B16ADADDCDBD850B9731305BE7178",
-      "opensea_url": "https://xrp.cafe/nft/0008889AC991C993639BFB85813235F2175B16ADADDCDBD850B9731305BE7178",
-      "image_url": "https://ipfs.io/ipfs/QmYCGeKWhjE2DhiCvQ1dDYBsLqFo9rbohQsXQB2cEGi8Xw",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/0e7edab7c37f-4228-af51-3e6b2acf7a732f3642fc71ba-4101-bfc1-8a9362d161e7b1ce191514b7-4057-9de6-1f13f6e57303.webp",
       "supply": 1,
       "traits": {
         "Topic": "Nature",
@@ -3202,16 +3324,18 @@
       "display_rank": 99,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-12-05T12:24:40.000Z"
     },
     {
       "token_id": 96366969,
       "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD8679F441405BE7179",
       "nft_serial": 96366969,
       "name": "JB Nature #100",
+      "xrp_cafe_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8679F441405BE7179",
       "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8679F441405BE7179",
-      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8679F441405BE7179",
-      "image_url": "https://ipfs.io/ipfs/Qmf4tkovR1BeNWAe3WnXXurD18iNvi9nY8GbCM6SQK46CC",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/5487c0e67311-410c-a024-90bc5d726b57edefa69f13ed-4801-84be-0c9d9b85558692616d5c91a9-4c4f-aa27-8365eaaa22a8.webp",
       "supply": 1,
       "traits": {
         "Topic": "Nature",
@@ -3257,16 +3381,18 @@
       "display_rank": 100,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-12-05T12:36:45.000Z"
     },
     {
       "token_id": 96366970,
       "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD87E85151505BE717A",
       "nft_serial": 96366970,
       "name": "JB Nature #101",
+      "xrp_cafe_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD87E85151505BE717A",
       "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD87E85151505BE717A",
-      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD87E85151505BE717A",
-      "image_url": "https://ipfs.io/ipfs/QmSmZd9wAkN9AUPepGMiEn8Rf84QFLSSDT6YB33g61djak",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/95910994383e-47af-a319-61ecb199f02071f666d07a46-42d9-b85d-0d798c648b80d12a38e1ebea-4d44-baa7-0ba322532ce2.webp",
       "supply": 1,
       "traits": {
         "Topic": "Nature",
@@ -3312,16 +3438,18 @@
       "display_rank": 101,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-12-05T12:37:50.000Z"
     },
     {
       "token_id": 96366971,
       "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD8956AE61605BE717B",
       "nft_serial": 96366971,
       "name": "JB Nature #102",
+      "xrp_cafe_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8956AE61605BE717B",
       "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8956AE61605BE717B",
-      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8956AE61605BE717B",
-      "image_url": "https://ipfs.io/ipfs/QmeQc9gFEqf9bvTvfBxuQDAp7eDqGot9ozs8JwFTivHCCh",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/326d9e7df1e1-4033-80c7-09744ab27ef1c0925b1e9f4a-45ad-a272-6cf73783f0da1985f7849c3f-4389-91c6-ad87d952a59a.webp",
       "supply": 1,
       "traits": {
         "Topic": "Nature",
@@ -3367,16 +3495,18 @@
       "display_rank": 102,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-12-05T12:38:44.000Z"
     },
     {
       "token_id": 96366972,
       "xrpl_nft_id": "000888AEC991C993639BFB85813235F2175B16ADADDCDBD8AC50B71705BE717C",
       "nft_serial": 96366972,
       "name": "JB Nature #103",
+      "xrp_cafe_url": "https://xrp.cafe/nft/000888AEC991C993639BFB85813235F2175B16ADADDCDBD8AC50B71705BE717C",
       "marketplace_url": "https://xrp.cafe/nft/000888AEC991C993639BFB85813235F2175B16ADADDCDBD8AC50B71705BE717C",
-      "opensea_url": "https://xrp.cafe/nft/000888AEC991C993639BFB85813235F2175B16ADADDCDBD8AC50B71705BE717C",
-      "image_url": "https://ipfs.io/ipfs/QmXUwYwnS7HcFBngdhMkrri8Q68gQEf1QS51Yrq1aMpYe6",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/7fd7fd2cbb59-4cc6-b849-130389c72416dd76e4a784e4-48dd-8bc8-c48d31e9ac4609df7ae1efa1-4016-a7f5-36bdcc2f13af.webp",
       "supply": 1,
       "traits": {
         "Topic": "Nature",
@@ -3422,16 +3552,18 @@
       "display_rank": 103,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-12-05T12:40:06.000Z"
     },
     {
       "token_id": 96366973,
       "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD8C336881805BE717D",
       "nft_serial": 96366973,
       "name": "JB Nature #104",
+      "xrp_cafe_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8C336881805BE717D",
       "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8C336881805BE717D",
-      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8C336881805BE717D",
-      "image_url": "https://ipfs.io/ipfs/QmRb3VVnaAe4xaijjJksxXrxTvNCbnTF1SSoZ6Kvhp625L",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/4f342d42d2ee-4416-855c-763e68ca09b12c87defc0544-4e0c-b288-be8181d4f6be3fb651b82a41-4398-b75d-c5978da3327b.webp",
       "supply": 1,
       "traits": {
         "Topic": "Nature",
@@ -3477,16 +3609,18 @@
       "display_rank": 104,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-12-05T12:40:59.000Z"
     },
     {
       "token_id": 96366974,
       "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD8DA1C591905BE717E",
       "nft_serial": 96366974,
       "name": "JB Nature #105",
+      "xrp_cafe_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8DA1C591905BE717E",
       "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8DA1C591905BE717E",
-      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8DA1C591905BE717E",
-      "image_url": "https://ipfs.io/ipfs/QmXMu1CaQGNorzWJraDebWfKnEbiQNRsbGigtWgMmYrXho",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/354771dd0d7b-4e9c-a543-15aef2ef45009d21074f9da3-4ec0-9ee9-a4463306e2603df0ec3bbcf3-4a11-a6a3-6d96d177214b.webp",
       "supply": 1,
       "traits": {
         "Topic": "Animal",
@@ -3533,16 +3667,18 @@
       "display_rank": 105,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-12-05T12:42:04.000Z"
     },
     {
       "token_id": 96366975,
       "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD8F1022A1A05BE717F",
       "nft_serial": 96366975,
       "name": "JB Nature #106",
+      "xrp_cafe_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8F1022A1A05BE717F",
       "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8F1022A1A05BE717F",
-      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD8F1022A1A05BE717F",
-      "image_url": "https://ipfs.io/ipfs/QmS5ZY7YPSV8hrHFL4b9S4ixj8LDBSararqsP4KnTrAV14",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/aa1fdbf10f3c-4f20-b849-bb4bd6b268c4df85916898a1-4ad4-9789-2e94411f13f900ade851a97f-4193-97d4-a451f6f2d6c1.webp",
       "supply": 1,
       "traits": {
         "Topic": "Animal",
@@ -3589,16 +3725,18 @@
       "display_rank": 106,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-12-05T14:23:46.000Z"
     },
     {
       "token_id": 96366976,
       "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD807E7FB1B05BE7180",
       "nft_serial": 96366976,
       "name": "JB Nature #107",
+      "xrp_cafe_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD807E7FB1B05BE7180",
       "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD807E7FB1B05BE7180",
-      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD807E7FB1B05BE7180",
-      "image_url": "https://ipfs.io/ipfs/QmRTszsaXFK2aFapaWepgv8PLQ9YzqRNv8ahbdFjiMymjP",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/0d291fc7a72e-47e7-b6fd-2881c3ff6a0946e382d9d134-472d-998c-52d9a66980fec527d5fa2b07-4734-a0ba-b6919a9c52f2.webp",
       "supply": 1,
       "traits": {
         "Topic": "Animal",
@@ -3645,16 +3783,18 @@
       "display_rank": 107,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-12-05T14:24:52.000Z"
     },
     {
       "token_id": 96366982,
       "xrpl_nft_id": "000888AEC991C993639BFB85813235F2175B16ADADDCDBD8914AE12105BE7186",
       "nft_serial": 96366982,
       "name": "JB Nature #113",
+      "xrp_cafe_url": "https://xrp.cafe/nft/000888AEC991C993639BFB85813235F2175B16ADADDCDBD8914AE12105BE7186",
       "marketplace_url": "https://xrp.cafe/nft/000888AEC991C993639BFB85813235F2175B16ADADDCDBD8914AE12105BE7186",
-      "opensea_url": "https://xrp.cafe/nft/000888AEC991C993639BFB85813235F2175B16ADADDCDBD8914AE12105BE7186",
-      "image_url": "https://ipfs.io/ipfs/QmRxrHfMAuiSyBWHfaAWczu12Fj1S18zkWMrDdV473gm5v",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/1f1da345e547-46e6-8041-17129f7529278258201354aa-40e3-82a5-a38cb78f8fbdbf81d452581c-4aa0-8de4-10644bb5ea3e.webp",
       "supply": 1,
       "traits": {
         "Topic": "Animal",
@@ -3701,16 +3841,18 @@
       "display_rank": 113,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-12-05T14:30:42.000Z"
     },
     {
       "token_id": 96366988,
       "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD81AADC72705BE718C",
       "nft_serial": 96366988,
       "name": "JB Nature #119",
+      "xrp_cafe_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD81AADC72705BE718C",
       "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD81AADC72705BE718C",
-      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD81AADC72705BE718C",
-      "image_url": "https://ipfs.io/ipfs/QmPw311MdJBQTF7aHLg88FgTejU6jqcceK7wJpPnH3DKtc",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/3653db8641c2-4434-9352-6e325612e5f07c9ffda792d4-4b0f-9a50-75170ef9d02209ff0e6f8d16-437f-b687-e7166ce2d408.webp",
       "supply": 1,
       "traits": {
         "Topic": "Animal",
@@ -3757,16 +3899,18 @@
       "display_rank": 119,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-12-05T15:17:36.000Z"
     },
     {
       "token_id": 96366992,
       "xrpl_nft_id": "000888B8C991C993639BFB85813235F2175B16ADADDCDBD876450B2B05BE7190",
       "nft_serial": 96366992,
       "name": "JB Nature #123",
+      "xrp_cafe_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD876450B2B05BE7190",
       "marketplace_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD876450B2B05BE7190",
-      "opensea_url": "https://xrp.cafe/nft/000888B8C991C993639BFB85813235F2175B16ADADDCDBD876450B2B05BE7190",
-      "image_url": "https://ipfs.io/ipfs/QmX1hwup6TNPPmZpSeGYMjUH2MCgJSAmEBSivWhAoJDzHp",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/8efb062bdae0-43c5-8e4d-cdc0c0484ed5a9e58c13dd9d-46c2-9499-a8be0fa122bd62ff4339727b-4102-ac9e-a1b3a3d494c1.webp",
       "supply": 1,
       "traits": {
         "Topic": "Animal",
@@ -3808,21 +3952,24 @@
       "nft_taxon": 0,
       "collection_id": "xrpl_jb_ai_nature",
       "collection_name": "JB AI Nature",
-      "listing_status": "Not Listed",
+      "listing_status": "For Sale",
       "listing_currency": "XRP",
       "display_rank": 123,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-12-05T15:21:16.000Z",
+      "current_price_xrp": 9.0
     },
     {
       "token_id": 96366995,
       "xrpl_nft_id": "000888AEC991C993639BFB85813235F2175B16ADADDCDBD8BAF67E2E05BE7193",
       "nft_serial": 96366995,
       "name": "JB Nature #126",
+      "xrp_cafe_url": "https://xrp.cafe/nft/000888AEC991C993639BFB85813235F2175B16ADADDCDBD8BAF67E2E05BE7193",
       "marketplace_url": "https://xrp.cafe/nft/000888AEC991C993639BFB85813235F2175B16ADADDCDBD8BAF67E2E05BE7193",
-      "opensea_url": "https://xrp.cafe/nft/000888AEC991C993639BFB85813235F2175B16ADADDCDBD8BAF67E2E05BE7193",
-      "image_url": "https://ipfs.io/ipfs/QmYWiCKpjfR7sc2JtZNMYqhX6Tx5SXne3iHjx7dz5zAhkP",
+      "collection_url": "https://xrp.cafe/collection/jb-ai-nature",
+      "image_url": "https://cdn.xrp.cafe/2d2496bb335a-4d3f-b9ad-7fffb1b1d3685c5a2fc32d22-43e3-a308-2fa8ec4c5486cf80d78d1c34-45ef-a3cb-a6a5b15b3bb2.webp",
       "supply": 1,
       "traits": {
         "Topic": "Nature",
@@ -3868,7 +4015,8 @@
       "display_rank": 126,
       "medium": "xrpl_ai",
       "source": "xrp_cafe",
-      "marketplace": "xrp_cafe"
+      "marketplace": "xrp_cafe",
+      "mint_timestamp": "2025-12-05T15:40:35.000Z"
     }
   ]
 }

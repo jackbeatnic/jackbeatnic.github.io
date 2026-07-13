@@ -1,9 +1,9 @@
 /**
- * Filtry galerii — kategoria, kolory, vibe, wyszukiwarka (dane z gallery.json)
+ * Filtry galerii — kategoria, palety kolorów, vibe, wyszukiwarka (dane z gallery.json)
  */
 const GalleryFilters = (() => {
     const activeVibes = new Set();
-    const activeColors = new Set();
+    const activeColorFamilies = new Set();
     let searchQuery = '';
 
     function setupCategory(nfts) {
@@ -30,27 +30,18 @@ const GalleryFilters = (() => {
         if (!container) return;
         container.innerHTML = '';
 
-        const colors = new Map();
-        nfts.forEach((nft) => {
-            (nft.ai?.dominant_colors || []).forEach((hex) => {
-                const key = hex.toUpperCase();
-                colors.set(key, (colors.get(key) || 0) + 1);
-            });
+        const families = GalleryColorGroups.familiesPresent(nfts);
+        families.forEach((family) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'color-filter color-filter--group';
+            btn.dataset.colorFamily = family.id;
+            btn.title = family.label;
+            btn.setAttribute('aria-label', family.label);
+            btn.style.setProperty('--swatch', family.swatch);
+            btn.addEventListener('click', () => toggleColorFamily(family.id, btn));
+            container.appendChild(btn);
         });
-
-        [...colors.entries()]
-            .sort((a, b) => b[1] - a[1])
-            .forEach(([hex]) => {
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.className = 'color-filter';
-                btn.dataset.color = hex;
-                btn.title = hex;
-                btn.setAttribute('aria-label', `Color ${hex}`);
-                btn.style.setProperty('--swatch', hex);
-                btn.addEventListener('click', () => toggleColor(hex, btn));
-                container.appendChild(btn);
-            });
     }
 
     function setupVibes(nfts) {
@@ -74,12 +65,12 @@ const GalleryFilters = (() => {
         });
     }
 
-    function toggleColor(hex, btn) {
-        if (activeColors.has(hex)) {
-            activeColors.delete(hex);
+    function toggleColorFamily(familyId, btn) {
+        if (activeColorFamilies.has(familyId)) {
+            activeColorFamilies.delete(familyId);
             btn.classList.remove('is-active');
         } else {
-            activeColors.add(hex);
+            activeColorFamilies.add(familyId);
             btn.classList.add('is-active');
         }
         dispatchChange();
@@ -107,12 +98,10 @@ const GalleryFilters = (() => {
         return nfts.filter((nft) => {
             if (category && nft.ai?.category !== category) return false;
 
-            if (activeColors.size > 0) {
-                const nftColors = (nft.ai?.dominant_colors || []).map((c) =>
-                    c.toUpperCase()
-                );
-                const match = [...activeColors].some((c) => nftColors.includes(c));
-                if (!match) return false;
+            if (activeColorFamilies.size > 0) {
+                if (!GalleryColorGroups.nftMatchesFamilies(nft, activeColorFamilies)) {
+                    return false;
+                }
             }
 
             if (activeVibes.size > 0) {
@@ -129,6 +118,7 @@ const GalleryFilters = (() => {
                     ...(nft.ai?.vibe_tags || []),
                     ...(nft.ai?.keywords || []),
                     ...(nft.ai?.dominant_colors || []),
+                    ...GalleryColorGroups.searchTokensForNft(nft),
                 ]
                     .filter(Boolean)
                     .join(' ')
@@ -148,7 +138,7 @@ const GalleryFilters = (() => {
         if (search) search.value = '';
 
         activeVibes.clear();
-        activeColors.clear();
+        activeColorFamilies.clear();
         GalleryLikes.setSavedOnly(false);
 
         document.querySelectorAll('.color-filter.is-active, .vibe-filter.is-active').forEach((el) => {
@@ -182,7 +172,7 @@ const GalleryFilters = (() => {
         const search = document.getElementById('search-filter');
         if (search) search.value = '';
         activeVibes.clear();
-        activeColors.clear();
+        activeColorFamilies.clear();
         GalleryLikes.setSavedOnly(false);
         document.querySelectorAll('.color-filter.is-active, .vibe-filter.is-active').forEach((el) => {
             el.classList.remove('is-active');

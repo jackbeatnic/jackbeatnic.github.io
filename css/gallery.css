@@ -1064,6 +1064,13 @@ body.tip-open {
     transition: transform 0.25s var(--ease-out), box-shadow 0.35s var(--ease-out);
 }
 
+.color-filter--group {
+    width: 1.55rem;
+    height: 1.55rem;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.14);
+}
+
 .color-filter:hover {
     transform: scale(1.1);
     box-shadow: 0 0 14px color-mix(in srgb, var(--swatch) 55%, transparent);

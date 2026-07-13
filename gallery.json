@@ -230,6 +230,68 @@
         }
       ]
     },
+    "ai_series_catalog": {
+      "default": "nature_stories",
+      "order": [
+        "nature_stories",
+        "nature_jam",
+        "flower_stories",
+        "based_ai",
+        "jb_ai_play"
+      ],
+      "series": {
+        "nature_stories": {
+          "label": "Nature Stories",
+          "standard": "ERC-1155",
+          "collection_ids": [
+            "avalanche_nature_stories",
+            "polygon_nature_stories_vol2",
+            "base_nature_stories_vol3"
+          ],
+          "note": "Sui TradePort — osobny portfel, poza tym nurtem na razie"
+        },
+        "nature_jam": {
+          "label": "Nature Jam",
+          "standard": "ERC-721 + vol.2 ERC-1155",
+          "collection_ids": [
+            "avalanche_nature_jam",
+            "avalanche_nature_jam_vol2"
+          ]
+        },
+        "flower_stories": {
+          "label": "Flower Stories",
+          "standard": "ERC-1155",
+          "collection_ids": [
+            "avalanche_flower_stories",
+            "polygon_flower_stories_vol2",
+            "base_flower_stories_vol3"
+          ]
+        },
+        "based_ai": {
+          "label": "Based AI",
+          "standard": "ERC-721 + vol.3 ERC-1155",
+          "collection_ids": [
+            "base_jb_based_ai",
+            "base_jb_based_ai_vol2"
+          ]
+        },
+        "jb_ai_play": {
+          "label": "AI Play",
+          "standard": "1/1 experimental",
+          "collection_ids": [
+            "polygon_jb_ai_play",
+            "base_jb_ai_play"
+          ],
+          "sources": [
+            "opensea",
+            "manifold"
+          ],
+          "manifold_contract": "0x3ae3dd0baa83dfcb8f07e55ae6737bcd0d694347",
+          "manifold_id": "231786736",
+          "manifold_hub": "https://manifold.xyz/@jbeatnic/contract/231786736"
+        }
+      }
+    },
     "manifold_links": {
       "creator": "@jbeatnic",
       "wallet_ens": "jackbeatnicai.base.eth",

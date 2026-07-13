@@ -5,7 +5,7 @@
 const OpenSeaLinks = (() => {
     function normalizeAssetUrl(url) {
         if (!url) return '';
-        if (/xrp\.cafe/i.test(url)) return url;
+        if (/xrp\.cafe/i.test(url) || /manifold\.xyz/i.test(url)) return url;
         return url.replace('/item/', '/assets/');
     }
 

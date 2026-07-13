@@ -36,6 +36,10 @@ const GalleryShare = (() => {
         } else if (medium === 'xrpl_ai') {
             params.set('section', 'ai_art');
             params.set('ai', 'xrpl');
+        } else if (medium === 'manifold_auction') {
+            params.set('section', 'auctions');
+            const chain = nft.chain_key || nft.chain || 'base';
+            if (chain !== 'base') params.set('auction', chain);
         } else if (medium !== 'ai_art') {
             params.set('section', medium);
         }
@@ -98,6 +102,15 @@ const GalleryShare = (() => {
                 id: 'xrp-cafe',
                 label: 'XRP.Cafe',
                 href: cafeUrl,
+            });
+        }
+
+        const manifoldUrl = nft?.manifold_url || nft?.marketplace_url;
+        if (nft?.medium === 'manifold_auction' && manifoldUrl) {
+            items.push({
+                id: 'manifold',
+                label: 'Manifold',
+                href: manifoldUrl,
             });
         }
 

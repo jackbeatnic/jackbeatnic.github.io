@@ -137,7 +137,39 @@
     "xrpl_issuer_wallet": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
     "xrpl_nft_taxon": 0,
     "xrpl_collection_name": "JB AI Nature",
-    "xrp_cafe_profile": "https://xrp.cafe/user/rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn"
+    "xrp_cafe_profile": "https://xrp.cafe/user/rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+    "manifold_auctions": {
+      "creator_wallet": "0xf0b840349b3f285fc05c89eac594ddd254183fb9",
+      "profile_url": "https://manifold.gallery/jbeatnic",
+      "studio_url": "https://manifold.xyz/@jbeatnic",
+      "chains": {
+        "base": {
+          "enabled": true,
+          "chain": "base",
+          "chain_id": 8453,
+          "label": "Base",
+          "native_currency": "ETH",
+          "marketplace_address": "0x5246807fB65d87b0D0a234E0f3D42374DE83b421",
+          "contracts": [
+            "0x3ae3dd0baa83dfcb8f07e55ae6737bcd0d694347"
+          ],
+          "watch_listing_ids": [],
+          "activity_scan_pages": 3
+        },
+        "ethereum": {
+          "enabled": false,
+          "chain": "ethereum",
+          "chain_id": 1,
+          "label": "Ethereum",
+          "native_currency": "ETH",
+          "marketplace_address": "0x3a3548e060be10c2614d0a4cb0c03cc9093fd799",
+          "contracts": [],
+          "watch_listing_ids": [],
+          "activity_scan_pages": 0,
+          "note": "Planned L1 high-art auctions — enable when contract deploys"
+        }
+      }
+    }
   },
   "nfts": [
     {
@@ -8314,6 +8346,37 @@
           "photo": "Photography works will appear here soon.",
           "other": "Fade Diary — collage series. More mixed media coming soon."
         }
+      },
+      "auctions": {
+        "label": "Auctions",
+        "label_short": "Auctions",
+        "explore_title": "Ghost Slot · Manifold Auctions",
+        "subsections": [
+          {
+            "id": "base",
+            "label": "Base"
+          },
+          {
+            "id": "ethereum",
+            "label": "Ethereum"
+          }
+        ],
+        "default_subsection": "base",
+        "disabled_subsections": [
+          "ethereum"
+        ],
+        "explore_titles": {
+          "base": "Auctions on Base · Manifold",
+          "ethereum": "Auctions on Ethereum · Manifold"
+        },
+        "empty_messages": {
+          "base": "No live Manifold auctions on Base right now. New Ghost Slot drops will appear here.",
+          "ethereum": "Ethereum L1 auctions are planned for high-end 1/1 works — coming when the new contract is live."
+        },
+        "promo_eyebrow": "Ghost Slot · Manifold",
+        "promo_lead": "Own auctions on your Manifold contract — bid on Manifold. Base today; Ethereum L1 when demand justifies the gas.",
+        "collection_url": "https://manifold.gallery/jbeatnic",
+        "collection_cta": "Manifold Gallery"
       }
     }
   }

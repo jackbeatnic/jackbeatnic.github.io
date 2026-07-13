@@ -1,11 +1,12 @@
 /**
- * Sekcje galerii: AI Art (OpenSea / XRPL) + Photography (Photo / Other).
+ * Sekcje galerii: AI Art, Photography, Auctions (Manifold) + Tip.
  */
 const GallerySections = (() => {
     let site = {};
     let currentSection = 'ai_art';
     let currentAiKind = 'opensea';
     let currentPhotoKind = 'photo';
+    let currentAuctionChain = 'base';
 
     function config() {
         return site.sections || {};
@@ -45,16 +46,30 @@ const GallerySections = (() => {
         });
     }
 
+    function syncAuctionSubnavLabels() {
+        const subnav = document.getElementById('auction-subnav');
+        const subsections = config().auctions?.subsections;
+        if (!subnav || !subsections?.length) return;
+
+        subsections.forEach(({ id, label }) => {
+            const tab = subnav.querySelector(`[data-auction-chain="${id}"]`);
+            if (tab && label) tab.textContent = label;
+        });
+    }
+
     function init(siteConfig) {
         site = siteConfig || {};
         currentSection = site.default_section || 'ai_art';
         const aiCfg = config().ai_art;
         const photoCfg = config().photography;
+        const auctionCfg = config().auctions;
         currentAiKind = aiCfg?.default_subsection || 'opensea';
         currentPhotoKind = photoCfg?.default_subsection || 'photo';
+        currentAuctionChain = auctionCfg?.default_subsection || 'base';
         syncSectionNavLabels();
         syncAiSubnavLabels();
         syncPhotoSubnavLabels();
+        syncAuctionSubnavLabels();
         bindNav();
         readUrl();
         syncNavUi();
@@ -88,6 +103,15 @@ const GallerySections = (() => {
             });
         });
 
+        document.querySelectorAll('[data-auction-chain]').forEach((el) => {
+            el.addEventListener('click', (e) => {
+                e.preventDefault();
+                const chain = el.dataset.auctionChain;
+                if (!chain || el.disabled) return;
+                setAuctionChain(chain);
+            });
+        });
+
         window.addEventListener('popstate', readUrl);
     }
 
@@ -96,6 +120,7 @@ const GallerySections = (() => {
         const section = params.get('section');
         const ai = params.get('ai');
         const photo = params.get('photo');
+        const auction = params.get('auction');
 
         if (section === 'xrpl') {
             currentSection = 'ai_art';
@@ -118,6 +143,12 @@ const GallerySections = (() => {
             currentPhotoKind = config().photography?.default_subsection || 'photo';
         }
 
+        if (currentSection === 'auctions') {
+            currentAuctionChain = auction || config().auctions?.default_subsection || 'base';
+        } else {
+            currentAuctionChain = config().auctions?.default_subsection || 'base';
+        }
+
         syncNavUi();
         document.dispatchEvent(new CustomEvent('gallery:section'));
     }
@@ -129,6 +160,7 @@ const GallerySections = (() => {
         params.delete('section');
         params.delete('ai');
         params.delete('photo');
+        params.delete('auction');
         if (currentSection !== (site.default_section || 'ai_art')) {
             params.set('section', currentSection);
         }
@@ -142,6 +174,12 @@ const GallerySections = (() => {
             const def = config().photography?.default_subsection || 'photo';
             if (currentPhotoKind !== def) {
                 params.set('photo', currentPhotoKind);
+            }
+        }
+        if (currentSection === 'auctions') {
+            const def = config().auctions?.default_subsection || 'base';
+            if (currentAuctionChain !== def) {
+                params.set('auction', currentAuctionChain);
             }
         }
         if (work) params.set('work', work);
@@ -160,6 +198,9 @@ const GallerySections = (() => {
         if (id === 'photography') {
             currentPhotoKind = config().photography?.default_subsection || 'photo';
         }
+        if (id === 'auctions') {
+            currentAuctionChain = config().auctions?.default_subsection || 'base';
+        }
         syncNavUi();
         writeUrl();
         document.dispatchEvent(new CustomEvent('gallery:section'));
@@ -176,6 +217,14 @@ const GallerySections = (() => {
 
     function setPhotoKind(kind) {
         currentPhotoKind = kind;
+        syncNavUi();
+        writeUrl();
+        document.dispatchEvent(new CustomEvent('gallery:section'));
+    }
+
+    function setAuctionChain(chain) {
+        currentSection = 'auctions';
+        currentAuctionChain = chain;
         syncNavUi();
         writeUrl();
         document.dispatchEvent(new CustomEvent('gallery:section'));
@@ -202,6 +251,11 @@ const GallerySections = (() => {
             photoSubnav.hidden = currentSection !== 'photography';
         }
 
+        const auctionSubnav = document.getElementById('auction-subnav');
+        if (auctionSubnav) {
+            auctionSubnav.hidden = currentSection !== 'auctions';
+        }
+
         document.querySelectorAll('[data-ai-kind]').forEach((el) => {
             const active = currentSection === 'ai_art' && el.dataset.aiKind === currentAiKind;
             el.classList.toggle('is-active', active);
@@ -213,6 +267,23 @@ const GallerySections = (() => {
                 currentSection === 'photography' && el.dataset.photoKind === currentPhotoKind;
             el.classList.toggle('is-active', active);
             el.setAttribute('aria-pressed', String(active));
+        });
+
+        const disabledAuctionChains = new Set(config().auctions?.disabled_subsections || []);
+        document.querySelectorAll('[data-auction-chain]').forEach((el) => {
+            const chain = el.dataset.auctionChain;
+            const disabled = disabledAuctionChains.has(chain);
+            const active =
+                currentSection === 'auctions' && chain === currentAuctionChain && !disabled;
+            el.classList.toggle('is-active', active);
+            el.classList.toggle('is-disabled', disabled);
+            el.disabled = disabled;
+            el.setAttribute('aria-pressed', String(active));
+            if (disabled) {
+                el.title = config().auctions?.empty_messages?.[chain] || 'Coming soon';
+            } else {
+                el.removeAttribute('title');
+            }
         });
     }
 
@@ -227,6 +298,11 @@ const GallerySections = (() => {
                 if (medium !== 'photography') return false;
                 const kind = nft.photo_kind || 'photo';
                 return kind === currentPhotoKind;
+            }
+            if (currentSection === 'auctions') {
+                if (medium !== 'manifold_auction') return false;
+                const chainKey = nft.chain_key || nft.chain || 'base';
+                return chainKey === currentAuctionChain;
             }
             return medium === currentSection;
         });
@@ -244,6 +320,14 @@ const GallerySections = (() => {
         return currentPhotoKind;
     }
 
+    function getAuctionChain() {
+        return currentAuctionChain;
+    }
+
+    function isAuctionsSection() {
+        return currentSection === 'auctions';
+    }
+
     function isPhotoOther() {
         return currentSection === 'photography' && currentPhotoKind === 'other';
     }
@@ -253,6 +337,11 @@ const GallerySections = (() => {
         if (currentSection === 'ai_art') {
             const titles = base.explore_titles || {};
             const explore = titles[currentAiKind] || base.explore_title;
+            return { ...base, explore_title: explore };
+        }
+        if (currentSection === 'auctions') {
+            const titles = base.explore_titles || {};
+            const explore = titles[currentAuctionChain] || base.explore_title;
             return { ...base, explore_title: explore };
         }
         return base;
@@ -266,6 +355,10 @@ const GallerySections = (() => {
         if (currentSection === 'photography') {
             const msgs = config().photography?.empty_messages || {};
             return msgs[currentPhotoKind] || 'No works in this section yet.';
+        }
+        if (currentSection === 'auctions') {
+            const msgs = config().auctions?.empty_messages || {};
+            return msgs[currentAuctionChain] || 'No live auctions right now.';
         }
         return 'No works in this section yet.';
     }
@@ -289,6 +382,13 @@ const GallerySections = (() => {
             if (same) return;
             currentSection = 'photography';
             currentPhotoKind = kind;
+        } else if (medium === 'manifold_auction') {
+            const chainKey = nft.chain_key || nft.chain || 'base';
+            const same =
+                currentSection === 'auctions' && chainKey === currentAuctionChain;
+            if (same) return;
+            currentSection = 'auctions';
+            currentAuctionChain = chainKey;
         } else {
             const same = medium === currentSection;
             if (same) return;
@@ -308,6 +408,8 @@ const GallerySections = (() => {
         getCurrentSection,
         getAiKind,
         getPhotoKind,
+        getAuctionChain,
+        isAuctionsSection,
         isPhotoOther,
         getSectionMeta,
         emptyMessage,

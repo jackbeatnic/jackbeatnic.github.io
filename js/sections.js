@@ -168,6 +168,9 @@ const GallerySections = (() => {
                 const kind = nft.photo_kind || 'photo';
                 return kind === currentPhotoKind;
             }
+            if (currentSection === 'xrpl') {
+                return medium === 'xrpl_ai';
+            }
             return medium === currentSection;
         });
     }
@@ -189,11 +192,14 @@ const GallerySections = (() => {
     }
 
     function emptyMessage() {
-        if (currentSection !== 'photography') {
-            return 'No works in this section yet.';
+        if (currentSection === 'photography') {
+            const msgs = config().photography?.empty_messages || {};
+            return msgs[currentPhotoKind] || 'No works in this section yet.';
         }
-        const msgs = config().photography?.empty_messages || {};
-        return msgs[currentPhotoKind] || 'No works in this section yet.';
+        if (currentSection === 'xrpl') {
+            return config().xrpl?.empty_message || 'XRPL works will appear here soon.';
+        }
+        return 'No works in this section yet.';
     }
 
     function activateForNft(nft, { silent = false } = {}) {

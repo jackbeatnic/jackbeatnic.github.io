@@ -29,7 +29,9 @@ const Gallery = (() => {
     }
 
     function currencyForNft(nft) {
-        return nft.listing_currency || collectionInfo.native_currency || 'AVAX';
+        if (nft.listing_currency) return nft.listing_currency;
+        if (nft.chain === 'xrpl' || nft.medium === 'xrpl_ai') return 'XRP';
+        return collectionInfo.native_currency || 'AVAX';
     }
 
     function priceField(nft, prefix, symbol) {
@@ -38,6 +40,9 @@ const Gallery = (() => {
         if (symbol === 'AVAX' && nft[`${prefix}_avax`] != null) return nft[`${prefix}_avax`];
         if (symbol === 'XTZ' && prefix === 'current_price' && nft.current_price_xtz != null) {
             return nft.current_price_xtz;
+        }
+        if (symbol === 'XRP' && prefix === 'current_price' && nft.current_price_xrp != null) {
+            return nft.current_price_xrp;
         }
         return null;
     }
@@ -89,6 +94,9 @@ const Gallery = (() => {
     function tokenLabel(nft) {
         if (isObjktNft(nft) && nft.tezos_token_id != null && nft.tezos_token_id !== '') {
             return `Tezos #${nft.tezos_token_id}`;
+        }
+        if (nft.chain === 'xrpl' || nft.medium === 'xrpl_ai') {
+            return nft.name || `XRPL #${nft.nft_serial || nft.token_id}`;
         }
         return `Token #${nft.token_id}`;
     }
@@ -154,12 +162,26 @@ const Gallery = (() => {
     async function load() {
         const grid = document.getElementById('gallery-grid');
         try {
-            const response = await fetch('gallery.json');
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            const data = await response.json();
-            allNfts = data.nfts || [];
-            collectionInfo = data.collection_info || {};
-            siteConfig = data.site || {};
+            const [mainRes, xrpRes] = await Promise.all([
+                fetch('gallery.json'),
+                fetch('xrp_gallery.json'),
+            ]);
+            if (!mainRes.ok) throw new Error(`HTTP ${mainRes.status}`);
+            const data = await mainRes.json();
+            const xrpData = xrpRes.ok ? await xrpRes.json() : { nfts: [] };
+
+            allNfts = [...(data.nfts || []), ...(xrpData.nfts || [])];
+            collectionInfo = {
+                ...(data.collection_info || {}),
+                xrpl: xrpData.collection_info || {},
+            };
+            siteConfig = {
+                ...(data.site || {}),
+                sections: {
+                    ...(data.site?.sections || {}),
+                    ...(xrpData.site?.sections || {}),
+                },
+            };
 
             GallerySections.init(siteConfig);
             applyCollectionInfo(collectionInfo);

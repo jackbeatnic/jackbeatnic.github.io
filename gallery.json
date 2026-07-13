@@ -8498,23 +8498,41 @@
     "sections": {
       "ai_art": {
         "label": "AI Art",
-        "explore_title": "Explore AI Art · OpenSea",
-        "default_subsection": "opensea",
+        "explore_title": "Explore AI Art · EVM",
+        "default_subsection": "evm",
         "default_series": "nature_stories",
         "all_series_label": "All",
+        "disabled_subsections": [
+          "tezos",
+          "sui"
+        ],
+        "subsection_notes": {
+          "tezos": "Tezos AI — coming soon",
+          "sui": "Sui AI — coming soon"
+        },
         "subsections": [
           {
-            "id": "opensea",
-            "label": "OpenSea"
+            "id": "evm",
+            "label": "EVM"
           },
           {
             "id": "xrpl",
             "label": "XRPL"
+          },
+          {
+            "id": "tezos",
+            "label": "Tezos"
+          },
+          {
+            "id": "sui",
+            "label": "Sui"
           }
         ],
         "explore_titles": {
-          "opensea": "Explore AI Art · OpenSea",
-          "xrpl": "Explore AI Art · XRP.Cafe"
+          "evm": "Explore AI Art · EVM",
+          "xrpl": "Explore AI Art · XRP.Cafe",
+          "tezos": "Explore AI Art · Tezos",
+          "sui": "Explore AI Art · Sui"
         },
         "series_explore_titles": {
           "nature_stories": "Nature Stories",
@@ -8525,8 +8543,10 @@
           "all": "All series"
         },
         "empty_messages": {
-          "opensea": "No works in this section yet.",
-          "xrpl": "JB AI Nature on XRP.Cafe will appear here after sync."
+          "evm": "No works in this section yet.",
+          "xrpl": "JB AI Nature on XRP.Cafe will appear here after sync.",
+          "tezos": "Tezos AI collections — coming soon.",
+          "sui": "Sui AI collections — coming soon."
         },
         "empty_messages_series": {
           "nature_stories": "Nature Stories — serene landscapes across Avalanche, Base and Polygon.",

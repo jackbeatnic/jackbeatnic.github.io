@@ -16,18 +16,28 @@
       "ai_art": {
         "subsections": [
           {
-            "id": "opensea",
-            "label": "OpenSea"
+            "id": "evm",
+            "label": "EVM"
           },
           {
             "id": "xrpl",
             "label": "XRPL"
+          },
+          {
+            "id": "tezos",
+            "label": "Tezos"
+          },
+          {
+            "id": "sui",
+            "label": "Sui"
           }
         ],
-        "default_subsection": "opensea",
+        "default_subsection": "evm",
         "explore_titles": {
-          "opensea": "Explore AI Art · OpenSea",
-          "xrpl": "Explore AI Art · XRP.Cafe"
+          "evm": "Explore AI Art · EVM",
+          "xrpl": "Explore AI Art · XRP.Cafe",
+          "tezos": "Explore AI Art · Tezos",
+          "sui": "Explore AI Art · Sui"
         },
         "empty_messages": {
           "xrpl": "JB AI Nature on XRP.Cafe will appear here after sync."

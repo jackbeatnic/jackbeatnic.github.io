@@ -36,6 +36,7 @@ COLLECTION_ID = "polygon_jb_ai_play"
 TOKEN_ID_BASE = 700_000_000
 OPENSEA_SLUG = "jb-ai-play"
 DEFAULT_EXCLUDED_BURNED_THROUGH = 35
+AI_PLAY_DESCRIPTION = ""
 
 RPC = {"polygon": "https://polygon-bor.publicnode.com"}
 OPENSEA_API = "https://api.opensea.io/api/v2"
@@ -276,7 +277,7 @@ def build_entry(
         "supply": 1,
         "traits": {},
         "ai": {
-            "description": description or f"{display_name} — JB AI Play on Polygon.",
+            "description": (description or "").strip() or AI_PLAY_DESCRIPTION,
             "dominant_colors": [],
             "vibe_tags": ["ai play", "experimental", "polygon"],
             "category": "ai_play",

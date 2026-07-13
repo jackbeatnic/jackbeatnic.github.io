@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Import XRP.Cafe / XRPL NFTs into xrp_gallery.json (separate from OpenSea gallery.json).
 
-Data sources (open, no XRP.Cafe API key):
-  - XRPScan account NFTs: https://api.xrpscan.com/api/v1/account/{issuer}/nfts
-  - Per-NFT detail + IPFS metadata JSON (XLS-24 style on IPFS)
-  - Optional dominant colours from artwork (Pillow)
+Data sources (open, no API key):
+  - XRPScan account NFTs (full ledger list): api.xrpscan.com
+  - XRP.Cafe NFT pages + collection index (__NEXT_DATA__ SSR)
+  - XRP.Cafe CDN for images and metadata JSON
+
+All marketplace links point to https://xrp.cafe/
 
 Usage:
   python3 aktualizuj_xrp_do_galerii.py
@@ -32,10 +34,13 @@ ROOT = Path(__file__).resolve().parent
 XRP_GALLERY_JSON = ROOT / "xrp_gallery.json"
 MAIN_GALLERY_JSON = ROOT / "gallery.json"
 XRPSCAN_API = "https://api.xrpscan.com/api/v1"
+CAFE_BASE = "https://xrp.cafe"
 USER_AGENT = "JackBeatnicGallery/1.0"
 DEFAULT_ISSUER = "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn"
 DEFAULT_TAXON = 0
 DEFAULT_COLLECTION = "JB AI Nature"
+DEFAULT_VANITY = "jb-ai-nature"
+DROPS_PER_XRP = 1_000_000
 
 TOPIC_TO_CATEGORY = {
     "mountains": "landscape",
@@ -83,8 +88,20 @@ def save_json(path: Path, data: dict) -> None:
         fh.write("\n")
 
 
+def fetch_bytes(url: str) -> bytes:
+    req = urllib.request.Request(
+        url,
+        headers={"User-Agent": USER_AGENT, "Accept": "*/*"},
+    )
+    with urllib.request.urlopen(req, timeout=90) as resp:
+        return resp.read()
+
+
 def fetch_json(url: str, label: str = "") -> dict | list:
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "application/json"})
+    req = urllib.request.Request(
+        url,
+        headers={"User-Agent": USER_AGENT, "Accept": "application/json"},
+    )
     try:
         with urllib.request.urlopen(req, timeout=90) as resp:
             return json.loads(resp.read().decode("utf-8"))
@@ -92,10 +109,44 @@ def fetch_json(url: str, label: str = "") -> dict | list:
         raise RuntimeError(f"HTTP {exc.code} {label or url}: {exc.reason}") from exc
 
 
-def fetch_bytes(url: str) -> bytes:
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=90) as resp:
-        return resp.read()
+def fetch_cafe_html(url: str, label: str = "") -> str:
+    req = urllib.request.Request(
+        url,
+        headers={"User-Agent": USER_AGENT, "Accept": "text/html,application/json"},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=90) as resp:
+            return resp.read().decode("utf-8", errors="replace")
+    except urllib.error.HTTPError as exc:
+        raise RuntimeError(f"HTTP {exc.code} {label or url}: {exc.reason}") from exc
+
+
+def parse_next_data(html: str) -> dict:
+    match = re.search(
+        r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>',
+        html,
+        re.DOTALL,
+    )
+    if not match:
+        raise RuntimeError("Brak __NEXT_DATA__ na stronie XRP.Cafe")
+    payload = json.loads(match.group(1))
+    return payload.get("props", {}).get("pageProps") or {}
+
+
+def cafe_nft_url(nft_id: str) -> str:
+    return f"{CAFE_BASE}/nft/{nft_id}"
+
+
+def cafe_collection_url(issuer: str, taxon: int) -> str:
+    return f"{CAFE_BASE}/usercollection/{issuer}/{issuer}/{taxon}"
+
+
+def cafe_collection_vanity_url(vanity: str) -> str:
+    return f"{CAFE_BASE}/collection/{vanity}"
+
+
+def cafe_profile_url(issuer: str) -> str:
+    return f"{CAFE_BASE}/user/{issuer}"
 
 
 def ipfs_to_http(uri: str | None) -> str:
@@ -123,6 +174,15 @@ def decode_nft_uri(raw: str | None) -> str:
     return text
 
 
+def drops_to_xrp(drops: object) -> float | None:
+    if drops in (None, "", 0):
+        return None
+    try:
+        return round(int(drops) / DROPS_PER_XRP, 5)
+    except (TypeError, ValueError):
+        return None
+
+
 def stable_token_id(xrpl_nft_id: str, nft_serial: int) -> int:
     """Numeric id for gallery UI — avoids collision with EVM low ids."""
     base = int(nft_serial) if nft_serial else 0
@@ -133,8 +193,8 @@ def stable_token_id(xrpl_nft_id: str, nft_serial: int) -> int:
 
 
 def extract_number_from_name(name: str) -> int:
-    m = re.search(r"#(\d+)", name or "")
-    return int(m.group(1)) if m else 9999
+    match = re.search(r"#(\d+)", name or "")
+    return int(match.group(1)) if match else 9999
 
 
 def dominant_colors(image_url: str, count: int = 4) -> list[str]:
@@ -234,7 +294,7 @@ def keywords_from(meta: dict, traits: dict, vibe_tags: list[str]) -> list[str]:
             words.append(str(traits[key]).lower())
     name = meta.get("name") or ""
     words.extend(re.findall(r"[A-Za-z]{4,}", name.lower()))
-    words.extend(["jackbeatnic", "jb ai nature", "xrpl"])
+    words.extend(["jackbeatnic", "jb ai nature", "xrpl", "xrp cafe"])
     out: list[str] = []
     for w in words:
         w = w.strip().lower()
@@ -251,21 +311,33 @@ def fetch_account_nfts(issuer: str) -> list[dict]:
     return data
 
 
-def fetch_nft_detail(nft_id: str) -> dict:
-    url = f"{XRPSCAN_API}/nft/{nft_id}"
-    data = fetch_json(url, label=f"nft {nft_id[:12]}")
-    return data if isinstance(data, dict) else {}
+def fetch_cafe_collection_index(issuer: str, taxon: int) -> dict[str, dict]:
+    """First SSR page of usercollection — maps nft_id → row (incl. bestSellOffer)."""
+    url = cafe_collection_url(issuer, taxon)
+    page_props = parse_next_data(fetch_cafe_html(url, label="collection index"))
+    index: dict[str, dict] = {}
+    for row in page_props.get("nfts") or []:
+        cafe = row.get("cafeNft") or {}
+        nft_id = cafe.get("nft_id") or (row.get("ledgerNft") or {}).get("nft_id")
+        if nft_id:
+            index[nft_id] = row
+    return index
 
 
-def fetch_metadata(uri: str) -> dict:
-    decoded = decode_nft_uri(uri)
-    if not decoded:
-        return {}
-    meta_url = ipfs_to_http(decoded)
+def fetch_cafe_nft(nft_id: str) -> dict:
+    page_props = parse_next_data(
+        fetch_cafe_html(cafe_nft_url(nft_id), label=f"cafe nft {nft_id[:12]}")
+    )
+    nftdata = page_props.get("nftdata") or {}
+    nft = nftdata.get("nft")
+    return nft if isinstance(nft, dict) else {}
+
+
+def fetch_metadata_url(meta_url: str) -> dict:
     if not meta_url:
         return {}
     try:
-        data = fetch_json(meta_url, label="metadata")
+        data = fetch_json(meta_url, label="cafe metadata")
         return data if isinstance(data, dict) else {}
     except Exception:
         try:
@@ -275,38 +347,71 @@ def fetch_metadata(uri: str) -> dict:
             return {}
 
 
+def fetch_metadata_from_uri(uri: str | None) -> dict:
+    decoded = decode_nft_uri(uri)
+    if not decoded:
+        return {}
+    return fetch_metadata_url(ipfs_to_http(decoded))
+
+
+def listing_from_cafe(cafe: dict, collection_row: dict | None) -> tuple[str, float | None]:
+    drops = cafe.get("amount")
+    if drops in (None, "", 0) and collection_row:
+        drops = collection_row.get("bestSellOffer") or (collection_row.get("ledgerNft") or {}).get(
+            "sellOffer"
+        )
+    price = drops_to_xrp(drops)
+    if price is not None and price > 0:
+        return "For Sale", price
+    return "Not Listed", None
+
+
 def build_entry(
     *,
     issuer: str,
     taxon: int,
     collection_name: str,
-    list_row: dict,
-    detail: dict,
+    vanity: str,
+    ledger_row: dict,
+    cafe: dict,
+    collection_row: dict | None,
     meta: dict,
     old_by_id: dict[str, dict],
     with_colors: bool = True,
 ) -> dict:
-    nft_id = detail.get("nft_id") or list_row.get("NFTokenID") or ""
-    nft_serial = int(detail.get("nft_serial") or list_row.get("nft_serial") or 0)
-    name = (meta.get("name") or f"{collection_name} #{nft_serial}").strip()
-    description = (meta.get("description") or "").strip()
-    image_url = ipfs_to_http(meta.get("image") or meta.get("image_url"))
+    nft_id = cafe.get("nft_id") or ledger_row.get("NFTokenID") or ""
+    nft_serial = int(
+        cafe.get("nft_sequence")
+        or ledger_row.get("nft_serial")
+        or ledger_row.get("NFTokenSerial")
+        or 0
+    )
+    name = (cafe.get("item_name") or meta.get("name") or f"{collection_name} #{nft_serial}").strip()
+    description = (cafe.get("item_desc") or meta.get("description") or "").strip()
+    image_url = (
+        cafe.get("media_url")
+        or ipfs_to_http(meta.get("image") or meta.get("image_url"))
+        or ipfs_to_http(cafe.get("original_media_url"))
+    )
     traits = traits_from_attributes(meta.get("attributes") or [])
     category = infer_category(meta, traits)
     vibe_tags = infer_vibe_tags(meta, traits)
     mood = infer_mood_score(vibe_tags, description)
     colors = dominant_colors(image_url) if (with_colors and image_url) else []
 
+    listing_status, current_price = listing_from_cafe(cafe, collection_row)
     token_id = stable_token_id(nft_id, nft_serial)
-    marketplace_url = f"https://xrp.cafe/nft/{nft_id}"
+    xrp_cafe_url = cafe_nft_url(nft_id)
+    collection_url = cafe_collection_vanity_url(vanity)
 
     entry = {
         "token_id": token_id,
         "xrpl_nft_id": nft_id,
         "nft_serial": nft_serial,
         "name": name,
-        "marketplace_url": marketplace_url,
-        "opensea_url": marketplace_url,
+        "xrp_cafe_url": xrp_cafe_url,
+        "marketplace_url": xrp_cafe_url,
+        "collection_url": collection_url,
         "image_url": image_url,
         "supply": 1,
         "traits": traits,
@@ -323,16 +428,25 @@ def build_entry(
         "status": "minted",
         "chain": "xrpl",
         "contract_address": issuer,
-        "nft_taxon": int(detail.get("nft_taxon") or list_row.get("NFTokenTaxon") or taxon),
+        "nft_taxon": int(
+            cafe.get("token_taxon")
+            or ledger_row.get("NFTokenTaxon")
+            or taxon
+        ),
         "collection_id": "xrpl_jb_ai_nature",
         "collection_name": collection_name,
-        "listing_status": "Not Listed",
+        "listing_status": listing_status,
         "listing_currency": "XRP",
         "display_rank": extract_number_from_name(name),
         "medium": "xrpl_ai",
         "source": "xrp_cafe",
         "marketplace": "xrp_cafe",
     }
+
+    if cafe.get("add_date"):
+        entry["mint_timestamp"] = cafe["add_date"]
+    if current_price is not None:
+        entry["current_price_xrp"] = current_price
 
     old = old_by_id.get(nft_id)
     if old:
@@ -351,6 +465,7 @@ def sync(*, dry_run: bool = False, limit: int | None = None, skip_colors: bool =
     issuer = DEFAULT_ISSUER
     taxon = DEFAULT_TAXON
     collection_name = DEFAULT_COLLECTION
+    vanity = DEFAULT_VANITY
 
     if MAIN_GALLERY_JSON.exists():
         main = load_json(MAIN_GALLERY_JSON)
@@ -366,11 +481,15 @@ def sync(*, dry_run: bool = False, limit: int | None = None, skip_colors: bool =
         if row.get("xrpl_nft_id")
     }
 
-    print(f"[xrp] Issuer: {issuer} | taxon filter: {taxon}")
+    print(f"[xrp] Issuer: {issuer} | taxon: {taxon} | źródło: XRP.Cafe")
+    print("[xrp] Pobieram indeks kolekcji z XRP.Cafe…")
+    collection_index = fetch_cafe_collection_index(issuer, taxon)
+    print(f"[xrp] Indeks kolekcji (strona 1): {len(collection_index)} NFT")
+
     raw = fetch_account_nfts(issuer)
     filtered = [row for row in raw if int(row.get("NFTokenTaxon", -1)) == taxon]
     filtered.sort(key=lambda row: int(row.get("nft_serial") or 0))
-    print(f"[xrp] NFTs on ledger: {len(raw)} | w kolekcji (taxon {taxon}): {len(filtered)}")
+    print(f"[xrp] Ledger (XRPScan): {len(raw)} NFT | w kolekcji: {len(filtered)}")
 
     if limit:
         filtered = filtered[: int(limit)]
@@ -381,15 +500,17 @@ def sync(*, dry_run: bool = False, limit: int | None = None, skip_colors: bool =
         nft_id = row.get("NFTokenID") or ""
         print(f"  [{i + 1}/{len(filtered)}] {nft_id[:16]}…")
         try:
-            detail = fetch_nft_detail(nft_id)
-            uri = detail.get("uri") or row.get("URI")
-            meta = fetch_metadata(uri)
+            cafe = fetch_cafe_nft(nft_id)
+            meta_url = cafe.get("meta_url") or ""
+            meta = fetch_metadata_url(meta_url) if meta_url else fetch_metadata_from_uri(row.get("URI"))
             entry = build_entry(
                 issuer=issuer,
                 taxon=taxon,
                 collection_name=collection_name,
-                list_row=row,
-                detail=detail,
+                vanity=vanity,
+                ledger_row=row,
+                cafe=cafe,
+                collection_row=collection_index.get(nft_id),
                 meta=meta,
                 old_by_id=old_by_id,
                 with_colors=not skip_colors,
@@ -400,9 +521,10 @@ def sync(*, dry_run: bool = False, limit: int | None = None, skip_colors: bool =
             fail += 1
             print(f"    BŁĄD: {exc}", file=sys.stderr)
         if i < len(filtered) - 1:
-            time.sleep(0.12)
+            time.sleep(0.15)
 
     entries.sort(key=lambda n: n.get("display_rank", 9999))
+    listed = sum(1 for n in entries if n.get("listing_status") == "For Sale")
 
     payload = {
         "collection_info": {
@@ -412,10 +534,9 @@ def sync(*, dry_run: bool = False, limit: int | None = None, skip_colors: bool =
             "chain": "xrpl",
             "native_currency": "XRP",
             "marketplace": "xrp_cafe",
-            "xrp_cafe_profile": f"https://xrp.cafe/user/{issuer}",
-            "xrp_cafe_collection": (
-                f"https://xrp.cafe/usercollection/{issuer}/{issuer}/{taxon}"
-            ),
+            "xrp_cafe_profile": cafe_profile_url(issuer),
+            "xrp_cafe_collection": cafe_collection_url(issuer, taxon),
+            "xrp_cafe_collection_vanity": cafe_collection_vanity_url(vanity),
             "last_xrp_sync": datetime.now(timezone.utc)
             .replace(microsecond=0)
             .isoformat()
@@ -428,13 +549,17 @@ def sync(*, dry_run: bool = False, limit: int | None = None, skip_colors: bool =
                     "label_short": "XRPL",
                     "explore_title": "Explore AI on XRPL · XRP.Cafe",
                     "empty_message": "JB AI Nature on XRP.Cafe will appear here after sync.",
+                    "promo_eyebrow": "JB AI Nature on XRPL",
+                    "promo_lead": "Collect and trade on XRP.Cafe — every work links to the marketplace.",
+                    "collection_url": cafe_collection_vanity_url(vanity),
+                    "collection_cta": "View collection on XRP.Cafe",
                 }
             }
         },
         "nfts": entries,
     }
 
-    print(f"[xrp] Gotowe: {ok} OK, {fail} błędów")
+    print(f"[xrp] Gotowe: {ok} OK, {fail} błędów | na sprzedaż: {listed}/{len(entries)}")
 
     if dry_run:
         print("[dry-run] Bez zapisu xrp_gallery.json")

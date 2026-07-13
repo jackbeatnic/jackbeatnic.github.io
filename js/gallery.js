@@ -73,12 +73,22 @@ const Gallery = (() => {
         return nft.chain === 'tezos' || nft.marketplace === 'objkt';
     }
 
+    function isXrpCafeNft(nft) {
+        return (
+            nft.chain === 'xrpl' ||
+            nft.medium === 'xrpl_ai' ||
+            nft.marketplace === 'xrp_cafe' ||
+            nft.source === 'xrp_cafe'
+        );
+    }
+
     function chainLabel(nft) {
         const chain = nft.chain || collectionInfo.chain || 'avalanche';
         return CHAIN_LABELS[chain] || chain;
     }
 
     function marketplaceName(nft) {
+        if (isXrpCafeNft(nft)) return MARKETPLACE_NAMES.xrp_cafe;
         const key = nft.marketplace || (isObjktNft(nft) ? 'objkt' : 'opensea');
         return MARKETPLACE_NAMES[key] || key;
     }
@@ -88,6 +98,13 @@ const Gallery = (() => {
     }
 
     function marketplaceUrl(nft) {
+        if (isXrpCafeNft(nft)) {
+            return (
+                nft.xrp_cafe_url ||
+                nft.marketplace_url ||
+                (nft.xrpl_nft_id ? `https://xrp.cafe/nft/${nft.xrpl_nft_id}` : '')
+            );
+        }
         return nft.marketplace_url || nft.objkt_url || nft.opensea_url || '';
     }
 
@@ -275,17 +292,51 @@ const Gallery = (() => {
 
     function syncSectionPromo() {
         const el = document.getElementById('section-promo');
-        const cfg = siteConfig?.community_tokens;
         if (!el) return;
-
-        const tokens = (cfg?.tokens || []).filter((item) => item?.title);
-        const show = Boolean(cfg?.enabled) && showCommunityTokens() && tokens.length > 0;
-        el.hidden = !show;
-        if (!show) return;
 
         const eyebrowEl = document.getElementById('section-promo-eyebrow');
         const leadEl = document.getElementById('section-promo-lead');
         const listEl = document.getElementById('section-promo-tokens');
+
+        if (GallerySections.getCurrentSection() === 'xrpl') {
+            const meta = GallerySections.getSectionMeta();
+            const xrplInfo = collectionInfo.xrpl || {};
+            const collectionUrl =
+                meta.collection_url ||
+                xrplInfo.xrp_cafe_collection_vanity ||
+                xrplInfo.xrp_cafe_collection ||
+                '';
+            const show = Boolean(collectionUrl);
+            el.hidden = !show;
+            if (!show) return;
+
+            if (eyebrowEl) eyebrowEl.textContent = meta.promo_eyebrow || 'JB AI Nature on XRPL';
+            if (leadEl) {
+                leadEl.textContent =
+                    meta.promo_lead || 'Collect and trade on XRP.Cafe.';
+            }
+            if (listEl) {
+                const url = escapeHtml(collectionUrl);
+                const cta = escapeHtml(meta.collection_cta || 'View collection on XRP.Cafe');
+                listEl.innerHTML = `
+                    <article class="section-promo__item">
+                        <h3 class="section-promo__title">XRP.Cafe</h3>
+                        <p class="section-promo__token">
+                            <span class="section-promo__symbol">JB AI Nature</span>
+                            <span class="section-promo__chain"> · XRPL</span>
+                        </p>
+                        <a class="btn btn--ghost btn--small section-promo__cta" href="${url}" target="_blank" rel="noopener noreferrer">${cta}</a>
+                    </article>
+                `;
+            }
+            return;
+        }
+
+        const cfg = siteConfig?.community_tokens;
+        const tokens = (cfg?.tokens || []).filter((item) => item?.title);
+        const show = Boolean(cfg?.enabled) && showCommunityTokens() && tokens.length > 0;
+        el.hidden = !show;
+        if (!show) return;
 
         if (eyebrowEl) eyebrowEl.textContent = cfg.eyebrow || '';
         if (leadEl) leadEl.textContent = cfg.lead || '';

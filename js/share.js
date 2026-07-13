@@ -88,6 +88,18 @@ const GalleryShare = (() => {
             items.push({ id: 'native', label: 'Share…', action: 'native' });
         }
 
+        const cafeUrl =
+            nft?.xrp_cafe_url ||
+            nft?.marketplace_url ||
+            (nft?.xrpl_nft_id ? `https://xrp.cafe/nft/${nft.xrpl_nft_id}` : '');
+        if (nft?.medium === 'xrpl_ai' && cafeUrl) {
+            items.push({
+                id: 'xrp-cafe',
+                label: 'XRP.Cafe',
+                href: cafeUrl,
+            });
+        }
+
         items.push(
             {
                 id: 'x',

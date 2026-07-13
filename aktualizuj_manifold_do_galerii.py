@@ -382,10 +382,10 @@ def sync(*, dry_run: bool = False) -> int:
                     "disabled_kinds": ["editions"],
                     "disabled_chains": ["ethereum"],
                     "kind_notes": {
-                        "editions": "Fixed-price limited editions with optional escalating price — coming soon.",
+                        "editions": "Numbered editions in small batches — coming soon.",
                     },
                     "chain_notes": {
-                        "ethereum": "Ethereum L1 — planned for high-end 1/1 works.",
+                        "ethereum": "Reserved for select one-of-one works.",
                     },
                     "explore_titles": {
                         "auctions": "Auctions · The Atelier",
@@ -393,18 +393,21 @@ def sync(*, dry_run: bool = False) -> int:
                     },
                     "empty_messages": {
                         "auctions": {
-                            "base": "No live auctions on Base right now. List in Manifold Studio, run sync, and they appear here.",
-                            "ethereum": "Ethereum L1 auctions are planned — coming when the contract is live.",
+                            "base": "No auction is live at the moment. The next piece will appear here when the gavel is set.",
+                            "ethereum": "Select one-of-one auctions — reserved for a future chapter.",
                         },
                         "editions": {
-                            "base": "Limited editions coming soon — fixed or escalating price series via Manifold purchase listings.",
-                            "ethereum": "Ethereum L1 editions — planned for a separate contract.",
+                            "base": "Numbered editions are in preparation — intimate batches, released at a gentle pace.",
+                            "ethereum": "A dedicated room for photography — planned with its own contract.",
                         },
                     },
-                    "promo_eyebrow": "The Atelier · Direct from the artist",
-                    "promo_lead": "Small-batch sales from the studio — Manifold on the AI wallet (Base) for now; interim Photo sales there too. Dedicated Photo wallet and contract on OpenSea later. Connect your wallet for collector perks (3+ works) — no personal data.",
+                    "promo_eyebrow": "The Atelier",
+                    "promo_lead": "A private room for those who collect closely — rare auctions and numbered editions in small batches, offered straight from the studio. Only live sales appear here; the wider studio catalogue lives on Manifold.",
+                    "promo_collector": "Returning collectors may soon unlock early access and quiet releases — nothing personal, only your wallet.",
                     "collection_url": cfg.get("profile_url"),
                     "collection_cta": "Manifold Gallery",
+                    "studio_listings_url": "https://manifold.xyz/@jbeatnic/p/jackbeatnic",
+                    "studio_listings_cta": "Studio catalogue",
                 }
             }
         },

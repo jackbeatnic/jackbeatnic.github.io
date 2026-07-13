@@ -395,15 +395,16 @@ const Gallery = (() => {
         if (GallerySections.isAtelierSection()) {
             const meta = GallerySections.getSectionMeta();
             const manifoldInfo = collectionInfo.manifold || {};
-            const wallets =
-                collectionInfo.atelier_wallets || collectionInfo.studio_market_wallets || {};
             const access = AtelierWallet.accessConfig();
             const collectionUrl =
                 meta.collection_url ||
                 manifoldInfo.profile_url ||
                 manifoldInfo.studio_url ||
                 '';
-            const show = Boolean(collectionUrl);
+            const listingsUrl =
+                meta.studio_listings_url ||
+                'https://manifold.xyz/@jbeatnic/p/jackbeatnic';
+            const show = Boolean(collectionUrl || listingsUrl);
             el.hidden = !show;
             if (!show) return;
 
@@ -412,49 +413,24 @@ const Gallery = (() => {
                 GallerySections.getMarketChain() === 'ethereum' ? 'Ethereum' : 'Base';
             const kindLabel = marketKind === 'editions' ? 'Limited Editions' : 'Auctions';
 
-            if (eyebrowEl) eyebrowEl.textContent = meta.promo_eyebrow || 'The Atelier · Direct from the artist';
+            if (eyebrowEl) eyebrowEl.textContent = meta.promo_eyebrow || 'The Atelier';
             if (leadEl) {
                 leadEl.textContent =
                     meta.promo_lead ||
-                    'Small-batch sales straight from the studio — auctions and limited editions on Manifold.';
+                    'A private room for those who collect closely — rare auctions and numbered editions in small batches, offered straight from the studio.';
             }
             if (listEl) {
                 const url = escapeHtml(collectionUrl);
                 const cta = escapeHtml(meta.collection_cta || 'Manifold Gallery');
-                const studioUrl = escapeHtml(
-                    manifoldInfo.studio_url || 'https://manifold.xyz/@jbeatnic',
-                );
-                const walletRows = Object.entries(wallets)
-                    .filter(([, cfg]) => cfg?.label)
-                    .map(([, cfg]) => {
-                        const enabled = cfg.enabled !== false;
-                        let status = cfg.status_short;
-                        if (!status) {
-                            status = enabled
-                                ? `${chainLabel} · Manifold`
-                                : cfg.note || 'Coming soon';
-                        }
-                        if (enabled && cfg.interim_photo_sales) {
-                            status = `${status} · interim Photo`;
-                        }
-                        const ensBit = cfg.ens
-                            ? ` <span class="section-promo__ens">(${escapeHtml(cfg.ens)})</span>`
-                            : '';
-                        return `
-                            <p class="section-promo__wallet" title="${escapeHtml(cfg.note || '')}">
-                                <span class="section-promo__symbol">${escapeHtml(cfg.label)}</span>${ensBit}
-                                <span class="section-promo__chain"> · ${escapeHtml(status)}</span>
-                            </p>
-                        `;
-                    })
-                    .join('');
-
-                const collectorTier = AtelierWallet.tiers().find((t) => t.min_nfts != null);
-                const collectorHint = collectorTier
-                    ? `Connect your wallet (no personal data) — ${collectorTier.min_nfts}+ works unlock ${collectorTier.label || 'collector'} perks: exclusive drops and early access.`
-                    : access.note || 'Wallet connect for collector perks — coming soon.';
+                const listingsHref = escapeHtml(listingsUrl);
+                const listingsCta = escapeHtml(meta.studio_listings_cta || 'Studio catalogue');
+                const collectorHint =
+                    meta.promo_collector ||
+                    'Returning collectors may soon unlock early access and quiet releases — nothing personal, only your wallet.';
                 const connectLabel = escapeHtml(AtelierWallet.connectLabel());
-                const connectDisabled = AtelierWallet.connectEnabled() ? '' : ' disabled';
+                const connectBlock = AtelierWallet.connectEnabled()
+                    ? `<button type="button" class="btn btn--primary btn--small section-promo__connect" id="atelier-connect-wallet">${connectLabel}</button>`
+                    : '';
 
                 listEl.innerHTML = `
                     <article class="section-promo__item">
@@ -463,12 +439,11 @@ const Gallery = (() => {
                             <span class="section-promo__symbol">${escapeHtml(kindLabel)}</span>
                             <span class="section-promo__chain"> · ${escapeHtml(chainLabel)}</span>
                         </p>
-                        ${walletRows}
                         <p class="section-promo__collector">${escapeHtml(collectorHint)}</p>
                         <div class="section-promo__actions">
-                            <button type="button" class="btn btn--primary btn--small section-promo__connect" id="atelier-connect-wallet"${connectDisabled} title="${escapeHtml(access.note || 'Phase 5')}">${connectLabel}</button>
+                            ${connectBlock}
                             <a class="btn btn--ghost btn--small section-promo__cta" href="${url}" target="_blank" rel="noopener noreferrer">${cta}</a>
-                            <a class="btn btn--ghost btn--small section-promo__cta" href="${studioUrl}" target="_blank" rel="noopener noreferrer">Manifold Studio</a>
+                            <a class="btn btn--ghost btn--small section-promo__cta" href="${listingsHref}" target="_blank" rel="noopener noreferrer">${listingsCta}</a>
                         </div>
                     </article>
                 `;

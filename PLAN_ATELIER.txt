@@ -35,17 +35,43 @@ STRUKTURA W UI
     ?section=studio_market
 
 
-JAK TO DZIAŁA DZIŚ (Faza 6 — bez licytacji w galerii)
-----------------------------------------------------
+CO WIDZI ODBIORCA W RAMCE PROMO
+-------------------------------
+  Eyebrow:  The Atelier
+  Lead:     Ekskluzywny opis (bez żargonu technicznego — portfele, sync, Fazy).
+  Linki:    Manifold Gallery + Studio catalogue (otwarte listingi na Manifold).
+  NIE pokazujemy w ramce: adresów portfeli, ENS, „interim”, Phase 5.
+
+  Copy w: gallery.json → site.sections.atelier (promo_eyebrow, promo_lead,
+  promo_collector, studio_listings_url).
+
+
+STUDIO LISTINGS — ŚWIADOMY WYBÓR (2026-07-13)
+---------------------------------------------
+  Na Manifold są live prace przez Studio/Listing (nie aukcje), m.in.:
+    https://manifold.xyz/@jbeatnic/p/jackbeatnic
+
+  DECYZJA: NIE importujemy ich do siatki galerii (żeby nie robić bałaganu).
+  Są dostępne wyłącznie przez link „Studio catalogue” w ramce Atelier.
+
+  NASTĘPNE KROKI (priorytet):
+    • Nowy kontrakt Manifold pod dedykowane Aukcje
+    • Osobno: Limited Editions (purchase listings)
+    • Później: opcjonalny osobny kontrakt na portfelu Photo
+
+
+JAK TO DZIAŁA DZIŚ (tylko live AUKCJE w siatce)
+-----------------------------------------------
   1. Wystawiasz aukcję w Manifold Studio (portfel AI, kontrakt Base).
   2. Uruchamiasz sync:
        cd /home/jb/jb_nft/www
        python3 aktualizuj_manifold_do_galerii.py
-  3. Skrypt skanuje API Manifold → zapis auctions_gallery.json.
+  3. Skrypt skanuje API Manifold (type 1 = auction) → auctions_gallery.json.
   4. Galeria ładuje gallery.json + auctions_gallery.json → karty w Atelier.
   5. Kolekcjoner klika „Bid on Manifold” → licytacja na manifold.xyz.
 
   Na dziś: 0 live aukcji na Base → empty state w UI.
+  Listingi Studio NIE trafiają do syncu.
 
   Sync skanuje:
     • portfel:  0xf0b840349b3f285fc05c89eac594ddd254183fb9  (AI)

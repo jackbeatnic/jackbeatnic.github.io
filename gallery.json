@@ -276,7 +276,9 @@
           ]
         },
         "jb_ai_play": {
+          "enabled": false,
           "label": "AI Play",
+          "note": "Paused — Manifold contract includes photo; resync with filter before re-enable",
           "standard": "1/1 experimental",
           "collection_ids": [
             "polygon_jb_ai_play",
@@ -8504,7 +8506,13 @@
         "explore_title": "Explore AI Art · OpenSea",
         "default_subsection": "opensea",
         "default_series": "nature_stories",
+        "disabled_series": [
+          "jb_ai_play"
+        ],
         "all_series_label": "All",
+        "series_notes": {
+          "jb_ai_play": "Paused — Manifold contract mixed photo; resync with filter before re-enable"
+        },
         "subsections": [
           {
             "id": "opensea",

@@ -31,6 +31,35 @@ const GallerySections = (() => {
         );
     }
 
+    function disabledAiSeries() {
+        const disabled = new Set(config().ai_art?.disabled_series || []);
+        const series = aiSeriesCatalog().series || {};
+        Object.entries(series).forEach(([id, cfg]) => {
+            if (cfg?.enabled === false) disabled.add(id);
+        });
+        return disabled;
+    }
+
+    function isSeriesEnabled(seriesId) {
+        if (!seriesId || seriesId === 'all') return true;
+        return !disabledAiSeries().has(seriesId);
+    }
+
+    function seriesNote(seriesId) {
+        const notes = config().ai_art?.series_notes || {};
+        const catalogNote = aiSeriesCatalog().series?.[seriesId]?.note;
+        return notes[seriesId] || catalogNote || 'Coming soon';
+    }
+
+    function normalizeAiSeries(seriesId) {
+        if (!seriesId || !isSeriesEnabled(seriesId)) return defaultAiSeries();
+        return seriesId;
+    }
+
+    function isAiPlayGalleryEnabled() {
+        return isSeriesEnabled('jb_ai_play');
+    }
+
     function rebuildCollectionToSeries() {
         collectionToSeries = {};
         const series = aiSeriesCatalog().series || {};
@@ -239,7 +268,7 @@ const GallerySections = (() => {
         if (currentSection === 'ai_art') {
             currentAiKind = ai || config().ai_art?.default_subsection || 'opensea';
             if (currentAiKind === 'opensea') {
-                currentAiSeries = series || defaultAiSeries();
+                currentAiSeries = normalizeAiSeries(series || defaultAiSeries());
             } else {
                 currentAiSeries = defaultAiSeries();
             }
@@ -344,6 +373,7 @@ const GallerySections = (() => {
     }
 
     function setAiSeries(series) {
+        if (!isSeriesEnabled(series)) return;
         currentSection = 'ai_art';
         currentAiKind = 'opensea';
         currentAiSeries = series;
@@ -414,13 +444,25 @@ const GallerySections = (() => {
             el.setAttribute('aria-pressed', String(active));
         });
 
+        const disabledSeries = disabledAiSeries();
         document.querySelectorAll('[data-ai-series]').forEach((el) => {
+            const series = el.dataset.aiSeries;
+            const disabled = disabledSeries.has(series);
+            el.hidden = disabled;
             const active =
                 currentSection === 'ai_art' &&
                 currentAiKind === 'opensea' &&
-                el.dataset.aiSeries === currentAiSeries;
+                series === currentAiSeries &&
+                !disabled;
             el.classList.toggle('is-active', active);
+            el.classList.toggle('is-disabled', disabled);
+            el.disabled = disabled;
             el.setAttribute('aria-pressed', String(active));
+            if (disabled) {
+                el.title = seriesNote(series);
+            } else {
+                el.removeAttribute('title');
+            }
         });
 
         const disabledKinds = new Set(atelierCfg()?.disabled_kinds || ['editions']);
@@ -463,13 +505,16 @@ const GallerySections = (() => {
     }
 
     function filterNfts(allNfts) {
+        const hiddenSeries = disabledAiSeries();
         const filtered = allNfts.filter((nft) => {
             const medium = nft.medium || 'ai_art';
             if (currentSection === 'ai_art') {
                 if (currentAiKind === 'xrpl') return medium === 'xrpl_ai';
                 if (medium !== 'ai_art') return false;
+                const nftSeries = resolveAiSeries(nft);
+                if (nftSeries && hiddenSeries.has(nftSeries)) return false;
                 if (currentAiKind === 'opensea' && currentAiSeries !== 'all') {
-                    return resolveAiSeries(nft) === currentAiSeries;
+                    return nftSeries === currentAiSeries;
                 }
                 return true;
             }
@@ -615,7 +660,7 @@ const GallerySections = (() => {
             currentSection = 'ai_art';
             currentAiKind = 'xrpl';
         } else if (medium === 'ai_art') {
-            const series = resolveAiSeries(nft) || defaultAiSeries();
+            const series = normalizeAiSeries(resolveAiSeries(nft) || defaultAiSeries());
             if (
                 currentSection === 'ai_art' &&
                 currentAiKind === 'opensea' &&
@@ -665,6 +710,8 @@ const GallerySections = (() => {
         getCurrentSection,
         getAiKind,
         getAiSeries,
+        isSeriesEnabled,
+        isAiPlayGalleryEnabled,
         resolveAiSeries,
         sortBySeriesOrder,
         getPhotoKind,

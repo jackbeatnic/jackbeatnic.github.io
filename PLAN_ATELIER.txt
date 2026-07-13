@@ -35,24 +35,50 @@ STRUKTURA W UI
     ?section=studio_market
 
 
+MAPA LINKÓW MANIFOLD (jedno źródło: gallery.json → manifold_links)
+--------------------------------------------------------------------
+  Konfiguracja: collection_info.manifold_links
+  UI Atelier:   manifold_links.nav (4 przyciski z podpowiedzią title=)
+
+  ┌──────────────────┬────────────────────────────────────────────────────┐
+  │ Przycisk w UI    │ URL                                                │
+  ├──────────────────┼────────────────────────────────────────────────────┤
+  │ On Manifold      │ https://manifold.xyz/@jbeatnic                     │
+  │                  │ Strona twórcy — studio, projekty, punkt wejścia    │
+  ├──────────────────┼────────────────────────────────────────────────────┤
+  │ Works for sale   │ https://manifold.xyz/@jbeatnic/p/jackbeatnic       │
+  │                  │ Otwarte listingi Studio (NIE aukcje)               │
+  ├──────────────────┼────────────────────────────────────────────────────┤
+  │ Creator contract │ https://manifold.xyz/@jbeatnic/contract/231786736  │
+  │                  │ Kontrakt na jackbeatnicai.base.eth (Base)          │
+  │                  │ On-chain: 0x3ae3dd0baa83dfcb8f07e55ae6737bcd0d694347│
+  ├──────────────────┼────────────────────────────────────────────────────┤
+  │ Gallery view     │ https://manifold.gallery/jbeatnic                  │
+  │                  │ Osobna witryna manifold.gallery (alternatywny browse)│
+  └──────────────────┴────────────────────────────────────────────────────┘
+
+  Pojedyncza praca (przykład AI na tym kontrakcie):
+    https://manifold.xyz/@jbeatnic/contract/231786736/161
+    → token #161 w kontrakcie Manifold ID 231786736
+
+  Inny format URL (używany w syncu kart aukcji):
+    https://manifold.xyz/base/0x3ae3dd0…/TOKEN_ID
+  Oba formaty prowadzą do Manifold — @handle/contract/ID jest czytelniejszy
+  dla kolekcjonera ze studia.
+
+
 CO WIDZI ODBIORCA W RAMCE PROMO
 -------------------------------
   Eyebrow:  The Atelier
-  Lead:     Ekskluzywny opis (bez żargonu technicznego — portfele, sync, Fazy).
-  Linki:    Manifold Gallery + Studio catalogue (otwarte listingi na Manifold).
-  NIE pokazujemy w ramce: adresów portfeli, ENS, „interim”, Phase 5.
-
-  Copy w: gallery.json → site.sections.atelier (promo_eyebrow, promo_lead,
-  promo_collector, studio_listings_url).
+  Lead:     Ekskluzywny opis (bez żargonu technicznego).
+  Linki:    4 przyciski z manifold_links.nav (patrz tabela wyżej).
+  NIE w siatce: listingi Studio — tylko link „Works for sale”.
 
 
 STUDIO LISTINGS — ŚWIADOMY WYBÓR (2026-07-13)
 ---------------------------------------------
-  Na Manifold są live prace przez Studio/Listing (nie aukcje), m.in.:
-    https://manifold.xyz/@jbeatnic/p/jackbeatnic
-
+  Live prace przez Studio/Listing (nie aukcje) → link „Works for sale”.
   DECYZJA: NIE importujemy ich do siatki galerii (żeby nie robić bałaganu).
-  Są dostępne wyłącznie przez link „Studio catalogue” w ramce Atelier.
 
   NASTĘPNE KROKI (priorytet):
     • Nowy kontrakt Manifold pod dedykowane Aukcje
@@ -247,13 +273,11 @@ HISTORIA NAZEWNICTWA (żeby nie wracać)
   The Atelier    → nazwa docelowa (2026-07-13)
 
 
-LINKI
------
-  Galeria:          https://jackbeatnic.github.io/
-  Atelier:          https://jackbeatnic.github.io/?section=atelier
-  Manifold profil:  https://manifold.gallery/jbeatnic
-  Manifold Studio:  https://manifold.xyz/@jbeatnic
-  OpenSea:          https://opensea.io/JackBeatnic
-  Repo:             https://github.com/jackbeatnic/jackbeatnic.github.io
+LINKI (skrót)
+-------------
+  Galeria:    https://jackbeatnic.github.io/?section=atelier
+  Manifold:   patrz sekcja MAPA LINKÓW MANIFOLD powyżej
+  OpenSea:    https://opensea.io/JackBeatnic
+  Repo:       https://github.com/jackbeatnic/jackbeatnic.github.io
 
 ================================================================================

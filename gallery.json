@@ -277,8 +277,8 @@
         },
         "jb_ai_play": {
           "label": "AI Play",
-          "note": "Polygon OpenSea (slug jb-ai-play). Base Manifold excluded — mixed photo on that contract.",
-          "standard": "1/1 experimental",
+          "note": "Experimental 1/1 on Polygon — OpenSea slug jb-ai-play.",
+          "standard": "ERC-1155 · supply 1",
           "collection_ids": [
             "polygon_jb_ai_play"
           ],
@@ -8533,7 +8533,7 @@
           "nature_jam": "Nature Jam — expressive studies on Avalanche.",
           "flower_stories": "Flower Stories — botanical forms across three chains.",
           "based_ai": "Based AI — 1/1 and editions on Base.",
-          "jb_ai_play": "AI Play — experimental 1/1 works on Polygon (OpenSea).",
+          "jb_ai_play": "AI Play — experimental 1/1 ERC-1155 on Polygon.",
           "all": "No works match this view."
         }
       },

@@ -197,10 +197,11 @@ CO JESZCZE W TYM ZAKRESIE — NIE ROBIĆ OD RAZU (kolejność sugerowana)
    • Sui TradePort — infrastruktura gotowa (patrz sekcja 8).
 
 8) SUI — TradePort (Nature Stories, osobny portfel)
-   • Edycje  collectionId: 990ced13-2d2c-4fee-8ff1-1c30177d9171
-     Launchpad: tradeport.xyz/launchpad/.../collectionId=990ced13-...
-   • 1/1      collectionId: a27ec93f-60a5-4ca9-b169-ed745f47dfd9
-     Launchpad: tradeport.xyz/launchpad/.../collectionId=a27ec93f-...
+   • Launchpad UUID (UI twórcy) ≠ indexer UUID (GraphQL sync):
+     Edycje  launchpad: 990ced13-…  indexer: 7fce878a-… (Nature Stories SE)
+     1/1     launchpad: a27ec93f-…  indexer: fec0e006-… (Nature Stories 1/1)
+   • Slugi on-chain: 0x4a9dd2… (SE), 0x2ca936… (1/1)
+   • Karty pojawią się po mintach — indexer zwraca 0 NFT dopóki nic nie zmintowano
    • API: POST https://api.indexer.xyz/graphql
      nagłówki: x-api-key (TRADEPORT_API_KEY), x-api-user (TRADEPORT_API_USER)
    • Skrypt: www/aktualizuj_sui_tradeport_do_galerii.py → sui_gallery.json

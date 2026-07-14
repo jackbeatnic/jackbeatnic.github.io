@@ -11,6 +11,7 @@ Kolekcje: wszystkie wpisy chain=sui + tradeport_collection_id w raportowanie/kol
 Usage:
   export TRADEPORT_API_KEY="..."
   export TRADEPORT_API_USER="..."
+  # albo (preferowane dla agenta): www/.env z tymi zmiennymi (gitignored)
   ./venv/bin/python3 aktualizuj_sui_tradeport_do_galerii.py
   ./venv/bin/python3 aktualizuj_sui_tradeport_do_galerii.py --dry-run --limit 5
   ./venv/bin/python3 aktualizuj_sui_tradeport_do_galerii.py --collection sui_nature_stories_1of1_tradeport
@@ -96,6 +97,29 @@ query fetchCollectionNfts(
 """
 
 
+def load_env_file(path: Path) -> None:
+    if not path.is_file():
+        return
+    for raw in path.read_text(encoding="utf-8").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        if line.startswith("export "):
+            line = line[7:].strip()
+        if "=" not in line:
+            continue
+        key, _, value = line.partition("=")
+        key = key.strip()
+        value = value.strip().strip('"').strip("'")
+        if key and key not in os.environ:
+            os.environ[key] = value
+
+
+def bootstrap_env() -> None:
+    for path in (ROOT / ".env", JB_NFT / "raportowanie" / ".env"):
+        load_env_file(path)
+
+
 def load_json(path: Path) -> dict:
     with path.open(encoding="utf-8") as fh:
         return json.load(fh)
@@ -139,12 +163,13 @@ def load_sui_tradeport_configs(*, only_id: str | None = None) -> list[dict]:
 
 
 def api_credentials() -> tuple[str, str]:
+    bootstrap_env()
     api_key = os.environ.get("TRADEPORT_API_KEY", "").strip()
     api_user = os.environ.get("TRADEPORT_API_USER", "").strip()
     if not api_key or not api_user:
         raise SystemExit(
             "Ustaw TRADEPORT_API_KEY i TRADEPORT_API_USER "
-            "(nagłówki x-api-key / x-api-user — patrz tradeport.xyz/docs)"
+            "(export lub www/.env — nagłówki x-api-key / x-api-user, patrz tradeport.xyz/docs)"
         )
     return api_key, api_user
 

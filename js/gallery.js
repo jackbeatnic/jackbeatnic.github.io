@@ -213,7 +213,14 @@ const Gallery = (() => {
             return `Manifold · ${chain}`;
         }
         if (isLaunchpadMint(nft)) {
-            return nft.edition_label || nft.name || 'Mint on TradePort';
+            if (nft.edition_label) return nft.edition_label;
+            const minted = nft.minted_count;
+            const cap = nft.supply;
+            if (minted != null && cap != null && Number(cap) > 1) {
+                return `${minted}/${cap} minted`;
+            }
+            if (minted != null) return `${minted} minted`;
+            return nft.name || 'Mint on TradePort';
         }
         const tid = nft.onchain_token_id ?? nft.token_id;
         if (nft.edition_label) {
@@ -302,7 +309,15 @@ const Gallery = (() => {
             };
         }
         if (isLaunchpadMint(nft)) {
-            return { text: 'Mint open', hint: 'TradePort Launchpad', kind: 'mint' };
+            const minted = nft.minted_count;
+            const cap = nft.supply;
+            let hint = 'TradePort Launchpad';
+            if (minted != null && cap != null && Number(cap) > 1) {
+                hint = `${minted} of ${cap} minted`;
+            } else if (minted != null) {
+                hint = `${minted} minted`;
+            }
+            return { text: 'Mint open', hint, kind: 'mint' };
         }
         return { text: '—', hint: chainLabel(nft), kind: 'unknown' };
     }

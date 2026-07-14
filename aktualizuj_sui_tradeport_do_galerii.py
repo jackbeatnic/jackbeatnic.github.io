@@ -409,11 +409,33 @@ def build_launchpad_entry(
         except (TypeError, ValueError):
             mint_price = None
 
-    supply = (api_row or {}).get("supply_count") or col.get("supply")
+    supply = (
+        (api_row or {}).get("supply_count")
+        or col.get("supply")
+        or cfg.get("tradeport_supply_cap")
+    )
     minted = (api_row or {}).get("minted")
+    if minted is None and cfg.get("tradeport_minted_count") not in (None, ""):
+        try:
+            minted = int(cfg["tradeport_minted_count"])
+        except (TypeError, ValueError):
+            minted = None
 
     display_id = 1 if kind != "1of1" else DISPLAY_RANK_1OF1_OFFSET + 1
-    edition_label = "1/1" if kind == "1of1" else "Mint · edition"
+    if kind == "1of1":
+        edition_label = "1/1"
+    elif minted is not None:
+        try:
+            minted_i = int(minted)
+            if supply not in (None, ""):
+                supply_i = int(supply)
+                edition_label = f"{minted_i}/{supply_i} minted"
+            else:
+                edition_label = f"{minted_i} minted"
+        except (TypeError, ValueError):
+            edition_label = "Mint · edition"
+    else:
+        edition_label = "Mint · edition"
 
     entry: dict = {
         "token_id": display_id,

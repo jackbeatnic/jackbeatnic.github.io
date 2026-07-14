@@ -40,7 +40,7 @@
         "launchpad_api": false
       }
     ],
-    "last_sui_sync": "2026-07-14T22:44:03Z",
+    "last_sui_sync": "2026-07-14T22:48:08Z",
     "token_count": 2,
     "minted_count": 0,
     "launchpad_count": 2,
@@ -86,7 +86,7 @@
       "marketplace_url": "https://www.tradeport.xyz/launchpad/create/edition/view-collection?tab=items&collectionId=990ced13-2d2c-4fee-8ff1-1c30177d9171",
       "image_url": "https://ipfs.io/ipfs/bafybeie76fsqddn7tag2js4ckcvjadeopiwianjjdhu4wychq42xgzt4ka",
       "supply": 1,
-      "edition_label": "Mint · edition",
+      "edition_label": "49 minted",
       "subseries": "edition",
       "traits": {},
       "ai": {
@@ -121,7 +121,8 @@
       "source": "launchpad",
       "marketplace": "tradeport",
       "launchpad": true,
-      "tradeport_slug": "0x4a9dd2c87bffe9779233053a70e46def51e4bf12b4b805ba80a16af1ed679765"
+      "tradeport_slug": "0x4a9dd2c87bffe9779233053a70e46def51e4bf12b4b805ba80a16af1ed679765",
+      "minted_count": 49
     },
     {
       "token_id": 10001,

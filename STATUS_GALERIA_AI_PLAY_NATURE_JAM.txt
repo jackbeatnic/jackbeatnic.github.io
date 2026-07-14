@@ -1,8 +1,8 @@
 ================================================================================
-  STATUS: Galeria — AI Play (Polygon) + Nature Jam (Salvor) + UI
+  STATUS: Galeria — AI Play + Nature Jam + Based AI + UI
   Katalog: /home/jb/jb_nft/www/
   Powiązane: raportowanie/raporty/, gallery.json, PLAN_AI_SERIES.txt
-  Data zapisu: 2026-07-14
+  Data zapisu: 2026-07-14 (aktualizacja: Based AI — komendy API)
 ================================================================================
 
 UWAGA NA TERAZ (2026-07-14)
@@ -11,7 +11,8 @@ UWAGA NA TERAZ (2026-07-14)
     synchronizacji OpenSea API / masowego scrape do czasu zakończenia tamtego
     procesu (ryzyko rate-limit, przerwania, nadużycia klucza).
   • Dotyczy m.in.: aktualizuj_ai_play_do_galerii.py --images api,
-    raportuj_kolekcje.py, ponowny pełny scrape 2000+ tokenów AI Play.
+    raportuj_kolekcje.py (w tym Based AI vol.1 + vol.2),
+    ponowny pełny scrape 2000+ tokenów AI Play.
 
 
 ================================================================================
@@ -46,8 +47,9 @@ NATURE JAM (Avalanche ERC-721, Salvor + OpenSea)
 
 gallery.js
   • Ładuje: gallery.json + xrp_gallery.json + ai_play_gallery.json
-            + nature_jam_gallery.json + auctions_gallery.json
-  • Dual marketplace (Salvor+OS), formatPrice z ceną Salvor, buildMarketActionsHtml.
+            + nature_jam_gallery.json + based_ai_gallery.json + auctions_gallery.json
+  • Dual marketplace (Salvor+OS, Manifold+OS), formatPrice, buildMarketActionsHtml.
+  • Based AI: etykieta 1/1 / ×supply na karcie (edition_label).
 
 Commity (orientacyjnie, main www):
   • EVM rename, AI Play launch, burned 1–35, thumb contain, ?w=1000 seadn,
@@ -88,6 +90,97 @@ CO JESZCZE W TYM ZAKRESIE — NIE ROBIĆ OD RAZU (kolejność sugerowana)
      jeszcze nie w nature_jam_gallery.json (tylko vol. 1 ERC-721).
    • Wymaga osobnego syncu lub rozszerzenia skryptu + ewentualnie Salvor.
 
+4b) BASED AI — DO ZROBIENIA (infrastruktura gotowa, brak JSON w galerii)
+   ─────────────────────────────────────────────────────────────────────
+   Zasada UI: jedna zakładka „Based AI”, BEZ osobnych kategorii vol.1/vol.2.
+   ai_series_catalog mapuje oba collection_id → based_ai (jak Nature Jam).
+
+   STAN TERAZ:
+     [x] kolekcje.json — oba kontrakty + manifold_id + max_token_id
+     [x] gallery.js — ładuje based_ai_gallery.json, Manifold+OS, etykiety 1/1/×supply
+     [x] aktualizuj_based_ai_do_galerii.py — skrypt syncu (oba vol. → jeden plik)
+     [ ] raporty CSV z OpenSea API (oba vol.)
+     [ ] based_ai_gallery.json (pierwszy pełny sync)
+     [ ] git push www (deploy na jackbeatnic.github.io)
+     [ ] później: kolory XRPL-style + opisy AI (nie traity OS)
+
+   Vol. 1 — base_jb_based_ai (ERC-721, ~751×1/1)
+     kontrakt: 0xdd432b0183d8435c085ae56fdd881cfcfd36e735
+     OpenSea slug: jb-based-ai
+     Manifold hub: 231786736 → manifold.xyz/@jbeatnic/contract/231786736/{tokenId}
+     Karta: „1/1 · #123”, przyciski Manifold + OpenSea
+
+   Vol. 2 — base_jb_based_ai_vol2 (ERC-1155, edycje ~500 szt.)
+     kontrakt: 0x879e260e861fec11a9f721baeabf347ec19c7725
+     OpenSea slug: jb-based-ai-vol-2
+     Tylko OpenSea; karta: „×500 · #2”
+     Sort: vol.1 (rank 1..751), potem vol.2 (10000+token_id)
+
+   PLIKI PO RAPORCIE (raportowanie/):
+     dane/base_jb_based_ai_tokens.csv
+     dane/base_jb_based_ai_vol2_tokens.csv
+     raporty/base_jb_based_ai_raport.csv
+     raporty/base_jb_based_ai_vol2_raport.csv
+
+   PLIK PO SYNCU GALERII (www/):
+     based_ai_gallery.json  (~751 + ~N typów vol.2)
+
+   ── KROK 1: raport OpenSea API (wymaga OPENSEA_API_KEY, ~kilka–kilkanaście min) ──
+   Uruchamiać z katalogu jb_nft (NIE równolegle z innym oknem API):
+
+     cd /home/jb/jb_nft
+     export OPENSEA_API_KEY="twój-klucz"
+
+     # Vol. 1 — pełny cykl (tokeny + listingi + raport CSV):
+     ./venv/bin/python3 raportowanie/raportuj_kolekcje.py \
+       --kolekcja base_jb_based_ai
+
+     # Vol. 2 — osobno (inny kontrakt ERC-1155):
+     ./venv/bin/python3 raportowanie/raportuj_kolekcje.py \
+       --kolekcja base_jb_based_ai_vol2
+
+     # Opcjonalnie oba naraz (dłużej, więcej requestów):
+     ./venv/bin/python3 raportowanie/raportuj_kolekcje.py \
+       --kolekcja base_jb_based_ai \
+       --kolekcja base_jb_based_ai_vol2
+
+     # Tylko odświeżenie cen/listingów (gdy dane/ już istnieją — szybciej):
+     ./venv/bin/python3 raportowanie/raportuj_kolekcje.py \
+       --kolekcja base_jb_based_ai --krok report
+     ./venv/bin/python3 raportowanie/raportuj_kolekcje.py \
+       --kolekcja base_jb_based_ai_vol2 --krok report
+
+   ── KROK 2: sync galerii (scrape obrazów seadn ?w=1000, BEZ OpenSea API) ──
+   Można po kroku 1; scrape stron OS to osobny ruch (nie API key), ale też
+   rate-limit — nie odpalać równolegle z masowym scrape AI Play.
+
+     cd /home/jb/jb_nft/www
+
+     # Oba vol. naraz (domyślnie):
+     ../venv/bin/python3 aktualizuj_based_ai_do_galerii.py --workers 16
+
+     # Tylko vol. 1 lub vol. 2 (np. test / dociąganie):
+     ../venv/bin/python3 aktualizuj_based_ai_do_galerii.py --vol vol1 --workers 16
+     ../venv/bin/python3 aktualizuj_based_ai_do_galerii.py --vol vol2 --workers 16
+
+     # Podgląd bez zapisu:
+     ../venv/bin/python3 aktualizuj_based_ai_do_galerii.py --dry-run --vol vol1
+
+     # Po syncu — tylko ceny z CSV (bez ponownego scrape obrazów):
+     ../venv/bin/python3 aktualizuj_based_ai_do_galerii.py --skip-images
+
+   ── KROK 3: deploy ──
+
+     cd /home/jb/jb_nft/www
+     git add based_ai_gallery.json aktualizuj_based_ai_do_galerii.py \
+       js/gallery.js gallery.json STATUS_GALERIA_AI_PLAY_NATURE_JAM.txt
+     git commit -m "Based AI: vol.1+vol.2 gallery sync"
+     git push
+
+   PÓŹNIEJ (jak AI Play / Nature Jam):
+     • analiza obrazu → dominant_colors + opisy (XRPL-style, nie traity OS)
+     • ponowne ceny: raportuj --krok report → aktualizuj_based_ai --skip-images
+
 5) Ceny — odświeżanie
    • Salvor/OS: ponowny eksport CSV w raportowanie, potem:
        aktualizuj_nature_jam_do_galerii.py --skip-images  (szybko, same ceny/URL)
@@ -98,9 +191,29 @@ CO JESZCZE W TYM ZAKRESIE — NIE ROBIĆ OD RAZU (kolejność sugerowana)
    • Puste ai.description — miejsce na późniejszą analizę / generowanie tekstu.
    • Nie kopiować powtarzalnych szablonów z nazwą tokenu 3×.
 
-7) Inne serie EVM (bez zmian w tej sesji)
-   • Flower Stories, Based AI — jak dotąd głównie z gallery.json / raportów.
-   • Sui TradePort — osobny portfel, poza EVM subnav (notatka w PLAN_AI_SERIES).
+7) Inne serie EVM
+   • Flower Stories — jak dotąd głównie z gallery.json / raportów.
+   • Based AI — patrz sekcja 4b (komendy API + sync + deploy).
+   • Sui TradePort — infrastruktura gotowa (patrz sekcja 8).
+
+8) SUI — TradePort (Nature Stories, osobny portfel)
+   • collectionId: 990ced13-2d2c-4fee-8ff1-1c30177d9171
+   • Launchpad: tradeport.xyz/launchpad/.../collectionId=990ced13-...
+   • API: POST https://api.indexer.xyz/graphql
+     nagłówki: x-api-key (TRADEPORT_API_KEY), x-api-user (TRADEPORT_API_USER)
+   • Skrypt: www/aktualizuj_sui_tradeport_do_galerii.py → sui_gallery.json
+   • UI: zakładka AI Art → Sui (włączona); promo TradePort jak XRPL
+   • NIE w EVM subnav serii — osobna sieć jak XRPL
+
+   Sync (wymaga kluczy — nie commitować do repo):
+     export TRADEPORT_API_KEY="..."
+     export TRADEPORT_API_USER="..."
+     cd /home/jb/jb_nft/www
+     ../venv/bin/python3 aktualizuj_sui_tradeport_do_galerii.py
+     ../venv/bin/python3 aktualizuj_sui_tradeport_do_galerii.py --dry-run --limit 5
+
+   Deploy po syncu:
+     git add sui_gallery.json && git commit && git push
 
 
 ================================================================================
@@ -109,35 +222,46 @@ PLIKI KLUCZOWE
 
   www/ai_play_gallery.json
   www/nature_jam_gallery.json
+  www/based_ai_gallery.json          (po pierwszym syncu)
   www/aktualizuj_ai_play_do_galerii.py
   www/aktualizuj_nature_jam_do_galerii.py
+  www/aktualizuj_based_ai_do_galerii.py
   www/js/gallery.js
   www/js/images.js          (proxy weserv, viewUrl, seadn ?w=)
   www/gallery.json          (ai_series_catalog, marketplace_links Salvor)
   raportowanie/raporty/avalanche_nature_jam_raport.csv
   raportowanie/raporty/avalanche_nature_jam_salvor.csv
+  raportowanie/raporty/base_jb_based_ai_raport.csv          (po raporcie API)
+  raportowanie/raporty/base_jb_based_ai_vol2_raport.csv     (po raporcie API)
   raportowanie/kolekcje.json  (polygon_jb_ai_play excluded_burned_through: 35)
 
 
 ================================================================================
 SZYBKA ŚCIĄGAWKA (gdy API OpenSea wolne)
 ================================================================================
+  Wszystkie ścieżki od: /home/jb/jb_nft
 
-  # Nature Jam — pełny sync (obrazy + ceny)
+  export OPENSEA_API_KEY="twój-klucz"    # tylko kroki z raportuj_kolekcje.py
+
+  # ── Based AI (pełna procedura) ──────────────────────────────────────────
+  # 1) Raport API — vol.1 (ERC-721 ~751×1/1, Base):
+  ./venv/bin/python3 raportowanie/raportuj_kolekcje.py --kolekcja base_jb_based_ai
+  # 2) Raport API — vol.2 (ERC-1155 ~500 ed., Base):
+  ./venv/bin/python3 raportowanie/raportuj_kolekcje.py --kolekcja base_jb_based_ai_vol2
+  # 3) Galeria — scrape seadn ?w=1000 (bez API key):
+  ./venv/bin/python3 www/aktualizuj_based_ai_do_galerii.py --workers 16
+  # 4) Tylko odśwież ceny (gdy raport CSV już jest):
+  ./venv/bin/python3 www/aktualizuj_based_ai_do_galerii.py --skip-images
+  # 5) Deploy:
+  cd www && git add based_ai_gallery.json && git commit -m "Based AI gallery" && git push
+
+  # ── Nature Jam ────────────────────────────────────────────────────────────
   ./venv/bin/python3 www/aktualizuj_nature_jam_do_galerii.py --workers 16
-
-  # Nature Jam — tylko ceny/URL (bez scrape obrazów)
   ./venv/bin/python3 www/aktualizuj_nature_jam_do_galerii.py --skip-images
 
-  # AI Play — dociąganie tokenów / obrazów (bez API)
+  # ── AI Play ───────────────────────────────────────────────────────────────
   ./venv/bin/python3 www/aktualizuj_ai_play_do_galerii.py --workers 16
-
-  # AI Play — z API (TYLKO gdy klucz nie jest używany gdzie indziej)
-  export OPENSEA_API_KEY="..."
-  ./venv/bin/python3 www/aktualizuj_ai_play_do_galerii.py --images api
-
-  # Deploy www
-  cd www && git add … && git commit && git push
+  ./venv/bin/python3 www/aktualizuj_ai_play_do_galerii.py --images api   # wymaga API key
 
 
 ================================================================================

@@ -14,6 +14,7 @@ const GalleryFilters = (() => {
         if (nft.listing_status === 'For Sale') return true;
         if (nft.salvor_price_avax != null || nft.opensea_price_avax != null) return true;
         if (nft.opensea_price_eth != null) return true;
+        if (nft.current_price_sui != null) return true;
         return Object.keys(nft).some(
             (key) =>
                 key.startsWith('current_price_') &&

@@ -613,6 +613,7 @@ const GallerySections = (() => {
             const medium = nft.medium || 'ai_art';
             if (currentSection === 'ai_art') {
                 if (currentAiKind === 'xrpl') return medium === 'xrpl_ai';
+                if (currentAiKind === 'sui') return medium === 'sui_ai';
                 if (medium !== 'ai_art') return false;
                 const nftSeries = resolveAiSeries(nft);
                 if (nftSeries && hiddenSeries.has(nftSeries)) return false;

@@ -35,6 +35,7 @@ const Gallery = (() => {
     function currencyForNft(nft) {
         if (nft.listing_currency) return nft.listing_currency;
         if (nft.chain === 'xrpl' || nft.medium === 'xrpl_ai') return 'XRP';
+        if (nft.chain === 'sui' || nft.medium === 'sui_ai') return 'SUI';
         if (isManifoldAuction(nft)) return nft.listing_currency || 'ETH';
         return collectionInfo.native_currency || 'AVAX';
     }
@@ -48,6 +49,9 @@ const Gallery = (() => {
         }
         if (symbol === 'XRP' && prefix === 'current_price' && nft.current_price_xrp != null) {
             return nft.current_price_xrp;
+        }
+        if (symbol === 'SUI' && prefix === 'current_price' && nft.current_price_sui != null) {
+            return nft.current_price_sui;
         }
         return null;
     }
@@ -88,6 +92,15 @@ const Gallery = (() => {
         );
     }
 
+    function isTradeportNft(nft) {
+        return (
+            nft.chain === 'sui' ||
+            nft.medium === 'sui_ai' ||
+            nft.marketplace === 'tradeport' ||
+            nft.source === 'tradeport'
+        );
+    }
+
     function resolveDualMarketplaces(nft) {
         const list = nft.marketplaces;
         if (Array.isArray(list) && list.length >= 2) {
@@ -118,6 +131,7 @@ const Gallery = (() => {
 
     function marketplaceName(nft) {
         if (isManifoldAuction(nft)) return MARKETPLACE_NAMES.manifold;
+        if (isTradeportNft(nft)) return MARKETPLACE_NAMES.tradeport;
         if (isXrpCafeNft(nft)) return MARKETPLACE_NAMES.xrp_cafe;
         const key = nft.marketplace || (isObjktNft(nft) ? 'objkt' : 'opensea');
         return MARKETPLACE_NAMES[key] || key;
@@ -132,6 +146,9 @@ const Gallery = (() => {
     function marketplaceUrl(nft) {
         if (isManifoldAuction(nft) || nft.manifold_url) {
             return nft.manifold_url || nft.marketplace_url || '';
+        }
+        if (isTradeportNft(nft)) {
+            return nft.tradeport_url || nft.marketplace_url || '';
         }
         if (isXrpCafeNft(nft)) {
             return (
@@ -351,20 +368,23 @@ const Gallery = (() => {
     async function load() {
         const grid = document.getElementById('gallery-grid');
         try {
-            const [mainRes, xrpRes, auctionRes] = await Promise.all([
+            const [mainRes, xrpRes, suiRes, auctionRes] = await Promise.all([
                 fetch('gallery.json'),
                 fetch('xrp_gallery.json'),
+                fetch('sui_gallery.json'),
                 fetch('auctions_gallery.json'),
             ]);
             if (!mainRes.ok) throw new Error(`HTTP ${mainRes.status}`);
             const data = await mainRes.json();
             const xrpData = xrpRes.ok ? await xrpRes.json() : { nfts: [] };
+            const suiData = suiRes.ok ? await suiRes.json() : { nfts: [] };
             const auctionData = auctionRes.ok ? await auctionRes.json() : { nfts: [] };
 
-            allNfts = mergeGalleryPayload(data, [xrpData, auctionData]);
+            allNfts = mergeGalleryPayload(data, [xrpData, suiData, auctionData]);
             collectionInfo = {
                 ...(data.collection_info || {}),
                 xrpl: xrpData.collection_info || {},
+                sui: suiData.collection_info || {},
                 manifold: auctionData.collection_info || {},
                 manifold_links: data.collection_info?.manifold_links || {},
                 atelier_wallets:
@@ -375,6 +395,7 @@ const Gallery = (() => {
             };
             const mainSections = data.site?.sections || {};
             const xrpSections = xrpData.site?.sections || {};
+            const suiSections = suiData.site?.sections || {};
             const auctionSections = auctionData.site?.sections || {};
             const manifoldChains = collectionInfo.manifold?.chains || {};
             const disabledMarketChains = Object.entries(manifoldChains)
@@ -400,16 +421,19 @@ const Gallery = (() => {
                     ai_art: {
                         ...(mainSections.ai_art || {}),
                         ...(xrpSections.ai_art || {}),
+                        ...(suiSections.ai_art || {}),
                         subsections:
                             xrpSections.ai_art?.subsections ||
                             mainSections.ai_art?.subsections,
                         empty_messages: {
                             ...(mainSections.ai_art?.empty_messages || {}),
                             ...(xrpSections.ai_art?.empty_messages || {}),
+                            ...(suiSections.ai_art?.empty_messages || {}),
                         },
                         explore_titles: {
                             ...(mainSections.ai_art?.explore_titles || {}),
                             ...(xrpSections.ai_art?.explore_titles || {}),
+                            ...(suiSections.ai_art?.explore_titles || {}),
                         },
                     },
                     atelier: {
@@ -583,6 +607,44 @@ const Gallery = (() => {
                         connectBtn.title = err?.message || 'Coming soon';
                     }
                 });
+            }
+            return;
+        }
+
+        if (
+            GallerySections.getCurrentSection() === 'ai_art' &&
+            GallerySections.getAiKind() === 'sui'
+        ) {
+            const meta = GallerySections.getSectionMeta();
+            const suiInfo = collectionInfo.sui || {};
+            const collectionUrl =
+                meta.collection_url ||
+                suiInfo.collection_url ||
+                suiInfo.tradeport_profile ||
+                '';
+            const show = Boolean(collectionUrl);
+            el.hidden = !show;
+            if (!show) return;
+
+            if (eyebrowEl) eyebrowEl.textContent = meta.promo_eyebrow || 'Nature Stories on Sui';
+            if (leadEl) {
+                leadEl.textContent =
+                    meta.promo_lead || 'Collect and trade on TradePort.';
+            }
+            if (listEl) {
+                const url = escapeHtml(collectionUrl);
+                const title = escapeHtml(suiInfo.collection_name || 'Nature Stories');
+                const cta = escapeHtml(meta.collection_cta || 'View collection on TradePort');
+                listEl.innerHTML = `
+                    <article class="section-promo__item">
+                        <h3 class="section-promo__title">TradePort</h3>
+                        <p class="section-promo__token">
+                            <span class="section-promo__symbol">${title}</span>
+                            <span class="section-promo__chain"> · Sui</span>
+                        </p>
+                        <a class="btn btn--ghost btn--small section-promo__cta" href="${url}" target="_blank" rel="noopener noreferrer">${cta}</a>
+                    </article>
+                `;
             }
             return;
         }

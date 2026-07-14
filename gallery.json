@@ -45,6 +45,12 @@
         "id": "xrp-cafe",
         "label": "XRP.Cafe",
         "url": "https://xrp.cafe/user/rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn"
+      },
+      {
+        "id": "tradeport-sui",
+        "label": "TradePort / Sui",
+        "url": "https://www.tradeport.xyz/sui/collection",
+        "note": "Nature Stories · Sui — docelowy URL z slug po syncu TradePort"
       }
     ],
     "site_url": "https://jackbeatnic.github.io/",
@@ -8529,12 +8535,10 @@
         "default_series": "nature_stories",
         "all_series_label": "All",
         "disabled_subsections": [
-          "tezos",
-          "sui"
+          "tezos"
         ],
         "subsection_notes": {
-          "tezos": "Tezos AI — coming soon",
-          "sui": "Sui AI — coming soon"
+          "tezos": "Tezos AI — coming soon"
         },
         "subsections": [
           {
@@ -8572,7 +8576,7 @@
           "evm": "No works in this section yet.",
           "xrpl": "JB AI Nature on XRP.Cafe will appear here after sync.",
           "tezos": "Tezos AI collections — coming soon.",
-          "sui": "Sui AI collections — coming soon."
+          "sui": "Nature Stories on Sui (TradePort) — run sui sync if empty."
         },
         "empty_messages_series": {
           "nature_stories": "Nature Stories — serene landscapes across Avalanche, Base and Polygon.",

@@ -259,9 +259,9 @@ a {
     flex: 1;
     text-align: center;
     font-family: inherit;
-    font-size: 0.68rem;
+    font-size: 0.62rem;
     font-weight: 500;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--gray-400);
     background: none;
@@ -321,7 +321,7 @@ a {
     display: none;
     width: 100%;
     font-family: inherit;
-    font-size: 0.68rem;
+    font-size: 0.62rem;
     font-weight: 500;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -1279,6 +1279,12 @@ body.tip-open {
     .gallery-grid {
         grid-template-columns: repeat(3, 1fr);
     }
+}
+
+.gallery-grid--loading,
+.gallery-grid--busy {
+    opacity: 0.72;
+    pointer-events: none;
 }
 
 .gallery-empty,

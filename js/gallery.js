@@ -632,19 +632,43 @@ const Gallery = (() => {
                     meta.promo_lead || 'Collect and trade on TradePort.';
             }
             if (listEl) {
-                const url = escapeHtml(collectionUrl);
-                const title = escapeHtml(suiInfo.collection_name || 'Nature Stories');
-                const cta = escapeHtml(meta.collection_cta || 'View collection on TradePort');
-                listEl.innerHTML = `
+                const promoItems = (meta.promo_collections || []).filter((item) => item?.url);
+                const fallbackTitle = escapeHtml(suiInfo.collection_name || 'Nature Stories');
+                const fallbackCta = escapeHtml(meta.collection_cta || 'View collection on TradePort');
+                const fallbackUrl = escapeHtml(collectionUrl);
+
+                if (promoItems.length > 0) {
+                    listEl.innerHTML = promoItems
+                        .map((item) => {
+                            const title = escapeHtml(item.title || fallbackTitle);
+                            const edition = escapeHtml(item.edition_label || '');
+                            const url = escapeHtml(item.url || fallbackUrl);
+                            const cta = escapeHtml(item.cta || fallbackCta);
+                            const editionBit = edition
+                                ? `<span class="section-promo__chain"> · ${edition}</span>`
+                                : '<span class="section-promo__chain"> · Sui</span>';
+                            return `
                     <article class="section-promo__item">
                         <h3 class="section-promo__title">TradePort</h3>
                         <p class="section-promo__token">
-                            <span class="section-promo__symbol">${title}</span>
-                            <span class="section-promo__chain"> · Sui</span>
+                            <span class="section-promo__symbol">${title}</span>${editionBit}
                         </p>
                         <a class="btn btn--ghost btn--small section-promo__cta" href="${url}" target="_blank" rel="noopener noreferrer">${cta}</a>
+                    </article>`;
+                        })
+                        .join('');
+                } else {
+                    listEl.innerHTML = `
+                    <article class="section-promo__item">
+                        <h3 class="section-promo__title">TradePort</h3>
+                        <p class="section-promo__token">
+                            <span class="section-promo__symbol">${fallbackTitle}</span>
+                            <span class="section-promo__chain"> · Sui</span>
+                        </p>
+                        <a class="btn btn--ghost btn--small section-promo__cta" href="${fallbackUrl}" target="_blank" rel="noopener noreferrer">${fallbackCta}</a>
                     </article>
                 `;
+                }
             }
             return;
         }

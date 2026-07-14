@@ -77,8 +77,13 @@
       },
       {
         "id": "zora",
-        "label": "Zora",
+        "label": "Zora/@jackbeatnic",
         "url": "https://zora.co/@jackbeatnic"
+      },
+      {
+        "id": "zora-ai",
+        "label": "Zora/@jackbeatnicai",
+        "url": "https://zora.co/@jackbeatnicai"
       },
       {
         "id": "objkt-main",
@@ -279,7 +284,7 @@
         },
         "based_ai": {
           "label": "Based AI",
-          "standard": "ERC-721 + vol.3 ERC-1155",
+          "standard": "ERC-721 vol.1 + ERC-1155 vol.2",
           "collection_ids": [
             "base_jb_based_ai",
             "base_jb_based_ai_vol2"
@@ -8492,7 +8497,18 @@
           "chain": "Zora",
           "contract": "0x30c29a999b9265515129215ebbf1dd57d991544d",
           "community_url": "https://zora.co/@jackbeatnic/creator-coin",
-          "cta_label": "Zora creator coin →"
+          "cta_label": "Zora creator coin →",
+          "wallet_ens": "jackbeatnic.base.eth"
+        },
+        {
+          "id": "zora-cc-ai",
+          "title": "Creator Coin on Zora (AI)",
+          "symbol": "$jackbeatnicai",
+          "chain": "Zora",
+          "contract": "0xffbee7f9b4190d31bd97d7299100811eb3aa41a7",
+          "community_url": "https://zora.co/@jackbeatnicai/creator-coin",
+          "cta_label": "Zora creator coin →",
+          "wallet_ens": "jackbeatnicai.base.eth"
         },
         {
           "id": "photo-arena",

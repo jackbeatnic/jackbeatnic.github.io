@@ -49,8 +49,8 @@
       {
         "id": "tradeport-sui",
         "label": "TradePort / Sui",
-        "url": "https://www.tradeport.xyz/sui/collection",
-        "note": "Nature Stories · Sui — docelowy URL z slug po syncu TradePort"
+        "url": "https://www.tradeport.xyz/sui/collection/0x4a9dd2c87bffe9779233053a70e46def51e4bf12b4b805ba80a16af1ed679765",
+        "note": "Nature Stories SE + 1/1 on Sui (sui_gallery.json)"
       }
     ],
     "site_url": "https://jackbeatnic.github.io/",
@@ -8576,7 +8576,7 @@
           "evm": "No works in this section yet.",
           "xrpl": "JB AI Nature on XRP.Cafe will appear here after sync.",
           "tezos": "Tezos AI collections — coming soon.",
-          "sui": "Nature Stories on Sui (TradePort) — run sui sync if empty."
+          "sui": "Nature Stories on Sui (TradePort) — karty pojawią się po mintach; uruchom ponownie sync."
         },
         "empty_messages_series": {
           "nature_stories": "Nature Stories — serene landscapes across Avalanche, Base and Polygon.",

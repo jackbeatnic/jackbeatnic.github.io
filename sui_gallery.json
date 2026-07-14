@@ -1,0 +1,73 @@
+{
+  "collection_info": {
+    "collection_name": "Nature Stories SE",
+    "collection_url": "https://www.tradeport.xyz/sui/collection/0x4a9dd2c87bffe9779233053a70e46def51e4bf12b4b805ba80a16af1ed679765",
+    "tradeport_profile": "https://www.tradeport.xyz/sui/collection/0x4a9dd2c87bffe9779233053a70e46def51e4bf12b4b805ba80a16af1ed679765",
+    "chain": "sui",
+    "native_currency": "SUI",
+    "marketplace": "tradeport",
+    "collections": [
+      "sui_nature_stories_tradeport",
+      "sui_nature_stories_1of1_tradeport"
+    ],
+    "collection_details": [
+      {
+        "collection_id": "sui_nature_stories_tradeport",
+        "tradeport_collection_id": "7fce878a-8ae8-4ffb-a12d-53209412876e",
+        "tradeport_slug": "0x4a9dd2c87bffe9779233053a70e46def51e4bf12b4b805ba80a16af1ed679765",
+        "collection_name": "Nature Stories SE",
+        "collection_url": "https://www.tradeport.xyz/sui/collection/0x4a9dd2c87bffe9779233053a70e46def51e4bf12b4b805ba80a16af1ed679765",
+        "launchpad_url": "https://www.tradeport.xyz/launchpad/create/edition/view-collection?tab=items&collectionId=990ced13-2d2c-4fee-8ff1-1c30177d9171",
+        "edition_kind": "edition",
+        "token_count": 0,
+        "supply": null
+      },
+      {
+        "collection_id": "sui_nature_stories_1of1_tradeport",
+        "tradeport_collection_id": "fec0e006-9f59-4da1-8d8e-af7ec9d53967",
+        "tradeport_slug": "0x2ca936b54438885cba6e466bbc928295d28a5c5719082519a862f41bdb068532",
+        "collection_name": "Nature Stories 1/1",
+        "collection_url": "https://www.tradeport.xyz/sui/collection/0x2ca936b54438885cba6e466bbc928295d28a5c5719082519a862f41bdb068532",
+        "launchpad_url": "https://www.tradeport.xyz/launchpad/create/edition/view-collection?tab=items&collectionId=a27ec93f-60a5-4ca9-b169-ed745f47dfd9",
+        "edition_kind": "1of1",
+        "token_count": 0,
+        "supply": null
+      }
+    ],
+    "last_sui_sync": "2026-07-14T22:31:30Z",
+    "token_count": 0,
+    "edition_count": 0,
+    "one_of_one_count": 0
+  },
+  "site": {
+    "sections": {
+      "ai_art": {
+        "explore_titles": {
+          "sui": "Explore Nature Stories SE · Sui"
+        },
+        "empty_messages": {
+          "sui": "Nature Stories SE on TradePort — sync with aktualizuj_sui_tradeport_do_galerii.py"
+        },
+        "promo_eyebrow": "Nature Stories on Sui",
+        "promo_lead": "Collect and trade on TradePort — edycje i 1/1, każda praca linkuje do marketplace.",
+        "collection_url": "https://www.tradeport.xyz/sui/collection/0x4a9dd2c87bffe9779233053a70e46def51e4bf12b4b805ba80a16af1ed679765",
+        "collection_cta": "View collection on TradePort",
+        "promo_collections": [
+          {
+            "title": "Nature Stories SE",
+            "url": "https://www.tradeport.xyz/sui/collection/0x4a9dd2c87bffe9779233053a70e46def51e4bf12b4b805ba80a16af1ed679765",
+            "edition_label": "Editions",
+            "cta": "View on TradePort"
+          },
+          {
+            "title": "Nature Stories 1/1",
+            "url": "https://www.tradeport.xyz/sui/collection/0x2ca936b54438885cba6e466bbc928295d28a5c5719082519a862f41bdb068532",
+            "edition_label": "1/1",
+            "cta": "View on TradePort"
+          }
+        ]
+      }
+    }
+  },
+  "nfts": []
+}

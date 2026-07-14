@@ -5,6 +5,22 @@ const GalleryFilters = (() => {
     const activeVibes = new Set();
     const activeColorFamilies = new Set();
     let searchQuery = '';
+    let listedOnly = false;
+
+    function isListedNft(nft) {
+        if (nft.medium === 'manifold_auction') {
+            return nft.current_bid_eth != null || nft.reserve_eth != null;
+        }
+        if (nft.listing_status === 'For Sale') return true;
+        if (nft.salvor_price_avax != null || nft.opensea_price_avax != null) return true;
+        if (nft.opensea_price_eth != null) return true;
+        return Object.keys(nft).some(
+            (key) =>
+                key.startsWith('current_price_') &&
+                nft[key] != null &&
+                nft[key] !== '',
+        );
+    }
 
     function setupCategory(nfts) {
         const select = document.getElementById('category-filter');
@@ -110,6 +126,8 @@ const GalleryFilters = (() => {
                 if (!match) return false;
             }
 
+            if (listedOnly && !isListedNft(nft)) return false;
+
             if (q) {
                 const haystack = [
                     nft.name,
@@ -146,6 +164,9 @@ const GalleryFilters = (() => {
         });
         const savedBtn = document.getElementById('filter-saved');
         if (savedBtn) savedBtn.classList.remove('is-active');
+        listedOnly = false;
+        const listedBtn = document.getElementById('filter-listed');
+        if (listedBtn) listedBtn.classList.remove('is-active');
 
         dispatchChange();
     }
@@ -157,6 +178,12 @@ const GalleryFilters = (() => {
             dispatchChange();
         });
         document.getElementById('reset-filters')?.addEventListener('click', reset);
+        document.getElementById('filter-listed')?.addEventListener('click', (e) => {
+            const btn = e.currentTarget;
+            listedOnly = !listedOnly;
+            btn.classList.toggle('is-active', listedOnly);
+            dispatchChange();
+        });
         document.getElementById('filter-saved')?.addEventListener('click', (e) => {
             const btn = e.currentTarget;
             const on = !GalleryLikes.getSavedOnly();
@@ -179,6 +206,9 @@ const GalleryFilters = (() => {
         });
         const savedBtn = document.getElementById('filter-saved');
         if (savedBtn) savedBtn.classList.remove('is-active');
+        listedOnly = false;
+        const listedBtn = document.getElementById('filter-listed');
+        if (listedBtn) listedBtn.classList.remove('is-active');
     }
 
     function init(nfts, { rebind = false } = {}) {
@@ -200,5 +230,9 @@ const GalleryFilters = (() => {
         bind();
     }
 
-    return { init, reinit, apply, reset, bindOnce };
+    function getListedOnly() {
+        return listedOnly;
+    }
+
+    return { init, reinit, apply, reset, bindOnce, getListedOnly, isListedNft };
 })();

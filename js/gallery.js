@@ -88,14 +88,27 @@ const Gallery = (() => {
         );
     }
 
+    function resolveDualMarketplaces(nft) {
+        const list = nft.marketplaces;
+        if (Array.isArray(list) && list.length >= 2) {
+            return list.slice(0, 2);
+        }
+        if (nft.salvor_url && nft.opensea_url) return ['salvor', 'opensea'];
+        if (nft.manifold_url && nft.opensea_url) return ['manifold', 'opensea'];
+        return null;
+    }
+
     function isDualMarketplaceNft(nft) {
-        return (
-            nft.marketplace === 'dual' ||
-            (nft.salvor_url && nft.opensea_url) ||
-            (Array.isArray(nft.marketplaces) &&
-                nft.marketplaces.includes('salvor') &&
-                nft.marketplaces.includes('opensea'))
-        );
+        return nft.marketplace === 'dual' || resolveDualMarketplaces(nft) != null;
+    }
+
+    function dualMarketplaceUrl(nft, key) {
+        if (key === 'salvor') return nft.salvor_url || nft.marketplace_url || '';
+        if (key === 'manifold') return nft.manifold_url || nft.marketplace_url || '';
+        if (key === 'opensea') {
+            return OpenSeaLinks.buyUrl(nft.opensea_url || nft.marketplace_url || '');
+        }
+        return nft.marketplace_url || '';
     }
 
     function chainLabel(nft) {
@@ -134,15 +147,21 @@ const Gallery = (() => {
     }
 
     function buildMarketActionsHtml(nft) {
-        if (isDualMarketplaceNft(nft)) {
-            const salvorHref = escapeHtml(nft.salvor_url || nft.marketplace_url || '');
-            const osHref = escapeHtml(
-                OpenSeaLinks.buyUrl(nft.opensea_url || nft.marketplace_url || ''),
+        const dual = resolveDualMarketplaces(nft);
+        if (dual) {
+            const [primary, secondary] = dual;
+            const primaryHref = escapeHtml(dualMarketplaceUrl(nft, primary));
+            const secondaryHref = escapeHtml(dualMarketplaceUrl(nft, secondary));
+            const primaryLabel = escapeHtml(
+                `View on ${MARKETPLACE_NAMES[primary] || primary}`,
+            );
+            const secondaryLabel = escapeHtml(
+                `View on ${MARKETPLACE_NAMES[secondary] || secondary}`,
             );
             return `
                 <div class="nft-card__actions nft-card__actions--dual">
-                    <a class="btn btn--primary btn--block" href="${salvorHref}" target="_blank" rel="noopener noreferrer">View on Salvor</a>
-                    <a class="btn btn--ghost btn--block" href="${osHref}" target="_blank" rel="noopener noreferrer">View on OpenSea</a>
+                    <a class="btn btn--primary btn--block" href="${primaryHref}" target="_blank" rel="noopener noreferrer">${primaryLabel}</a>
+                    <a class="btn btn--ghost btn--block" href="${secondaryHref}" target="_blank" rel="noopener noreferrer">${secondaryLabel}</a>
                 </div>`;
         }
         const href = escapeHtml(OpenSeaLinks.buyUrl(marketplaceUrl(nft)));
@@ -163,6 +182,16 @@ const Gallery = (() => {
         if (isManifoldAuction(nft)) {
             const chain = chainLabel(nft);
             return `Manifold · ${chain}`;
+        }
+        const tid = nft.onchain_token_id ?? nft.token_id;
+        if (nft.edition_label) {
+            return `${nft.edition_label} · #${tid}`;
+        }
+        if (nft.supply > 1) {
+            return `Edition · ${nft.supply} · #${tid}`;
+        }
+        if (nft.supply === 1 && nft.ai_series === 'based_ai') {
+            return `1/1 · #${tid}`;
         }
         return `Token #${nft.token_id}`;
     }
@@ -282,18 +311,21 @@ const Gallery = (() => {
     async function load() {
         const grid = document.getElementById('gallery-grid');
         try {
-            const [mainRes, xrpRes, aiPlayRes, natureJamRes, auctionRes] = await Promise.all([
-                fetch('gallery.json'),
-                fetch('xrp_gallery.json'),
-                fetch('ai_play_gallery.json'),
-                fetch('nature_jam_gallery.json'),
-                fetch('auctions_gallery.json'),
-            ]);
+            const [mainRes, xrpRes, aiPlayRes, natureJamRes, basedAiRes, auctionRes] =
+                await Promise.all([
+                    fetch('gallery.json'),
+                    fetch('xrp_gallery.json'),
+                    fetch('ai_play_gallery.json'),
+                    fetch('nature_jam_gallery.json'),
+                    fetch('based_ai_gallery.json'),
+                    fetch('auctions_gallery.json'),
+                ]);
             if (!mainRes.ok) throw new Error(`HTTP ${mainRes.status}`);
             const data = await mainRes.json();
             const xrpData = xrpRes.ok ? await xrpRes.json() : { nfts: [] };
             const aiPlayData = aiPlayRes.ok ? await aiPlayRes.json() : { nfts: [] };
             const natureJamData = natureJamRes.ok ? await natureJamRes.json() : { nfts: [] };
+            const basedAiData = basedAiRes.ok ? await basedAiRes.json() : { nfts: [] };
             const auctionData = auctionRes.ok ? await auctionRes.json() : { nfts: [] };
 
             allNfts = [
@@ -301,6 +333,7 @@ const Gallery = (() => {
                 ...(xrpData.nfts || []),
                 ...(aiPlayData.nfts || []),
                 ...(natureJamData.nfts || []),
+                ...(basedAiData.nfts || []),
                 ...(auctionData.nfts || []),
             ];
             collectionInfo = {
@@ -719,6 +752,8 @@ const Gallery = (() => {
             let msg = GallerySections.emptyMessage();
             if (GalleryLikes.getSavedOnly()) {
                 msg = 'No saved works yet — bookmark pieces to find them here.';
+            } else if (GalleryFilters.getListedOnly()) {
+                msg = 'No listed works in this view.';
             } else if (sectionNfts.length > 0) {
                 msg = 'No works match the selected filters.';
             }

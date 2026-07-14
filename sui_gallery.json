@@ -19,8 +19,11 @@
         "collection_url": "https://www.tradeport.xyz/sui/collection/0x4a9dd2c87bffe9779233053a70e46def51e4bf12b4b805ba80a16af1ed679765",
         "launchpad_url": "https://www.tradeport.xyz/launchpad/create/edition/view-collection?tab=items&collectionId=990ced13-2d2c-4fee-8ff1-1c30177d9171",
         "edition_kind": "edition",
-        "token_count": 0,
-        "supply": null
+        "token_count": 1,
+        "minted_count": 0,
+        "launchpad_count": 1,
+        "supply": null,
+        "launchpad_api": false
       },
       {
         "collection_id": "sui_nature_stories_1of1_tradeport",
@@ -30,12 +33,17 @@
         "collection_url": "https://www.tradeport.xyz/sui/collection/0x2ca936b54438885cba6e466bbc928295d28a5c5719082519a862f41bdb068532",
         "launchpad_url": "https://www.tradeport.xyz/launchpad/create/edition/view-collection?tab=items&collectionId=a27ec93f-60a5-4ca9-b169-ed745f47dfd9",
         "edition_kind": "1of1",
-        "token_count": 0,
-        "supply": null
+        "token_count": 1,
+        "minted_count": 0,
+        "launchpad_count": 1,
+        "supply": null,
+        "launchpad_api": false
       }
     ],
-    "last_sui_sync": "2026-07-14T22:31:30Z",
-    "token_count": 0,
+    "last_sui_sync": "2026-07-14T22:44:03Z",
+    "token_count": 2,
+    "minted_count": 0,
+    "launchpad_count": 2,
     "edition_count": 0,
     "one_of_one_count": 0
   },
@@ -49,25 +57,116 @@
           "sui": "Nature Stories SE on TradePort — sync with aktualizuj_sui_tradeport_do_galerii.py"
         },
         "promo_eyebrow": "Nature Stories on Sui",
-        "promo_lead": "Collect and trade on TradePort — edycje i 1/1, każda praca linkuje do marketplace.",
+        "promo_lead": "Mint or trade on TradePort — edycje i 1/1; karty launchpad linkują do mintu, zmintowane do marketplace.",
         "collection_url": "https://www.tradeport.xyz/sui/collection/0x4a9dd2c87bffe9779233053a70e46def51e4bf12b4b805ba80a16af1ed679765",
         "collection_cta": "View collection on TradePort",
         "promo_collections": [
           {
             "title": "Nature Stories SE",
-            "url": "https://www.tradeport.xyz/sui/collection/0x4a9dd2c87bffe9779233053a70e46def51e4bf12b4b805ba80a16af1ed679765",
+            "url": "https://www.tradeport.xyz/launchpad/create/edition/view-collection?tab=items&collectionId=990ced13-2d2c-4fee-8ff1-1c30177d9171",
             "edition_label": "Editions",
-            "cta": "View on TradePort"
+            "cta": "Mint on TradePort"
           },
           {
             "title": "Nature Stories 1/1",
-            "url": "https://www.tradeport.xyz/sui/collection/0x2ca936b54438885cba6e466bbc928295d28a5c5719082519a862f41bdb068532",
+            "url": "https://www.tradeport.xyz/launchpad/create/edition/view-collection?tab=items&collectionId=a27ec93f-60a5-4ca9-b169-ed745f47dfd9",
             "edition_label": "1/1",
-            "cta": "View on TradePort"
+            "cta": "Mint on TradePort"
           }
         ]
       }
     }
   },
-  "nfts": []
+  "nfts": [
+    {
+      "token_id": 1,
+      "sui_token_id": "launchpad:990ced13-2d2c-4fee-8ff1-1c30177d9171",
+      "name": "Nature Stories SE",
+      "tradeport_url": "https://www.tradeport.xyz/launchpad/create/edition/view-collection?tab=items&collectionId=990ced13-2d2c-4fee-8ff1-1c30177d9171",
+      "marketplace_url": "https://www.tradeport.xyz/launchpad/create/edition/view-collection?tab=items&collectionId=990ced13-2d2c-4fee-8ff1-1c30177d9171",
+      "image_url": "https://ipfs.io/ipfs/bafybeie76fsqddn7tag2js4ckcvjadeopiwianjjdhu4wychq42xgzt4ka",
+      "supply": 1,
+      "edition_label": "Mint · edition",
+      "subseries": "edition",
+      "traits": {},
+      "ai": {
+        "description": "AI-generated surreal art, telling quiet stories of nature's beauty and mystery. Variations inspired by real-world wonders. Each piece is the result of AI working on photographs, memories, and imagination – transforming real moments and inner visions into surreal, poetic scenes.\n\nCreated by JackBeatnic",
+        "dominant_colors": [],
+        "vibe_tags": [
+          "nature stories",
+          "sui",
+          "tradeport",
+          "launchpad",
+          "ai art"
+        ],
+        "category": "nature_stories",
+        "keywords": [
+          "nature stories",
+          "jack beatnic",
+          "sui",
+          "tradeport",
+          "mint"
+        ]
+      },
+      "likes_count": 0,
+      "status": "launchpad",
+      "chain": "sui",
+      "contract_address": "7fce878a-8ae8-4ffb-a12d-53209412876e",
+      "collection_id": "sui_nature_stories_tradeport",
+      "listing_status": "Mint Available",
+      "listing_currency": "SUI",
+      "display_rank": 1,
+      "medium": "sui_ai",
+      "ai_series": "nature_stories",
+      "source": "launchpad",
+      "marketplace": "tradeport",
+      "launchpad": true,
+      "tradeport_slug": "0x4a9dd2c87bffe9779233053a70e46def51e4bf12b4b805ba80a16af1ed679765"
+    },
+    {
+      "token_id": 10001,
+      "sui_token_id": "launchpad:a27ec93f-60a5-4ca9-b169-ed745f47dfd9",
+      "name": "Nature Stories 1/1",
+      "tradeport_url": "https://www.tradeport.xyz/launchpad/create/edition/view-collection?tab=items&collectionId=a27ec93f-60a5-4ca9-b169-ed745f47dfd9",
+      "marketplace_url": "https://www.tradeport.xyz/launchpad/create/edition/view-collection?tab=items&collectionId=a27ec93f-60a5-4ca9-b169-ed745f47dfd9",
+      "image_url": "https://ipfs.io/ipfs/bafybeiger3e2wxu2oaqgiq2uw5drshcfi7s6dc26qpmyalitacpqf75csq",
+      "supply": 1,
+      "edition_label": "1/1",
+      "subseries": "1of1",
+      "traits": {},
+      "ai": {
+        "description": "Unique 1/1 AI-generated surreal art telling quiet stories of nature's beauty and mystery. \nBlooming flowers in impossible hues, majestic mountain vistas piercing ethereal skies, ocean waves embracing translucent figures – blended with roaming animals and subtle human presence evoking deep harmony with the wild.\n\nEach piece is the result of AI working on photographs, memories, and imagination – transforming real moments and inner visions into surreal, poetic scenes.\n\nPure artistic expression – strictly one-of-a-kind, no editions, no duplicates.\n\nCreated by Jack Beatnic",
+        "dominant_colors": [],
+        "vibe_tags": [
+          "nature stories",
+          "sui",
+          "tradeport",
+          "launchpad",
+          "ai art"
+        ],
+        "category": "nature_stories",
+        "keywords": [
+          "nature stories",
+          "jack beatnic",
+          "sui",
+          "tradeport",
+          "mint"
+        ]
+      },
+      "likes_count": 0,
+      "status": "launchpad",
+      "chain": "sui",
+      "contract_address": "fec0e006-9f59-4da1-8d8e-af7ec9d53967",
+      "collection_id": "sui_nature_stories_1of1_tradeport",
+      "listing_status": "Mint Available",
+      "listing_currency": "SUI",
+      "display_rank": 10001,
+      "medium": "sui_ai",
+      "ai_series": "nature_stories",
+      "source": "launchpad",
+      "marketplace": "tradeport",
+      "launchpad": true,
+      "tradeport_slug": "0x2ca936b54438885cba6e466bbc928295d28a5c5719082519a862f41bdb068532"
+    }
+  ]
 }

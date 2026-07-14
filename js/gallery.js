@@ -53,6 +53,9 @@ const Gallery = (() => {
         if (symbol === 'SUI' && prefix === 'current_price' && nft.current_price_sui != null) {
             return nft.current_price_sui;
         }
+        if (symbol === 'SUI' && prefix === 'mint_price' && nft.mint_price_sui != null) {
+            return nft.mint_price_sui;
+        }
         return null;
     }
 
@@ -137,8 +140,17 @@ const Gallery = (() => {
         return MARKETPLACE_NAMES[key] || key;
     }
 
+    function isLaunchpadMint(nft) {
+        return (
+            nft.status === 'launchpad' ||
+            nft.launchpad === true ||
+            nft.listing_status === 'Mint Available'
+        );
+    }
+
     function marketplaceLabel(nft) {
         if (isManifoldAuction(nft)) return 'Bid on Manifold';
+        if (isLaunchpadMint(nft)) return 'Mint on TradePort';
         if (nft.source === 'manifold' && nft.manifold_url) return 'View on Manifold';
         return `View on ${marketplaceName(nft)}`;
     }
@@ -199,6 +211,9 @@ const Gallery = (() => {
         if (isManifoldAuction(nft)) {
             const chain = chainLabel(nft);
             return `Manifold · ${chain}`;
+        }
+        if (isLaunchpadMint(nft)) {
+            return nft.edition_label || nft.name || 'Mint on TradePort';
         }
         const tid = nft.onchain_token_id ?? nft.token_id;
         if (nft.edition_label) {
@@ -282,9 +297,12 @@ const Gallery = (() => {
         if (mint != null) {
             return {
                 text: `${mint} ${symbol}`,
-                hint: 'Mint price',
+                hint: isLaunchpadMint(nft) ? 'Mint on TradePort' : 'Mint price',
                 kind: 'mint',
             };
+        }
+        if (isLaunchpadMint(nft)) {
+            return { text: 'Mint open', hint: 'TradePort Launchpad', kind: 'mint' };
         }
         return { text: '—', hint: chainLabel(nft), kind: 'unknown' };
     }

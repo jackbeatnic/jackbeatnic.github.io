@@ -208,11 +208,17 @@ CO JESZCZE W TYM ZAKRESIE — NIE ROBIĆ OD RAZU (kolejność sugerowana)
    • UI: zakładka AI Art → Sui (włączona); promo z dwoma linkami TradePort
    • NIE w EVM subnav serii — osobna sieć jak XRPL
 
-   Sync (wymaga kluczy — nie commitować do repo):
-     export TRADEPORT_API_KEY="..."
-     export TRADEPORT_API_USER="..."
+   Sync (klucze — nie commitować do repo):
+     # Agent nie widzi export z Twojego terminala — użyj pliku .env:
+     cat > /home/jb/jb_nft/www/.env <<'EOF'
+     TRADEPORT_API_KEY=twoj-klucz
+     TRADEPORT_API_USER=twoj-user
+     EOF
+     # (www/.env jest w .gitignore)
      cd /home/jb/jb_nft/www
      ../venv/bin/python3 aktualizuj_sui_tradeport_do_galerii.py
+     # TradePort MCP (opcjonalnie): https://www.tradeport.xyz/build/mcp
+     # Grok: ~/.grok/config.toml → mcp_servers.tradeport (nagłówki z TRADEPORT_*)
      ../venv/bin/python3 aktualizuj_sui_tradeport_do_galerii.py --dry-run --limit 5
      ../venv/bin/python3 aktualizuj_sui_tradeport_do_galerii.py --collection sui_nature_stories_1of1_tradeport
 

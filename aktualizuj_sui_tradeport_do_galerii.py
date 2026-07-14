@@ -22,11 +22,13 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import time
 import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 
 ROOT = Path(__file__).resolve().parent
 JB_NFT = ROOT.parent
@@ -34,7 +36,9 @@ KOLEKCJE_JSON = JB_NFT / "raportowanie" / "kolekcje.json"
 OUTPUT_JSON = ROOT / "sui_gallery.json"
 
 GRAPHQL_URL = "https://api.indexer.xyz/graphql"
+LAUNCHPAD_PUBLIC_BASE = "https://api.indexer.xyz/sui/lp/public/collection"
 PAGE_SIZE = 100
+LAUNCHPAD_PAGE_SIZE = 50
 SUI_DECIMALS = 1_000_000_000
 DISPLAY_RANK_1OF1_OFFSET = 10_000
 
@@ -360,92 +364,135 @@ def build_entry(
     return entry
 
 
-def build_launchpad_entry(
+def launchpad_item_url(base_url: str, token_uuid: str) -> str:
+    base = (base_url or "").strip()
+    token_uuid = (token_uuid or "").strip()
+    if not base or not token_uuid:
+        return base
+    parsed = urlparse(base)
+    query = dict(parse_qsl(parsed.query, keep_blank_values=True))
+    query["tokenId"] = token_uuid
+    return urlunparse(parsed._replace(query=urlencode(query)))
+
+
+def launchpad_display_rank(name: str, *, fallback: int, kind: str) -> int:
+    match = re.search(r"#(\d+)", name or "")
+    if match:
+        try:
+            rank = int(match.group(1))
+            if rank > 0:
+                return DISPLAY_RANK_1OF1_OFFSET + rank if kind == "1of1" else rank
+        except (TypeError, ValueError):
+            pass
+    return DISPLAY_RANK_1OF1_OFFSET + fallback if kind == "1of1" else fallback
+
+
+def launchpad_edition_label(*, kind: str, supply: object) -> str:
+    if kind == "1of1":
+        return "1/1"
+    try:
+        supply_i = int(supply)
+    except (TypeError, ValueError):
+        return "Mint · edition"
+    if supply_i > 1:
+        return f"Edition · {supply_i}"
+    return "Mint · edition"
+
+
+def fetch_launchpad_public_page(launchpad_id: str, *, page: int, page_size: int) -> dict:
+    query = urlencode({"page": page, "pageSize": page_size})
+    url = f"{LAUNCHPAD_PUBLIC_BASE}/{launchpad_id}/edition-token?{query}"
+    req = urllib.request.Request(
+        url,
+        headers={"User-Agent": "JackBeatnicGallery/1.0", "Accept": "application/json"},
+        method="GET",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=90) as resp:
+            body = json.loads(resp.read().decode("utf-8"))
+    except urllib.error.HTTPError as exc:
+        detail = exc.read().decode("utf-8", errors="ignore")[:500]
+        raise SystemExit(f"Launchpad public API HTTP {exc.code}: {detail}") from exc
+    except (urllib.error.URLError, TimeoutError, OSError) as exc:
+        raise SystemExit(f"Launchpad public API failed: {exc}") from exc
+    if not isinstance(body, dict):
+        raise SystemExit("Launchpad public API: nieoczekiwana odpowiedź")
+    return body
+
+
+def fetch_launchpad_edition_tokens(launchpad_id: str, *, limit: int | None) -> tuple[list[dict], int]:
+    if not launchpad_id:
+        return [], 0
+
+    rows: list[dict] = []
+    total = 0
+    page = 1
+    while True:
+        batch_limit = LAUNCHPAD_PAGE_SIZE
+        if limit is not None:
+            remaining = limit - len(rows)
+            if remaining <= 0:
+                break
+            batch_limit = min(LAUNCHPAD_PAGE_SIZE, remaining)
+
+        payload = fetch_launchpad_public_page(
+            launchpad_id,
+            page=page,
+            page_size=batch_limit,
+        )
+        total = int(payload.get("total") or 0)
+        batch = payload.get("items") or []
+        if not batch:
+            break
+        rows.extend(batch)
+        print(f"  launchpad edition-token… {len(rows)}/{total or '?'}")
+        if len(batch) < batch_limit:
+            break
+        if total and len(rows) >= total:
+            break
+        page += 1
+        time.sleep(0.1)
+
+    return rows, total
+
+
+def build_launchpad_item_entry(
     *,
-    col: dict,
+    item: dict,
     cfg: dict,
     slug: str,
     tradeport_uuid: str,
     kind: str,
-    api_row: dict | None,
+    local_rank: int,
     old: dict | None,
 ) -> dict | None:
-    """Karta „dostępne do mintu” gdy indexer nie ma jeszcze zmintowanych NFT."""
-    launchpad_url = (cfg.get("tradeport_launchpad_url") or "").strip()
-    if not launchpad_url:
+    """Pojedyncza praca dostępna do mintu na TradePort Launchpad."""
+    launchpad_base = (cfg.get("tradeport_launchpad_url") or "").strip()
+    token_uuid = str(item.get("id") or "").strip()
+    if not launchpad_base or not token_uuid:
         return None
 
-    col_key = cfg.get("id") or "sui_tradeport"
-    launchpad_id = (cfg.get("tradeport_launchpad_id") or "").strip()
-    sui_tid = f"launchpad:{launchpad_id or col_key}"
-
-    image = normalize_media_url(
-        (api_row or {}).get("media_url")
-        or (api_row or {}).get("preview_url")
-        or col.get("cover_url")
-        or cfg.get("launchpad_image_url")
-        or ""
-    )
+    image = normalize_media_url(item.get("mediaUrl") or item.get("previewUrl") or "")
     if not image:
         return None
 
-    title = (
-        (api_row or {}).get("name")
-        or col.get("title")
-        or cfg.get("name")
-        or "Nature Stories · Sui"
-    ).strip()
-
-    description = (
-        (api_row or {}).get("description")
-        or col.get("description")
-        or ""
-    ).strip()
-
-    mint_price = sui_price((api_row or {}).get("price"))
-    if mint_price is None and cfg.get("tradeport_mint_price_sui") not in (None, ""):
-        try:
-            mint_price = float(cfg["tradeport_mint_price_sui"])
-        except (TypeError, ValueError):
-            mint_price = None
-
-    supply = (
-        (api_row or {}).get("supply_count")
-        or col.get("supply")
-        or cfg.get("tradeport_supply_cap")
-    )
-    minted = (api_row or {}).get("minted")
-    if minted is None and cfg.get("tradeport_minted_count") not in (None, ""):
-        try:
-            minted = int(cfg["tradeport_minted_count"])
-        except (TypeError, ValueError):
-            minted = None
-
-    display_id = 1 if kind != "1of1" else DISPLAY_RANK_1OF1_OFFSET + 1
-    if kind == "1of1":
-        edition_label = "1/1"
-    elif minted is not None:
-        try:
-            minted_i = int(minted)
-            if supply not in (None, ""):
-                supply_i = int(supply)
-                edition_label = f"{minted_i}/{supply_i} minted"
-            else:
-                edition_label = f"{minted_i} minted"
-        except (TypeError, ValueError):
-            edition_label = "Mint · edition"
-    else:
-        edition_label = "Mint · edition"
+    col_key = cfg.get("id") or "sui_tradeport"
+    name = (item.get("name") or "").strip() or f"JB Sui #{local_rank:04d}"
+    description = (item.get("description") or "").strip()
+    supply = item.get("supplyCount") if item.get("supplyCount") not in (None, "") else 1
+    display_id = launchpad_display_rank(name, fallback=local_rank, kind=kind)
+    mint_url = launchpad_item_url(launchpad_base, token_uuid)
 
     entry: dict = {
         "token_id": display_id,
-        "sui_token_id": sui_tid,
-        "name": title,
-        "tradeport_url": launchpad_url,
-        "marketplace_url": launchpad_url,
+        "sui_token_id": f"launchpad:{token_uuid}",
+        "launchpad_token_id": token_uuid,
+        "name": name,
+        "tradeport_url": mint_url,
+        "marketplace_url": mint_url,
         "image_url": image,
-        "supply": supply if supply not in (None, "") else 1,
-        "edition_label": edition_label,
+        "supply": supply,
+        "edition_label": launchpad_edition_label(kind=kind, supply=supply),
         "subseries": kind,
         "traits": {},
         "ai": {
@@ -471,10 +518,14 @@ def build_launchpad_entry(
         "tradeport_slug": slug,
     }
 
+    mint_price = sui_price(item.get("price"))
+    if mint_price is None and cfg.get("tradeport_mint_price_sui") not in (None, ""):
+        try:
+            mint_price = float(cfg["tradeport_mint_price_sui"])
+        except (TypeError, ValueError):
+            mint_price = None
     if mint_price is not None:
         entry["mint_price_sui"] = mint_price
-    if minted is not None:
-        entry["minted_count"] = minted
 
     if old:
         if old.get("likes_count") not in (None, ""):
@@ -561,25 +612,39 @@ def sync_one_collection(
             entries.append(entry)
 
     launchpad_id = (cfg.get("tradeport_launchpad_id") or "").strip()
-    api_row = try_launchpad_api_row(launchpad_id) if launchpad_id else None
-    if api_row:
-        print("  launchpad API: edition_launches OK")
-    elif launchpad_id:
-        print("  launchpad API: niedostępne — karta z cover kolekcji (obejście)")
-
-    if not entries:
-        old_lp = old_by_key.get((col_key, f"launchpad:{launchpad_id or col_key}"))
-        lp_entry = build_launchpad_entry(
-            col=col,
-            cfg=cfg,
-            slug=slug,
-            tradeport_uuid=tradeport_uuid,
-            kind=kind,
-            api_row=api_row,
-            old=old_lp,
+    launchpad_total = 0
+    launchpad_public = False
+    if not entries and launchpad_id:
+        lp_items, launchpad_total = fetch_launchpad_edition_tokens(
+            launchpad_id,
+            limit=limit,
         )
-        if lp_entry:
-            entries.append(lp_entry)
+        launchpad_public = bool(lp_items)
+        if lp_items:
+            print(f"  launchpad public API: {len(lp_items)} prac do mintu")
+        skipped_lp = 0
+        for idx, item in enumerate(lp_items, start=1):
+            token_uuid = str(item.get("id") or "").strip()
+            old_lp = old_by_key.get((col_key, f"launchpad:{token_uuid}"))
+            lp_entry = build_launchpad_item_entry(
+                item=item,
+                cfg=cfg,
+                slug=slug,
+                tradeport_uuid=tradeport_uuid,
+                kind=kind,
+                local_rank=idx,
+                old=old_lp,
+            )
+            if lp_entry is None:
+                skipped_lp += 1
+            else:
+                entries.append(lp_entry)
+        if skipped_lp:
+            print(f"  launchpad: pominięto bez obrazu: {skipped_lp}")
+    elif launchpad_id:
+        api_row = try_launchpad_api_row(launchpad_id)
+        if api_row:
+            print("  launchpad GraphQL: edition_launches OK (indexer ma NFT)")
 
     entries.sort(key=lambda e: e.get("display_rank", 0))
     minted_n = sum(1 for e in entries if not e.get("launchpad"))
@@ -603,7 +668,8 @@ def sync_one_collection(
         "minted_count": minted_n,
         "launchpad_count": launchpad_n,
         "supply": col.get("supply"),
-        "launchpad_api": bool(api_row),
+        "launchpad_api": launchpad_public,
+        "launchpad_items_total": launchpad_total or None,
     }
     return entries, meta
 
@@ -613,20 +679,28 @@ def build_site_sections(collection_metas: list[dict]) -> dict:
     primary_title = primary.get("collection_name") or "Nature Stories · Sui"
     primary_url = primary.get("collection_url") or ""
 
-    promo_collections = [
-        {
-            "title": meta.get("collection_name") or meta.get("collection_id"),
-            "url": meta.get("launchpad_url")
-            or meta.get("collection_url")
-            or "",
-            "edition_label": "1/1" if meta.get("edition_kind") == "1of1" else "Editions",
-            "cta": "Mint on TradePort"
-            if meta.get("launchpad_count")
-            else "View on TradePort",
-        }
-        for meta in collection_metas
-        if meta.get("collection_url") or meta.get("launchpad_url")
-    ]
+    promo_collections = []
+    for meta in collection_metas:
+        if not (meta.get("collection_url") or meta.get("launchpad_url")):
+            continue
+        kind = meta.get("edition_kind")
+        lp_total = meta.get("launchpad_items_total") or meta.get("launchpad_count") or 0
+        if kind == "1of1":
+            edition_label = "1/1"
+        elif lp_total and int(lp_total) > 1:
+            edition_label = f"Editions · {int(lp_total)} works"
+        else:
+            edition_label = "Editions"
+        promo_collections.append(
+            {
+                "title": meta.get("collection_name") or meta.get("collection_id"),
+                "url": meta.get("launchpad_url") or meta.get("collection_url") or "",
+                "edition_label": edition_label,
+                "cta": "Mint on TradePort"
+                if meta.get("launchpad_count")
+                else "View on TradePort",
+            }
+        )
 
     return {
         "sections": {

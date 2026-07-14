@@ -203,7 +203,9 @@ CO JESZCZE W TYM ZAKRESIE — NIE ROBIĆ OD RAZU (kolejność sugerowana)
    • Slugi on-chain: 0x4a9dd2… (SE), 0x2ca936… (1/1)
    • Launchpad (pre-mint): gdy brak zmintowanych NFT, sync dodaje 1 kartę/edycję
      z cover + opisem kolekcji (indexer) i linkiem do Launchpad (obejście bez edition_launches API)
-   • Po mintach: karty z sui.nfts; launchpad znika gdy są zmintowane tokeny
+   • Po mintach: karty z sui.nfts; launchpad znika gdy indexer je widzi
+   • Dopóki indexer=0: tradeport_minted_count (i opcj. tradeport_supply_cap)
+     w kolekcje.json — SE ma 49 (my-launches)
    • API: POST https://api.indexer.xyz/graphql
      nagłówki: x-api-key (TRADEPORT_API_KEY), x-api-user (TRADEPORT_API_USER)
    • Skrypt: www/aktualizuj_sui_tradeport_do_galerii.py → sui_gallery.json

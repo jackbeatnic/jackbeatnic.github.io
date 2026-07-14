@@ -59,6 +59,24 @@ query fetchCollection($collectionId: uuid!) {
 }
 """
 
+LAUNCHPAD_EDITION_QUERY = """
+query fetchLaunchpadEdition($collectionId: uuid!) {
+  sui {
+    edition_launches(where: { collection_id: { _eq: $collectionId } }, limit: 5) {
+      id
+      name
+      media_url
+      preview_url
+      price
+      supply_count
+      minted
+      description
+      collection_slug
+    }
+  }
+}
+"""
+
 NFTS_QUERY = """
 query fetchCollectionNfts(
   $collectionId: uuid!
@@ -174,7 +192,7 @@ def api_credentials() -> tuple[str, str]:
     return api_key, api_user
 
 
-def graphql(query: str, variables: dict) -> dict:
+def graphql(query: str, variables: dict, *, strict: bool = True) -> dict:
     api_key, api_user = api_credentials()
     payload = json.dumps({"query": query, "variables": variables}).encode("utf-8")
     req = urllib.request.Request(
@@ -198,8 +216,33 @@ def graphql(query: str, variables: dict) -> dict:
         raise SystemExit(f"TradePort request failed: {exc}") from exc
 
     if body.get("errors"):
-        raise SystemExit(f"TradePort GraphQL: {body['errors']}")
+        if strict:
+            raise SystemExit(f"TradePort GraphQL: {body['errors']}")
+        return {}
     return body.get("data") or {}
+
+
+def normalize_media_url(url: str) -> str:
+    raw = (url or "").strip()
+    if not raw:
+        return ""
+    if raw.startswith("ipfs://"):
+        cid = raw[7:].strip("/")
+        return f"https://ipfs.io/ipfs/{cid}" if cid else ""
+    return raw
+
+
+def try_launchpad_api_row(launchpad_id: str) -> dict | None:
+    """Opcjonalnie: edition_launches (gdy TradePort włączy tabelę na kluczu API)."""
+    if not launchpad_id:
+        return None
+    data = graphql(
+        LAUNCHPAD_EDITION_QUERY,
+        {"collectionId": launchpad_id},
+        strict=False,
+    )
+    rows = (data.get("sui") or {}).get("edition_launches") or []
+    return rows[0] if rows else None
 
 
 def collection_public_url(slug: str) -> str:
@@ -317,6 +360,114 @@ def build_entry(
     return entry
 
 
+def build_launchpad_entry(
+    *,
+    col: dict,
+    cfg: dict,
+    slug: str,
+    tradeport_uuid: str,
+    kind: str,
+    api_row: dict | None,
+    old: dict | None,
+) -> dict | None:
+    """Karta „dostępne do mintu” gdy indexer nie ma jeszcze zmintowanych NFT."""
+    launchpad_url = (cfg.get("tradeport_launchpad_url") or "").strip()
+    if not launchpad_url:
+        return None
+
+    col_key = cfg.get("id") or "sui_tradeport"
+    launchpad_id = (cfg.get("tradeport_launchpad_id") or "").strip()
+    sui_tid = f"launchpad:{launchpad_id or col_key}"
+
+    image = normalize_media_url(
+        (api_row or {}).get("media_url")
+        or (api_row or {}).get("preview_url")
+        or col.get("cover_url")
+        or cfg.get("launchpad_image_url")
+        or ""
+    )
+    if not image:
+        return None
+
+    title = (
+        (api_row or {}).get("name")
+        or col.get("title")
+        or cfg.get("name")
+        or "Nature Stories · Sui"
+    ).strip()
+
+    description = (
+        (api_row or {}).get("description")
+        or col.get("description")
+        or ""
+    ).strip()
+
+    mint_price = sui_price((api_row or {}).get("price"))
+    if mint_price is None and cfg.get("tradeport_mint_price_sui") not in (None, ""):
+        try:
+            mint_price = float(cfg["tradeport_mint_price_sui"])
+        except (TypeError, ValueError):
+            mint_price = None
+
+    supply = (api_row or {}).get("supply_count") or col.get("supply")
+    minted = (api_row or {}).get("minted")
+
+    display_id = 1 if kind != "1of1" else DISPLAY_RANK_1OF1_OFFSET + 1
+    edition_label = "1/1" if kind == "1of1" else "Mint · edition"
+
+    entry: dict = {
+        "token_id": display_id,
+        "sui_token_id": sui_tid,
+        "name": title,
+        "tradeport_url": launchpad_url,
+        "marketplace_url": launchpad_url,
+        "image_url": image,
+        "supply": supply if supply not in (None, "") else 1,
+        "edition_label": edition_label,
+        "subseries": kind,
+        "traits": {},
+        "ai": {
+            "description": description,
+            "dominant_colors": [],
+            "vibe_tags": ["nature stories", "sui", "tradeport", "launchpad", "ai art"],
+            "category": "nature_stories",
+            "keywords": ["nature stories", "jack beatnic", "sui", "tradeport", "mint"],
+        },
+        "likes_count": 0,
+        "status": "launchpad",
+        "chain": "sui",
+        "contract_address": tradeport_uuid,
+        "collection_id": col_key,
+        "listing_status": "Mint Available",
+        "listing_currency": "SUI",
+        "display_rank": display_id,
+        "medium": "sui_ai",
+        "ai_series": "nature_stories",
+        "source": "launchpad",
+        "marketplace": "tradeport",
+        "launchpad": True,
+        "tradeport_slug": slug,
+    }
+
+    if mint_price is not None:
+        entry["mint_price_sui"] = mint_price
+    if minted is not None:
+        entry["minted_count"] = minted
+
+    if old:
+        if old.get("likes_count") not in (None, ""):
+            entry["likes_count"] = old["likes_count"]
+        for key in ("share_url", "og_image"):
+            if old.get(key):
+                entry[key] = old[key]
+        if old.get("ai", {}).get("dominant_colors") and not entry["ai"]["dominant_colors"]:
+            entry["ai"]["dominant_colors"] = old["ai"]["dominant_colors"]
+        if (old.get("ai", {}).get("description") or "").strip() and not entry["ai"]["description"]:
+            entry["ai"]["description"] = old["ai"]["description"]
+
+    return entry
+
+
 def fetch_all_nfts(collection_id: str, *, limit: int | None) -> list[dict]:
     rows: list[dict] = []
     offset = 0
@@ -387,8 +538,34 @@ def sync_one_collection(
         else:
             entries.append(entry)
 
+    launchpad_id = (cfg.get("tradeport_launchpad_id") or "").strip()
+    api_row = try_launchpad_api_row(launchpad_id) if launchpad_id else None
+    if api_row:
+        print("  launchpad API: edition_launches OK")
+    elif launchpad_id:
+        print("  launchpad API: niedostępne — karta z cover kolekcji (obejście)")
+
+    if not entries:
+        old_lp = old_by_key.get((col_key, f"launchpad:{launchpad_id or col_key}"))
+        lp_entry = build_launchpad_entry(
+            col=col,
+            cfg=cfg,
+            slug=slug,
+            tradeport_uuid=tradeport_uuid,
+            kind=kind,
+            api_row=api_row,
+            old=old_lp,
+        )
+        if lp_entry:
+            entries.append(lp_entry)
+
     entries.sort(key=lambda e: e.get("display_rank", 0))
-    print(f"  w galerii: {len(entries)} · pominięto bez obrazu: {skipped}")
+    minted_n = sum(1 for e in entries if not e.get("launchpad"))
+    launchpad_n = len(entries) - minted_n
+    print(
+        f"  w galerii: {len(entries)} "
+        f"(zmintowane={minted_n}, launchpad={launchpad_n}) · pominięto bez obrazu: {skipped}"
+    )
 
     collection_url = collection_public_url(slug)
     launchpad_url = (cfg.get("tradeport_launchpad_url") or "").strip()
@@ -401,7 +578,10 @@ def sync_one_collection(
         "launchpad_url": launchpad_url,
         "edition_kind": kind,
         "token_count": len(entries),
+        "minted_count": minted_n,
+        "launchpad_count": launchpad_n,
         "supply": col.get("supply"),
+        "launchpad_api": bool(api_row),
     }
     return entries, meta
 
@@ -414,9 +594,13 @@ def build_site_sections(collection_metas: list[dict]) -> dict:
     promo_collections = [
         {
             "title": meta.get("collection_name") or meta.get("collection_id"),
-            "url": meta.get("collection_url") or meta.get("launchpad_url") or "",
+            "url": meta.get("launchpad_url")
+            or meta.get("collection_url")
+            or "",
             "edition_label": "1/1" if meta.get("edition_kind") == "1of1" else "Editions",
-            "cta": "View on TradePort",
+            "cta": "Mint on TradePort"
+            if meta.get("launchpad_count")
+            else "View on TradePort",
         }
         for meta in collection_metas
         if meta.get("collection_url") or meta.get("launchpad_url")
@@ -434,8 +618,8 @@ def build_site_sections(collection_metas: list[dict]) -> dict:
                 },
                 "promo_eyebrow": "Nature Stories on Sui",
                 "promo_lead": (
-                    "Collect and trade on TradePort — edycje i 1/1, "
-                    "każda praca linkuje do marketplace."
+                    "Mint or trade on TradePort — edycje i 1/1; "
+                    "karty launchpad linkują do mintu, zmintowane do marketplace."
                 ),
                 "collection_url": primary_url,
                 "collection_cta": "View collection on TradePort",
@@ -470,8 +654,14 @@ def sync(
 
     all_entries.sort(key=lambda e: e.get("display_rank", 0))
 
-    edition_count = sum(1 for e in all_entries if e.get("subseries") != "1of1")
-    one_of_one_count = sum(1 for e in all_entries if e.get("subseries") == "1of1")
+    minted_count = sum(1 for e in all_entries if not e.get("launchpad"))
+    launchpad_count = sum(1 for e in all_entries if e.get("launchpad"))
+    edition_count = sum(
+        1 for e in all_entries if e.get("subseries") != "1of1" and not e.get("launchpad")
+    )
+    one_of_one_count = sum(
+        1 for e in all_entries if e.get("subseries") == "1of1" and not e.get("launchpad")
+    )
     primary = collection_metas[0] if collection_metas else {}
 
     payload = {
@@ -489,6 +679,8 @@ def sync(
             .isoformat()
             .replace("+00:00", "Z"),
             "token_count": len(all_entries),
+            "minted_count": minted_count,
+            "launchpad_count": launchpad_count,
             "edition_count": edition_count,
             "one_of_one_count": one_of_one_count,
         },
@@ -497,8 +689,8 @@ def sync(
     }
 
     print(
-        f"[sui] Gotowe: {len(all_entries)} tokenów "
-        f"(edycje={edition_count}, 1/1={one_of_one_count})"
+        f"[sui] Gotowe: {len(all_entries)} kart "
+        f"(zmintowane={minted_count}, launchpad={launchpad_count})"
     )
 
     if dry_run:

@@ -18,6 +18,7 @@ const ImageProxy = (() => {
 
     function isIpfsOrGateway(url) {
         if (!url || typeof url !== 'string') return false;
+        if (/^ipfs:\/\//i.test(url)) return true;
         return /ipfs\.io|gateway\.pinata|cloudflare-ipfs|dweb\.link|arweave/i.test(url);
     }
 
@@ -49,6 +50,15 @@ const ImageProxy = (() => {
      * URL do atrybutu src — miniatura, nie oryginał.
      * W HTML nigdy nie wstawiaj nft.image_url bezpośrednio.
      */
+    function resolveOriginalUrl(originalUrl) {
+        if (!originalUrl || typeof originalUrl !== 'string') return '';
+        if (/^ipfs:\/\//i.test(originalUrl)) {
+            const cid = originalUrl.replace(/^ipfs:\/\//i, '').replace(/\/$/, '');
+            return cid ? `https://ipfs.io/ipfs/${cid}` : '';
+        }
+        return originalUrl;
+    }
+
     function displayUrl(
         originalUrl,
         mode = 'weserv',
@@ -56,17 +66,18 @@ const ImageProxy = (() => {
         h = THUMB_HEIGHT,
         fit = 'inside',
     ) {
-        if (!originalUrl) return '';
-        if (!shouldProxy(originalUrl)) return originalUrl;
+        const resolved = resolveOriginalUrl(originalUrl);
+        if (!resolved) return '';
+        if (!shouldProxy(resolved)) return resolved;
 
         switch (mode) {
             case 'cloudflare':
-                return cloudflareUrl(originalUrl, w, h, fit);
+                return cloudflareUrl(resolved, w, h, fit);
             case 'direct':
-                return originalUrl;
+                return resolved;
             case 'weserv':
             default:
-                return weservUrl(originalUrl, w, h, fit);
+                return weservUrl(resolved, w, h, fit);
         }
     }
 

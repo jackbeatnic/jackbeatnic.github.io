@@ -201,7 +201,9 @@ CO JESZCZE W TYM ZAKRESIE — NIE ROBIĆ OD RAZU (kolejność sugerowana)
      Edycje  launchpad: 990ced13-…  indexer: 7fce878a-… (Nature Stories SE)
      1/1     launchpad: a27ec93f-…  indexer: fec0e006-… (Nature Stories 1/1)
    • Slugi on-chain: 0x4a9dd2… (SE), 0x2ca936… (1/1)
-   • Karty pojawią się po mintach — indexer zwraca 0 NFT dopóki nic nie zmintowano
+   • Launchpad (pre-mint): gdy brak zmintowanych NFT, sync dodaje 1 kartę/edycję
+     z cover + opisem kolekcji (indexer) i linkiem do Launchpad (obejście bez edition_launches API)
+   • Po mintach: karty z sui.nfts; launchpad znika gdy są zmintowane tokeny
    • API: POST https://api.indexer.xyz/graphql
      nagłówki: x-api-key (TRADEPORT_API_KEY), x-api-user (TRADEPORT_API_USER)
    • Skrypt: www/aktualizuj_sui_tradeport_do_galerii.py → sui_gallery.json

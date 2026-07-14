@@ -218,6 +218,12 @@ const GalleryFilters = (() => {
         if (rebind) bind();
     }
 
+    function updateSources(nfts) {
+        setupCategory(nfts);
+        setupColors(nfts);
+        setupVibes(nfts);
+    }
+
     function reinit(nfts) {
         clearState();
         init(nfts);
@@ -234,5 +240,14 @@ const GalleryFilters = (() => {
         return listedOnly;
     }
 
-    return { init, reinit, apply, reset, bindOnce, getListedOnly, isListedNft };
+    return {
+        init,
+        reinit,
+        updateSources,
+        apply,
+        reset,
+        bindOnce,
+        getListedOnly,
+        isListedNft,
+    };
 })();

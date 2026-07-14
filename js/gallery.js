@@ -278,7 +278,7 @@ const Gallery = (() => {
         panel.hidden = GallerySections.isAtelierSection();
     }
 
-    function syncSectionNfts() {
+    function syncSectionNfts(scope = 'full') {
         sectionNfts = GallerySections.filterNfts(allNfts);
         const exploreTitle = document.querySelector('.filters-panel__title');
         const meta = GallerySections.getSectionMeta();
@@ -286,7 +286,11 @@ const Gallery = (() => {
             exploreTitle.textContent = meta.explore_title || 'Explore';
         }
         syncFiltersPanel();
-        GalleryFilters.reinit(sectionNfts);
+        if (scope === 'series') {
+            GalleryFilters.updateSources(sectionNfts);
+        } else {
+            GalleryFilters.reinit(sectionNfts);
+        }
         applyHero();
     }
 
@@ -308,34 +312,56 @@ const Gallery = (() => {
         render(getDisplayList());
     }
 
-    async function load() {
+    let renderGeneration = 0;
+
+    function mergeGalleryPayload(data, extras = []) {
+        return [
+            ...(data.nfts || []),
+            ...extras.flatMap((payload) => payload?.nfts || []),
+        ];
+    }
+
+    function appendSupplementaryGalleries(extras) {
+        const extraNfts = extras.flatMap((payload) => payload?.nfts || []);
+        if (!extraNfts.length) return;
+        allNfts = [...allNfts, ...extraNfts];
+        syncSectionNfts('full');
+        refresh();
+    }
+
+    async function loadSupplementaryGalleries() {
         const grid = document.getElementById('gallery-grid');
         try {
-            const [mainRes, xrpRes, aiPlayRes, natureJamRes, basedAiRes, auctionRes] =
-                await Promise.all([
-                    fetch('gallery.json'),
-                    fetch('xrp_gallery.json'),
-                    fetch('ai_play_gallery.json'),
-                    fetch('nature_jam_gallery.json'),
-                    fetch('based_ai_gallery.json'),
-                    fetch('auctions_gallery.json'),
-                ]);
-            if (!mainRes.ok) throw new Error(`HTTP ${mainRes.status}`);
-            const data = await mainRes.json();
-            const xrpData = xrpRes.ok ? await xrpRes.json() : { nfts: [] };
+            const [aiPlayRes, natureJamRes, basedAiRes] = await Promise.all([
+                fetch('ai_play_gallery.json'),
+                fetch('nature_jam_gallery.json'),
+                fetch('based_ai_gallery.json'),
+            ]);
             const aiPlayData = aiPlayRes.ok ? await aiPlayRes.json() : { nfts: [] };
             const natureJamData = natureJamRes.ok ? await natureJamRes.json() : { nfts: [] };
             const basedAiData = basedAiRes.ok ? await basedAiRes.json() : { nfts: [] };
+            appendSupplementaryGalleries([aiPlayData, natureJamData, basedAiData]);
+        } catch (error) {
+            console.warn('Supplementary gallery load:', error);
+        } finally {
+            grid?.classList.remove('gallery-grid--loading');
+        }
+    }
+
+    async function load() {
+        const grid = document.getElementById('gallery-grid');
+        try {
+            const [mainRes, xrpRes, auctionRes] = await Promise.all([
+                fetch('gallery.json'),
+                fetch('xrp_gallery.json'),
+                fetch('auctions_gallery.json'),
+            ]);
+            if (!mainRes.ok) throw new Error(`HTTP ${mainRes.status}`);
+            const data = await mainRes.json();
+            const xrpData = xrpRes.ok ? await xrpRes.json() : { nfts: [] };
             const auctionData = auctionRes.ok ? await auctionRes.json() : { nfts: [] };
 
-            allNfts = [
-                ...(data.nfts || []),
-                ...(xrpData.nfts || []),
-                ...(aiPlayData.nfts || []),
-                ...(natureJamData.nfts || []),
-                ...(basedAiData.nfts || []),
-                ...(auctionData.nfts || []),
-            ];
+            allNfts = mergeGalleryPayload(data, [xrpData, auctionData]);
             collectionInfo = {
                 ...(data.collection_info || {}),
                 xrpl: xrpData.collection_info || {},
@@ -399,7 +425,7 @@ const Gallery = (() => {
             applyCollectionInfo(collectionInfo);
             GalleryFilters.bindOnce();
             preselectWorkSection();
-            syncSectionNfts();
+            syncSectionNfts('full');
             TipCreator.init({
                 evm_wallet: collectionInfo.creator_wallet,
                 btc_wallet: collectionInfo.btc_tip_wallet,
@@ -416,11 +442,14 @@ const Gallery = (() => {
 
             document.addEventListener('gallery:filter', refresh);
             document.addEventListener('gallery:likes', refresh);
-            document.addEventListener('gallery:section', () => {
-                syncSectionNfts();
+            document.addEventListener('gallery:section', (e) => {
+                syncSectionNfts(e.detail?.scope || 'full');
                 syncSectionPromo();
                 refresh();
             });
+
+            grid?.classList.add('gallery-grid--loading');
+            loadSupplementaryGalleries();
         } catch (error) {
             console.error('Gallery load error:', error);
             grid.innerHTML = '<p class="gallery-error">Failed to load the gallery.</p>';
@@ -738,7 +767,7 @@ const Gallery = (() => {
     function render(filtered) {
         const container = document.getElementById('gallery-grid');
         const countEl = document.getElementById('filter-count');
-        container.innerHTML = '';
+        const generation = ++renderGeneration;
 
         if (countEl) {
             const total = sectionNfts.length;
@@ -749,6 +778,7 @@ const Gallery = (() => {
         }
 
         if (filtered.length === 0) {
+            container.classList.remove('gallery-grid--busy');
             let msg = GallerySections.emptyMessage();
             if (GalleryLikes.getSavedOnly()) {
                 msg = 'No saved works yet — bookmark pieces to find them here.';
@@ -761,11 +791,34 @@ const Gallery = (() => {
             return;
         }
 
-        filtered.forEach((nft) => {
-            container.appendChild(
-                isManifoldAuction(nft) ? buildAuctionCard(nft) : buildCard(nft)
-            );
-        });
+        container.innerHTML = '';
+        container.classList.add('gallery-grid--busy');
+
+        const chunkSize = 48;
+        let index = 0;
+
+        function appendChunk() {
+            if (generation !== renderGeneration) return;
+
+            const frag = document.createDocumentFragment();
+            const end = Math.min(index + chunkSize, filtered.length);
+            for (let i = index; i < end; i += 1) {
+                const nft = filtered[i];
+                frag.appendChild(
+                    isManifoldAuction(nft) ? buildAuctionCard(nft) : buildCard(nft),
+                );
+            }
+            container.appendChild(frag);
+            index = end;
+
+            if (index < filtered.length) {
+                requestAnimationFrame(appendChunk);
+            } else {
+                container.classList.remove('gallery-grid--busy');
+            }
+        }
+
+        requestAnimationFrame(appendChunk);
     }
 
     function bindEngage(card, nft, key) {

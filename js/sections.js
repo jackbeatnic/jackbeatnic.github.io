@@ -355,7 +355,7 @@ const GallerySections = (() => {
         }
 
         syncNavUi();
-        document.dispatchEvent(new CustomEvent('gallery:section'));
+        emitSectionChange('full');
     }
 
     function writeUrl() {
@@ -420,39 +420,55 @@ const GallerySections = (() => {
         }
         syncNavUi();
         writeUrl();
-        document.dispatchEvent(new CustomEvent('gallery:section'));
+        emitSectionChange('full');
         document.getElementById('gallery-root')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function emitSectionChange(scope = 'full') {
+        document.dispatchEvent(
+            new CustomEvent('gallery:section', { detail: { scope } }),
+        );
     }
 
     function setAiKind(kind) {
         kind = normalizeAiKind(kind);
         const disabled = new Set(config().ai_art?.disabled_subsections || []);
         if (disabled.has(kind)) return;
+        const prevKind = currentAiKind;
+        if (currentSection === 'ai_art' && prevKind === kind) return;
+
         currentSection = 'ai_art';
         currentAiKind = kind;
-        if (isEvmAiKind(kind)) {
+        if (isEvmAiKind(kind) && !isEvmAiKind(prevKind)) {
             currentAiSeries = defaultAiSeries();
         }
         syncNavUi();
         writeUrl();
-        document.dispatchEvent(new CustomEvent('gallery:section'));
+        emitSectionChange(isEvmAiKind(kind) ? 'kind' : 'full');
     }
 
     function setAiSeries(series) {
         if (!isSeriesEnabled(series)) return;
+        if (
+            currentSection === 'ai_art' &&
+            isEvmAiKind() &&
+            currentAiSeries === series
+        ) {
+            return;
+        }
         currentSection = 'ai_art';
         currentAiKind = 'evm';
         currentAiSeries = series;
         syncNavUi();
         writeUrl();
-        document.dispatchEvent(new CustomEvent('gallery:section'));
+        emitSectionChange('series');
     }
 
     function setPhotoKind(kind) {
         currentPhotoKind = kind;
         syncNavUi();
         writeUrl();
-        document.dispatchEvent(new CustomEvent('gallery:section'));
+        emitSectionChange('full');
     }
 
     function setMarketKind(kind) {
@@ -460,7 +476,7 @@ const GallerySections = (() => {
         currentMarketKind = kind;
         syncNavUi();
         writeUrl();
-        document.dispatchEvent(new CustomEvent('gallery:section'));
+        emitSectionChange('full');
     }
 
     function setMarketChain(chain) {
@@ -468,7 +484,7 @@ const GallerySections = (() => {
         currentMarketChain = chain;
         syncNavUi();
         writeUrl();
-        document.dispatchEvent(new CustomEvent('gallery:section'));
+        emitSectionChange('full');
     }
 
     function syncNavUi() {
@@ -787,7 +803,7 @@ const GallerySections = (() => {
         syncNavUi();
         if (!silent) {
             writeUrl();
-            document.dispatchEvent(new CustomEvent('gallery:section'));
+            emitSectionChange('full');
         }
     }
 

@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
-"""Sync Sui collection from TradePort → sui_gallery.json.
+"""Sync Sui collections from TradePort → sui_gallery.json.
 
 TradePort NFT Data API (GraphQL):
   POST https://api.indexer.xyz/graphql
   Headers: x-api-key, x-api-user
+
+Kolekcje: wszystkie wpisy chain=sui + tradeport_collection_id w raportowanie/kolekcje.json
+  (domyślnie: edycje, potem 1/1).
 
 Usage:
   export TRADEPORT_API_KEY="..."
   export TRADEPORT_API_USER="..."
   ./venv/bin/python3 aktualizuj_sui_tradeport_do_galerii.py
   ./venv/bin/python3 aktualizuj_sui_tradeport_do_galerii.py --dry-run --limit 5
+  ./venv/bin/python3 aktualizuj_sui_tradeport_do_galerii.py --collection sui_nature_stories_1of1_tradeport
 """
 
 from __future__ import annotations
@@ -29,10 +33,11 @@ KOLEKCJE_JSON = JB_NFT / "raportowanie" / "kolekcje.json"
 OUTPUT_JSON = ROOT / "sui_gallery.json"
 
 GRAPHQL_URL = "https://api.indexer.xyz/graphql"
-DEFAULT_COLLECTION_ID = "990ced13-2d2c-4fee-8ff1-1c30177d9171"
-COLLECTION_ID_KEY = "sui_nature_stories_tradeport"
 PAGE_SIZE = 100
 SUI_DECIMALS = 1_000_000_000
+DISPLAY_RANK_1OF1_OFFSET = 10_000
+
+EDITION_ORDER = {"edition": 0, "1of1": 1}
 
 COLLECTION_QUERY = """
 query fetchCollection($collectionId: uuid!) {
@@ -102,12 +107,35 @@ def save_json(path: Path, data: dict) -> None:
         fh.write("\n")
 
 
-def load_collection_config() -> dict:
+def edition_kind(cfg: dict) -> str:
+    kind = (cfg.get("edition_kind") or "").strip().lower()
+    if kind in EDITION_ORDER:
+        return kind
+    col_id = (cfg.get("id") or "").lower()
+    if "1of1" in col_id or "1_1" in col_id:
+        return "1of1"
+    return "edition"
+
+
+def load_sui_tradeport_configs(*, only_id: str | None = None) -> list[dict]:
     data = load_json(KOLEKCJE_JSON)
+    rows: list[dict] = []
     for row in data.get("collections", []):
-        if row.get("id") == COLLECTION_ID_KEY:
-            return row
-    raise SystemExit(f"Brak {COLLECTION_ID_KEY} w raportowanie/kolekcje.json")
+        if row.get("chain") != "sui":
+            continue
+        if not row.get("tradeport_collection_id"):
+            continue
+        if row.get("enabled") is False:
+            continue
+        if only_id and row.get("id") != only_id:
+            continue
+        rows.append(row)
+    if only_id and not rows:
+        raise SystemExit(f"Brak {only_id} (chain=sui, tradeport_collection_id) w kolekcje.json")
+    if not rows:
+        raise SystemExit("Brak kolekcji Sui TradePort w raportowanie/kolekcje.json")
+    rows.sort(key=lambda r: (EDITION_ORDER.get(edition_kind(r), 9), r.get("id") or ""))
+    return rows
 
 
 def api_credentials() -> tuple[str, str]:
@@ -183,20 +211,30 @@ def stable_token_id(token_id: str, ranking: int | None) -> int:
     return abs(hash(str(token_id))) % 9_000_000 or 1
 
 
+def display_rank_for(*, kind: str, local_rank: int) -> int:
+    if kind == "1of1":
+        return DISPLAY_RANK_1OF1_OFFSET + local_rank
+    return local_rank
+
+
 def build_entry(
     *,
     nft: dict,
     slug: str,
-    collection_id: str,
+    cfg: dict,
+    tradeport_uuid: str,
+    kind: str,
     old: dict | None,
 ) -> dict | None:
     media_url = (nft.get("media_url") or "").strip()
     if not media_url:
         return None
 
+    col_key = cfg.get("id") or "sui_tradeport"
     token_id = str(nft.get("token_id") or "")
-    display_id = stable_token_id(token_id, nft.get("ranking"))
-    name = (nft.get("name") or "").strip() or f"JB Sui #{display_id:04d}"
+    local_rank = stable_token_id(token_id, nft.get("ranking"))
+    display_id = display_rank_for(kind=kind, local_rank=local_rank)
+    name = (nft.get("name") or "").strip() or f"JB Sui #{local_rank:04d}"
     tradeport_url = nft_public_url(slug, token_id)
 
     listings = nft.get("listings") or []
@@ -213,6 +251,8 @@ def build_entry(
         "marketplace_url": tradeport_url,
         "image_url": media_url,
         "supply": 1,
+        "edition_label": "1/1" if kind == "1of1" else "edition",
+        "subseries": kind,
         "traits": {},
         "ai": {
             "description": "",
@@ -224,7 +264,8 @@ def build_entry(
         "likes_count": 0,
         "status": "listed" if listing_status == "For Sale" else "minted",
         "chain": "sui",
-        "collection_id": COLLECTION_ID_KEY,
+        "contract_address": tradeport_uuid,
+        "collection_id": col_key,
         "listing_status": listing_status,
         "listing_currency": "SUI",
         "display_rank": display_id,
@@ -282,33 +323,40 @@ def fetch_all_nfts(collection_id: str, *, limit: int | None) -> list[dict]:
     return rows
 
 
-def sync(*, dry_run: bool = False, limit: int | None = None) -> int:
-    cfg = load_collection_config()
-    collection_id = cfg.get("tradeport_collection_id") or DEFAULT_COLLECTION_ID
-    print(f"[sui] TradePort collection_id={collection_id}")
+def sync_one_collection(
+    cfg: dict,
+    *,
+    old_by_key: dict[tuple[str, str], dict],
+    limit: int | None,
+) -> tuple[list[dict], dict]:
+    col_key = cfg.get("id") or "sui_tradeport"
+    tradeport_uuid = str(cfg.get("tradeport_collection_id") or "").strip()
+    kind = edition_kind(cfg)
+    print(f"[sui] {col_key} · kind={kind} · collection_id={tradeport_uuid}")
 
-    meta_data = graphql(COLLECTION_QUERY, {"collectionId": collection_id})
+    meta_data = graphql(COLLECTION_QUERY, {"collectionId": tradeport_uuid})
     collections = (meta_data.get("sui") or {}).get("collections") or []
     if not collections:
-        raise SystemExit("TradePort: brak kolekcji o podanym ID")
+        raise SystemExit(f"TradePort: brak kolekcji {tradeport_uuid}")
     col = collections[0]
-    slug = col.get("semantic_slug") or col.get("slug") or collection_id
+    slug = col.get("semantic_slug") or col.get("slug") or tradeport_uuid
     title = col.get("title") or cfg.get("name") or "Nature Stories · Sui"
     print(f"  {title} · slug={slug} · supply={col.get('supply')}")
 
-    old_data = load_json(OUTPUT_JSON) if OUTPUT_JSON.exists() else {}
-    old_by_token = {
-        str(row.get("sui_token_id")): row
-        for row in old_data.get("nfts") or []
-        if row.get("sui_token_id")
-    }
-
-    raw_nfts = fetch_all_nfts(collection_id, limit=limit)
+    raw_nfts = fetch_all_nfts(tradeport_uuid, limit=limit)
     entries: list[dict] = []
     skipped = 0
     for nft in raw_nfts:
-        old = old_by_token.get(str(nft.get("token_id")))
-        entry = build_entry(nft=nft, slug=slug, collection_id=collection_id, old=old)
+        sui_tid = str(nft.get("token_id"))
+        old = old_by_key.get((col_key, sui_tid))
+        entry = build_entry(
+            nft=nft,
+            slug=slug,
+            cfg=cfg,
+            tradeport_uuid=tradeport_uuid,
+            kind=kind,
+            old=old,
+        )
         if entry is None:
             skipped += 1
         else:
@@ -318,38 +366,115 @@ def sync(*, dry_run: bool = False, limit: int | None = None) -> int:
     print(f"  w galerii: {len(entries)} · pominięto bez obrazu: {skipped}")
 
     collection_url = collection_public_url(slug)
+    launchpad_url = (cfg.get("tradeport_launchpad_url") or "").strip()
+    meta = {
+        "collection_id": col_key,
+        "tradeport_collection_id": tradeport_uuid,
+        "tradeport_slug": slug,
+        "collection_name": title,
+        "collection_url": collection_url,
+        "launchpad_url": launchpad_url,
+        "edition_kind": kind,
+        "token_count": len(entries),
+        "supply": col.get("supply"),
+    }
+    return entries, meta
+
+
+def build_site_sections(collection_metas: list[dict]) -> dict:
+    primary = collection_metas[0] if collection_metas else {}
+    primary_title = primary.get("collection_name") or "Nature Stories · Sui"
+    primary_url = primary.get("collection_url") or ""
+
+    promo_collections = [
+        {
+            "title": meta.get("collection_name") or meta.get("collection_id"),
+            "url": meta.get("collection_url") or meta.get("launchpad_url") or "",
+            "edition_label": "1/1" if meta.get("edition_kind") == "1of1" else "Editions",
+            "cta": "View on TradePort",
+        }
+        for meta in collection_metas
+        if meta.get("collection_url") or meta.get("launchpad_url")
+    ]
+
+    return {
+        "sections": {
+            "ai_art": {
+                "explore_titles": {"sui": f"Explore {primary_title} · Sui"},
+                "empty_messages": {
+                    "sui": (
+                        f"{primary_title} on TradePort — "
+                        "sync with aktualizuj_sui_tradeport_do_galerii.py"
+                    )
+                },
+                "promo_eyebrow": "Nature Stories on Sui",
+                "promo_lead": (
+                    "Collect and trade on TradePort — edycje i 1/1, "
+                    "każda praca linkuje do marketplace."
+                ),
+                "collection_url": primary_url,
+                "collection_cta": "View collection on TradePort",
+                "promo_collections": promo_collections,
+            }
+        }
+    }
+
+
+def sync(
+    *,
+    dry_run: bool = False,
+    limit: int | None = None,
+    only_collection: str | None = None,
+) -> int:
+    configs = load_sui_tradeport_configs(only_id=only_collection)
+
+    old_data = load_json(OUTPUT_JSON) if OUTPUT_JSON.exists() else {}
+    old_by_key: dict[tuple[str, str], dict] = {}
+    for row in old_data.get("nfts") or []:
+        col = row.get("collection_id") or ""
+        sui_tid = str(row.get("sui_token_id") or "")
+        if col and sui_tid:
+            old_by_key[(col, sui_tid)] = row
+
+    all_entries: list[dict] = []
+    collection_metas: list[dict] = []
+    for cfg in configs:
+        entries, meta = sync_one_collection(cfg, old_by_key=old_by_key, limit=limit)
+        all_entries.extend(entries)
+        collection_metas.append(meta)
+
+    all_entries.sort(key=lambda e: e.get("display_rank", 0))
+
+    edition_count = sum(1 for e in all_entries if e.get("subseries") != "1of1")
+    one_of_one_count = sum(1 for e in all_entries if e.get("subseries") == "1of1")
+    primary = collection_metas[0] if collection_metas else {}
+
     payload = {
         "collection_info": {
-            "tradeport_collection_id": collection_id,
-            "tradeport_slug": slug,
-            "collection_name": title,
-            "collection_url": collection_url,
+            "collection_name": primary.get("collection_name") or "Nature Stories · Sui",
+            "collection_url": primary.get("collection_url") or "",
+            "tradeport_profile": primary.get("collection_url") or "",
             "chain": "sui",
             "native_currency": "SUI",
             "marketplace": "tradeport",
-            "tradeport_profile": collection_url,
+            "collections": [m.get("collection_id") for m in collection_metas],
+            "collection_details": collection_metas,
             "last_sui_sync": datetime.now(timezone.utc)
             .replace(microsecond=0)
             .isoformat()
             .replace("+00:00", "Z"),
-            "token_count": len(entries),
+            "token_count": len(all_entries),
+            "edition_count": edition_count,
+            "one_of_one_count": one_of_one_count,
         },
-        "site": {
-            "sections": {
-                "ai_art": {
-                    "explore_titles": {"sui": f"Explore {title} · Sui"},
-                    "empty_messages": {
-                        "sui": f"{title} on TradePort — sync with aktualizuj_sui_tradeport_do_galerii.py"
-                    },
-                    "promo_eyebrow": f"{title} on Sui",
-                    "promo_lead": "Collect and trade on TradePort — every work links to the marketplace.",
-                    "collection_url": collection_url,
-                    "collection_cta": "View collection on TradePort",
-                }
-            }
-        },
-        "nfts": entries,
+        "site": build_site_sections(collection_metas),
+        "nfts": all_entries,
     }
+
+    print(
+        f"[sui] Gotowe: {len(all_entries)} tokenów "
+        f"(edycje={edition_count}, 1/1={one_of_one_count})"
+    )
 
     if dry_run:
         print("[dry-run] Bez zapisu sui_gallery.json")
@@ -361,11 +486,22 @@ def sync(*, dry_run: bool = False, limit: int | None = None) -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Sync Sui TradePort → sui_gallery.json")
+    parser = argparse.ArgumentParser(
+        description="Sync Sui TradePort collections → sui_gallery.json"
+    )
     parser.add_argument("--dry-run", action="store_true")
-    parser.add_argument("--limit", type=int, default=None, help="Max NFTów (test)")
+    parser.add_argument("--limit", type=int, default=None, help="Max NFTów na kolekcję (test)")
+    parser.add_argument(
+        "--collection",
+        default=None,
+        help="Tylko jedna kolekcja (id z kolekcje.json, np. sui_nature_stories_1of1_tradeport)",
+    )
     args = parser.parse_args(argv)
-    return sync(dry_run=args.dry_run, limit=args.limit)
+    return sync(
+        dry_run=args.dry_run,
+        limit=args.limit,
+        only_collection=args.collection,
+    )
 
 
 if __name__ == "__main__":

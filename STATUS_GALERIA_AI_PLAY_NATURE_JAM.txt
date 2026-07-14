@@ -197,12 +197,15 @@ CO JESZCZE W TYM ZAKRESIE — NIE ROBIĆ OD RAZU (kolejność sugerowana)
    • Sui TradePort — infrastruktura gotowa (patrz sekcja 8).
 
 8) SUI — TradePort (Nature Stories, osobny portfel)
-   • collectionId: 990ced13-2d2c-4fee-8ff1-1c30177d9171
-   • Launchpad: tradeport.xyz/launchpad/.../collectionId=990ced13-...
+   • Edycje  collectionId: 990ced13-2d2c-4fee-8ff1-1c30177d9171
+     Launchpad: tradeport.xyz/launchpad/.../collectionId=990ced13-...
+   • 1/1      collectionId: a27ec93f-60a5-4ca9-b169-ed745f47dfd9
+     Launchpad: tradeport.xyz/launchpad/.../collectionId=a27ec93f-...
    • API: POST https://api.indexer.xyz/graphql
      nagłówki: x-api-key (TRADEPORT_API_KEY), x-api-user (TRADEPORT_API_USER)
    • Skrypt: www/aktualizuj_sui_tradeport_do_galerii.py → sui_gallery.json
-   • UI: zakładka AI Art → Sui (włączona); promo TradePort jak XRPL
+     (oba wpisy chain=sui w raportowanie/kolekcje.json; edycje przed 1/1)
+   • UI: zakładka AI Art → Sui (włączona); promo z dwoma linkami TradePort
    • NIE w EVM subnav serii — osobna sieć jak XRPL
 
    Sync (wymaga kluczy — nie commitować do repo):
@@ -211,6 +214,7 @@ CO JESZCZE W TYM ZAKRESIE — NIE ROBIĆ OD RAZU (kolejność sugerowana)
      cd /home/jb/jb_nft/www
      ../venv/bin/python3 aktualizuj_sui_tradeport_do_galerii.py
      ../venv/bin/python3 aktualizuj_sui_tradeport_do_galerii.py --dry-run --limit 5
+     ../venv/bin/python3 aktualizuj_sui_tradeport_do_galerii.py --collection sui_nature_stories_1of1_tradeport
 
    Deploy po syncu:
      git add sui_gallery.json && git commit && git push

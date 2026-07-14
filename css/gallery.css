@@ -317,6 +317,45 @@ a {
     padding-right: 0.65rem;
 }
 
+.section-subnav__select {
+    display: none;
+    width: 100%;
+    font-family: inherit;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 2px;
+    padding: 0.55rem 1.75rem 0.55rem 0.65rem;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%239a9a9a' d='M1 1l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.65rem center;
+    cursor: pointer;
+}
+
+@media (max-width: 767px) {
+    .section-subnav {
+        margin-bottom: 0.65rem;
+    }
+
+    .section-subnav__tab {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .section-subnav--wrap .section-subnav__tab {
+        display: none;
+    }
+
+    .section-subnav--wrap .section-subnav__select {
+        display: block;
+    }
+}
+
 /* ── Photography / Other — $PHOTO promo ── */
 .section-promo {
     margin: 0 0 1.25rem;

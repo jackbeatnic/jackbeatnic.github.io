@@ -58,7 +58,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/gallery.css?v=20260714f">
+    <link rel="stylesheet" href="css/gallery.css?v=20260714g">
 </head>
 <body class="gallery-protected">
     <header class="site-header site-header--sticky">
@@ -112,6 +112,7 @@
         </div>
 
         <div id="ai-series-subnav" class="section-subnav section-subnav--wrap" hidden aria-label="AI Art series">
+            <select id="ai-series-select" class="section-subnav__select" aria-label="Series"></select>
             <button type="button" class="section-subnav__tab" data-ai-series="nature_stories">Nature Stories</button>
             <button type="button" class="section-subnav__tab" data-ai-series="nature_jam">Nature Jam</button>
             <button type="button" class="section-subnav__tab" data-ai-series="flower_stories">Flower Stories</button>
@@ -201,6 +202,7 @@
             <div class="filters-row">
                 <span class="filters-row__label">Library</span>
                 <div class="filters__tags">
+                    <button type="button" id="filter-listed" class="filter-tag listed-filter">Listed</button>
                     <button type="button" id="filter-saved" class="filter-tag saved-filter">Saved for later</button>
                 </div>
             </div>
@@ -287,11 +289,11 @@
     <script src="js/lightbox.js?v=20260712p"></script>
     <script src="js/likes.js?v=20260712p"></script>
     <script src="js/color-groups.js?v=20260713b"></script>
-    <script src="js/filters.js?v=20260713b"></script>
-    <script src="js/sections.js?v=20260713i"></script>
+    <script src="js/filters.js?v=20260714g"></script>
+    <script src="js/sections.js?v=20260714g"></script>
     <script src="js/wallet.js?v=20260713e"></script>
     <script src="js/tip.js?v=20260712p"></script>
     <script src="js/share.js?v=20260713i"></script>
-    <script src="js/gallery.js?v=20260714f"></script>
+    <script src="js/gallery.js?v=20260714g"></script>
 </body>
 </html>

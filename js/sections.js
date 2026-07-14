@@ -151,6 +151,45 @@ const GallerySections = (() => {
         const allTab = subnav.querySelector('[data-ai-series="all"]');
         const allLabel = config().ai_art?.all_series_label || 'All';
         if (allTab) allTab.textContent = allLabel;
+
+        syncAiSeriesSelect();
+    }
+
+    function syncAiSeriesSelect() {
+        const select = document.getElementById('ai-series-select');
+        if (!select) return;
+
+        const catalog = aiSeriesCatalog();
+        const order = catalog.order || [];
+        const disabled = disabledAiSeries();
+        const allLabel = config().ai_art?.all_series_label || 'All';
+        const prev = select.value;
+
+        select.innerHTML = '';
+        order.forEach((id) => {
+            if (disabled.has(id)) return;
+            const label = catalog.series?.[id]?.label || id;
+            const option = document.createElement('option');
+            option.value = id;
+            option.textContent = label;
+            select.appendChild(option);
+        });
+        if (!disabled.has('all')) {
+            const allOpt = document.createElement('option');
+            allOpt.value = 'all';
+            allOpt.textContent = allLabel;
+            select.appendChild(allOpt);
+        }
+
+        const active =
+            currentAiSeries && !disabled.has(currentAiSeries)
+                ? currentAiSeries
+                : defaultAiSeries();
+        if ([...select.options].some((opt) => opt.value === active)) {
+            select.value = active;
+        } else if (prev && [...select.options].some((opt) => opt.value === prev)) {
+            select.value = prev;
+        }
     }
 
     function syncPhotoSubnavLabels() {
@@ -229,6 +268,15 @@ const GallerySections = (() => {
                 setAiSeries(series);
             });
         });
+
+        const seriesSelect = document.getElementById('ai-series-select');
+        if (seriesSelect) {
+            seriesSelect.addEventListener('change', (e) => {
+                const series = e.target.value;
+                if (!series) return;
+                setAiSeries(series);
+            });
+        }
 
         document.querySelectorAll('[data-photo-kind]').forEach((el) => {
             el.addEventListener('click', (e) => {
@@ -496,6 +544,13 @@ const GallerySections = (() => {
                 el.removeAttribute('title');
             }
         });
+
+        const seriesSelect = document.getElementById('ai-series-select');
+        if (seriesSelect && !aiSeriesSubnav?.hidden) {
+            if ([...seriesSelect.options].some((opt) => opt.value === currentAiSeries)) {
+                seriesSelect.value = currentAiSeries;
+            }
+        }
 
         const disabledKinds = new Set(atelierCfg()?.disabled_kinds || ['editions']);
         document.querySelectorAll('[data-market-kind]').forEach((el) => {

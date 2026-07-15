@@ -1129,6 +1129,10 @@ body.tip-open {
     margin-bottom: 0.65rem;
 }
 
+.filters-row[hidden] {
+    display: none !important;
+}
+
 .filters-row__label {
     flex: 0 0 4.5rem;
     font-size: 0.58rem;

@@ -6,6 +6,29 @@ const GalleryFilters = (() => {
     const activeColorFamilies = new Set();
     let searchQuery = '';
     let listedOnly = false;
+    let lastFilterNfts = [];
+
+    /** Series/chain labels — not artistic mood filters */
+    const META_VIBE_TAGS = new Set([
+        'ai play',
+        'ai art',
+        'nature jam',
+        'nature stories',
+        'flower stories',
+        'based ai',
+        'polygon',
+        'avalanche',
+        'base',
+        'sui',
+        'xrpl',
+        'xrp cafe',
+        'tradeport',
+        'launchpad',
+        'experimental',
+        'opensea',
+        'photography',
+        'photo',
+    ]);
 
     function isListedNft(nft) {
         if (nft.medium === 'manifold_auction') {
@@ -42,6 +65,89 @@ const GalleryFilters = (() => {
         });
     }
 
+    function filtersContext() {
+        return {
+            section: GallerySections.getCurrentSection(),
+            aiKind: GallerySections.getAiKind(),
+            aiSeries: GallerySections.getAiSeries(),
+        };
+    }
+
+    function nftsWithColorFamilies(nfts) {
+        return (nfts || []).filter((nft) => GalleryColorGroups.familiesForNft(nft).length > 0);
+    }
+
+    function paletteSupported(nfts, ctx = filtersContext()) {
+        if (ctx.section !== 'ai_art') return false;
+        const list = nfts || [];
+        if (!list.length) return false;
+        const withColors = nftsWithColorFamilies(list);
+        if (!withColors.length) return false;
+        return (
+            withColors.length === list.length ||
+            withColors.length / list.length >= 0.5
+        );
+    }
+
+    function countVibeTags(nfts) {
+        const counts = new Map();
+        (nfts || []).forEach((nft) => {
+            const seen = new Set();
+            (nft.ai?.vibe_tags || []).forEach((tag) => {
+                const key = String(tag).toLowerCase();
+                if (!seen.has(key)) {
+                    seen.add(key);
+                    counts.set(key, (counts.get(key) || 0) + 1);
+                }
+            });
+        });
+        return counts;
+    }
+
+    function isMetaVibeTag(tag) {
+        return META_VIBE_TAGS.has(String(tag).toLowerCase());
+    }
+
+    function discriminativeMoodTagKeys(nfts) {
+        const list = nfts || [];
+        const total = list.length;
+        if (!total) return new Set();
+        const counts = countVibeTags(list);
+        return new Set(
+            [...counts.entries()]
+                .filter(([tag, count]) => !isMetaVibeTag(tag) && count > 0 && count < total)
+                .map(([tag]) => tag),
+        );
+    }
+
+    function moodSupported(nfts, ctx = filtersContext()) {
+        if (ctx.section !== 'ai_art') return false;
+        const list = nfts || [];
+        if (!list.length) return false;
+        const tagKeys = discriminativeMoodTagKeys(list);
+        if (!tagKeys.size) return false;
+        const withMood = list.filter((nft) =>
+            (nft.ai?.vibe_tags || []).some((tag) => tagKeys.has(String(tag).toLowerCase())),
+        );
+        return (
+            withMood.length === list.length ||
+            withMood.length / list.length >= 0.5
+        );
+    }
+
+    function collectMoodTags(nfts) {
+        const tagKeys = discriminativeMoodTagKeys(nfts);
+        if (!tagKeys.size) return [];
+        const display = new Map();
+        (nfts || []).forEach((nft) => {
+            (nft.ai?.vibe_tags || []).forEach((tag) => {
+                const key = String(tag).toLowerCase();
+                if (tagKeys.has(key) && !display.has(key)) display.set(key, tag);
+            });
+        });
+        return [...display.values()].sort((a, b) => a.localeCompare(b));
+    }
+
     function setupColors(nfts) {
         const container = document.getElementById('color-filters');
         if (!container) return;
@@ -61,20 +167,23 @@ const GalleryFilters = (() => {
         });
     }
 
-    function shouldHidePaletteMood() {
-        return (
-            GallerySections.getCurrentSection() === 'ai_art' &&
-            GallerySections.getAiKind() === 'evm' &&
-            GallerySections.getAiSeries() === 'all'
-        );
+    function shouldShowFiltersHint(nfts, ctx = filtersContext()) {
+        if (ctx.section !== 'ai_art' || ctx.aiKind !== 'evm') return false;
+        if (ctx.aiSeries !== 'all') return false;
+        const list = nfts || [];
+        const withColors = nftsWithColorFamilies(list);
+        const moodTags = discriminativeMoodTagKeys(list);
+        return withColors.length > 0 || moodTags.size > 0;
     }
 
-    function syncSeriesScopedFilters() {
-        const hide = shouldHidePaletteMood();
+    function syncSeriesScopedFilters(nfts = lastFilterNfts) {
+        const ctx = filtersContext();
+        const showPalette = paletteSupported(nfts, ctx);
+        const showMood = moodSupported(nfts, ctx);
         const paletteRow = document.getElementById('color-filters')?.closest('.filters-row');
         const moodRow = document.getElementById('vibe-filters')?.closest('.filters-row');
-        if (paletteRow) paletteRow.hidden = hide;
-        if (moodRow) moodRow.hidden = hide;
+        if (paletteRow) paletteRow.hidden = !showPalette;
+        if (moodRow) moodRow.hidden = !showMood;
 
         const panel = document.getElementById('explore');
         let note = document.getElementById('filters-series-note');
@@ -86,9 +195,27 @@ const GalleryFilters = (() => {
             head?.insertAdjacentElement('afterend', note);
         }
         if (note) {
-            note.hidden = !hide;
+            const showHint = shouldShowFiltersHint(nfts, ctx);
+            note.hidden = !showHint;
             note.textContent =
-                'Palette and mood filters apply per series (e.g. Nature Stories). Pick a series above to use them.';
+                'Palette and mood filters work per series (e.g. Nature Stories) or on XRPL. Pick a series above, or switch to XRPL.';
+        }
+    }
+
+    function clearUnsupportedFilters(nfts, ctx = filtersContext()) {
+        const showPalette = paletteSupported(nfts, ctx);
+        const showMood = moodSupported(nfts, ctx);
+        if (!showPalette) {
+            activeColorFamilies.clear();
+            document.querySelectorAll('.color-filter.is-active').forEach((el) => {
+                el.classList.remove('is-active');
+            });
+        }
+        if (!showMood) {
+            activeVibes.clear();
+            document.querySelectorAll('.vibe-filter.is-active').forEach((el) => {
+                el.classList.remove('is-active');
+            });
         }
     }
 
@@ -106,12 +233,7 @@ const GalleryFilters = (() => {
         if (!container) return;
         container.innerHTML = '';
 
-        const tags = new Set();
-        nfts.forEach((nft) => {
-            (nft.ai?.vibe_tags || []).forEach((t) => tags.add(t));
-        });
-
-        [...tags].sort().forEach((tag) => {
+        collectMoodTags(nfts).forEach((tag) => {
             const btn = document.createElement('button');
             btn.type = 'button';
             btn.className = 'filter-tag vibe-filter';
@@ -253,21 +375,22 @@ const GalleryFilters = (() => {
     }
 
     function init(nfts, { rebind = false } = {}) {
+        lastFilterNfts = nfts;
+        clearUnsupportedFilters(nfts);
         setupCategory(nfts);
         setupColors(nfts);
         setupVibes(nfts);
-        syncSeriesScopedFilters();
+        syncSeriesScopedFilters(nfts);
         if (rebind) bind();
     }
 
-    function updateSources(nfts, { seriesScope } = {}) {
-        if (seriesScope === 'all' || shouldHidePaletteMood()) {
-            clearColorMoodFilters({ dispatch: false });
-        }
+    function updateSources(nfts) {
+        lastFilterNfts = nfts;
+        clearUnsupportedFilters(nfts);
         setupCategory(nfts);
         setupColors(nfts);
         setupVibes(nfts);
-        syncSeriesScopedFilters();
+        syncSeriesScopedFilters(nfts);
     }
 
     function reinit(nfts) {

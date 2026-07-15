@@ -328,7 +328,9 @@ const Gallery = (() => {
         }
         syncFiltersPanel();
         if (scope === 'series') {
-            GalleryFilters.updateSources(sectionNfts);
+            GalleryFilters.updateSources(sectionNfts, {
+                seriesScope: GallerySections.getAiSeries(),
+            });
         } else {
             GalleryFilters.reinit(sectionNfts);
         }

@@ -61,6 +61,46 @@ const GalleryFilters = (() => {
         });
     }
 
+    function shouldHidePaletteMood() {
+        return (
+            GallerySections.getCurrentSection() === 'ai_art' &&
+            GallerySections.getAiKind() === 'evm' &&
+            GallerySections.getAiSeries() === 'all'
+        );
+    }
+
+    function syncSeriesScopedFilters() {
+        const hide = shouldHidePaletteMood();
+        const paletteRow = document.getElementById('color-filters')?.closest('.filters-row');
+        const moodRow = document.getElementById('vibe-filters')?.closest('.filters-row');
+        if (paletteRow) paletteRow.hidden = hide;
+        if (moodRow) moodRow.hidden = hide;
+
+        const panel = document.getElementById('explore');
+        let note = document.getElementById('filters-series-note');
+        if (!note && panel) {
+            note = document.createElement('p');
+            note.id = 'filters-series-note';
+            note.className = 'filters-panel__hint';
+            const head = panel.querySelector('.filters-panel__head');
+            head?.insertAdjacentElement('afterend', note);
+        }
+        if (note) {
+            note.hidden = !hide;
+            note.textContent =
+                'Palette and mood filters apply per series (e.g. Nature Stories). Pick a series above to use them.';
+        }
+    }
+
+    function clearColorMoodFilters({ dispatch = true } = {}) {
+        activeVibes.clear();
+        activeColorFamilies.clear();
+        document.querySelectorAll('.color-filter.is-active, .vibe-filter.is-active').forEach((el) => {
+            el.classList.remove('is-active');
+        });
+        if (dispatch) dispatchChange();
+    }
+
     function setupVibes(nfts) {
         const container = document.getElementById('vibe-filters');
         if (!container) return;
@@ -216,18 +256,24 @@ const GalleryFilters = (() => {
         setupCategory(nfts);
         setupColors(nfts);
         setupVibes(nfts);
+        syncSeriesScopedFilters();
         if (rebind) bind();
     }
 
-    function updateSources(nfts) {
+    function updateSources(nfts, { seriesScope } = {}) {
+        if (seriesScope === 'all' || shouldHidePaletteMood()) {
+            clearColorMoodFilters({ dispatch: false });
+        }
         setupCategory(nfts);
         setupColors(nfts);
         setupVibes(nfts);
+        syncSeriesScopedFilters();
     }
 
     function reinit(nfts) {
         clearState();
         init(nfts);
+        syncSeriesScopedFilters();
     }
 
     let bound = false;

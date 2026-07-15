@@ -1108,6 +1108,13 @@ body.tip-open {
     color: var(--gray-400);
 }
 
+.filters-panel__hint {
+    margin: 0 0 0.75rem;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: var(--text-muted, #8a8a8a);
+}
+
 .filters-panel__count {
     font-size: 0.62rem;
     color: var(--gray-500);

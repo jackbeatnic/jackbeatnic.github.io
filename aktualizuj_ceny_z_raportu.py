@@ -49,7 +49,10 @@ def load_contract_map() -> dict[str, dict]:
     data = load_json(KOLEKCJE_PATH)
     out: dict[str, dict] = {}
     for col in data.get("collections", []):
-        out[col["contract"].lower()] = col
+        contract = str(col.get("contract") or "").strip()
+        if not contract:
+            continue
+        out[contract.lower()] = col
     return out
 
 

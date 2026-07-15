@@ -17,6 +17,11 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 JB_NFT="$(dirname "$SCRIPT_DIR")"
 RAPORT_DIR="$JB_NFT/raportowanie"
 WWW_DIR="$SCRIPT_DIR"
+if [[ -x "$JB_NFT/venv/bin/python3" ]]; then
+    PYTHON="$JB_NFT/venv/bin/python3"
+else
+    PYTHON="python3"
+fi
 
 KOLEKCJA="${KOLEKCJA:-avalanche_nature_stories}"
 DRY_RUN=false
@@ -66,7 +71,7 @@ fi
 echo "=== [1/4] Raport OpenSea (--krok report) — $KOLEKCJA ==="
 (
     cd "$RAPORT_DIR"
-    python3 raportuj_kolekcje.py --kolekcja "$KOLEKCJA" --krok report
+    "$PYTHON" raportuj_kolekcje.py --kolekcja "$KOLEKCJA" --krok report
 )
 
 echo ""
@@ -74,9 +79,9 @@ echo "=== [2/4] Sync gallery.json ==="
 (
     cd "$WWW_DIR"
     if $DRY_RUN; then
-        python3 aktualizuj_ceny_z_raportu.py --kolekcja "$KOLEKCJA" --dry-run
+        "$PYTHON" aktualizuj_ceny_z_raportu.py --kolekcja "$KOLEKCJA" --dry-run
     else
-        python3 aktualizuj_ceny_z_raportu.py --kolekcja "$KOLEKCJA"
+        "$PYTHON" aktualizuj_ceny_z_raportu.py --kolekcja "$KOLEKCJA"
     fi
 )
 
@@ -87,7 +92,7 @@ echo "=== [3/4] OG preview (site + per-NFT) ==="
     if $DRY_RUN; then
         echo "[dry-run] Pominięto generuj_og_preview.py"
     else
-        python3 generuj_og_preview.py
+        "$PYTHON" generuj_og_preview.py
     fi
 )
 

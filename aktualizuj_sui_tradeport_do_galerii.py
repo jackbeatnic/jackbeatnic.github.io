@@ -171,8 +171,7 @@ def load_sui_tradeport_configs(*, only_id: str | None = None) -> list[dict]:
             continue
         if not row.get("tradeport_collection_id"):
             continue
-        if row.get("enabled") is False:
-            continue
+        # enabled=false dotyczy tylko OpenSea (raportuj_kolekcje); Sui sync zawsze z tradeport_collection_id.
         if only_id and row.get("id") != only_id:
             continue
         rows.append(row)

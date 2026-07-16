@@ -4,25 +4,34 @@
 Source: https://data.objkt.com/v3/graphql
 Wallet: jackbeatnic.tez (configurable in gallery.json → collection_info)
 
+Do galerii trafiają tylko tokeny POSIADANE (supply>0 i quantity>0 u Ciebie).
+Spalone (supply=0) i sprzedane (odeszły z portfela) zostają na objkt.com jako
+historia utworzonych — ale nie wchodzą do gallery.json.
+
 Usage:
   python3 aktualizuj_objkt_do_galerii.py
   python3 aktualizuj_objkt_do_galerii.py --dry-run
+  python3 aktualizuj_objkt_do_galerii.py --audyt   # CSV w raportowanie/audyt/
 """
 
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import re
 import sys
 import time
 import urllib.error
 import urllib.request
+from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
+JB_NFT = ROOT.parent
 GALLERY_JSON = ROOT / "gallery.json"
+AUDYT_DIR = JB_NFT / "raportowanie" / "audyt"
 GRAPHQL_URL = "https://data.objkt.com/v3/graphql"
 USER_AGENT = "JackBeatnicGallery/1.0"
 
@@ -65,19 +74,57 @@ query FetchCreated($address: String!, $limit: Int!, $offset: Int!) {
           short_name
           category
         }
+        supply
+        flag
         tags {
           tag {
             name
           }
         }
+        holders(where: {holder_address: {_eq: $address}}, limit: 1) {
+          quantity
+          holder_address
+        }
         listings_active(limit: 1) {
           price_xtz
+          amount_left
         }
       }
     }
   }
 }
 """
+
+AUDYT_FIELDS = [
+    "ownership_status",
+    "collection_name",
+    "fa_contract",
+    "tezos_token_id",
+    "objkt_pk",
+    "name",
+    "supply",
+    "wallet_quantity",
+    "flag",
+    "photo_kind",
+    "objkt_url",
+    "mint_timestamp",
+]
+
+
+@dataclass
+class ObjktAudytRow:
+    ownership_status: str
+    collection_name: str
+    fa_contract: str
+    tezos_token_id: str
+    objkt_pk: str
+    name: str
+    supply: str
+    wallet_quantity: str
+    flag: str
+    photo_kind: str
+    objkt_url: str
+    mint_timestamp: str
 
 RESOLVE_DOMAIN_QUERY = """
 query ResolveDomain($domain: String!) {
@@ -176,13 +223,37 @@ def ai_category(token: dict, photo_kind: str) -> str:
     return "photography"
 
 
+def creator_quantity(token: dict, address: str) -> int:
+    for row in token.get("holders") or []:
+        if row.get("holder_address") == address:
+            return int(row.get("quantity") or 0)
+    return 0
+
+
+def compute_ownership_status(token: dict, address: str) -> str:
+    """
+    posiadane  — supply>0 i masz quantity>0 (do galerii)
+    sprzedane  — supply>0, quantity=0 (historia na objkt.com, nie spalone)
+    spalone    — supply=0 on-chain
+    """
+    supply = int(token.get("supply") or 0)
+    quantity = creator_quantity(token, address)
+    if supply <= 0:
+        return "spalone"
+    if quantity > 0:
+        return "posiadane"
+    return "sprzedane"
+
+
 def fetch_created_tokens(address: str) -> list[dict]:
     tokens: list[dict] = []
     offset = 0
     limit = 500
 
     while True:
-        data = graphql(TOKEN_QUERY, {"address": address, "limit": limit, "offset": offset})
+        data = graphql(
+            TOKEN_QUERY, {"address": address, "limit": limit, "offset": offset}
+        )
         holder = data.get("holder_by_pk")
         if not holder:
             break
@@ -207,7 +278,9 @@ def price_xtz_from_listing(token: dict) -> float | None:
     return round(int(raw) / 1_000_000, 6)
 
 
-def build_nft_entry(token: dict, photo_kind: str, display_rank: int) -> dict:
+def build_nft_entry(
+    token: dict, photo_kind: str, display_rank: int, *, creator_address: str
+) -> dict:
     fa_contract = token.get("fa_contract") or ""
     tezos_token_id = str(token.get("token_id") or "")
     pk = int(token["pk"])
@@ -227,7 +300,6 @@ def build_nft_entry(token: dict, photo_kind: str, display_rank: int) -> dict:
         "objkt_url": f"https://objkt.com/tokens/{fa_contract}/{tezos_token_id}",
         "opensea_url": f"https://objkt.com/tokens/{fa_contract}/{tezos_token_id}",
         "image_url": image_url,
-        "supply": 1,
         "traits": {},
         "ai": {
             "description": ai_description,
@@ -254,12 +326,108 @@ def build_nft_entry(token: dict, photo_kind: str, display_rank: int) -> dict:
 
     if price is not None:
         entry["current_price_xtz"] = price
+        listings = token.get("listings_active") or []
+        if listings:
+            amount_left = int(listings[0].get("amount_left") or 0)
+            if amount_left > 0:
+                entry["listed_quantity"] = amount_left
 
     mint_ts = (token.get("timestamp") or "").strip()
     if mint_ts:
         entry["mint_timestamp"] = mint_ts
 
+    supply = int(token.get("supply") or 0)
+    wallet_qty = creator_quantity(token, creator_address)
+    ownership = compute_ownership_status(token, creator_address)
+    entry["supply"] = supply
+    entry["wallet_quantity"] = wallet_qty
+    entry["ownership_status"] = ownership
+
     return entry
+
+
+def build_audyt_row(
+    token: dict, *, photo_kind: str | None, creator_address: str
+) -> ObjktAudytRow:
+    fa_contract = token.get("fa_contract") or ""
+    tezos_token_id = str(token.get("token_id") or "")
+    fa_name = ((token.get("fa") or {}).get("name") or "Tezos").strip()
+    supply = int(token.get("supply") or 0)
+    wallet_qty = creator_quantity(token, creator_address)
+    return ObjktAudytRow(
+        ownership_status=compute_ownership_status(token, creator_address),
+        collection_name=fa_name,
+        fa_contract=fa_contract,
+        tezos_token_id=tezos_token_id,
+        objkt_pk=str(token.get("pk") or ""),
+        name=(token.get("name") or f"OBJKT #{tezos_token_id}").strip(),
+        supply=str(supply),
+        wallet_quantity=str(wallet_qty),
+        flag=str(token.get("flag") or "none"),
+        photo_kind=photo_kind or "",
+        objkt_url=f"https://objkt.com/tokens/{fa_contract}/{tezos_token_id}",
+        mint_timestamp=(token.get("timestamp") or "").strip(),
+    )
+
+
+def write_audyt_csv(path: Path, rows: list[ObjktAudytRow]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=AUDYT_FIELDS)
+        writer.writeheader()
+        for row in sorted(rows, key=lambda item: int(item.tezos_token_id or 0)):
+            writer.writerow(asdict(row))
+
+
+def export_objkt_audyt(
+    raw_tokens: list[dict],
+    *,
+    creator_address: str,
+    stamp: str,
+) -> dict[str, Path]:
+    by_status: dict[str, list[ObjktAudytRow]] = {
+        "posiadane": [],
+        "sprzedane": [],
+        "spalone": [],
+    }
+    for token in raw_tokens:
+        kind = classify_photo_kind(token)
+        row = build_audyt_row(token, photo_kind=kind, creator_address=creator_address)
+        bucket = row.ownership_status
+        if bucket not in by_status:
+            bucket = "sprzedane"
+        by_status[bucket].append(row)
+
+    paths: dict[str, Path] = {}
+    for status, rows in by_status.items():
+        path = AUDYT_DIR / f"objkt_audyt_{status}_{stamp}.csv"
+        write_audyt_csv(path, rows)
+        paths[status] = path
+    summary_path = AUDYT_DIR / f"objkt_audyt_podsumowanie_{stamp}.csv"
+    write_audyt_csv(
+        summary_path,
+        [
+            ObjktAudytRow(
+                ownership_status="podsumowanie",
+                collection_name="OBJKT jackbeatnic",
+                fa_contract="",
+                tezos_token_id="",
+                objkt_pk="",
+                name=f"utworzone={len(raw_tokens)}",
+                supply=str(len(by_status["posiadane"])),
+                wallet_quantity=str(len(by_status["sprzedane"])),
+                flag=str(len(by_status["spalone"])),
+                photo_kind="",
+                objkt_url="",
+                mint_timestamp=datetime.now(timezone.utc)
+                .replace(microsecond=0)
+                .isoformat()
+                .replace("+00:00", "Z"),
+            )
+        ],
+    )
+    paths["podsumowanie"] = summary_path
+    return paths
 
 
 def merge_photography(data: dict, objkt_entries: list[dict]) -> tuple[int, int]:
@@ -289,7 +457,7 @@ def merge_photography(data: dict, objkt_entries: list[dict]) -> tuple[int, int]:
     return photo_count, other_count
 
 
-def sync(*, dry_run: bool = False) -> int:
+def sync(*, dry_run: bool = False, audyt_only: bool = False) -> int:
     data = load_gallery()
     info = data.setdefault("collection_info", {})
 
@@ -300,24 +468,56 @@ def sync(*, dry_run: bool = False) -> int:
 
     print(f"[objkt] Wallet: {info.get('tezos_domain')} → {address}")
     raw_tokens = fetch_created_tokens(address)
-    print(f"[objkt] Razem utworzonych tokenów: {len(raw_tokens)}")
+    print(f"[objkt] Razem utworzonych (historia OBJKT): {len(raw_tokens)}")
+
+    status_counts = {"posiadane": 0, "sprzedane": 0, "spalone": 0}
+    for token in raw_tokens:
+        status = compute_ownership_status(token, address)
+        status_counts[status] = status_counts.get(status, 0) + 1
+    print(
+        f"[objkt] Saldo: posiadane={status_counts.get('posiadane', 0)}, "
+        f"sprzedane={status_counts.get('sprzedane', 0)}, "
+        f"spalone={status_counts.get('spalone', 0)}"
+    )
+
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    audyt_paths = export_objkt_audyt(raw_tokens, creator_address=address, stamp=stamp)
+    print("[objkt] Audyt CSV:")
+    for key, path in audyt_paths.items():
+        print(f"  {key}: {path.name}")
+
+    if audyt_only:
+        print("[audyt] Tylko CSV — bez zmian w gallery.json")
+        return 0
 
     classified: list[tuple[dict, str]] = []
-    skipped = 0
+    skipped_kind = 0
+    skipped_not_owned = 0
     for token in raw_tokens:
+        if compute_ownership_status(token, address) != "posiadane":
+            skipped_not_owned += 1
+            continue
         kind = classify_photo_kind(token)
         if kind is None:
-            skipped += 1
+            skipped_kind += 1
             continue
         classified.append((token, kind))
 
-    print(f"[objkt] Do galerii: {len(classified)} | pominięto: {skipped}")
+    print(
+        f"[objkt] Do galerii (posiadane): {len(classified)} | "
+        f"pominięto kategorię: {skipped_kind} | "
+        f"sprzedane/spalone: {skipped_not_owned}"
+    )
 
     entries: list[dict] = []
     rank_by_kind = {"photo": 0, "other": 0}
     for token, kind in classified:
         rank_by_kind[kind] += 1
-        entries.append(build_nft_entry(token, kind, rank_by_kind[kind]))
+        entries.append(
+            build_nft_entry(
+                token, kind, rank_by_kind[kind], creator_address=address
+            )
+        )
 
     photo_count, other_count = merge_photography(data, entries)
     info["last_objkt_sync"] = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
@@ -336,7 +536,13 @@ def sync(*, dry_run: bool = False) -> int:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Import OBJKT tokens into gallery.json")
     parser.add_argument("--dry-run", action="store_true", help="Podgląd bez zapisu")
-    return sync(dry_run=parser.parse_args(argv).dry_run)
+    parser.add_argument(
+        "--audyt",
+        action="store_true",
+        help="Tylko eksport CSV do raportowanie/audyt/ (bez gallery.json)",
+    )
+    args = parser.parse_args(argv)
+    return sync(dry_run=args.dry_run, audyt_only=args.audyt)
 
 
 if __name__ == "__main__":

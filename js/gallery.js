@@ -32,10 +32,19 @@ const Gallery = (() => {
         return nft.medium === 'manifold_auction' || nft.marketplace === 'manifold';
     }
 
+    function isObjktAuction(nft) {
+        return nft.medium === 'objkt_auction';
+    }
+
+    function isLiveAuction(nft) {
+        return isManifoldAuction(nft) || isObjktAuction(nft);
+    }
+
     function currencyForNft(nft) {
         if (nft.listing_currency) return nft.listing_currency;
         if (nft.chain === 'xrpl' || nft.medium === 'xrpl_ai') return 'XRP';
         if (nft.chain === 'sui' || nft.medium === 'sui_ai') return 'SUI';
+        if (isObjktAuction(nft) || isObjktNft(nft)) return 'XTZ';
         if (isManifoldAuction(nft)) return nft.listing_currency || 'ETH';
         return collectionInfo.native_currency || 'AVAX';
     }
@@ -84,6 +93,44 @@ const Gallery = (() => {
 
     function isObjktNft(nft) {
         return nft.chain === 'tezos' || nft.marketplace === 'objkt';
+    }
+
+    function objktAvailability(nft) {
+        const supply = Number(nft.supply);
+        const walletQty = Number(nft.wallet_quantity);
+        const listedQty = Number(nft.listed_quantity);
+        if (!Number.isFinite(supply) || supply <= 0) return null;
+
+        if (supply === 1) {
+            return {
+                supply: 1,
+                available: walletQty > 0 ? 1 : 0,
+                listed: Number.isFinite(listedQty) && listedQty > 0 ? listedQty : 0,
+            };
+        }
+
+        return {
+            supply,
+            available: Number.isFinite(walletQty) && walletQty >= 0 ? walletQty : supply,
+            listed: Number.isFinite(listedQty) && listedQty > 0 ? listedQty : 0,
+        };
+    }
+
+    function objktSupplyHint(nft) {
+        const avail = objktAvailability(nft);
+        if (!avail) return '';
+        if (avail.supply === 1) return '1/1';
+        const parts = [`Edition · ${avail.supply}`, `${avail.available} available`];
+        if (avail.listed > 0) {
+            parts.push(`${avail.listed} listed`);
+        }
+        return parts.join(' · ');
+    }
+
+    function objktSupplyMetaHtml(nft) {
+        const hint = objktSupplyHint(nft);
+        if (!hint || isObjktAuction(nft)) return '';
+        return `<p class="nft-card__supply">${escapeHtml(hint)}</p>`;
     }
 
     function isXrpCafeNft(nft) {
@@ -149,6 +196,7 @@ const Gallery = (() => {
     }
 
     function marketplaceLabel(nft) {
+        if (isObjktAuction(nft)) return 'Bid on OBJKT';
         if (isManifoldAuction(nft)) return 'Bid on Manifold';
         if (isLaunchpadMint(nft)) return 'Mint on TradePort';
         if (nft.source === 'manifold' && nft.manifold_url) return 'View on Manifold';
@@ -156,6 +204,9 @@ const Gallery = (() => {
     }
 
     function marketplaceUrl(nft) {
+        if (isObjktAuction(nft)) {
+            return nft.auction_url || nft.marketplace_url || nft.objkt_url || '';
+        }
         if (isManifoldAuction(nft) || nft.manifold_url) {
             return nft.manifold_url || nft.marketplace_url || '';
         }
@@ -202,6 +253,15 @@ const Gallery = (() => {
     }
 
     function tokenLabel(nft) {
+        if (isObjktAuction(nft)) {
+            const type =
+                nft.auction_type === 'dutch' ? 'Dutch auction' : 'English auction';
+            const tid =
+                nft.tezos_token_id != null && nft.tezos_token_id !== ''
+                    ? ` · Tezos #${nft.tezos_token_id}`
+                    : '';
+            return `${type}${tid}`;
+        }
         if (isObjktNft(nft) && nft.tezos_token_id != null && nft.tezos_token_id !== '') {
             return `Tezos #${nft.tezos_token_id}`;
         }
@@ -258,6 +318,34 @@ const Gallery = (() => {
                 };
             }
         }
+        if (isObjktAuction(nft)) {
+            const symbol = currencyForNft(nft);
+            const bid = nft.current_bid_xtz;
+            const reserve = nft.reserve_xtz;
+            const dutchStart = nft.dutch_start_xtz;
+            if (bid != null) {
+                return {
+                    text: `${bid} ${symbol}`,
+                    hint: reserve != null ? `Current bid · reserve ${reserve} ${symbol}` : 'Current bid · OBJKT',
+                    kind: 'listed',
+                };
+            }
+            if (dutchStart != null) {
+                return {
+                    text: `${dutchStart} ${symbol}`,
+                    hint: 'Dutch auction · OBJKT',
+                    kind: 'listed',
+                };
+            }
+            if (reserve != null) {
+                return {
+                    text: `${reserve} ${symbol}`,
+                    hint: 'Reserve · live auction · OBJKT',
+                    kind: 'listed',
+                };
+            }
+            return { text: 'Live auction', hint: 'OBJKT · Tezos', kind: 'listed' };
+        }
         if (isManifoldAuction(nft)) {
             const symbol = currencyForNft(nft);
             const bid = nft.current_bid_eth;
@@ -283,9 +371,20 @@ const Gallery = (() => {
         const mint = priceField(nft, 'mint_price', symbol);
         const lastSale = priceField(nft, 'last_sale_price', symbol);
         if (listed != null && nft.listing_status === 'For Sale') {
+            let hint = `Listed · ${chainLabel(nft)}`;
+            let text = `${listed} ${symbol}`;
+            if (isObjktNft(nft)) {
+                const supplyHint = objktSupplyHint(nft);
+                if (supplyHint) {
+                    hint = `${supplyHint} · OBJKT`;
+                    if (supplyHint !== '1/1') {
+                        text = `${listed} ${symbol} · ${supplyHint}`;
+                    }
+                }
+            }
             return {
-                text: `${listed} ${symbol}`,
-                hint: `Listed · ${chainLabel(nft)}`,
+                text,
+                hint,
                 kind: 'listed',
             };
         }
@@ -302,6 +401,12 @@ const Gallery = (() => {
                 hint: isLaunchpadMint(nft) ? 'Mint on TradePort' : 'Mint price',
                 kind: 'mint',
             };
+        }
+        if (isObjktNft(nft)) {
+            const supplyHint = objktSupplyHint(nft);
+            if (supplyHint) {
+                return { text: '—', hint: supplyHint, kind: 'unknown' };
+            }
         }
         if (isLaunchpadMint(nft)) {
             return {
@@ -343,8 +448,39 @@ const Gallery = (() => {
         );
     }
 
+    function photographyDisplayList(nfts) {
+        const auctionPks = new Set(
+            nfts
+                .filter((nft) => isObjktAuction(nft))
+                .map((nft) => Number(nft.objkt_token_pk ?? nft.token_id)),
+        );
+        if (!auctionPks.size) return nfts;
+
+        const deduped = nfts.filter((nft) => {
+            if (isObjktAuction(nft)) return true;
+            if (nft.medium !== 'photography' || nft.source !== 'objkt') return true;
+            return !auctionPks.has(Number(nft.token_id));
+        });
+
+        return [...deduped].sort((a, b) => {
+            const aLive = isObjktAuction(a) ? 0 : 1;
+            const bLive = isObjktAuction(b) ? 0 : 1;
+            if (aLive !== bLive) return aLive - bLive;
+            const rankA = a.display_rank ?? 999999;
+            const rankB = b.display_rank ?? 999999;
+            if (rankA !== rankB) return rankA - rankB;
+            const likesA = a.likes_count ?? 0;
+            const likesB = b.likes_count ?? 0;
+            if (likesB !== likesA) return likesB - likesA;
+            return Number(a.token_id) - Number(b.token_id);
+        });
+    }
+
     function getDisplayList() {
-        const sorted = GalleryLikes.sortForDisplay(sectionNfts);
+        let sorted = GalleryLikes.sortForDisplay(sectionNfts);
+        if (GallerySections.getCurrentSection() === 'photography') {
+            sorted = photographyDisplayList(sorted);
+        }
         const filtered = GalleryFilters.apply(sorted);
         return GalleryLikes.filterSaved(filtered);
     }
@@ -392,24 +528,35 @@ const Gallery = (() => {
     async function load() {
         const grid = document.getElementById('gallery-grid');
         try {
-            const [mainRes, xrpRes, suiRes, auctionRes] = await Promise.all([
-                fetch('gallery.json'),
-                fetch('xrp_gallery.json'),
-                fetch('sui_gallery.json'),
-                fetch('auctions_gallery.json'),
-            ]);
+            const [mainRes, xrpRes, suiRes, auctionRes, objktAuctionRes] =
+                await Promise.all([
+                    fetch('gallery.json'),
+                    fetch('xrp_gallery.json'),
+                    fetch('sui_gallery.json'),
+                    fetch('auctions_gallery.json'),
+                    fetch('objkt_auctions_gallery.json'),
+                ]);
             if (!mainRes.ok) throw new Error(`HTTP ${mainRes.status}`);
             const data = await mainRes.json();
             const xrpData = xrpRes.ok ? await xrpRes.json() : { nfts: [] };
             const suiData = suiRes.ok ? await suiRes.json() : { nfts: [] };
             const auctionData = auctionRes.ok ? await auctionRes.json() : { nfts: [] };
+            const objktAuctionData = objktAuctionRes.ok
+                ? await objktAuctionRes.json()
+                : { nfts: [] };
 
-            allNfts = mergeGalleryPayload(data, [xrpData, suiData, auctionData]);
+            allNfts = mergeGalleryPayload(data, [
+                xrpData,
+                suiData,
+                auctionData,
+                objktAuctionData,
+            ]);
             collectionInfo = {
                 ...(data.collection_info || {}),
                 xrpl: xrpData.collection_info || {},
                 sui: suiData.collection_info || {},
                 manifold: auctionData.collection_info || {},
+                objkt_auctions: objktAuctionData.collection_info || {},
                 manifold_links: data.collection_info?.manifold_links || {},
                 atelier_wallets:
                     data.collection_info?.atelier_wallets ||
@@ -633,6 +780,60 @@ const Gallery = (() => {
                 });
             }
             return;
+        }
+
+        if (GallerySections.getCurrentSection() === 'photography') {
+            const liveAuctions = allNfts.filter(
+                (nft) =>
+                    isObjktAuction(nft) &&
+                    (nft.photo_kind || 'photo') === GallerySections.getPhotoKind(),
+            );
+            const meta = GallerySections.getSectionMeta();
+            const objktInfo = collectionInfo.objkt_auctions || {};
+            const profileUrl =
+                meta.objkt_profile ||
+                objktInfo.objkt_profile ||
+                collectionInfo.objkt_profile ||
+                'https://objkt.com/@jackbeatnic/';
+            const show = liveAuctions.length > 0;
+            el.hidden = !show;
+            if (!show) {
+                // fall through to community tokens below
+            } else {
+                if (eyebrowEl) {
+                    eyebrowEl.textContent =
+                        meta.promo_auction_eyebrow || 'Live on OBJKT';
+                }
+                if (leadEl) {
+                    leadEl.textContent =
+                        meta.promo_auction_lead ||
+                        'Active Tezos auctions from your wallet — bid on OBJKT.';
+                }
+                if (listEl) {
+                    const cta = escapeHtml(meta.promo_auction_cta || 'Bid on OBJKT');
+                    listEl.innerHTML = liveAuctions
+                        .map((nft) => {
+                            const title = escapeHtml(nft.name || 'Live auction');
+                            const price = formatPrice(nft);
+                            const href = escapeHtml(marketplaceUrl(nft));
+                            const type =
+                                nft.auction_type === 'dutch'
+                                    ? 'Dutch auction'
+                                    : 'English auction';
+                            return `
+                    <article class="section-promo__item">
+                        <h3 class="section-promo__title">OBJKT Auction</h3>
+                        <p class="section-promo__token">
+                            <span class="section-promo__symbol">${title}</span>
+                            <span class="section-promo__chain"> · ${escapeHtml(type)} · ${escapeHtml(price.text)}</span>
+                        </p>
+                        <a class="btn btn--primary btn--small section-promo__cta" href="${href}" target="_blank" rel="noopener noreferrer">${cta}</a>
+                    </article>`;
+                        })
+                        .join('');
+                }
+                return;
+            }
         }
 
         if (
@@ -915,7 +1116,7 @@ const Gallery = (() => {
             for (let i = index; i < end; i += 1) {
                 const nft = filtered[i];
                 frag.appendChild(
-                    isManifoldAuction(nft) ? buildAuctionCard(nft) : buildCard(nft),
+                    isLiveAuction(nft) ? buildAuctionCard(nft) : buildCard(nft),
                 );
             }
             container.appendChild(frag);
@@ -1008,6 +1209,7 @@ const Gallery = (() => {
         const bidHref = escapeHtml(marketplaceUrl(nft));
         const price = formatPrice(nft);
         const tokenLabelText = tokenLabel(nft);
+        const bidLabel = escapeHtml(marketplaceLabel(nft));
 
         card.innerHTML = `
             <div class="nft-image-wrap">
@@ -1038,7 +1240,7 @@ const Gallery = (() => {
                 </p>
                 ${descriptionHtml}
                 <div class="nft-card__actions">
-                    <a class="btn btn--primary btn--block" href="${bidHref}" target="_blank" rel="noopener noreferrer">Bid on Manifold</a>
+                    <a class="btn btn--primary btn--block" href="${bidHref}" target="_blank" rel="noopener noreferrer">${bidLabel}</a>
                 </div>
             </div>
         `;
@@ -1068,6 +1270,7 @@ const Gallery = (() => {
             : '';
         const category = escapeHtml((nft.ai?.category || '').toUpperCase());
         const tokenLabelText = tokenLabel(nft);
+        const supplyMetaHtml = objktSupplyMetaHtml(nft);
         const price = formatPrice(nft);
         const marketActionsHtml = buildMarketActionsHtml(nft);
         const likesCount = nft.likes_count ?? 0;
@@ -1100,6 +1303,7 @@ const Gallery = (() => {
                     <div>
                         <h3 class="nft-card__title">${name}</h3>
                         <p class="nft-card__token">${escapeHtml(tokenLabelText)}</p>
+                        ${supplyMetaHtml}
                     </div>
                     <div class="nft-card__engage">
                         <button type="button" class="nft-like" aria-label="Like ${name}" aria-pressed="false">

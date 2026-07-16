@@ -136,9 +136,62 @@ SEKCJE AI ART / PHOTOGRAPHY
   Patrz STRUKTURA_SEKCJI.txt — pola medium, photo_kind, blok site w gallery.json.
 
 
+OBJKT (Tezos) — photography w gallery.json
+------------------------------------------
+  Skrypt: aktualizuj_objkt_do_galerii.py
+  Źródło: data.objkt.com (GraphQL) — created_tokens + supply + saldo portfela
+
+  Na objkt.com/@jackbeatnic widać CAŁĄ historię utworzonych (także spalone).
+  Do gallery.json trafiają tylko POSIADANE (supply>0 i quantity>0 u Ciebie).
+
+  cd /home/jb/jb_nft/www
+  python3 aktualizuj_objkt_do_galerii.py              # sync galerii + audyt CSV
+  python3 aktualizuj_objkt_do_galerii.py --dry-run
+  python3 aktualizuj_objkt_do_galerii.py --audyt      # tylko CSV, bez gallery.json
+
+  Audyt (porównanie z backupem po tezos_token_id):
+    raportowanie/audyt/objkt_audyt_posiadane_*.csv
+    raportowanie/audyt/objkt_audyt_sprzedane_*.csv   # odeszły z portfela
+    raportowanie/audyt/objkt_audyt_spalone_*.csv     # supply=0 on-chain
+
+  ownership_status w gallery.json: posiadane | (sprzedane/spalone nie trafiają)
+
+
+OBJKT — live aukcje (photography, z przodu galerii)
+----------------------------------------------------
+  Skrypt: aktualizuj_objkt_aukcje_do_galerii.py
+  Wyjście: objkt_auctions_gallery.json (ładowane przez gallery.js)
+  Źródło: english_auction_active + dutch_auction_active (seller lub creator)
+
+  Gdy aukcja jest aktywna:
+    • karta „Live auction” na początku sekcji Photography
+    • baner section-promo z linkiem Bid on OBJKT
+    • zwykła karta OBJKT tego samego tokena jest ukryta (bez duplikatu)
+
+  python3 aktualizuj_objkt_aukcje_do_galerii.py
+  python3 aktualizuj_objkt_aukcje_do_galerii.py --dry-run
+
+
+SALVOR — photography (JackBeatnic, nie AI)
+------------------------------------------
+  Skrypt: aktualizuj_salvor_foto_do_galerii.py
+  Profil: https://salvor.io/profile/JackBeatnic
+  API: salvor.io/api/profile/JackBeatnic/listings (+ /nfts)
+
+  Do gallery.json trafiają tylko listingi z ceną AVAX (pomija kontrakty AI
+  z raportowanie/kolekcje.json).
+
+  python3 aktualizuj_salvor_foto_do_galerii.py
+  python3 aktualizuj_salvor_foto_do_galerii.py --dry-run
+
+  Jeśli API zwraca 0 pozycji — sprawdź profil w przeglądarce; skrypt nie
+  nadpisuje istniejących wpisów salvor w gallery.json.
+
+
 PLIKI STRONY
 ------------
-  index.html, css/gallery.css, js/*.js, gallery.json, assets/
+  index.html, css/gallery.css, js/*.js, gallery.json,
+  objkt_auctions_gallery.json, auctions_gallery.json, assets/
 
 
 GITHUB I TERMINAL — CZY SIĘ WYLOGOWYWAĆ?

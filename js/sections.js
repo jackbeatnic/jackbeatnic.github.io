@@ -623,6 +623,10 @@ const GallerySections = (() => {
                 return true;
             }
             if (currentSection === 'photography') {
+                if (medium === 'objkt_auction') {
+                    const kind = nft.photo_kind || 'photo';
+                    return kind === currentPhotoKind;
+                }
                 if (medium !== 'photography') return false;
                 const kind = nft.photo_kind || 'photo';
                 return kind === currentPhotoKind;
@@ -775,7 +779,7 @@ const GallerySections = (() => {
             currentSection = 'ai_art';
             currentAiKind = 'evm';
             currentAiSeries = series;
-        } else if (medium === 'photography') {
+        } else if (medium === 'photography' || medium === 'objkt_auction') {
             if (currentSection === 'photography' && kind === currentPhotoKind) return;
             currentSection = 'photography';
             currentPhotoKind = kind;

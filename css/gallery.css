@@ -1607,6 +1607,15 @@ body.tip-open {
     font-weight: 300;
 }
 
+.nft-card__supply {
+    margin: 0.35rem 0 0;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    color: var(--gray-500);
+    font-weight: 500;
+    line-height: 1.35;
+}
+
 .nft-card--auction .nft-image-wrap {
     position: relative;
 }

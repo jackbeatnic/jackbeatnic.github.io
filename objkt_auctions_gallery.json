@@ -1,0 +1,66 @@
+{
+  "collection_info": {
+    "tezos_domain": "jackbeatnic.tez",
+    "tezos_creator_wallet": "tz2HwTpqTsJ9HxGE3gd77Gv6gAiCNRCvEq9Q",
+    "objkt_profile": "https://objkt.com/@jackbeatnic/",
+    "last_objkt_auctions_sync": "2026-07-16T00:17:55Z",
+    "active_count": 1
+  },
+  "site": {
+    "sections": {
+      "photography": {
+        "promo_eyebrow": "Live on OBJKT",
+        "promo_lead": "English and Dutch auctions from your Tezos wallet — bid directly on OBJKT.",
+        "promo_cta": "View auction on OBJKT"
+      }
+    }
+  },
+  "nfts": [
+    {
+      "token_id": 65622530,
+      "objkt_token_pk": 65622530,
+      "objkt_auction_id": "308196",
+      "auction_type": "english",
+      "name": "Faded Vastness",
+      "objkt_url": "https://objkt.com/tokens/KT1RV177jGFwSiNmAitB6Ux7kgj8sK8MecbA/0",
+      "auction_url": "https://objkt.com/auction/308196",
+      "marketplace_url": "https://objkt.com/auction/308196",
+      "image_url": "https://ipfs.io/ipfs/QmdwbLjeRr23HujFKeX41LJbAL3dCkVX8y29GmtxB26J4f",
+      "supply": 1,
+      "traits": {},
+      "ai": {
+        "description": "1/1 edition | X/IG: @jackbeatnic | 7776 x 5184 px dp",
+        "dominant_colors": [],
+        "vibe_tags": [
+          "auction",
+          "objkt",
+          "tezos",
+          "photography"
+        ],
+        "category": "photography",
+        "keywords": [
+          "auction",
+          "objkt",
+          "tezos",
+          "JB: Soul Shots | 1/1 ed",
+          "jackbeatnic"
+        ]
+      },
+      "likes_count": 0,
+      "status": "auction",
+      "chain": "tezos",
+      "contract_address": "KT1RV177jGFwSiNmAitB6Ux7kgj8sK8MecbA",
+      "tezos_token_id": "0",
+      "collection_name": "JB: Soul Shots | 1/1 ed",
+      "listing_status": "Live",
+      "auction_status": "live",
+      "listing_currency": "XTZ",
+      "display_rank": 0,
+      "medium": "objkt_auction",
+      "photo_kind": "photo",
+      "source": "objkt",
+      "marketplace": "objkt",
+      "reserve_xtz": 1.0
+    }
+  ]
+}

@@ -34,6 +34,13 @@ const GalleryFilters = (() => {
         if (nft.medium === 'manifold_auction') {
             return nft.current_bid_eth != null || nft.reserve_eth != null;
         }
+        if (nft.medium === 'objkt_auction') {
+            return (
+                nft.current_bid_xtz != null ||
+                nft.reserve_xtz != null ||
+                nft.dutch_start_xtz != null
+            );
+        }
         if (nft.listing_status === 'For Sale') return true;
         if (nft.salvor_price_avax != null || nft.opensea_price_avax != null) return true;
         if (nft.opensea_price_eth != null) return true;
@@ -120,10 +127,24 @@ const GalleryFilters = (() => {
         );
     }
 
+    function photographyMoodTagKeys(nfts) {
+        const counts = countVibeTags(nfts);
+        return new Set(
+            [...counts.entries()]
+                .filter(([tag, count]) => !isMetaVibeTag(tag) && count > 0)
+                .map(([tag]) => tag),
+        );
+    }
+
     function moodSupported(nfts, ctx = filtersContext()) {
-        if (ctx.section !== 'ai_art') return false;
         const list = nfts || [];
         if (!list.length) return false;
+
+        if (ctx.section === 'photography') {
+            return photographyMoodTagKeys(list).size > 0;
+        }
+
+        if (ctx.section !== 'ai_art') return false;
         const tagKeys = discriminativeMoodTagKeys(list);
         if (!tagKeys.size) return false;
         const withMood = list.filter((nft) =>
@@ -135,8 +156,11 @@ const GalleryFilters = (() => {
         );
     }
 
-    function collectMoodTags(nfts) {
-        const tagKeys = discriminativeMoodTagKeys(nfts);
+    function collectMoodTags(nfts, ctx = filtersContext()) {
+        const tagKeys =
+            ctx.section === 'photography'
+                ? photographyMoodTagKeys(nfts)
+                : discriminativeMoodTagKeys(nfts);
         if (!tagKeys.size) return [];
         const display = new Map();
         (nfts || []).forEach((nft) => {
@@ -233,7 +257,7 @@ const GalleryFilters = (() => {
         if (!container) return;
         container.innerHTML = '';
 
-        collectMoodTags(nfts).forEach((tag) => {
+        collectMoodTags(nfts, filtersContext()).forEach((tag) => {
             const btn = document.createElement('button');
             btn.type = 'button';
             btn.className = 'filter-tag vibe-filter';

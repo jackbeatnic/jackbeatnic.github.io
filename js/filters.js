@@ -136,16 +136,31 @@ const GalleryFilters = (() => {
         );
     }
 
+    function isEvmOpenSeaContext(ctx = filtersContext()) {
+        if (ctx.section !== 'ai_art') return false;
+        // XRPL / Sui: no real mood pipeline (was fixed mood_score 6/10 etc.)
+        if (ctx.aiKind === 'xrpl' || ctx.aiKind === 'sui') return false;
+        // EVM tab (legacy URL may still send ai=opensea)
+        return ctx.aiKind === 'evm' || ctx.aiKind === 'opensea' || !ctx.aiKind;
+    }
+
+    /**
+     * Mood (vibe_tags) — only where we have real analysis.
+     * Hidden: XRPL, Sui, photography/OBJKT.
+     * Shown: EVM OpenSea series (Nature Stories, Flower Stories, Nature Jam, …).
+     */
     function moodSupported(nfts, ctx = filtersContext()) {
         const list = nfts || [];
         if (!list.length) return false;
+        if (ctx.section === 'photography') return false;
+        if (!isEvmOpenSeaContext(ctx)) return false;
 
-        if (ctx.section === 'photography') {
-            return photographyMoodTagKeys(list).size > 0;
-        }
-
-        if (ctx.section !== 'ai_art') return false;
-        const tagKeys = discriminativeMoodTagKeys(list);
+        // Single EVM series: all non-meta tags (serene/minimalist stay usable chips).
+        // "All series": only discriminative tags (avoid noise from mixed catalogs).
+        const tagKeys =
+            ctx.aiSeries && ctx.aiSeries !== 'all'
+                ? photographyMoodTagKeys(list)
+                : discriminativeMoodTagKeys(list);
         if (!tagKeys.size) return false;
         const withMood = list.filter((nft) =>
             (nft.ai?.vibe_tags || []).some((tag) => tagKeys.has(String(tag).toLowerCase())),
@@ -157,8 +172,9 @@ const GalleryFilters = (() => {
     }
 
     function collectMoodTags(nfts, ctx = filtersContext()) {
+        if (ctx.section === 'photography' || !isEvmOpenSeaContext(ctx)) return [];
         const tagKeys =
-            ctx.section === 'photography'
+            ctx.aiSeries && ctx.aiSeries !== 'all'
                 ? photographyMoodTagKeys(nfts)
                 : discriminativeMoodTagKeys(nfts);
         if (!tagKeys.size) return [];
@@ -222,7 +238,7 @@ const GalleryFilters = (() => {
             const showHint = shouldShowFiltersHint(nfts, ctx);
             note.hidden = !showHint;
             note.textContent =
-                'Palette and mood filters work per series (e.g. Nature Stories) or on XRPL. Pick a series above, or switch to XRPL.';
+                'Palette and mood filters work per EVM series (e.g. Nature Stories). Pick a series above.';
         }
     }
 
@@ -372,10 +388,18 @@ const GalleryFilters = (() => {
             dispatchChange();
         });
         document.getElementById('filter-saved')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
             const btn = e.currentTarget;
             const on = !GalleryLikes.getSavedOnly();
             GalleryLikes.setSavedOnly(on);
             btn.classList.toggle('is-active', on);
+            // Keep viewport on Explore — empty Saved list used to collapse the
+            // grid and scroll the About/Marketplaces block into view.
+            document.getElementById('explore')?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest',
+            });
         });
     }
 

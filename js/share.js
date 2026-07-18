@@ -22,11 +22,50 @@ const GalleryShare = (() => {
         document.addEventListener('keydown', onKeydown);
     }
 
+    function slugifyCollectionId(raw) {
+        return String(raw || '')
+            .trim()
+            .toLowerCase()
+            .replace(/['"]/g, '')
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/-+/g, '-')
+            .replace(/^-|-$/g, '') || 'collection';
+    }
+
+    function collectionId(nft) {
+        if (nft?.collection_id) return slugifyCollectionId(nft.collection_id);
+        const medium = (nft?.medium || 'work').toString();
+        const chain = (nft?.chain || 'x').toString();
+        return slugifyCollectionId(`${medium}_${chain}`);
+    }
+
+    /**
+     * Canonical share landing — namespaced by collection_id so NS/NJ/Sui
+     * token_id 1,2,3… never collide (old flat nft/3.html was ambiguous).
+     */
+    function shareLandingUrl(nft) {
+        if (!nft || nft.token_id == null) return siteUrl;
+        const col = encodeURIComponent(collectionId(nft));
+        const tid = encodeURIComponent(String(nft.token_id));
+        return `${siteUrl}nft/${col}/${tid}.html`;
+    }
+
     function workUrl(nft) {
-        if (nft?.share_url) return nft.share_url;
+        // Prefer namespaced landing (fresh OG). Ignore stale flat share_url
+        // like …/nft/3.html that collided across collections.
+        const landing = shareLandingUrl(nft);
+        if (nft?.share_url && String(nft.share_url).includes(`/nft/${collectionId(nft)}/`)) {
+            return nft.share_url;
+        }
+        if (landing && nft?.collection_id) return landing;
+
+        if (nft?.share_url && !/\/nft\/\d+\.html$/.test(String(nft.share_url))) {
+            return nft.share_url;
+        }
 
         const params = new URLSearchParams();
         params.set('work', String(nft.token_id));
+        if (nft.collection_id) params.set('collection', String(nft.collection_id));
         const medium = nft.medium || 'ai_art';
 
         if (medium === 'photography') {
@@ -36,6 +75,9 @@ const GalleryShare = (() => {
         } else if (medium === 'xrpl_ai') {
             params.set('section', 'ai_art');
             params.set('ai', 'xrpl');
+        } else if (medium === 'sui_ai') {
+            params.set('section', 'ai_art');
+            params.set('ai', 'sui');
         } else if (medium === 'ai_art') {
             params.set('section', 'ai_art');
             params.set('ai', 'evm');

@@ -1302,6 +1302,20 @@ const Gallery = (() => {
         const price = formatPrice(nft);
         const marketActionsHtml = buildMarketActionsHtml(nft);
         const likesCount = nft.likes_count ?? 0;
+        // Real mood_score from Grok/AI (Nature Stories etc.) — skip placeholder XRPL 6/10
+        const moodScore = nft.ai?.mood_score;
+        const showMoodScore =
+            moodScore != null &&
+            moodScore !== '' &&
+            nft.medium !== 'xrpl_ai' &&
+            nft.chain !== 'xrpl' &&
+            nft.chain !== 'sui' &&
+            nft.medium !== 'sui_ai' &&
+            nft.medium !== 'photography' &&
+            nft.medium !== 'objkt_auction';
+        const moodHtml = showMoodScore
+            ? `<span class="nft-card__mood">Mood ${escapeHtml(String(moodScore))}/10</span>`
+            : '';
 
         const colorsHtml = (nft.ai?.dominant_colors || [])
             .map(
@@ -1311,6 +1325,14 @@ const Gallery = (() => {
             .join('');
 
         const tagsHtml = (nft.ai?.vibe_tags || [])
+            .filter((tag) => {
+                const k = String(tag).toLowerCase();
+                return ![
+                    'ai play', 'ai art', 'nature jam', 'nature stories', 'flower stories',
+                    'based ai', 'polygon', 'avalanche', 'base', 'sui', 'xrpl', 'xrp cafe',
+                    'tradeport', 'launchpad', 'experimental', 'opensea', 'photography', 'photo',
+                ].includes(k);
+            })
             .slice(0, 4)
             .map((tag) => `<span class="nft-tag">${escapeHtml(tag)}</span>`)
             .join('');
@@ -1359,6 +1381,7 @@ const Gallery = (() => {
                 <div class="nft-card__footer">
                     <div>
                         <span class="nft-card__category">${category}</span>
+                        ${moodHtml}
                     </div>
                 </div>
             </div>

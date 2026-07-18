@@ -141,13 +141,21 @@ const GalleryFilters = (() => {
         // XRPL / Sui: no real mood pipeline (was fixed mood_score 6/10 etc.)
         if (ctx.aiKind === 'xrpl' || ctx.aiKind === 'sui') return false;
         // EVM tab (legacy URL may still send ai=opensea)
-        return ctx.aiKind === 'evm' || ctx.aiKind === 'opensea' || !ctx.aiKind;
+        const kind = String(ctx.aiKind || 'evm').toLowerCase();
+        return kind === 'evm' || kind === 'opensea' || kind === '';
     }
+
+    /** Series with Grok/AI vibe analysis (not catalog-only meta tags). */
+    const MOOD_SERIES = new Set([
+        'nature_stories',
+        'flower_stories',
+        // later: nature_jam / based_ai / jb_ai_play once real vibe_tags exist
+    ]);
 
     /**
      * Mood (vibe_tags) — only where we have real analysis.
-     * Hidden: XRPL, Sui, photography/OBJKT.
-     * Shown: EVM OpenSea series (Nature Stories, Flower Stories, Nature Jam, …).
+     * Hidden: XRPL, Sui, photography/OBJKT, and EVM series with only meta tags.
+     * Shown: Nature Stories (and later Flower Stories etc.).
      */
     function moodSupported(nfts, ctx = filtersContext()) {
         const list = nfts || [];
@@ -155,26 +163,30 @@ const GalleryFilters = (() => {
         if (ctx.section === 'photography') return false;
         if (!isEvmOpenSeaContext(ctx)) return false;
 
-        // Single EVM series: all non-meta tags (serene/minimalist stay usable chips).
-        // "All series": only discriminative tags (avoid noise from mixed catalogs).
+        // Prefer series allow-list when set; still fall back to tag coverage.
+        const series = ctx.aiSeries || '';
+        if (series && series !== 'all' && MOOD_SERIES.has(series)) {
+            return photographyMoodTagKeys(list).size > 0;
+        }
+
+        // Single EVM series: all non-meta tags. "All": only discriminative.
         const tagKeys =
-            ctx.aiSeries && ctx.aiSeries !== 'all'
+            series && series !== 'all'
                 ? photographyMoodTagKeys(list)
                 : discriminativeMoodTagKeys(list);
         if (!tagKeys.size) return false;
         const withMood = list.filter((nft) =>
             (nft.ai?.vibe_tags || []).some((tag) => tagKeys.has(String(tag).toLowerCase())),
         );
-        return (
-            withMood.length === list.length ||
-            withMood.length / list.length >= 0.5
-        );
+        // Lower bar (20%) so mixed loads / partial metadata still show Mood
+        return withMood.length / list.length >= 0.2;
     }
 
     function collectMoodTags(nfts, ctx = filtersContext()) {
         if (ctx.section === 'photography' || !isEvmOpenSeaContext(ctx)) return [];
+        const series = ctx.aiSeries || '';
         const tagKeys =
-            ctx.aiSeries && ctx.aiSeries !== 'all'
+            series && series !== 'all'
                 ? photographyMoodTagKeys(nfts)
                 : discriminativeMoodTagKeys(nfts);
         if (!tagKeys.size) return [];
@@ -218,12 +230,33 @@ const GalleryFilters = (() => {
 
     function syncSeriesScopedFilters(nfts = lastFilterNfts) {
         const ctx = filtersContext();
-        const showPalette = paletteSupported(nfts, ctx);
-        const showMood = moodSupported(nfts, ctx);
-        const paletteRow = document.getElementById('color-filters')?.closest('.filters-row');
-        const moodRow = document.getElementById('vibe-filters')?.closest('.filters-row');
-        if (paletteRow) paletteRow.hidden = !showPalette;
-        if (moodRow) moodRow.hidden = !showMood;
+        let showPalette = false;
+        let showMood = false;
+        try {
+            showPalette = paletteSupported(nfts, ctx);
+            showMood = moodSupported(nfts, ctx);
+        } catch (err) {
+            console.warn('GalleryFilters visibility:', err);
+            // Fail open for EVM Nature Stories-style views so Mood/Palette are not stuck hidden
+            showMood =
+                isEvmOpenSeaContext(ctx) &&
+                (nfts || []).some((n) => (n.ai?.vibe_tags || []).some((t) => !isMetaVibeTag(t)));
+            showPalette =
+                ctx.section === 'ai_art' &&
+                (nfts || []).some((n) => (n.ai?.dominant_colors || []).length > 0);
+        }
+        const paletteRow =
+            document.getElementById('filters-row-palette') ||
+            document.getElementById('color-filters')?.closest('.filters-row');
+        const moodRow =
+            document.getElementById('filters-row-mood') ||
+            document.getElementById('vibe-filters')?.closest('.filters-row');
+        if (paletteRow) {
+            paletteRow.hidden = !showPalette;
+        }
+        if (moodRow) {
+            moodRow.hidden = !showMood;
+        }
 
         const panel = document.getElementById('explore');
         let note = document.getElementById('filters-series-note');

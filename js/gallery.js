@@ -1196,7 +1196,49 @@ const Gallery = (() => {
         if (!work) return null;
         const tokenId = Number(work);
         if (!Number.isFinite(tokenId)) return null;
-        return allNfts.find((item) => Number(item.token_id) === tokenId) || null;
+
+        const collection = params.get('collection') || params.get('col') || '';
+        const matches = allNfts.filter((item) => Number(item.token_id) === tokenId);
+        if (!matches.length) return null;
+
+        if (collection) {
+            const hit = matches.find((item) => item.collection_id === collection);
+            if (hit) return hit;
+        }
+
+        // Disambiguate common low IDs (NS / Nature Jam / Sui all use 1..N)
+        const series = params.get('series');
+        if (series && typeof GallerySections.resolveAiSeries === 'function') {
+            const bySeries = matches.find(
+                (item) => GallerySections.resolveAiSeries(item) === series,
+            );
+            if (bySeries) return bySeries;
+        }
+
+        const ai = params.get('ai');
+        if (ai === 'sui') {
+            const sui = matches.find((item) => item.medium === 'sui_ai' || item.chain === 'sui');
+            if (sui) return sui;
+        }
+        if (ai === 'xrpl') {
+            const xrpl = matches.find((item) => item.medium === 'xrpl_ai' || item.chain === 'xrpl');
+            if (xrpl) return xrpl;
+        }
+
+        // Prefer currently visible section/series when still ambiguous
+        if (matches.length > 1) {
+            const sectionHits = matches.filter((item) => {
+                try {
+                    return GallerySections.filterNfts([item]).length > 0;
+                } catch {
+                    return true;
+                }
+            });
+            if (sectionHits.length === 1) return sectionHits[0];
+            if (sectionHits.length > 1) return sectionHits[0];
+        }
+
+        return matches[0];
     }
 
     function preselectWorkSection() {

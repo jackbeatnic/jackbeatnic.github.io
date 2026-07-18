@@ -3,7 +3,8 @@
 
 - Site card: assets/og-preview.jpg (homepage)
 - Per-NFT cards: assets/og/nft-{id}.jpg (OpenSea-style: thumb + price)
-- Share landing pages: nft/{id}.html (OG meta → redirect to gallery)
+- Share landing pages: nft/{collection_id}/{id}.html (OG meta → redirect)
+  Legacy flat nft/{id}.html kept as redirect stubs when unique.
 """
 
 from __future__ import annotations
@@ -427,14 +428,82 @@ def generate_nft_ogs(
     return written
 
 
+def slugify_collection_id(raw: str) -> str:
+    """Filesystem/URL-safe collection slug (no spaces, quotes, colons)."""
+    import re
+
+    s = (raw or "").strip().lower()
+    s = s.replace("'", "").replace('"', "")
+    s = re.sub(r"[^a-z0-9]+", "-", s)
+    s = re.sub(r"-+", "-", s).strip("-")
+    return s or "collection"
+
+
+def nft_collection_id(nft: dict) -> str:
+    col = (nft.get("collection_id") or "").strip()
+    if col:
+        return slugify_collection_id(col)
+    # Fallback slug so share paths stay unique across chains/media
+    medium = (nft.get("medium") or "work").strip() or "work"
+    chain = (nft.get("chain") or "x").strip() or "x"
+    return slugify_collection_id(f"{medium}_{chain}")
+
+
+def share_path_for_nft(nft: dict) -> str:
+    """Unique share path: nft/{collection_slug}/{token_id}.html"""
+    col = nft_collection_id(nft)
+    token_id = int(nft["token_id"])
+    return f"nft/{col}/{token_id}.html"
+
+
+def gallery_deep_link(nft: dict, base_url: str) -> str:
+    """Disambiguated deep link — token_id alone collides across NS/NJ/Sui."""
+    from urllib.parse import urlencode
+
+    token_id = int(nft["token_id"])
+    q: dict[str, str] = {"work": str(token_id)}
+    col = nft.get("collection_id")
+    if col:
+        q["collection"] = str(col)
+    medium = nft.get("medium") or "ai_art"
+    if medium == "photography":
+        q["section"] = "photography"
+        kind = nft.get("photo_kind") or "photo"
+        if kind != "photo":
+            q["photo"] = kind
+    elif medium == "xrpl_ai":
+        q["section"] = "ai_art"
+        q["ai"] = "xrpl"
+    elif medium == "sui_ai":
+        q["section"] = "ai_art"
+        q["ai"] = "sui"
+    elif medium == "ai_art":
+        q["section"] = "ai_art"
+        q["ai"] = "evm"
+        series = nft.get("ai_series")
+        if series and series != "nature_stories":
+            q["series"] = series
+    return f"{base_url}/?{urlencode(q)}"
+
+
 def share_page_html(nft: dict, info: dict, base_url: str, og_version: str) -> str:
     token_id = int(nft["token_id"])
     collection = nft_collection_name(nft, info)
     artwork_title = nft_artwork_title(nft)
     price_text, price_hint = format_share_price(nft, info)
-    share_url = f"{base_url}/nft/{token_id}.html"
-    og_image = og_url_with_version(base_url, f"assets/og/nft-{token_id}.jpg", og_version)
-    gallery_url = f"{base_url}/?work={token_id}"
+    rel_path = share_path_for_nft(nft)
+    share_url = f"{base_url}/{rel_path}"
+    # OG image files stay nft-{id}.jpg within gallery.json (ids unique there).
+    # Prefix with collection when file exists, else legacy path.
+    col = nft_collection_id(nft)
+    prefixed = NFT_OG_DIR / f"{col}-{token_id}.jpg"
+    legacy = NFT_OG_DIR / f"nft-{token_id}.jpg"
+    if prefixed.is_file():
+        og_rel = f"assets/og/{col}-{token_id}.jpg"
+    else:
+        og_rel = f"assets/og/nft-{token_id}.jpg"
+    og_image = og_url_with_version(base_url, og_rel, og_version)
+    gallery_url = gallery_deep_link(nft, base_url)
     title = f"{artwork_title} | Jack Beatnic Gallery"
     description = f"{price_text} · {collection} — {price_hint}"
 
@@ -467,6 +536,22 @@ def share_page_html(nft: dict, info: dict, base_url: str, og_version: str) -> st
 """
 
 
+def legacy_redirect_html(target_url: str) -> str:
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0;url={html.escape(target_url)}">
+    <link rel="canonical" href="{html.escape(target_url)}">
+    <title>Redirecting…</title>
+</head>
+<body>
+    <p><a href="{html.escape(target_url)}">Continue to artwork</a></p>
+</body>
+</html>
+"""
+
+
 def generate_share_pages(
     data: dict,
     token_ids: set[int] | None = None,
@@ -478,24 +563,53 @@ def generate_share_pages(
     nfts = data.get("nfts") or []
     output_dir.mkdir(parents=True, exist_ok=True)
     written: list[Path] = []
-    active_ids = set()
+    active_paths: set[Path] = set()
+    # Count token_id frequency across whole gallery (flat legacy only if unique)
+    tid_counts: dict[int, int] = {}
+    for nft in nfts:
+        tid_counts[int(nft["token_id"])] = tid_counts.get(int(nft["token_id"]), 0) + 1
 
     for nft in nfts:
         token_id = int(nft["token_id"])
-        active_ids.add(token_id)
         if token_ids is not None and token_id not in token_ids:
             continue
 
-        out = output_dir / f"{token_id}.html"
+        rel = share_path_for_nft(nft)
+        out = ROOT / rel
+        out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(share_page_html(nft, info, base_url, og_version), encoding="utf-8")
         written.append(out)
-        nft["share_url"] = f"{base_url}/nft/{token_id}.html"
-        nft["og_image"] = f"assets/og/nft-{token_id}.jpg"
+        active_paths.add(out.resolve())
+        share_url = f"{base_url}/{rel}"
+        nft["share_url"] = share_url
+        col = nft_collection_id(nft)
+        prefixed = NFT_OG_DIR / f"{col}-{token_id}.jpg"
+        if prefixed.is_file():
+            nft["og_image"] = f"assets/og/{col}-{token_id}.jpg"
+        else:
+            nft["og_image"] = f"assets/og/nft-{token_id}.jpg"
+        print(f"[page] {rel}")
 
+        # Legacy flat nft/{id}.html — only when this token_id is unique in gallery.json
+        if tid_counts.get(token_id, 0) == 1:
+            legacy = output_dir / f"{token_id}.html"
+            legacy.write_text(legacy_redirect_html(share_url), encoding="utf-8")
+            written.append(legacy)
+            active_paths.add(legacy.resolve())
+
+    # Remove stale flat pages not in active set
     for stale in output_dir.glob("*.html"):
-        if stale.stem.isdigit() and int(stale.stem) not in active_ids:
+        if stale.resolve() not in active_paths:
             stale.unlink()
             print(f"[page] Usunięto nieaktualny: {stale.name}")
+
+    # Remove empty leftover dirs under nft/ (keep collection dirs we wrote)
+    for sub in output_dir.iterdir():
+        if sub.is_dir():
+            for stale in sub.glob("*.html"):
+                if stale.resolve() not in active_paths:
+                    stale.unlink()
+                    print(f"[page] Usunięto nieaktualny: {stale.relative_to(ROOT)}")
 
     return written
 

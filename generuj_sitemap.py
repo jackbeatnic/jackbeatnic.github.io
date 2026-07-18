@@ -14,9 +14,11 @@ def main() -> None:
     urls: list[str] = [f"{SITE}/"]
     nft_dir = ROOT / "nft"
     if nft_dir.is_dir():
-        for p in sorted(nft_dir.glob("*.html"), key=lambda x: x.name):
-            if p.stat().st_size >= 50:
-                urls.append(f"{SITE}/nft/{p.name}")
+        for p in sorted(nft_dir.rglob("*.html")):
+            if p.stat().st_size < 40:
+                continue
+            rel = p.relative_to(ROOT).as_posix()
+            urls.append(f"{SITE}/{rel}")
 
     lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
@@ -57,8 +59,6 @@ Sitemap: {SITE}/sitemap.txt
 """
     (ROOT / "robots.txt").write_text(robots, encoding="utf-8")
     print(f"sitemap.xml: {len(urls)} URLs")
-    print(f"sitemap.txt: {len(urls)} URLs")
-    print(f"sitemap-home.xml: homepage only")
 
 
 if __name__ == "__main__":

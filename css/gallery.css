@@ -1572,6 +1572,14 @@ body.tip-open {
     color: #c53030;
 }
 
+.nft-card__mood {
+    color: var(--gray-400);
+    margin-left: 0.35rem;
+    font-weight: 300;
+    font-size: 0.62rem;
+    letter-spacing: 0.04em;
+}
+
 .nft-save.is-active {
     color: var(--black);
     border-color: var(--gray-300);

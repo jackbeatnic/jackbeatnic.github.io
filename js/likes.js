@@ -46,14 +46,26 @@ const GalleryLikes = (() => {
         if (likes.has(key)) likes.delete(key);
         else likes.add(key);
         persistSet(STORAGE_LIKES, likes);
-        dispatch();
+        // Full grid refresh only when a list filter depends on this state.
+        // Card buttons update themselves via local sync — avoid layout jumps.
+        if (showSavedOnly) dispatch();
+        else {
+            document.dispatchEvent(
+                new CustomEvent('gallery:engage', { detail: { key, kind: 'like' } }),
+            );
+        }
     }
 
     function toggleSaved(key) {
         if (saved.has(key)) saved.delete(key);
         else saved.add(key);
         persistSet(STORAGE_SAVED, saved);
-        dispatch();
+        if (showSavedOnly) dispatch();
+        else {
+            document.dispatchEvent(
+                new CustomEvent('gallery:engage', { detail: { key, kind: 'saved' } }),
+            );
+        }
     }
 
     function isLiked(key) {

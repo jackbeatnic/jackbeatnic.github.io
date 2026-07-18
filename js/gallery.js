@@ -637,6 +637,23 @@ const Gallery = (() => {
 
             document.addEventListener('gallery:filter', refresh);
             document.addEventListener('gallery:likes', refresh);
+            document.addEventListener('gallery:engage', (e) => {
+                // Card-level like/save: keep scroll position; only touch that card.
+                const key = e.detail?.key;
+                if (!key) return;
+                const card = document.querySelector(`[data-nft-key="${CSS.escape(key)}"]`);
+                if (!card) return;
+                const likeBtn = card.querySelector('.nft-like');
+                const saveBtn = card.querySelector('.nft-save');
+                if (likeBtn) {
+                    likeBtn.classList.toggle('is-active', GalleryLikes.isLiked(key));
+                    likeBtn.setAttribute('aria-pressed', String(GalleryLikes.isLiked(key)));
+                }
+                if (saveBtn) {
+                    saveBtn.classList.toggle('is-active', GalleryLikes.isSaved(key));
+                    saveBtn.setAttribute('aria-pressed', String(GalleryLikes.isSaved(key)));
+                }
+            });
             document.addEventListener('gallery:section', (e) => {
                 syncSectionNfts(e.detail?.scope || 'full');
                 syncSectionPromo();
@@ -1092,15 +1109,20 @@ const Gallery = (() => {
             container.classList.remove('gallery-grid--busy');
             let msg = GallerySections.emptyMessage();
             if (GalleryLikes.getSavedOnly()) {
-                msg = 'No saved works yet — bookmark pieces to find them here.';
+                msg = 'No saved works yet — tap ☆ on a card to bookmark it, then use Saved for later.';
             } else if (GalleryFilters.getListedOnly()) {
                 msg = 'No listed works in this view.';
             } else if (sectionNfts.length > 0) {
                 msg = 'No works match the selected filters.';
             }
             container.innerHTML = `<p class="gallery-empty">${escapeHtml(msg)}</p>`;
+            // Keep the empty grid tall enough that About/Marketplaces does not
+            // jump into the viewport (felt like an accidental #anchor jump).
+            container.classList.add('gallery-grid--empty');
             return;
         }
+
+        container.classList.remove('gallery-grid--empty');
 
         container.innerHTML = '';
         container.classList.add('gallery-grid--busy');
@@ -1147,15 +1169,21 @@ const Gallery = (() => {
             }
         };
 
-        likeBtn?.addEventListener('click', () => {
+        likeBtn?.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
             GalleryLikes.toggleLike(key);
             syncState();
         });
-        saveBtn?.addEventListener('click', () => {
+        saveBtn?.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
             GalleryLikes.toggleSaved(key);
             syncState();
         });
-        card.querySelector('.nft-tip')?.addEventListener('click', () => {
+        card.querySelector('.nft-tip')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
             TipCreator.open();
         });
         GalleryShare.bindButton(card.querySelector('.nft-share'), nft);

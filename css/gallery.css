@@ -1298,6 +1298,12 @@ body.tip-open {
     pointer-events: none;
 }
 
+/* Empty Saved/filter state: reserve height so About/Marketplaces does not jump up */
+.gallery-grid--empty {
+    min-height: min(42vh, 22rem);
+    align-content: start;
+}
+
 .gallery-empty,
 .gallery-error {
     grid-column: 1 / -1;

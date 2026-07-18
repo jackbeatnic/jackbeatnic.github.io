@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate robots.txt + sitemap.xml for GitHub Pages deploy."""
+"""Regenerate robots.txt + sitemaps for GitHub Pages / Google Search Console."""
 from __future__ import annotations
 
 from datetime import datetime, timezone
@@ -11,44 +11,54 @@ SITE = "https://jackbeatnic.github.io"
 
 def main() -> None:
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    urls: list[tuple[str, str, str, str]] = [
-        (f"{SITE}/", now, "daily", "1.0"),
-    ]
+    urls: list[str] = [f"{SITE}/"]
     nft_dir = ROOT / "nft"
     if nft_dir.is_dir():
         for p in sorted(nft_dir.glob("*.html"), key=lambda x: x.name):
-            if p.stat().st_size < 50:
-                continue
-            urls.append((f"{SITE}/nft/{p.name}", now, "weekly", "0.7"))
+            if p.stat().st_size >= 50:
+                urls.append(f"{SITE}/nft/{p.name}")
 
     lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
     ]
-    for loc, lastmod, freq, prio in urls:
+    for loc in urls:
         lines.extend(
             [
                 "  <url>",
                 f"    <loc>{loc}</loc>",
-                f"    <lastmod>{lastmod}</lastmod>",
-                f"    <changefreq>{freq}</changefreq>",
-                f"    <priority>{prio}</priority>",
+                f"    <lastmod>{now}</lastmod>",
                 "  </url>",
             ]
         )
     lines.append("</urlset>")
     lines.append("")
     (ROOT / "sitemap.xml").write_text("\n".join(lines), encoding="utf-8")
+    (ROOT / "sitemap.txt").write_text("\n".join(urls) + "\n", encoding="utf-8")
+
+    mini = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+        "  <url>",
+        f"    <loc>{SITE}/</loc>",
+        f"    <lastmod>{now}</lastmod>",
+        "  </url>",
+        "</urlset>",
+        "",
+    ]
+    (ROOT / "sitemap-home.xml").write_text("\n".join(mini), encoding="utf-8")
 
     robots = f"""# Jack Beatnic Gallery — {SITE}/
 User-agent: *
 Allow: /
 
 Sitemap: {SITE}/sitemap.xml
+Sitemap: {SITE}/sitemap.txt
 """
     (ROOT / "robots.txt").write_text(robots, encoding="utf-8")
     print(f"sitemap.xml: {len(urls)} URLs")
-    print(f"robots.txt → Sitemap: {SITE}/sitemap.xml")
+    print(f"sitemap.txt: {len(urls)} URLs")
+    print(f"sitemap-home.xml: homepage only")
 
 
 if __name__ == "__main__":

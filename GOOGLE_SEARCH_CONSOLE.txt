@@ -1,0 +1,105 @@
+================================================================================
+  Google Search Console — indeksowanie jackbeatnic.github.io
+  (własność + sitemap)
+================================================================================
+
+CO JUŻ JEST NA STRONIE (po pushu)
+---------------------------------
+  https://jackbeatnic.github.io/robots.txt
+  https://jackbeatnic.github.io/sitemap.xml   (~homepage + wszystkie /nft/*.html)
+
+  Regeneracja po nowych kartach share/OG:
+    cd /home/jb/jb_nft/www
+    python3 generuj_sitemap.py
+    git add robots.txt sitemap.xml && git commit -m "Update sitemap" && git push
+
+
+CZEGO NIE MOŻE ZROBIĆ AGENT (tylko Ty w przeglądarce)
+------------------------------------------------------
+  • Zalogować się na Twoje konto Google
+  • Kliknąć „Zweryfikuj” w Search Console
+  • Potwierdzić własność bez tokena z Google
+
+  Agent wstawi meta tag / plik weryfikacyjny, gdy podasz kod z GSC.
+
+
+KROK PO KROKU — WERYFIKACJA WŁASNOŚCI (raz, ~5 min)
+----------------------------------------------------
+  1. Otwórz: https://search.google.com/search-console
+
+  2. Zaloguj się kontem Google (najlepiej tym od @JackBeatnicAI / galerii).
+
+  3. „Dodaj usługę” → typ: **Prefiks adresu URL**
+       Wpisz dokładnie:
+         https://jackbeatnic.github.io/
+
+  4. Metoda weryfikacji: **Tag HTML** (najprostsza na GitHub Pages)
+       Google pokaże coś w stylu:
+         <meta name="google-site-verification" content="ABC123xyz..." />
+
+  5. Skopiuj sam ciąg content=... (albo całą linijkę meta) i napisz do Groka:
+         „token GSC: ABC123xyz...”
+
+     Agent:
+       • wstawi meta do index.html
+       • push na GitHub Pages
+       • poczekacie ~1–2 min na deploy
+
+  6. W Search Console kliknij **Zweryfikuj**.
+
+  Alternatywa: metoda **Plik HTML**
+       Google da plik np. google123abc.html
+       Wrzuć treść / nazwę do Groka → agent doda plik w root www/ i push.
+
+
+KROK — ZGŁOSZENIE MAPY WITRYNY
+------------------------------
+  Po udanej weryfikacji:
+
+  1. Search Console → lewe menu **Indeksowanie** → **Mapy witryn**
+     (Sitemaps)
+
+  2. Pole „Dodaj nową mapę witryny”:
+         sitemap.xml
+
+  3. Wyślij.
+
+  Status po kilku minutach / godzinach: „Sukces” + liczba wykrytych URL.
+  Pełne zaindeksowanie (zielone w „Strony”) może zająć dni–tygodnie.
+
+
+OPCJONALNIE — prośba o indeksację strony głównej
+------------------------------------------------
+  Search Console → Inspekcja adresu URL
+    https://jackbeatnic.github.io/
+  → „Poproś o zaindeksowanie”
+
+  Nie spamuj setkami /nft/ — sitemap wystarczy; Google sam priorytetyzuje.
+
+
+PO NOWYCH PRACACH (NS 301+ itd.)
+--------------------------------
+  Po generacji share pages + push galerii:
+
+    python3 generuj_sitemap.py
+    git add sitemap.xml robots.txt && git commit && git push
+
+  W GSC mapa zwykle odświeża się sama; nie trzeba za każdym razem
+  klikać „Wyślij” ponownie (chyba że zmienisz URL mapy).
+
+
+PROBLEMY
+--------
+  „Weryfikacja nieudana”
+    → meta jeszcze nie na live (hard refresh / odczekaj 2 min po push)
+    → zły prefiks (musi być https://jackbeatnic.github.io/ ze slash)
+
+  Sitemap 404
+    → sprawdź https://jackbeatnic.github.io/sitemap.xml w przeglądarce
+
+  Mało stron w indeksie
+    → normalne na start; karty /nft/ to short redirect landings —
+      Google głównie indeksuje stronę główną i silniejsze share URL-e
+
+
+================================================================================

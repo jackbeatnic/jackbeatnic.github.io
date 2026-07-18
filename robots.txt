@@ -1,0 +1,5 @@
+# Jack Beatnic Gallery — https://jackbeatnic.github.io/
+User-agent: *
+Allow: /
+
+Sitemap: https://jackbeatnic.github.io/sitemap.xml

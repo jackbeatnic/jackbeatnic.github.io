@@ -22,13 +22,23 @@ const ImageProxy = (() => {
         return /ipfs\.io|gateway\.pinata|cloudflare-ipfs|dweb\.link|arweave/i.test(url);
     }
 
+    function siteOrigin() {
+        // weserv needs a public absolute URL — use live origin or production fallback
+        if (typeof window !== 'undefined' && window.location?.origin) {
+            const o = window.location.origin;
+            if (o && !o.startsWith('file:')) return o.replace(/\/$/, '');
+        }
+        return 'https://jackbeatnic.github.io';
+    }
+
     function shouldProxy(url) {
-        // xrp.cafe CDN uses Cloudflare hotlink protection (403 without xrp.cafe referer).
-        // Prefer self-hosted assets/xrpl/*; if remote CDN remains, still try proxy.
+        // Heavy / hotlink-protected / self-hosted full assets → always resize via proxy
         return (
             isIpfsOrGateway(url) ||
             /seadn\.io/i.test(url) ||
-            /cdn\.xrp\.cafe|xrp\.cafe\//i.test(url)
+            /cdn\.xrp\.cafe|xrp\.cafe\//i.test(url) ||
+            /\/assets\/xrpl\//i.test(url) ||
+            /jackbeatnic\.github\.io\/assets\/xrpl\//i.test(url)
         );
     }
 
@@ -58,11 +68,15 @@ const ImageProxy = (() => {
      */
     function resolveOriginalUrl(originalUrl) {
         if (!originalUrl || typeof originalUrl !== 'string') return '';
-        if (/^ipfs:\/\//i.test(originalUrl)) {
-            const cid = originalUrl.replace(/^ipfs:\/\//i, '').replace(/\/$/, '');
+        const u = originalUrl.trim();
+        if (/^ipfs:\/\//i.test(u)) {
+            const cid = u.replace(/^ipfs:\/\//i, '').replace(/\/$/, '');
             return cid ? `https://ipfs.io/ipfs/${cid}` : '';
         }
-        return originalUrl;
+        if (/^https?:\/\//i.test(u)) return u;
+        // Relative site paths (e.g. assets/xrpl/123.webp) → absolute for weserv
+        const path = u.replace(/^\.\//, '').replace(/^\//, '');
+        return `${siteOrigin()}/${path}`;
     }
 
     function displayUrl(
@@ -74,13 +88,12 @@ const ImageProxy = (() => {
     ) {
         const resolved = resolveOriginalUrl(originalUrl);
         if (!resolved) return '';
+        if (mode === 'direct') return resolved;
         if (!shouldProxy(resolved)) return resolved;
 
         switch (mode) {
             case 'cloudflare':
                 return cloudflareUrl(resolved, w, h, fit);
-            case 'direct':
-                return resolved;
             case 'weserv':
             default:
                 return weservUrl(resolved, w, h, fit);

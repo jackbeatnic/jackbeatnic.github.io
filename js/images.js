@@ -23,7 +23,13 @@ const ImageProxy = (() => {
     }
 
     function shouldProxy(url) {
-        return isIpfsOrGateway(url) || /seadn\.io/i.test(url);
+        // xrp.cafe CDN uses Cloudflare hotlink protection (403 without xrp.cafe referer).
+        // Prefer self-hosted assets/xrpl/*; if remote CDN remains, still try proxy.
+        return (
+            isIpfsOrGateway(url) ||
+            /seadn\.io/i.test(url) ||
+            /cdn\.xrp\.cafe|xrp\.cafe\//i.test(url)
+        );
     }
 
     function weservUrl(originalUrl, w, h, fit = 'inside') {

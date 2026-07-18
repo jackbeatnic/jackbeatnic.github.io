@@ -3,3 +3,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://jackbeatnic.github.io/sitemap.xml
+Sitemap: https://jackbeatnic.github.io/sitemap.txt

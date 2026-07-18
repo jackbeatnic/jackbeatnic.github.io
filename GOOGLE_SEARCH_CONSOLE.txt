@@ -59,13 +59,40 @@ KROK — ZGŁOSZENIE MAPY WITRYNY
   1. Search Console → lewe menu **Indeksowanie** → **Mapy witryn**
      (Sitemaps)
 
-  2. Pole „Dodaj nową mapę witryny”:
-         sitemap.xml
+  2. Pole „Dodaj nową mapę witryny” — wpisz TYLKO ścieżkę względną
+     (bez https://…), dokładnie jedną z:
+
+         sitemap.xml          ← pełna mapa (strona + /nft/*)
+         sitemap.txt          ← to samo w formacie tekstowym (zapas)
+         sitemap-home.xml     ← tylko strona główna (test)
 
   3. Wyślij.
 
   Status po kilku minutach / godzinach: „Sukces” + liczba wykrytych URL.
   Pełne zaindeksowanie (zielone w „Strony”) może zająć dni–tygodnie.
+
+
+„NIE UDAŁO SIĘ POBRAĆ MAPY WITRYNY” — CO SPRAWDZIĆ
+--------------------------------------------------
+  1. W przeglądarce otwórz (musi być 200, treść XML/tekst):
+       https://jackbeatnic.github.io/sitemap.xml
+       https://jackbeatnic.github.io/robots.txt
+
+  2. W GSC usługa = **Prefiks URL**
+       https://jackbeatnic.github.io/
+     (nie „Domena” bez weryfikacji DNS — github.io tego nie lubi)
+
+  3. W polu mapy NIE wklejaj pełnego URL — tylko:
+       sitemap.xml
+     Jeśli wpisałeś wcześniej pełny link i dostałeś błąd przy starym
+     404 (pierwsze minuty po deploy), usuń wpis / wyślij ponownie.
+
+  4. Odczekaj 5–15 min po deployu Pages, potem „Zgłoś ponownie”.
+
+  5. Jeśli XML dalej pada — spróbuj zapas:
+       sitemap.txt
+     albo test:
+       sitemap-home.xml
 
 
 OPCJONALNIE — prośba o indeksację strony głównej

@@ -48,7 +48,7 @@
     "launchpad_count": 1,
     "edition_count": 0,
     "one_of_one_count": 0,
-    "site_note": "Promo 2026-07-24 · super mint TP"
+    "site_note": "Promo 2026-07-24 · live mint on Sui (TradePort)"
   },
   "site": {
     "sections": {
@@ -57,10 +57,10 @@
           "sui": "Explore Nature Stories SE · Sui"
         },
         "empty_messages": {
-          "sui": "Nature Stories SE is minting on TradePort Launchpad — 600+ edition works (S=3000). Open Mint on TradePort while the on-chain publish finishes, then re-run gallery sync."
+          "sui": "Nature Stories SE is live on TradePort Launchpad — 600+ edition works on Sui (typically S=3000). Open Mint on TradePort, or re-run gallery sync to load cards here."
         },
-        "promo_eyebrow": "New · Super mint on Sui",
-        "promo_lead": "Nature Stories SE — primary mint on TradePort. Same artistic world as Avalanche Nature Stories, now as Sui editions (typically S=3000 · ~31 SUI with creator reserve). Hundreds of works are going live from the Launchpad. Mint early, explore the twin collection spirit.",
+        "promo_eyebrow": "Live · Primary mint on Sui",
+        "promo_lead": "Nature Stories SE — primary mint on TradePort. Same artistic world as Avalanche Nature Stories, now as Sui editions (typically S=3000 · ~31 SUI with creator reserve). Hundreds of works are live on the Launchpad. Mint early, explore the twin collection spirit.",
         "collection_url": "https://www.tradeport.xyz/sui/collection/0x4a9dd2c87bffe9779233053a70e46def51e4bf12b4b805ba80a16af1ed679765",
         "collection_cta": "View on TradePort",
         "promo_collections": [
@@ -94,7 +94,7 @@
       "subseries": "1of1",
       "traits": {},
       "ai": {
-        "description": "AI-generated surreal art telling quiet stories of nature's beauty and mystery. Each piece is the result of AI working on photographs, memories, and imagination.\n\nLimited to 1 piece.\n(c) Jack Beatnic 2026 | SUI Edition\nhttps://jackbeatnic.github.io",
+        "description": "AI-generated surreal art telling quiet stories of nature's beauty and mystery. Each piece is the result of AI working on photographs, memories, and imagination.\n\nLimited to 1 piece.\n(c) Jack Beatnic 2026 | Sui Edition\nhttps://jackbeatnic.github.io",
         "dominant_colors": [],
         "vibe_tags": [
           "nature stories",

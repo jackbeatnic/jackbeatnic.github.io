@@ -12,7 +12,7 @@
     "about": [
       "I'm Jack Beatnic — in NFTs since 2022, a photographer who opened the door to AI art without leaving the classical path: light, landscape, quiet composition.",
       "Wander the works above — let mood and color lead you. Most pieces grow where photography meets the machine; now and then, something is drawn by hand. Glad you're exploring with me.",
-      "New: Nature Stories SE primary mint on Sui (TradePort) — same artistic world as Avalanche NS. EVM listings use the unified SYSTEM price ladder."
+      "Live: Nature Stories SE primary mint on Sui (TradePort) — same artistic world as Avalanche NS. EVM listings use the unified SYSTEM price ladder."
     ],
     "opensea_profile": "https://opensea.io/JackBeatnic",
     "marketplace_links": [
@@ -151,7 +151,7 @@
     "last_updated": "2026-07-03T17:50:00Z",
     "version": "0.1",
     "collection_id": "avalanche_nature_stories",
-    "last_price_sync": "2026-07-24T17:47:38Z",
+    "last_price_sync": "2026-07-24T18:02:13Z",
     "last_likes_sort": "2026-07-11T17:02:45Z",
     "og_generated_at": "2026-07-18T15:12:00Z",
     "og_cache_version": "202607181512",
@@ -20241,7 +20241,7 @@
           "evm": "No works in this section yet.",
           "xrpl": "JB AI Nature on XRP.Cafe will appear here after sync.",
           "tezos": "Tezos AI collections — coming soon.",
-          "sui": "Nature Stories SE on Sui — primary mint on TradePort Launchpad (600+ editions). Switch to the Sui tab after gallery sync, or open Mint on TradePort."
+          "sui": "Nature Stories SE on Sui — live primary mint on TradePort Launchpad (600+ editions). Open Mint on TradePort, or re-run Sui gallery sync for cards here."
         },
         "empty_messages_series": {
           "nature_stories": "Nature Stories — serene editions on Avalanche, Base and Polygon. Listing prices follow SYSTEM MAIN (e.g. S=7000 T0 catalog ~5.99 AVAX; S=10000 ~5.69 AVAX). Also mint the Sui SE twin on TradePort (AI Art → Sui).",

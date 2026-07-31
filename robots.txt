@@ -1,6 +1,12 @@
 # Jack Beatnic Gallery — https://jackbeatnic.github.io/
+# Host-level robots.txt controls ALL paths on this domain,
+# including /jb-nft-assets/ (separate repo, same Pages host).
+
 User-agent: *
 Allow: /
+Disallow: /jb-nft-assets/
+Disallow: /jb-nft-assets
 
+# Marketing gallery only — NFT raw meta/media is not for search indexes
 Sitemap: https://jackbeatnic.github.io/sitemap.xml
 Sitemap: https://jackbeatnic.github.io/sitemap.txt

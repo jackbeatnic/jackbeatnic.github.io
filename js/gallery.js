@@ -138,11 +138,36 @@ const Gallery = (() => {
             nft.chain === 'xrpl' ||
             nft.medium === 'xrpl_ai' ||
             nft.marketplace === 'xrp_cafe' ||
-            nft.source === 'xrp_cafe'
+            nft.marketplace === 'gh_gallery_lazy' ||
+            nft.source === 'xrp_cafe' ||
+            nft.source === 'catalog_manifest'
+        );
+    }
+
+    /** XRPL: ma NFTokenID on-chain (Cafe / listed / sold path). */
+    function isXrplMinted(nft) {
+        return isXrpCafeNft(nft) && Boolean(nft.xrpl_nft_id);
+    }
+
+    /**
+     * XRPL: w katalogu, jeszcze nie zmintowany — mint on demand
+     * (NIE launchpad Sui / TradePort).
+     */
+    function isXrplPendingMint(nft) {
+        if (!isXrpCafeNft(nft) || nft.xrpl_nft_id) return false;
+        const st = (nft.status || '').toLowerCase();
+        const ls = (nft.listing_status || '').toLowerCase();
+        return (
+            st === 'available' ||
+            ls === 'mint available' ||
+            st === '' ||
+            ls === ''
         );
     }
 
     function isTradeportNft(nft) {
+        // XRPL katalog / Cafe nigdy nie jest TradePort
+        if (isXrpCafeNft(nft)) return false;
         return (
             nft.chain === 'sui' ||
             nft.medium === 'sui_ai' ||
@@ -188,6 +213,8 @@ const Gallery = (() => {
     }
 
     function isLaunchpadMint(nft) {
+        // Sui TradePort launchpad only — nie mylić z XRPL "Mint Available"
+        if (isXrpCafeNft(nft)) return false;
         return (
             nft.status === 'launchpad' ||
             nft.launchpad === true ||
@@ -195,9 +222,25 @@ const Gallery = (() => {
         );
     }
 
+    /** Prośba o mint (lazy XRPL) — tweet do autora; później: automat mint_and_list. */
+    function xrplMintRequestTweetUrl(nft) {
+        const name = nft.name || `JBN #${nft.token_id} X`;
+        const price = nft.current_price_xrp ?? nft.price_xrp ?? 16.5;
+        const handle = (collectionInfo.twitter_handle || '@JackBeatnicAI').replace(
+            /^@/,
+            '',
+        );
+        const text = encodeURIComponent(
+            `@${handle} Mint request: ${name} (catalog #${nft.token_id}) · ${price} XRP · my XRPL address: `,
+        );
+        return `https://twitter.com/intent/tweet?text=${text}`;
+    }
+
     function marketplaceLabel(nft) {
         if (isObjktAuction(nft)) return 'Bid on OBJKT';
         if (isManifoldAuction(nft)) return 'Bid on Manifold';
+        if (isXrplPendingMint(nft)) return 'Request mint';
+        if (isXrplMinted(nft)) return 'View on XRP.Cafe';
         if (isLaunchpadMint(nft)) return 'Mint on TradePort';
         if (nft.source === 'manifold' && nft.manifold_url) return 'View on Manifold';
         return `View on ${marketplaceName(nft)}`;
@@ -213,12 +256,23 @@ const Gallery = (() => {
         if (isTradeportNft(nft)) {
             return nft.tradeport_url || nft.marketplace_url || '';
         }
+        if (isXrplPendingMint(nft)) {
+            // NIE meta JSON (otwierało się w nowej karcie) — prośba o mint
+            return xrplMintRequestTweetUrl(nft);
+        }
         if (isXrpCafeNft(nft)) {
-            return (
-                nft.xrp_cafe_url ||
-                nft.marketplace_url ||
-                (nft.xrpl_nft_id ? `https://xrp.cafe/nft/${nft.xrpl_nft_id}` : '')
-            );
+            if (nft.xrpl_nft_id) {
+                return (
+                    nft.xrp_cafe_url ||
+                    `https://xrp.cafe/nft/${nft.xrpl_nft_id}`
+                );
+            }
+            // nie używaj marketplace_url jeśli to link do .json
+            const mu = nft.marketplace_url || '';
+            if (mu && !/\.json(\?|$)/i.test(mu) && !/meta\/xrpl\//i.test(mu)) {
+                return mu;
+            }
+            return '';
         }
         if (isDualMarketplaceNft(nft)) {
             return nft.salvor_url || nft.marketplace_url || nft.opensea_url || '';
@@ -244,7 +298,24 @@ const Gallery = (() => {
                     <a class="btn btn--ghost btn--block" href="${secondaryHref}" target="_blank" rel="noopener noreferrer">${secondaryLabel}</a>
                 </div>`;
         }
-        const href = escapeHtml(OpenSeaLinks.buyUrl(marketplaceUrl(nft)));
+        const rawUrl = marketplaceUrl(nft);
+        if (!rawUrl) {
+            if (isXrplPendingMint(nft)) {
+                const label = escapeHtml('Request mint');
+                const href = escapeHtml(xrplMintRequestTweetUrl(nft));
+                return `
+                <div class="nft-card__actions">
+                    <a class="btn btn--primary btn--block" href="${href}" target="_blank" rel="noopener noreferrer">${label}</a>
+                </div>`;
+            }
+            return '';
+        }
+        // XRPL request / Cafe — nie przepuszczaj przez OpenSea buyUrl
+        const href = escapeHtml(
+            isXrpCafeNft(nft) || isXrplPendingMint(nft)
+                ? rawUrl
+                : OpenSeaLinks.buyUrl(rawUrl),
+        );
         const label = escapeHtml(marketplaceLabel(nft));
         return `
                 <div class="nft-card__actions">
@@ -365,6 +436,32 @@ const Gallery = (() => {
                 };
             }
             return { text: 'Live auction', hint: chainLabel(nft), kind: 'listed' };
+        }
+        // XRPL catalog: available = mint on demand; listed = Cafe
+        if (isXrpCafeNft(nft)) {
+            const p = nft.current_price_xrp ?? nft.price_xrp;
+            const priceTxt =
+                p != null && p !== '' ? `${p} XRP` : '—';
+            if (isXrplPendingMint(nft)) {
+                return {
+                    text: priceTxt === '—' ? 'Mint on demand' : priceTxt,
+                    hint: 'Available · request mint',
+                    kind: 'mint',
+                };
+            }
+            if (isXrplMinted(nft)) {
+                const forSale =
+                    (nft.listing_status || '').toLowerCase() === 'for sale' ||
+                    (nft.status || '').toLowerCase() === 'listed';
+                return {
+                    text: priceTxt,
+                    hint: forSale ? 'Listed · XRP.Cafe' : 'On XRPL · XRP.Cafe',
+                    kind: forSale ? 'listed' : 'sale',
+                };
+            }
+            if ((nft.status || '').toLowerCase() === 'sold') {
+                return { text: 'Sold', hint: 'XRPL', kind: 'sale' };
+            }
         }
         const symbol = currencyForNft(nft);
         const listed = priceField(nft, 'current_price', symbol);

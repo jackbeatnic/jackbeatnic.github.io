@@ -53,29 +53,16 @@
     "sections": {
       "ai_art": {
         "explore_titles": {
-          "sui": "Explore Nature Stories SE · Sui"
+          "sui": "Explore · Sui"
         },
         "empty_messages": {
-          "sui": "Nature Stories SE on TradePort — sync with aktualizuj_sui_tradeport_do_galerii.py"
+          "sui": "Nothing here yet — Sui works will appear as they are released."
         },
-        "promo_eyebrow": "Live · Primary mint on Sui",
-        "promo_lead": "Nature Stories SE — primary mint on TradePort. Same artistic world as Avalanche Nature Stories, now as Sui editions. Launchpad cards open mint; minted works open the marketplace.",
+        "promo_eyebrow": "Nature Stories · Sui",
+        "promo_lead": "Soft editions of landscape and light — the same quiet world, on another chain.",
         "collection_url": "https://www.tradeport.xyz/sui/collection/0x4a9dd2c87bffe9779233053a70e46def51e4bf12b4b805ba80a16af1ed679765",
-        "collection_cta": "View on TradePort",
-        "promo_collections": [
-          {
-            "title": "Nature Stories SE",
-            "url": "https://www.tradeport.xyz/launchpad/create/edition/view-collection?tab=items&collectionId=990ced13-2d2c-4fee-8ff1-1c30177d9171",
-            "edition_label": "Editions · 722 works",
-            "cta": "Mint on TradePort"
-          },
-          {
-            "title": "Nature Stories 1/1",
-            "url": "https://www.tradeport.xyz/launchpad/create/edition/view-collection?tab=items&collectionId=a27ec93f-60a5-4ca9-b169-ed745f47dfd9",
-            "edition_label": "1/1",
-            "cta": "Mint on TradePort"
-          }
-        ]
+        "collection_cta": "Open collection",
+        "promo_collections": []
       }
     }
   },

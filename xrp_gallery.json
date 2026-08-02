@@ -18,12 +18,25 @@
     "cdn_meta": "https://cdn.jsdelivr.net/gh/jackbeatnic/jb-nft-assets@main/meta/xrpl/jbn/{id}.json",
     "cdn_media": "https://cdn.jsdelivr.net/gh/jackbeatnic/jb-nft-assets@main/media/xrpl/jbn/{id}.jpg",
     "manifest": "XRPL/catalog/MANIFEST.csv",
-    "last_xrp_sync": "2026-08-02T21:53:31Z",
-    "note": "Drop JBN: katalog GH + mint-on-demand. Cafe = osobna linia craft 1/1 (nie ten drop)."
+    "last_xrp_sync": "2026-08-02T21:53:31Z"
   },
   "site": {
     "title": "JB AI Nature · XRPL",
-    "chain": "xrpl"
+    "chain": "xrpl",
+    "sections": {
+      "ai_art": {
+        "explore_titles": {
+          "xrpl": "Explore · XRPL"
+        },
+        "empty_messages": {
+          "xrpl": "Nothing here yet — more XRPL works will appear as they are released."
+        },
+        "promo_eyebrow": "JB AI Nature · XRPL",
+        "promo_lead": "Scenes of place and mood for the XRP Ledger — quiet, personal, one at a time.",
+        "collection_cta": "",
+        "promo_collections": []
+      }
+    }
   },
   "nfts": [
     {

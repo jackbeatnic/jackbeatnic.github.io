@@ -180,12 +180,28 @@ def build(
             "cdn_media": CDN_IMG,
             "manifest": str(MANIFEST.relative_to(JB)),
             "last_xrp_sync": now,
-            "note": (
-                "Drop JBN: katalog GH + mint-on-demand. "
-                "Cafe = osobna linia craft 1/1 (nie ten drop)."
-            ),
         },
-        "site": {"title": "JB AI Nature · XRPL", "chain": "xrpl"},
+        "site": {
+            "title": "JB AI Nature · XRPL",
+            "chain": "xrpl",
+            "sections": {
+                "ai_art": {
+                    "explore_titles": {"xrpl": "Explore · XRPL"},
+                    "empty_messages": {
+                        "xrpl": (
+                            "Nothing here yet — more XRPL works will appear "
+                            "as they are released."
+                        )
+                    },
+                    "promo_eyebrow": "JB AI Nature · XRPL",
+                    "promo_lead": (
+                        "Scenes of place and mood for the XRP Ledger — "
+                        "quiet, personal, one at a time."
+                    ),
+                    "promo_collections": [],
+                }
+            },
+        },
         "nfts": nfts,
     }
 

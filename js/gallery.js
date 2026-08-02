@@ -582,29 +582,48 @@ const Gallery = (() => {
                 auctionSections.studio_market ||
                 auctionSections.auctions ||
                 {};
+            // NIE merguj promo_lead/promo_eyebrow z Sui/XRPL do wspólnego ai_art
+            // (Sui nadpisywał XRPL → na zakładce XRPL widać TradePort).
+            const xrpAi = xrpSections.ai_art || {};
+            const suiAi = suiSections.ai_art || {};
+            const mainAi = mainSections.ai_art || {};
             siteConfig = {
                 ...(data.site || {}),
                 ai_series_catalog: data.collection_info?.ai_series_catalog || {},
                 sections: {
                     ...mainSections,
-                    ...xrpSections,
                     ...auctionSections,
                     ai_art: {
-                        ...(mainSections.ai_art || {}),
-                        ...(xrpSections.ai_art || {}),
-                        ...(suiSections.ai_art || {}),
+                        ...mainAi,
                         subsections:
-                            xrpSections.ai_art?.subsections ||
-                            mainSections.ai_art?.subsections,
+                            xrpAi.subsections ||
+                            mainAi.subsections,
                         empty_messages: {
-                            ...(mainSections.ai_art?.empty_messages || {}),
-                            ...(xrpSections.ai_art?.empty_messages || {}),
-                            ...(suiSections.ai_art?.empty_messages || {}),
+                            ...(mainAi.empty_messages || {}),
+                            ...(xrpAi.empty_messages || {}),
+                            ...(suiAi.empty_messages || {}),
                         },
                         explore_titles: {
-                            ...(mainSections.ai_art?.explore_titles || {}),
-                            ...(xrpSections.ai_art?.explore_titles || {}),
-                            ...(suiSections.ai_art?.explore_titles || {}),
+                            ...(mainAi.explore_titles || {}),
+                            ...(xrpAi.explore_titles || {}),
+                            ...(suiAi.explore_titles || {}),
+                        },
+                        // promo per chain — czytane w syncSectionPromo
+                        kind_promo: {
+                            xrpl: {
+                                promo_eyebrow: xrpAi.promo_eyebrow,
+                                promo_lead: xrpAi.promo_lead,
+                                collection_url: xrpAi.collection_url,
+                                collection_cta: xrpAi.collection_cta,
+                                promo_collections: xrpAi.promo_collections,
+                            },
+                            sui: {
+                                promo_eyebrow: suiAi.promo_eyebrow,
+                                promo_lead: suiAi.promo_lead,
+                                collection_url: suiAi.collection_url,
+                                collection_cta: suiAi.collection_cta,
+                                promo_collections: suiAi.promo_collections,
+                            },
                         },
                     },
                     atelier: {
@@ -858,59 +877,22 @@ const Gallery = (() => {
             GallerySections.getAiKind() === 'sui'
         ) {
             const meta = GallerySections.getSectionMeta();
+            const kp = meta.kind_promo?.sui || {};
             const suiInfo = collectionInfo.sui || {};
-            const collectionUrl =
-                meta.collection_url ||
-                suiInfo.collection_url ||
-                suiInfo.tradeport_profile ||
-                '';
-            const show = Boolean(collectionUrl);
-            el.hidden = !show;
-            if (!show) return;
-
-            if (eyebrowEl) eyebrowEl.textContent = meta.promo_eyebrow || 'Nature Stories on Sui';
+            // Tylko poetycki lead — bez wykładu o TradePort / sync
+            el.hidden = false;
+            if (eyebrowEl) {
+                eyebrowEl.textContent =
+                    kp.promo_eyebrow || meta.promo_eyebrow || 'Nature Stories · Sui';
+            }
             if (leadEl) {
                 leadEl.textContent =
-                    meta.promo_lead || 'Collect and trade on TradePort.';
+                    kp.promo_lead ||
+                    'Soft editions of landscape and light — the same quiet world, on another chain.';
             }
             if (listEl) {
-                const promoItems = (meta.promo_collections || []).filter((item) => item?.url);
-                const fallbackTitle = escapeHtml(suiInfo.collection_name || 'Nature Stories');
-                const fallbackCta = escapeHtml(meta.collection_cta || 'View collection on TradePort');
-                const fallbackUrl = escapeHtml(collectionUrl);
-
-                if (promoItems.length > 0) {
-                    listEl.innerHTML = promoItems
-                        .map((item) => {
-                            const title = escapeHtml(item.title || fallbackTitle);
-                            const edition = escapeHtml(item.edition_label || '');
-                            const url = escapeHtml(item.url || fallbackUrl);
-                            const cta = escapeHtml(item.cta || fallbackCta);
-                            const editionBit = edition
-                                ? `<span class="section-promo__chain"> · ${edition}</span>`
-                                : '<span class="section-promo__chain"> · Sui</span>';
-                            return `
-                    <article class="section-promo__item">
-                        <h3 class="section-promo__title">TradePort</h3>
-                        <p class="section-promo__token">
-                            <span class="section-promo__symbol">${title}</span>${editionBit}
-                        </p>
-                        <a class="btn btn--ghost btn--small section-promo__cta" href="${url}" target="_blank" rel="noopener noreferrer">${cta}</a>
-                    </article>`;
-                        })
-                        .join('');
-                } else {
-                    listEl.innerHTML = `
-                    <article class="section-promo__item">
-                        <h3 class="section-promo__title">TradePort</h3>
-                        <p class="section-promo__token">
-                            <span class="section-promo__symbol">${fallbackTitle}</span>
-                            <span class="section-promo__chain"> · Sui</span>
-                        </p>
-                        <a class="btn btn--ghost btn--small section-promo__cta" href="${fallbackUrl}" target="_blank" rel="noopener noreferrer">${fallbackCta}</a>
-                    </article>
-                `;
-                }
+                // bez kafelków marketplace / „Mint on TradePort”
+                listEl.innerHTML = '';
             }
             return;
         }
@@ -920,34 +902,20 @@ const Gallery = (() => {
             GallerySections.getAiKind() === 'xrpl'
         ) {
             const meta = GallerySections.getSectionMeta();
-            const xrplInfo = collectionInfo.xrpl || {};
-            const collectionUrl =
-                meta.collection_url ||
-                xrplInfo.xrp_cafe_collection_vanity ||
-                xrplInfo.xrp_cafe_collection ||
-                '';
-            const show = Boolean(collectionUrl);
-            el.hidden = !show;
-            if (!show) return;
-
-            if (eyebrowEl) eyebrowEl.textContent = meta.promo_eyebrow || 'JB AI Nature on XRPL';
+            const kp = meta.kind_promo?.xrpl || {};
+            // NIE bierz collection_url z Sui / TradePort
+            el.hidden = false;
+            if (eyebrowEl) {
+                eyebrowEl.textContent =
+                    kp.promo_eyebrow || 'JB AI Nature · XRPL';
+            }
             if (leadEl) {
                 leadEl.textContent =
-                    meta.promo_lead || 'Collect and trade on XRP.Cafe.';
+                    kp.promo_lead ||
+                    'Scenes of place and mood for the XRP Ledger — quiet, personal, one at a time.';
             }
             if (listEl) {
-                const url = escapeHtml(collectionUrl);
-                const cta = escapeHtml(meta.collection_cta || 'View collection on XRP.Cafe');
-                listEl.innerHTML = `
-                    <article class="section-promo__item">
-                        <h3 class="section-promo__title">XRP.Cafe</h3>
-                        <p class="section-promo__token">
-                            <span class="section-promo__symbol">JB AI Nature</span>
-                            <span class="section-promo__chain"> · XRPL</span>
-                        </p>
-                        <a class="btn btn--ghost btn--small section-promo__cta" href="${url}" target="_blank" rel="noopener noreferrer">${cta}</a>
-                    </article>
-                `;
+                listEl.innerHTML = '';
             }
             return;
         }

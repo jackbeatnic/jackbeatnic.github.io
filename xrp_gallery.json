@@ -18,7 +18,7 @@
     "cdn_meta": "https://cdn.jsdelivr.net/gh/jackbeatnic/jb-nft-assets@main/meta/xrpl/jbn/{id}.json",
     "cdn_media": "https://cdn.jsdelivr.net/gh/jackbeatnic/jb-nft-assets@main/media/xrpl/jbn/{id}.jpg",
     "manifest": "XRPL/catalog/MANIFEST.csv",
-    "last_xrp_sync": "2026-08-02T21:32:17Z",
+    "last_xrp_sync": "2026-08-02T21:53:31Z",
     "note": "Drop JBN: katalog GH + mint-on-demand. Cafe = osobna linia craft 1/1 (nie ten drop)."
   },
   "site": {
@@ -28,11 +28,11 @@
   "nfts": [
     {
       "token_id": 1,
-      "xrpl_nft_id": "00190000C991C993639BFB85813235F2175B16ADADDCDBD8168DC23205BE7197",
+      "xrpl_nft_id": "00190000C991C993639BFB85813235F2175B16ADADDCDBD82D73933305BE7198",
       "nft_serial": null,
       "name": "JBN #1 X",
-      "xrp_cafe_url": "https://xrp.cafe/nft/00190000C991C993639BFB85813235F2175B16ADADDCDBD8168DC23205BE7197",
-      "marketplace_url": "https://xrp.cafe/nft/00190000C991C993639BFB85813235F2175B16ADADDCDBD8168DC23205BE7197",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00190000C991C993639BFB85813235F2175B16ADADDCDBD82D73933305BE7198",
+      "marketplace_url": "https://xrp.cafe/nft/00190000C991C993639BFB85813235F2175B16ADADDCDBD82D73933305BE7198",
       "collection_url": "https://jackbeatnic.github.io",
       "image_url": "https://cdn.jsdelivr.net/gh/jackbeatnic/jb-nft-assets@main/media/xrpl/jbn/1.jpg",
       "meta_url": "https://cdn.jsdelivr.net/gh/jackbeatnic/jb-nft-assets@main/meta/xrpl/jbn/1.json",

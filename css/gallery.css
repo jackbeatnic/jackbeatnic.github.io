@@ -119,7 +119,8 @@ a {
     transform: translateY(-1px);
 }
 
-.signature-logo-wrap img {
+.signature-logo-wrap img,
+.signature-logo {
     display: block;
     width: 100%;
     height: auto;
@@ -129,6 +130,15 @@ a {
     pointer-events: none;
     -webkit-user-drag: none;
     user-drag: none;
+}
+
+/* Light theme: black ink; dark theme: white ink asset */
+.signature-logo--dark {
+    display: none;
+}
+
+.signature-logo--light {
+    display: block;
 }
 
 .signature-shield {
@@ -2096,20 +2106,23 @@ body.lightbox-open {
         color: var(--black);
     }
 
-    /* Black signature → light ink in dark mode */
-    .signature-logo-wrap img {
-        filter: invert(1);
+    /* Signature: swap to white PNG (invert is unreliable with force-dark browsers) */
+    .signature-logo--light {
+        display: none !important;
+    }
+
+    .signature-logo--dark {
+        display: block !important;
     }
 
     .site-brand:hover .signature-logo-wrap {
-        filter: none;
+        filter:
+            drop-shadow(0 0 14px rgba(255, 255, 255, 0.2))
+            drop-shadow(0 2px 8px rgba(255, 255, 255, 0.1));
     }
 
     .site-brand:hover .signature-logo-wrap img {
-        filter:
-            invert(1)
-            drop-shadow(0 0 14px rgba(255, 255, 255, 0.18))
-            drop-shadow(0 2px 8px rgba(255, 255, 255, 0.08));
+        filter: none;
     }
 
     .site-nav a:hover {

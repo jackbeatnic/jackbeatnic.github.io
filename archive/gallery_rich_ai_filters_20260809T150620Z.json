@@ -382,19 +382,17 @@
           "note": "Planned L1 high-art auctions — enable when contract deploys"
         }
       }
-    },
-    "last_temp_evm_sync": "2026-08-09T15:06:22Z",
-    "temp_evm_sync_note": "Names from staging/backup v4 meta; prices from OpenSea reports. AI color/mood filters still from archived rich gallery."
+    }
   },
   "nfts": [
     {
       "token_id": 1,
-      "name": "NS #1",
+      "name": "Nature stories #0001",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/1",
       "image_url": "https://ipfs.io/ipfs/bafybeiemw7ftfgifx3kiynqyt6lx2cub7d7t24c62cbe25ddztxl5khewq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -440,12 +438,12 @@
     },
     {
       "token_id": 2,
-      "name": "NS #2",
+      "name": "Nature stories #0002",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/2",
       "image_url": "https://ipfs.io/ipfs/bafybeiakpgsvolupwjgqjtuc4zhn7u4uuxd3ajchmik3hziyd2wi2jqebm",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -492,12 +490,12 @@
     },
     {
       "token_id": 3,
-      "name": "NS #3",
+      "name": "Nature stories #0003",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/3",
       "image_url": "https://ipfs.io/ipfs/bafybeifbwhr7uo5al4kmfkdtvlku4vzs56tigzekelrddnpsd4pcy2hnv4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -544,12 +542,12 @@
     },
     {
       "token_id": 4,
-      "name": "NS #4",
+      "name": "Nature stories #0004",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/4",
       "image_url": "https://ipfs.io/ipfs/bafybeicsz4fje4aafvuucaol2sy5wj6xoes6bvwq3g44eq6cvqcxnzbhmy",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -595,12 +593,12 @@
     },
     {
       "token_id": 5,
-      "name": "NS #5",
+      "name": "Nature stories #0005",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/5",
       "image_url": "https://ipfs.io/ipfs/bafybeig2axxvryzzoagi4tsjs7h3ol4dfivw4z3uwfiq2xzf6lv6zcjg44",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -646,12 +644,12 @@
     },
     {
       "token_id": 6,
-      "name": "NS #6",
+      "name": "Nature stories #0006",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/6",
       "image_url": "https://ipfs.io/ipfs/bafybeiem6jesdvzgyvdaxywmobicxvehwzserxhw34d7qie5hq4hvkzgjm",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -697,12 +695,12 @@
     },
     {
       "token_id": 7,
-      "name": "NS #7",
+      "name": "Nature stories #0007",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/7",
       "image_url": "https://ipfs.io/ipfs/bafybeifolltzcp4cbysiwppghbtkadlk3w35ocualiz6se47z5daicsiem",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -748,12 +746,12 @@
     },
     {
       "token_id": 8,
-      "name": "NS #8",
+      "name": "Nature stories #0008",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/8",
       "image_url": "https://ipfs.io/ipfs/bafybeigfcwnabhyhwmlrmyisuglpi2zov6hovzdhhhl5z6d7yaefted72e",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -799,12 +797,12 @@
     },
     {
       "token_id": 9,
-      "name": "NS #9",
+      "name": "Nature stories #0009",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/9",
       "image_url": "https://ipfs.io/ipfs/bafybeibpcsauefmrepb6jyhmkealzsa2ytccelzmvkpmcaln7iyezo3vpq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -850,12 +848,12 @@
     },
     {
       "token_id": 10,
-      "name": "NS #10",
+      "name": "Nature stories #0010",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/10",
       "image_url": "https://ipfs.io/ipfs/bafybeibaiuhysv5eq3foih3vvws62ovwfjpidaqcmzi636mbkan7efwyge",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -901,12 +899,12 @@
     },
     {
       "token_id": 11,
-      "name": "NS #11",
+      "name": "Nature stories #0011",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/11",
       "image_url": "https://ipfs.io/ipfs/bafybeid4oai3go2vyltv3ruod4jleza2gfpd5q76c2xfpy5x6nyyhgoqdq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -952,12 +950,12 @@
     },
     {
       "token_id": 12,
-      "name": "NS #12",
+      "name": "Nature stories #0012",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/12",
       "image_url": "https://ipfs.io/ipfs/bafybeibpncq5alaa6eejyowf2xj2uf5m5ufvynvym6uryedrtgad5l7mv4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -1003,12 +1001,12 @@
     },
     {
       "token_id": 13,
-      "name": "NS #13",
+      "name": "Nature stories #0013",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/13",
       "image_url": "https://ipfs.io/ipfs/bafybeigrg3skb37hjimcthjfk3kk5fns3hd3gvxruset7cm2oulclmcsie",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -1053,12 +1051,12 @@
     },
     {
       "token_id": 14,
-      "name": "NS #14",
+      "name": "Nature stories #0014",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/14",
       "image_url": "https://ipfs.io/ipfs/bafybeihkjidirecpphyhmr5orjag3x7idila4yar7x2aau2fqcmzvyewqa",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -1103,12 +1101,12 @@
     },
     {
       "token_id": 15,
-      "name": "NS #15",
+      "name": "Nature stories #0015",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/15",
       "image_url": "https://ipfs.io/ipfs/bafybeidkevvkrrep5njprqputfrbw6r5qzxahae6rqyu5novy73hbwqpb4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -1154,12 +1152,12 @@
     },
     {
       "token_id": 16,
-      "name": "NS #16",
+      "name": "Nature stories #0016",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/16",
       "image_url": "https://ipfs.io/ipfs/bafybeiackwxap6g6hwgmpq65l73sfrq4x6jsjjtrbtmcj6igscinzygyle",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -1205,12 +1203,12 @@
     },
     {
       "token_id": 17,
-      "name": "NS #17",
+      "name": "Nature stories #0017",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/17",
       "image_url": "https://ipfs.io/ipfs/bafybeifv2y3fuwde2v3qrtvkupgj5dwyhvjalit3lk3oqohcyc52cvqcxm",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -1255,12 +1253,12 @@
     },
     {
       "token_id": 18,
-      "name": "NS #18",
+      "name": "Nature stories #0018",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/18",
       "image_url": "https://ipfs.io/ipfs/bafybeic2ueaatp4rytoslrvpxam4exhwbyidpxyaakwopg2khcaonn56uy",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -1305,12 +1303,12 @@
     },
     {
       "token_id": 19,
-      "name": "NS #19",
+      "name": "Nature stories #0019",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/19",
       "image_url": "https://ipfs.io/ipfs/bafybeigmdhu4h7m6dj63vup4a32sl6wnsuxi643a5syrv4r5bds6n3a7ii",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -1356,12 +1354,12 @@
     },
     {
       "token_id": 20,
-      "name": "NS #20",
+      "name": "Nature stories #0020",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/20",
       "image_url": "https://ipfs.io/ipfs/bafybeibd3iyqcjhuealbevebbpie3cm7aysklfgcnasotvgucfyhz5e7xm",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -1407,12 +1405,12 @@
     },
     {
       "token_id": 21,
-      "name": "NS #21",
+      "name": "Nature stories #0021",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/21",
       "image_url": "https://ipfs.io/ipfs/bafybeibwpcnvtquvkmez3zrzktieakulm5iubzoj5r4pezrx6352jq42jy",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -1457,12 +1455,12 @@
     },
     {
       "token_id": 22,
-      "name": "NS #22",
+      "name": "Nature stories #0022",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/22",
       "image_url": "https://ipfs.io/ipfs/bafybeifop53cdq4kz2aanoyn2ximgkztamagbsylmmv2n562tgqrxvjls4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -1507,12 +1505,12 @@
     },
     {
       "token_id": 23,
-      "name": "NS #23",
+      "name": "Nature stories #0023",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/23",
       "image_url": "https://ipfs.io/ipfs/bafybeify4jqaidairlrlmfx4x5qceayhgnkfmch6xduz6js2jzn23iwa3i",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -1558,12 +1556,12 @@
     },
     {
       "token_id": 24,
-      "name": "NS #24",
+      "name": "Nature stories #0024",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/24",
       "image_url": "https://ipfs.io/ipfs/bafybeibapitkc7zquf3ut4e5yb6v3w6azagoof7swefasktcbfhaknzyqe",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -1609,12 +1607,12 @@
     },
     {
       "token_id": 25,
-      "name": "NS #25",
+      "name": "Nature stories #0025",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/25",
       "image_url": "https://ipfs.io/ipfs/bafybeida5rcfr3drjrht6y2ibr5ex64ko5enxdu5v6qvmajhbzfel2uweu",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -1659,12 +1657,12 @@
     },
     {
       "token_id": 26,
-      "name": "NS #26",
+      "name": "Nature stories #0026",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/26",
       "image_url": "https://ipfs.io/ipfs/bafybeia4v36hhna6btrgsokcohc4df3ssejklitgfya27v3cecqmhg7lny",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -1709,12 +1707,12 @@
     },
     {
       "token_id": 27,
-      "name": "NS #27",
+      "name": "Nature stories #0027",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/27",
       "image_url": "https://ipfs.io/ipfs/bafybeiftdyvnaykklavjzjiqaeyaoxoehhr2pbh4uqz6zfrvf2gc4obvsa",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -1760,12 +1758,12 @@
     },
     {
       "token_id": 28,
-      "name": "NS #28",
+      "name": "Nature stories #0028",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/28",
       "image_url": "https://ipfs.io/ipfs/bafybeia3tpcunepaudyxfvjhqufdc2ozd4i7pasqln2i3hr72sl2n566m4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -1811,12 +1809,12 @@
     },
     {
       "token_id": 29,
-      "name": "NS #29",
+      "name": "Nature stories #0029",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/29",
       "image_url": "https://ipfs.io/ipfs/bafybeifxk3jzuabchysxagdu7vnfbxuhfzqxattgvuahkuhbszfc3irhka",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -1861,12 +1859,12 @@
     },
     {
       "token_id": 30,
-      "name": "NS #30",
+      "name": "Nature stories #0030",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/30",
       "image_url": "https://ipfs.io/ipfs/bafybeicuqmqyxddob4dzu2sykviys4jjbjxpfqxwsfl5otus4fz2ktx23y",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -1911,12 +1909,12 @@
     },
     {
       "token_id": 31,
-      "name": "NS #31",
+      "name": "Nature stories #0031",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/31",
       "image_url": "https://ipfs.io/ipfs/bafybeidr67xkf4puds4wfwy6upsme6v3lerrg7ggqm3gtydmc5gpgfzqr4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -1962,12 +1960,12 @@
     },
     {
       "token_id": 34,
-      "name": "NS #32",
+      "name": "Nature stories #0032",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/34",
       "image_url": "https://ipfs.io/ipfs/bafybeidbvrtnym6yzxlmyzfl6gaqy64yxdlrozo3ixihho2t6dqextks4e",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -2013,12 +2011,12 @@
     },
     {
       "token_id": 35,
-      "name": "NS #33",
+      "name": "Nature stories #0033",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/35",
       "image_url": "https://ipfs.io/ipfs/bafybeiakvpqp6ahna7wtanff3miqiyjizxodtl3tta3ufaf25q36otu7ea",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -2063,12 +2061,12 @@
     },
     {
       "token_id": 36,
-      "name": "NS #34",
+      "name": "Nature stories #0034",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/36",
       "image_url": "https://ipfs.io/ipfs/bafybeicfn3dlrssmhrn7ovyuogysmyzl7gofj25rjmyv3zibirgwi5hpf4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -2113,12 +2111,12 @@
     },
     {
       "token_id": 37,
-      "name": "NS #35",
+      "name": "Nature stories #0035",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/37",
       "image_url": "https://ipfs.io/ipfs/bafybeihaeauizjc4tusj2fqlfbzb45vf2gzobxplxtgrpcto3zbai7nuh4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -2164,12 +2162,12 @@
     },
     {
       "token_id": 38,
-      "name": "NS #36",
+      "name": "Nature stories #0036",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/38",
       "image_url": "https://ipfs.io/ipfs/bafybeicygvtlngpiiskbkdty65k5fb4qugb4yn3eorpzmvf7idzxqa6csa",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -2215,12 +2213,12 @@
     },
     {
       "token_id": 39,
-      "name": "NS #37",
+      "name": "Nature stories #0037",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/39",
       "image_url": "https://ipfs.io/ipfs/bafybeigywewatzgjoc6iep4jrhtutgfxyxqqe4vj7y6zrvh4tynrbqfkli",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -2265,12 +2263,12 @@
     },
     {
       "token_id": 40,
-      "name": "NS #38",
+      "name": "Nature stories #0038",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/40",
       "image_url": "https://ipfs.io/ipfs/bafybeihvxyo3gannixtmcaqcxqtqhys4fqxzncmklfbx2ane4fl74wtq7e",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -2315,12 +2313,12 @@
     },
     {
       "token_id": 41,
-      "name": "NS #39",
+      "name": "Nature stories #0039",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/41",
       "image_url": "https://ipfs.io/ipfs/bafybeigj6rqpleznrpdbk3fpgl7qxchnp35yft2p3bmiqrof6hu4yxll4e",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -2366,12 +2364,12 @@
     },
     {
       "token_id": 42,
-      "name": "NS #40",
+      "name": "Nature stories #0040",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/42",
       "image_url": "https://ipfs.io/ipfs/bafybeic27uvyafyrpgmvy3jeiqpctemuzw5nfj64zbpflxb5mhjvwdrxty",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -2417,12 +2415,12 @@
     },
     {
       "token_id": 43,
-      "name": "NS #41",
+      "name": "Nature stories #0041",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/43",
       "image_url": "https://ipfs.io/ipfs/bafybeigeupsh6s7nucgyw73epjr3b7jemnac35mo3bro5irj67lqq7fcly",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -2467,12 +2465,12 @@
     },
     {
       "token_id": 44,
-      "name": "NS #42",
+      "name": "Nature stories #0042",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/44",
       "image_url": "https://ipfs.io/ipfs/bafybeigzde7zwgqwt35oxr5xqutp3vlz34leokjhxt3g5ixhzzvlwcmqxq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -2517,12 +2515,12 @@
     },
     {
       "token_id": 45,
-      "name": "NS #43",
+      "name": "Nature stories #0043",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/45",
       "image_url": "https://ipfs.io/ipfs/bafybeiayr7gtz3lxkp7nayllo4nqpoyrny4beli7qvkypevtwzqghnhnku",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -2568,12 +2566,12 @@
     },
     {
       "token_id": 46,
-      "name": "NS #44",
+      "name": "Nature stories #0044",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/46",
       "image_url": "https://ipfs.io/ipfs/bafybeifzfmpwivro52hwbmmocfvsfpe5astfiuc2pknje6wnwuz75yoyuu",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -2619,12 +2617,12 @@
     },
     {
       "token_id": 47,
-      "name": "NS #45",
+      "name": "Nature stories #0045",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/47",
       "image_url": "https://ipfs.io/ipfs/bafybeihvtkyxz65uw7oxut2xz5xeevtd66vtskano2qrveloyvmj6gm4wq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -2669,12 +2667,12 @@
     },
     {
       "token_id": 48,
-      "name": "NS #46",
+      "name": "Nature stories #0046",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/48",
       "image_url": "https://ipfs.io/ipfs/bafybeidyapkzlthoggkvdw5xuughdbyq7amzxqtea3eoznnlx2snhb2pma",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -2719,12 +2717,12 @@
     },
     {
       "token_id": 49,
-      "name": "NS #47",
+      "name": "Nature stories #0047",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/49",
       "image_url": "https://ipfs.io/ipfs/bafybeighn7zti7qy7l4rjagorqkemo4wf6pevvgaylq5y533qcqv2dvfnq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -2770,12 +2768,12 @@
     },
     {
       "token_id": 50,
-      "name": "NS #48",
+      "name": "Nature stories #0048",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/50",
       "image_url": "https://ipfs.io/ipfs/bafybeigjnjw6om4jbajlxp3ozukasjj7rjezmhqqek5jfp7roybhtambj4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -2821,12 +2819,12 @@
     },
     {
       "token_id": 51,
-      "name": "NS #49",
+      "name": "Nature stories #0049",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/51",
       "image_url": "https://ipfs.io/ipfs/bafybeicznwjwrwtj3zd3tuu4qyqavvpf5s2rc7zxuay3bfo4ahf6imjtsu",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -2871,12 +2869,12 @@
     },
     {
       "token_id": 52,
-      "name": "NS #50",
+      "name": "Nature stories #0050",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/52",
       "image_url": "https://ipfs.io/ipfs/bafybeihjtae3p3j6gykb4slawqsk3iv2t2zlopsdkiwzdwtpzgdwu4dnfa",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -2921,12 +2919,12 @@
     },
     {
       "token_id": 53,
-      "name": "NS #51",
+      "name": "Nature stories #0051",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/53",
       "image_url": "https://ipfs.io/ipfs/bafybeib4ckdynpbtgl5os3xagcry452w7t7r2wcxiy55i7gqbtb5lddz7u",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -2972,12 +2970,12 @@
     },
     {
       "token_id": 54,
-      "name": "NS #52",
+      "name": "Nature stories #0052",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/54",
       "image_url": "https://ipfs.io/ipfs/bafybeigejtnsvzz52rhtjoaz55r4wxiqhcqjbrf6rcpgbkelksaxixwfuu",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -3023,12 +3021,12 @@
     },
     {
       "token_id": 55,
-      "name": "NS #53",
+      "name": "Nature stories #0053",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/55",
       "image_url": "https://ipfs.io/ipfs/bafybeiefbllmjaimaadlverchotddcvsscxh6fyvzgjyhgr2pk73p4j5ni",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -3073,12 +3071,12 @@
     },
     {
       "token_id": 56,
-      "name": "NS #74",
+      "name": "Nature stories #0074",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/56",
       "image_url": "https://ipfs.io/ipfs/bafybeiffo4yhkioophdvtftyqjo73xrsr66isxqnpjeacxasyxmn5dvika",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -3123,12 +3121,12 @@
     },
     {
       "token_id": 57,
-      "name": "NS #75",
+      "name": "Nature stories #0075",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/57",
       "image_url": "https://ipfs.io/ipfs/bafybeiex6qano5qqztkdmeq5w37bccjo453sfuf3gkcwovlt6bk4ie7ehy",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -3174,12 +3172,12 @@
     },
     {
       "token_id": 58,
-      "name": "NS #76",
+      "name": "Nature stories #0076",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/58",
       "image_url": "https://ipfs.io/ipfs/bafybeibwee7zpscsv373xkfl7et3hdf5actak5snzu5fap7ilgjmk46hjy",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -3225,12 +3223,12 @@
     },
     {
       "token_id": 59,
-      "name": "NS #77",
+      "name": "Nature stories #0077",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/59",
       "image_url": "https://ipfs.io/ipfs/bafybeif2hrigqdvvdtj3alxpxk7jrjmmgyubetz5napazcaqkasmoo6t3e",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -3275,12 +3273,12 @@
     },
     {
       "token_id": 60,
-      "name": "NS #78",
+      "name": "Nature stories #0078",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/60",
       "image_url": "https://ipfs.io/ipfs/bafybeiclhavxsw5rf5tzrsdtelk2zqntzmypxhx7zyu2drv5cn2iy7pz5q",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -3325,12 +3323,12 @@
     },
     {
       "token_id": 61,
-      "name": "NS #79",
+      "name": "Nature stories #0079",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/61",
       "image_url": "https://ipfs.io/ipfs/bafybeic77mg7tbqwm4aqbpdtnay77f5ke2reqxqe3zy4tdrwhz2pz5ekom",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -3376,12 +3374,12 @@
     },
     {
       "token_id": 62,
-      "name": "NS #80",
+      "name": "Nature stories #00080",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/62",
       "image_url": "https://ipfs.io/ipfs/bafybeidyosfjgwhpo33ytbo2tcu7c23gkp7pl53lweqc3vhsotbvgzm2hm",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -3427,12 +3425,12 @@
     },
     {
       "token_id": 63,
-      "name": "NS #81",
+      "name": "Nature stories #0081",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/63",
       "image_url": "https://ipfs.io/ipfs/bafybeigp6sjz4cmqkfdzqdksvigdgn7yqeiilchnyd6r64nuhcwaqv2yuu",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -3477,12 +3475,12 @@
     },
     {
       "token_id": 64,
-      "name": "NS #82",
+      "name": "Nature stories #0082",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/64",
       "image_url": "https://ipfs.io/ipfs/bafybeicnocy3xqut5qhoacg7zyr37z34tajsdvbnbaw2nuayjoarnjtyy4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -3527,12 +3525,12 @@
     },
     {
       "token_id": 65,
-      "name": "NS #83",
+      "name": "Nature stories #0083",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/65",
       "image_url": "https://ipfs.io/ipfs/bafybeibo62u3cm4lpxm6ucuqydcamojnqsuvvicvbhufrexopmq5wurzzm",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -3578,12 +3576,12 @@
     },
     {
       "token_id": 66,
-      "name": "NS #84",
+      "name": "Nature stories #0084",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/66",
       "image_url": "https://ipfs.io/ipfs/bafybeidzzm7xmcvdcuhbdnr5pt57cw7wxk2xvp7ekbmmrv525umsaof274",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -3629,12 +3627,12 @@
     },
     {
       "token_id": 67,
-      "name": "NS #85",
+      "name": "Nature stories #0085",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/67",
       "image_url": "https://ipfs.io/ipfs/bafybeihsgwebbixwhudnp2slguhlj6mcbvma5ci2i6jou7sv4vknxtnuni",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -3679,12 +3677,12 @@
     },
     {
       "token_id": 68,
-      "name": "NS #86",
+      "name": "Nature stories #0086",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/68",
       "image_url": "https://ipfs.io/ipfs/bafybeidygqhggklsj3nqh2fir77r6i5aqm5g564tb7cyt6uodncqdcccqu",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -3729,12 +3727,12 @@
     },
     {
       "token_id": 69,
-      "name": "NS #87",
+      "name": "Nature stories #0087",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/69",
       "image_url": "https://ipfs.io/ipfs/bafybeiedkb2e3vjuzcvx46gsmg4un4d6yidlxvlivjtmlpkuxt55dctuj4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -3780,12 +3778,12 @@
     },
     {
       "token_id": 70,
-      "name": "NS #88",
+      "name": "Nature stories #0088",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/70",
       "image_url": "https://ipfs.io/ipfs/bafybeiafs7pd437xitu2lmx5smb4rwyl6wuq7bufy75mkjl5bprzjgqhqy",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -3831,12 +3829,12 @@
     },
     {
       "token_id": 71,
-      "name": "NS #89",
+      "name": "Nature stories #0089",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/71",
       "image_url": "https://ipfs.io/ipfs/bafybeicrs43yhhnl7kcjudlaota6lpvp6ejqmjzg2ioaa5zaoi4rpdkkp4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -3881,12 +3879,12 @@
     },
     {
       "token_id": 72,
-      "name": "NS #90",
+      "name": "Nature stories #0090",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/72",
       "image_url": "https://ipfs.io/ipfs/bafybeihqjzwheknxmvqv74i26hjsvq4hefobt4nyefpxnn45ghmec4st2i",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -3931,12 +3929,12 @@
     },
     {
       "token_id": 73,
-      "name": "NS #91",
+      "name": "Nature stories #0091",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/73",
       "image_url": "https://ipfs.io/ipfs/bafybeidmdtd5vw56lkgo7ttfhvwyhdgubkmohxxmezlytcem2yqe2skqti",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -3982,12 +3980,12 @@
     },
     {
       "token_id": 74,
-      "name": "NS #92",
+      "name": "Nature stories #0092",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/74",
       "image_url": "https://ipfs.io/ipfs/bafybeiaqlfnvxvqvo2eoap4wxszon3cetumysevada2u3fbhnfcybfcjhu",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -4033,12 +4031,12 @@
     },
     {
       "token_id": 75,
-      "name": "NS #93",
+      "name": "Nature stories #0093",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/75",
       "image_url": "https://ipfs.io/ipfs/bafybeicbygywmlkfibbmxc6axvosavypwjrksx2bdqyyma44mjugc5fvvm",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -4083,12 +4081,12 @@
     },
     {
       "token_id": 76,
-      "name": "NS #114",
+      "name": "Nature stories #0114",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/76",
       "image_url": "https://ipfs.io/ipfs/bafybeig2ypwm557seqeymoxkjrcfvagmnqogemlvmvbvu53decebfmxg4i",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -4133,12 +4131,12 @@
     },
     {
       "token_id": 78,
-      "name": "NS #115",
+      "name": "Nature stories #0115",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/78",
       "image_url": "https://ipfs.io/ipfs/bafybeifo33w5ippqn5y3e5z4zz6lo2l7ujgezgnwechkg57h65g5pkpaia",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -4184,12 +4182,12 @@
     },
     {
       "token_id": 79,
-      "name": "NS #116",
+      "name": "Nature stories #0116",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/79",
       "image_url": "https://ipfs.io/ipfs/bafybeih6f4tcygu2cnj765hyrnsrz5way66zhtagfrrgpodjiq4xrl5ueu",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -4235,12 +4233,12 @@
     },
     {
       "token_id": 80,
-      "name": "NS #117",
+      "name": "Nature stories #0117",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/80",
       "image_url": "https://ipfs.io/ipfs/bafybeifrrl356pjkxda4e65rzxknt2j4fooygjw6pejmwkjpopyrjakzeq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -4285,12 +4283,12 @@
     },
     {
       "token_id": 81,
-      "name": "NS #118",
+      "name": "Nature stories #0118",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/81",
       "image_url": "https://ipfs.io/ipfs/bafybeie365fe7ugcsrf7iboodgdhzqddtauxggz52jsc57amxqgl5o2fxy",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -4335,12 +4333,12 @@
     },
     {
       "token_id": 82,
-      "name": "NS #119",
+      "name": "Nature stories #0119",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/82",
       "image_url": "https://ipfs.io/ipfs/bafybeibjes6a5m422ddsumak55eicixyoaqtgqz6lmahnl2jzuuawena3m",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -4386,12 +4384,12 @@
     },
     {
       "token_id": 83,
-      "name": "NS #120",
+      "name": "Nature stories #0120",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/83",
       "image_url": "https://ipfs.io/ipfs/bafybeiafmcegcmvtqu7zxku3hrp6dyj4m6i4ug3idxvuysez53dtsuqdcq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -4437,12 +4435,12 @@
     },
     {
       "token_id": 84,
-      "name": "NS #121",
+      "name": "Nature stories #0121",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/84",
       "image_url": "https://ipfs.io/ipfs/bafybeibwng7liyjlqjwhk2uoco4gpe24hbvgv3y652wfqpgrxw6ahfx3du",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -4487,12 +4485,12 @@
     },
     {
       "token_id": 85,
-      "name": "NS #122",
+      "name": "Nature stories #0122",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/85",
       "image_url": "https://ipfs.io/ipfs/bafybeigmm6htlvdv5fpgoadsopf5mqo6ydylqwwsdkwwoxbtsh27mhsyn4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -4537,12 +4535,12 @@
     },
     {
       "token_id": 86,
-      "name": "NS #123",
+      "name": "Nature stories #0123",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/86",
       "image_url": "https://ipfs.io/ipfs/bafybeib5b56r3hzkscqpuky3ogtbln7hhdqbj2jljpy7m3lcwz2jnsa6t4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -4588,12 +4586,12 @@
     },
     {
       "token_id": 87,
-      "name": "NS #124",
+      "name": "Nature stories #0124",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/87",
       "image_url": "https://ipfs.io/ipfs/bafybeidwlc5zilclyslhou2vughmucdtazbcvl5coelxnyhlofgywyyrfa",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -4639,12 +4637,12 @@
     },
     {
       "token_id": 88,
-      "name": "NS #125",
+      "name": "Nature stories #0125",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/88",
       "image_url": "https://ipfs.io/ipfs/bafybeibsus4fouwmi7plygque4q4hokt7rryosnymfber63ev4b5sccfya",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -4689,12 +4687,12 @@
     },
     {
       "token_id": 89,
-      "name": "NS #126",
+      "name": "Nature stories #0126",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/89",
       "image_url": "https://ipfs.io/ipfs/bafybeiek7dcy4bi7gqr4plkiel45htcmzoqvv5cdrhn2ahpcoxt743gwz4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -4739,12 +4737,12 @@
     },
     {
       "token_id": 90,
-      "name": "NS #127",
+      "name": "Nature stories #0127",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/90",
       "image_url": "https://ipfs.io/ipfs/bafybeievfn4lw77a4iaj52ffjj6s6nsjfprepwnjppauuljdol73rpwt6u",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -4790,12 +4788,12 @@
     },
     {
       "token_id": 91,
-      "name": "NS #128",
+      "name": "Nature stories #0128",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/91",
       "image_url": "https://ipfs.io/ipfs/bafybeicwvvozw2cktzizlblf2kat2wlvvhv3ytptmlsmrlhycybjda6hlm",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -4841,12 +4839,12 @@
     },
     {
       "token_id": 92,
-      "name": "NS #129",
+      "name": "Nature stories #0129",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/92",
       "image_url": "https://ipfs.io/ipfs/bafybeibu7l75hyd64ph4hidpprfyrrwqqnb57hfwoytxgo42x42swv4j5q",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -4891,12 +4889,12 @@
     },
     {
       "token_id": 93,
-      "name": "NS #130",
+      "name": "Nature stories #0130",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/93",
       "image_url": "https://ipfs.io/ipfs/bafybeiavxbud3knvw2mj4zdwwrz7ca4ie7rbmpkntannm4s77u427fns3a",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -4941,12 +4939,12 @@
     },
     {
       "token_id": 94,
-      "name": "NS #131",
+      "name": "Nature stories #0131",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/94",
       "image_url": "https://ipfs.io/ipfs/bafybeian435d4jl2vmzue73jotepnfpebobw63pw6pculrb3ddwqejvs3y",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -4992,12 +4990,12 @@
     },
     {
       "token_id": 95,
-      "name": "NS #132",
+      "name": "Nature stories #0132",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/95",
       "image_url": "https://ipfs.io/ipfs/bafybeiau3xfsg5rea6fjryt2zskwe3vwayzz3bv3ednmononfxhppftx7i",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -5043,12 +5041,12 @@
     },
     {
       "token_id": 96,
-      "name": "NS #133",
+      "name": "Nature stories #0133",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/96",
       "image_url": "https://ipfs.io/ipfs/bafybeia6u7cveduxu2sqlrd5g5dvhdpx7htq5qyrnwbw4g3mr2q2q35iuu",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -5093,12 +5091,12 @@
     },
     {
       "token_id": 97,
-      "name": "NS #154",
+      "name": "Nature stories #0154",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/97",
       "image_url": "https://ipfs.io/ipfs/bafybeifopgdli535kjsgrthvq7mgds7mlal4grepgnwt4efgouclxsvae4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -5143,12 +5141,12 @@
     },
     {
       "token_id": 98,
-      "name": "NS #155",
+      "name": "Nature stories #0155",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/98",
       "image_url": "https://ipfs.io/ipfs/bafybeih2ve65viecd4paebfhgusuxrfs3r5fq3ach4t2bd5sglotiivllu",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -5194,12 +5192,12 @@
     },
     {
       "token_id": 99,
-      "name": "NS #156",
+      "name": "Nature stories #0156",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/99",
       "image_url": "https://ipfs.io/ipfs/bafybeia7fhyzojy44dvkpsr764man2vvflxtfhlhg6zkvq5wzauvt2cqbq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -5245,12 +5243,12 @@
     },
     {
       "token_id": 102,
-      "name": "NS #157",
+      "name": "Nature stories #0157",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/102",
       "image_url": "https://ipfs.io/ipfs/bafybeiambmoptbojnehpzvjzjnbyh6ewyju5cxv6su3ucjnyshewnw64u4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -5295,12 +5293,12 @@
     },
     {
       "token_id": 103,
-      "name": "NS #158",
+      "name": "Nature stories #0158",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/103",
       "image_url": "https://ipfs.io/ipfs/bafybeig5opbkf3radsckcje77w64aar622rnj42j7ygyniugp5p7raar4i",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -5345,12 +5343,12 @@
     },
     {
       "token_id": 104,
-      "name": "NS #159",
+      "name": "Nature stories #0159",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/104",
       "image_url": "https://ipfs.io/ipfs/bafybeiadcgi5t2nmi5plos7umbjvojr25td4r7bgdtytcjp6mnchn2p4sq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -5396,12 +5394,12 @@
     },
     {
       "token_id": 106,
-      "name": "NS #160",
+      "name": "Nature stories #0160",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/106",
       "image_url": "https://ipfs.io/ipfs/bafybeifuvpscnt3qijce372kgs3sqryqcwmpubm36al2jy7b5hknlblcdu",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -5447,12 +5445,12 @@
     },
     {
       "token_id": 107,
-      "name": "NS #161",
+      "name": "Nature stories #0161",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/107",
       "image_url": "https://ipfs.io/ipfs/bafybeiaw3a7o7yiu5ebqnlxj2goa4nfk4pcy46f52ndpqhfwdkr33zn62y",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -5497,12 +5495,12 @@
     },
     {
       "token_id": 108,
-      "name": "NS #162",
+      "name": "Nature stories #0162",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/108",
       "image_url": "https://ipfs.io/ipfs/bafybeifajkp7htumnj72jipqio5e7tbij4jjatxhp34t6diihgc72vmadi",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -5547,12 +5545,12 @@
     },
     {
       "token_id": 109,
-      "name": "NS #163",
+      "name": "Nature stories #0163",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/109",
       "image_url": "https://ipfs.io/ipfs/bafybeifqx3dcosc2xhiwmaujmvsopb375hm3goka4hunegzih323mbylke",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -5598,12 +5596,12 @@
     },
     {
       "token_id": 110,
-      "name": "NS #184",
+      "name": "Nature stories #0184",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/110",
       "image_url": "https://ipfs.io/ipfs/bafybeic2a62j5dxkrrpbdsivctwm4derv22it3avu5kp6waqqi6xq27hcq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -5649,12 +5647,12 @@
     },
     {
       "token_id": 111,
-      "name": "NS #185",
+      "name": "Nature stories #0185",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/111",
       "image_url": "https://ipfs.io/ipfs/bafybeifbfkwam2odo2paacwaurqxr6jo2a443q3mg6sbrejjhp4npvekjq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -5699,12 +5697,12 @@
     },
     {
       "token_id": 112,
-      "name": "NS #186",
+      "name": "Nature stories #0186",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/112",
       "image_url": "https://ipfs.io/ipfs/bafybeidpg667fiqc7uta4fx5kek3hm2alco6bx4sxjww7jpuyoahokm5ji",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -5749,12 +5747,12 @@
     },
     {
       "token_id": 113,
-      "name": "NS #187",
+      "name": "Nature stories #0187",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/113",
       "image_url": "https://ipfs.io/ipfs/bafybeie6bk5iapjr7z4jgy4dz3x6rlkhpy6trqun2ttytkkmtb3fgqfjie",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -5800,12 +5798,12 @@
     },
     {
       "token_id": 114,
-      "name": "NS #188",
+      "name": "Nature stories #0188",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/114",
       "image_url": "https://ipfs.io/ipfs/bafybeih2erqt72hj4xw3fi6hcac6zspz66bg5nuve7uwdlm4d2gopuuqri",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -5851,12 +5849,12 @@
     },
     {
       "token_id": 115,
-      "name": "NS #189",
+      "name": "Nature stories #0189",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/115",
       "image_url": "https://ipfs.io/ipfs/bafybeiak57wrqqolmqwy367ekbsvf467yic36m3hmw5apkxaghl2nvams4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -5901,12 +5899,12 @@
     },
     {
       "token_id": 116,
-      "name": "NS #190",
+      "name": "Nature stories #0190",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/116",
       "image_url": "https://ipfs.io/ipfs/bafybeifhqmxy4gppdlyj2lksx3j6sbz3rgrvho7z4hh5xmwbytiniofti4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -5951,12 +5949,12 @@
     },
     {
       "token_id": 117,
-      "name": "NS #191",
+      "name": "Nature stories #0191",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/117",
       "image_url": "https://ipfs.io/ipfs/bafybeiaapz4p6c5tp5bftvadhlxdaom53yz3bax4uqcq2xiyyarupgwyu4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -6002,12 +6000,12 @@
     },
     {
       "token_id": 118,
-      "name": "NS #192",
+      "name": "Nature stories #0192",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/118",
       "image_url": "https://ipfs.io/ipfs/bafybeigft3ym7yne7mzguyqacftxo7jsmw5js6kmxofj4atparo6sdgwcq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -6053,12 +6051,12 @@
     },
     {
       "token_id": 119,
-      "name": "NS #193",
+      "name": "Nature stories #0193",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/119",
       "image_url": "https://ipfs.io/ipfs/bafybeieenc5rhyohb4g2fbovqwzbf3lqwv2hat5cspv6w6gre2fqbotlgy",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -6103,12 +6101,12 @@
     },
     {
       "token_id": 120,
-      "name": "NS #214",
+      "name": "Natures stories #0214",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/120",
       "image_url": "https://ipfs.io/ipfs/bafybeidvkkssacrwf4ghr2mmy2g5x6sdk5gge6fwwdqapne6ogtrltzcle",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -6153,12 +6151,12 @@
     },
     {
       "token_id": 121,
-      "name": "NS #215",
+      "name": "Nature stories #0215",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/121",
       "image_url": "https://ipfs.io/ipfs/bafybeicla5y5n5oyww7rbbd7aj2rsgwaw6klywsqlfnr3ekxuxwjxil5a4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -6204,12 +6202,12 @@
     },
     {
       "token_id": 122,
-      "name": "NS #216",
+      "name": "Nature stories #0216",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/122",
       "image_url": "https://ipfs.io/ipfs/bafybeidl2k6qywi2pgwsimn52tltmaiu3hdlywbaeufnhvinlckbos5vha",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -6255,12 +6253,12 @@
     },
     {
       "token_id": 123,
-      "name": "NS #217",
+      "name": "Nature stories #0217",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/123",
       "image_url": "https://ipfs.io/ipfs/bafybeiczdasg4k5uq75jjnlj7jwgv4poa4i3lepveo2oettx3ujzcfufse",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -6305,12 +6303,12 @@
     },
     {
       "token_id": 124,
-      "name": "NS #218",
+      "name": "Nature stories #0218",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/124",
       "image_url": "https://ipfs.io/ipfs/bafybeievpwfyd3oayht73wijiiwqdkxa3fvg2xbdu3z3uoqxbq4tyq7wta",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -6355,12 +6353,12 @@
     },
     {
       "token_id": 125,
-      "name": "NS #219",
+      "name": "Nature stories #0219",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/125",
       "image_url": "https://ipfs.io/ipfs/bafybeia2jwoxqosxvnzjijdu26kqcs4aq6nrj3yjne4yktogzcmhldgj7y",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -6406,12 +6404,12 @@
     },
     {
       "token_id": 126,
-      "name": "NS #220",
+      "name": "Nature stories #0220",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/126",
       "image_url": "https://ipfs.io/ipfs/bafybeibg7gmpsl2fo735ejarn3wa5ls67ceb4om6oosor7xoftx53h4pcy",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -6457,12 +6455,12 @@
     },
     {
       "token_id": 127,
-      "name": "NS #221",
+      "name": "Nature stories #0221",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/127",
       "image_url": "https://ipfs.io/ipfs/bafybeia4ssixcxtyfobrzh3sxzdghbksx5aigceexk6yb2hoedg6iixyxa",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -6507,12 +6505,12 @@
     },
     {
       "token_id": 128,
-      "name": "NS #222",
+      "name": "Nature stories #0222",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/128",
       "image_url": "https://ipfs.io/ipfs/bafybeig3ku6whxr6nvir4qpq5axtrryv2miaqpzmtubzryzxaj2urrh6e4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -6557,12 +6555,12 @@
     },
     {
       "token_id": 129,
-      "name": "NS #244",
+      "name": "Nature stories #0244",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/129",
       "image_url": "https://ipfs.io/ipfs/bafybeiafm3a3tdx4unpvhbg55u62i7bqikgrurvzs3fbph6smvuhq34r3y",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -6608,12 +6606,12 @@
     },
     {
       "token_id": 130,
-      "name": "NS #245",
+      "name": "Nature stories #0245",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/130",
       "image_url": "https://ipfs.io/ipfs/bafybeifgb6dbkdctnqryz5s4bkcsjcfcmyl3nyuwadhonnfjm5dyqkv7we",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -6659,12 +6657,12 @@
     },
     {
       "token_id": 131,
-      "name": "NS #246",
+      "name": "Nature stories #0246",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/131",
       "image_url": "https://ipfs.io/ipfs/bafybeiap3sb2d5u5jclck4t7nrmmkoktuojo57ezx3csafuyvc3o2ptp34",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -6709,12 +6707,12 @@
     },
     {
       "token_id": 132,
-      "name": "NS #247",
+      "name": "Nature stories #0247",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/132",
       "image_url": "https://ipfs.io/ipfs/bafybeiaw2o7apmuh3ce2ofwvgbtq6issnol2e5tfl6b77evfzcms4yyb6q",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -6759,12 +6757,12 @@
     },
     {
       "token_id": 133,
-      "name": "NS #248",
+      "name": "Nature stories #0248",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/133",
       "image_url": "https://ipfs.io/ipfs/bafybeiarsqvariuazb3vj2xssw4xijrgmu4axnalzuch44cr3dg7imnzbq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -6810,12 +6808,12 @@
     },
     {
       "token_id": 134,
-      "name": "NS #249",
+      "name": "Nature stories #0249",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/134",
       "image_url": "https://ipfs.io/ipfs/bafybeihr7oy53hsc2eedofsxdc6ika5ufrpdzaed37d4lttojcrwzc5vly",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -6861,12 +6859,12 @@
     },
     {
       "token_id": 135,
-      "name": "NS #250",
+      "name": "Nature stories #0250",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/135",
       "image_url": "https://ipfs.io/ipfs/bafybeiecwqwav4sdc7fir4ovowvgdc7qgloyz5xn6pnkikffrr3cukjkkq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -6911,12 +6909,12 @@
     },
     {
       "token_id": 136,
-      "name": "NS #259",
+      "name": "Nature stories #0259",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/136",
       "image_url": "https://ipfs.io/ipfs/bafybeig2glsygpjisxsdrfinh2zbjw3jow5qrlujjzetqrbptgzyiiqp2e",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -6961,12 +6959,12 @@
     },
     {
       "token_id": 137,
-      "name": "NS #260",
+      "name": "Nature stories #0260",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/137",
       "image_url": "https://ipfs.io/ipfs/bafybeihwolr5eqbmaijyuiozeduxxqutu7n3k3dlu4al7bpbmeicuqey7i",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -7012,12 +7010,12 @@
     },
     {
       "token_id": 138,
-      "name": "NS #261",
+      "name": "Nature stories #0261",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/138",
       "image_url": "https://ipfs.io/ipfs/bafybeiaxub34y6ve2wbmcpgltxypnt6gyesqypyx24ppr2o4qe2rwnarq4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -7063,12 +7061,12 @@
     },
     {
       "token_id": 140,
-      "name": "NS #262",
+      "name": "Nature stories #0262",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/140",
       "image_url": "https://ipfs.io/ipfs/bafybeifcdwamvga45t7t4kzly5c37wfjdlmcqjgjtp7asr36a3q2h24exe",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -7113,12 +7111,12 @@
     },
     {
       "token_id": 141,
-      "name": "NS #267",
+      "name": "Nature stories #0267",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/141",
       "image_url": "https://ipfs.io/ipfs/bafybeichj5hwa3kjf5ibsvrtjggxo3ytpwh4jhgosnqp4gjw7oeu7slnbu",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -7163,12 +7161,12 @@
     },
     {
       "token_id": 142,
-      "name": "NS #268",
+      "name": "Nature stories #0268",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/142",
       "image_url": "https://ipfs.io/ipfs/bafybeiahr67n3auxxgsspndtd4r7lbxkcg34kvwcdor3e7crbxn4vs7ubq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -7214,12 +7212,12 @@
     },
     {
       "token_id": 143,
-      "name": "NS #269",
+      "name": "Nature stories #0269",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/143",
       "image_url": "https://ipfs.io/ipfs/bafybeic7mr63ndm4ycfurmb5bwyhrlxsy5idirgmsgxjcuowvhxpnjcha4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -7265,12 +7263,12 @@
     },
     {
       "token_id": 144,
-      "name": "NS #270",
+      "name": "Nature stories #0270",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/144",
       "image_url": "https://ipfs.io/ipfs/bafybeidixopynoenysm2z4qrd7x6aianxbbinbee4vmpiv2pno5rzy33mq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -7315,12 +7313,12 @@
     },
     {
       "token_id": 145,
-      "name": "NS #271",
+      "name": "Nature stories #0271",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/145",
       "image_url": "https://ipfs.io/ipfs/bafybeidvrwciq6d3ahynhil7maeielmjn64s373uvi33lihkla743tzkca",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -7365,12 +7363,12 @@
     },
     {
       "token_id": 146,
-      "name": "NS #276",
+      "name": "Nature stories #0276",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/146",
       "image_url": "https://ipfs.io/ipfs/bafybeibvzvoeczjmr64mv3ni6p2yygiwud3hp6vh63zomugoazsjvqu3yy",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -7416,12 +7414,12 @@
     },
     {
       "token_id": 147,
-      "name": "NS #277",
+      "name": "Nature stories #0277",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/147",
       "image_url": "https://ipfs.io/ipfs/bafybeifiv5drcigukxf5djx7rns5s54li4d2d4wbo2qvgivwegmhpogvy4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -7467,12 +7465,12 @@
     },
     {
       "token_id": 148,
-      "name": "NS #278",
+      "name": "Nature stories #0278",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/148",
       "image_url": "https://ipfs.io/ipfs/bafybeiedxkedfdmf3em3rem3axmmfsdxlcmq3am77da252ue6qs7td75om",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -7517,12 +7515,12 @@
     },
     {
       "token_id": 149,
-      "name": "NS #279",
+      "name": "Nature stories #0279",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/149",
       "image_url": "https://ipfs.io/ipfs/bafybeidzfnymphzhavlcfg45vj2i255ofu7c45ncotrztldtbprkc46fku",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -7567,12 +7565,12 @@
     },
     {
       "token_id": 150,
-      "name": "NS #280",
+      "name": "Nature stories #0280",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/150",
       "image_url": "https://ipfs.io/ipfs/bafybeidradt7xb36lucsabbal3yejlvfroplswbgcbmim5eug6r5yefnra",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -7618,12 +7616,12 @@
     },
     {
       "token_id": 151,
-      "name": "NS #281",
+      "name": "Nature stories #0281",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/151",
       "image_url": "https://ipfs.io/ipfs/bafybeiexe46njcxold6zf6mluvdoklaz4ccfvfqiliq5io2477fuaqlfua",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -7669,12 +7667,12 @@
     },
     {
       "token_id": 152,
-      "name": "NS #282",
+      "name": "Nature stories #0282",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/152",
       "image_url": "https://ipfs.io/ipfs/bafybeig6u6767yhuoetuggyzaurmhkqqclbjyp57jwua7dgkwgn2n5nbx4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -7719,12 +7717,12 @@
     },
     {
       "token_id": 153,
-      "name": "NS #283",
+      "name": "Nature stories #0283",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/153",
       "image_url": "https://ipfs.io/ipfs/bafybeignwsccnebgboe3y527sxaaeqb2zwhee5zkfqe34tvijvse6o3ebi",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -7769,12 +7767,12 @@
     },
     {
       "token_id": 156,
-      "name": "NS #301",
+      "name": "Nature stories #0301",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/156",
       "image_url": "https://ipfs.io/ipfs/bafybeicas33zked6mdpzz5qlvgw4whetzldgtkow3kffvoucwsziyjnasq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -7820,12 +7818,12 @@
     },
     {
       "token_id": 157,
-      "name": "NS #302",
+      "name": "Nature stories #0302",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/157",
       "image_url": "https://ipfs.io/ipfs/bafybeidc54ud6g2md66oibpyt6loikd4oe6nl6r6fxboo3eybvjn2fakqe",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -7871,10 +7869,10 @@
     },
     {
       "token_id": 158,
-      "name": "NS #303",
+      "name": "Nature stories #0303",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/158",
       "image_url": "https://ipfs.io/ipfs/bafybeibpc52m23oaefg3qe2gtewwvhvkup6cqdq2w7qxx74ybecitg2y5e",
-      "supply": 7,
+      "supply": 7000,
       "mint_price_avax": 5.99,
       "current_price_avax": 1580.0,
       "last_sale_price_avax": null,
@@ -7907,7 +7905,7 @@
         ]
       },
       "likes_count": 0,
-      "status": "listed",
+      "status": "unlisted",
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
@@ -7921,12 +7919,12 @@
     },
     {
       "token_id": 159,
-      "name": "NS #304",
+      "name": "Nature stories #0304",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/159",
       "image_url": "https://ipfs.io/ipfs/bafybeiefnfsewgzb23vtue2qg3hg5neh4rl7de7vrrqcbyh4dgqp4mqtbu",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -7971,12 +7969,12 @@
     },
     {
       "token_id": 160,
-      "name": "NS #305",
+      "name": "Nature stories #0305",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/160",
       "image_url": "https://ipfs.io/ipfs/bafybeihs5c6wunnh7p7yyjskxcn4hiapschx4wwkflgyfy3lmwm5t3nf5u",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -8022,12 +8020,12 @@
     },
     {
       "token_id": 161,
-      "name": "NS #318",
+      "name": "Nature stories #0318",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/161",
       "image_url": "https://ipfs.io/ipfs/bafybeibii3itkupq4bwtzgdr2mh4hgadvt4ku5qh4hdcut4gh2cvbiajj4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -8073,12 +8071,12 @@
     },
     {
       "token_id": 162,
-      "name": "NS #319",
+      "name": "Nature stories #0319",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/162",
       "image_url": "https://ipfs.io/ipfs/bafybeiapsydj46mqvwbgo24xlwh5dcgw4toss7hb3ke3l7sqcmmeudxg5m",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -8123,12 +8121,12 @@
     },
     {
       "token_id": 163,
-      "name": "NS #320",
+      "name": "Nature stories #0320",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/163",
       "image_url": "https://ipfs.io/ipfs/bafybeiebl26er7xn2x5vpdngufhayojl4d77rmelaz7biyryubr6c3jm6y",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -8173,12 +8171,12 @@
     },
     {
       "token_id": 164,
-      "name": "NS #321",
+      "name": "Nature stories #0321",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/164",
       "image_url": "https://ipfs.io/ipfs/bafybeibk7wolkcxyqun2yani5dj4yj4poavp662bagebeyqkw3uablyswu",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -8224,12 +8222,12 @@
     },
     {
       "token_id": 165,
-      "name": "NS #336",
+      "name": "Nature stories #0336",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/165",
       "image_url": "https://ipfs.io/ipfs/bafybeig2ulkrgbcwecjbr224in36n6a3uq3eefrr2v6fmx3tsapbw3wyf4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -8275,12 +8273,12 @@
     },
     {
       "token_id": 166,
-      "name": "NS #337",
+      "name": "Nature stories #0337",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/166",
       "image_url": "https://ipfs.io/ipfs/bafybeihvogipp73nmaj4lnczp56bckygooca7exajy5boew4sbjevjst2q",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -8325,12 +8323,12 @@
     },
     {
       "token_id": 167,
-      "name": "NS #338",
+      "name": "Nature stories #0338",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/167",
       "image_url": "https://ipfs.io/ipfs/bafybeiamtmkbcpp2pugr3hwnqnxdphntxonrerjswayoemyvyuonw7d4xq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -8375,12 +8373,12 @@
     },
     {
       "token_id": 168,
-      "name": "NS #339",
+      "name": "Nature stories #0339",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/168",
       "image_url": "https://ipfs.io/ipfs/bafybeihtijh4ci6a5t2qcuyrud4n6p437qnggr2qllfxjjwea4snfrcloa",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -8426,12 +8424,12 @@
     },
     {
       "token_id": 169,
-      "name": "NS #340",
+      "name": "Nature stories #0340",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/169",
       "image_url": "https://ipfs.io/ipfs/bafybeigbkdvhu6az2m4ojnnwk2zcs3gvwxllhy6mmi2dajvp3ltyderef4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -8477,12 +8475,12 @@
     },
     {
       "token_id": 170,
-      "name": "NS #341",
+      "name": "Nature stories #0341",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/170",
       "image_url": "https://ipfs.io/ipfs/bafybeibetfb7xswagc3hmfgqsxtph6bc242saafvifdfywaxhvnh35mqvm",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -8527,12 +8525,12 @@
     },
     {
       "token_id": 171,
-      "name": "NS #342",
+      "name": "Nature stories #0342",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/171",
       "image_url": "https://ipfs.io/ipfs/bafybeievqohfaiyatjjhgybaliksggjlmrfgjuvetpmeyutw67riydaypu",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -8577,12 +8575,12 @@
     },
     {
       "token_id": 172,
-      "name": "NS #343",
+      "name": "Nature stories #0343",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/172",
       "image_url": "https://i2c.seadn.io/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/c935136e31ee3d7b191ccb21691cd3/d7c935136e31ee3d7b191ccb21691cd3.jpeg",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -8628,12 +8626,12 @@
     },
     {
       "token_id": 173,
-      "name": "NS #344",
+      "name": "Nature stories #0344",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/173",
       "image_url": "https://ipfs.io/ipfs/bafybeica6tmzwfj7s3t6fboxbspoyqvhfdbbaz3y2ubp32uxzro2a6jkxi",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -8679,12 +8677,12 @@
     },
     {
       "token_id": 174,
-      "name": "NS #345",
+      "name": "Nature stories #0345",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/174",
       "image_url": "https://ipfs.io/ipfs/bafybeicktwuqkg5s2gcb5y6vfnlwybbefjtyigguabtb2nkkee3m3xw3wa",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -8729,12 +8727,12 @@
     },
     {
       "token_id": 175,
-      "name": "NS #346",
+      "name": "Nature stories #0346",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/175",
       "image_url": "https://ipfs.io/ipfs/bafybeidslin3o72cpd7vy74hnwhy33vrlca3dtwrzfr54aiqrjhoelkdzi",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -8779,12 +8777,12 @@
     },
     {
       "token_id": 176,
-      "name": "NS #347",
+      "name": "Nature stories #0347",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/176",
       "image_url": "https://ipfs.io/ipfs/bafybeibw62c5yjs6hhtqeyrxyafpl6ewfbtqgviygfeqztmgzctkittiqy",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -8830,12 +8828,12 @@
     },
     {
       "token_id": 177,
-      "name": "NS #348",
+      "name": "Nature stories #0348",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/177",
       "image_url": "https://i2c.seadn.io/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/ebe3ba143622906af28aa3ac96a53d/b7ebe3ba143622906af28aa3ac96a53d.jpeg",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -8881,12 +8879,12 @@
     },
     {
       "token_id": 178,
-      "name": "NS #357",
+      "name": "Nature stories #0357",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/178",
       "image_url": "https://ipfs.io/ipfs/bafybeiehvofzolo33qshyzn5acrrxssfmc2gojxmu3vu5ijbszljpebywm",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -8931,12 +8929,12 @@
     },
     {
       "token_id": 179,
-      "name": "NS #358",
+      "name": "Nature stories #0358",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/179",
       "image_url": "https://i2c.seadn.io/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/9abfdd00f3203abea255f1d7cd21f4/f29abfdd00f3203abea255f1d7cd21f4.jpeg",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -8981,12 +8979,12 @@
     },
     {
       "token_id": 180,
-      "name": "NS #359",
+      "name": "Nature stories #0359",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/180",
       "image_url": "https://ipfs.io/ipfs/bafybeidlss5qjgsvav5ykkg2mjpxoh7p2eilytn2anmjmmhdhfrxyfm7oa",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -9032,12 +9030,12 @@
     },
     {
       "token_id": 181,
-      "name": "NS #360",
+      "name": "Nature stories #0360",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/181",
       "image_url": "https://ipfs.io/ipfs/bafybeiafviw5plxttx5jbrbtemkx34l32aejeul2shqogixxtgecxuqtiq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -9083,12 +9081,12 @@
     },
     {
       "token_id": 182,
-      "name": "NS #361",
+      "name": "Nature stories #0361",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/182",
       "image_url": "https://ipfs.io/ipfs/bafybeibiujmxe7x7jjm3uitzp56snyvpvl356nl2sf42ezh5zjep5yn3yu",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -9133,12 +9131,12 @@
     },
     {
       "token_id": 183,
-      "name": "NS #362",
+      "name": "Nature stories #0362",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/183",
       "image_url": "https://ipfs.io/ipfs/bafybeibdjzecho3ice7mbgq2zjazwaivmulhvlw3lt262zkdcse7vlmhku",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -9183,12 +9181,12 @@
     },
     {
       "token_id": 184,
-      "name": "NS #363",
+      "name": "Nature stories #0363",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/184",
       "image_url": "https://ipfs.io/ipfs/bafybeie5l66nchvibcytx6uprdr3syezyxtwgqptiuh35orysjplggavqq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -9234,12 +9232,12 @@
     },
     {
       "token_id": 185,
-      "name": "NS #364",
+      "name": "Nature stories #0364",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/185",
       "image_url": "https://ipfs.io/ipfs/bafybeigpyni6o4euhwe2mr7lmukwx6opzgbiwmfg56lamio4e57qobaw7i",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -9285,12 +9283,12 @@
     },
     {
       "token_id": 186,
-      "name": "NS #365",
+      "name": "Nature stories #0365",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/186",
       "image_url": "https://ipfs.io/ipfs/bafybeih2zqs4gii6rlxqom2iu76tra7ddgnjveusbj4m4u6egrgwyp62ly",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -9335,12 +9333,12 @@
     },
     {
       "token_id": 187,
-      "name": "NS #366",
+      "name": "Nature stories #0366",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/187",
       "image_url": "https://ipfs.io/ipfs/bafybeigtxp4gtq6mpgpgxb7igjyxiecqrcerjyvs37ziceh3n7ip6yxxmu",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -9385,12 +9383,12 @@
     },
     {
       "token_id": 188,
-      "name": "NS #367",
+      "name": "Nature stories #0367",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/188",
       "image_url": "https://ipfs.io/ipfs/bafybeiegyyqrsuc3imdt2bhrg7v4wojthjnppcdxgminn6emx7u5nxoumi",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -9436,12 +9434,12 @@
     },
     {
       "token_id": 189,
-      "name": "NS #368",
+      "name": "Nature stories #0368",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/189",
       "image_url": "https://ipfs.io/ipfs/bafybeicmz4yqltzqvv4wpeldmlje3iomqgcphfwskxihvgpub52q4jdnii",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -9487,12 +9485,12 @@
     },
     {
       "token_id": 190,
-      "name": "NS #369",
+      "name": "Nature stories #0369",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/190",
       "image_url": "https://ipfs.io/ipfs/bafybeihvjpkdd4txdval7ykknnchkrx67aupfx4p4cowyxrnojtcwjmfka",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -9537,12 +9535,12 @@
     },
     {
       "token_id": 191,
-      "name": "NS #370",
+      "name": "Nature stories #0370",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/191",
       "image_url": "https://ipfs.io/ipfs/bafybeieipwkf5z3yqayduvuazngdvwbu6qfjgpaaeeeg5bxr5npumunt5u",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -9587,12 +9585,12 @@
     },
     {
       "token_id": 192,
-      "name": "NS #371",
+      "name": "Nature stories #0371",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/192",
       "image_url": "https://ipfs.io/ipfs/bafybeigb4boi32aaengda6xekawlybuirhysmgoxa2s7weblv4gw7pfbx4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -9638,10 +9636,10 @@
     },
     {
       "token_id": 193,
-      "name": "NS #372",
+      "name": "Nature stories #0372",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/193",
       "image_url": "https://ipfs.io/ipfs/bafybeieh4ikiemkmvjd4o73whxxdf4ulnss7qrxl4vgn74wqmoour3qrxm",
-      "supply": 10000,
+      "supply": 7000,
       "mint_price_avax": 5.99,
       "current_price_avax": null,
       "last_sale_price_avax": null,
@@ -9689,12 +9687,12 @@
     },
     {
       "token_id": 194,
-      "name": "NS #378",
+      "name": "Nature stories #0378",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/194",
       "image_url": "https://ipfs.io/ipfs/bafybeictnlllhsg4ndpdkq37jf4jfhqirhrvcbs7jsttcf7q5bmf2e6bfa",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -9739,12 +9737,12 @@
     },
     {
       "token_id": 195,
-      "name": "NS #379",
+      "name": "Nature stories #0379",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/195",
       "image_url": "https://ipfs.io/ipfs/bafybeigmll2m4xpyo6tk4ehaedytgeh7y5c6mobxhqz7lc43bh4equq5tq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -9789,12 +9787,12 @@
     },
     {
       "token_id": 196,
-      "name": "NS #380",
+      "name": "Nature stories #0380",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/196",
       "image_url": "https://ipfs.io/ipfs/bafybeiaroskp5gehyrtaieubp62dfovrw7ubdpu57qpm42eyb74nmkgxrm",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -9840,12 +9838,12 @@
     },
     {
       "token_id": 197,
-      "name": "NS #373 A",
+      "name": "Nature stories #373A",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/197",
       "image_url": "https://ipfs.io/ipfs/bafybeieklrgymd7j5475qlkjltffmg4nyfpvaropjyecvplzvbon2nc2oq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -9891,12 +9889,12 @@
     },
     {
       "token_id": 199,
-      "name": "NS #381",
+      "name": "Nature stories #0381",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/199",
       "image_url": "https://ipfs.io/ipfs/bafybeifwx4t2djflo3pycmyqhms7h6d3iqnpv6cwepvywqwp2f2ecpbcam",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -9941,12 +9939,12 @@
     },
     {
       "token_id": 200,
-      "name": "NS #382",
+      "name": "Nature stories #0382",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/200",
       "image_url": "https://ipfs.io/ipfs/bafybeicvzrvjskeqfqgxnbd4cbmtbujvx7wf5cijn5kacln5aytrhsh6m4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -9991,12 +9989,12 @@
     },
     {
       "token_id": 201,
-      "name": "NS #383",
+      "name": "Nature stories #0383",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/201",
       "image_url": "https://ipfs.io/ipfs/bafybeied7lmgtf66llcxfcsulmll5hbqexq3u5bwwsb3a7cfem7uh7gtxi",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -10043,12 +10041,12 @@
     },
     {
       "token_id": 202,
-      "name": "NS #384",
+      "name": "Nature stories #0384",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/202",
       "image_url": "https://ipfs.io/ipfs/bafybeiao7manmtrsxtjotddf6ue6nzpgbz5uzptal6fdmdrbbrvf5qe4fq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -10095,12 +10093,12 @@
     },
     {
       "token_id": 203,
-      "name": "NS #385",
+      "name": "Nature stories #0385",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/203",
       "image_url": "https://ipfs.io/ipfs/bafybeiad7w36asfmiq2lym3etz75gyhpwgkvfztkiqj55gacmnrxbc4rye",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -10147,12 +10145,12 @@
     },
     {
       "token_id": 204,
-      "name": "NS #386",
+      "name": "Nature stories #0386",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/204",
       "image_url": "https://ipfs.io/ipfs/bafybeiazfsdvambkk7mj5vchinykajdaihcxmqagdkcbhi3fs44gsqyofe",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -10199,12 +10197,12 @@
     },
     {
       "token_id": 205,
-      "name": "NS #387",
+      "name": "Nature stories #0387",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/205",
       "image_url": "https://ipfs.io/ipfs/bafybeigbyklhf7usje4q74yejukgzqjo3wcasfrtkxbmgwrhjaepwkiy6a",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -10251,12 +10249,12 @@
     },
     {
       "token_id": 206,
-      "name": "NS #388",
+      "name": "Nature stories #0388",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/206",
       "image_url": "https://ipfs.io/ipfs/bafybeihfnk2o3d5lboemsdkwx3jaegrmehqv6zl65eoamstrtf4k2aazom",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -10303,12 +10301,12 @@
     },
     {
       "token_id": 207,
-      "name": "NS #389",
+      "name": "Nature stories #0389",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/207",
       "image_url": "https://ipfs.io/ipfs/bafybeihkfqdug7sa2ekqrf245fouhtjyq6oo2mdifyalnbu5cvhc22ef7e",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -10355,12 +10353,12 @@
     },
     {
       "token_id": 208,
-      "name": "NS #390",
+      "name": "Nature stories #0390",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/208",
       "image_url": "https://ipfs.io/ipfs/bafybeihhrzvivt52bajqdka3yauy6vp6p5kaerdzigniqybimqob6kmoke",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -10407,12 +10405,12 @@
     },
     {
       "token_id": 209,
-      "name": "NS #391",
+      "name": "Nature stories #0391",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/209",
       "image_url": "https://ipfs.io/ipfs/bafybeiertv2vb33nns4zdzervhrxblhihftqw4accau2bkntzkkxvjrth4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -10459,12 +10457,12 @@
     },
     {
       "token_id": 210,
-      "name": "NS #392",
+      "name": "Nature stories #0392",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/210",
       "image_url": "https://ipfs.io/ipfs/bafybeifeea2migbcoajdchu2pbqqf54nvocfnfy53fprmlk6fntr3ebpwm",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -10511,12 +10509,12 @@
     },
     {
       "token_id": 212,
-      "name": "NS #393",
+      "name": "Nature stories #0393",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/212",
       "image_url": "https://ipfs.io/ipfs/bafybeifeea2migbcoajdchu2pbqqf54nvocfnfy53fprmlk6fntr3ebpwm",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -10563,12 +10561,12 @@
     },
     {
       "token_id": 213,
-      "name": "NS #394",
+      "name": "Nature stories #0394",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/213",
       "image_url": "https://ipfs.io/ipfs/bafybeigxwoiul6slowvufhv36moxuggdshhnkgsgw3oremrpyv6xxdrfi4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -10615,12 +10613,12 @@
     },
     {
       "token_id": 214,
-      "name": "NS #395 A",
+      "name": "Nature stories #0395A",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/214",
       "image_url": "https://ipfs.io/ipfs/bafybeiafpldbvdoobizx5olwd3jbgkl55k7t5chb42y4halujv7hyol37a",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -10667,12 +10665,12 @@
     },
     {
       "token_id": 215,
-      "name": "NS #396",
+      "name": "Nature stories #0396",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/215",
       "image_url": "https://ipfs.io/ipfs/bafybeiblysi5tmnoonbhx3xpwbkfulj5qmo32mhvfyg7rgqay4d4a33dma",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -10719,12 +10717,12 @@
     },
     {
       "token_id": 216,
-      "name": "NS #397",
+      "name": "Nature stories #0397",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/216",
       "image_url": "https://ipfs.io/ipfs/bafybeiciyhnselbbogvlmjouyckhwe6isyf53wlxvvnkuvdpx6w6jynybe",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -10771,12 +10769,12 @@
     },
     {
       "token_id": 217,
-      "name": "NS #398",
+      "name": "Nature stories #0398",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/217",
       "image_url": "https://ipfs.io/ipfs/bafybeiddjkvtq3ia4vjll6ghghq42hcypmiuxxlg3cch2rnztginc4gzo4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -10823,12 +10821,12 @@
     },
     {
       "token_id": 218,
-      "name": "NS #399",
+      "name": "Nature stories #0399",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/218",
       "image_url": "https://ipfs.io/ipfs/bafybeigmpp6t5zqjyaczru5ukyuujt7kvbgq3c4a7sz6jxdsg3irj3v6qy",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -10875,12 +10873,12 @@
     },
     {
       "token_id": 219,
-      "name": "NS #400",
+      "name": "Nature stories #0400",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/219",
       "image_url": "https://ipfs.io/ipfs/bafybeicd54qlmxp6lv3ubtlydo5rm5z276asvv2pwdvdybmjs2hyl2gh2q",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -10927,12 +10925,12 @@
     },
     {
       "token_id": 220,
-      "name": "NS #401",
+      "name": "Nature stories #0401",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/220",
       "image_url": "https://ipfs.io/ipfs/bafybeigomp6ru6tgseseqe253p5ppqr3iqsi77glb7eyibh37xwg2cdwhq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -10979,12 +10977,12 @@
     },
     {
       "token_id": 221,
-      "name": "NS #402",
+      "name": "Nature stories #0402",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/221",
       "image_url": "https://ipfs.io/ipfs/bafybeiakvoyipfxnz3d7ptss2qciudg6lc2i3s5izuroxnw3hm2hm7bdzy",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -11031,12 +11029,12 @@
     },
     {
       "token_id": 222,
-      "name": "NS #451",
+      "name": "Nature stories #0451",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/222",
       "image_url": "https://ipfs.io/ipfs/bafybeie3bc3vlc6tnp3ay7lymebekvjduin3kqlamf6tn54gavb3yvivbm",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -11083,12 +11081,12 @@
     },
     {
       "token_id": 223,
-      "name": "NS #452",
+      "name": "Nature stories #0452",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/223",
       "image_url": "https://ipfs.io/ipfs/bafybeigz6mw7atasjkv7seugykrloiildl5iauurvrv3rfqsvtyqugq75q",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -11135,12 +11133,12 @@
     },
     {
       "token_id": 224,
-      "name": "NS #453",
+      "name": "Nature stories #0453",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/224",
       "image_url": "https://ipfs.io/ipfs/bafybeifciabjtgupm62epgp4uhzcztglgvo6x4kgnwlaziwnaoxytgk6ie",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -11187,12 +11185,12 @@
     },
     {
       "token_id": 225,
-      "name": "NS #454",
+      "name": "Nature stories #0454",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/225",
       "image_url": "https://ipfs.io/ipfs/bafybeiagfxljqma7ea5lrjbcjnhy4vjmf6kufo5se4geh55xjn2gj77r2e",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -11239,12 +11237,12 @@
     },
     {
       "token_id": 226,
-      "name": "NS #455",
+      "name": "Nature stories #0455",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/226",
       "image_url": "https://ipfs.io/ipfs/bafybeif726pxvfhsmkjfigvifgtmvtcii63jib2lccl4kkgki3wyccrr6m",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -11291,12 +11289,12 @@
     },
     {
       "token_id": 227,
-      "name": "NS #456",
+      "name": "Nature stories #0456",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/227",
       "image_url": "https://ipfs.io/ipfs/bafybeica6l4ujdehot4zactkltcauxyiptkxi4uduxoantuswllu7eqbaa",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -11343,12 +11341,12 @@
     },
     {
       "token_id": 228,
-      "name": "NS #457",
+      "name": "Nature stories #0457",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/228",
       "image_url": "https://ipfs.io/ipfs/bafybeihbc3y76o5hfio7p2fvmb6anszj23b4wocb4ctojwdnlt64wywzny",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -11395,12 +11393,12 @@
     },
     {
       "token_id": 229,
-      "name": "NS #458",
+      "name": "Nature stories #0458",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/229",
       "image_url": "https://ipfs.io/ipfs/bafybeihmrgu65lfuidfogmbh3sztqoj42o5lj3u4ngivr6fz6oatxxq4ve",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -11447,12 +11445,12 @@
     },
     {
       "token_id": 230,
-      "name": "NS #459",
+      "name": "Nature stories #0459",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/230",
       "image_url": "https://ipfs.io/ipfs/bafybeienek4jkejhsx3my7qgkm5artropcjdbil2dic2wxqfzmfjknnqju",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -11499,12 +11497,12 @@
     },
     {
       "token_id": 231,
-      "name": "NS #460",
+      "name": "Nature stories #0460",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/231",
       "image_url": "https://ipfs.io/ipfs/bafybeig2btezgiz5jxd4ogciw7i3ymdj7a6idi5lv3v7ztywtjsapjvgke",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -11551,7 +11549,7 @@
     },
     {
       "token_id": 232,
-      "name": "NS #461",
+      "name": "Nature stories #0461",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/232",
       "image_url": "https://ipfs.io/ipfs/bafybeibnvjeh3ws4oifu3macqlgjthdenekhiuypcjjkfk2g7z4yo7deea",
       "supply": 7000,
@@ -11603,12 +11601,12 @@
     },
     {
       "token_id": 233,
-      "name": "NS #462",
+      "name": "Nature stories #0462",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/233",
       "image_url": "https://ipfs.io/ipfs/bafybeichxymn7vpbhp2lx7ffuy7ntcseoiy5rxyf7efddtfgw5hmkqe7qi",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -11655,12 +11653,12 @@
     },
     {
       "token_id": 234,
-      "name": "NS #463",
+      "name": "Nature stories #0463",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/234",
       "image_url": "https://ipfs.io/ipfs/bafybeie7ovbypessjrau73sbr6rj2fvwexjzzlurm7fxwyebvy7tnonz4y",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -11707,12 +11705,12 @@
     },
     {
       "token_id": 235,
-      "name": "NS #464",
+      "name": "Nature stories #0464",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/235",
       "image_url": "https://ipfs.io/ipfs/bafybeiaer3evxrzqpdhopntjfd7mfnzvuz75xdtyq3isfryv7l6nf2igny",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -11759,12 +11757,12 @@
     },
     {
       "token_id": 236,
-      "name": "NS #465",
+      "name": "Nature stories #0465",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/236",
       "image_url": "https://ipfs.io/ipfs/bafybeihd4djyrlrodvnolc3xemudy2ci6rusn4ehoufx7vrna46ywzhbxq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -11811,12 +11809,12 @@
     },
     {
       "token_id": 237,
-      "name": "NS #465",
+      "name": "Nature stories #0465",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/237",
       "image_url": "https://ipfs.io/ipfs/bafybeihd4djyrlrodvnolc3xemudy2ci6rusn4ehoufx7vrna46ywzhbxq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -11863,12 +11861,12 @@
     },
     {
       "token_id": 238,
-      "name": "NS #466",
+      "name": "Nature stories #0466",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/238",
       "image_url": "https://ipfs.io/ipfs/bafybeibww26fnmhpuvfy6ca3cbnayfu6osnymarz4plydjycgem43wunby",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -11915,12 +11913,12 @@
     },
     {
       "token_id": 239,
-      "name": "NS #467",
+      "name": "Nature stories #0467",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/239",
       "image_url": "https://ipfs.io/ipfs/bafybeig6ltjulkxkeh4ltucupfcoisuqkpmxblcw5dazimkzbgaipkxnni",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -11967,12 +11965,12 @@
     },
     {
       "token_id": 240,
-      "name": "NS #468",
+      "name": "Nature stories #0468",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/240",
       "image_url": "https://ipfs.io/ipfs/bafybeiga433l66iayn3ahjj6zyxtq563esxtfy2azajotqrm6njvlgsime",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -12019,12 +12017,12 @@
     },
     {
       "token_id": 241,
-      "name": "NS #469",
+      "name": "Nature stories #0469",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/241",
       "image_url": "https://ipfs.io/ipfs/bafybeicaul4rudh4fefin4updmpuvhdk3p7bv5ox6lsgeqlq6oos227uqi",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -12071,12 +12069,12 @@
     },
     {
       "token_id": 242,
-      "name": "NS #470",
+      "name": "Nature stories #0470",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/242",
       "image_url": "https://ipfs.io/ipfs/bafybeieyrlkht7oib7fbh4owaahbrgz4g5zrtm4vhta5uwgp3yxo3qrnri",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -12123,12 +12121,12 @@
     },
     {
       "token_id": 243,
-      "name": "NS #471",
+      "name": "Nature stories #0471",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/243",
       "image_url": "https://ipfs.io/ipfs/bafybeifgav7ndndiutfgce63dhubndjp2htjyaiosdy43uhygbv2bitfw4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -12175,12 +12173,12 @@
     },
     {
       "token_id": 244,
-      "name": "NS #472",
+      "name": "Nature stories #0472",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/244",
       "image_url": "https://ipfs.io/ipfs/bafybeiel66b24bcg6byfvvq3sknq6vmlvssbe3xefadyyzoacjfrc5nuty",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -12227,12 +12225,12 @@
     },
     {
       "token_id": 245,
-      "name": "NS #473",
+      "name": "Nature stories #0473",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/245",
       "image_url": "https://ipfs.io/ipfs/bafybeihl5uk7spmyaqssrpqzoklnfqchdx4dea5na2yomynvvqw4yk235y",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -12279,12 +12277,12 @@
     },
     {
       "token_id": 246,
-      "name": "NS #474",
+      "name": "Nature stories #0474",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/246",
       "image_url": "https://ipfs.io/ipfs/bafybeifjztms5ohowloriw2aal6iwjl3zcst5y7dpk5og3ypfqsm5a6ikm",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -12331,12 +12329,12 @@
     },
     {
       "token_id": 247,
-      "name": "NS #475",
+      "name": "Nature stories #0475",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/247",
       "image_url": "https://ipfs.io/ipfs/bafybeib5fo2ervcak6fclty7xgbgfsz4nwvx2ulg5g75t4vbgrhs2xb7au",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -12383,12 +12381,12 @@
     },
     {
       "token_id": 248,
-      "name": "NS #476",
+      "name": "Nature stories #0476",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/248",
       "image_url": "https://ipfs.io/ipfs/bafybeihxovdrvo6eqeyrio4scztti7blpzmzfuiet7d7tim7yndtk32anm",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -12435,12 +12433,12 @@
     },
     {
       "token_id": 249,
-      "name": "NS #477",
+      "name": "Nature stories #0477",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/249",
       "image_url": "https://ipfs.io/ipfs/bafybeiekoz5azsvv6a33ou4yr7iw5l3mbstsdlwihgzf2txogd557wpjle",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -12487,12 +12485,12 @@
     },
     {
       "token_id": 250,
-      "name": "NS #478",
+      "name": "Nature stories #0478",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/250",
       "image_url": "https://ipfs.io/ipfs/bafybeiaw7lsakh6i42xuo263547ica4dd3gsoyusfefzond5qyfamtazxm",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -12539,12 +12537,12 @@
     },
     {
       "token_id": 251,
-      "name": "NS #479",
+      "name": "Nature stories #0479",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/251",
       "image_url": "https://ipfs.io/ipfs/bafybeidmeauncaisiao3ez6vugspttehua32dx62ia2rra3t3cbmn5d4mq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -12591,12 +12589,12 @@
     },
     {
       "token_id": 252,
-      "name": "NS #480",
+      "name": "Nature stories #0480",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/252",
       "image_url": "https://ipfs.io/ipfs/bafybeieuywj7gvvxctk4f72amhe6byhx22tygfkotxwutnydglxb3ccb2q",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -12643,12 +12641,12 @@
     },
     {
       "token_id": 253,
-      "name": "NS #481",
+      "name": "Nature stories #0481",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/253",
       "image_url": "https://ipfs.io/ipfs/bafybeiby4unz6a4zzeqydorygwf4zop2gtu23efm63kdl7kagzl3mdhrba",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -12695,12 +12693,12 @@
     },
     {
       "token_id": 256,
-      "name": "NS #538",
+      "name": "Nature stories #0538",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/256",
       "image_url": "https://ipfs.io/ipfs/bafybeidoduhviff35twynxsbi4yzwejh6iey2indq6oe4a6z36tlias52a",
-      "supply": 10000,
+      "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.414,
+      "current_price_avax": 5.69,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -12747,12 +12745,12 @@
     },
     {
       "token_id": 257,
-      "name": "NS #539",
+      "name": "Nature stories #0539",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/257",
       "image_url": "https://ipfs.io/ipfs/bafybeibzq7ei46zau4pzcfxaxwuiubixma3sfflupy647zio4sja7f5hgm",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -12799,12 +12797,12 @@
     },
     {
       "token_id": 258,
-      "name": "NS #540",
+      "name": "Nature stories #0540",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/258",
       "image_url": "https://ipfs.io/ipfs/bafybeid64djnqnebyzdwomxu5u6ajbrpxqjxzetot6nvkfr4btuhboqsmq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -12851,12 +12849,12 @@
     },
     {
       "token_id": 259,
-      "name": "NS #541",
+      "name": "Nature stories #0541",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/259",
       "image_url": "https://ipfs.io/ipfs/bafybeialylm37hnljupqmt2au65zvhnvxjscksjmil5a6jdynbij5cd6kq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -12903,12 +12901,12 @@
     },
     {
       "token_id": 260,
-      "name": "NS #542",
+      "name": "Nature stories #0542",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/260",
       "image_url": "https://ipfs.io/ipfs/bafybeiflid6sacb64pu5fpzoebe76aerwi7s3k2xlbzx6evunm2lkuoc24",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -12955,12 +12953,12 @@
     },
     {
       "token_id": 261,
-      "name": "NS #543",
+      "name": "Nature stories #0543",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/261",
       "image_url": "https://ipfs.io/ipfs/bafybeif4nkunbctbvd4hav5kpqmsfxwocfjksuqbnhllxxiktbpemwyzli",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -13007,12 +13005,12 @@
     },
     {
       "token_id": 262,
-      "name": "NS #544",
+      "name": "Nature stories #0544",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/262",
       "image_url": "https://ipfs.io/ipfs/bafybeihsonvkcjfvietc4hdyp5e7gnd2dlofsqop3m5erypz5yncxtnoxy",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -13059,12 +13057,12 @@
     },
     {
       "token_id": 263,
-      "name": "NS #545",
+      "name": "Nature stories #0545",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/263",
       "image_url": "https://ipfs.io/ipfs/bafybeihpj2tlmpjuoqlpzykuyggqnsozxkxnakbowpfzdktzwgdt2w6mky",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -13111,12 +13109,12 @@
     },
     {
       "token_id": 264,
-      "name": "NS #546",
+      "name": "Nature stories #0546",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/264",
       "image_url": "https://ipfs.io/ipfs/bafybeieqac7objogpla3sg4daq4q4kj6eyiqw2m452fmiyt4cw3sd57gty",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -13163,12 +13161,12 @@
     },
     {
       "token_id": 265,
-      "name": "NS #547",
+      "name": "Nature stories #0547",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/265",
       "image_url": "https://ipfs.io/ipfs/bafybeihzvqdt7sj2wl2iqtawviwwnzau5vcmv4su6vdny7erxajhjerbou",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -13215,12 +13213,12 @@
     },
     {
       "token_id": 266,
-      "name": "NS #548",
+      "name": "Nature stories #0548",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/266",
       "image_url": "https://ipfs.io/ipfs/bafybeifoca4hhgzqi4y7rpkepcy23tfx4kuyr2c2zyg55elxeuos7hjzii",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -13267,12 +13265,12 @@
     },
     {
       "token_id": 267,
-      "name": "NS #549",
+      "name": "Nature stories #0549",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/267",
       "image_url": "https://ipfs.io/ipfs/bafybeihddrn6tgisyilkyxgnqxt2uw7w3ljy25qoixdmzaiyplngwvai4i",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -13319,12 +13317,12 @@
     },
     {
       "token_id": 268,
-      "name": "NS #550",
+      "name": "Nature stories #0550",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/268",
       "image_url": "https://ipfs.io/ipfs/bafybeigasynj5owt3i43rl2gnk47gngnb7nb5x3u5lrpyw7qgxnviufpfm",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -13371,12 +13369,12 @@
     },
     {
       "token_id": 269,
-      "name": "NS #551",
+      "name": "Nature stories #0551",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/269",
       "image_url": "https://ipfs.io/ipfs/bafybeibi3lijet4o5bzw7emqafyaickeiwqfgipurlmjf4pvedrvfu4fpm",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -13423,12 +13421,12 @@
     },
     {
       "token_id": 270,
-      "name": "NS #552",
+      "name": "Nature stories #0552",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/270",
       "image_url": "https://ipfs.io/ipfs/bafybeignan5hlagf4mjoae4kc7pawc6eb6pumtqpk6v67sgwvp6qxg6l6a",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -13475,12 +13473,12 @@
     },
     {
       "token_id": 271,
-      "name": "NS #553",
+      "name": "Nature stories #0553",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/271",
       "image_url": "https://ipfs.io/ipfs/bafybeih5w6misg3n5o7psfgdravdtc5ckjntb3u63p7gqvsv7gez64qrai",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -13527,12 +13525,12 @@
     },
     {
       "token_id": 272,
-      "name": "NS #554",
+      "name": "Nature stories #0554",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/272",
       "image_url": "https://ipfs.io/ipfs/bafybeignwdo7wkkyjyxstwfmxmhffxddq2ce4pekujcre3bvqxrmogbuaa",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -13579,12 +13577,12 @@
     },
     {
       "token_id": 273,
-      "name": "NS #555",
+      "name": "Nature stories #0555",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/273",
       "image_url": "https://ipfs.io/ipfs/bafybeidubla626iupqyjtk7qcteythwxdavtec4pbgx2nkpkdzbzaredle",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -13631,12 +13629,12 @@
     },
     {
       "token_id": 274,
-      "name": "NS #556",
+      "name": "Nature stories #0556",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/274",
       "image_url": "https://ipfs.io/ipfs/bafybeid4vfth3ai2fonpsylov3bptt4w3mvaxrzvvurhvb3ry5ozerd5fi",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -13683,12 +13681,12 @@
     },
     {
       "token_id": 275,
-      "name": "NS #557",
+      "name": "Nature stories #0557",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/275",
       "image_url": "https://ipfs.io/ipfs/bafybeibcroisjsorrld7g5vyflm6pajgybz5iuv5vc3hdebg77sed2nmyy",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -13735,12 +13733,12 @@
     },
     {
       "token_id": 276,
-      "name": "NS #558",
+      "name": "Nature stories #0558",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/276",
       "image_url": "https://ipfs.io/ipfs/bafybeicxhryhnvfcdpecwh2voutoispwcq4ukb2lxhqips4kvtojjarsou",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -13787,12 +13785,12 @@
     },
     {
       "token_id": 277,
-      "name": "NS #559",
+      "name": "Nature stories #0559",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/277",
       "image_url": "https://ipfs.io/ipfs/bafybeiatreln352duu5oem36vi67v2wp32s4zvxdqg2x4qv5nyxcj2fmci",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -13839,12 +13837,12 @@
     },
     {
       "token_id": 278,
-      "name": "NS #560",
+      "name": "Nature stories #0560",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/278",
       "image_url": "https://ipfs.io/ipfs/bafybeihwfdi3u6gqrxxg7qlhuez6w5qd56rijrl5tnizeijlkzeeehcxly",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -13891,12 +13889,12 @@
     },
     {
       "token_id": 279,
-      "name": "NS #561",
+      "name": "Nature stories #0561",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/279",
       "image_url": "https://ipfs.io/ipfs/bafybeifaihor675tei2zusog4yegxxbetfgni6vwoy24pwyluyk2yseqrq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -13943,12 +13941,12 @@
     },
     {
       "token_id": 281,
-      "name": "NS #562",
+      "name": "Nature stories #0562",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/281",
       "image_url": "https://ipfs.io/ipfs/bafybeigav3pzszhkfltgabsy2fj2hm2u27ogeosxl3h3uqxhdf7fi5guce",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -13995,12 +13993,12 @@
     },
     {
       "token_id": 282,
-      "name": "NS #563",
+      "name": "Nature stories #0563",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/282",
       "image_url": "https://ipfs.io/ipfs/bafybeidrngzsqcndka6kp6gwoyd2uhlcr2gz2fdurxu3ha5aulbltcnso4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -14047,12 +14045,12 @@
     },
     {
       "token_id": 283,
-      "name": "NS #564",
+      "name": "Nature stories #0564",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/283",
       "image_url": "https://ipfs.io/ipfs/bafybeiedx537vfrncaumtqdizy3edey5wbrwrp5svmxc3yvfuuqjyo765a",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -14099,12 +14097,12 @@
     },
     {
       "token_id": 284,
-      "name": "NS #565",
+      "name": "Nature stories #0565",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/284",
       "image_url": "https://ipfs.io/ipfs/bafybeiffpnznq2qivuiuzxeaxa355rr52dcd4fucavayrlbfim7fbmywxy",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -14151,12 +14149,12 @@
     },
     {
       "token_id": 285,
-      "name": "NS #566",
+      "name": "Nature stories #0566",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/285",
       "image_url": "https://ipfs.io/ipfs/bafybeieenilao3umijf5d7z36f7slqqnlt6q223zcudrlwqoa52a36764m",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -14203,12 +14201,12 @@
     },
     {
       "token_id": 286,
-      "name": "NS #567",
+      "name": "Nature stories #0567",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/286",
       "image_url": "https://ipfs.io/ipfs/bafybeiavvbh6goympeihadpv3gra6mwddf34wv3oloqyahksjem2qq3xui",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -14255,12 +14253,12 @@
     },
     {
       "token_id": 287,
-      "name": "NS #568",
+      "name": "Nature stories #0568",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/287",
       "image_url": "https://ipfs.io/ipfs/bafybeidyv4oy5fjk7iqbrokl5sm7wum7jvyzzxvwjtvg3qialpskhq6idu",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -14307,12 +14305,12 @@
     },
     {
       "token_id": 288,
-      "name": "NS #569",
+      "name": "Nature stories #0569",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/288",
       "image_url": "https://ipfs.io/ipfs/bafybeigubpx6dlsyd2gv7b5pi3nyxdwipbxpkew2amqfhphbjpbdub73zm",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -14359,12 +14357,12 @@
     },
     {
       "token_id": 289,
-      "name": "NS #570",
+      "name": "Nature stories #0570",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/289",
       "image_url": "https://ipfs.io/ipfs/bafybeifgbaneztbzplu4gglps5jxsfwx4tt5lv7jmeqtreugs6tpsz4wh4",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -14411,12 +14409,12 @@
     },
     {
       "token_id": 290,
-      "name": "NS #571",
+      "name": "Nature stories #0571",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/290",
       "image_url": "https://ipfs.io/ipfs/bafybeifoacpdrdhp35ftr4m7jvt77gu5wqfuemacrlz6ljmn5vhdsqslna",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -14463,12 +14461,12 @@
     },
     {
       "token_id": 291,
-      "name": "NS #572",
+      "name": "Nature stories #0572",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/291",
       "image_url": "https://ipfs.io/ipfs/bafybeidzweoqapltvruji3saek6omb7xzltjiymzvzy4omliizvsgwvrne",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -14515,12 +14513,12 @@
     },
     {
       "token_id": 292,
-      "name": "NS #573",
+      "name": "Nature stories #0573",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/292",
       "image_url": "https://ipfs.io/ipfs/bafybeigah5plcbno2n3licw4zwkve3d2eii2in2vgaetzryveyzdga7dia",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -14567,12 +14565,12 @@
     },
     {
       "token_id": 293,
-      "name": "NS #574",
+      "name": "Nature stories #0574",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/293",
       "image_url": "https://ipfs.io/ipfs/bafybeiguvaqc37emghpv5iqtbfulmpeyg5l7k2fi5tam7v7vsnqs4xpgiq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -14619,12 +14617,12 @@
     },
     {
       "token_id": 294,
-      "name": "NS #575",
+      "name": "Nature stories #0575",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/294",
       "image_url": "https://ipfs.io/ipfs/bafybeicsarboumi2wwgud6bcc56z36pzq6p3iravwqn2trtudi4go5zxti",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -14671,12 +14669,12 @@
     },
     {
       "token_id": 295,
-      "name": "NS #582",
+      "name": "Nature stories #0582",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/295",
       "image_url": "https://ipfs.io/ipfs/bafybeicp7mo26u2ujzv5wvrmuzncumtrwsi4k4vnn6oknipezldm6msmzm",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -14723,12 +14721,12 @@
     },
     {
       "token_id": 296,
-      "name": "NS #583",
+      "name": "Nature stories #0583",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/296",
       "image_url": "https://ipfs.io/ipfs/bafybeicuzqljozm47j4nbhoiybga5w6ufytp6r7leqocua4hnfn3iuqu2e",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -14775,12 +14773,12 @@
     },
     {
       "token_id": 297,
-      "name": "NS #584",
+      "name": "Nature stories #0584",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/297",
       "image_url": "https://ipfs.io/ipfs/bafybeicq47ki7oko63fx3wlu4tkfnlyr2k3sarl54gqbqvcxdlwe7fc6wq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -14827,12 +14825,12 @@
     },
     {
       "token_id": 298,
-      "name": "NS #585",
+      "name": "Nature stories #0585",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/298",
       "image_url": "https://ipfs.io/ipfs/bafybeifp7dcygqkk4nj33hdpadawvw6dbycm54vnk6dbzhj4e4jsqve5lm",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -14879,12 +14877,12 @@
     },
     {
       "token_id": 299,
-      "name": "NS #586",
+      "name": "Nature stories #0586",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/299",
       "image_url": "https://ipfs.io/ipfs/bafybeia3twbb3hk73cx2aho522a2kmklcfsydsln27egu3mmp5c33hyw44",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -14931,12 +14929,12 @@
     },
     {
       "token_id": 300,
-      "name": "NS #587",
+      "name": "Nature stories #0587",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/300",
       "image_url": "https://ipfs.io/ipfs/bafybeicz2c2sfiiy6nyp42dekrsrcqcvsnqpexqynug56j4d6oae7shzrq",
       "supply": 7000,
       "mint_price_avax": 5.99,
-      "current_price_avax": 3.594,
+      "current_price_avax": 5.99,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {

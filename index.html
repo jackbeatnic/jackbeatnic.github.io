@@ -61,7 +61,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/gallery.css?v=20260809dark">
+    <link rel="stylesheet" href="css/gallery.css?v=20260809dark2">
 </head>
 <body class="gallery-protected">
     <header class="site-header site-header--sticky">
@@ -70,7 +70,16 @@
                 <h1 class="site-logo">
                     <span class="visually-hidden">Jack Beatnic</span>
                     <div class="signature-logo-wrap" aria-hidden="true">
-                        <img src="assets/signature.png"
+                        <img class="signature-logo signature-logo--light"
+                             src="assets/signature.png"
+                             alt=""
+                             width="360"
+                             height="150"
+                             decoding="async"
+                             draggable="false"
+                             referrerpolicy="no-referrer">
+                        <img class="signature-logo signature-logo--dark"
+                             src="assets/signature-white.png"
                              alt=""
                              width="360"
                              height="150"
@@ -83,6 +92,7 @@
                 <p class="artist-subtitle">Digital Art · NFT</p>
             </div>
             <nav class="site-nav" aria-label="Main">
+                <a href="#gallery-root" data-section="featured">Featured</a>
                 <a href="#gallery-root" data-section="ai_art">AI Art</a>
                 <a href="#gallery-root" data-section="photography">Photography &amp; Artworks</a>
                 <a href="#gallery-root" data-section="atelier">The Atelier</a>
@@ -297,10 +307,10 @@
     <script src="js/likes.js?v=20260718mood"></script>
     <script src="js/color-groups.js?v=20260713b"></script>
     <script src="js/filters.js?v=20260718mood"></script>
-    <script src="js/sections.js?v=20260809featured"></script>
+    <script src="js/sections.js?v=20260809featured2"></script>
     <script src="js/wallet.js?v=20260713e"></script>
     <script src="js/tip.js?v=20260712p"></script>
     <script src="js/share.js?v=20260718share"></script>
-    <script src="js/gallery.js?v=20260809featured"></script>
+    <script src="js/gallery.js?v=20260809featured2"></script>
 </body>
 </html>

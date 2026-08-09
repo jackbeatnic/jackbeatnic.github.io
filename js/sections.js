@@ -219,8 +219,21 @@ const GallerySections = (() => {
         });
     }
 
+    function ensureFeaturedSectionConfig() {
+        if (!site.sections) site.sections = {};
+        if (!site.sections.featured) {
+            site.sections.featured = {
+                label: 'Featured',
+                label_short: 'Featured',
+                explore_title: 'Featured · promo (all chains)',
+                empty_message: 'No active promos right now — check back soon.',
+            };
+        }
+    }
+
     function init(siteConfig) {
         site = siteConfig || {};
+        ensureFeaturedSectionConfig();
         currentSection = site.default_section || 'ai_art';
         const aiCfg = config().ai_art;
         const photoCfg = config().photography;
@@ -246,7 +259,9 @@ const GallerySections = (() => {
             el.addEventListener('click', (e) => {
                 e.preventDefault();
                 const id = el.dataset.section;
-                if (!id || !config()[id]) return;
+                if (!id) return;
+                ensureFeaturedSectionConfig();
+                if (!config()[id]) return;
                 setSection(id);
             });
         });
@@ -513,6 +528,8 @@ const GallerySections = (() => {
         const marketSubnav = document.getElementById('market-subnav');
         if (marketSubnav) marketSubnav.hidden = currentSection !== 'atelier';
 
+        // Featured: no chain/series subnav
+
         const disabledAiKinds = new Set(config().ai_art?.disabled_subsections || []);
         const aiKindNotes = config().ai_art?.subsection_notes || {};
         document.querySelectorAll('[data-ai-kind]').forEach((el) => {
@@ -611,6 +628,13 @@ const GallerySections = (() => {
         const hiddenSeries = disabledAiSeries();
         const filtered = allNfts.filter((nft) => {
             const medium = nft.medium || 'ai_art';
+            // Featured tab — multi-chain promo feed
+            if (currentSection === 'featured') {
+                return medium === 'featured_promo';
+            }
+            // keep promo cards out of AI Art / Photo / Atelier
+            if (medium === 'featured_promo') return false;
+
             if (currentSection === 'ai_art') {
                 if (currentAiKind === 'xrpl') return medium === 'xrpl_ai';
                 if (currentAiKind === 'sui') return medium === 'sui_ai';
@@ -741,6 +765,12 @@ const GallerySections = (() => {
     }
 
     function emptyMessage() {
+        if (currentSection === 'featured') {
+            return (
+                config().featured?.empty_message ||
+                'No active promos right now — check back soon.'
+            );
+        }
         if (currentSection === 'ai_art') {
             if (isEvmAiKind()) {
                 const seriesMsgs = config().ai_art?.empty_messages_series || {};

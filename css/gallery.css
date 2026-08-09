@@ -16,6 +16,13 @@
     --glow-hover: 0 0 28px rgba(0, 0, 0, 0.07);
     --glow-image: 0 0 36px rgba(0, 0, 0, 0.09);
     --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    /* surfaces that were hard-coded white */
+    --header-bg: rgba(255, 255, 255, 0.94);
+    --veil-strong: rgba(255, 255, 255, 0.98);
+    --veil-mid: rgba(255, 255, 255, 0.92);
+    --shadow-rgb: 0, 0, 0;
+    --rule: rgba(0, 0, 0, 0.08);
+    color-scheme: light;
 }
 
 *,
@@ -60,7 +67,7 @@ a {
     position: sticky;
     top: 0;
     z-index: 200;
-    background: rgba(255, 255, 255, 0.94);
+    background: var(--header-bg);
     backdrop-filter: blur(10px);
 }
 
@@ -1924,5 +1931,287 @@ body.lightbox-open {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+}
+/* ── Featured promo (cross-chain strip) ── */
+.featured-promo {
+    max-width: var(--max-width);
+    margin: 0 auto 1.75rem;
+    padding: 0 1.25rem 0.5rem;
+}
+
+.featured-promo__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+    margin-bottom: 0.85rem;
+}
+
+.featured-promo__eyebrow {
+    margin: 0 0 0.2rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+}
+
+.featured-promo__title {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 1.35rem;
+    letter-spacing: 0.01em;
+}
+
+.featured-promo__lead {
+    margin: 0.25rem 0 0;
+    color: var(--gray-600);
+    font-size: 0.85rem;
+}
+
+.featured-promo__meta {
+    margin: 0;
+    font-size: 0.75rem;
+    color: var(--gray-500);
+    white-space: nowrap;
+}
+
+.featured-promo__track {
+    display: flex;
+    gap: 0.85rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.featured-promo__card {
+    flex: 0 0 11.5rem;
+    scroll-snap-align: start;
+    border: 1px solid var(--gray-100);
+    border-radius: 10px;
+    background: var(--white);
+    overflow: hidden;
+    transition: box-shadow 0.25s var(--ease-out);
+}
+
+.featured-promo__card:hover {
+    box-shadow: var(--glow-hover);
+}
+
+.featured-promo__thumb {
+    display: block;
+    aspect-ratio: 1;
+    background: var(--gray-50);
+    overflow: hidden;
+}
+
+.featured-promo__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.featured-promo__body {
+    padding: 0.55rem 0.65rem 0.7rem;
+}
+
+.featured-promo__name {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 500;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.featured-promo__col {
+    margin: 0.15rem 0 0;
+    font-size: 0.68rem;
+    color: var(--gray-500);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.featured-promo__price {
+    margin: 0.35rem 0 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.featured-promo__stats {
+    margin: 0.2rem 0 0;
+    font-size: 0.68rem;
+    color: var(--gray-500);
+}
+
+.featured-promo__badge {
+    display: inline-block;
+    margin-top: 0.35rem;
+    padding: 0.12rem 0.4rem;
+    border-radius: 4px;
+    background: #dc322f;
+    color: #fff;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* ── Dark mode (OS preference) ──
+   Signature PNG is black ink — invert so it stays legible on dark bg.
+   NFT artwork images are NOT inverted. */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --black: #f0f0f0;
+        --white: #0c0c0c;
+        --gray-50: #141414;
+        --gray-100: #1c1c1c;
+        --gray-200: #2a2a2a;
+        --gray-400: #9a9a9a;
+        --gray-500: #a3a3a3;
+        --gray-600: #c4c4c4;
+        --accent-nature: #4aa3ff;
+        --glow-hover: 0 0 28px rgba(255, 255, 255, 0.06);
+        --glow-image: 0 0 36px rgba(255, 255, 255, 0.05);
+        --header-bg: rgba(12, 12, 12, 0.92);
+        --veil-strong: rgba(12, 12, 12, 0.96);
+        --veil-mid: rgba(12, 12, 12, 0.88);
+        --shadow-rgb: 0, 0, 0;
+        --rule: rgba(255, 255, 255, 0.1);
+        color-scheme: dark;
+    }
+
+    html {
+        color-scheme: dark;
+    }
+
+    body {
+        background: var(--white);
+        color: var(--black);
+    }
+
+    /* Black signature → light ink in dark mode */
+    .signature-logo-wrap img {
+        filter: invert(1);
+    }
+
+    .site-brand:hover .signature-logo-wrap {
+        filter: none;
+    }
+
+    .site-brand:hover .signature-logo-wrap img {
+        filter:
+            invert(1)
+            drop-shadow(0 0 14px rgba(255, 255, 255, 0.18))
+            drop-shadow(0 2px 8px rgba(255, 255, 255, 0.08));
+    }
+
+    .site-nav a:hover {
+        text-shadow: 0 0 18px rgba(255, 255, 255, 0.12);
+    }
+
+    .site-nav a::after {
+        background: var(--black);
+    }
+
+    /* Hard-coded light surfaces from light theme */
+    .section-nav,
+    .section-subnav,
+    .filters-panel,
+    .nft-card,
+    .about-section,
+    .tip-panel,
+    .lightbox,
+    .featured-promo__card {
+        background: var(--gray-50);
+        border-color: var(--gray-100);
+    }
+
+    .section-nav__tab.is-active,
+    .section-subnav__tab.is-active,
+    .filter-tag.is-active,
+    .filters__select,
+    .filters-search {
+        color: var(--black);
+        background: var(--gray-100);
+        border-color: var(--gray-200);
+    }
+
+    .btn--primary {
+        background: var(--black);
+        color: var(--white);
+        border-color: var(--black);
+    }
+
+    .btn--ghost {
+        color: var(--black);
+        border-color: var(--gray-200);
+        background: transparent;
+    }
+
+    .btn--ghost:hover {
+        background: var(--gray-100);
+    }
+
+    .nft-card__body,
+    .hero__content,
+    .filters-panel__head {
+        color: var(--black);
+    }
+
+    .nft-card {
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .nft-card:hover {
+        box-shadow: var(--glow-hover);
+    }
+
+    /* Hero / gradient veils that assumed white */
+    .hero__veil,
+    .hero__content {
+        background: linear-gradient(
+            90deg,
+            var(--veil-strong) 0%,
+            var(--veil-mid) 28%,
+            rgba(12, 12, 12, 0.55) 48%,
+            rgba(12, 12, 12, 0.15) 100%
+        );
+    }
+
+    .site-header__rule {
+        background: var(--gray-100);
+    }
+
+    input,
+    select,
+    textarea {
+        color-scheme: dark;
+        background: var(--gray-50);
+        color: var(--black);
+        border-color: var(--gray-200);
+    }
+
+    .gallery-empty,
+    .artist-subtitle,
+    .section-promo__text,
+    .featured-promo__col,
+    .featured-promo__stats {
+        color: var(--gray-500);
+    }
+
+    /* Modal / tip / wallet panels */
+    .tip-drawer,
+    .wallet-names,
+    .marketplace-links {
+        background: var(--gray-50);
+        color: var(--black);
+        border-color: var(--gray-100);
     }
 }

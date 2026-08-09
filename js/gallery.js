@@ -205,6 +205,13 @@ const Gallery = (() => {
     }
 
     function marketplaceName(nft) {
+        if (isFeaturedPromoNft(nft)) {
+            if (nft.tradeport_url || nft.chain === 'sui') {
+                return MARKETPLACE_NAMES.tradeport;
+            }
+            if (nft.chain === 'xrpl') return MARKETPLACE_NAMES.xrp_cafe;
+            return MARKETPLACE_NAMES.opensea;
+        }
         if (isManifoldAuction(nft)) return MARKETPLACE_NAMES.manifold;
         if (isTradeportNft(nft)) return MARKETPLACE_NAMES.tradeport;
         if (isXrpCafeNft(nft)) return MARKETPLACE_NAMES.xrp_cafe;
@@ -237,6 +244,9 @@ const Gallery = (() => {
     }
 
     function marketplaceLabel(nft) {
+        if (isFeaturedPromoNft(nft)) {
+            return `View on ${marketplaceName(nft)}`;
+        }
         if (isObjktAuction(nft)) return 'Bid on OBJKT';
         if (isManifoldAuction(nft)) return 'Bid on Manifold';
         if (isXrplPendingMint(nft)) return 'Request mint';
@@ -259,6 +269,15 @@ const Gallery = (() => {
         if (isXrplPendingMint(nft)) {
             // NIE meta JSON (otwierało się w nowej karcie) — prośba o mint
             return xrplMintRequestTweetUrl(nft);
+        }
+        if (isFeaturedPromoNft(nft)) {
+            return (
+                nft.xrp_cafe_url ||
+                nft.marketplace_url ||
+                nft.opensea_url ||
+                nft.tradeport_url ||
+                ''
+            );
         }
         if (isXrpCafeNft(nft)) {
             if (nft.xrpl_nft_id) {
@@ -324,6 +343,13 @@ const Gallery = (() => {
     }
 
     function tokenLabel(nft) {
+        if (isFeaturedPromoNft(nft)) {
+            const col = nft.collection_name || nft.collection_id || '';
+            const chain = chainLabel(nft);
+            const off =
+                nft.pct_off != null && nft.pct_off > 0 ? ` · −${nft.pct_off}%` : '';
+            return `${col} · ${chain}${off}`;
+        }
         if (isObjktAuction(nft)) {
             const type =
                 nft.auction_type === 'dutch' ? 'Dutch auction' : 'English auction';
@@ -436,6 +462,25 @@ const Gallery = (() => {
                 };
             }
             return { text: 'Live auction', hint: chainLabel(nft), kind: 'listed' };
+        }
+        // Featured multi-chain promo feed
+        if (isFeaturedPromoNft(nft)) {
+            const symbol = currencyForNft(nft);
+            const p =
+                priceField(nft, 'current_price', symbol) ?? nft.current_price_avax;
+            const left = nft.promo_days_left;
+            const q = nft.promo_quantity ?? nft.supply;
+            const off = nft.pct_off;
+            const bits = [];
+            if (q != null) bits.push(`q ${q}`);
+            if (left != null) bits.push(left > 0 ? `${left}d left` : 'ends soon');
+            if (off != null && off > 0) bits.push(`−${off}%`);
+            bits.push(chainLabel(nft));
+            return {
+                text: p != null && p !== '' ? `${p} ${symbol}` : 'Promo',
+                hint: bits.join(' · '),
+                kind: 'listed',
+            };
         }
         // XRPL catalog: available = mint on demand; listed = Cafe
         if (isXrpCafeNft(nft)) {
@@ -622,16 +667,100 @@ const Gallery = (() => {
         }
     }
 
+    function daysLeft(endsAt) {
+        if (!endsAt) return null;
+        const end = new Date(endsAt);
+        if (Number.isNaN(end.getTime())) return null;
+        const ms = end.getTime() - Date.now();
+        if (ms <= 0) return 0;
+        return Math.ceil(ms / 86400000);
+    }
+
+    function isFeaturedPromoNft(nft) {
+        return nft?.medium === 'featured_promo';
+    }
+
+    /** featured_promo.json → cards in Featured tab (all chains). */
+    function featuredItemsToNfts(doc) {
+        const promo = doc?.promo || {};
+        const raw = Array.isArray(doc?.items) ? doc.items : [];
+        const now = Date.now();
+        return raw
+            .filter((it) => {
+                const ea = it.ends_at || promo.ends_at;
+                if (!ea) return true;
+                const t = new Date(ea).getTime();
+                return !Number.isNaN(t) && t > now;
+            })
+            .map((it, idx) => {
+                const chain = (it.chain || '').toLowerCase();
+                const cur = (it.currency || 'AVAX').toUpperCase();
+                const suf = cur.toLowerCase();
+                const price = it.price;
+                const ends = it.ends_at || promo.ends_at;
+                const left = daysLeft(ends);
+                const nft = {
+                    medium: 'featured_promo',
+                    token_id: it.token_id,
+                    name: it.name || `#${it.token_id}`,
+                    collection_id: it.collection_id,
+                    collection_name: it.collection_name,
+                    chain,
+                    image_url: it.image_url,
+                    listing_currency: cur,
+                    listing_status: 'For Sale',
+                    status: 'listed',
+                    supply: it.quantity,
+                    promo_quantity: it.quantity,
+                    promo_days: it.days != null ? it.days : promo.days,
+                    promo_days_left: left,
+                    pct_off: it.pct_off != null ? it.pct_off : promo.pct_off,
+                    ends_at: ends,
+                    opensea_url: it.opensea_url,
+                    tradeport_url: it.tradeport_url,
+                    marketplace_url:
+                        it.marketplace_url ||
+                        it.opensea_url ||
+                        it.tradeport_url ||
+                        '',
+                    display_rank: idx + 1,
+                };
+                if (price != null && price !== '') {
+                    nft[`current_price_${suf}`] = price;
+                    if (suf === 'avax') nft.current_price_avax = price;
+                    if (suf === 'sui') nft.current_price_sui = price;
+                    if (suf === 'eth') nft.current_price_eth = price;
+                    if (suf === 'xrp') nft.current_price_xrp = price;
+                }
+                return nft;
+            });
+    }
+
+    async function loadFeaturedPromoNfts() {
+        try {
+            const res = await fetch('data/featured_promo.json', {
+                cache: 'no-cache',
+            });
+            if (!res.ok) return [];
+            const doc = await res.json();
+            return featuredItemsToNfts(doc);
+        } catch (err) {
+            console.warn('featured promo:', err);
+            return [];
+        }
+    }
+
     async function load() {
         const grid = document.getElementById('gallery-grid');
         try {
-            const [mainRes, xrpRes, suiRes, auctionRes, objktAuctionRes] =
+            const [mainRes, xrpRes, suiRes, auctionRes, objktAuctionRes, featuredNfts] =
                 await Promise.all([
                     fetch('gallery.json'),
                     fetch('xrp_gallery.json'),
                     fetch('sui_gallery.json'),
                     fetch('auctions_gallery.json'),
                     fetch('objkt_auctions_gallery.json'),
+                    loadFeaturedPromoNfts(),
                 ]);
             if (!mainRes.ok) throw new Error(`HTTP ${mainRes.status}`);
             const data = await mainRes.json();
@@ -648,6 +777,10 @@ const Gallery = (() => {
                 auctionData,
                 objktAuctionData,
             ]);
+            // Featured tab: Avalanche + Sui + … from one feed
+            if (featuredNfts?.length) {
+                allNfts = [...allNfts, ...featuredNfts];
+            }
             collectionInfo = {
                 ...(data.collection_info || {}),
                 xrpl: xrpData.collection_info || {},
@@ -688,6 +821,14 @@ const Gallery = (() => {
                 ...(data.site || {}),
                 ai_series_catalog: data.collection_info?.ai_series_catalog || {},
                 sections: {
+                    featured: {
+                        label: 'Featured',
+                        label_short: 'Featured',
+                        explore_title: 'Featured · promo (Avalanche, Sui, …)',
+                        empty_message:
+                            'No active promos right now — check back soon.',
+                        ...(mainSections.featured || {}),
+                    },
                     ...mainSections,
                     ...auctionSections,
                     ai_art: {

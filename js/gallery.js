@@ -736,16 +736,37 @@ const Gallery = (() => {
             });
     }
 
+    function updateFeaturedChip(count) {
+        const chip = document.getElementById('featured-chip');
+        const countEl = document.getElementById('featured-chip-count');
+        if (!chip) return;
+        if (!count || count <= 0) {
+            chip.hidden = true;
+            return;
+        }
+        chip.hidden = false;
+        if (countEl) {
+            countEl.hidden = false;
+            countEl.textContent = String(count);
+        }
+    }
+
     async function loadFeaturedPromoNfts() {
         try {
             const res = await fetch('data/featured_promo.json', {
                 cache: 'no-cache',
             });
-            if (!res.ok) return [];
+            if (!res.ok) {
+                updateFeaturedChip(0);
+                return [];
+            }
             const doc = await res.json();
-            return featuredItemsToNfts(doc);
+            const items = featuredItemsToNfts(doc);
+            updateFeaturedChip(items.length);
+            return items;
         } catch (err) {
             console.warn('featured promo:', err);
+            updateFeaturedChip(0);
             return [];
         }
     }
@@ -980,6 +1001,8 @@ const Gallery = (() => {
 
     function showCommunityTokens() {
         const section = GallerySections.getCurrentSection();
+        // Featured: same coin table as AI Art · EVM
+        if (section === 'featured') return true;
         if (section === 'photography') return true;
         return section === 'ai_art' && GallerySections.getAiKind() === 'evm';
     }

@@ -1,0 +1,75 @@
+{
+  "updated_at": "2026-08-09T14:27:42.725039+00:00",
+  "promo": {
+    "label": "OFF 0% · 30 days",
+    "pct_off": 0,
+    "days": 30,
+    "starts_at": "2026-08-09T14:27:42.725039+00:00",
+    "ends_at": "2026-09-08T14:27:42.725039+00:00"
+  },
+  "items": [
+    {
+      "collection_id": "avalanche_nature_stories",
+      "collection_name": "Nature Stories",
+      "chain": "avalanche",
+      "token_id": 1,
+      "name": "Nature stories #0001",
+      "image_url": "https://ipfs.io/ipfs/bafybeiemw7ftfgifx3kiynqyt6lx2cub7d7t24c62cbe25ddztxl5khewq",
+      "price": 3.594,
+      "currency": "AVAX",
+      "quantity": 100,
+      "days": 30,
+      "pct_off": 40,
+      "ends_at": "2026-09-08T11:35:46.087047+00:00",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/1"
+    },
+    {
+      "collection_id": "avalanche_nature_stories",
+      "collection_name": "Nature Stories",
+      "chain": "avalanche",
+      "token_id": 2,
+      "name": "Nature stories #0002",
+      "image_url": "https://ipfs.io/ipfs/bafybeiakpgsvolupwjgqjtuc4zhn7u4uuxd3ajchmik3hziyd2wi2jqebm",
+      "price": 3.594,
+      "currency": "AVAX",
+      "quantity": 100,
+      "days": 30,
+      "pct_off": 40,
+      "ends_at": "2026-09-08T11:35:46.087047+00:00",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/2"
+    },
+    {
+      "collection_id": "avalanche_nature_stories",
+      "collection_name": "Nature Stories",
+      "chain": "avalanche",
+      "token_id": 3,
+      "name": "Nature stories #0003",
+      "image_url": "https://ipfs.io/ipfs/bafybeifbwhr7uo5al4kmfkdtvlku4vzs56tigzekelrddnpsd4pcy2hnv4",
+      "price": 3.594,
+      "currency": "AVAX",
+      "quantity": 100,
+      "days": 30,
+      "pct_off": 40,
+      "ends_at": "2026-09-08T11:35:46.087047+00:00",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/3"
+    },
+    {
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "JB AI Nature",
+      "chain": "xrpl",
+      "token_id": 1,
+      "xrpl_nft_id": "00190000C991C993639BFB85813235F2175B16ADADDCDBD82D73933305BE7198",
+      "name": "JBN #1 X",
+      "image_url": "https://cdn.jsdelivr.net/gh/jackbeatnic/jb-nft-assets@main/media/xrpl/jbn/1.jpg",
+      "price": 16.5,
+      "currency": "XRP",
+      "quantity": 1,
+      "days": 30,
+      "pct_off": 0,
+      "ends_at": "2026-09-08T14:27:42.725039+00:00",
+      "opensea_url": "https://xrp.cafe/nft/00190000C991C993639BFB85813235F2175B16ADADDCDBD82D73933305BE7198",
+      "xrp_cafe_url": "https://xrp.cafe/nft/00190000C991C993639BFB85813235F2175B16ADADDCDBD82D73933305BE7198",
+      "marketplace_url": "https://xrp.cafe/nft/00190000C991C993639BFB85813235F2175B16ADADDCDBD82D73933305BE7198"
+    }
+  ]
+}

@@ -84,6 +84,10 @@ const GalleryShare = (() => {
             const series = nft.ai_series;
             const defSeries = 'nature_stories';
             if (series && series !== defSeries) params.set('series', series);
+            const edition = String(nft.edition_label || nft.chain || '').toLowerCase();
+            if (edition && ['avalanche', 'polygon', 'base'].includes(edition)) {
+                params.set('edition', edition);
+            }
         } else if (medium === 'manifold_auction') {
             params.set('section', 'atelier');
             params.set('market', 'auctions');

@@ -253,6 +253,23 @@
     },
     "ai_series_catalog": {
       "default": "nature_stories",
+      "default_edition": "all",
+      "edition_order": [
+        "avalanche",
+        "polygon",
+        "base"
+      ],
+      "editions": {
+        "avalanche": {
+          "label": "Avalanche"
+        },
+        "polygon": {
+          "label": "Polygon"
+        },
+        "base": {
+          "label": "Base"
+        }
+      },
       "order": [
         "nature_stories",
         "nature_jam",
@@ -264,6 +281,11 @@
         "nature_stories": {
           "label": "Nature Stories",
           "standard": "ERC-1155",
+          "editions": [
+            "avalanche",
+            "polygon",
+            "base"
+          ],
           "collection_ids": [
             "avalanche_nature_stories",
             "polygon_nature_stories_vol2",
@@ -282,6 +304,11 @@
         "flower_stories": {
           "label": "Flower Stories",
           "standard": "ERC-1155",
+          "editions": [
+            "avalanche",
+            "polygon",
+            "base"
+          ],
           "collection_ids": [
             "avalanche_flower_stories",
             "polygon_flower_stories_vol2",
@@ -25673,6 +25700,8 @@
         "default_subsection": "evm",
         "default_series": "nature_stories",
         "all_series_label": "All",
+        "all_editions_label": "All editions",
+        "default_edition": "all",
         "disabled_subsections": [
           "tezos"
         ],

@@ -6,10 +6,13 @@ const GallerySections = (() => {
     let currentSection = 'ai_art';
     let currentAiKind = 'evm';
     let currentAiSeries = 'nature_stories';
+    let currentAiEdition = 'all';
     let currentPhotoKind = 'photo';
     let collectionToSeries = {};
     let currentMarketKind = 'auctions';
     let currentMarketChain = 'base';
+    let loadedEditionKeys = new Set();
+    let editionsIndexed = false;
 
     function config() {
         return site.sections || {};
@@ -92,6 +95,117 @@ const GallerySections = (() => {
         return null;
     }
 
+    /**
+     * Series is the collection (NS / FS). Edition is the chain card
+     * (Avalanche / Polygon / Base). Do not put the chain in the title;
+     * do not reuse Atelier's `chain=` URL key — use `edition=`.
+     */
+    const FALLBACK_EDITION_ORDER = ['avalanche', 'polygon', 'base'];
+
+    function editionCatalog() {
+        const catalog = aiSeriesCatalog();
+        return catalog.editions || {};
+    }
+
+    function editionOrder() {
+        const catalog = aiSeriesCatalog();
+        const order = catalog.edition_order || FALLBACK_EDITION_ORDER;
+        return order.length ? order : FALLBACK_EDITION_ORDER;
+    }
+
+    function defaultAiEdition() {
+        return (
+            config().ai_art?.default_edition ||
+            aiSeriesCatalog().default_edition ||
+            'all'
+        );
+    }
+
+    function editionFromCollectionId(colId) {
+        const id = String(colId || '').toLowerCase();
+        if (!id) return null;
+        for (const key of editionOrder()) {
+            if (
+                id === key ||
+                id.startsWith(`${key}_`) ||
+                id.includes(`_${key}_`) ||
+                id.endsWith(`_${key}`)
+            ) {
+                return key;
+            }
+        }
+        return null;
+    }
+
+    function resolveAiEdition(nft) {
+        const label = String(nft?.edition_label || '').trim().toLowerCase();
+        if (label && editionOrder().includes(label)) return label;
+        const chain = String(nft?.chain || nft?.chain_key || '').trim().toLowerCase();
+        if (chain && editionOrder().includes(chain)) return chain;
+        return editionFromCollectionId(nft?.collection_id);
+    }
+
+    function editionsForSeries(seriesId) {
+        if (!seriesId || seriesId === 'all') return [];
+        const cfg = aiSeriesCatalog().series?.[seriesId];
+        if (!cfg) return [];
+        if (Array.isArray(cfg.editions) && cfg.editions.length) {
+            return cfg.editions.filter(Boolean);
+        }
+        const found = [];
+        (cfg.collection_ids || []).forEach((colId) => {
+            const ed = editionFromCollectionId(colId);
+            if (ed && !found.includes(ed)) found.push(ed);
+        });
+        return found;
+    }
+
+    function seriesHasEditions(seriesId) {
+        return editionsForSeries(seriesId).length > 1;
+    }
+
+    function editionLabel(editionId) {
+        if (!editionId || editionId === 'all') {
+            return config().ai_art?.all_editions_label || 'All editions';
+        }
+        return (
+            editionCatalog()[editionId]?.label ||
+            editionId.charAt(0).toUpperCase() + editionId.slice(1)
+        );
+    }
+
+    function normalizeAiEdition(editionId) {
+        if (!editionId || editionId === 'all') return 'all';
+        if (editionOrder().includes(editionId)) return editionId;
+        return defaultAiEdition();
+    }
+
+    function noteLoadedNfts(nfts) {
+        loadedEditionKeys = new Set();
+        (nfts || []).forEach((nft) => {
+            if ((nft?.medium || 'ai_art') !== 'ai_art') return;
+            const series = resolveAiSeries(nft);
+            const edition = resolveAiEdition(nft);
+            if (series && edition) loadedEditionKeys.add(`${series}::${edition}`);
+        });
+        editionsIndexed = true;
+        syncAiEditionSelect();
+        syncNavUi();
+    }
+
+    function editionHasWorks(seriesId, editionId) {
+        if (!editionId || editionId === 'all') return true;
+        if (!editionsIndexed) return true;
+        if (seriesId === 'all') {
+            const suffix = `::${editionId}`;
+            for (const key of loadedEditionKeys) {
+                if (key.endsWith(suffix)) return true;
+            }
+            return false;
+        }
+        return loadedEditionKeys.has(`${seriesId}::${editionId}`);
+    }
+
     function seriesOrder() {
         const order = aiSeriesCatalog().order || [];
         return [...order, 'all'];
@@ -153,6 +267,7 @@ const GallerySections = (() => {
         if (allTab) allTab.textContent = allLabel;
 
         syncAiSeriesSelect();
+        syncAiEditionSelect();
     }
 
     function syncAiSeriesSelect() {
@@ -189,6 +304,36 @@ const GallerySections = (() => {
             select.value = active;
         } else if (prev && [...select.options].some((opt) => opt.value === prev)) {
             select.value = prev;
+        }
+    }
+
+    function syncAiEditionSelect() {
+        const select = document.getElementById('ai-edition-select');
+        if (!select) return;
+
+        const prev = select.value;
+        const allLabel = config().ai_art?.all_editions_label || 'All editions';
+        select.innerHTML = '';
+
+        editionOrder().forEach((id) => {
+            const option = document.createElement('option');
+            option.value = id;
+            option.textContent = editionLabel(id);
+            option.disabled = !editionHasWorks(currentAiSeries, id);
+            select.appendChild(option);
+        });
+        const allOpt = document.createElement('option');
+        allOpt.value = 'all';
+        allOpt.textContent = allLabel;
+        select.appendChild(allOpt);
+
+        const active = currentAiEdition || defaultAiEdition();
+        if ([...select.options].some((opt) => opt.value === active && !opt.disabled)) {
+            select.value = active;
+        } else if (prev && [...select.options].some((opt) => opt.value === prev && !opt.disabled)) {
+            select.value = prev;
+        } else {
+            select.value = 'all';
         }
     }
 
@@ -231,15 +376,33 @@ const GallerySections = (() => {
         }
     }
 
+    function ensureShopSectionConfig() {
+        if (!site.sections) site.sections = {};
+        if (!site.sections.shop) {
+            site.sections.shop = {
+                label: 'Shop',
+                label_short: 'Shop',
+                explore_title: 'Studio shop',
+                empty_message:
+                    'The studio shop is a skeleton — no live works in the price list yet.',
+                promo_eyebrow: 'Studio shop',
+                promo_lead:
+                    'A second channel from the studio. Prices live in our JSON — not on OpenSea. Demo rows are not for sale.',
+            };
+        }
+    }
+
     function init(siteConfig) {
         site = siteConfig || {};
         ensureFeaturedSectionConfig();
+        ensureShopSectionConfig();
         currentSection = site.default_section || 'ai_art';
         const aiCfg = config().ai_art;
         const photoCfg = config().photography;
         const mCfg = atelierCfg();
         currentAiKind = defaultAiKind();
         currentAiSeries = defaultAiSeries();
+        currentAiEdition = defaultAiEdition();
         currentPhotoKind = photoCfg?.default_subsection || 'photo';
         currentMarketKind = mCfg?.default_kind || 'auctions';
         currentMarketChain = mCfg?.default_chain || 'base';
@@ -261,6 +424,7 @@ const GallerySections = (() => {
                 const id = el.dataset.section;
                 if (!id) return;
                 ensureFeaturedSectionConfig();
+                ensureShopSectionConfig();
                 if (!config()[id]) return;
                 setSection(id);
             });
@@ -290,6 +454,24 @@ const GallerySections = (() => {
                 const series = e.target.value;
                 if (!series) return;
                 setAiSeries(series);
+            });
+        }
+
+        document.querySelectorAll('[data-ai-edition]').forEach((el) => {
+            el.addEventListener('click', (e) => {
+                e.preventDefault();
+                const edition = el.dataset.aiEdition;
+                if (!edition || el.disabled) return;
+                setAiEdition(edition);
+            });
+        });
+
+        const editionSelect = document.getElementById('ai-edition-select');
+        if (editionSelect) {
+            editionSelect.addEventListener('change', (e) => {
+                const edition = e.target.value;
+                if (!edition) return;
+                setAiEdition(edition);
             });
         }
 
@@ -331,6 +513,7 @@ const GallerySections = (() => {
         const market = params.get('market');
         const chain = params.get('chain') || params.get('auction');
         const series = params.get('series');
+        const edition = params.get('edition');
 
         if (section === 'xrpl') {
             currentSection = 'ai_art';
@@ -347,12 +530,17 @@ const GallerySections = (() => {
             currentAiKind = normalizeAiKind(ai || defaultAiKind());
             if (isEvmAiKind()) {
                 currentAiSeries = normalizeAiSeries(series || defaultAiSeries());
+                currentAiEdition = seriesHasEditions(currentAiSeries)
+                    ? normalizeAiEdition(edition || defaultAiEdition())
+                    : 'all';
             } else {
                 currentAiSeries = defaultAiSeries();
+                currentAiEdition = 'all';
             }
         } else {
             currentAiKind = defaultAiKind();
             currentAiSeries = defaultAiSeries();
+            currentAiEdition = 'all';
         }
 
         if (currentSection === 'photography' && photo) {
@@ -384,6 +572,7 @@ const GallerySections = (() => {
         params.delete('chain');
         params.delete('auction');
         params.delete('series');
+        params.delete('edition');
         if (currentSection !== (site.default_section || 'ai_art')) {
             params.set('section', currentSection);
         }
@@ -394,6 +583,14 @@ const GallerySections = (() => {
             }
             if (isEvmAiKind() && currentAiSeries !== defaultAiSeries()) {
                 params.set('series', currentAiSeries);
+            }
+            if (
+                isEvmAiKind() &&
+                seriesHasEditions(currentAiSeries) &&
+                currentAiEdition &&
+                currentAiEdition !== defaultAiEdition()
+            ) {
+                params.set('edition', currentAiEdition);
             }
         }
         if (currentSection === 'photography') {
@@ -425,6 +622,7 @@ const GallerySections = (() => {
         if (id === 'ai_art') {
             currentAiKind = defaultAiKind();
             currentAiSeries = defaultAiSeries();
+            currentAiEdition = defaultAiEdition();
         }
         if (id === 'photography') {
             currentPhotoKind = config().photography?.default_subsection || 'photo';
@@ -456,6 +654,7 @@ const GallerySections = (() => {
         currentAiKind = kind;
         if (isEvmAiKind(kind) && !isEvmAiKind(prevKind)) {
             currentAiSeries = defaultAiSeries();
+            currentAiEdition = defaultAiEdition();
         }
         syncNavUi();
         writeUrl();
@@ -474,6 +673,26 @@ const GallerySections = (() => {
         currentSection = 'ai_art';
         currentAiKind = 'evm';
         currentAiSeries = series;
+        currentAiEdition = seriesHasEditions(series) ? defaultAiEdition() : 'all';
+        syncNavUi();
+        writeUrl();
+        emitSectionChange('series');
+    }
+
+    function setAiEdition(edition) {
+        edition = normalizeAiEdition(edition);
+        if (!seriesHasEditions(currentAiSeries) && edition !== 'all') return;
+        if (edition !== 'all' && !editionHasWorks(currentAiSeries, edition)) return;
+        if (
+            currentSection === 'ai_art' &&
+            isEvmAiKind() &&
+            currentAiEdition === edition
+        ) {
+            return;
+        }
+        currentSection = 'ai_art';
+        currentAiKind = 'evm';
+        currentAiEdition = edition;
         syncNavUi();
         writeUrl();
         emitSectionChange('series');
@@ -513,6 +732,21 @@ const GallerySections = (() => {
             }
         });
 
+        // Featured chip in sticky header (not a tab)
+        const featuredChip = document.getElementById('featured-chip');
+        if (featuredChip) {
+            const on = currentSection === 'featured';
+            featuredChip.classList.toggle('is-active', on);
+            featuredChip.setAttribute('aria-pressed', String(on));
+        }
+
+        const shopChip = document.getElementById('shop-chip');
+        if (shopChip) {
+            const on = currentSection === 'shop';
+            shopChip.classList.toggle('is-active', on);
+            shopChip.setAttribute('aria-pressed', String(on));
+        }
+
         const aiSubnav = document.getElementById('ai-subnav');
         if (aiSubnav) aiSubnav.hidden = currentSection !== 'ai_art';
 
@@ -520,6 +754,14 @@ const GallerySections = (() => {
         if (aiSeriesSubnav) {
             aiSeriesSubnav.hidden =
                 currentSection !== 'ai_art' || !isEvmAiKind();
+        }
+
+        const aiEditionSubnav = document.getElementById('ai-edition-subnav');
+        if (aiEditionSubnav) {
+            aiEditionSubnav.hidden =
+                currentSection !== 'ai_art' ||
+                !isEvmAiKind() ||
+                !seriesHasEditions(currentAiSeries);
         }
 
         const photoSubnav = document.getElementById('photo-subnav');
@@ -585,6 +827,41 @@ const GallerySections = (() => {
             }
         }
 
+        const comingSoon = config().ai_art?.edition_notes || {};
+        document.querySelectorAll('[data-ai-edition]').forEach((el) => {
+            const edition = el.dataset.aiEdition;
+            const empty = !editionHasWorks(currentAiSeries, edition);
+            const disabled = edition !== 'all' && empty;
+            const active =
+                currentSection === 'ai_art' &&
+                isEvmAiKind() &&
+                seriesHasEditions(currentAiSeries) &&
+                edition === currentAiEdition &&
+                !disabled;
+            el.classList.toggle('is-active', active);
+            el.classList.toggle('is-disabled', disabled);
+            el.disabled = disabled;
+            el.setAttribute('aria-pressed', String(active));
+            if (disabled) {
+                el.title =
+                    comingSoon[edition] ||
+                    `${editionLabel(edition)} edition — coming soon`;
+            } else {
+                el.removeAttribute('title');
+            }
+        });
+
+        const editionSelect = document.getElementById('ai-edition-select');
+        if (editionSelect && !aiEditionSubnav?.hidden) {
+            if (
+                [...editionSelect.options].some(
+                    (opt) => opt.value === currentAiEdition && !opt.disabled,
+                )
+            ) {
+                editionSelect.value = currentAiEdition;
+            }
+        }
+
         const disabledKinds = new Set(atelierCfg()?.disabled_kinds || ['editions']);
         document.querySelectorAll('[data-market-kind]').forEach((el) => {
             const kind = el.dataset.marketKind;
@@ -632,8 +909,11 @@ const GallerySections = (() => {
             if (currentSection === 'featured') {
                 return medium === 'featured_promo';
             }
-            // keep promo cards out of AI Art / Photo / Atelier
-            if (medium === 'featured_promo') return false;
+            if (currentSection === 'shop') {
+                return medium === 'shop';
+            }
+            // keep promo / shop cards out of AI Art / Photo / Atelier
+            if (medium === 'featured_promo' || medium === 'shop') return false;
 
             if (currentSection === 'ai_art') {
                 if (currentAiKind === 'xrpl') return medium === 'xrpl_ai';
@@ -642,7 +922,15 @@ const GallerySections = (() => {
                 const nftSeries = resolveAiSeries(nft);
                 if (nftSeries && hiddenSeries.has(nftSeries)) return false;
                 if (isEvmAiKind() && currentAiSeries !== 'all') {
-                    return nftSeries === currentAiSeries;
+                    if (nftSeries !== currentAiSeries) return false;
+                }
+                if (
+                    isEvmAiKind() &&
+                    seriesHasEditions(currentAiSeries) &&
+                    currentAiEdition &&
+                    currentAiEdition !== 'all'
+                ) {
+                    return resolveAiEdition(nft) === currentAiEdition;
                 }
                 return true;
             }
@@ -689,6 +977,10 @@ const GallerySections = (() => {
 
     function getAiSeries() {
         return currentAiSeries;
+    }
+
+    function getAiEdition() {
+        return currentAiEdition;
     }
 
     function getPhotoKind() {
@@ -739,6 +1031,14 @@ const GallerySections = (() => {
                 if (currentAiSeries !== 'all' && explore) {
                     explore = `Explore ${explore}`;
                 }
+                if (
+                    seriesHasEditions(currentAiSeries) &&
+                    currentAiEdition &&
+                    currentAiEdition !== 'all'
+                ) {
+                    const ed = editionLabel(currentAiEdition);
+                    if (ed && explore) explore = `${explore} · ${ed}`;
+                }
             }
             return { ...base, explore_title: explore };
         }
@@ -771,8 +1071,24 @@ const GallerySections = (() => {
                 'No active promos right now — check back soon.'
             );
         }
+        if (currentSection === 'shop') {
+            return (
+                config().shop?.empty_message ||
+                'The studio shop is a skeleton — no live works in the price list yet.'
+            );
+        }
         if (currentSection === 'ai_art') {
             if (isEvmAiKind()) {
+                if (
+                    seriesHasEditions(currentAiSeries) &&
+                    currentAiEdition &&
+                    currentAiEdition !== 'all'
+                ) {
+                    const seriesLabel =
+                        aiSeriesCatalog().series?.[currentAiSeries]?.label ||
+                        currentAiSeries;
+                    return `${seriesLabel} · ${editionLabel(currentAiEdition)} edition — coming soon.`;
+                }
                 const seriesMsgs = config().ai_art?.empty_messages_series || {};
                 if (seriesMsgs[currentAiSeries]) return seriesMsgs[currentAiSeries];
             }
@@ -793,22 +1109,30 @@ const GallerySections = (() => {
         const medium = nft.medium || 'ai_art';
         const kind = nft.photo_kind || 'photo';
 
-        if (medium === 'xrpl_ai') {
+        if (medium === 'shop') {
+            if (currentSection === 'shop') return;
+            currentSection = 'shop';
+        } else if (medium === 'xrpl_ai') {
             if (currentSection === 'ai_art' && currentAiKind === 'xrpl') return;
             currentSection = 'ai_art';
             currentAiKind = 'xrpl';
         } else if (medium === 'ai_art') {
             const series = normalizeAiSeries(resolveAiSeries(nft) || defaultAiSeries());
+            const edition = seriesHasEditions(series)
+                ? normalizeAiEdition(resolveAiEdition(nft) || defaultAiEdition())
+                : 'all';
             if (
                 currentSection === 'ai_art' &&
                 isEvmAiKind() &&
-                currentAiSeries === series
+                currentAiSeries === series &&
+                currentAiEdition === edition
             ) {
                 return;
             }
             currentSection = 'ai_art';
             currentAiKind = 'evm';
             currentAiSeries = series;
+            currentAiEdition = edition;
         } else if (medium === 'photography' || medium === 'objkt_auction') {
             if (currentSection === 'photography' && kind === currentPhotoKind) return;
             currentSection = 'photography';
@@ -848,12 +1172,17 @@ const GallerySections = (() => {
         getCurrentSection,
         getAiKind,
         getAiSeries,
+        getAiEdition,
         isSeriesEnabled,
         isAiPlayGalleryEnabled,
         resolveAiSeries,
+        resolveAiEdition,
+        seriesHasEditions,
+        noteLoadedNfts,
         sortBySeriesOrder,
         getPhotoKind,
         setAiSeries,
+        setAiEdition,
         getMarketKind,
         getMarketChain,
         getAuctionChain,

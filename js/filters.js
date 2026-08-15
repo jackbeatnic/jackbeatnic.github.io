@@ -77,6 +77,10 @@ const GalleryFilters = (() => {
             section: GallerySections.getCurrentSection(),
             aiKind: GallerySections.getAiKind(),
             aiSeries: GallerySections.getAiSeries(),
+            aiEdition:
+                typeof GallerySections.getAiEdition === 'function'
+                    ? GallerySections.getAiEdition()
+                    : 'all',
         };
     }
 
@@ -367,6 +371,7 @@ const GalleryFilters = (() => {
             if (q) {
                 const haystack = [
                     nft.name,
+                    nft.ai_series,
                     nft.edition_label,
                     nft.chain,
                     nft.collection_id,

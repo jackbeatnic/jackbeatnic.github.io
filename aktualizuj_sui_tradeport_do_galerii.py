@@ -725,12 +725,105 @@ def build_site_sections(collection_metas: list[dict]) -> dict:
     }
 
 
+def _meta_from_old_entries(collection_id: str, entries: list[dict], old_data: dict) -> dict:
+    """Odtwórz meta kolekcji z istniejącego JSON (gdy partial sync nie odświeża tej kolekcji)."""
+    old_details = (old_data.get("collection_info") or {}).get("collection_details") or []
+    for m in old_details:
+        if m.get("collection_id") == collection_id:
+            meta = dict(m)
+            meta["token_count"] = len(entries)
+            meta["minted_count"] = sum(1 for e in entries if not e.get("launchpad"))
+            meta["launchpad_count"] = sum(1 for e in entries if e.get("launchpad"))
+            return meta
+    sample = entries[0] if entries else {}
+    return {
+        "collection_id": collection_id,
+        "collection_name": sample.get("collection_name") or collection_id,
+        "token_count": len(entries),
+        "minted_count": sum(1 for e in entries if not e.get("launchpad")),
+        "launchpad_count": sum(1 for e in entries if e.get("launchpad")),
+        "edition_kind": sample.get("subseries") or "edition",
+    }
+
+
+def deploy_sui_gallery_to_github(*, dry_run: bool = False) -> int:
+    """Commit + push www/sui_gallery.json na jackbeatnic.github.io (GH Pages)."""
+    import subprocess
+
+    if not OUTPUT_JSON.is_file():
+        print("[deploy] Brak sui_gallery.json — najpierw zrób sync.")
+        return 1
+
+    rel = "sui_gallery.json"
+    status = subprocess.run(
+        ["git", "status", "--porcelain", "--", rel],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if status.returncode != 0:
+        print(f"[deploy] git status failed: {status.stderr.strip()}")
+        return 1
+    if not status.stdout.strip():
+        print("[deploy] Brak zmian w sui_gallery.json — nic do push.")
+        return 0
+
+    count = 0
+    try:
+        data = load_json(OUTPUT_JSON)
+        count = len(data.get("nfts") or [])
+        last = (data.get("collection_info") or {}).get("last_sui_sync") or "?"
+    except Exception:
+        last = "?"
+
+    msg = f"Sui gallery: sync TradePort → {count} works ({last})"
+    print(f"[deploy] {msg}")
+    if dry_run:
+        print("[deploy] dry-run — bez git commit/push")
+        return 0
+
+    for cmd in (
+        ["git", "add", "--", rel],
+        ["git", "commit", "-m", msg],
+        ["git", "push", "origin", "HEAD"],
+    ):
+        print(f"[deploy] $ {' '.join(cmd)}")
+        r = subprocess.run(cmd, cwd=ROOT, check=False)
+        if r.returncode != 0:
+            # commit fails with 1 when nothing to commit after add (race) — treat as ok if clean
+            if cmd[1] == "commit":
+                chk = subprocess.run(
+                    ["git", "status", "--porcelain", "--", rel],
+                    cwd=ROOT,
+                    capture_output=True,
+                    text=True,
+                    check=False,
+                )
+                if not chk.stdout.strip():
+                    print("[deploy] commit: brak zmian (OK)")
+                    continue
+            print(f"[deploy] Błąd: {' '.join(cmd)} → exit {r.returncode}")
+            return r.returncode or 1
+
+    print("[deploy] OK — GH Pages zaktualizuje się w ~1 min: https://jackbeatnic.github.io/")
+    return 0
+
+
 def sync(
     *,
     dry_run: bool = False,
     limit: int | None = None,
     only_collection: str | None = None,
+    deploy: bool = False,
 ) -> int:
+    """Sync Sui collections → sui_gallery.json.
+
+    WAŻNE: --collection odświeża TYLKO wskazaną kolekcję, ale ZACHOWUJE pozostałe
+    z istniejącego sui_gallery.json (wcześniej partial sync NADPISYWAŁ całą galerię
+    i na GH zostawało samo 1/1 albo samo SE).
+    """
+    all_configs = load_sui_tradeport_configs()
     configs = load_sui_tradeport_configs(only_id=only_collection)
 
     old_data = load_json(OUTPUT_JSON) if OUTPUT_JSON.exists() else {}
@@ -741,12 +834,35 @@ def sync(
         if col and sui_tid:
             old_by_key[(col, sui_tid)] = row
 
+    refreshed_ids = {cfg.get("id") for cfg in configs}
     all_entries: list[dict] = []
     collection_metas: list[dict] = []
+
     for cfg in configs:
         entries, meta = sync_one_collection(cfg, old_by_key=old_by_key, limit=limit)
         all_entries.extend(entries)
         collection_metas.append(meta)
+
+    # Partial sync: dołóż karty i meta z pozostałych kolekcji (bez kasowania)
+    if only_collection:
+        kept = 0
+        by_col: dict[str, list[dict]] = {}
+        for row in old_data.get("nfts") or []:
+            col = row.get("collection_id") or ""
+            if col and col not in refreshed_ids:
+                by_col.setdefault(col, []).append(row)
+                kept += 1
+        for col_id, entries in by_col.items():
+            all_entries.extend(entries)
+            collection_metas.append(_meta_from_old_entries(col_id, entries, old_data))
+        if kept:
+            print(
+                f"[sui] Partial --collection={only_collection}: "
+                f"zachowano {kept} kart z innych kolekcji w sui_gallery.json"
+            )
+        # Utrzymaj kanoniczną kolejność SE → 1/1 jak w kolekcje.json
+        order = {c.get("id"): i for i, c in enumerate(all_configs)}
+        collection_metas.sort(key=lambda m: order.get(m.get("collection_id"), 99))
 
     all_entries.sort(key=lambda e: e.get("display_rank", 0))
 
@@ -756,8 +872,11 @@ def sync(
         1 for e in all_entries if e.get("subseries") != "1of1" and not e.get("launchpad")
     )
     one_of_one_count = sum(
-        1 for e in all_entries if e.get("subseries") == "1of1" and not e.get("launchpad")
+        1
+        for e in all_entries
+        if e.get("subseries") == "1of1" or (e.get("edition_kind") == "1of1")
     )
+    # launchpad 1/1 also counts toward one_of_one display in site sections
     primary = collection_metas[0] if collection_metas else {}
 
     payload = {
@@ -791,29 +910,55 @@ def sync(
 
     if dry_run:
         print("[dry-run] Bez zapisu sui_gallery.json")
+        if deploy:
+            return deploy_sui_gallery_to_github(dry_run=True)
         return 0
 
     save_json(OUTPUT_JSON, payload)
     print(f"[sui] Zapisano: {OUTPUT_JSON}")
+
+    if deploy:
+        return deploy_sui_gallery_to_github(dry_run=False)
+    print(
+        "[sui] Lokalnie OK. Na GH: "
+        "./venv/bin/python3 aktualizuj_sui_tradeport_do_galerii.py --deploy-only"
+        "  (albo --deploy przy sync)"
+    )
     return 0
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        description="Sync Sui TradePort collections → sui_gallery.json"
+        description="Sync Sui TradePort collections → sui_gallery.json (+ opcjonalnie deploy GH)"
     )
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--limit", type=int, default=None, help="Max NFTów na kolekcję (test)")
     parser.add_argument(
         "--collection",
         default=None,
-        help="Tylko jedna kolekcja (id z kolekcje.json, np. sui_nature_stories_1of1_tradeport)",
+        help=(
+            "Odśwież tylko tę kolekcję; pozostałe ZACHOWAJ z istniejącego JSON "
+            "(nie kasuje galerii — wcześniej partial sync nadpisywał całość)"
+        ),
+    )
+    parser.add_argument(
+        "--deploy",
+        action="store_true",
+        help="Po zapisie: git commit + push sui_gallery.json na jackbeatnic.github.io",
+    )
+    parser.add_argument(
+        "--deploy-only",
+        action="store_true",
+        help="Tylko commit+push istniejącego sui_gallery.json (bez odświeżania z API)",
     )
     args = parser.parse_args(argv)
+    if args.deploy_only:
+        return deploy_sui_gallery_to_github(dry_run=args.dry_run)
     return sync(
         dry_run=args.dry_run,
         limit=args.limit,
         only_collection=args.collection,
+        deploy=args.deploy,
     )
 
 

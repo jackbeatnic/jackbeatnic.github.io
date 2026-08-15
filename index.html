@@ -61,7 +61,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/gallery.css?v=20260809featured-chip">
+    <link rel="stylesheet" href="css/gallery.css?v=20260816edition">
     <link rel="stylesheet" href="css/text-select.css?v=20260815copy">
 </head>
 <body class="gallery-protected">
@@ -93,18 +93,29 @@
                 <p class="artist-subtitle">Digital Art · NFT</p>
             </div>
             <div class="site-header__actions">
-                <!-- Featured: sticky chip (not in tab bar) — mobile + desktop -->
-                <button type="button"
-                        id="featured-chip"
-                        class="featured-chip"
-                        data-section="featured"
-                        hidden
-                        aria-pressed="false"
-                        title="Featured promos">
-                    <span class="featured-chip__dot" aria-hidden="true"></span>
-                    <span class="featured-chip__label">Featured</span>
-                    <span class="featured-chip__count" id="featured-chip-count" hidden></span>
-                </button>
+                <div class="header-chips">
+                    <button type="button"
+                            id="shop-chip"
+                            class="shop-chip"
+                            data-section="shop"
+                            aria-pressed="false"
+                            title="Studio shop">
+                        <span class="shop-chip__label">Shop</span>
+                        <span class="shop-chip__count" id="shop-chip-count" hidden></span>
+                    </button>
+                    <!-- Featured: sticky chip (not in tab bar) — mobile + desktop -->
+                    <button type="button"
+                            id="featured-chip"
+                            class="featured-chip"
+                            data-section="featured"
+                            hidden
+                            aria-pressed="false"
+                            title="Featured promos">
+                        <span class="featured-chip__dot" aria-hidden="true"></span>
+                        <span class="featured-chip__label">Featured</span>
+                        <span class="featured-chip__count" id="featured-chip-count" hidden></span>
+                    </button>
+                </div>
                 <nav class="site-nav" aria-label="Main">
                     <a href="#gallery-root" data-section="ai_art">AI Art</a>
                     <a href="#gallery-root" data-section="photography">Photography &amp; Artworks</a>
@@ -146,6 +157,14 @@
             <button type="button" class="section-subnav__tab" data-ai-series="based_ai">Based AI</button>
             <button type="button" class="section-subnav__tab" data-ai-series="jb_ai_play">AI Play</button>
             <button type="button" class="section-subnav__tab" data-ai-series="all">All</button>
+        </div>
+
+        <div id="ai-edition-subnav" class="section-subnav section-subnav--wrap section-subnav--edition" hidden aria-label="Edition (chain)">
+            <select id="ai-edition-select" class="section-subnav__select" aria-label="Edition"></select>
+            <button type="button" class="section-subnav__tab" data-ai-edition="avalanche">Avalanche</button>
+            <button type="button" class="section-subnav__tab" data-ai-edition="polygon">Polygon</button>
+            <button type="button" class="section-subnav__tab" data-ai-edition="base">Base</button>
+            <button type="button" class="section-subnav__tab" data-ai-edition="all">All editions</button>
         </div>
 
         <div id="market-subnav" class="section-subnav section-subnav--market" hidden aria-label="The Atelier">
@@ -311,16 +330,49 @@
         </div>
     </div>
 
+    <div id="shop-modal" class="shop-modal" hidden role="dialog" aria-modal="true" aria-labelledby="shop-modal-title">
+        <div class="shop-modal__backdrop" aria-hidden="true"></div>
+        <div class="shop-modal__dialog">
+            <button type="button" class="shop-modal__close" aria-label="Close">×</button>
+            <p id="shop-modal-banner" class="shop-modal__banner" hidden></p>
+            <h2 id="shop-modal-title" class="shop-modal__title">Pay the studio</h2>
+            <p id="shop-modal-lead" class="shop-modal__lead"></p>
+            <p id="shop-modal-name" class="shop-modal__name"></p>
+            <p id="shop-modal-meta" class="shop-modal__meta"></p>
+            <dl class="shop-modal__facts">
+                <div>
+                    <dt>Amount</dt>
+                    <dd id="shop-modal-amount">—</dd>
+                    <button type="button" id="shop-copy-amount" class="btn btn--ghost btn--small">Copy amount</button>
+                </div>
+                <div>
+                    <dt>Pay to</dt>
+                    <dd id="shop-modal-address">—</dd>
+                    <button type="button" id="shop-copy-address" class="btn btn--ghost btn--small">Copy address</button>
+                </div>
+                <div>
+                    <dt>Memo / tag</dt>
+                    <dd id="shop-modal-memo">—</dd>
+                    <button type="button" id="shop-copy-memo" class="btn btn--ghost btn--small">Copy memo</button>
+                </div>
+            </dl>
+            <img id="shop-modal-qr" class="shop-modal__qr" width="160" height="160" alt="" hidden>
+            <p id="shop-modal-fulfill" class="shop-modal__fulfill"></p>
+            <p class="shop-modal__terms"><a href="shop-terms.html">Studio shop terms</a></p>
+        </div>
+    </div>
+
     <script src="js/images.js?v=20260815pinata"></script>
     <script src="js/opensea-links.js?v=20260712p"></script>
     <script src="js/lightbox.js?v=20260712p"></script>
     <script src="js/likes.js?v=20260718mood"></script>
     <script src="js/color-groups.js?v=20260713b"></script>
-    <script src="js/filters.js?v=20260815nsfix"></script>
-    <script src="js/sections.js?v=20260809featured-chip"></script>
+    <script src="js/filters.js?v=20260816edition"></script>
+    <script src="js/sections.js?v=20260816edition"></script>
     <script src="js/wallet.js?v=20260713e"></script>
     <script src="js/tip.js?v=20260712p"></script>
-    <script src="js/share.js?v=20260718share"></script>
-    <script src="js/gallery.js?v=20260815nsfix"></script>
+    <script src="js/share.js?v=20260816edition"></script>
+    <script src="js/shop.js?v=20260815shop"></script>
+    <script src="js/gallery.js?v=20260816edition"></script>
 </body>
 </html>

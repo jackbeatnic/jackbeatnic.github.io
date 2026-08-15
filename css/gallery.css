@@ -46,8 +46,14 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-.gallery-protected,
-.gallery-protected img {
+/* Images stay locked; body text (titles, descriptions, About) can be copied. */
+.gallery-protected img,
+.gallery-protected .nft-image-wrap,
+.gallery-protected .hero__image,
+.gallery-protected .signature-logo-wrap,
+.gallery-protected .lightbox__image,
+.gallery-protected .tip-wallet__qr,
+.gallery-protected .shop-modal__qr {
     -webkit-user-select: none;
     user-select: none;
     -webkit-touch-callout: none;
@@ -78,11 +84,169 @@ a {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 .site-brand {
     min-width: 0;
+    flex: 1 1 auto;
+}
+
+/* Right side of sticky header: Featured chip + desktop nav */
+.site-header__actions {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 0.75rem 1.25rem;
+    flex: 0 0 auto;
+    max-width: 58%;
+}
+
+/* Featured — chip on header layer (not in tab bar) */
+.featured-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0.28rem 0.65rem;
+    border: 1px solid rgba(220, 50, 47, 0.35);
+    border-radius: 999px;
+    background: rgba(220, 50, 47, 0.1);
+    color: #b91c1c;
+    font-family: inherit;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    line-height: 1.2;
+    white-space: nowrap;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    transition:
+        background 0.25s var(--ease-out),
+        color 0.25s var(--ease-out),
+        border-color 0.25s var(--ease-out),
+        box-shadow 0.25s var(--ease-out),
+        transform 0.25s var(--ease-out);
+}
+
+.featured-chip:hover {
+    background: rgba(220, 50, 47, 0.18);
+    box-shadow: 0 4px 16px rgba(220, 50, 47, 0.15);
+    transform: translateY(-1px);
+}
+
+.featured-chip.is-active {
+    background: #dc322f;
+    border-color: #dc322f;
+    color: #fff;
+    box-shadow: 0 4px 18px rgba(220, 50, 47, 0.28);
+}
+
+.featured-chip[hidden] {
+    display: none !important;
+}
+
+.featured-chip__dot {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.9;
+    flex-shrink: 0;
+}
+
+.featured-chip.is-active .featured-chip__dot {
+    background: #fff;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+}
+
+.featured-chip__count {
+    font-weight: 500;
+    opacity: 0.85;
+    letter-spacing: 0.04em;
+}
+
+.featured-chip__count:not([hidden])::before {
+    content: '·';
+    margin-right: 0.25rem;
+    opacity: 0.55;
+}
+
+.header-chips {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-shrink: 0;
+}
+
+.shop-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0.28rem 0.65rem;
+    border: 1px solid rgba(10, 10, 10, 0.22);
+    border-radius: 999px;
+    background: rgba(10, 10, 10, 0.05);
+    color: #0a0a0a;
+    font-family: inherit;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    line-height: 1.2;
+    white-space: nowrap;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    transition:
+        background 0.25s var(--ease-out),
+        color 0.25s var(--ease-out),
+        border-color 0.25s var(--ease-out),
+        box-shadow 0.25s var(--ease-out),
+        transform 0.25s var(--ease-out);
+}
+
+.shop-chip:hover {
+    background: rgba(10, 10, 10, 0.1);
+    transform: translateY(-1px);
+}
+
+.shop-chip.is-active {
+    background: #0a0a0a;
+    border-color: #0a0a0a;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.shop-chip__count {
+    font-weight: 500;
+    opacity: 0.85;
+    letter-spacing: 0.04em;
+}
+
+.shop-chip__count:not([hidden])::before {
+    content: '·';
+    margin-right: 0.25rem;
+    opacity: 0.55;
+}
+
+@media (max-width: 767px) {
+    /* Mobile: chips sit on the right, aligned with subtitle row */
+    .site-header__actions {
+        max-width: none;
+        align-self: flex-end;
+        padding-bottom: 0.05rem; /* line up with Digital Art · NFT */
+    }
+
+    .featured-chip,
+    .shop-chip {
+        font-size: 0.52rem;
+        padding: 0.24rem 0.55rem;
+        letter-spacing: 0.08em;
+    }
 }
 
 .site-logo {
@@ -334,6 +498,15 @@ a {
     padding-right: 0.65rem;
 }
 
+.section-subnav--edition {
+    margin-top: -0.35rem;
+}
+
+.section-subnav--edition .section-subnav__tab {
+    min-width: 6.25rem;
+    letter-spacing: 0.06em;
+}
+
 .section-subnav__select {
     display: none;
     width: 100%;
@@ -536,6 +709,123 @@ a {
 .section-nav__tab--tip:hover {
     border-bottom-color: transparent;
     color: var(--black);
+}
+
+/* ── Studio shop modal ── */
+.shop-modal[hidden] {
+    display: none !important;
+}
+
+body.shop-open {
+    overflow: hidden;
+}
+
+.shop-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 460;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+}
+
+.shop-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.55);
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+}
+
+.shop-modal__dialog {
+    position: relative;
+    z-index: 1;
+    width: min(28rem, 100%);
+    max-height: min(90vh, 720px);
+    overflow-y: auto;
+    background: var(--white);
+    border: 1px solid var(--gray-100);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+    padding: 1.5rem 1.25rem 1.4rem;
+}
+
+.shop-modal__close {
+    position: absolute;
+    top: 0.55rem;
+    right: 0.65rem;
+    border: 0;
+    background: none;
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--gray-500);
+}
+
+.shop-modal__banner {
+    margin: 0 0 0.85rem;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    background: rgba(220, 50, 47, 0.1);
+    color: #9b1c1c;
+}
+
+.shop-modal__title {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin: 0 0 0.35rem;
+}
+
+.shop-modal__lead,
+.shop-modal__meta,
+.shop-modal__fulfill,
+.shop-modal__terms {
+    margin: 0 0 0.7rem;
+    color: var(--gray-600);
+    font-size: 0.8rem;
+}
+
+.shop-modal__name {
+    margin: 0 0 0.15rem;
+    font-weight: 500;
+}
+
+.shop-modal__facts {
+    margin: 0 0 1rem;
+    display: grid;
+    gap: 0.85rem;
+}
+
+.shop-modal__facts dt {
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+}
+
+.shop-modal__facts dd {
+    margin: 0.15rem 0 0.35rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.78rem;
+    word-break: break-all;
+}
+
+.shop-modal__qr {
+    display: block;
+    margin: 0 auto 0.85rem;
+    background: #fff;
+}
+
+.shop-modal__terms a {
+    text-decoration: underline;
+}
+
+.btn--block[disabled],
+.shop-buy:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
 }
 
 /* ── Tip modal ── */
@@ -1667,6 +1957,10 @@ body.tip-open {
     pointer-events: none;
 }
 
+.nft-card__badge--shop {
+    background: rgba(10, 10, 10, 0.78);
+}
+
 .nft-card__price {
     margin: 0 0 0.4rem;
     font-size: 0.72rem;
@@ -2123,6 +2417,47 @@ body.lightbox-open {
 
     .site-brand:hover .signature-logo-wrap img {
         filter: none;
+    }
+
+    .featured-chip {
+        border-color: rgba(255, 120, 110, 0.45);
+        background: rgba(220, 50, 47, 0.22);
+        color: #ffb4ae;
+        box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+    }
+
+    .featured-chip:hover {
+        background: rgba(220, 50, 47, 0.35);
+        color: #ffd4d0;
+    }
+
+    .featured-chip.is-active {
+        background: #e23b38;
+        border-color: #ff6b66;
+        color: #fff;
+    }
+
+    .shop-chip {
+        border-color: rgba(255, 255, 255, 0.28);
+        background: rgba(255, 255, 255, 0.08);
+        color: #f3f3f3;
+        box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+    }
+
+    .shop-chip:hover {
+        background: rgba(255, 255, 255, 0.16);
+        color: #fff;
+    }
+
+    .shop-chip.is-active {
+        background: #f3f3f3;
+        border-color: #fff;
+        color: #0a0a0a;
+    }
+
+    .shop-modal__dialog {
+        background: var(--gray-50);
+        border-color: var(--gray-100);
     }
 
     .site-nav a:hover {

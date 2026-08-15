@@ -396,15 +396,23 @@ const Gallery = (() => {
             return nft.name || 'Mint on TradePort';
         }
         const tid = nft.onchain_token_id ?? nft.token_id;
-        // Title on the card is OS-short (NS #599). Subtitle carries chain so
-        // Avalanche / Base / Polygon Nature Stories stay distinguishable.
+        // Title stays OS-short (NS #599 / FS #12). Subtitle is the chain
+        // edition so Avalanche / Base / Polygon of the same series stay distinct.
         if (nft.edition_label) {
             return `${nft.edition_label} edition`;
         }
-        if (
-            nft.ai_series === 'nature_stories' ||
-            (nft.collection_id || '').includes('nature_stories')
-        ) {
+        const series =
+            (typeof GallerySections !== 'undefined' && GallerySections.resolveAiSeries)
+                ? GallerySections.resolveAiSeries(nft)
+                : nft.ai_series;
+        const multiChain =
+            (typeof GallerySections !== 'undefined' && GallerySections.seriesHasEditions)
+                ? GallerySections.seriesHasEditions(series)
+                : series === 'nature_stories' ||
+                  series === 'flower_stories' ||
+                  String(nft.collection_id || '').includes('nature_stories') ||
+                  String(nft.collection_id || '').includes('flower_stories');
+        if (multiChain) {
             return `${chainLabel(nft)} edition`;
         }
         if (nft.supply > 1) {
@@ -688,6 +696,9 @@ const Gallery = (() => {
         const extraNfts = extras.flatMap((payload) => payload?.nfts || []);
         if (!extraNfts.length) return;
         allNfts = [...allNfts, ...extraNfts];
+        if (typeof GallerySections !== 'undefined' && GallerySections.noteLoadedNfts) {
+            GallerySections.noteLoadedNfts(allNfts);
+        }
         syncSectionNfts('full');
         refresh();
     }
@@ -1044,6 +1055,7 @@ const Gallery = (() => {
             };
 
             GallerySections.init(siteConfig);
+            GallerySections.noteLoadedNfts(allNfts);
             AtelierWallet.init(collectionInfo);
             applyCollectionInfo(collectionInfo);
             GalleryFilters.bindOnce();

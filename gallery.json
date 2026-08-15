@@ -17878,6 +17878,769 @@
       "medium": "ai_art"
     },
     {
+      "token_id": 370,
+      "name": "Nature stories #0784",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/370",
+      "image_url": "https://ipfs.io/ipfs/bafybeiasnlqijawmjplidih4w522rvsc6aglvhacqmi6dw3ew5g2rdqifm",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": 3.594,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "A small human walks at the foot of a fern-tree before two snow peaks and a pale disc. Dark pines both sides, white current below. Cool teal-navy only — no pink sun.",
+        "dominant_colors": [
+          "#0A2A38",
+          "#1A5A68",
+          "#8AB8C0",
+          "#E8F2F2",
+          "#123038"
+        ],
+        "vibe_tags": [
+          "contemplative",
+          "serene",
+          "graphic",
+          "botanical"
+        ],
+        "category": "landscape",
+        "mood_score": 8,
+        "keywords": [
+          "walker",
+          "fern tree",
+          "twin peaks",
+          "pines"
+        ],
+        "image_seen": true,
+        "source": "local_backup_jpg"
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX",
+      "display_rank": 370,
+      "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/370.html",
+      "og_image": "assets/og/nft-370.jpg",
+      "medium": "ai_art"
+    },
+    {
+      "token_id": 371,
+      "name": "Nature stories #0785",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/371",
+      "image_url": "https://ipfs.io/ipfs/bafybeicsaouvldackkbckyujr4fe5kigrrjgaou77xaptsjy5zdghe3svy",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": 3.594,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "A huge pale disc hangs behind a fern-tree; a tiny walker stands on the left bank. Snow-edged teal peaks, pine walls, white current. Bigger moon, smaller figure than #0784.",
+        "dominant_colors": [
+          "#0A2A32",
+          "#2A6A68",
+          "#C8D8D8",
+          "#F4F8F6",
+          "#123030"
+        ],
+        "vibe_tags": [
+          "contemplative",
+          "serene",
+          "graphic",
+          "ethereal"
+        ],
+        "category": "landscape",
+        "mood_score": 8,
+        "keywords": [
+          "walker",
+          "giant disc",
+          "fern",
+          "teal peaks"
+        ],
+        "image_seen": true,
+        "source": "local_backup_jpg"
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX",
+      "display_rank": 371,
+      "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/371.html",
+      "og_image": "assets/og/nft-371.jpg",
+      "medium": "ai_art"
+    },
+    {
+      "token_id": 373,
+      "name": "Nature stories #0822",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/373",
+      "image_url": "https://ipfs.io/ipfs/bafybeigg7vfgfsrwcyymz5aj5pvoqquqzgdgporgnrga7tujork72rfxxq",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": 3.594,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "A white-and-navy wolf walks right, a teal-green fern growing up through the torso. Pink disc upper right, teal mountains, pines, white current. First wolf-plus-pink-sun of this batch.",
+        "dominant_colors": [
+          "#0A2A38",
+          "#E8A0B8",
+          "#2A8A6A",
+          "#E8F2F4",
+          "#F8F6F8"
+        ],
+        "vibe_tags": [
+          "serene",
+          "graphic",
+          "ethereal",
+          "botanical"
+        ],
+        "category": "wildlife",
+        "mood_score": 8,
+        "keywords": [
+          "wolf",
+          "fern through body",
+          "pink sun",
+          "pines"
+        ],
+        "image_seen": true,
+        "source": "local_backup_jpg"
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX",
+      "display_rank": 373,
+      "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/373.html",
+      "og_image": "assets/og/nft-373.jpg",
+      "medium": "ai_art"
+    },
+    {
+      "token_id": 374,
+      "name": "Nature stories #0823",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/374",
+      "image_url": "https://ipfs.io/ipfs/bafybeib4kyw75jsqhfjaza3x6wezi347aktsyxjoq3p3ttmogpoa3zz3ke",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": 3.594,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "A tiny walker on a pale river toward a large pale disc and a fern-tree. Teal-grey peaks, pines both sides, white current. Human plus fern plus moon — no wolf.",
+        "dominant_colors": [
+          "#0A2A38",
+          "#3A7A78",
+          "#C8D8D8",
+          "#F2F6F6",
+          "#123038"
+        ],
+        "vibe_tags": [
+          "contemplative",
+          "serene",
+          "graphic",
+          "botanical"
+        ],
+        "category": "landscape",
+        "mood_score": 8,
+        "keywords": [
+          "walker",
+          "fern",
+          "pale disc",
+          "river"
+        ],
+        "image_seen": true,
+        "source": "local_backup_jpg"
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX",
+      "display_rank": 374,
+      "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/374.html",
+      "og_image": "assets/og/nft-374.jpg",
+      "medium": "ai_art"
+    },
+    {
+      "token_id": 375,
+      "name": "Nature stories #0824",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/375",
+      "image_url": "https://ipfs.io/ipfs/bafybeif7cju66wppi3smmnsaunoaa3qvinsolspwwmh73toliustyxpxni",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": 3.594,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "A dark wolf in left profile stands under a teal-green fern. A large pale disc sits behind the head. Pines, soft peaks, white current. No pink; wolf plus moon, not the walker of #0823.",
+        "dominant_colors": [
+          "#0A2A38",
+          "#1A6A58",
+          "#C0D4D4",
+          "#F4F8F6",
+          "#123030"
+        ],
+        "vibe_tags": [
+          "serene",
+          "graphic",
+          "contemplative",
+          "botanical"
+        ],
+        "category": "wildlife",
+        "mood_score": 8,
+        "keywords": [
+          "wolf",
+          "green fern",
+          "pale disc",
+          "pines"
+        ],
+        "image_seen": true,
+        "source": "local_backup_jpg"
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX",
+      "display_rank": 375,
+      "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/375.html",
+      "og_image": "assets/og/nft-375.jpg",
+      "medium": "ai_art"
+    },
+    {
+      "token_id": 376,
+      "name": "Nature stories #0825",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/376",
+      "image_url": "https://ipfs.io/ipfs/bafybeibds5ypf4twnkuhv3lou3df6rnft2nwmamtvuenyntu3rlp3l5edu",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": 3.594,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "Close three-quarter white wolf facing left; a fern grows through the shoulder. A huge pale disc fills the sky. Pines and teal hills, white current. Portrait, frost-white fur.",
+        "dominant_colors": [
+          "#0A2A38",
+          "#E8EEF0",
+          "#2A6A58",
+          "#F6F8F8",
+          "#123038"
+        ],
+        "vibe_tags": [
+          "serene",
+          "graphic",
+          "ethereal",
+          "botanical"
+        ],
+        "category": "wildlife",
+        "mood_score": 8,
+        "keywords": [
+          "white wolf portrait",
+          "fern",
+          "pale disc"
+        ],
+        "image_seen": true,
+        "source": "local_backup_jpg"
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX",
+      "display_rank": 376,
+      "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/376.html",
+      "og_image": "assets/og/nft-376.jpg",
+      "medium": "ai_art"
+    },
+    {
+      "token_id": 377,
+      "name": "Nature stories #0826",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/377",
+      "image_url": "https://ipfs.io/ipfs/bafybeihfas4evwjvwgjc73vvea2akvefpknahaim45wtyy6flgqlju4gzi",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": 3.594,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "Sister to #0825: white wolf portrait, fern through the body, but the disc is warm pink and the chest fur picks up rose. Same pose family, different sky — hashes differ.",
+        "dominant_colors": [
+          "#0A2A38",
+          "#E8B0C0",
+          "#E8EEF0",
+          "#2A6A58",
+          "#F8F4F6"
+        ],
+        "vibe_tags": [
+          "serene",
+          "graphic",
+          "ethereal",
+          "botanical"
+        ],
+        "category": "wildlife",
+        "mood_score": 8,
+        "keywords": [
+          "white wolf",
+          "pink disc",
+          "fern",
+          "rose fur"
+        ],
+        "image_seen": true,
+        "source": "local_backup_jpg"
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX",
+      "display_rank": 377,
+      "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/377.html",
+      "og_image": "assets/og/nft-377.jpg",
+      "medium": "ai_art"
+    },
+    {
+      "token_id": 378,
+      "name": "Nature stories #0827",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/378",
+      "image_url": "https://ipfs.io/ipfs/bafybeigai7fume524mwm4uaoqnnyoha42vkztzqmo6ftpor4ajonz45ur4",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": 3.594,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "A dark wolf walks right under a tall fern; a large pale disc sits behind. Teal mountains, pines, white current. Full-body side view, not a close portrait.",
+        "dominant_colors": [
+          "#0A2A38",
+          "#2A6A68",
+          "#C8D8D8",
+          "#F4F8F6",
+          "#123030"
+        ],
+        "vibe_tags": [
+          "serene",
+          "graphic",
+          "contemplative",
+          "botanical"
+        ],
+        "category": "wildlife",
+        "mood_score": 8,
+        "keywords": [
+          "wolf walking",
+          "fern",
+          "pale disc",
+          "full body"
+        ],
+        "image_seen": true,
+        "source": "local_backup_jpg"
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX",
+      "display_rank": 378,
+      "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/378.html",
+      "og_image": "assets/og/nft-378.jpg",
+      "medium": "ai_art"
+    },
+    {
+      "token_id": 379,
+      "name": "Nature stories #0828",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/379",
+      "image_url": "https://ipfs.io/ipfs/bafybeif7eshjwofpbwivzewyfk7mibjha7xkjubgydy6kqjz67zyuqbihu",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": 3.594,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "A walker stands under a fern-tree before a large pale disc. Teal peaks, pines, white current. Human plus moon plus fern — no wolf.",
+        "dominant_colors": [
+          "#0A2A38",
+          "#2A6A68",
+          "#C8D8D8",
+          "#F2F6F6",
+          "#123038"
+        ],
+        "vibe_tags": [
+          "contemplative",
+          "serene",
+          "graphic",
+          "botanical"
+        ],
+        "category": "landscape",
+        "mood_score": 8,
+        "keywords": [
+          "walker",
+          "fern",
+          "pale disc",
+          "peaks"
+        ],
+        "image_seen": true,
+        "source": "local_backup_jpg"
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX",
+      "display_rank": 379,
+      "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/379.html",
+      "og_image": "assets/og/nft-379.jpg",
+      "medium": "ai_art"
+    },
+    {
+      "token_id": 380,
+      "name": "Nature stories #0829",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/380",
+      "image_url": "https://ipfs.io/ipfs/bafybeiheya43ib6o4eqrvs472swgosl45o4xanjalolaoa67im6ydx5wc4",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": 3.594,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "A wolf walks right; the fern through the body grades from dark navy leaflets above to bright green below. Pale disc, teal hills, pines, white current. Two-tone fern is the tell.",
+        "dominant_colors": [
+          "#0A2A38",
+          "#1A8A4A",
+          "#C8D8D8",
+          "#F4F8F6",
+          "#123030"
+        ],
+        "vibe_tags": [
+          "serene",
+          "graphic",
+          "ethereal",
+          "botanical"
+        ],
+        "category": "wildlife",
+        "mood_score": 8,
+        "keywords": [
+          "wolf",
+          "two-tone fern",
+          "pale disc"
+        ],
+        "image_seen": true,
+        "source": "local_backup_jpg"
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX",
+      "display_rank": 380,
+      "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/380.html",
+      "og_image": "assets/og/nft-380.jpg",
+      "medium": "ai_art"
+    },
+    {
+      "token_id": 381,
+      "name": "Nature stories #0830",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/381",
+      "image_url": "https://ipfs.io/ipfs/bafybeigk6xlehdiugi5pzgqdvsslqa2np5ivtk2eurhpegtiahpix7qgkq",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": 3.594,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "A small human stands at the foot of a fern-tree under a pale disc. Teal peaks, pines, white current. Same grammar as #0828, slightly cooler teal.",
+        "dominant_colors": [
+          "#0A2A38",
+          "#1A6A68",
+          "#C0D8D8",
+          "#F2F6F6",
+          "#123038"
+        ],
+        "vibe_tags": [
+          "contemplative",
+          "serene",
+          "graphic",
+          "botanical"
+        ],
+        "category": "landscape",
+        "mood_score": 8,
+        "keywords": [
+          "human",
+          "fern tree",
+          "pale disc"
+        ],
+        "image_seen": true,
+        "source": "local_backup_jpg"
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX",
+      "display_rank": 381,
+      "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/381.html",
+      "og_image": "assets/og/nft-381.jpg",
+      "medium": "ai_art"
+    },
+    {
+      "token_id": 382,
+      "name": "Nature stories #0831",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/382",
+      "image_url": "https://ipfs.io/ipfs/bafybeiez5xuutmpin57tfszlpvkpnzwqc3cencah4yvxzo32fpy6gjvf44",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": 3.594,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "A white wolf in left profile; fern through the torso; huge pale disc. Pines, teal hills, white current. Full-body white wolf, not the tight portrait of #0825.",
+        "dominant_colors": [
+          "#0A2A38",
+          "#E8EEF0",
+          "#2A6A58",
+          "#F6F8F8",
+          "#123038"
+        ],
+        "vibe_tags": [
+          "serene",
+          "graphic",
+          "ethereal",
+          "botanical"
+        ],
+        "category": "wildlife",
+        "mood_score": 8,
+        "keywords": [
+          "white wolf",
+          "full body",
+          "fern",
+          "pale disc"
+        ],
+        "image_seen": true,
+        "source": "local_backup_jpg"
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX",
+      "display_rank": 382,
+      "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/382.html",
+      "og_image": "assets/og/nft-382.jpg",
+      "medium": "ai_art"
+    },
+    {
+      "token_id": 383,
+      "name": "Nature stories #0832",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/383",
+      "image_url": "https://ipfs.io/ipfs/bafybeifg62bpog7y2pdpswvwbegoe7hn7v7hle526ivknyxpva5e5sr5eq",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": 3.594,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "A dark wolf walks right under a fern; a large pale disc behind. Teal mountains, pines, white current. Dark coat, walking — pair to the white #0831.",
+        "dominant_colors": [
+          "#0A2A38",
+          "#1A4A58",
+          "#C8D8D8",
+          "#F4F8F6",
+          "#123030"
+        ],
+        "vibe_tags": [
+          "serene",
+          "graphic",
+          "contemplative",
+          "botanical"
+        ],
+        "category": "wildlife",
+        "mood_score": 8,
+        "keywords": [
+          "dark wolf",
+          "walking",
+          "fern",
+          "pale disc"
+        ],
+        "image_seen": true,
+        "source": "local_backup_jpg"
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX",
+      "display_rank": 383,
+      "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/383.html",
+      "og_image": "assets/og/nft-383.jpg",
+      "medium": "ai_art"
+    },
+    {
+      "token_id": 384,
+      "name": "Nature stories #0833",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/384",
+      "image_url": "https://ipfs.io/ipfs/bafybeigoki6kppl3sxrv5hsr5iqf3kxx2w73cw3m7edad7txiy4hwaiylq",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": 3.594,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "A walker on the river under a fern-tree and a huge pale disc. Teal peaks, pines, white current. Human-scale figure, no animal.",
+        "dominant_colors": [
+          "#0A2A38",
+          "#2A6A68",
+          "#C8D8D8",
+          "#F2F6F6",
+          "#123038"
+        ],
+        "vibe_tags": [
+          "contemplative",
+          "serene",
+          "graphic",
+          "botanical"
+        ],
+        "category": "landscape",
+        "mood_score": 8,
+        "keywords": [
+          "walker",
+          "fern",
+          "huge disc",
+          "river"
+        ],
+        "image_seen": true,
+        "source": "local_backup_jpg"
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX",
+      "display_rank": 384,
+      "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/384.html",
+      "og_image": "assets/og/nft-384.jpg",
+      "medium": "ai_art"
+    },
+    {
+      "token_id": 386,
+      "name": "Nature stories #0834",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/386",
+      "image_url": "https://ipfs.io/ipfs/bafybeig4iottqrr2dmhwme5edpakxgbe6yhmg2mcqxyaqtsdsudeoixup4",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": 3.594,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "A dark wolf in left profile under a teal-green fern; pale disc behind the head. Pines, hills, white current. Profile portrait, dark fur, no pink.",
+        "dominant_colors": [
+          "#0A2A38",
+          "#1A6A58",
+          "#C0D4D4",
+          "#F4F8F6",
+          "#123030"
+        ],
+        "vibe_tags": [
+          "serene",
+          "graphic",
+          "contemplative",
+          "botanical"
+        ],
+        "category": "wildlife",
+        "mood_score": 8,
+        "keywords": [
+          "dark wolf profile",
+          "green fern",
+          "pale disc"
+        ],
+        "image_seen": true,
+        "source": "local_backup_jpg"
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX",
+      "display_rank": 386,
+      "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/386.html",
+      "og_image": "assets/og/nft-386.jpg",
+      "medium": "ai_art"
+    },
+    {
+      "token_id": 387,
+      "name": "Nature stories #0835",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/387",
+      "image_url": "https://ipfs.io/ipfs/bafybeie6zvfb3niptsyohhafszbd5vuvrqf2psqffrcgaglyposmjuumze",
+      "supply": 7000,
+      "mint_price_avax": 2.2,
+      "current_price_avax": 3.594,
+      "last_sale_price_avax": null,
+      "traits": {},
+      "ai": {
+        "description": "A white wolf in left profile; fern through the body; huge pale disc. Pines, teal hills, white current. White profile to match the dark #0834.",
+        "dominant_colors": [
+          "#0A2A38",
+          "#E8EEF0",
+          "#2A6A58",
+          "#F6F8F8",
+          "#123038"
+        ],
+        "vibe_tags": [
+          "serene",
+          "graphic",
+          "ethereal",
+          "botanical"
+        ],
+        "category": "wildlife",
+        "mood_score": 8,
+        "keywords": [
+          "white wolf profile",
+          "fern",
+          "pale disc"
+        ],
+        "image_seen": true,
+        "source": "local_backup_jpg"
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX",
+      "display_rank": 387,
+      "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/387.html",
+      "og_image": "assets/og/nft-387.jpg",
+      "medium": "ai_art"
+    },
+    {
       "token_id": 75758508,
       "name": "Classic Diary #142",
       "objkt_url": "https://objkt.com/tokens/KT1G4huupTRYUVo2WkXcx89xuGVaXgKosnwG/79",

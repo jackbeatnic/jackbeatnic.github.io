@@ -367,6 +367,12 @@ const GalleryFilters = (() => {
             if (q) {
                 const haystack = [
                     nft.name,
+                    nft.edition_label,
+                    nft.chain,
+                    nft.collection_id,
+                    nft.collection_name,
+                    nft.token_id != null ? String(nft.token_id) : '',
+                    nft.edition_label ? `${nft.edition_label} edition` : '',
                     nft.ai?.description,
                     nft.ai?.category,
                     ...(nft.ai?.vibe_tags || []),

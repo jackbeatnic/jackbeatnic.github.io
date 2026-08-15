@@ -66,14 +66,27 @@ const ImageProxy = (() => {
      * URL do atrybutu src — miniatura, nie oryginał.
      * W HTML nigdy nie wstawiaj nft.image_url bezpośrednio.
      */
+    /** ipfs.io often 403s; weserv then shows a blank thumb. Pinata still serves our CIDs. */
+    function preferWorkingIpfsGateway(url) {
+        if (!url) return url;
+        const cidMatch = url.match(
+            /(?:ipfs\/|ipfs:\/\/)(bafy[a-z0-9]+|Qm[1-9A-HJ-NP-Za-km-z]{44,})/i,
+        );
+        if (!cidMatch) return url;
+        if (/ipfs\.io|cloudflare-ipfs|dweb\.link/i.test(url) || /^ipfs:\/\//i.test(url)) {
+            return `https://gateway.pinata.cloud/ipfs/${cidMatch[1]}`;
+        }
+        return url;
+    }
+
     function resolveOriginalUrl(originalUrl) {
         if (!originalUrl || typeof originalUrl !== 'string') return '';
         const u = originalUrl.trim();
         if (/^ipfs:\/\//i.test(u)) {
             const cid = u.replace(/^ipfs:\/\//i, '').replace(/\/$/, '');
-            return cid ? `https://ipfs.io/ipfs/${cid}` : '';
+            return cid ? preferWorkingIpfsGateway(`ipfs://${cid}`) : '';
         }
-        if (/^https?:\/\//i.test(u)) return u;
+        if (/^https?:\/\//i.test(u)) return preferWorkingIpfsGateway(u);
         // Relative site paths (e.g. assets/xrpl/123.webp) → absolute for weserv
         const path = u.replace(/^\.\//, '').replace(/^\//, '');
         return `${siteOrigin()}/${path}`;

@@ -205,6 +205,7 @@ const Gallery = (() => {
     }
 
     function marketplaceName(nft) {
+        if (isShopNft(nft)) return 'studio shop';
         if (isFeaturedPromoNft(nft)) {
             if (nft.tradeport_url || nft.chain === 'sui') {
                 return MARKETPLACE_NAMES.tradeport;
@@ -244,6 +245,11 @@ const Gallery = (() => {
     }
 
     function marketplaceLabel(nft) {
+        if (isShopNft(nft)) {
+            if (nft.shop_status === 'coming') return 'Coming soon';
+            if (nft.demo) return 'Demo checkout';
+            return 'Buy from studio';
+        }
         if (isFeaturedPromoNft(nft)) {
             return `View on ${marketplaceName(nft)}`;
         }
@@ -300,6 +306,15 @@ const Gallery = (() => {
     }
 
     function buildMarketActionsHtml(nft) {
+        if (isShopNft(nft)) {
+            const coming = nft.shop_status === 'coming' || (nft.qty_available || 0) <= 0;
+            const label = escapeHtml(marketplaceLabel(nft));
+            const disabled = coming ? ' disabled' : '';
+            return `
+                <div class="nft-card__actions">
+                    <button type="button" class="btn btn--primary btn--block shop-buy"${disabled}>${label}</button>
+                </div>`;
+        }
         const dual = resolveDualMarketplaces(nft);
         if (dual) {
             const [primary, secondary] = dual;
@@ -343,6 +358,12 @@ const Gallery = (() => {
     }
 
     function tokenLabel(nft) {
+        if (isShopNft(nft)) {
+            const col = nft.collection_name || nft.collection_id || '';
+            const chain = chainLabel(nft);
+            const pool = nft.pool === 'gjb' ? 'GJB pool' : nft.pool || '';
+            return [col, chain, pool].filter(Boolean).join(' · ');
+        }
         if (isFeaturedPromoNft(nft)) {
             const col = nft.collection_name || nft.collection_id || '';
             const chain = chainLabel(nft);
@@ -375,8 +396,16 @@ const Gallery = (() => {
             return nft.name || 'Mint on TradePort';
         }
         const tid = nft.onchain_token_id ?? nft.token_id;
+        // Title on the card is OS-short (NS #599). Subtitle carries chain so
+        // Avalanche / Base / Polygon Nature Stories stay distinguishable.
         if (nft.edition_label) {
-            return `${nft.edition_label} · #${tid}`;
+            return `${nft.edition_label} edition`;
+        }
+        if (
+            nft.ai_series === 'nature_stories' ||
+            (nft.collection_id || '').includes('nature_stories')
+        ) {
+            return `${chainLabel(nft)} edition`;
         }
         if (nft.supply > 1) {
             return `Edition · ${nft.supply} · #${tid}`;
@@ -462,6 +491,21 @@ const Gallery = (() => {
                 };
             }
             return { text: 'Live auction', hint: chainLabel(nft), kind: 'listed' };
+        }
+        if (isShopNft(nft)) {
+            const symbol = (nft.listing_currency || nft.currency || 'USD').toUpperCase();
+            const p = nft.shop_price ?? priceField(nft, 'current_price', symbol);
+            const q = nft.qty_available ?? nft.promo_quantity;
+            const bits = [];
+            if (q != null) bits.push(`${q} in shop`);
+            if (nft.fulfill === 'mint_on_demand') bits.push('mint on demand');
+            if (nft.demo) bits.push('demo');
+            bits.push(chainLabel(nft));
+            return {
+                text: p != null && p !== '' ? `${p} ${symbol}` : 'Studio price',
+                hint: bits.join(' · '),
+                kind: nft.shop_status === 'coming' ? 'mint' : 'listed',
+            };
         }
         // Featured multi-chain promo feed
         if (isFeaturedPromoNft(nft)) {
@@ -680,6 +724,10 @@ const Gallery = (() => {
         return nft?.medium === 'featured_promo';
     }
 
+    function isShopNft(nft) {
+        return nft?.medium === 'shop';
+    }
+
     /** featured_promo.json → cards in Featured tab (all chains). */
     function featuredItemsToNfts(doc) {
         const promo = doc?.promo || {};
@@ -751,6 +799,93 @@ const Gallery = (() => {
         }
     }
 
+    const SHOP_COLLECTION_NAMES = {
+        avalanche_nature_stories: 'Nature Stories',
+        avalanche_flower_stories: 'Flower Stories',
+        xrpl_jb_ai_nature: 'JB AI Nature',
+        xrpl_jbn: 'JB AI Nature',
+    };
+
+    function saleItemsToNfts(doc) {
+        const raw = Array.isArray(doc?.items) ? doc.items : [];
+        return raw
+            .filter((it) => (it.channel || 'shop') === 'shop')
+            .map((it, idx) => {
+                const chain = (it.chain || '').toLowerCase();
+                const cur = (it.currency || 'USD').toUpperCase();
+                const suf = cur.toLowerCase();
+                const nft = {
+                    medium: 'shop',
+                    sku: it.sku,
+                    token_id: it.token_id,
+                    name: it.name || `#${it.token_id}`,
+                    contract_address: `shop:${it.sku || it.token_id}`,
+                    collection_id: it.collection_id,
+                    collection_name:
+                        SHOP_COLLECTION_NAMES[it.collection_id] || it.collection_id,
+                    chain,
+                    image_url: it.image_url,
+                    listing_currency: cur,
+                    listing_status:
+                        it.status === 'live' ? 'For Sale' : it.status || 'hold',
+                    status: it.status === 'live' ? 'listed' : it.status,
+                    shop_status: it.status || 'live',
+                    shop_price: it.price,
+                    qty_available: it.qty_available,
+                    promo_quantity: it.qty_available,
+                    pool: it.pool,
+                    fulfill: it.fulfill,
+                    pay_address: it.pay_address,
+                    memo: it.memo,
+                    demo: Boolean(it.demo),
+                    note: it.note,
+                    opensea_url: it.opensea_url,
+                    display_rank: idx + 1,
+                };
+                if (it.price != null && it.price !== '') {
+                    nft[`current_price_${suf}`] = it.price;
+                }
+                return nft;
+            });
+    }
+
+    function updateShopChip(count) {
+        const chip = document.getElementById('shop-chip');
+        const countEl = document.getElementById('shop-chip-count');
+        if (!chip) return;
+        chip.hidden = false;
+        if (countEl) {
+            if (!count || count <= 0) {
+                countEl.hidden = true;
+                countEl.textContent = '';
+            } else {
+                countEl.hidden = false;
+                countEl.textContent = String(count);
+            }
+        }
+    }
+
+    async function loadSaleIndexNfts() {
+        try {
+            const res = await fetch('data/sale_index.json', { cache: 'no-cache' });
+            if (!res.ok) {
+                updateShopChip(0);
+                return [];
+            }
+            const doc = await res.json();
+            const items = saleItemsToNfts(doc);
+            const live = items.filter(
+                (it) => it.shop_status === 'live' && (it.qty_available || 0) > 0,
+            );
+            updateShopChip(live.length || items.length);
+            return items;
+        } catch (err) {
+            console.warn('sale index:', err);
+            updateShopChip(0);
+            return [];
+        }
+    }
+
     async function loadFeaturedPromoNfts() {
         try {
             const res = await fetch('data/featured_promo.json', {
@@ -774,7 +909,7 @@ const Gallery = (() => {
     async function load() {
         const grid = document.getElementById('gallery-grid');
         try {
-            const [mainRes, xrpRes, suiRes, auctionRes, objktAuctionRes, featuredNfts] =
+            const [mainRes, xrpRes, suiRes, auctionRes, objktAuctionRes, featuredNfts, shopNfts] =
                 await Promise.all([
                     fetch('gallery.json'),
                     fetch('xrp_gallery.json'),
@@ -782,6 +917,7 @@ const Gallery = (() => {
                     fetch('auctions_gallery.json'),
                     fetch('objkt_auctions_gallery.json'),
                     loadFeaturedPromoNfts(),
+                    loadSaleIndexNfts(),
                 ]);
             if (!mainRes.ok) throw new Error(`HTTP ${mainRes.status}`);
             const data = await mainRes.json();
@@ -801,6 +937,9 @@ const Gallery = (() => {
             // Featured tab: Avalanche + Sui + … from one feed
             if (featuredNfts?.length) {
                 allNfts = [...allNfts, ...featuredNfts];
+            }
+            if (shopNfts?.length) {
+                allNfts = [...allNfts, ...shopNfts];
             }
             collectionInfo = {
                 ...(data.collection_info || {}),
@@ -849,6 +988,17 @@ const Gallery = (() => {
                         empty_message:
                             'No active promos right now — check back soon.',
                         ...(mainSections.featured || {}),
+                    },
+                    shop: {
+                        label: 'Shop',
+                        label_short: 'Shop',
+                        explore_title: 'Studio shop',
+                        empty_message:
+                            'The studio shop is a skeleton — no live works in the price list yet.',
+                        promo_eyebrow: 'Studio shop',
+                        promo_lead:
+                            'Prices from our JSON. OpenSea stays a separate pool. Demo rows are not for sale.',
+                        ...(mainSections.shop || {}),
                     },
                     ...mainSections,
                     ...auctionSections,
@@ -906,6 +1056,7 @@ const Gallery = (() => {
                 evm_domains: collectionInfo.evm_domains,
                 tezos_domains: collectionInfo.tezos_domains,
             });
+            if (typeof ShopCheckout !== 'undefined') ShopCheckout.init();
             GalleryShare.init({
                 site_url: collectionInfo.site_url,
             });
@@ -1003,6 +1154,7 @@ const Gallery = (() => {
         const section = GallerySections.getCurrentSection();
         // Featured: same coin table as AI Art · EVM
         if (section === 'featured') return true;
+        if (section === 'shop') return true;
         if (section === 'photography') return true;
         return section === 'ai_art' && GallerySections.getAiKind() === 'evm';
     }
@@ -1014,6 +1166,34 @@ const Gallery = (() => {
         const eyebrowEl = document.getElementById('section-promo-eyebrow');
         const leadEl = document.getElementById('section-promo-lead');
         const listEl = document.getElementById('section-promo-tokens');
+
+        if (GallerySections.getCurrentSection() === 'shop') {
+            const meta = GallerySections.getSectionMeta();
+            el.hidden = false;
+            if (eyebrowEl) eyebrowEl.textContent = meta.promo_eyebrow || 'Studio shop';
+            if (leadEl) {
+                leadEl.textContent =
+                    meta.promo_lead ||
+                    'A second channel from the studio. Prices live in our JSON — not on OpenSea.';
+            }
+            if (listEl) {
+                listEl.innerHTML = `
+                    <article class="section-promo__item">
+                        <h3 class="section-promo__title">How it works</h3>
+                        <p class="section-promo__token">
+                            <span class="section-promo__symbol">Pay the studio</span>
+                            <span class="section-promo__chain"> · memo matches the order</span>
+                        </p>
+                        <p class="section-promo__collector">
+                            Demo cards open checkout so you can see the flow. Do not send funds until a row is unmarked as demo and fulfillment is live.
+                        </p>
+                        <div class="section-promo__actions">
+                            <a class="btn btn--ghost btn--small section-promo__cta" href="shop-terms.html">Shop terms</a>
+                        </div>
+                    </article>`;
+            }
+            return;
+        }
 
         if (GallerySections.isAtelierSection()) {
             const meta = GallerySections.getSectionMeta();
@@ -1608,8 +1788,13 @@ const Gallery = (() => {
             .map((tag) => `<span class="nft-tag">${escapeHtml(tag)}</span>`)
             .join('');
 
+        const shopBadge = isShopNft(nft)
+            ? `<span class="nft-card__badge nft-card__badge--shop">${nft.demo ? 'Demo' : 'Studio shop'}</span>`
+            : '';
+
         card.innerHTML = `
             <div class="nft-image-wrap">
+                ${shopBadge}
                 <img src="${thumbSrc}"
                      alt="${name}"
                      loading="lazy"
@@ -1662,6 +1847,11 @@ const Gallery = (() => {
             Lightbox.open({ src: viewSrc, alt: nft.name, label: nft.name });
         });
         bindEngage(card, nft, key);
+        card.querySelector('.shop-buy')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (typeof ShopCheckout !== 'undefined') ShopCheckout.open(nft);
+        });
 
         return card;
     }

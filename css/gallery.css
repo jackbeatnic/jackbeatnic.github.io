@@ -294,8 +294,8 @@ a {
     width: 100%;
     height: clamp(2.1rem, 7vw, 3rem);
     background-color: #111111;
-    -webkit-mask: url('../assets/signature.png') left center / contain no-repeat;
-    mask: url('../assets/signature.png') left center / contain no-repeat;
+    -webkit-mask: url("/assets/signature.png") left center / contain no-repeat;
+    mask: url("/assets/signature.png") left center / contain no-repeat;
     pointer-events: none;
     forced-color-adjust: none;
 }
@@ -2402,8 +2402,10 @@ body.lightbox-open {
         color: var(--black);
     }
 
+    /* Keep a dark fill (Auto Dark ignores it) then invert to white ourselves. */
     .signature-mark {
-        background-color: #e8e8e8;
+        background-color: #111111;
+        filter: invert(1);
         forced-color-adjust: none;
     }
 

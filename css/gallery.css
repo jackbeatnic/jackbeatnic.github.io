@@ -308,10 +308,9 @@ a {
     user-drag: none;
 }
 
-/* Dark: artwork photographed through the signature. Photos are not inverted. */
+/* Dark: art-cut PNG/WebP with real alpha — no black slab, no screen blend. */
 .signature-logo--ice {
     color-scheme: only light;
-    mix-blend-mode: screen;
 }
 
 
@@ -2450,7 +2449,6 @@ body.lightbox-open {
 
     .signature-logo--ice {
         color-scheme: only light;
-        mix-blend-mode: screen;
     }
 
     .featured-chip {

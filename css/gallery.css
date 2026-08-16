@@ -306,10 +306,7 @@ a {
     pointer-events: none;
     -webkit-user-drag: none;
     user-drag: none;
-}
-
-/* Dark: art-cut PNG/WebP with real alpha — no black slab, no screen blend. */
-.signature-logo--ice {
+    /* Do not let Auto Dark invert the ice ink to gray. */
     color-scheme: only light;
 }
 

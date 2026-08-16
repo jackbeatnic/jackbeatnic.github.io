@@ -61,7 +61,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/gallery.css?v=20260816ice">
+    <link rel="stylesheet" href="css/gallery.css?v=20260816sig2">
     <link rel="stylesheet" href="css/text-select.css?v=20260815copy">
 </head>
 <body class="gallery-protected">
@@ -71,16 +71,9 @@
                 <h1 class="site-logo">
                     <span class="visually-hidden">Jack Beatnic</span>
                     <div class="signature-logo-wrap" aria-hidden="true">
-                        <img class="signature-logo signature-logo--light"
+                        <img id="site-signature"
+                             class="signature-logo"
                              src="assets/signature.png"
-                             alt=""
-                             width="360"
-                             height="150"
-                             decoding="async"
-                             draggable="false"
-                             referrerpolicy="no-referrer">
-                        <img class="signature-logo signature-logo--dark"
-                             src="assets/signature-white.png"
                              alt=""
                              width="360"
                              height="150"
@@ -89,6 +82,21 @@
                              referrerpolicy="no-referrer">
                         <div class="signature-shield"></div>
                     </div>
+                    <script>
+                    (function () {
+                        var img = document.getElementById('site-signature');
+                        if (!img || !window.matchMedia) return;
+                        var mq = window.matchMedia('(prefers-color-scheme: dark)');
+                        function apply() {
+                            img.src = mq.matches
+                                ? 'assets/signature-white.png'
+                                : 'assets/signature.png';
+                        }
+                        apply();
+                        if (mq.addEventListener) mq.addEventListener('change', apply);
+                        else if (mq.addListener) mq.addListener(apply);
+                    })();
+                    </script>
                 </h1>
                 <p class="artist-subtitle">Digital Art · NFT</p>
             </div>
@@ -319,7 +327,7 @@
         </div>
     </div>
 
-    <script src="js/images.js?v=20260816tezos"></script>
+    <script src="js/images.js?v=20260816objkt"></script>
     <script src="js/opensea-links.js?v=20260712p"></script>
     <script src="js/lightbox.js?v=20260816fix2"></script>
     <script src="js/likes.js?v=20260718mood"></script>
@@ -329,6 +337,6 @@
     <script src="js/wallet.js?v=20260713e"></script>
     <script src="js/tip.js?v=20260712p"></script>
     <script src="js/share.js?v=20260816edition"></script>
-    <script src="js/gallery.js?v=20260816chains"></script>
+    <script src="js/gallery.js?v=20260816sui"></script>
 </body>
 </html>

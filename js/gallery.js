@@ -1348,7 +1348,7 @@ const Gallery = (() => {
             if (leadEl) {
                 leadEl.textContent =
                     kp.promo_lead ||
-                    'Soft editions of landscape and light — the same quiet world, on another chain.';
+                    'A quiet garden of Sui editions — landscape, light and gentle colour, offered on TradePort.';
             }
             if (listEl) {
                 // bez kafelków marketplace / „Mint on TradePort”

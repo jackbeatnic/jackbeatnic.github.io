@@ -68,7 +68,8 @@ const ImageProxy = (() => {
         let url = `https://images.weserv.nl/?url=${encoded}`;
         if (w) url += `&w=${w}`;
         if (h) url += `&h=${h}`;
-        return `${url}&fit=${fit}&output=webp&q=${WEBP_QUALITY}&n=-1`;
+        // we = never enlarge past the source (Tezos mint files are ~1024px).
+        return `${url}&fit=${fit}&output=webp&q=${WEBP_QUALITY}&n=-1&we`;
     }
 
     function cloudflareUrl(originalUrl, w, h, fit = 'inside') {
@@ -99,12 +100,35 @@ const ImageProxy = (() => {
         return url;
     }
 
+    function isTezosNft(nft) {
+        if (!nft) return false;
+        if (String(nft.contract_address || '').startsWith('KT1')) return true;
+        if (nft.chain === 'tezos' || nft.marketplace === 'objkt') return true;
+        return false;
+    }
+
     function objktSizedUrl(nft, kind) {
         const kt = String(nft?.contract_address || '');
         const tid = nft?.tezos_token_id;
         if (!kt.startsWith('KT1') || tid == null || tid === '') return '';
-        // Last-resort OBJKT cache only — too soft as a primary (esp. mobile).
+        // Last-resort OBJKT cache only — 300×400, muddy on a phone.
         return `https://assets.objkt.media/file/assets-003/${kt}/${tid}/thumb400`;
+    }
+
+    /**
+     * Minted Tezos JPEGs are already display-sized (~538–1024 × 1024,
+     * 50–300 KB) — not the 2048 studio originals. Serve them as-is.
+     * weserv→Pinata 429s, then the grid fell back to OBJKT 300×400.
+     */
+    function tezosMintedUrls(originalUrl) {
+        const cid = extractCid(originalUrl);
+        if (!cid) return [];
+        return [
+            `https://nftstorage.link/ipfs/${cid}`,
+            `https://w3s.link/ipfs/${cid}`,
+            `https://dweb.link/ipfs/${cid}`,
+            `https://gateway.pinata.cloud/ipfs/${cid}`,
+        ];
     }
 
     function presentUrl(nft, kind) {
@@ -137,13 +161,17 @@ const ImageProxy = (() => {
         const out = [];
         const local = presentUrl(nft, kind);
         if (local) out.push(local);
-        // Tezos Photo/Other: sharp weserv from the full CID first (the old look).
-        // Tiny OBJKT thumbs only if the proxy fails.
+        if (isTezosNft(nft)) {
+            tezosMintedUrls(originalUrl).forEach((u) => {
+                if (u && !out.includes(u)) out.push(u);
+            });
+            const objkt = objktSizedUrl(nft, kind);
+            if (objkt) out.push(objkt);
+            return out;
+        }
         sizedProxyUrls(originalUrl, w, h, fit).forEach((u) => {
             if (u && !out.includes(u)) out.push(u);
         });
-        const objkt = objktSizedUrl(nft, kind);
-        if (objkt) out.push(objkt);
         return out;
     }
 

@@ -8,6 +8,11 @@
     --gray-500: #737373;
     --gray-600: #525252;
     --accent-nature: #1e90ff;
+    --featured: #7eb8e0;
+    --featured-ink: #2a6a90;
+    --featured-soft: rgba(126, 184, 224, 0.14);
+    --featured-mid: rgba(126, 184, 224, 0.24);
+    --featured-glow: rgba(160, 210, 235, 0.35);
     --font-sans: 'Inter', system-ui, sans-serif;
     --font-serif: 'Playfair Display', Georgia, serif;
     --max-width: 82rem;
@@ -110,10 +115,10 @@ a {
     flex-shrink: 0;
     margin: 0;
     padding: 0.28rem 0.65rem;
-    border: 1px solid rgba(220, 50, 47, 0.35);
+    border: 1px solid rgba(126, 184, 224, 0.5);
     border-radius: 999px;
-    background: rgba(220, 50, 47, 0.1);
-    color: #b91c1c;
+    background: var(--featured-soft);
+    color: var(--featured-ink);
     font-family: inherit;
     font-size: 0.58rem;
     font-weight: 600;
@@ -132,16 +137,16 @@ a {
 }
 
 .featured-chip:hover {
-    background: rgba(220, 50, 47, 0.18);
-    box-shadow: 0 4px 16px rgba(220, 50, 47, 0.15);
+    background: var(--featured-mid);
+    box-shadow: 0 4px 16px var(--featured-glow);
     transform: translateY(-1px);
 }
 
 .featured-chip.is-active {
-    background: #dc322f;
-    border-color: #dc322f;
+    background: var(--featured);
+    border-color: var(--featured);
     color: #fff;
-    box-shadow: 0 4px 18px rgba(220, 50, 47, 0.28);
+    box-shadow: 0 4px 18px var(--featured-glow);
 }
 
 .featured-chip[hidden] {
@@ -2356,7 +2361,7 @@ body.lightbox-open {
     margin-top: 0.35rem;
     padding: 0.12rem 0.4rem;
     border-radius: 4px;
-    background: #dc322f;
+    background: var(--featured);
     color: #fff;
     font-size: 0.62rem;
     font-weight: 600;
@@ -2378,6 +2383,11 @@ body.lightbox-open {
         --gray-500: #a3a3a3;
         --gray-600: #c4c4c4;
         --accent-nature: #4aa3ff;
+        --featured: #9ad4f5;
+        --featured-ink: #e8f6ff;
+        --featured-soft: rgba(154, 212, 245, 0.16);
+        --featured-mid: rgba(154, 212, 245, 0.28);
+        --featured-glow: rgba(180, 225, 250, 0.22);
         --glow-hover: 0 0 28px rgba(255, 255, 255, 0.06);
         --glow-image: 0 0 36px rgba(255, 255, 255, 0.05);
         --header-bg: rgba(12, 12, 12, 0.92);
@@ -2420,21 +2430,26 @@ body.lightbox-open {
     }
 
     .featured-chip {
-        border-color: rgba(255, 120, 110, 0.45);
-        background: rgba(220, 50, 47, 0.22);
-        color: #ffb4ae;
+        border-color: rgba(180, 225, 250, 0.4);
+        background: var(--featured-soft);
+        color: var(--featured-ink);
         box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
     }
 
     .featured-chip:hover {
-        background: rgba(220, 50, 47, 0.35);
-        color: #ffd4d0;
+        background: var(--featured-mid);
+        color: #fff;
     }
 
     .featured-chip.is-active {
-        background: #e23b38;
-        border-color: #ff6b66;
-        color: #fff;
+        background: var(--featured);
+        border-color: #e8f6ff;
+        color: #0c1a24;
+    }
+
+    .featured-chip.is-active .featured-chip__dot {
+        background: #0c1a24;
+        box-shadow: 0 0 0 2px rgba(12, 26, 36, 0.2);
     }
 
     .shop-chip {

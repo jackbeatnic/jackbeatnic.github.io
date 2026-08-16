@@ -274,6 +274,14 @@ a {
     -webkit-user-select: none;
     user-select: none;
     -webkit-touch-callout: none;
+    /* Stop Chrome Auto Dark from inverting the ink and leaving a ghost copy. */
+    color-scheme: only light;
+}
+
+.signature-logo-wrap picture {
+    display: block;
+    line-height: 0;
+    color-scheme: only light;
 }
 
 .site-brand:hover .signature-logo-wrap {
@@ -294,15 +302,7 @@ a {
     pointer-events: none;
     -webkit-user-drag: none;
     user-drag: none;
-}
-
-/* Light theme: black ink; dark theme: white ink asset */
-.signature-logo--dark {
-    display: none;
-}
-
-.signature-logo--light {
-    display: block;
+    color-scheme: only light;
 }
 
 .signature-shield {
@@ -2400,13 +2400,11 @@ body.lightbox-open {
         color: var(--black);
     }
 
-    /* Signature: swap to white PNG (invert is unreliable with force-dark browsers) */
-    .signature-logo--light {
-        display: none !important;
-    }
-
-    .signature-logo--dark {
-        display: block !important;
+    /* One <picture> asset — do not stack a second ink layer. */
+    .signature-logo-wrap,
+    .signature-logo-wrap picture,
+    .signature-logo-wrap img {
+        color-scheme: only light;
     }
 
     .site-brand:hover .signature-logo-wrap {

@@ -16,10 +16,27 @@ const ImageProxy = (() => {
     /** Po wdrożeniu Workera: https://img.twoja-domena.com */
     const CLOUDFLARE_WORKER_BASE = '';
 
+    function extractCid(url) {
+        if (!url || typeof url !== 'string') return '';
+        const m = url.match(
+            /(?:ipfs\/|ipfs:\/\/)(bafy[a-z0-9]+|Qm[1-9A-HJ-NP-Za-km-z]{44,})/i,
+        );
+        return m ? m[1] : '';
+    }
+
+    const IPFS_GATEWAYS = [
+        'https://gateway.pinata.cloud/ipfs/',
+        'https://w3s.link/ipfs/',
+        'https://dweb.link/ipfs/',
+        'https://nftstorage.link/ipfs/',
+    ];
+
     function isIpfsOrGateway(url) {
         if (!url || typeof url !== 'string') return false;
         if (/^ipfs:\/\//i.test(url)) return true;
-        return /ipfs\.io|gateway\.pinata|cloudflare-ipfs|dweb\.link|arweave/i.test(url);
+        return /ipfs\.io|gateway\.pinata|cloudflare-ipfs|dweb\.link|w3s\.link|nftstorage\.link|arweave/i.test(
+            url,
+        );
     }
 
     function siteOrigin() {
@@ -69,14 +86,125 @@ const ImageProxy = (() => {
     /** ipfs.io often 403s; weserv then shows a blank thumb. Pinata still serves our CIDs. */
     function preferWorkingIpfsGateway(url) {
         if (!url) return url;
-        const cidMatch = url.match(
-            /(?:ipfs\/|ipfs:\/\/)(bafy[a-z0-9]+|Qm[1-9A-HJ-NP-Za-km-z]{44,})/i,
-        );
-        if (!cidMatch) return url;
-        if (/ipfs\.io|cloudflare-ipfs|dweb\.link/i.test(url) || /^ipfs:\/\//i.test(url)) {
-            return `https://gateway.pinata.cloud/ipfs/${cidMatch[1]}`;
+        const cid = extractCid(url);
+        if (!cid) return url;
+        // ipfs.io 403s in the browser; pinata is our first hop.
+        if (/ipfs\.io|cloudflare-ipfs/i.test(url) || /^ipfs:\/\//i.test(url)) {
+            return `${IPFS_GATEWAYS[0]}${cid}`;
         }
         return url;
+    }
+
+    function originalCandidates(originalUrl) {
+        const resolved = resolveOriginalUrl(originalUrl);
+        const cid = extractCid(originalUrl) || extractCid(resolved);
+        const out = [];
+        const add = (u) => {
+            if (u && !out.includes(u)) out.push(u);
+        };
+        if (cid) {
+            // Pinata public gateway 429s when the grid hammers it.
+            // Keep it, but after other public gateways.
+            add(`https://dweb.link/ipfs/${cid}`);
+            add(`https://w3s.link/ipfs/${cid}`);
+            add(`https://nftstorage.link/ipfs/${cid}`);
+            add(`https://gateway.pinata.cloud/ipfs/${cid}`);
+        }
+        add(resolved);
+        return out;
+    }
+
+    function proxiedCandidates(originalUrl, w, h, fit = 'inside') {
+        const origs = originalCandidates(originalUrl);
+        const out = [];
+        const add = (u) => {
+            if (u && !out.includes(u)) out.push(u);
+        };
+        const pinata = origs.filter((u) => /pinata/i.test(u));
+        const others = origs.filter((u) => !/pinata/i.test(u));
+        // Weserv 404s with "429" when Pinata rate-limits the proxy.
+        // Try a non-Pinata origin first so thumbs can populate from cache.
+        others.slice(0, 2).forEach((u) => add(weservUrl(u, w, h, fit)));
+        pinata.slice(0, 1).forEach((u) => add(weservUrl(u, w, h, fit)));
+        others.forEach(add);
+        pinata.forEach(add);
+        return out;
+    }
+
+    function displayCandidates(
+        originalUrl,
+        mode = 'weserv',
+        w = THUMB_WIDTH,
+        h = THUMB_HEIGHT,
+        fit = 'inside',
+    ) {
+        if (mode === 'direct') return originalCandidates(originalUrl);
+        return proxiedCandidates(originalUrl, w, h, fit);
+    }
+
+    function viewCandidates(originalUrl, mode = 'weserv') {
+        return displayCandidates(
+            originalUrl,
+            mode,
+            VIEW_MAX_WIDTH,
+            VIEW_MAX_HEIGHT,
+            'inside',
+        );
+    }
+
+    const MAX_IN_FLIGHT = 6;
+    let inFlight = 0;
+    const waiters = [];
+
+    function acquireSlot() {
+        if (inFlight < MAX_IN_FLIGHT) {
+            inFlight += 1;
+            return Promise.resolve();
+        }
+        return new Promise((resolve) => waiters.push(resolve));
+    }
+
+    function releaseSlot() {
+        const next = waiters.shift();
+        if (next) next();
+        else inFlight = Math.max(0, inFlight - 1);
+    }
+
+    function bindFallback(img, candidates) {
+        if (!img) return;
+        const list = (candidates || []).filter(Boolean);
+        if (!list.length) return;
+        let i = 0;
+        let held = false;
+
+        const take = () => {
+            if (held) return Promise.resolve();
+            return acquireSlot().then(() => {
+                held = true;
+            });
+        };
+        const drop = () => {
+            if (!held) return;
+            held = false;
+            releaseSlot();
+        };
+
+        const trySrc = () => {
+            take().then(() => {
+                img.src = list[i];
+            });
+        };
+
+        img.addEventListener('load', drop);
+        img.addEventListener('error', () => {
+            i += 1;
+            if (i < list.length) {
+                window.setTimeout(trySrc, 90 * i);
+            } else {
+                drop();
+            }
+        });
+        trySrc();
     }
 
     function resolveOriginalUrl(originalUrl) {
@@ -103,14 +231,7 @@ const ImageProxy = (() => {
         if (!resolved) return '';
         if (mode === 'direct') return resolved;
         if (!shouldProxy(resolved)) return resolved;
-
-        switch (mode) {
-            case 'cloudflare':
-                return cloudflareUrl(resolved, w, h, fit);
-            case 'weserv':
-            default:
-                return weservUrl(resolved, w, h, fit);
-        }
+        return displayCandidates(originalUrl, mode, w, h, fit)[0] || resolved;
     }
 
     /**
@@ -129,6 +250,11 @@ const ImageProxy = (() => {
     return {
         displayUrl,
         viewUrl,
+        displayCandidates,
+        viewCandidates,
+        originalCandidates,
+        resolveOriginalUrl,
+        bindFallback,
         THUMB_WIDTH,
         THUMB_HEIGHT,
         VIEW_MAX_WIDTH,

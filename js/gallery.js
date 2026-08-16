@@ -920,7 +920,7 @@ const Gallery = (() => {
     async function load() {
         const grid = document.getElementById('gallery-grid');
         try {
-            const [mainRes, xrpRes, suiRes, auctionRes, objktAuctionRes, featuredNfts, shopNfts] =
+            const [mainRes, xrpRes, suiRes, auctionRes, objktAuctionRes, featuredNfts] =
                 await Promise.all([
                     fetch('gallery.json'),
                     fetch('xrp_gallery.json'),
@@ -928,7 +928,6 @@ const Gallery = (() => {
                     fetch('auctions_gallery.json'),
                     fetch('objkt_auctions_gallery.json'),
                     loadFeaturedPromoNfts(),
-                    loadSaleIndexNfts(),
                 ]);
             if (!mainRes.ok) throw new Error(`HTTP ${mainRes.status}`);
             const data = await mainRes.json();
@@ -948,9 +947,6 @@ const Gallery = (() => {
             // Featured tab: Avalanche + Sui + … from one feed
             if (featuredNfts?.length) {
                 allNfts = [...allNfts, ...featuredNfts];
-            }
-            if (shopNfts?.length) {
-                allNfts = [...allNfts, ...shopNfts];
             }
             collectionInfo = {
                 ...(data.collection_info || {}),
@@ -1149,7 +1145,15 @@ const Gallery = (() => {
         const hero = document.querySelector('.hero');
         if (imgEl) {
             if (featured?.image_url) {
-                imgEl.src = ImageProxy.displayUrl(featured.image_url, IMAGE_PROXY, 1280, 640);
+                ImageProxy.bindFallback(
+                    imgEl,
+                    ImageProxy.displayCandidates(
+                        featured.image_url,
+                        IMAGE_PROXY,
+                        1280,
+                        640,
+                    ),
+                );
                 imgEl.alt = featured.name || title;
                 imgEl.hidden = false;
                 hero?.classList.remove('hero--text-only');
@@ -1690,8 +1694,6 @@ const Gallery = (() => {
         const key = GalleryLikes.nftKey(nft);
         card.dataset.nftKey = key;
 
-        const thumbSrc = ImageProxy.displayUrl(nft.image_url, IMAGE_PROXY);
-        const viewSrc = ImageProxy.viewUrl(nft.image_url, IMAGE_PROXY);
         const name = escapeHtml(nft.name);
         const description = escapeHtml((nft.ai?.description || '').trim());
         const descriptionHtml = description
@@ -1705,8 +1707,7 @@ const Gallery = (() => {
         card.innerHTML = `
             <div class="nft-image-wrap">
                 <span class="nft-card__badge">Live auction</span>
-                <img src="${thumbSrc}"
-                     alt="${name}"
+                <img alt="${name}"
                      loading="lazy"
                      decoding="async"
                      draggable="false"
@@ -1736,12 +1737,25 @@ const Gallery = (() => {
             </div>
         `;
 
-        card.querySelector('.nft-card__view')?.addEventListener('click', () => {
-            Lightbox.open({ src: viewSrc, alt: nft.name, label: nft.name });
-        });
+        attachNftMedia(card, nft);
         GalleryShare.bindButton(card.querySelector('.nft-share'), nft);
 
         return card;
+    }
+
+    function attachNftMedia(card, nft) {
+        const img = card.querySelector('.nft-image-wrap img');
+        const thumbs = ImageProxy.displayCandidates(nft.image_url, IMAGE_PROXY);
+        const views = ImageProxy.viewCandidates(nft.image_url, IMAGE_PROXY);
+        ImageProxy.bindFallback(img, thumbs);
+        card.querySelector('.nft-card__view')?.addEventListener('click', () => {
+            Lightbox.open({
+                src: views[0],
+                fallbacks: views.slice(1),
+                alt: nft.name,
+                label: nft.name,
+            });
+        });
     }
 
     function buildCard(nft) {
@@ -1752,8 +1766,6 @@ const Gallery = (() => {
         const key = GalleryLikes.nftKey(nft);
         card.dataset.nftKey = key;
 
-        const thumbSrc = ImageProxy.displayUrl(nft.image_url, IMAGE_PROXY);
-        const viewSrc = ImageProxy.viewUrl(nft.image_url, IMAGE_PROXY);
         const name = escapeHtml(nft.name);
         const description = escapeHtml((nft.ai?.description || '').trim());
         const descriptionHtml = description
@@ -1807,8 +1819,7 @@ const Gallery = (() => {
         card.innerHTML = `
             <div class="nft-image-wrap">
                 ${shopBadge}
-                <img src="${thumbSrc}"
-                     alt="${name}"
+                <img alt="${name}"
                      loading="lazy"
                      decoding="async"
                      draggable="false"
@@ -1855,9 +1866,7 @@ const Gallery = (() => {
             </div>
         `;
 
-        card.querySelector('.nft-card__view')?.addEventListener('click', () => {
-            Lightbox.open({ src: viewSrc, alt: nft.name, label: nft.name });
-        });
+        attachNftMedia(card, nft);
         bindEngage(card, nft, key);
         card.querySelector('.shop-buy')?.addEventListener('click', (e) => {
             e.preventDefault();

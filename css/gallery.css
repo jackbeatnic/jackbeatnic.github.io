@@ -308,23 +308,9 @@ a {
     user-drag: none;
 }
 
-/* Light: signature.png. Dark: ice-blue CSS mask (Chrome inverts white/gray to black). */
-.signature-mark {
-    display: none;
-    width: 100%;
-    aspect-ratio: 2140 / 890;
-    max-height: clamp(2.1rem, 7vw, 3rem);
-    background-color: #7eb8e0;
-    -webkit-mask-image: url('../assets/signature-dark.png');
-    mask-image: url('../assets/signature-dark.png');
-    -webkit-mask-size: contain;
-    mask-size: contain;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    -webkit-mask-position: left center;
-    mask-position: left center;
-    filter: drop-shadow(0 0 10px rgba(126, 184, 224, 0.55));
-    pointer-events: none;
+/* Dark: ice photo on black + screen blend — Auto Dark leaves photos alone. */
+.signature-logo--ice {
+    mix-blend-mode: screen;
 }
 
 
@@ -2457,9 +2443,12 @@ body.lightbox-open {
         border-bottom-color: rgba(255, 255, 255, 0.08);
     }
 
-    .signature-mark {
-        background-color: #7eb8e0;
-        filter: drop-shadow(0 0 12px rgba(126, 184, 224, 0.6));
+    .site-brand:hover .signature-logo-wrap {
+        filter: none;
+    }
+
+    .signature-logo--ice {
+        mix-blend-mode: screen;
     }
 
     .featured-chip {

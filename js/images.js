@@ -95,6 +95,14 @@ const ImageProxy = (() => {
         return url;
     }
 
+    function objktSizedUrl(nft, kind) {
+        const kt = String(nft?.contract_address || '');
+        const tid = nft?.tezos_token_id;
+        if (!kt.startsWith('KT1') || tid == null || tid === '') return '';
+        const size = kind === 'view' ? 'thumb400' : 'thumb288';
+        return `https://assets.objkt.media/file/assets-003/${kt}/${tid}/${size}`;
+    }
+
     function presentUrl(nft, kind) {
         const col = nft?.collection_id;
         const tid = nft?.token_id;
@@ -125,6 +133,8 @@ const ImageProxy = (() => {
         const out = [];
         const local = presentUrl(nft, kind);
         if (local) out.push(local);
+        const objkt = objktSizedUrl(nft, kind);
+        if (objkt) out.push(objkt);
         // Never the 2048/1600 backup original — only a resized proxy as fallback.
         sizedProxyUrls(originalUrl, w, h, fit).forEach((u) => {
             if (u && !out.includes(u)) out.push(u);

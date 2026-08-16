@@ -711,11 +711,11 @@ def build_site_sections(collection_metas: list[dict]) -> dict:
                         "sync with aktualizuj_sui_tradeport_do_galerii.py"
                     )
                 },
-                "promo_eyebrow": "Live · Primary mint on Sui",
+                "promo_eyebrow": "Nature Stories SE · Sui",
                 "promo_lead": (
-                    "Nature Stories SE — primary mint on TradePort. "
-                    "Same artistic world as Avalanche Nature Stories, now as Sui editions. "
-                    "Launchpad cards open mint; minted works open the marketplace."
+                    "A quiet garden of Sui editions — landscape, light and gentle colour, "
+                    "gathered on TradePort. Open a card to mint, or visit a minted work "
+                    "on the marketplace."
                 ),
                 "collection_url": primary_url,
                 "collection_cta": "View on TradePort",

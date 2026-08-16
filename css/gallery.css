@@ -302,10 +302,7 @@ a {
     user-drag: none;
 }
 
-/* Only one ink layer in the layout — the other is not painted. */
-.signature-logo--dark {
-    display: none;
-}
+
 
 .signature-shield {
     position: absolute;
@@ -2407,14 +2404,7 @@ body.lightbox-open {
         color: var(--black);
     }
 
-    /* White PNG only. Do not leave the black asset in flow (ghost). */
-    .signature-logo--light {
-        display: none !important;
-    }
-
-    .signature-logo--dark {
-        display: block !important;
-        /* Stop Chrome Auto Dark from inverting white ink back to black. */
+    .signature-logo {
         color-scheme: only light;
         filter: none !important;
     }

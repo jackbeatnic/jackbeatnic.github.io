@@ -75,16 +75,33 @@ a {
 }
 
 /* ── Header ── */
+.site-header,
+.site-header--sticky {
+    /* Light plate: Chrome Auto Dark must not invert this island. */
+    color-scheme: only light;
+    forced-color-adjust: none;
+}
+
 .site-header {
-    border-bottom: 1px solid var(--gray-100);
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .site-header--sticky {
     position: sticky;
     top: 0;
     z-index: 200;
-    background: var(--banner-bg);
+    background: #fff !important;
+    background-color: #fff !important;
     backdrop-filter: blur(10px);
+}
+
+/* Ink on the white plate stays dark even when :root --black flips in dark mode. */
+.site-header .site-nav a:hover,
+.site-header .site-nav__tip:hover,
+.site-header .site-nav a.is-active,
+.site-header .site-nav__tip.is-active,
+.site-header .site-nav__tip[aria-expanded='true'] {
+    color: #0a0a0a;
 }
 
 .site-header__inner {
@@ -285,6 +302,8 @@ a {
     -webkit-user-select: none;
     user-select: none;
     -webkit-touch-callout: none;
+    color-scheme: only light;
+    forced-color-adjust: none;
 }
 
 .site-brand:hover .signature-logo-wrap {

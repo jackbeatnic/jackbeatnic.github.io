@@ -280,6 +280,9 @@ a {
     -webkit-user-select: none;
     user-select: none;
     -webkit-touch-callout: none;
+    /* Island of light: Chrome Auto Dark must not invert the ink. */
+    color-scheme: only light;
+    forced-color-adjust: none;
 }
 
 .site-brand:hover .signature-logo-wrap {
@@ -300,6 +303,53 @@ a {
     pointer-events: none;
     -webkit-user-drag: none;
     user-drag: none;
+}
+
+/* Dark ink is a CSS fill through the PNG alpha — not a photo Chrome can invert. */
+.signature-mark {
+    display: none;
+    width: 100%;
+    aspect-ratio: 2140 / 890;
+    max-height: clamp(2.1rem, 7vw, 3rem);
+    background-color: #d0d6dc;
+    -webkit-mask-image: url('../assets/signature-dark.png');
+    mask-image: url('../assets/signature-dark.png');
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: left center;
+    mask-position: left center;
+    pointer-events: none;
+}
+
+html[data-theme='dark'] .signature-logo-wrap img,
+html[data-theme='dark'] .signature-logo {
+    display: none !important;
+}
+
+html[data-theme='dark'] .signature-mark {
+    display: block !important;
+}
+
+html[data-theme='light'] .signature-logo-wrap img,
+html[data-theme='light'] .signature-logo {
+    display: block !important;
+}
+
+html[data-theme='light'] .signature-mark {
+    display: none !important;
+}
+
+@media (prefers-color-scheme: dark) {
+    html:not([data-theme='light']) .signature-logo-wrap img,
+    html:not([data-theme='light']) .signature-logo {
+        display: none !important;
+    }
+
+    html:not([data-theme='light']) .signature-mark {
+        display: block !important;
+    }
 }
 
 
@@ -2367,7 +2417,7 @@ body.lightbox-open {
 }
 
 /* ── Dark mode (OS preference) ──
-   One signature <img>: picture/src picks the gray PNG. Artwork is not inverted. */
+   Signature: CSS mask + gray fill (Auto Dark must not invert a PNG). Artwork untouched. */
 @media (prefers-color-scheme: dark) {
     :root {
         --black: #f0f0f0;

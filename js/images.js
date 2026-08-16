@@ -7,11 +7,11 @@
  *   'direct'     — tylko dev / awaryjnie (pełny IPFS w źródle strony)
  */
 const ImageProxy = (() => {
-    const THUMB_WIDTH = 440;
-    const THUMB_HEIGHT = 352;
-    const VIEW_MAX_WIDTH = 900;
-    const VIEW_MAX_HEIGHT = 900;
-    const WEBP_QUALITY = 72;
+    const THUMB_WIDTH = 880;
+    const THUMB_HEIGHT = 704;
+    const VIEW_MAX_WIDTH = 1200;
+    const VIEW_MAX_HEIGHT = 1200;
+    const WEBP_QUALITY = 82;
 
     const PRESENT_BASE = 'https://jackbeatnic.github.io/jbg-present';
     // Only collections we actually built in jbg-present. Others stay on
@@ -103,8 +103,8 @@ const ImageProxy = (() => {
         const kt = String(nft?.contract_address || '');
         const tid = nft?.tezos_token_id;
         if (!kt.startsWith('KT1') || tid == null || tid === '') return '';
-        const size = kind === 'view' ? 'thumb400' : 'thumb288';
-        return `https://assets.objkt.media/file/assets-003/${kt}/${tid}/${size}`;
+        // Last-resort OBJKT cache only — too soft as a primary (esp. mobile).
+        return `https://assets.objkt.media/file/assets-003/${kt}/${tid}/thumb400`;
     }
 
     function presentUrl(nft, kind) {
@@ -137,12 +137,13 @@ const ImageProxy = (() => {
         const out = [];
         const local = presentUrl(nft, kind);
         if (local) out.push(local);
-        const objkt = objktSizedUrl(nft, kind);
-        if (objkt) out.push(objkt);
-        // Never the 2048/1600 backup original — only a resized proxy as fallback.
+        // Tezos Photo/Other: sharp weserv from the full CID first (the old look).
+        // Tiny OBJKT thumbs only if the proxy fails.
         sizedProxyUrls(originalUrl, w, h, fit).forEach((u) => {
             if (u && !out.includes(u)) out.push(u);
         });
+        const objkt = objktSizedUrl(nft, kind);
+        if (objkt) out.push(objkt);
         return out;
     }
 

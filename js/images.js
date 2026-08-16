@@ -24,7 +24,7 @@ const ImageProxy = (() => {
     function extractCid(url) {
         if (!url || typeof url !== 'string') return '';
         const m = url.match(
-            /(?:ipfs\/|ipfs:\/\/)(bafy[a-z0-9]+|Qm[1-9A-HJ-NP-Za-km-z]{44,})/i,
+            /(?:ipfs\/|ipfs:\/\/)(baf[a-z0-9]{20,}|Qm[1-9A-HJ-NP-Za-km-z]{44,})/i,
         );
         return m ? m[1] : '';
     }

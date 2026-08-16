@@ -74,55 +74,18 @@ a {
     text-decoration: none;
 }
 
-/* ── Header ── */
+/* ── Header — frosted glass, content shows through ── */
 .site-header {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--gray-100);
 }
 
 .site-header--sticky {
     position: sticky;
     top: 0;
     z-index: 200;
-}
-
-/* Photograph — Chrome Auto Dark does not invert photos (same as Hero). */
-.site-header__plate {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    pointer-events: none;
-    -webkit-user-drag: none;
-    user-drag: none;
-}
-
-.site-header__inner,
-.site-header__rule {
-    position: relative;
-    z-index: 1;
-}
-
-.site-header .site-nav {
-    color: #8a8a8a;
-}
-
-.site-header .artist-subtitle {
-    color: #8a8a8a;
-}
-
-/* Ink on the white plate stays dark even when :root --black flips in dark mode. */
-.site-header .site-nav a:hover,
-.site-header .site-nav__tip:hover,
-.site-header .site-nav a.is-active,
-.site-header .site-nav__tip.is-active,
-.site-header .site-nav__tip[aria-expanded='true'] {
-    color: #0a0a0a;
+    background: rgba(255, 255, 255, 0.78);
+    -webkit-backdrop-filter: blur(16px) saturate(1.15);
+    backdrop-filter: blur(16px) saturate(1.15);
 }
 
 .site-header__inner {
@@ -345,7 +308,7 @@ a {
     user-drag: none;
 }
 
-/* One signature.png on the white banner — both themes. */
+/* Light: signature.png. Dark: signature-dark.png. Toggle is inline in index.html. */
 
 
 
@@ -2434,7 +2397,7 @@ body.lightbox-open {
 }
 
 /* ── Dark mode (OS preference) ──
-   White header banner + the light signature stay put. Artwork untouched. */
+   Frosted dark header + gray signature. Artwork untouched. */
 @media (prefers-color-scheme: dark) {
     :root {
         --black: #f0f0f0;
@@ -2453,8 +2416,7 @@ body.lightbox-open {
         --featured-glow: rgba(180, 225, 250, 0.22);
         --glow-hover: 0 0 28px rgba(255, 255, 255, 0.06);
         --glow-image: 0 0 36px rgba(255, 255, 255, 0.05);
-        --header-bg: rgba(12, 12, 12, 0.92);
-        --banner-bg: #ffffff;
+        --header-bg: rgba(12, 12, 12, 0.72);
         --veil-strong: rgba(12, 12, 12, 0.96);
         --veil-mid: rgba(12, 12, 12, 0.88);
         --shadow-rgb: 0, 0, 0;
@@ -2471,29 +2433,34 @@ body.lightbox-open {
         color: var(--black);
     }
 
-    /* White banner: Featured keeps the light-mode chip (readable on white). */
+    .site-header--sticky {
+        background: rgba(12, 12, 12, 0.62);
+        -webkit-backdrop-filter: blur(16px) saturate(1.1);
+        backdrop-filter: blur(16px) saturate(1.1);
+        border-bottom-color: rgba(255, 255, 255, 0.08);
+    }
 
     .featured-chip {
-        border-color: rgba(126, 184, 224, 0.5);
-        background: rgba(126, 184, 224, 0.14);
-        color: #2a6a90;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        border-color: rgba(180, 225, 250, 0.4);
+        background: var(--featured-soft);
+        color: var(--featured-ink);
+        box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
     }
 
     .featured-chip:hover {
-        background: rgba(126, 184, 224, 0.24);
-        color: #2a6a90;
-    }
-
-    .featured-chip.is-active {
-        background: #7eb8e0;
-        border-color: #7eb8e0;
+        background: var(--featured-mid);
         color: #fff;
     }
 
+    .featured-chip.is-active {
+        background: var(--featured);
+        border-color: #e8f6ff;
+        color: #0c1a24;
+    }
+
     .featured-chip.is-active .featured-chip__dot {
-        background: #fff;
-        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+        background: #0c1a24;
+        box-shadow: 0 0 0 2px rgba(12, 26, 36, 0.2);
     }
 
     .shop-chip {
@@ -2519,16 +2486,17 @@ body.lightbox-open {
         border-color: var(--gray-100);
     }
 
-    .site-nav a:hover,
-    .site-nav__tip:hover {
-        color: #0a0a0a;
-        text-shadow: 0 0 14px var(--nav-glow);
+    .site-nav {
+        color: #9a9a9a;
     }
 
+    .site-nav a:hover,
+    .site-nav__tip:hover,
     .site-nav a.is-active,
     .site-nav__tip.is-active,
     .site-nav__tip[aria-expanded='true'] {
-        color: #0a0a0a;
+        color: #f0f0f0;
+        text-shadow: 0 0 14px var(--nav-glow);
     }
 
     .site-nav a::after,
@@ -2537,7 +2505,12 @@ body.lightbox-open {
     }
 
     .artist-subtitle {
-        color: #8a8a8a;
+        color: #9a9a9a;
+    }
+
+    .site-header__rule {
+        background: rgba(255, 255, 255, 0.16);
+        opacity: 1;
     }
 
     /* Hard-coded light surfaces from light theme */
@@ -2603,11 +2576,6 @@ body.lightbox-open {
             rgba(12, 12, 12, 0.55) 48%,
             rgba(12, 12, 12, 0.15) 100%
         );
-    }
-
-    .site-header__rule {
-        background: #0a0a0a;
-        opacity: 0.85;
     }
 
     input,

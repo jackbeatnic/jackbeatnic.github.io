@@ -62,25 +62,34 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/gallery.css?v=20260816banner3">
+    <link rel="stylesheet" href="css/gallery.css?v=20260816frost">
     <link rel="stylesheet" href="css/text-select.css?v=20260815copy">
+    <style>
+        .signature-logo--dark { display: none !important; }
+        .signature-logo--light { display: block !important; }
+        @media (prefers-color-scheme: dark) {
+            .signature-logo--light { display: none !important; }
+            .signature-logo--dark { display: block !important; }
+        }
+    </style>
 </head>
 <body class="gallery-protected">
     <header class="site-header site-header--sticky">
-        <img class="site-header__plate"
-             src="assets/header-plate.jpg"
-             alt=""
-             width="1600"
-             height="280"
-             decoding="async"
-             draggable="false">
         <div class="site-header__inner">
             <div class="site-brand">
                 <h1 class="site-logo">
                     <span class="visually-hidden">Jack Beatnic</span>
                     <div class="signature-logo-wrap" aria-hidden="true">
-                        <img class="signature-logo"
-                             src="assets/signature-on-white.jpg"
+                        <img class="signature-logo signature-logo--light"
+                             src="assets/signature.png"
+                             alt=""
+                             width="360"
+                             height="150"
+                             decoding="async"
+                             draggable="false"
+                             referrerpolicy="no-referrer">
+                        <img class="signature-logo signature-logo--dark"
+                             src="assets/signature-dark.png"
                              alt=""
                              width="360"
                              height="150"

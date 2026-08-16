@@ -6,6 +6,10 @@ User-agent: *
 Allow: /
 Disallow: /jb-nft-assets/
 Disallow: /jb-nft-assets
+Disallow: /jbg-present/
+Disallow: /jbg-present
+Disallow: /jbg-shop/
+Disallow: /jbg-shop
 
 # Marketing gallery only — NFT raw meta/media is not for search indexes
 Sitemap: https://jackbeatnic.github.io/sitemap.xml

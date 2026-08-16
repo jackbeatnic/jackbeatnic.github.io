@@ -1748,17 +1748,31 @@ const Gallery = (() => {
 
     function attachNftMedia(card, nft) {
         const img = card.querySelector('.nft-image-wrap img');
-        const thumbs = ImageProxy.displayCandidates(
-            nft.image_url,
-            IMAGE_PROXY,
-            ImageProxy.THUMB_WIDTH,
-            ImageProxy.THUMB_HEIGHT,
-            'inside',
-            nft,
-            'thumb',
-        );
-        const views = ImageProxy.viewCandidates(nft.image_url, IMAGE_PROXY, nft);
-        ImageProxy.bindFallback(img, thumbs);
+        const presentThumb = ImageProxy.presentUrl(nft, 'thumb');
+        const presentView = ImageProxy.presentUrl(nft, 'view');
+        // Thumbs: our cache only. Do not queue behind weserv — that hung the grid
+        // while View (direct present URL) stayed instant.
+        if (img) {
+            if (presentThumb) {
+                img.src = presentThumb;
+            } else {
+                ImageProxy.bindFallback(
+                    img,
+                    ImageProxy.displayCandidates(
+                        nft.image_url,
+                        IMAGE_PROXY,
+                        ImageProxy.THUMB_WIDTH,
+                        ImageProxy.THUMB_HEIGHT,
+                        'inside',
+                        nft,
+                        'thumb',
+                    ),
+                );
+            }
+        }
+        const views = presentView
+            ? [presentView]
+            : ImageProxy.viewCandidates(nft.image_url, IMAGE_PROXY, nft);
         card.querySelector('.nft-card__view')?.addEventListener('click', () => {
             Lightbox.open({
                 src: views[0],

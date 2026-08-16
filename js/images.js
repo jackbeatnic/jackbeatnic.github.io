@@ -140,59 +140,16 @@ const ImageProxy = (() => {
         );
     }
 
-    const MAX_IN_FLIGHT = 4;
-    let inFlight = 0;
-    const waiters = [];
-
-    function acquireSlot() {
-        if (inFlight < MAX_IN_FLIGHT) {
-            inFlight += 1;
-            return Promise.resolve();
-        }
-        return new Promise((resolve) => waiters.push(resolve));
-    }
-
-    function releaseSlot() {
-        const next = waiters.shift();
-        if (next) next();
-        else inFlight = Math.max(0, inFlight - 1);
-    }
-
     function bindFallback(img, candidates) {
         if (!img) return;
         const list = (candidates || []).filter(Boolean);
         if (!list.length) return;
         let i = 0;
-        let held = false;
-
-        const take = () => {
-            if (held) return Promise.resolve();
-            return acquireSlot().then(() => {
-                held = true;
-            });
-        };
-        const drop = () => {
-            if (!held) return;
-            held = false;
-            releaseSlot();
-        };
-
-        const trySrc = () => {
-            take().then(() => {
-                img.src = list[i];
-            });
-        };
-
-        img.addEventListener('load', drop);
+        img.src = list[0];
         img.addEventListener('error', () => {
             i += 1;
-            if (i < list.length) {
-                window.setTimeout(trySrc, 90 * i);
-            } else {
-                drop();
-            }
+            if (i < list.length) img.src = list[i];
         });
-        trySrc();
     }
 
     function resolveOriginalUrl(originalUrl) {
@@ -242,6 +199,7 @@ const ImageProxy = (() => {
         sizedProxyUrls,
         resolveOriginalUrl,
         bindFallback,
+        presentUrl,
         THUMB_WIDTH,
         THUMB_HEIGHT,
         VIEW_MAX_WIDTH,

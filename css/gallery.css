@@ -75,14 +75,10 @@ a {
 }
 
 /* ── Header ── */
-.site-header,
-.site-header--sticky {
-    /* Light plate: Chrome Auto Dark must not invert this island. */
-    color-scheme: only light;
-    forced-color-adjust: none;
-}
-
 .site-header {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     border-bottom: 1px solid #f0f0f0;
 }
 
@@ -90,9 +86,34 @@ a {
     position: sticky;
     top: 0;
     z-index: 200;
-    background: #fff !important;
-    background-color: #fff !important;
-    backdrop-filter: blur(10px);
+}
+
+/* Photograph — Chrome Auto Dark does not invert photos (same as Hero). */
+.site-header__plate {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    pointer-events: none;
+    -webkit-user-drag: none;
+    user-drag: none;
+}
+
+.site-header__inner,
+.site-header__rule {
+    position: relative;
+    z-index: 1;
+}
+
+.site-header .site-nav {
+    color: #8a8a8a;
+}
+
+.site-header .artist-subtitle {
+    color: #8a8a8a;
 }
 
 /* Ink on the white plate stays dark even when :root --black flips in dark mode. */
@@ -302,8 +323,6 @@ a {
     -webkit-user-select: none;
     user-select: none;
     -webkit-touch-callout: none;
-    color-scheme: only light;
-    forced-color-adjust: none;
 }
 
 .site-brand:hover .signature-logo-wrap {

@@ -24,12 +24,7 @@ const ImageProxy = (() => {
         return m ? m[1] : '';
     }
 
-    const IPFS_GATEWAYS = [
-        'https://gateway.pinata.cloud/ipfs/',
-        'https://w3s.link/ipfs/',
-        'https://dweb.link/ipfs/',
-        'https://nftstorage.link/ipfs/',
-    ];
+    const IPFS_GATEWAYS = ['https://gateway.pinata.cloud/ipfs/'];
 
     function isIpfsOrGateway(url) {
         if (!url || typeof url !== 'string') return false;
@@ -95,40 +90,14 @@ const ImageProxy = (() => {
         return url;
     }
 
-    function originalCandidates(originalUrl) {
+    function sizedProxyUrls(originalUrl, w, h, fit = 'inside') {
         const resolved = resolveOriginalUrl(originalUrl);
-        const cid = extractCid(originalUrl) || extractCid(resolved);
-        const out = [];
-        const add = (u) => {
-            if (u && !out.includes(u)) out.push(u);
-        };
-        if (cid) {
-            // Pinata public gateway 429s when the grid hammers it.
-            // Keep it, but after other public gateways.
-            add(`https://dweb.link/ipfs/${cid}`);
-            add(`https://w3s.link/ipfs/${cid}`);
-            add(`https://nftstorage.link/ipfs/${cid}`);
-            add(`https://gateway.pinata.cloud/ipfs/${cid}`);
-        }
-        add(resolved);
-        return out;
-    }
-
-    function proxiedCandidates(originalUrl, w, h, fit = 'inside') {
-        const origs = originalCandidates(originalUrl);
-        const out = [];
-        const add = (u) => {
-            if (u && !out.includes(u)) out.push(u);
-        };
-        const pinata = origs.filter((u) => /pinata/i.test(u));
-        const others = origs.filter((u) => !/pinata/i.test(u));
-        // Weserv 404s with "429" when Pinata rate-limits the proxy.
-        // Try a non-Pinata origin first so thumbs can populate from cache.
-        others.slice(0, 2).forEach((u) => add(weservUrl(u, w, h, fit)));
-        pinata.slice(0, 1).forEach((u) => add(weservUrl(u, w, h, fit)));
-        others.forEach(add);
-        pinata.forEach(add);
-        return out;
+        if (!resolved) return [];
+        if (!shouldProxy(resolved)) return [resolved];
+        const primary = weservUrl(resolved, w, h, fit);
+        // Same resize, second hostname — never the 2048 original.
+        const alt = primary.replace('https://images.weserv.nl/', 'https://wsrv.nl/');
+        return primary === alt ? [primary] : [primary, alt];
     }
 
     function displayCandidates(
@@ -138,21 +107,17 @@ const ImageProxy = (() => {
         h = THUMB_HEIGHT,
         fit = 'inside',
     ) {
-        if (mode === 'direct') return originalCandidates(originalUrl);
-        return proxiedCandidates(originalUrl, w, h, fit);
+        if (mode === 'direct') {
+            return sizedProxyUrls(originalUrl, w, h, fit);
+        }
+        return sizedProxyUrls(originalUrl, w, h, fit);
     }
 
     function viewCandidates(originalUrl, mode = 'weserv') {
-        return displayCandidates(
-            originalUrl,
-            mode,
-            VIEW_MAX_WIDTH,
-            VIEW_MAX_HEIGHT,
-            'inside',
-        );
+        return sizedProxyUrls(originalUrl, VIEW_MAX_WIDTH, VIEW_MAX_HEIGHT, 'inside');
     }
 
-    const MAX_IN_FLIGHT = 6;
+    const MAX_IN_FLIGHT = 4;
     let inFlight = 0;
     const waiters = [];
 
@@ -229,9 +194,8 @@ const ImageProxy = (() => {
     ) {
         const resolved = resolveOriginalUrl(originalUrl);
         if (!resolved) return '';
-        if (mode === 'direct') return resolved;
         if (!shouldProxy(resolved)) return resolved;
-        return displayCandidates(originalUrl, mode, w, h, fit)[0] || resolved;
+        return sizedProxyUrls(originalUrl, w, h, fit)[0] || '';
     }
 
     /**
@@ -252,7 +216,7 @@ const ImageProxy = (() => {
         viewUrl,
         displayCandidates,
         viewCandidates,
-        originalCandidates,
+        sizedProxyUrls,
         resolveOriginalUrl,
         bindFallback,
         THUMB_WIDTH,

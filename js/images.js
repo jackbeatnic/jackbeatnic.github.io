@@ -14,6 +14,9 @@ const ImageProxy = (() => {
     const WEBP_QUALITY = 72;
 
     const PRESENT_BASE = 'https://jackbeatnic.github.io/jbg-present';
+    // Only collections we actually built in jbg-present. Others stay on
+    // the old sized-proxy path (XRPL jsDelivr, Tezos/Sui via weserv).
+    const PRESENT_COLLECTIONS = new Set(['avalanche_nature_stories']);
 
     /** Po wdrożeniu Workera: https://img.twoja-domena.com */
     const CLOUDFLARE_WORKER_BASE = '';
@@ -96,6 +99,7 @@ const ImageProxy = (() => {
         const col = nft?.collection_id;
         const tid = nft?.token_id;
         if (!col || tid == null || tid === '') return '';
+        if (!PRESENT_COLLECTIONS.has(String(col))) return '';
         const file = kind === 'view' ? `${tid}.view.webp` : `${tid}.thumb.webp`;
         return `${PRESENT_BASE}/${col}/${file}`;
     }

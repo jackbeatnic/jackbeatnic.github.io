@@ -270,18 +270,11 @@ a {
     position: relative;
     display: inline-block;
     max-width: min(100%, 18rem);
+    line-height: 0;
     transition: filter 0.45s var(--ease-out), transform 0.45s var(--ease-out);
     -webkit-user-select: none;
     user-select: none;
     -webkit-touch-callout: none;
-    /* Stop Chrome Auto Dark from inverting the ink and leaving a ghost copy. */
-    color-scheme: only light;
-}
-
-.signature-logo-wrap picture {
-    display: block;
-    line-height: 0;
-    color-scheme: only light;
 }
 
 .site-brand:hover .signature-logo-wrap {
@@ -302,7 +295,11 @@ a {
     pointer-events: none;
     -webkit-user-drag: none;
     user-drag: none;
-    color-scheme: only light;
+}
+
+/* Only one ink layer in the layout — the other is not painted. */
+.signature-logo--dark {
+    display: none;
 }
 
 .signature-shield {
@@ -2400,11 +2397,16 @@ body.lightbox-open {
         color: var(--black);
     }
 
-    /* One <picture> asset — do not stack a second ink layer. */
-    .signature-logo-wrap,
-    .signature-logo-wrap picture,
-    .signature-logo-wrap img {
+    /* White PNG only. Do not leave the black asset in flow (ghost). */
+    .signature-logo--light {
+        display: none !important;
+    }
+
+    .signature-logo--dark {
+        display: block !important;
+        /* Stop Chrome Auto Dark from inverting white ink back to black. */
         color-scheme: only light;
+        filter: none !important;
     }
 
     .site-brand:hover .signature-logo-wrap {

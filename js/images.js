@@ -16,7 +16,11 @@ const ImageProxy = (() => {
     const PRESENT_BASE = 'https://jackbeatnic.github.io/jbg-present';
     // Only collections we actually built in jbg-present. Others stay on
     // the old sized-proxy path (XRPL jsDelivr, Tezos/Sui via weserv).
-    const PRESENT_COLLECTIONS = new Set(['avalanche_nature_stories']);
+    const PRESENT_COLLECTIONS = new Set([
+        'avalanche_nature_stories',
+        'sui_nature_stories_tradeport',
+        'sui_nature_stories_1of1_tradeport',
+    ]);
 
     /** Po wdrożeniu Workera: https://img.twoja-domena.com */
     const CLOUDFLARE_WORKER_BASE = '';

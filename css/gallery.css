@@ -274,8 +274,7 @@ a {
 .signature-logo-wrap {
     position: relative;
     display: inline-block;
-    max-width: min(100%, 18rem);
-    line-height: 0;
+    width: min(100%, 18rem);
     transition: filter 0.45s var(--ease-out), transform 0.45s var(--ease-out);
     -webkit-user-select: none;
     user-select: none;
@@ -289,17 +288,16 @@ a {
     transform: translateY(-1px);
 }
 
-.signature-logo-wrap img,
-.signature-logo {
+/* Ink is a CSS mask — Chromium Auto Dark cannot invert a second PNG. */
+.signature-mark {
     display: block;
     width: 100%;
-    height: auto;
-    max-height: clamp(2.1rem, 7vw, 3rem);
-    object-fit: contain;
-    object-position: left center;
+    height: clamp(2.1rem, 7vw, 3rem);
+    background-color: #111111;
+    -webkit-mask: url('../assets/signature.png') left center / contain no-repeat;
+    mask: url('../assets/signature.png') left center / contain no-repeat;
     pointer-events: none;
-    -webkit-user-drag: none;
-    user-drag: none;
+    forced-color-adjust: none;
 }
 
 
@@ -2404,9 +2402,9 @@ body.lightbox-open {
         color: var(--black);
     }
 
-    .signature-logo {
-        color-scheme: only light;
-        filter: none !important;
+    .signature-mark {
+        background-color: #e8e8e8;
+        forced-color-adjust: none;
     }
 
     .site-brand:hover .signature-logo-wrap {
@@ -2415,9 +2413,7 @@ body.lightbox-open {
             drop-shadow(0 2px 8px rgba(255, 255, 255, 0.1));
     }
 
-    .site-brand:hover .signature-logo-wrap img {
-        filter: none;
-    }
+
 
     .featured-chip {
         border-color: rgba(180, 225, 250, 0.4);

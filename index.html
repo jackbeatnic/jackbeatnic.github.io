@@ -62,16 +62,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/gallery.css?v=20260816iceink">
+    <link rel="stylesheet" href="css/gallery.css?v=20260816modes">
     <link rel="stylesheet" href="css/text-select.css?v=20260815copy">
-    <style>
-        .signature-logo--ice { display: none !important; }
-        .signature-logo--light { display: block !important; }
-        @media (prefers-color-scheme: dark) {
-            .signature-logo--light { display: none !important; }
-            .signature-logo--ice { display: block !important; }
-        }
-    </style>
 </head>
 <body class="gallery-protected">
     <header class="site-header site-header--sticky">
@@ -80,37 +72,26 @@
                 <h1 class="site-logo">
                     <span class="visually-hidden">Jack Beatnic</span>
                     <div class="signature-logo-wrap" aria-hidden="true">
-                        <img class="signature-logo signature-logo--light"
-                             src="assets/signature.png"
-                             alt=""
-                             width="360"
-                             height="150"
-                             decoding="async"
-                             draggable="false"
-                             referrerpolicy="no-referrer">
-                        <img class="signature-logo signature-logo--ice"
-                             src="assets/signature-ice-ink.webp"
-                             alt=""
-                             width="360"
-                             height="150"
-                             decoding="async"
-                             draggable="false"
-                             referrerpolicy="no-referrer">
+                        <picture>
+                            <source media="(prefers-color-scheme: dark)"
+                                    type="image/webp"
+                                    srcset="assets/signature-ice-ink.webp">
+                            <source media="(prefers-color-scheme: dark)"
+                                    type="image/png"
+                                    srcset="assets/signature-ice-ink.png">
+                            <img class="signature-logo"
+                                 src="assets/signature.png"
+                                 alt=""
+                                 width="360"
+                                 height="150"
+                                 decoding="async"
+                                 draggable="false"
+                                 referrerpolicy="no-referrer">
+                        </picture>
                         <div class="signature-shield"></div>
                     </div>
                 </h1>
                 <p class="artist-subtitle">Digital Art · NFT</p>
-                    <script>
-                        (function () {
-                            var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                            var light = document.querySelector('.signature-logo--light');
-                            var ice = document.querySelector('.signature-logo--ice');
-                            if (dark && ice && light) {
-                                light.style.setProperty('display', 'none', 'important');
-                                ice.style.setProperty('display', 'block', 'important');
-                            }
-                        })();
-                    </script>
             </div>
             <div class="site-header__actions">
                 <!-- Featured: sticky chip (not in tab bar) — mobile + desktop -->

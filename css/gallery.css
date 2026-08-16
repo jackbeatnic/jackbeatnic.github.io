@@ -13,6 +13,11 @@
     --featured-soft: rgba(126, 184, 224, 0.14);
     --featured-mid: rgba(126, 184, 224, 0.24);
     --featured-glow: rgba(160, 210, 235, 0.35);
+    /* Nav / glows: steel-teal ice — kin to Featured, not the same. */
+    --nav: #5a9bb8;
+    --nav-ink: #2a6580;
+    --nav-glow: rgba(120, 190, 214, 0.28);
+    --banner-bg: #ffffff;
     --font-sans: 'Inter', system-ui, sans-serif;
     --font-serif: 'Playfair Display', Georgia, serif;
     --max-width: 82rem;
@@ -78,7 +83,7 @@ a {
     position: sticky;
     top: 0;
     z-index: 200;
-    background: var(--header-bg);
+    background: var(--banner-bg);
     backdrop-filter: blur(10px);
 }
 
@@ -284,13 +289,14 @@ a {
 
 .site-brand:hover .signature-logo-wrap {
     filter:
-        drop-shadow(0 0 12px rgba(0, 0, 0, 0.08))
-        drop-shadow(0 2px 6px rgba(0, 0, 0, 0.04));
+        drop-shadow(0 0 14px var(--nav-glow))
+        drop-shadow(0 2px 6px rgba(90, 155, 184, 0.12));
     transform: translateY(-1px);
 }
 
 .signature-logo-wrap img,
 .signature-logo {
+    display: block;
     width: 100%;
     height: auto;
     max-height: clamp(2.1rem, 7vw, 3rem);
@@ -301,7 +307,7 @@ a {
     user-drag: none;
 }
 
-/* Visibility is owned by the inline <style> in index.html (!important). */
+/* One signature.png on the white banner — both themes. */
 
 
 
@@ -324,7 +330,11 @@ a {
 
 .site-nav {
     display: none;
-    gap: 1.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    column-gap: 1.15rem;
+    row-gap: 0.3rem;
     font-size: 0.68rem;
     font-weight: 400;
     letter-spacing: 0.1em;
@@ -332,40 +342,65 @@ a {
     color: var(--gray-400);
 }
 
-.site-nav a {
+.site-nav a,
+.site-nav__tip {
     position: relative;
-    padding-bottom: 0.15rem;
+    display: inline-flex;
+    align-items: center;
+    align-self: center;
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 0.12rem 0 0.2rem;
+    min-height: 0;
+    line-height: 1.15;
+    white-space: nowrap;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
     transition: color 0.25s var(--ease-out), text-shadow 0.35s var(--ease-out);
 }
 
-.site-nav a::after {
+.site-nav a::after,
+.site-nav__tip::after {
     content: '';
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
     height: 1px;
-    background: var(--black);
+    background: var(--nav);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.3s var(--ease-out);
 }
 
-.site-nav a:hover {
+.site-nav a:hover,
+.site-nav__tip:hover {
     color: var(--black);
-    text-shadow: 0 0 18px rgba(0, 0, 0, 0.12);
+    text-shadow: 0 0 14px var(--nav-glow);
 }
 
-.site-nav a:hover::after {
+.site-nav a:hover::after,
+.site-nav__tip:hover::after,
+.site-nav a.is-active::after,
+.site-nav__tip.is-active::after,
+.site-nav__tip[aria-expanded='true']::after {
     transform: scaleX(1);
 }
 
-.site-nav a.is-active {
+.site-nav a.is-active,
+.site-nav__tip.is-active,
+.site-nav__tip[aria-expanded='true'] {
     color: var(--black);
-}
-
-.site-nav a.is-active::after {
-    transform: scaleX(1);
 }
 
 /* ── Section tabs (mobile + sub-nav) ── */
@@ -672,26 +707,6 @@ a {
 
 .hero--text-only .hero__media {
     background: var(--gray-50);
-}
-
-.site-nav__tip {
-    font-family: inherit;
-    font-size: 0.68rem;
-    font-weight: 400;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gray-400);
-    background: none;
-    border: none;
-    padding: 0 0 0.15rem;
-    cursor: pointer;
-    position: relative;
-    transition: color 0.25s var(--ease-out), text-shadow 0.35s var(--ease-out);
-}
-
-.site-nav__tip:hover {
-    color: var(--black);
-    text-shadow: 0 0 18px rgba(0, 0, 0, 0.12);
 }
 
 .section-nav__tab--tip {
@@ -1106,6 +1121,19 @@ body.tip-open {
 @media (min-width: 768px) {
     .site-nav {
         display: flex;
+    }
+}
+
+/* Desktop-site-on-phone / tablet: wrap is fine, items stay one line and even. */
+@media (min-width: 768px) and (max-width: 1100px) {
+    .site-header__actions {
+        max-width: min(64%, 28rem);
+    }
+
+    .site-nav {
+        column-gap: 0.75rem;
+        row-gap: 0.25rem;
+        font-size: 0.6rem;
     }
 }
 
@@ -1646,7 +1674,7 @@ body.tip-open {
 
 .nft-card:hover {
     border-color: var(--gray-200);
-    box-shadow: var(--glow-image);
+    box-shadow: var(--glow-image), 0 0 22px rgba(90, 155, 184, 0.08);
     transform: translateY(-2px);
 }
 
@@ -2368,7 +2396,7 @@ body.lightbox-open {
 }
 
 /* ── Dark mode (OS preference) ──
-   Signature: CSS mask + gray fill (Auto Dark must not invert a PNG). Artwork untouched. */
+   White header banner + the light signature stay put. Artwork untouched. */
 @media (prefers-color-scheme: dark) {
     :root {
         --black: #f0f0f0;
@@ -2388,6 +2416,7 @@ body.lightbox-open {
         --glow-hover: 0 0 28px rgba(255, 255, 255, 0.06);
         --glow-image: 0 0 36px rgba(255, 255, 255, 0.05);
         --header-bg: rgba(12, 12, 12, 0.92);
+        --banner-bg: #ffffff;
         --veil-strong: rgba(12, 12, 12, 0.96);
         --veil-mid: rgba(12, 12, 12, 0.88);
         --shadow-rgb: 0, 0, 0;
@@ -2404,35 +2433,29 @@ body.lightbox-open {
         color: var(--black);
     }
 
-    .site-brand:hover .signature-logo-wrap {
-        filter:
-            drop-shadow(0 0 14px rgba(255, 255, 255, 0.2))
-            drop-shadow(0 2px 8px rgba(255, 255, 255, 0.1));
-    }
-
-
+    /* White banner: Featured keeps the light-mode chip (readable on white). */
 
     .featured-chip {
-        border-color: rgba(180, 225, 250, 0.4);
-        background: var(--featured-soft);
-        color: var(--featured-ink);
-        box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+        border-color: rgba(126, 184, 224, 0.5);
+        background: rgba(126, 184, 224, 0.14);
+        color: #2a6a90;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
     }
 
     .featured-chip:hover {
-        background: var(--featured-mid);
-        color: #fff;
+        background: rgba(126, 184, 224, 0.24);
+        color: #2a6a90;
     }
 
     .featured-chip.is-active {
-        background: var(--featured);
-        border-color: #e8f6ff;
-        color: #0c1a24;
+        background: #7eb8e0;
+        border-color: #7eb8e0;
+        color: #fff;
     }
 
     .featured-chip.is-active .featured-chip__dot {
-        background: #0c1a24;
-        box-shadow: 0 0 0 2px rgba(12, 26, 36, 0.2);
+        background: #fff;
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
     }
 
     .shop-chip {
@@ -2458,12 +2481,25 @@ body.lightbox-open {
         border-color: var(--gray-100);
     }
 
-    .site-nav a:hover {
-        text-shadow: 0 0 18px rgba(255, 255, 255, 0.12);
+    .site-nav a:hover,
+    .site-nav__tip:hover {
+        color: #0a0a0a;
+        text-shadow: 0 0 14px var(--nav-glow);
     }
 
-    .site-nav a::after {
-        background: var(--black);
+    .site-nav a.is-active,
+    .site-nav__tip.is-active,
+    .site-nav__tip[aria-expanded='true'] {
+        color: #0a0a0a;
+    }
+
+    .site-nav a::after,
+    .site-nav__tip::after {
+        background: var(--nav);
+    }
+
+    .artist-subtitle {
+        color: #8a8a8a;
     }
 
     /* Hard-coded light surfaces from light theme */
@@ -2532,7 +2568,8 @@ body.lightbox-open {
     }
 
     .site-header__rule {
-        background: var(--gray-100);
+        background: #0a0a0a;
+        opacity: 0.85;
     }
 
     input,
@@ -2545,7 +2582,6 @@ body.lightbox-open {
     }
 
     .gallery-empty,
-    .artist-subtitle,
     .section-promo__text,
     .featured-promo__col,
     .featured-promo__stats {

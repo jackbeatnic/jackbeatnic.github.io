@@ -308,8 +308,9 @@ a {
     user-drag: none;
 }
 
-/* Dark: ice photo on black + screen blend — Auto Dark leaves photos alone. */
+/* Dark: artwork photographed through the signature. Photos are not inverted. */
 .signature-logo--ice {
+    color-scheme: only light;
     mix-blend-mode: screen;
 }
 
@@ -2448,6 +2449,7 @@ body.lightbox-open {
     }
 
     .signature-logo--ice {
+        color-scheme: only light;
         mix-blend-mode: screen;
     }
 

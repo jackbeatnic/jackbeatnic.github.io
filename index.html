@@ -62,8 +62,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/gallery.css?v=20260816banner">
+    <link rel="stylesheet" href="css/gallery.css?v=20260816banner2">
     <link rel="stylesheet" href="css/text-select.css?v=20260815copy">
+    <style>
+        /* Header is a light plate in both themes — do not let Auto Dark invert it. */
+        .site-header,
+        .site-header--sticky {
+            color-scheme: only light;
+            background: #fff !important;
+            background-color: #fff !important;
+        }
+    </style>
 </head>
 <body class="gallery-protected">
     <header class="site-header site-header--sticky">

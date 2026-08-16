@@ -27,7 +27,7 @@
     --veil-mid: rgba(255, 255, 255, 0.92);
     --shadow-rgb: 0, 0, 0;
     --rule: rgba(0, 0, 0, 0.08);
-    color-scheme: light;
+    color-scheme: light dark;
 }
 
 *,
@@ -300,10 +300,6 @@ a {
     pointer-events: none;
     -webkit-user-drag: none;
     user-drag: none;
-}
-
-.signature-logo--dark {
-    display: none;
 }
 
 
@@ -2371,8 +2367,7 @@ body.lightbox-open {
 }
 
 /* ── Dark mode (OS preference) ──
-   Signature PNG is black ink — invert so it stays legible on dark bg.
-   NFT artwork images are NOT inverted. */
+   One signature <img>: picture/src picks the gray PNG. Artwork is not inverted. */
 @media (prefers-color-scheme: dark) {
     :root {
         --black: #f0f0f0;
@@ -2406,15 +2401,6 @@ body.lightbox-open {
     body {
         background: var(--white);
         color: var(--black);
-    }
-
-    .signature-logo--light {
-        display: none !important;
-    }
-
-    .signature-logo--dark {
-        display: block !important;
-        filter: none !important;
     }
 
     .site-brand:hover .signature-logo-wrap {

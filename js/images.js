@@ -9,9 +9,12 @@
 const ImageProxy = (() => {
     const THUMB_WIDTH = 440;
     const THUMB_HEIGHT = 352;
-    const VIEW_MAX_WIDTH = 1200;
-    const VIEW_MAX_HEIGHT = 1600;
-    const WEBP_QUALITY = 82;
+    const VIEW_MAX_WIDTH = 900;
+    const VIEW_MAX_HEIGHT = 900;
+    const WEBP_QUALITY = 72;
+
+    const PRESENT_BASE = 'https://jackbeatnic.github.io/jbg-present';
+    const PRESENT_COLLECTIONS = new Set(['avalanche_nature_stories']);
 
     /** Po wdrożeniu Workera: https://img.twoja-domena.com */
     const CLOUDFLARE_WORKER_BASE = '';
@@ -90,12 +93,20 @@ const ImageProxy = (() => {
         return url;
     }
 
+    function presentUrl(nft, kind) {
+        const col = nft?.collection_id;
+        const tid = nft?.token_id;
+        if (!col || tid == null || tid === '') return '';
+        if (!PRESENT_COLLECTIONS.has(String(col))) return '';
+        const file = kind === 'view' ? `${tid}.view.webp` : `${tid}.thumb.webp`;
+        return `${PRESENT_BASE}/${col}/${file}`;
+    }
+
     function sizedProxyUrls(originalUrl, w, h, fit = 'inside') {
         const resolved = resolveOriginalUrl(originalUrl);
         if (!resolved) return [];
         if (!shouldProxy(resolved)) return [resolved];
         const primary = weservUrl(resolved, w, h, fit);
-        // Same resize, second hostname — never the 2048 original.
         const alt = primary.replace('https://images.weserv.nl/', 'https://wsrv.nl/');
         return primary === alt ? [primary] : [primary, alt];
     }
@@ -106,15 +117,29 @@ const ImageProxy = (() => {
         w = THUMB_WIDTH,
         h = THUMB_HEIGHT,
         fit = 'inside',
+        nft = null,
+        kind = 'thumb',
     ) {
-        if (mode === 'direct') {
-            return sizedProxyUrls(originalUrl, w, h, fit);
-        }
-        return sizedProxyUrls(originalUrl, w, h, fit);
+        const out = [];
+        const local = presentUrl(nft, kind);
+        if (local) out.push(local);
+        // Never the 2048/1600 backup original — only a resized proxy as fallback.
+        sizedProxyUrls(originalUrl, w, h, fit).forEach((u) => {
+            if (u && !out.includes(u)) out.push(u);
+        });
+        return out;
     }
 
-    function viewCandidates(originalUrl, mode = 'weserv') {
-        return sizedProxyUrls(originalUrl, VIEW_MAX_WIDTH, VIEW_MAX_HEIGHT, 'inside');
+    function viewCandidates(originalUrl, mode = 'weserv', nft = null) {
+        return displayCandidates(
+            originalUrl,
+            mode,
+            VIEW_MAX_WIDTH,
+            VIEW_MAX_HEIGHT,
+            'inside',
+            nft,
+            'view',
+        );
     }
 
     const MAX_IN_FLIGHT = 4;

@@ -1150,8 +1150,11 @@ const Gallery = (() => {
                     ImageProxy.displayCandidates(
                         featured.image_url,
                         IMAGE_PROXY,
-                        1280,
-                        640,
+                        ImageProxy.VIEW_MAX_WIDTH,
+                        ImageProxy.VIEW_MAX_HEIGHT,
+                        'inside',
+                        featured,
+                        'view',
                     ),
                 );
                 imgEl.alt = featured.name || title;
@@ -1745,8 +1748,16 @@ const Gallery = (() => {
 
     function attachNftMedia(card, nft) {
         const img = card.querySelector('.nft-image-wrap img');
-        const thumbs = ImageProxy.displayCandidates(nft.image_url, IMAGE_PROXY);
-        const views = ImageProxy.viewCandidates(nft.image_url, IMAGE_PROXY);
+        const thumbs = ImageProxy.displayCandidates(
+            nft.image_url,
+            IMAGE_PROXY,
+            ImageProxy.THUMB_WIDTH,
+            ImageProxy.THUMB_HEIGHT,
+            'inside',
+            nft,
+            'thumb',
+        );
+        const views = ImageProxy.viewCandidates(nft.image_url, IMAGE_PROXY, nft);
         ImageProxy.bindFallback(img, thumbs);
         card.querySelector('.nft-card__view')?.addEventListener('click', () => {
             Lightbox.open({

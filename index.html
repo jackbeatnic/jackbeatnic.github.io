@@ -61,7 +61,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/gallery.css?v=20260816edition">
+    <link rel="stylesheet" href="css/gallery.css?v=20260816fix2">
     <link rel="stylesheet" href="css/text-select.css?v=20260815copy">
 </head>
 <body class="gallery-protected">
@@ -71,51 +71,36 @@
                 <h1 class="site-logo">
                     <span class="visually-hidden">Jack Beatnic</span>
                     <div class="signature-logo-wrap" aria-hidden="true">
-                        <img class="signature-logo signature-logo--light"
-                             src="assets/signature.png"
-                             alt=""
-                             width="360"
-                             height="150"
-                             decoding="async"
-                             draggable="false"
-                             referrerpolicy="no-referrer">
-                        <img class="signature-logo signature-logo--dark"
-                             src="assets/signature-white.png"
-                             alt=""
-                             width="360"
-                             height="150"
-                             decoding="async"
-                             draggable="false"
-                             referrerpolicy="no-referrer">
+                        <picture>
+                            <source srcset="assets/signature-white.png"
+                                    media="(prefers-color-scheme: dark)">
+                            <img class="signature-logo"
+                                 src="assets/signature.png"
+                                 alt=""
+                                 width="360"
+                                 height="150"
+                                 decoding="async"
+                                 draggable="false"
+                                 referrerpolicy="no-referrer">
+                        </picture>
                         <div class="signature-shield"></div>
                     </div>
                 </h1>
                 <p class="artist-subtitle">Digital Art · NFT</p>
             </div>
             <div class="site-header__actions">
-                <div class="header-chips">
-                    <button type="button"
-                            id="shop-chip"
-                            class="shop-chip"
-                            data-section="shop"
-                            aria-pressed="false"
-                            title="Studio shop">
-                        <span class="shop-chip__label">Shop</span>
-                        <span class="shop-chip__count" id="shop-chip-count" hidden></span>
-                    </button>
-                    <!-- Featured: sticky chip (not in tab bar) — mobile + desktop -->
-                    <button type="button"
-                            id="featured-chip"
-                            class="featured-chip"
-                            data-section="featured"
-                            hidden
-                            aria-pressed="false"
-                            title="Featured promos">
-                        <span class="featured-chip__dot" aria-hidden="true"></span>
-                        <span class="featured-chip__label">Featured</span>
-                        <span class="featured-chip__count" id="featured-chip-count" hidden></span>
-                    </button>
-                </div>
+                <!-- Featured: sticky chip (not in tab bar) — mobile + desktop -->
+                <button type="button"
+                        id="featured-chip"
+                        class="featured-chip"
+                        data-section="featured"
+                        hidden
+                        aria-pressed="false"
+                        title="Featured promos">
+                    <span class="featured-chip__dot" aria-hidden="true"></span>
+                    <span class="featured-chip__label">Featured</span>
+                    <span class="featured-chip__count" id="featured-chip-count" hidden></span>
+                </button>
                 <nav class="site-nav" aria-label="Main">
                     <a href="#gallery-root" data-section="ai_art">AI Art</a>
                     <a href="#gallery-root" data-section="photography">Photography &amp; Artworks</a>
@@ -330,41 +315,9 @@
         </div>
     </div>
 
-    <div id="shop-modal" class="shop-modal" hidden role="dialog" aria-modal="true" aria-labelledby="shop-modal-title">
-        <div class="shop-modal__backdrop" aria-hidden="true"></div>
-        <div class="shop-modal__dialog">
-            <button type="button" class="shop-modal__close" aria-label="Close">×</button>
-            <p id="shop-modal-banner" class="shop-modal__banner" hidden></p>
-            <h2 id="shop-modal-title" class="shop-modal__title">Pay the studio</h2>
-            <p id="shop-modal-lead" class="shop-modal__lead"></p>
-            <p id="shop-modal-name" class="shop-modal__name"></p>
-            <p id="shop-modal-meta" class="shop-modal__meta"></p>
-            <dl class="shop-modal__facts">
-                <div>
-                    <dt>Amount</dt>
-                    <dd id="shop-modal-amount">—</dd>
-                    <button type="button" id="shop-copy-amount" class="btn btn--ghost btn--small">Copy amount</button>
-                </div>
-                <div>
-                    <dt>Pay to</dt>
-                    <dd id="shop-modal-address">—</dd>
-                    <button type="button" id="shop-copy-address" class="btn btn--ghost btn--small">Copy address</button>
-                </div>
-                <div>
-                    <dt>Memo / tag</dt>
-                    <dd id="shop-modal-memo">—</dd>
-                    <button type="button" id="shop-copy-memo" class="btn btn--ghost btn--small">Copy memo</button>
-                </div>
-            </dl>
-            <img id="shop-modal-qr" class="shop-modal__qr" width="160" height="160" alt="" hidden>
-            <p id="shop-modal-fulfill" class="shop-modal__fulfill"></p>
-            <p class="shop-modal__terms"><a href="shop-terms.html">Studio shop terms</a></p>
-        </div>
-    </div>
-
-    <script src="js/images.js?v=20260815pinata"></script>
+    <script src="js/images.js?v=20260816fix2"></script>
     <script src="js/opensea-links.js?v=20260712p"></script>
-    <script src="js/lightbox.js?v=20260712p"></script>
+    <script src="js/lightbox.js?v=20260816fix2"></script>
     <script src="js/likes.js?v=20260718mood"></script>
     <script src="js/color-groups.js?v=20260713b"></script>
     <script src="js/filters.js?v=20260816edition"></script>
@@ -372,7 +325,6 @@
     <script src="js/wallet.js?v=20260713e"></script>
     <script src="js/tip.js?v=20260712p"></script>
     <script src="js/share.js?v=20260816edition"></script>
-    <script src="js/shop.js?v=20260815shop"></script>
-    <script src="js/gallery.js?v=20260816edition"></script>
+    <script src="js/gallery.js?v=20260816fix2"></script>
 </body>
 </html>

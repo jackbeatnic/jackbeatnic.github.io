@@ -20,10 +20,16 @@ const Lightbox = (() => {
         });
     }
 
-    function open({ src, alt, label }) {
+    function open({ src, alt, label, fallbacks }) {
         ensure();
         if (!root || !img) return;
-        img.src = src;
+        const chain = [src, ...(fallbacks || [])].filter(Boolean);
+        let i = 0;
+        img.onerror = () => {
+            i += 1;
+            if (i < chain.length) img.src = chain[i];
+        };
+        img.src = chain[0] || '';
         img.alt = alt || '';
         if (caption) caption.textContent = label || '';
         root.hidden = false;
@@ -33,7 +39,10 @@ const Lightbox = (() => {
     function close() {
         if (!root) return;
         root.hidden = true;
-        img.src = '';
+        if (img) {
+            img.onerror = null;
+            img.src = '';
+        }
         document.body.classList.remove('lightbox-open');
     }
 

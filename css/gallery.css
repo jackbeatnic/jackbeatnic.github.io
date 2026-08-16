@@ -274,7 +274,8 @@ a {
 .signature-logo-wrap {
     position: relative;
     display: inline-block;
-    width: min(100%, 18rem);
+    max-width: min(100%, 18rem);
+    line-height: 0;
     transition: filter 0.45s var(--ease-out), transform 0.45s var(--ease-out);
     -webkit-user-select: none;
     user-select: none;
@@ -288,16 +289,21 @@ a {
     transform: translateY(-1px);
 }
 
-/* Ink is a CSS mask — Chromium Auto Dark cannot invert a second PNG. */
-.signature-mark {
+.signature-logo-wrap img,
+.signature-logo {
     display: block;
     width: 100%;
-    height: clamp(2.1rem, 7vw, 3rem);
-    background-color: #111111;
-    -webkit-mask: url("/assets/signature.png") left center / contain no-repeat;
-    mask: url("/assets/signature.png") left center / contain no-repeat;
+    height: auto;
+    max-height: clamp(2.1rem, 7vw, 3rem);
+    object-fit: contain;
+    object-position: left center;
     pointer-events: none;
-    forced-color-adjust: none;
+    -webkit-user-drag: none;
+    user-drag: none;
+}
+
+.signature-logo--dark {
+    display: none;
 }
 
 
@@ -2402,11 +2408,13 @@ body.lightbox-open {
         color: var(--black);
     }
 
-    /* Keep a dark fill (Auto Dark ignores it) then invert to white ourselves. */
-    .signature-mark {
-        background-color: #111111;
-        filter: invert(1);
-        forced-color-adjust: none;
+    .signature-logo--light {
+        display: none !important;
+    }
+
+    .signature-logo--dark {
+        display: block !important;
+        filter: none !important;
     }
 
     .site-brand:hover .signature-logo-wrap {

@@ -62,7 +62,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/gallery.css?v=20260816sig1">
+    <link rel="stylesheet" href="css/gallery.css?v=20260816sig2">
     <link rel="stylesheet" href="css/text-select.css?v=20260815copy">
     <script>
         /* Pick one signature before paint — never stack both PNGs. */
@@ -79,39 +79,17 @@
                 <h1 class="site-logo">
                     <span class="visually-hidden">Jack Beatnic</span>
                     <div class="signature-logo-wrap" aria-hidden="true">
-                        <picture>
-                            <source media="(prefers-color-scheme: dark)"
-                                    srcset="assets/signature-dark.png">
-                            <img class="signature-logo"
-                                 id="signature-logo"
-                                 src="assets/signature.png"
-                                 alt=""
-                                 width="360"
-                                 height="150"
-                                 decoding="async"
-                                 draggable="false"
-                                 referrerpolicy="no-referrer">
-                        </picture>
+                        <img class="signature-logo"
+                             src="assets/signature.png"
+                             alt=""
+                             width="360"
+                             height="150"
+                             decoding="async"
+                             draggable="false"
+                             referrerpolicy="no-referrer">
+                        <span class="signature-mark"></span>
                         <div class="signature-shield"></div>
                     </div>
-                    <script>
-                        (function () {
-                            var img = document.getElementById('signature-logo');
-                            var mq = window.matchMedia('(prefers-color-scheme: dark)');
-                            function apply() {
-                                var dark = mq.matches;
-                                document.documentElement.dataset.theme = dark ? 'dark' : 'light';
-                                if (img) {
-                                    img.src = dark
-                                        ? 'assets/signature-dark.png'
-                                        : 'assets/signature.png';
-                                }
-                            }
-                            apply();
-                            if (mq.addEventListener) mq.addEventListener('change', apply);
-                            else if (mq.addListener) mq.addListener(apply);
-                        })();
-                    </script>
                 </h1>
                 <p class="artist-subtitle">Digital Art · NFT</p>
             </div>

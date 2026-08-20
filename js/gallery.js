@@ -117,6 +117,7 @@ const Gallery = (() => {
     }
 
     function objktSupplyHint(nft) {
+        if (!isObjktNft(nft)) return '';
         const avail = objktAvailability(nft);
         if (!avail) return '';
         if (avail.supply === 1) return '1/1';
@@ -163,6 +164,28 @@ const Gallery = (() => {
             st === '' ||
             ls === ''
         );
+    }
+
+    function xrplSupply(nft) {
+        const n = Number(nft?.supply ?? 3000);
+        return Number.isFinite(n) && n > 0 ? n : 3000;
+    }
+
+    function xrplMintedCount(nft) {
+        if (nft?.minted_count != null && nft.minted_count !== '') {
+            const n = Number(nft.minted_count);
+            if (Number.isFinite(n)) return n;
+        }
+        return nft?.xrpl_nft_id ? 1 : 0;
+    }
+
+    /** Lazy mint: kolejne kopie aż do 3000, także gdy kopia 1 już wisi na Cafe. */
+    function canXrplMintCopy(nft) {
+        if (!isXrpCafeNft(nft)) return false;
+        if ((nft.status || '').toLowerCase() === 'sold' && !nft.xrpl_nft_id) {
+            return false;
+        }
+        return xrplMintedCount(nft) < xrplSupply(nft);
     }
 
     function isTradeportNft(nft) {
@@ -255,7 +278,8 @@ const Gallery = (() => {
         }
         if (isObjktAuction(nft)) return 'Bid on OBJKT';
         if (isManifoldAuction(nft)) return 'Bid on Manifold';
-        if (isXrplPendingMint(nft)) return 'Request mint';
+        if (canXrplMintCopy(nft) && isXrplMinted(nft)) return 'Mint a copy';
+        if (canXrplMintCopy(nft)) return 'Mint';
         if (isXrplMinted(nft)) return 'View on XRP.Cafe';
         if (isLaunchpadMint(nft)) return 'Mint on TradePort';
         if (nft.source === 'manifold' && nft.manifold_url) return 'View on Manifold';
@@ -273,8 +297,7 @@ const Gallery = (() => {
             return nft.tradeport_url || nft.marketplace_url || '';
         }
         if (isXrplPendingMint(nft)) {
-            // NIE meta JSON (otwierało się w nowej karcie) — prośba o mint
-            return xrplMintRequestTweetUrl(nft);
+            return '';
         }
         if (isFeaturedPromoNft(nft)) {
             return (
@@ -332,16 +355,30 @@ const Gallery = (() => {
                     <a class="btn btn--ghost btn--block" href="${secondaryHref}" target="_blank" rel="noopener noreferrer">${secondaryLabel}</a>
                 </div>`;
         }
-        const rawUrl = marketplaceUrl(nft);
-        if (!rawUrl) {
-            if (isXrplPendingMint(nft)) {
-                const label = escapeHtml('Request mint');
-                const href = escapeHtml(xrplMintRequestTweetUrl(nft));
+        if (canXrplMintCopy(nft)) {
+            const cafe = isXrplMinted(nft)
+                ? nft.xrp_cafe_url ||
+                  (nft.xrpl_nft_id
+                      ? `https://xrp.cafe/nft/${nft.xrpl_nft_id}`
+                      : '')
+                : '';
+            const mintLabel = escapeHtml(
+                isXrplMinted(nft) ? 'Mint a copy' : 'Mint',
+            );
+            if (cafe) {
                 return `
-                <div class="nft-card__actions">
-                    <a class="btn btn--primary btn--block" href="${href}" target="_blank" rel="noopener noreferrer">${label}</a>
+                <div class="nft-card__actions nft-card__actions--dual">
+                    <button type="button" class="btn btn--primary btn--block xrpl-mint">${mintLabel}</button>
+                    <a class="btn btn--ghost btn--block" href="${escapeHtml(cafe)}" target="_blank" rel="noopener noreferrer">View on XRP.Cafe</a>
                 </div>`;
             }
+            return `
+                <div class="nft-card__actions">
+                    <button type="button" class="btn btn--primary btn--block xrpl-mint">${mintLabel}</button>
+                </div>`;
+        }
+        const rawUrl = marketplaceUrl(nft);
+        if (!rawUrl) {
             return '';
         }
         // XRPL request / Cafe — nie przepuszczaj przez OpenSea buyUrl
@@ -538,11 +575,14 @@ const Gallery = (() => {
         if (isXrpCafeNft(nft)) {
             const p = nft.current_price_xrp ?? nft.price_xrp;
             const priceTxt =
-                p != null && p !== '' ? `${p} XRP` : '—';
-            if (isXrplPendingMint(nft)) {
+                p != null && p !== '' ? `${p} XRP` : '0.25 XRP';
+            if (canXrplMintCopy(nft)) {
+                const left = xrplSupply(nft) - xrplMintedCount(nft);
                 return {
-                    text: priceTxt === '—' ? 'Mint on demand' : priceTxt,
-                    hint: 'Available · request mint',
+                    text: priceTxt,
+                    hint: isXrplMinted(nft)
+                        ? `Mint a copy · ${left} / ${xrplSupply(nft)} left`
+                        : `Lazy mint · ${xrplSupply(nft)} copies`,
                     kind: 'mint',
                 };
             }
@@ -1898,12 +1938,18 @@ const Gallery = (() => {
             e.stopPropagation();
             if (typeof ShopCheckout !== 'undefined') ShopCheckout.open(nft);
         });
+        card.querySelector('.xrpl-mint')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (typeof XrplMint !== 'undefined') XrplMint.open(nft);
+        });
 
         return card;
     }
 
     function init() {
         setupProtection();
+        if (typeof XrplMint !== 'undefined') XrplMint.init();
         load();
     }
 

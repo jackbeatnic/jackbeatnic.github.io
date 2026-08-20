@@ -62,7 +62,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/gallery.css?v=20260816modes">
+    <link rel="stylesheet" href="css/gallery.css?v=20260821lazy">
     <link rel="stylesheet" href="css/text-select.css?v=20260815copy">
 </head>
 <body class="gallery-protected">
@@ -320,6 +320,39 @@
         </div>
     </div>
 
+    <div id="xrpl-mint-modal" class="shop-modal" hidden role="dialog" aria-modal="true" aria-labelledby="xrpl-mint-title">
+        <div class="shop-modal__backdrop" aria-hidden="true"></div>
+        <div class="shop-modal__dialog">
+            <button type="button" class="shop-modal__close" aria-label="Close">×</button>
+            <p id="xrpl-mint-banner" class="shop-modal__banner"></p>
+            <h2 id="xrpl-mint-title" class="shop-modal__title">Mint from the studio</h2>
+            <p id="xrpl-mint-lead" class="shop-modal__lead"></p>
+            <p id="xrpl-mint-name" class="shop-modal__name"></p>
+            <p id="xrpl-mint-meta" class="shop-modal__meta"></p>
+            <img id="xrpl-mint-qr" class="shop-modal__qr" width="160" height="160" alt="" hidden>
+            <dl class="shop-modal__facts">
+                <div>
+                    <dt>Amount</dt>
+                    <dd id="xrpl-mint-amount"></dd>
+                    <button type="button" id="xrpl-copy-amount" class="btn btn--ghost btn--small">Copy amount</button>
+                </div>
+                <div>
+                    <dt>Send XRP to</dt>
+                    <dd id="xrpl-mint-address"></dd>
+                    <button type="button" id="xrpl-copy-address" class="btn btn--ghost btn--small">Copy address</button>
+                </div>
+                <div>
+                    <dt>Destination tag (required)</dt>
+                    <dd id="xrpl-mint-tag"></dd>
+                    <button type="button" id="xrpl-copy-tag" class="btn btn--ghost btn--small">Copy tag</button>
+                </div>
+            </dl>
+            <p id="xrpl-mint-fulfill" class="shop-modal__fulfill"></p>
+            <p class="shop-modal__terms">After payment, accept the 0 XRP sell offer in your wallet. That is how the NFT reaches you. XRP.Cafe stays the secondary market.</p>
+            <a id="xrpl-mint-xaman" class="btn btn--primary btn--block" hidden target="_blank" rel="noopener noreferrer">Pay in Xaman</a>
+        </div>
+    </div>
+
     <script src="js/images.js?v=20260816teznat"></script>
     <script src="js/opensea-links.js?v=20260712p"></script>
     <script src="js/lightbox.js?v=20260816fix2"></script>
@@ -330,6 +363,7 @@
     <script src="js/wallet.js?v=20260713e"></script>
     <script src="js/tip.js?v=20260712p"></script>
     <script src="js/share.js?v=20260816edition"></script>
-    <script src="js/gallery.js?v=20260816sui"></script>
+    <script src="js/xrpl-mint.js?v=20260821lazy"></script>
+    <script src="js/gallery.js?v=20260821lazy"></script>
 </body>
 </html>

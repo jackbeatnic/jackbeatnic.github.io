@@ -98,7 +98,7 @@ def build(
             elif status == "available" and nft_id in owned:
                 status = "minted"
 
-        price = float(row.get("price_xrp") or 16.5)
+        price = float(row.get("price_xrp") or 0.25)
         listing_status = {
             "available": "Mint Available",
             "minted": "Not listed",
@@ -151,7 +151,8 @@ def build(
             "source": "catalog_manifest",
             "marketplace": "gh_gallery",
             "price_xrp": price,
-            "drops": row.get("drops") or "16500000",
+            "drops": row.get("drops") or str(int(round(price * 1_000_000))),
+            "minted_count": 1 if nft_id else 0,
         }
         nfts.append(item)
         if limit and len(nfts) >= limit:
@@ -174,7 +175,8 @@ def build(
             "marketplace": "gh_gallery_lazy",
             "model": "mint_on_demand_semi_exclusive",
             "supply_ref": 3000,
-            "price_xrp_default": 16.5,
+            "price_xrp_default": 0.25,
+            "mint_live": True,
             "catalog_size": len(nfts),
             "status_counts": counts,
             "cdn_meta": CDN_META,
@@ -196,8 +198,9 @@ def build(
                     },
                     "promo_eyebrow": "JB AI Nature · XRPL",
                     "promo_lead": (
-                        "Scenes of place and mood for the XRP Ledger — "
-                        "quiet, personal, one at a time."
+                        "Lazy mint from the studio: 0.25 XRP · up to 3000 copies "
+                        "of each image. Pay with the destination tag, then accept "
+                        "the 0 XRP offer in your wallet."
                     ),
                     "promo_collections": [],
                 }

@@ -787,6 +787,15 @@ body.shop-open {
     color: #9b1c1c;
 }
 
+.shop-modal__banner--ok {
+    background: rgba(46, 125, 50, 0.12);
+    color: #1b5e20;
+}
+
+.shop-modal__facts .btn--small {
+    margin-bottom: 0.35rem;
+}
+
 .shop-modal__title {
     font-family: var(--font-serif);
     font-size: 1.35rem;
@@ -832,6 +841,10 @@ body.shop-open {
     display: block;
     margin: 0 auto 0.85rem;
     background: #fff;
+}
+
+.shop-modal__qr[hidden] {
+    display: none !important;
 }
 
 .shop-modal__terms a {
@@ -2492,6 +2505,11 @@ body.lightbox-open {
     .shop-modal__dialog {
         background: var(--gray-50);
         border-color: var(--gray-100);
+    }
+
+    .shop-modal__banner--ok {
+        background: rgba(129, 199, 132, 0.16);
+        color: #c8e6c9;
     }
 
     .site-nav {

@@ -907,7 +907,7 @@ const GallerySections = (() => {
             const medium = nft.medium || 'ai_art';
             // Featured tab — multi-chain promo feed
             if (currentSection === 'featured') {
-                return medium === 'featured_promo';
+                return medium === 'featured_promo' || nft.featured_by_likes === true;
             }
             if (currentSection === 'shop') {
                 return medium === 'shop';

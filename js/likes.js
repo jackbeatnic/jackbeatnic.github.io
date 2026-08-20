@@ -1,6 +1,7 @@
 /**
  * Likes & Save for later — LocalStorage (blueprint Faza 4).
- * Globalne likes_count w gallery.json aktualizuje aktualizuj_pozycje_z_likes.py (cron).
+ * Globalne likes_count: vps/worker/likes_daily.py (CSV + cron) albo
+ * www/aktualizuj_pozycje_z_likes.py. Serduszko tutaj = tylko ta przeglądarka.
  */
 const GalleryLikes = (() => {
     const STORAGE_LIKES = 'jb_gallery_likes_v1';

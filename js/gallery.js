@@ -356,22 +356,9 @@ const Gallery = (() => {
                 </div>`;
         }
         if (canXrplMintCopy(nft)) {
-            const cafe = isXrplMinted(nft)
-                ? nft.xrp_cafe_url ||
-                  (nft.xrpl_nft_id
-                      ? `https://xrp.cafe/nft/${nft.xrpl_nft_id}`
-                      : '')
-                : '';
             const mintLabel = escapeHtml(
                 isXrplMinted(nft) ? 'Mint a copy' : 'Mint',
             );
-            if (cafe) {
-                return `
-                <div class="nft-card__actions nft-card__actions--dual">
-                    <button type="button" class="btn btn--primary btn--block xrpl-mint">${mintLabel}</button>
-                    <a class="btn btn--ghost btn--block" href="${escapeHtml(cafe)}" target="_blank" rel="noopener noreferrer">View on XRP.Cafe</a>
-                </div>`;
-            }
             return `
                 <div class="nft-card__actions">
                     <button type="button" class="btn btn--primary btn--block xrpl-mint">${mintLabel}</button>
@@ -582,7 +569,7 @@ const Gallery = (() => {
                     text: priceTxt,
                     hint: isXrplMinted(nft)
                         ? `Mint a copy · ${left} / ${xrplSupply(nft)} left`
-                        : `Lazy mint · ${xrplSupply(nft)} copies`,
+                        : `Studio mint · ${xrplSupply(nft)} copies`,
                     kind: 'mint',
                 };
             }

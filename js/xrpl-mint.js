@@ -7,10 +7,6 @@ const XrplMint = (() => {
     let current = null;
     let info = null;
 
-    function qrUrl(value) {
-        return `https://api.qrserver.com/v1/create-qr-code/?size=168x168&margin=8&data=${encodeURIComponent(value)}`;
-    }
-
     function collection() {
         return info || {};
     }
@@ -42,14 +38,6 @@ const XrplMint = (() => {
         return Number.isFinite(n) && n > 0 ? n : 3000;
     }
 
-    function payUri(nft) {
-        const to = issuer(nft);
-        const dt = tag(nft);
-        const amt = priceXrp(nft);
-        if (!to || !dt) return '';
-        return `https://xumm.app/detect/request:to:${encodeURIComponent(to)}?amount=${encodeURIComponent(String(amt))}&dt=${encodeURIComponent(dt)}`;
-    }
-
     function copy(btn, value) {
         if (!btn || value == null || value === '') return;
         const original = btn.textContent;
@@ -75,7 +63,6 @@ const XrplMint = (() => {
         const amt = String(priceXrp(nft));
         const addr = issuer(nft);
         const dt = tag(nft);
-        const uri = payUri(nft);
         const max = supply(nft);
 
         const banner = modal.querySelector('#xrpl-mint-banner');
@@ -86,8 +73,6 @@ const XrplMint = (() => {
         const addrEl = modal.querySelector('#xrpl-mint-address');
         const tagEl = modal.querySelector('#xrpl-mint-tag');
         const fulfillEl = modal.querySelector('#xrpl-mint-fulfill');
-        const qr = modal.querySelector('#xrpl-mint-qr');
-        const xaman = modal.querySelector('#xrpl-mint-xaman');
 
         if (nameEl) nameEl.textContent = name;
         if (metaEl) {
@@ -106,34 +91,13 @@ const XrplMint = (() => {
         }
         if (lead) {
             lead.textContent = live
-                ? '1) Send exactly this amount from Xaman or another XRPL wallet.  2) Wait a minute.  3) Accept the 0 XRP offer — that delivers your NFT.'
+                ? '1) Send exactly this amount from your XRPL wallet.  2) Wait a minute.  3) Accept the 0 XRP offer — that delivers your NFT.'
                 : 'When mint is live you will send XRP to the address below with this destination tag.';
         }
         if (fulfillEl) {
             fulfillEl.textContent = live
-                ? 'The NFT is created after payment. It does not exist before. XRP.Cafe is the secondary market, not this mint.'
+                ? 'The NFT is created after payment. It does not exist before.'
                 : 'Mint on demand will create the NFT after payment.';
-        }
-
-        if (qr) {
-            if (live && uri) {
-                qr.hidden = false;
-                qr.src = qrUrl(uri);
-                qr.alt = 'Scan to pay in Xaman';
-            } else {
-                qr.removeAttribute('src');
-                qr.hidden = true;
-                qr.alt = '';
-            }
-        }
-        if (xaman) {
-            if (live && uri) {
-                xaman.hidden = false;
-                xaman.href = uri;
-            } else {
-                xaman.hidden = true;
-                xaman.removeAttribute('href');
-            }
         }
     }
 

@@ -62,7 +62,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/gallery.css?v=20260821exact">
+    <link rel="stylesheet" href="css/gallery.css?v=20260821wallet">
     <link rel="stylesheet" href="css/text-select.css?v=20260815copy">
 </head>
 <body class="gallery-protected">
@@ -340,6 +340,13 @@
             <p id="shop-modal-lead" class="shop-modal__lead"></p>
             <p id="shop-modal-name" class="shop-modal__name"></p>
             <p id="shop-modal-meta" class="shop-modal__meta"></p>
+            <div class="shop-modal__pay">
+                <button type="button" id="shop-pay-wallet" class="btn btn--primary btn--block">Pay with wallet</button>
+                <button type="button" id="shop-pay-wc" class="btn btn--ghost btn--block" hidden>WalletConnect</button>
+                <p id="shop-modal-pay-status" class="shop-modal__status" hidden></p>
+            </div>
+            <details class="shop-modal__manual">
+                <summary>Pay by hand — copy the exact amount</summary>
             <dl class="shop-modal__facts">
                 <div>
                     <dt>Amount — send exactly</dt>
@@ -360,6 +367,7 @@
                 </div>
             </dl>
             <img id="shop-modal-qr" class="shop-modal__qr" width="160" height="160" alt="" hidden>
+            </details>
             <p id="shop-modal-fulfill" class="shop-modal__fulfill"></p>
             <p class="shop-modal__terms"><a href="shop-terms.html">Studio shop terms</a></p>
         </div>
@@ -402,12 +410,12 @@
     <script src="js/likes.js?v=20260821likes"></script>
     <script src="js/color-groups.js?v=20260713b"></script>
     <script src="js/filters.js?v=20260816edition"></script>
-    <script src="js/sections.js?v=20260821exact"></script>
+    <script src="js/sections.js?v=20260821wallet"></script>
     <script src="js/wallet.js?v=20260713e"></script>
     <script src="js/tip.js?v=20260712p"></script>
     <script src="js/share.js?v=20260821share"></script>
-    <script src="js/shop.js?v=20260821exact"></script>
+    <script src="js/shop.js?v=20260821wallet"></script>
     <script src="js/xrpl-mint.js?v=20260821studio"></script>
-    <script src="js/gallery.js?v=20260821exact"></script>
+    <script src="js/gallery.js?v=20260821wallet"></script>
 </body>
 </html>

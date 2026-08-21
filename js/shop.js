@@ -39,6 +39,232 @@ const ShopCheckout = (() => {
         return `${m[1]}.${m[2].slice(0, 3)}`;
     }
 
+    const CHAINS = {
+        avalanche: {
+            key: 'avalanche',
+            chainId: '0xa86a',
+            chainIdDec: 43114,
+            chainName: 'Avalanche C-Chain',
+            nativeCurrency: { name: 'Avalanche', symbol: 'AVAX', decimals: 18 },
+            rpcUrls: ['https://api.avax.network/ext/bc/C/rpc'],
+            blockExplorerUrls: ['https://snowtrace.io'],
+            explorerTx: (hash) => `https://snowtrace.io/tx/${hash}`,
+        },
+    };
+
+    function chainForItem(item) {
+        const key = String(item?.chain || 'avalanche').toLowerCase();
+        return CHAINS[key] || null;
+    }
+
+    /** Decimal AVAX string → wei hex. Never use Number(); 1.797001 must stay exact. */
+    function amountToWeiHex(amount) {
+        const s = String(amount || '').trim();
+        if (!/^\d+(\.\d+)?$/.test(s)) {
+            throw new Error('Bad amount');
+        }
+        const [wholeRaw, fracRaw = ''] = s.split('.');
+        const whole = BigInt(wholeRaw || '0');
+        const frac = BigInt((fracRaw + '000000000000000000').slice(0, 18));
+        const wei = whole * (10n ** 18n) + frac;
+        return `0x${wei.toString(16)}`;
+    }
+
+    function getInjectedProvider() {
+        const eth = window.ethereum;
+        if (eth?.providers?.length) {
+            return (
+                eth.providers.find((p) => p.isAvalanche || p.isCore) ||
+                eth.providers.find((p) => p.isMetaMask) ||
+                eth.providers[0]
+            );
+        }
+        if (eth) return eth;
+        if (window.avalanche) return window.avalanche;
+        return null;
+    }
+
+    async function ensureChain(provider, chain) {
+        const current = await provider.request({ method: 'eth_chainId' });
+        if (String(current).toLowerCase() === chain.chainId.toLowerCase()) return;
+        try {
+            await provider.request({
+                method: 'wallet_switchEthereumChain',
+                params: [{ chainId: chain.chainId }],
+            });
+        } catch (err) {
+            const missing = err?.code === 4902 || /unrecognized chain/i.test(String(err?.message || ''));
+            if (!missing) throw err;
+            await provider.request({
+                method: 'wallet_addEthereumChain',
+                params: [
+                    {
+                        chainId: chain.chainId,
+                        chainName: chain.chainName,
+                        nativeCurrency: chain.nativeCurrency,
+                        rpcUrls: chain.rpcUrls,
+                        blockExplorerUrls: chain.blockExplorerUrls,
+                    },
+                ],
+            });
+        }
+    }
+
+    function setPayStatus(text, kind) {
+        const el = modal?.querySelector('#shop-modal-pay-status');
+        if (!el) return;
+        if (!text) {
+            el.hidden = true;
+            el.textContent = '';
+            el.removeAttribute('data-kind');
+            return;
+        }
+        el.hidden = false;
+        el.dataset.kind = kind || '';
+        el.textContent = text;
+    }
+
+    function setPayBusy(busy, label) {
+        const btn = modal?.querySelector('#shop-pay-wallet');
+        const wc = modal?.querySelector('#shop-pay-wc');
+        if (btn) {
+            btn.disabled = busy;
+            if (label) btn.textContent = label;
+            else if (!busy) btn.textContent = 'Pay with wallet';
+        }
+        if (wc) wc.disabled = busy;
+    }
+
+    async function connectInjected() {
+        const provider = getInjectedProvider();
+        if (!provider) {
+            throw new Error(
+                'No browser wallet found. Install Core or MetaMask, or use WalletConnect, or copy the amount.',
+            );
+        }
+        const accounts = await provider.request({ method: 'eth_requestAccounts' });
+        const from = accounts?.[0];
+        if (!from) throw new Error('Wallet did not return an address.');
+        return { provider, from };
+    }
+
+    let wcProvider = null;
+    let wcProjectId = '';
+
+    async function loadWalletConnectProjectId() {
+        if (wcProjectId) return wcProjectId;
+        try {
+            const res = await fetch('data/walletconnect.json', { cache: 'no-cache' });
+            if (!res.ok) return '';
+            const doc = await res.json();
+            wcProjectId = String(doc.projectId || doc.project_id || '').trim();
+        } catch {
+            wcProjectId = '';
+        }
+        return wcProjectId;
+    }
+
+    async function connectWalletConnect(chain) {
+        const projectId = await loadWalletConnectProjectId();
+        if (!projectId) {
+            throw new Error(
+                'WalletConnect is not configured yet. Use Core / MetaMask in this browser, or copy the amount.',
+            );
+        }
+        const { EthereumProvider } = await import(
+            'https://esm.sh/@walletconnect/ethereum-provider@2.21.1'
+        );
+        if (!wcProvider) {
+            wcProvider = await EthereumProvider.init({
+                projectId,
+                chains: [chain.chainIdDec],
+                showQrModal: true,
+                metadata: {
+                    name: 'Jack Beatnic Gallery',
+                    description: 'Studio shop',
+                    url: 'https://jackbeatnic.github.io',
+                    icons: ['https://jackbeatnic.github.io/assets/og-preview.jpg'],
+                },
+            });
+        }
+        await wcProvider.connect();
+        const from = wcProvider.accounts?.[0];
+        if (!from) throw new Error('WalletConnect did not return an address.');
+        return { provider: wcProvider, from };
+    }
+
+    async function sendShopPayment(item, { walletConnect = false } = {}) {
+        if (!item || item.demo || item.shop_status === 'coming') {
+            throw new Error('This row is not for sale.');
+        }
+        const chain = chainForItem(item);
+        if (!chain) {
+            throw new Error(`Wallet pay is not wired for ${item.chain || 'this chain'} yet.`);
+        }
+        const to = String(item.pay_address || '').trim();
+        if (!/^0x[0-9a-fA-F]{40}$/.test(to)) {
+            throw new Error('Missing studio pay address.');
+        }
+        const value = amountToWeiHex(exactAmount(item));
+        const { provider, from } = walletConnect
+            ? await connectWalletConnect(chain)
+            : await connectInjected();
+        await ensureChain(provider, chain);
+        const raw = await provider.request({
+            method: 'eth_sendTransaction',
+            params: [{ from, to, value }],
+        });
+        const hash =
+            typeof raw === 'string' && raw && !raw.startsWith('0x') ? `0x${raw}` : raw;
+        return { hash, from, chain };
+    }
+
+    async function handlePay(walletConnect) {
+        if (!current) return;
+        setPayBusy(true, walletConnect ? 'WalletConnect…' : 'Confirm in wallet…');
+        setPayStatus(
+            walletConnect
+                ? 'Scan the WalletConnect code, then confirm the exact amount.'
+                : 'Confirm the exact amount in Core or MetaMask. Do not edit it.',
+            'pending',
+        );
+        try {
+            const { hash, from, chain } = await sendShopPayment(current, { walletConnect });
+            const statusEl = modal.querySelector('#shop-modal-pay-status');
+            const okHash = /^0x[0-9a-fA-F]{64}$/.test(String(hash || ''));
+            if (statusEl && okHash) {
+                const url = chain.explorerTx(hash);
+                statusEl.hidden = false;
+                statusEl.dataset.kind = 'ok';
+                statusEl.replaceChildren();
+                statusEl.appendChild(
+                    document.createTextNode(
+                        `Payment sent from ${shortAddress(from)}. The NFT goes to that wallet after confirmation. `,
+                    ),
+                );
+                const a = document.createElement('a');
+                a.href = url;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.textContent = 'View transaction';
+                statusEl.appendChild(a);
+            } else {
+                setPayStatus(
+                    `Payment sent from ${shortAddress(from)}. The NFT goes to that wallet after confirmation.`,
+                    'ok',
+                );
+            }
+        } catch (err) {
+            if (err?.code === 4001 || /rejected/i.test(String(err?.message || ''))) {
+                setPayStatus('Cancelled in the wallet.', 'err');
+            } else {
+                setPayStatus(err?.message || 'Wallet payment failed.', 'err');
+            }
+        } finally {
+            setPayBusy(false);
+        }
+    }
+
     function copy(btn, value) {
         if (!btn || !value) return;
         const original = btn.textContent;
@@ -135,15 +361,28 @@ const ShopCheckout = (() => {
                 banner.hidden = false;
                 banner.classList.add('shop-modal__banner--ok');
                 banner.textContent =
-                    'Avalanche payments have no destination tag. Token id is written into the amount. Copy amount → send exactly that. Memo is optional.';
+                    'Pay with wallet to send the exact amount (token id is in the figure). Copy-amount is only a fallback. Memo is optional.';
             }
         }
 
         if (lead) {
             lead.textContent = demo
                 ? 'This panel shows how a studio purchase will work. It is not an open sale.'
-                : 'Copy the amount and pay it exactly from the wallet that should receive the NFT. Memo is optional. After confirmation, the NFT is sent automatically.';
+                : 'Connect Core or MetaMask, confirm the transfer, done. The NFT is sent to the wallet you pay from.';
         }
+
+        const payBtn = modal.querySelector('#shop-pay-wallet');
+        const wcBtn = modal.querySelector('#shop-pay-wc');
+        if (payBtn) {
+            payBtn.hidden = demo || coming || !addr || !exact;
+            payBtn.disabled = false;
+            payBtn.textContent = 'Pay with wallet';
+        }
+        if (wcBtn) {
+            wcBtn.hidden = demo || coming || !addr || !exact || !wcProjectId;
+            wcBtn.disabled = false;
+        }
+        setPayStatus('', '');
 
         if (qr) {
             if (addr && !demo && !coming) {
@@ -199,7 +438,22 @@ const ShopCheckout = (() => {
         modal.querySelector('#shop-copy-amount')?.addEventListener('click', () => {
             copy(modal.querySelector('#shop-copy-amount'), amountCopy(current || {}));
         });
+        modal.querySelector('#shop-pay-wallet')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            handlePay(false);
+        });
+        modal.querySelector('#shop-pay-wc')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            handlePay(true);
+        });
+        loadWalletConnectProjectId().then((id) => {
+            const wcBtn = modal.querySelector('#shop-pay-wc');
+            if (wcBtn && !id) {
+                wcBtn.title =
+                    'WalletConnect needs a Reown project id in data/walletconnect.json';
+            }
+        });
     }
 
-    return { init, open, hide };
+    return { init, open, hide, amountToWeiHex };
 })();

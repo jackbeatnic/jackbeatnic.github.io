@@ -91,14 +91,14 @@ const ShopCheckout = (() => {
             } else {
                 banner.hidden = false;
                 banner.textContent =
-                    'Send the exact amount to this address. Put the memo in the destination tag or payment note. Then wait — fulfillment is manual until the studio worker exists.';
+                    'Send the exact amount in AVAX to this address. Put the memo in the payment note if your wallet allows it. Fulfillment is from studio stock — not an OpenSea checkout.';
             }
         }
 
         if (lead) {
             lead.textContent = demo
                 ? 'This panel shows how a studio purchase will work. It is not an open sale.'
-                : 'Send the amount below from a wallet you control. Use the memo so the order can be matched.';
+                : 'Send the amount below from a wallet you control. Use the memo so the order can be matched. This pool is not listed on OpenSea.';
         }
 
         if (qr) {

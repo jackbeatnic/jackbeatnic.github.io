@@ -15,15 +15,28 @@ const ShopCheckout = (() => {
         return `${addr.slice(0, 6)}…${addr.slice(-4)}`;
     }
 
+    function exactAmount(item) {
+        // Keep the catalog string. A JS number can round 1.797001 → 1.797.
+        const raw = item?.pay_amount ?? item?.shop_price ?? item?.price;
+        if (raw == null || raw === '') return '';
+        return String(raw).trim();
+    }
+
     function amountText(item) {
         const cur = (item.currency || item.listing_currency || '').toUpperCase();
-        const price = item.pay_amount || item.price || item.shop_price;
-        if (price == null || price === '') return '—';
+        const price = exactAmount(item);
+        if (!price) return '—';
         return `${price} ${cur || ''}`.trim();
     }
 
     function amountCopy(item) {
-        return String(item.pay_amount || item.price || item.shop_price || '');
+        return exactAmount(item);
+    }
+
+    function truncatedAmount(exact) {
+        const m = String(exact).match(/^(\d+)\.(\d{4,})$/);
+        if (!m) return '';
+        return `${m[1]}.${m[2].slice(0, 3)}`;
     }
 
     function copy(btn, value) {
@@ -50,10 +63,14 @@ const ShopCheckout = (() => {
         const coming = item.shop_status === 'coming' || item.status === 'coming';
         const name = item.name || item.sku || 'Work';
         const amount = amountText(item);
+        const exact = exactAmount(item);
+        const wrong = truncatedAmount(exact);
+        const tid = item.token_id != null && item.token_id !== '' ? String(item.token_id) : '';
         const addr = item.pay_address || '';
         const memo = item.memo || item.sku || '';
         const qty = item.qty_available ?? item.promo_quantity;
         const fulfill = item.fulfill || 'stock';
+        const cur = (item.currency || item.listing_currency || 'AVAX').toUpperCase();
 
         const title = modal.querySelector('#shop-modal-title');
         const lead = modal.querySelector('#shop-modal-lead');
@@ -61,6 +78,7 @@ const ShopCheckout = (() => {
         const nameEl = modal.querySelector('#shop-modal-name');
         const metaEl = modal.querySelector('#shop-modal-meta');
         const amountEl = modal.querySelector('#shop-modal-amount');
+        const amountHint = modal.querySelector('#shop-modal-amount-hint');
         const addrEl = modal.querySelector('#shop-modal-address');
         const memoEl = modal.querySelector('#shop-modal-memo');
         const qr = modal.querySelector('#shop-modal-qr');
@@ -71,19 +89,40 @@ const ShopCheckout = (() => {
         if (metaEl) {
             const bits = [
                 item.collection_name || item.collection_id || '',
+                tid ? `token #${tid}` : '',
                 item.chain || '',
                 qty != null ? `${qty} available` : '',
             ].filter(Boolean);
             metaEl.textContent = bits.join(' · ');
         }
         if (amountEl) amountEl.textContent = amount;
+        if (amountHint) {
+            if (demo || coming || !exact) {
+                amountHint.hidden = true;
+                amountHint.textContent = '';
+            } else {
+                amountHint.hidden = false;
+                const bits = [];
+                if (tid && wrong) {
+                    bits.push(
+                        `${name} = ${exact} ${cur} — not ${wrong}. Rounding will not match.`,
+                    );
+                } else if (wrong) {
+                    bits.push(`Send ${exact} — not ${wrong}. Rounding will not match.`);
+                }
+                if (tid) {
+                    bits.push(`Last digits = token #${tid}. That is how the studio matches the work.`);
+                }
+                amountHint.textContent = bits.join(' ');
+            }
+        }
         if (addrEl) addrEl.textContent = addr || '—';
         if (memoEl) memoEl.textContent = memo || '—';
         if (fulfillEl) {
             fulfillEl.textContent =
                 fulfill === 'mint_on_demand'
-                    ? 'The NFT is created after payment is seen.'
-                    : 'Send from the wallet that should receive the NFT. After AVAX confirms, one edition is transferred automatically — usually under a minute.';
+                    ? 'The NFT is created after payment confirms on-chain.'
+                    : 'Send from the wallet that should receive the NFT. After the payment confirms on-chain, one edition is transferred automatically — usually under a minute.';
         }
 
         if (banner) {
@@ -96,14 +135,14 @@ const ShopCheckout = (() => {
                 banner.hidden = false;
                 banner.classList.add('shop-modal__banner--ok');
                 banner.textContent =
-                    'Send EXACTLY this amount of AVAX. Do not round. The last digits identify the work — that is how the studio matches your payment.';
+                    'Avalanche payments have no destination tag. Token id is written into the amount. Copy amount → send exactly that. Memo is optional.';
             }
         }
 
         if (lead) {
             lead.textContent = demo
                 ? 'This panel shows how a studio purchase will work. It is not an open sale.'
-                : 'Copy the amount. Pay to the address below. The NFT goes to the wallet you paid from.';
+                : 'Copy the amount and pay it exactly from the wallet that should receive the NFT. Memo is optional. After confirmation, the NFT is sent automatically.';
         }
 
         if (qr) {

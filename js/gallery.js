@@ -523,11 +523,14 @@ const Gallery = (() => {
         }
         if (isShopNft(nft)) {
             const symbol = (nft.listing_currency || nft.currency || 'USD').toUpperCase();
-            const p = nft.shop_price ?? priceField(nft, 'current_price', symbol);
+            const p = nft.pay_amount || nft.shop_price || priceField(nft, 'current_price', symbol);
             const q = nft.qty_available ?? nft.promo_quantity;
             const bits = [];
             if (q != null) bits.push(`${q} in shop`);
             if (nft.os_price != null) bits.push('50% of OS');
+            if (nft.token_id != null && nft.token_id !== '') {
+                bits.push(`token #${nft.token_id} in the amount`);
+            }
             if (nft.promo_days_left != null) bits.push(`${nft.promo_days_left}d left`);
             if (nft.fulfill === 'mint_on_demand') bits.push('mint on demand');
             if (nft.demo) bits.push('demo');
@@ -1246,18 +1249,18 @@ const Gallery = (() => {
             if (leadEl) {
                 leadEl.textContent =
                     meta.promo_lead ||
-                    'A second channel from the studio. Prices live in our JSON — not on OpenSea.';
+                    'Half the OpenSea price. Each work has its own exact AVAX amount — that is the token id.';
             }
             if (listEl) {
                 listEl.innerHTML = `
                     <article class="section-promo__item">
                         <h3 class="section-promo__title">How it works</h3>
                         <p class="section-promo__token">
-                            <span class="section-promo__symbol">Pay the studio</span>
-                            <span class="section-promo__chain"> · memo matches the order</span>
+                            <span class="section-promo__symbol">Copy amount → send exactly</span>
+                            <span class="section-promo__chain"> · token id is in the amount</span>
                         </p>
                         <p class="section-promo__collector">
-                            Demo cards open checkout so you can see the flow. Do not send funds until a row is unmarked as demo and fulfillment is live.
+                            OpenSea knows the token from the listing. A plain AVAX transfer does not — there is no destination tag on EVM. Each work is 50% of the OpenSea price plus token id / 1,000,000 AVAX (NS #1 = 1.797001, not 1.797). Rounding will not match. Memo is optional. After the payment confirms, the NFT is transferred automatically.
                         </p>
                         <div class="section-promo__actions">
                             <a class="btn btn--ghost btn--small section-promo__cta" href="shop-terms.html">Shop terms</a>

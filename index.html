@@ -62,7 +62,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/gallery.css?v=20260821lazy">
+    <link rel="stylesheet" href="css/gallery.css?v=20260821exact">
     <link rel="stylesheet" href="css/text-select.css?v=20260815copy">
 </head>
 <body class="gallery-protected">
@@ -342,8 +342,9 @@
             <p id="shop-modal-meta" class="shop-modal__meta"></p>
             <dl class="shop-modal__facts">
                 <div>
-                    <dt>Amount</dt>
+                    <dt>Amount — send exactly</dt>
                     <dd id="shop-modal-amount">—</dd>
+                    <p id="shop-modal-amount-hint" class="shop-modal__hint" hidden></p>
                     <button type="button" id="shop-copy-amount" class="btn btn--ghost btn--small">Copy amount</button>
                 </div>
                 <div>
@@ -354,6 +355,7 @@
                 <div>
                     <dt>Memo (optional)</dt>
                     <dd id="shop-modal-memo">—</dd>
+                    <p class="shop-modal__hint">Not used to match the work. The exact amount is.</p>
                     <button type="button" id="shop-copy-memo" class="btn btn--ghost btn--small">Copy memo</button>
                 </div>
             </dl>
@@ -400,12 +402,12 @@
     <script src="js/likes.js?v=20260821likes"></script>
     <script src="js/color-groups.js?v=20260713b"></script>
     <script src="js/filters.js?v=20260816edition"></script>
-    <script src="js/sections.js?v=20260821share"></script>
+    <script src="js/sections.js?v=20260821exact"></script>
     <script src="js/wallet.js?v=20260713e"></script>
     <script src="js/tip.js?v=20260712p"></script>
     <script src="js/share.js?v=20260821share"></script>
-    <script src="js/shop.js?v=20260821pay"></script>
+    <script src="js/shop.js?v=20260821exact"></script>
     <script src="js/xrpl-mint.js?v=20260821studio"></script>
-    <script src="js/gallery.js?v=20260821shopns"></script>
+    <script src="js/gallery.js?v=20260821exact"></script>
 </body>
 </html>

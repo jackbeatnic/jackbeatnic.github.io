@@ -387,7 +387,7 @@ const GallerySections = (() => {
                     'No live studio-shop works right now.',
                 promo_eyebrow: 'Studio shop',
                 promo_lead:
-                    'Nature Stories on Avalanche at half the OpenSea price. Pay with wallet — it sends the exact amount. Copy-amount is only a fallback.',
+                    'Buy here. Pay the amount shown. The NFT goes to the wallet you pay from.',
             };
         }
     }

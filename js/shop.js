@@ -224,8 +224,8 @@ const ShopCheckout = (() => {
         setPayBusy(true, walletConnect ? 'WalletConnect…' : 'Confirm in wallet…');
         setPayStatus(
             walletConnect
-                ? 'Scan the WalletConnect code, then confirm the exact amount.'
-                : 'Confirm the exact amount in Core or MetaMask. Do not edit it.',
+                ? 'Scan, then confirm. Do not change the amount.'
+                : 'Confirm in your wallet. Do not change the amount.',
             'pending',
         );
         try {
@@ -239,7 +239,7 @@ const ShopCheckout = (() => {
                 statusEl.replaceChildren();
                 statusEl.appendChild(
                     document.createTextNode(
-                        `Payment sent from ${shortAddress(from)}. The NFT goes to that wallet after confirmation. `,
+                        `Sent from ${shortAddress(from)}. NFT goes there after confirmation. `,
                     ),
                 );
                 const a = document.createElement('a');
@@ -250,7 +250,7 @@ const ShopCheckout = (() => {
                 statusEl.appendChild(a);
             } else {
                 setPayStatus(
-                    `Payment sent from ${shortAddress(from)}. The NFT goes to that wallet after confirmation.`,
+                    `Sent from ${shortAddress(from)}. NFT goes there after confirmation.`,
                     'ok',
                 );
             }
@@ -290,7 +290,6 @@ const ShopCheckout = (() => {
         const name = item.name || item.sku || 'Work';
         const amount = amountText(item);
         const exact = exactAmount(item);
-        const wrong = truncatedAmount(exact);
         const tid = item.token_id != null && item.token_id !== '' ? String(item.token_id) : '';
         const addr = item.pay_address || '';
         const memo = item.memo || item.sku || '';
@@ -328,18 +327,7 @@ const ShopCheckout = (() => {
                 amountHint.textContent = '';
             } else {
                 amountHint.hidden = false;
-                const bits = [];
-                if (tid && wrong) {
-                    bits.push(
-                        `${name} = ${exact} ${cur} — not ${wrong}. Rounding will not match.`,
-                    );
-                } else if (wrong) {
-                    bits.push(`Send ${exact} — not ${wrong}. Rounding will not match.`);
-                }
-                if (tid) {
-                    bits.push(`Last digits = token #${tid}. That is how the studio matches the work.`);
-                }
-                amountHint.textContent = bits.join(' ');
+                amountHint.textContent = 'Send this exact figure. Do not round or edit it.';
             }
         }
         if (addrEl) addrEl.textContent = addr || '—';
@@ -347,8 +335,8 @@ const ShopCheckout = (() => {
         if (fulfillEl) {
             fulfillEl.textContent =
                 fulfill === 'mint_on_demand'
-                    ? 'The NFT is created after payment confirms on-chain.'
-                    : 'Send from the wallet that should receive the NFT. After the payment confirms on-chain, one edition is transferred automatically — usually under a minute.';
+                    ? 'After payment confirms, the NFT is created and sent to the wallet you paid from.'
+                    : 'After payment confirms, one edition is sent to the wallet you paid from.';
         }
 
         if (banner) {
@@ -356,19 +344,18 @@ const ShopCheckout = (() => {
                 banner.hidden = false;
                 banner.textContent = coming
                     ? 'Coming soon. Do not send funds.'
-                    : 'Skeleton only. Do not send funds.';
+                    : 'Not for sale. Do not send funds.';
             } else {
                 banner.hidden = false;
                 banner.classList.add('shop-modal__banner--ok');
-                banner.textContent =
-                    'Pay with wallet to send the exact amount (token id is in the figure). Copy-amount is only a fallback. Memo is optional.';
+                banner.textContent = 'Do not change the amount.';
             }
         }
 
         if (lead) {
             lead.textContent = demo
-                ? 'This panel shows how a studio purchase will work. It is not an open sale.'
-                : 'Connect Core or MetaMask, confirm the transfer, done. The NFT is sent to the wallet you pay from.';
+                ? 'This is a preview. Do not send funds.'
+                : '1. Pay with wallet.  2. Confirm.  3. Wait — NFT to that wallet.';
         }
 
         const payBtn = modal.querySelector('#shop-pay-wallet');

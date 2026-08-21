@@ -526,11 +526,7 @@ const Gallery = (() => {
             const p = nft.pay_amount || nft.shop_price || priceField(nft, 'current_price', symbol);
             const q = nft.qty_available ?? nft.promo_quantity;
             const bits = [];
-            if (q != null) bits.push(`${q} in shop`);
-            if (nft.os_price != null) bits.push('50% of OS');
-            if (nft.token_id != null && nft.token_id !== '') {
-                bits.push(`token #${nft.token_id} in the amount`);
-            }
+            if (q != null) bits.push(`${q} available`);
             if (nft.promo_days_left != null) bits.push(`${nft.promo_days_left}d left`);
             if (nft.fulfill === 'mint_on_demand') bits.push('mint on demand');
             if (nft.demo) bits.push('demo');
@@ -1249,18 +1245,18 @@ const Gallery = (() => {
             if (leadEl) {
                 leadEl.textContent =
                     meta.promo_lead ||
-                    'Half the OpenSea price. Pay with Core or MetaMask — the wallet sends the exact amount. Copy-amount is only a fallback.';
+                    'Buy here. Pay the amount shown. The NFT goes to the wallet you pay from.';
             }
             if (listEl) {
                 listEl.innerHTML = `
                     <article class="section-promo__item">
-                        <h3 class="section-promo__title">How it works</h3>
+                        <h3 class="section-promo__title">How to buy</h3>
                         <p class="section-promo__token">
-                            <span class="section-promo__symbol">Pay with wallet</span>
-                            <span class="section-promo__chain"> · exact amount, then auto-transfer</span>
+                            <span class="section-promo__symbol">1. Open a work</span>
+                            <span class="section-promo__chain"> · 2. Pay with wallet · 3. Confirm</span>
                         </p>
                         <p class="section-promo__collector">
-                            Connect Core or MetaMask and confirm. The wallet sends the exact AVAX (token id is in the last digits — do not edit the figure). No destination tag on Avalanche; that is why the amount is unique. Memo is optional. After confirmation the NFT is transferred to the wallet you paid from. Copy-amount is only if you pay by hand.
+                            Do not change the amount. Wait. The NFT arrives in the same wallet. Pay by hand only if you have no wallet in the browser.
                         </p>
                         <div class="section-promo__actions">
                             <a class="btn btn--ghost btn--small section-promo__cta" href="shop-terms.html">Shop terms</a>

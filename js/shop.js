@@ -17,9 +17,13 @@ const ShopCheckout = (() => {
 
     function amountText(item) {
         const cur = (item.currency || item.listing_currency || '').toUpperCase();
-        const price = item.price ?? item.shop_price;
+        const price = item.pay_amount || item.price || item.shop_price;
         if (price == null || price === '') return '—';
         return `${price} ${cur || ''}`.trim();
+    }
+
+    function amountCopy(item) {
+        return String(item.pay_amount || item.price || item.shop_price || '');
     }
 
     function copy(btn, value) {
@@ -78,27 +82,28 @@ const ShopCheckout = (() => {
         if (fulfillEl) {
             fulfillEl.textContent =
                 fulfill === 'mint_on_demand'
-                    ? 'Mint on demand — token is created after payment (not before).'
-                    : 'From studio stock — an already minted token is transferred after payment.';
+                    ? 'The NFT is created after payment is seen.'
+                    : 'Send from the wallet that should receive the NFT. After AVAX confirms, one edition is transferred automatically — usually under a minute.';
         }
 
         if (banner) {
             if (demo || coming) {
                 banner.hidden = false;
                 banner.textContent = coming
-                    ? 'Coming soon. Do not send funds — mint-on-demand is not live.'
-                    : 'Skeleton only. Do not send funds. Nothing will be minted or transferred.';
+                    ? 'Coming soon. Do not send funds.'
+                    : 'Skeleton only. Do not send funds.';
             } else {
                 banner.hidden = false;
+                banner.classList.add('shop-modal__banner--ok');
                 banner.textContent =
-                    'Send the exact amount in AVAX to this address. Put the memo in the payment note if your wallet allows it. Fulfillment is from studio stock — not an OpenSea checkout.';
+                    'Send EXACTLY this amount of AVAX. Do not round. The last digits identify the work — that is how the studio matches your payment.';
             }
         }
 
         if (lead) {
             lead.textContent = demo
                 ? 'This panel shows how a studio purchase will work. It is not an open sale.'
-                : 'Send the amount below from a wallet you control. Use the memo so the order can be matched. This pool is not listed on OpenSea.';
+                : 'Copy the amount. Pay to the address below. The NFT goes to the wallet you paid from.';
         }
 
         if (qr) {
@@ -153,7 +158,7 @@ const ShopCheckout = (() => {
             copy(modal.querySelector('#shop-copy-memo'), current?.memo || current?.sku || '');
         });
         modal.querySelector('#shop-copy-amount')?.addEventListener('click', () => {
-            copy(modal.querySelector('#shop-copy-amount'), amountText(current || {}));
+            copy(modal.querySelector('#shop-copy-amount'), amountCopy(current || {}));
         });
     }
 

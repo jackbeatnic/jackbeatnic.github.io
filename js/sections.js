@@ -384,10 +384,10 @@ const GallerySections = (() => {
                 label_short: 'Shop',
                 explore_title: 'Studio shop',
                 empty_message:
-                    'The studio shop is a skeleton — no live works in the price list yet.',
+                    'No live studio-shop works right now.',
                 promo_eyebrow: 'Studio shop',
                 promo_lead:
-                    'A second channel from the studio. Prices live in our JSON — not on OpenSea. Demo rows are not for sale.',
+                    'Nature Stories on Avalanche at half the OpenSea price. Each work has its own exact AVAX amount — that is the token id. Copy it. Do not round.',
             };
         }
     }

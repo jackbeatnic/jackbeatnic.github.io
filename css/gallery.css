@@ -837,6 +837,18 @@ body.shop-open {
     word-break: break-all;
 }
 
+.shop-modal__hint {
+    margin: 0 0 0.4rem;
+    color: var(--gray-600);
+    font-size: 0.72rem;
+    line-height: 1.35;
+    font-family: inherit;
+}
+
+.shop-modal__hint[hidden] {
+    display: none !important;
+}
+
 .shop-modal__qr {
     display: block;
     margin: 0 auto 0.85rem;

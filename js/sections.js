@@ -1112,10 +1112,17 @@ const GallerySections = (() => {
         if (medium === 'shop') {
             if (currentSection === 'shop') return;
             currentSection = 'shop';
+        } else if (medium === 'featured_promo') {
+            if (currentSection === 'featured') return;
+            currentSection = 'featured';
         } else if (medium === 'xrpl_ai') {
             if (currentSection === 'ai_art' && currentAiKind === 'xrpl') return;
             currentSection = 'ai_art';
             currentAiKind = 'xrpl';
+        } else if (medium === 'sui_ai') {
+            if (currentSection === 'ai_art' && currentAiKind === 'sui') return;
+            currentSection = 'ai_art';
+            currentAiKind = 'sui';
         } else if (medium === 'ai_art') {
             const series = normalizeAiSeries(resolveAiSeries(nft) || defaultAiSeries());
             const edition = seriesHasEditions(series)

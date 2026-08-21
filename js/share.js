@@ -98,6 +98,12 @@ const GalleryShare = (() => {
             params.set('market', 'editions');
             const chain = nft.chain_key || nft.chain || 'base';
             if (chain !== 'base') params.set('chain', chain);
+        } else if (medium === 'shop') {
+            params.set('section', 'shop');
+        } else if (medium === 'featured_promo') {
+            params.set('section', 'featured');
+        } else if (medium === 'objkt_auction') {
+            params.set('section', 'photography');
         } else if (medium !== 'ai_art') {
             params.set('section', medium);
         }

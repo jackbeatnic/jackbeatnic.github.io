@@ -2560,6 +2560,12 @@ body.lightbox-open {
         color: #0a0a0a;
     }
 
+    .nft-card__badge--shop {
+        background: rgba(228, 240, 252, 0.9);
+        color: #1a3a52;
+        box-shadow: 0 1px 8px rgba(8, 20, 36, 0.28);
+    }
+
     .shop-modal__dialog {
         background: var(--gray-50);
         border-color: var(--gray-100);

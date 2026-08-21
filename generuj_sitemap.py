@@ -49,15 +49,6 @@ def main() -> None:
         "",
     ]
     (ROOT / "sitemap-home.xml").write_text("\n".join(mini), encoding="utf-8")
-
-    robots = f"""# Jack Beatnic Gallery — {SITE}/
-User-agent: *
-Allow: /
-
-Sitemap: {SITE}/sitemap.xml
-Sitemap: {SITE}/sitemap.txt
-"""
-    (ROOT / "robots.txt").write_text(robots, encoding="utf-8")
     print(f"sitemap.xml: {len(urls)} URLs")
 
 

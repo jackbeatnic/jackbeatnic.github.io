@@ -28,6 +28,27 @@ NFT_OG_DIR = ROOT / "assets" / "og"
 NFT_PAGES_DIR = ROOT / "nft"
 FONTS_DIR = ROOT / "assets" / "fonts"
 
+# Share landings are generated from every feed the gallery loads, not just
+# gallery.json. Missing files here are the SHARE → X 404.
+EXTRA_FEED_FILES = (
+    "xrp_gallery.json",
+    "sui_gallery.json",
+    "nature_jam_gallery.json",
+    "ai_play_gallery.json",
+    "based_ai_gallery.json",
+    "auctions_gallery.json",
+    "objkt_auctions_gallery.json",
+)
+SALE_INDEX_JSON = ROOT / "data" / "sale_index.json"
+FEATURED_PROMO_JSON = ROOT / "data" / "featured_promo.json"
+LEGACY_OG_COLLECTION = "avalanche-nature-stories"
+SHOP_COLLECTION_NAMES = {
+    "avalanche_nature_stories": "Nature Stories",
+    "avalanche_flower_stories": "Flower Stories",
+    "xrpl_jb_ai_nature": "JB AI Nature",
+    "xrpl_jbn": "JB AI Nature",
+}
+
 WIDTH = 1200
 HEIGHT = 630
 SITE_BRAND_TITLE = "Jack Beatnic"
@@ -466,7 +487,7 @@ def gallery_deep_link(nft: dict, base_url: str) -> str:
     if col:
         q["collection"] = str(col)
     medium = nft.get("medium") or "ai_art"
-    if medium == "photography":
+    if medium == "photography" or medium == "objkt_auction":
         q["section"] = "photography"
         kind = nft.get("photo_kind") or "photo"
         if kind != "photo":
@@ -477,13 +498,184 @@ def gallery_deep_link(nft: dict, base_url: str) -> str:
     elif medium == "sui_ai":
         q["section"] = "ai_art"
         q["ai"] = "sui"
+    elif medium == "shop":
+        q["section"] = "shop"
+    elif medium == "featured_promo":
+        q["section"] = "featured"
+    elif medium == "manifold_auction":
+        q["section"] = "atelier"
+        q["market"] = "auctions"
+        chain = nft.get("chain_key") or nft.get("chain") or "base"
+        if chain != "base":
+            q["chain"] = str(chain)
+    elif medium == "manifold_edition":
+        q["section"] = "atelier"
+        q["market"] = "editions"
+        chain = nft.get("chain_key") or nft.get("chain") or "base"
+        if chain != "base":
+            q["chain"] = str(chain)
     elif medium == "ai_art":
         q["section"] = "ai_art"
         q["ai"] = "evm"
         series = nft.get("ai_series")
         if series and series != "nature_stories":
             q["series"] = series
+        edition = str(nft.get("edition_label") or nft.get("chain") or "").lower()
+        if edition in {"avalanche", "polygon", "base"}:
+            q["edition"] = edition
     return f"{base_url}/?{urlencode(q)}"
+
+
+def token_id_int(nft: dict) -> int | None:
+    raw = nft.get("token_id")
+    if raw is None or raw == "":
+        return None
+    try:
+        return int(raw)
+    except (TypeError, ValueError):
+        return None
+
+
+def share_key(nft: dict) -> tuple[str, int] | None:
+    tid = token_id_int(nft)
+    if tid is None:
+        return None
+    return nft_collection_id(nft), tid
+
+
+def nfts_from_json_file(path: Path) -> list[dict]:
+    if not path.is_file():
+        return []
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if isinstance(data, dict):
+        nfts = data.get("nfts")
+        if isinstance(nfts, list):
+            return nfts
+        items = data.get("items")
+        if isinstance(items, list):
+            return items
+    if isinstance(data, list):
+        return [item for item in data if isinstance(item, dict)]
+    return []
+
+
+def shop_nfts_from_sale_index() -> list[dict]:
+    if not SALE_INDEX_JSON.is_file():
+        return []
+    doc = json.loads(SALE_INDEX_JSON.read_text(encoding="utf-8"))
+    out: list[dict] = []
+    for it in doc.get("items") or []:
+        if (it.get("channel") or "shop") != "shop":
+            continue
+        if (it.get("status") or "live") != "live":
+            continue
+        cid = it.get("collection_id")
+        tid = it.get("token_id")
+        if not cid or tid in (None, ""):
+            continue
+        chain = (it.get("chain") or "avalanche").lower()
+        cur = (it.get("currency") or "AVAX").upper()
+        price = it.get("price")
+        if price in (None, ""):
+            price = it.get("pay_amount")
+        nft: dict = {
+            "token_id": tid,
+            "name": it.get("name") or f"#{tid}",
+            "collection_id": cid,
+            "collection_name": SHOP_COLLECTION_NAMES.get(str(cid))
+            or str(cid).replace("_", " ").title(),
+            "chain": chain,
+            "medium": "shop",
+            "image_url": it.get("image_url"),
+            "listing_status": "For Sale",
+            "listing_currency": cur,
+            "status": "listed",
+        }
+        if price not in (None, ""):
+            try:
+                nft[f"current_price_{cur.lower()}"] = float(price)
+            except (TypeError, ValueError):
+                nft[f"current_price_{cur.lower()}"] = price
+        out.append(nft)
+    return out
+
+
+def featured_nfts_from_promo() -> list[dict]:
+    if not FEATURED_PROMO_JSON.is_file():
+        return []
+    doc = json.loads(FEATURED_PROMO_JSON.read_text(encoding="utf-8"))
+    out: list[dict] = []
+    for it in doc.get("items") or []:
+        cid = it.get("collection_id")
+        tid = it.get("token_id")
+        if not cid or tid in (None, ""):
+            continue
+        chain = (it.get("chain") or "").lower()
+        cur = (it.get("currency") or "AVAX").upper()
+        nft: dict = {
+            "token_id": tid,
+            "name": it.get("name") or f"#{tid}",
+            "collection_id": cid,
+            "collection_name": it.get("collection_name"),
+            "chain": chain,
+            "medium": "featured_promo",
+            "image_url": it.get("image_url"),
+            "listing_status": "For Sale",
+            "listing_currency": cur,
+        }
+        price = it.get("price")
+        if price not in (None, ""):
+            nft[f"current_price_{cur.lower()}"] = price
+        out.append(nft)
+    return out
+
+
+def collect_all_share_nfts(gallery_data: dict) -> list[dict]:
+    """One NFT per (collection slug, token_id). gallery.json wins, then extra feeds, then shop."""
+    collected: list[dict] = []
+    seen: set[tuple[str, int]] = set()
+
+    def add_many(nfts: list[dict]) -> None:
+        for nft in nfts:
+            key = share_key(nft)
+            if key is None or key in seen:
+                continue
+            seen.add(key)
+            collected.append(nft)
+
+    add_many(gallery_data.get("nfts") or [])
+    for name in EXTRA_FEED_FILES:
+        add_many(nfts_from_json_file(ROOT / name))
+    add_many(featured_nfts_from_promo())
+    add_many(shop_nfts_from_sale_index())
+    return collected
+
+
+def og_image_url(nft: dict, base_url: str, og_version: str) -> str:
+    token_id = int(nft["token_id"])
+    col = nft_collection_id(nft)
+    prefixed = NFT_OG_DIR / f"{col}-{token_id}.jpg"
+    if prefixed.is_file():
+        return og_url_with_version(base_url, f"assets/og/{col}-{token_id}.jpg", og_version)
+
+    # Flat nft-{id}.jpg cards were built only for Nature Stories in gallery.json.
+    # Reusing them for XRPL/Sui/NJ would show the wrong artwork (token_id collides).
+    legacy = NFT_OG_DIR / f"nft-{token_id}.jpg"
+    if col == LEGACY_OG_COLLECTION and legacy.is_file():
+        return og_url_with_version(base_url, f"assets/og/nft-{token_id}.jpg", og_version)
+
+    rel = str(nft.get("og_image") or "").strip()
+    if rel and not rel.startswith("http://") and not rel.startswith("https://"):
+        local = ROOT / rel.lstrip("/")
+        if local.is_file():
+            return og_url_with_version(base_url, rel.lstrip("/"), og_version)
+
+    img = str(nft.get("image_url") or "").strip()
+    if img.startswith("https://") or img.startswith("http://"):
+        return img
+    if img:
+        return og_url_with_version(base_url, img.lstrip("/"), og_version)
+    return og_url_with_version(base_url, "assets/og-preview.jpg", og_version)
 
 
 def share_page_html(nft: dict, info: dict, base_url: str, og_version: str) -> str:
@@ -493,16 +685,7 @@ def share_page_html(nft: dict, info: dict, base_url: str, og_version: str) -> st
     price_text, price_hint = format_share_price(nft, info)
     rel_path = share_path_for_nft(nft)
     share_url = f"{base_url}/{rel_path}"
-    # OG image files stay nft-{id}.jpg within gallery.json (ids unique there).
-    # Prefix with collection when file exists, else legacy path.
-    col = nft_collection_id(nft)
-    prefixed = NFT_OG_DIR / f"{col}-{token_id}.jpg"
-    legacy = NFT_OG_DIR / f"nft-{token_id}.jpg"
-    if prefixed.is_file():
-        og_rel = f"assets/og/{col}-{token_id}.jpg"
-    else:
-        og_rel = f"assets/og/nft-{token_id}.jpg"
-    og_image = og_url_with_version(base_url, og_rel, og_version)
+    og_image = og_image_url(nft, base_url, og_version)
     gallery_url = gallery_deep_link(nft, base_url)
     title = f"{artwork_title} | Jack Beatnic Gallery"
     description = f"{price_text} · {collection} — {price_hint}"
@@ -556,21 +739,29 @@ def generate_share_pages(
     data: dict,
     token_ids: set[int] | None = None,
     output_dir: Path = NFT_PAGES_DIR,
+    nfts: list[dict] | None = None,
 ) -> list[Path]:
     info = data["collection_info"]
     base_url = site_base_url(info)
     og_version = info.get("og_cache_version") or og_cache_version()
-    nfts = data.get("nfts") or []
+    if nfts is None:
+        nfts = collect_all_share_nfts(data)
     output_dir.mkdir(parents=True, exist_ok=True)
     written: list[Path] = []
     active_paths: set[Path] = set()
-    # Count token_id frequency across whole gallery (flat legacy only if unique)
+    per_col: dict[str, int] = {}
+    # Flat nft/{id}.html only when this token_id is unique across ALL feeds
     tid_counts: dict[int, int] = {}
     for nft in nfts:
-        tid_counts[int(nft["token_id"])] = tid_counts.get(int(nft["token_id"]), 0) + 1
+        tid = token_id_int(nft)
+        if tid is None:
+            continue
+        tid_counts[tid] = tid_counts.get(tid, 0) + 1
 
     for nft in nfts:
-        token_id = int(nft["token_id"])
+        token_id = token_id_int(nft)
+        if token_id is None:
+            continue
         if token_ids is not None and token_id not in token_ids:
             continue
 
@@ -586,31 +777,35 @@ def generate_share_pages(
         prefixed = NFT_OG_DIR / f"{col}-{token_id}.jpg"
         if prefixed.is_file():
             nft["og_image"] = f"assets/og/{col}-{token_id}.jpg"
-        else:
+        elif col == LEGACY_OG_COLLECTION and (NFT_OG_DIR / f"nft-{token_id}.jpg").is_file():
             nft["og_image"] = f"assets/og/nft-{token_id}.jpg"
-        print(f"[page] {rel}")
+        elif nft.get("og_image"):
+            rel = str(nft["og_image"]).lstrip("/")
+            if not (ROOT / rel).is_file():
+                nft.pop("og_image", None)
+        per_col[col] = per_col.get(col, 0) + 1
 
-        # Legacy flat nft/{id}.html — only when this token_id is unique in gallery.json
+        # Legacy flat nft/{id}.html — only when this token_id is unique
         if tid_counts.get(token_id, 0) == 1:
             legacy = output_dir / f"{token_id}.html"
             legacy.write_text(legacy_redirect_html(share_url), encoding="utf-8")
             written.append(legacy)
             active_paths.add(legacy.resolve())
 
-    # Remove stale flat pages not in active set
-    for stale in output_dir.glob("*.html"):
-        if stale.resolve() not in active_paths:
-            stale.unlink()
-            print(f"[page] Usunięto nieaktualny: {stale.name}")
-
-    # Remove empty leftover dirs under nft/ (keep collection dirs we wrote)
+    # Keep existing flat nft/{id}.html (old tweets). Drop stale namespaced pages.
     for sub in output_dir.iterdir():
-        if sub.is_dir():
-            for stale in sub.glob("*.html"):
-                if stale.resolve() not in active_paths:
-                    stale.unlink()
-                    print(f"[page] Usunięto nieaktualny: {stale.relative_to(ROOT)}")
+        if not sub.is_dir():
+            continue
+        for stale in sub.glob("*.html"):
+            if stale.resolve() not in active_paths:
+                stale.unlink()
+                print(f"[page] Usunięto nieaktualny: {stale.relative_to(ROOT)}")
+        if not any(sub.iterdir()):
+            sub.rmdir()
 
+    for col, n in sorted(per_col.items()):
+        print(f"[page] {col}: {n}")
+    print(f"[page] razem {len(written)} plików")
     return written
 
 
@@ -668,6 +863,11 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Generuj karty Open Graph dla galerii.")
     parser.add_argument("--site-only", action="store_true", help="Tylko og-preview.jpg (strona główna)")
     parser.add_argument("--nft-only", action="store_true", help="Tylko karty per NFT + strony share")
+    parser.add_argument(
+        "--pages-only",
+        action="store_true",
+        help="Tylko strony share (wszystkie feedy: XRPL/Sui/NJ/shop). Bez kart JPG.",
+    )
     parser.add_argument("--no-gallery-json", action="store_true", help="Nie zapisuj share_url w gallery.json")
     parser.add_argument("--token", type=int, action="append", dest="tokens", help="Tylko wybrane token_id")
     return parser.parse_args(argv)
@@ -684,6 +884,14 @@ def main(argv: list[str] | None = None) -> int:
         update_site_index_og(data, version)
         if not args.no_gallery_json:
             save_gallery(data)
+        return 0
+
+    if args.pages_only:
+        data = load_gallery()
+        generate_share_pages(data, token_ids=token_ids)
+        if not args.no_gallery_json:
+            save_gallery(data)
+            print("[meta] gallery.json — share_url")
         return 0
 
     if args.nft_only:

@@ -527,6 +527,8 @@ const Gallery = (() => {
             const q = nft.qty_available ?? nft.promo_quantity;
             const bits = [];
             if (q != null) bits.push(`${q} in shop`);
+            if (nft.os_price != null) bits.push('50% of OS');
+            if (nft.promo_days_left != null) bits.push(`${nft.promo_days_left}d left`);
             if (nft.fulfill === 'mint_on_demand') bits.push('mint on demand');
             if (nft.demo) bits.push('demo');
             bits.push(chainLabel(nft));
@@ -843,8 +845,19 @@ const Gallery = (() => {
 
     function saleItemsToNfts(doc) {
         const raw = Array.isArray(doc?.items) ? doc.items : [];
+        const now = Date.now();
         return raw
-            .filter((it) => (it.channel || 'shop') === 'shop')
+            .filter((it) => {
+                if ((it.channel || 'shop') !== 'shop') return false;
+                if ((it.status || 'live') !== 'live') return false;
+                if ((it.qty_available || 0) <= 0) return false;
+                const ea = it.ends_at;
+                if (ea) {
+                    const t = Date.parse(ea);
+                    if (!Number.isNaN(t) && t <= now) return false;
+                }
+                return true;
+            })
             .map((it, idx) => {
                 const chain = (it.chain || '').toLowerCase();
                 const cur = (it.currency || 'USD').toUpperCase();
@@ -875,8 +888,19 @@ const Gallery = (() => {
                     demo: Boolean(it.demo),
                     note: it.note,
                     opensea_url: it.opensea_url,
+                    ends_at: it.ends_at,
+                    os_price: it.os_price,
                     display_rank: idx + 1,
                 };
+                if (it.ends_at) {
+                    const t = Date.parse(it.ends_at);
+                    if (!Number.isNaN(t)) {
+                        nft.promo_days_left = Math.max(
+                            0,
+                            Math.ceil((t - now) / 86400000),
+                        );
+                    }
+                }
                 if (it.price != null && it.price !== '') {
                     nft[`current_price_${suf}`] = it.price;
                 }
@@ -944,7 +968,7 @@ const Gallery = (() => {
     async function load() {
         const grid = document.getElementById('gallery-grid');
         try {
-            const [mainRes, xrpRes, suiRes, auctionRes, objktAuctionRes, featuredNfts] =
+            const [mainRes, xrpRes, suiRes, auctionRes, objktAuctionRes, featuredNfts, shopNfts] =
                 await Promise.all([
                     fetch('gallery.json'),
                     fetch('xrp_gallery.json'),
@@ -952,6 +976,7 @@ const Gallery = (() => {
                     fetch('auctions_gallery.json'),
                     fetch('objkt_auctions_gallery.json'),
                     loadFeaturedPromoNfts(),
+                    loadSaleIndexNfts(),
                 ]);
             if (!mainRes.ok) throw new Error(`HTTP ${mainRes.status}`);
             const data = await mainRes.json();
@@ -971,6 +996,9 @@ const Gallery = (() => {
             // Featured tab: Avalanche + Sui + … from one feed
             if (featuredNfts?.length) {
                 allNfts = [...allNfts, ...featuredNfts];
+            }
+            if (shopNfts?.length) {
+                allNfts = [...allNfts, ...shopNfts];
             }
             collectionInfo = {
                 ...(data.collection_info || {}),
@@ -1025,10 +1053,10 @@ const Gallery = (() => {
                         label_short: 'Shop',
                         explore_title: 'Studio shop',
                         empty_message:
-                            'The studio shop is a skeleton — no live works in the price list yet.',
+                            'No live studio offers right now.',
                         promo_eyebrow: 'Studio shop',
                         promo_lead:
-                            'Prices from our JSON. OpenSea stays a separate pool. Demo rows are not for sale.',
+                            'Nature Stories · Avalanche. Studio price is 50% of the OpenSea listing. 100 editions, 45 days. OpenSea is a separate pool.',
                         ...(mainSections.shop || {}),
                     },
                     ...mainSections,

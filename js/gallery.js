@@ -1256,7 +1256,9 @@ const Gallery = (() => {
                             <span class="section-promo__chain"> · 2. Pay with wallet · 3. Confirm</span>
                         </p>
                         <p class="section-promo__collector">
-                            Do not change the amount. Wait. The NFT arrives in the same wallet. Pay by hand only if you have no wallet in the browser.
+                            Send this exact amount. Do not round or edit it.
+                            <strong>The automaton assigns the NFT by this exact amount. A different amount does not get you that NFT and may be taken as a tip.</strong>
+                            Pay by hand only if you have no wallet in the browser.
                         </p>
                         <div class="section-promo__actions">
                             <a class="btn btn--ghost btn--small section-promo__cta" href="shop-terms.html">Shop terms</a>

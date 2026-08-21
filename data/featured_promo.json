@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-09T14:27:42.725039+00:00",
+  "updated_at": "2026-08-21T14:00:00Z",
   "promo": {
     "label": "OFF 0% · 30 days",
     "pct_off": 0,
@@ -52,24 +52,6 @@
       "pct_off": 40,
       "ends_at": "2026-09-08T11:35:46.087047+00:00",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/3"
-    },
-    {
-      "collection_id": "xrpl_jb_ai_nature",
-      "collection_name": "JB AI Nature",
-      "chain": "xrpl",
-      "token_id": 1,
-      "xrpl_nft_id": "00190000C991C993639BFB85813235F2175B16ADADDCDBD82D73933305BE7198",
-      "name": "JBN #1 X",
-      "image_url": "https://cdn.jsdelivr.net/gh/jackbeatnic/jb-nft-assets@main/media/xrpl/jbn/1.jpg",
-      "price": 16.5,
-      "currency": "XRP",
-      "quantity": 1,
-      "days": 30,
-      "pct_off": 0,
-      "ends_at": "2026-09-08T14:27:42.725039+00:00",
-      "opensea_url": "https://xrp.cafe/nft/00190000C991C993639BFB85813235F2175B16ADADDCDBD82D73933305BE7198",
-      "xrp_cafe_url": "https://xrp.cafe/nft/00190000C991C993639BFB85813235F2175B16ADADDCDBD82D73933305BE7198",
-      "marketplace_url": "https://xrp.cafe/nft/00190000C991C993639BFB85813235F2175B16ADADDCDBD82D73933305BE7198"
     }
   ]
 }

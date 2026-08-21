@@ -849,6 +849,45 @@ body.shop-open {
     display: none !important;
 }
 
+.shop-modal__pay {
+    display: grid;
+    gap: 0.45rem;
+    margin: 0.85rem 0 1rem;
+}
+
+.shop-modal__status {
+    margin: 0;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: var(--gray-600);
+    word-break: break-word;
+}
+
+.shop-modal__status[data-kind='ok'] {
+    color: #1b5e20;
+}
+
+.shop-modal__status[data-kind='err'] {
+    color: #9b1c1c;
+}
+
+.shop-modal__status a {
+    text-decoration: underline;
+}
+
+.shop-modal__manual {
+    margin: 0 0 1rem;
+    border-top: 1px solid var(--gray-100);
+    padding-top: 0.7rem;
+}
+
+.shop-modal__manual summary {
+    cursor: pointer;
+    font-size: 0.78rem;
+    color: var(--gray-600);
+    margin-bottom: 0.7rem;
+}
+
 .shop-modal__qr {
     display: block;
     margin: 0 auto 0.85rem;

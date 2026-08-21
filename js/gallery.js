@@ -1249,18 +1249,18 @@ const Gallery = (() => {
             if (leadEl) {
                 leadEl.textContent =
                     meta.promo_lead ||
-                    'Half the OpenSea price. Each work has its own exact AVAX amount — that is the token id.';
+                    'Half the OpenSea price. Pay with Core or MetaMask — the wallet sends the exact amount. Copy-amount is only a fallback.';
             }
             if (listEl) {
                 listEl.innerHTML = `
                     <article class="section-promo__item">
                         <h3 class="section-promo__title">How it works</h3>
                         <p class="section-promo__token">
-                            <span class="section-promo__symbol">Copy amount → send exactly</span>
-                            <span class="section-promo__chain"> · token id is in the amount</span>
+                            <span class="section-promo__symbol">Pay with wallet</span>
+                            <span class="section-promo__chain"> · exact amount, then auto-transfer</span>
                         </p>
                         <p class="section-promo__collector">
-                            OpenSea knows the token from the listing. A plain AVAX transfer does not — there is no destination tag on EVM. Each work is 50% of the OpenSea price plus token id / 1,000,000 AVAX (NS #1 = 1.797001, not 1.797). Rounding will not match. Memo is optional. After the payment confirms, the NFT is transferred automatically.
+                            Connect Core or MetaMask and confirm. The wallet sends the exact AVAX (token id is in the last digits — do not edit the figure). No destination tag on Avalanche; that is why the amount is unique. Memo is optional. After confirmation the NFT is transferred to the wallet you paid from. Copy-amount is only if you pay by hand.
                         </p>
                         <div class="section-promo__actions">
                             <a class="btn btn--ghost btn--small section-promo__cta" href="shop-terms.html">Shop terms</a>

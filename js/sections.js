@@ -387,7 +387,7 @@ const GallerySections = (() => {
                     'No live studio-shop works right now.',
                 promo_eyebrow: 'Studio shop',
                 promo_lead:
-                    'Nature Stories on Avalanche at half the OpenSea price. Each work has its own exact AVAX amount — that is the token id. Copy it. Do not round.',
+                    'Nature Stories on Avalanche at half the OpenSea price. Pay with wallet — it sends the exact amount. Copy-amount is only a fallback.',
             };
         }
     }

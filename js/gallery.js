@@ -278,7 +278,6 @@ const Gallery = (() => {
         }
         if (isObjktAuction(nft)) return 'Bid on OBJKT';
         if (isManifoldAuction(nft)) return 'Bid on Manifold';
-        if (canXrplMintCopy(nft) && isXrplMinted(nft)) return 'Mint a copy';
         if (canXrplMintCopy(nft)) return 'Mint';
         if (isXrplMinted(nft)) return 'View on XRP.Cafe';
         if (isLaunchpadMint(nft)) return 'Mint on TradePort';
@@ -356,9 +355,7 @@ const Gallery = (() => {
                 </div>`;
         }
         if (canXrplMintCopy(nft)) {
-            const mintLabel = escapeHtml(
-                isXrplMinted(nft) ? 'Mint a copy' : 'Mint',
-            );
+            const mintLabel = escapeHtml('Mint');
             return `
                 <div class="nft-card__actions">
                     <button type="button" class="btn btn--primary btn--block xrpl-mint">${mintLabel}</button>
@@ -568,7 +565,7 @@ const Gallery = (() => {
                 return {
                     text: priceTxt,
                     hint: isXrplMinted(nft)
-                        ? `Mint a copy · ${left} / ${xrplSupply(nft)} left`
+                        ? `Studio mint · ${left} / ${xrplSupply(nft)} left`
                         : `Studio mint · ${xrplSupply(nft)} copies`,
                     kind: 'mint',
                 };

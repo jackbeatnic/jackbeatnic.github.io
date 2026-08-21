@@ -327,7 +327,7 @@ const ShopCheckout = (() => {
                 amountHint.textContent = '';
             } else {
                 amountHint.hidden = false;
-                amountHint.textContent = 'Send this exact figure. Do not round or edit it.';
+                amountHint.textContent = 'Send this exact amount. Do not round or edit it.';
             }
         }
         if (addrEl) addrEl.textContent = addr || '—';

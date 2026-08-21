@@ -665,6 +665,13 @@ a {
     border-top: 1px solid var(--gray-100);
 }
 
+.section-promo__collector strong {
+    display: block;
+    margin: 0.45rem 0;
+    font-weight: 600;
+    color: var(--black);
+}
+
 .section-promo__collector {
     margin: 0.5rem 0 0;
     font-size: 0.8rem;

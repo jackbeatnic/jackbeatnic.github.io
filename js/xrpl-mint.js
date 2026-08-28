@@ -24,9 +24,9 @@ const XrplMint = (() => {
             nft?.current_price_xrp ??
             nft?.price_xrp ??
             collection().price_xrp_default ??
-            0.25;
+            0.1;
         const v = Number(n);
-        return Number.isFinite(v) && v > 0 ? v : 0.25;
+        return Number.isFinite(v) && v > 0 ? v : 0.1;
     }
 
     function tag(nft) {

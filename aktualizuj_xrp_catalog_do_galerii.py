@@ -98,7 +98,7 @@ def build(
             elif status == "available" and nft_id in owned:
                 status = "minted"
 
-        price = float(row.get("price_xrp") or 0.25)
+        price = float(row.get("price_xrp") or 0.1)
         listing_status = {
             "available": "Mint Available",
             "minted": "Not listed",
@@ -175,7 +175,7 @@ def build(
             "marketplace": "gh_gallery_lazy",
             "model": "mint_on_demand_semi_exclusive",
             "supply_ref": 3000,
-            "price_xrp_default": 0.25,
+            "price_xrp_default": 0.1,
             "mint_live": True,
             "catalog_size": len(nfts),
             "status_counts": counts,

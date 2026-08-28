@@ -198,7 +198,7 @@ def build(
                     },
                     "promo_eyebrow": "JB AI Nature · XRPL",
                     "promo_lead": (
-                        "Lazy mint from the studio: 0.25 XRP · up to 3000 copies "
+                        "Lazy mint from the studio · up to 3000 copies "
                         "of each image. Pay with the destination tag, then accept "
                         "the 0 XRP offer in your wallet."
                     ),

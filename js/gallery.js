@@ -560,7 +560,7 @@ const Gallery = (() => {
         if (isXrpCafeNft(nft)) {
             const p = nft.current_price_xrp ?? nft.price_xrp;
             const priceTxt =
-                p != null && p !== '' ? `${p} XRP` : '0.25 XRP';
+                p != null && p !== '' ? `${p} XRP` : '0.1 XRP';
             if (canXrplMintCopy(nft)) {
                 const left = xrplSupply(nft) - xrplMintedCount(nft);
                 return {
@@ -971,7 +971,7 @@ const Gallery = (() => {
             const [mainRes, xrpRes, suiRes, auctionRes, objktAuctionRes, featuredNfts, shopNfts] =
                 await Promise.all([
                     fetch('gallery.json'),
-                    fetch('xrp_gallery.json'),
+                    fetch('xrp_gallery.json', { cache: 'no-cache' }),
                     fetch('sui_gallery.json'),
                     fetch('auctions_gallery.json'),
                     fetch('objkt_auctions_gallery.json'),

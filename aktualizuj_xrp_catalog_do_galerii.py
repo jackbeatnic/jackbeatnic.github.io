@@ -227,14 +227,15 @@ def build(
                     },
                     "empty_messages": {
                         "xrpl": (
-                            "XRPL photography and handmade works will appear here "
-                            "as they are released. Lazy mint · 100 copies · 0.5 XRP."
+                            "Nothing here yet — more XRPL photography and "
+                            "artworks will appear as they are released."
                         )
                     },
                     "promo_eyebrow": "Jack Beatnic · XRPL",
                     "promo_lead": (
-                        "Photo & mixed media on XRPL — lazy mint, 100 copies, "
-                        "0.5 XRP. Destination tag = catalog number."
+                        "Lazy mint from the studio. Photography and artworks — "
+                        "up to 500 copies of each image. Pay with the destination "
+                        "tag, then accept the 0 XRP offer."
                     ),
                     "promo_collections": [],
                 },

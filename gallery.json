@@ -25769,10 +25769,22 @@
             "label": "Other"
           }
         ],
+        "chain_subsections": [
+          {
+            "id": "tezos",
+            "label": "Tezos"
+          },
+          {
+            "id": "xrpl",
+            "label": "XRPL"
+          }
+        ],
         "default_subsection": "photo",
+        "default_chain": "tezos",
         "empty_messages": {
           "photo": "Photography works will appear here soon.",
-          "other": "Fade Diary — collage series. More mixed media coming soon."
+          "other": "Fade Diary — collage series. More mixed media coming soon.",
+          "xrpl": "XRPL photography and handmade works will appear here as they are released."
         },
         "promo_auction_eyebrow": "Live on OBJKT",
         "promo_auction_lead": "Active Tezos auctions from your wallet — bid directly on OBJKT.",

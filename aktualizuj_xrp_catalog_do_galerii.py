@@ -16,6 +16,8 @@ import argparse
 import csv
 import json
 import os
+import sys
+from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -23,6 +25,8 @@ ROOT = Path(__file__).resolve().parent
 JB = ROOT.parent
 MANIFEST = JB / "XRPL" / "catalog" / "MANIFEST.csv"
 OUT = ROOT / "xrp_gallery.json"
+sys.path.insert(0, str(JB / "XRPL"))
+from linie import COLLECTION_ID, COLLECTION_NAME, line_cfg  # noqa: E402
 
 CDN_META = (
     "https://cdn.jsdelivr.net/gh/jackbeatnic/jb-nft-assets@main/meta/xrpl/jbn/{id}.json"
@@ -31,8 +35,6 @@ CDN_IMG = (
     "https://cdn.jsdelivr.net/gh/jackbeatnic/jb-nft-assets@main/media/xrpl/jbn/{id}.jpg"
 )
 DEFAULT_ISSUER = "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn"
-COLLECTION_ID = "xrpl_jb_ai_nature"
-COLLECTION_NAME = "JB AI Nature"
 
 
 def load_manifest() -> list[dict]:
@@ -106,8 +108,14 @@ def build(
             "sold": "Sold",
         }.get(status, status)
 
-        name = (row.get("name") or f"JBN #{tid} X").strip()
+        try:
+            cfg = line_cfg(row.get("line") or "ai")
+        except ValueError:
+            cfg = line_cfg("ai")
+        supply = int(float(row.get("supply_ref") or cfg["supply"]))
+        name = (row.get("name") or f"{cfg['prefix']} #{tid} X").strip()
         img = CDN_IMG.format(id=tid)
+        medium = cfg["gh_medium"]
         # lokalny fallback ścieżka względna (www nie serwuje XRPL/ — CDN primary)
         item = {
             "token_id": tid,
@@ -124,17 +132,19 @@ def build(
             "collection_url": "https://jackbeatnic.github.io",
             "image_url": img,
             "meta_url": CDN_META.format(id=tid),
-            "supply": int(float(row.get("supply_ref") or 3000)),
-            "traits": [],
+            "supply": supply,
+            "traits": [
+                {"trait_type": "Line", "value": cfg["label"]},
+                {"trait_type": "Series", "value": cfg["prefix"]},
+            ],
             "ai": {
                 "description": (
-                    "JB Nature turns personal photos and memories into playful "
-                    "AI scenes of place and mood—shaped by free play of imagination.\n\n"
-                    "(c) Jack Beatnic 2025 | XRPL Edition | JB AI Nature\n"
+                    f"{cfg['body']}\n\n"
+                    f"(c) Jack Beatnic 2026 | XRPL Edition | {cfg['footer']}\n"
                     "https://jackbeatnic.github.io"
                 ),
-                "category": "jb_nature",
-                "vibe_tags": ["xrpl", "jbn", "semi-exclusive"],
+                "category": cfg["key"],
+                "vibe_tags": ["xrpl", cfg["prefix"].lower(), "semi-exclusive"],
             },
             "likes_count": 0,
             "status": status,
@@ -147,7 +157,9 @@ def build(
             "listing_currency": "XRP",
             "current_price_xrp": price if status in ("available", "listed") else None,
             "display_rank": tid,
-            "medium": "xrpl_ai",
+            "medium": medium,
+            "photo_kind": cfg["photo_kind"] or None,
+            "xrpl_line": cfg["key"],
             "source": "catalog_manifest",
             "marketplace": "gh_gallery",
             "price_xrp": price,
@@ -163,6 +175,12 @@ def build(
     counts = {}
     for n in nfts:
         counts[n["status"]] = counts.get(n["status"], 0) + 1
+    price_vals = [
+        round(float(n["price_xrp"]), 6)
+        for n in nfts
+        if n.get("price_xrp") is not None
+    ]
+    default_price = Counter(price_vals).most_common(1)[0][0] if price_vals else 0.1
 
     return {
         "collection_info": {
@@ -175,7 +193,7 @@ def build(
             "marketplace": "gh_gallery_lazy",
             "model": "mint_on_demand_semi_exclusive",
             "supply_ref": 3000,
-            "price_xrp_default": 0.1,
+            "price_xrp_default": default_price,
             "mint_live": True,
             "catalog_size": len(nfts),
             "status_counts": counts,
@@ -185,7 +203,7 @@ def build(
             "last_xrp_sync": now,
         },
         "site": {
-            "title": "JB AI Nature · XRPL",
+            "title": "Jack Beatnic · XRPL",
             "chain": "xrpl",
             "sections": {
                 "ai_art": {
@@ -196,14 +214,30 @@ def build(
                             "as they are released."
                         )
                     },
-                    "promo_eyebrow": "JB AI Nature · XRPL",
+                    "promo_eyebrow": "Jack Beatnic · XRPL",
                     "promo_lead": (
-                        "Lazy mint from the studio · up to 3000 copies "
-                        "of each image. Pay with the destination tag, then accept "
-                        "the 0 XRP offer in your wallet."
+                        "Lazy mint from the studio. AI Nature up to 3000 copies; "
+                        "pay the destination tag, then accept the 0 XRP offer."
                     ),
                     "promo_collections": [],
-                }
+                },
+                "photography": {
+                    "explore_titles": {
+                        "xrpl": "Explore Photography & Artworks · XRPL"
+                    },
+                    "empty_messages": {
+                        "xrpl": (
+                            "XRPL photography and handmade works will appear here "
+                            "as they are released. Lazy mint · 100 copies · 0.5 XRP."
+                        )
+                    },
+                    "promo_eyebrow": "Jack Beatnic · XRPL",
+                    "promo_lead": (
+                        "Photo & mixed media on XRPL — lazy mint, 100 copies, "
+                        "0.5 XRP. Destination tag = catalog number."
+                    ),
+                    "promo_collections": [],
+                },
             },
         },
         "nfts": nfts,

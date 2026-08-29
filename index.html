@@ -179,9 +179,15 @@
             </div>
         </div>
 
-        <div id="photo-subnav" class="section-subnav" hidden aria-label="Photography categories">
-            <button type="button" class="section-subnav__tab" data-photo-kind="photo">Photography</button>
-            <button type="button" class="section-subnav__tab" data-photo-kind="other">Other</button>
+        <div id="photo-subnav" class="section-subnav section-subnav--market" hidden aria-label="Photography categories">
+            <div class="section-subnav__row" role="group" aria-label="Kind">
+                <button type="button" class="section-subnav__tab" data-photo-kind="photo">Photography</button>
+                <button type="button" class="section-subnav__tab" data-photo-kind="other">Other</button>
+            </div>
+            <div class="section-subnav__row" role="group" aria-label="Network">
+                <button type="button" class="section-subnav__tab" data-photo-chain="tezos">Tezos</button>
+                <button type="button" class="section-subnav__tab" data-photo-chain="xrpl">XRPL</button>
+            </div>
         </div>
 
         <aside id="section-promo" class="section-promo" hidden aria-label="Community tokens">
@@ -410,12 +416,12 @@
     <script src="js/likes.js?v=20260821likes"></script>
     <script src="js/color-groups.js?v=20260713b"></script>
     <script src="js/filters.js?v=20260816edition"></script>
-    <script src="js/sections.js?v=20260821plain"></script>
+    <script src="js/sections.js?v=20260829photo-xrpl"></script>
     <script src="js/wallet.js?v=20260713e"></script>
     <script src="js/tip.js?v=20260712p"></script>
     <script src="js/share.js?v=20260821share"></script>
     <script src="js/shop.js?v=20260821tip"></script>
     <script src="js/xrpl-mint.js?v=20260828xrp01"></script>
-    <script src="js/gallery.js?v=20260828xrp01"></script>
+    <script src="js/gallery.js?v=20260829photo-xrpl"></script>
 </body>
 </html>

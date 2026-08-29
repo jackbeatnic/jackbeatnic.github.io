@@ -1036,6 +1036,8 @@ const Gallery = (() => {
             const xrpAi = xrpSections.ai_art || {};
             const suiAi = suiSections.ai_art || {};
             const mainAi = mainSections.ai_art || {};
+            const xrpPhoto = xrpSections.photography || {};
+            const mainPhoto = mainSections.photography || {};
             siteConfig = {
                 ...(data.site || {}),
                 ai_series_catalog: data.collection_info?.ai_series_catalog || {},
@@ -1091,6 +1093,23 @@ const Gallery = (() => {
                                 collection_url: suiAi.collection_url,
                                 collection_cta: suiAi.collection_cta,
                                 promo_collections: suiAi.promo_collections,
+                            },
+                        },
+                    },
+                    photography: {
+                        ...mainPhoto,
+                        empty_messages: {
+                            ...(mainPhoto.empty_messages || {}),
+                            ...(xrpPhoto.empty_messages || {}),
+                        },
+                        explore_titles: {
+                            ...(mainPhoto.explore_titles || {}),
+                            ...(xrpPhoto.explore_titles || {}),
+                        },
+                        kind_promo: {
+                            xrpl: {
+                                promo_eyebrow: xrpPhoto.promo_eyebrow,
+                                promo_lead: xrpPhoto.promo_lead,
                             },
                         },
                     },
@@ -1230,6 +1249,10 @@ const Gallery = (() => {
         return section === 'ai_art' && GallerySections.getAiKind() === 'evm';
     }
 
+    function xrpPhotoPromo() {
+        return siteConfig?.sections?.photography || {};
+    }
+
     function syncSectionPromo() {
         const el = document.getElementById('section-promo');
         if (!el) return;
@@ -1332,6 +1355,27 @@ const Gallery = (() => {
             return;
         }
 
+        if (
+            GallerySections.getCurrentSection() === 'photography' &&
+            typeof GallerySections.getPhotoChain === 'function' &&
+            GallerySections.getPhotoChain() === 'xrpl'
+        ) {
+            const meta = GallerySections.getSectionMeta();
+            const kp = meta.kind_promo?.xrpl || xrpPhotoPromo() || {};
+            el.hidden = false;
+            if (eyebrowEl) {
+                eyebrowEl.textContent =
+                    kp.promo_eyebrow || meta.promo_eyebrow || 'Jack Beatnic · XRPL';
+            }
+            if (leadEl) {
+                leadEl.textContent =
+                    kp.promo_lead ||
+                    'Photo and mixed media on the XRP Ledger — lazy mint, 100 copies, 0.5 XRP.';
+            }
+            if (listEl) listEl.innerHTML = '';
+            return;
+        }
+
         if (GallerySections.getCurrentSection() === 'photography') {
             const liveAuctions = allNfts.filter(
                 (nft) =>
@@ -1421,7 +1465,7 @@ const Gallery = (() => {
             el.hidden = false;
             if (eyebrowEl) {
                 eyebrowEl.textContent =
-                    kp.promo_eyebrow || 'JB AI Nature · XRPL';
+                    kp.promo_eyebrow || 'Jack Beatnic · XRPL';
             }
             if (leadEl) {
                 leadEl.textContent =

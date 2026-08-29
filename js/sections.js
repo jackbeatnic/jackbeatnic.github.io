@@ -8,6 +8,7 @@ const GallerySections = (() => {
     let currentAiSeries = 'nature_stories';
     let currentAiEdition = 'all';
     let currentPhotoKind = 'photo';
+    let currentPhotoChain = 'tezos';
     let collectionToSeries = {};
     let currentMarketKind = 'auctions';
     let currentMarketChain = 'base';
@@ -404,6 +405,7 @@ const GallerySections = (() => {
         currentAiSeries = defaultAiSeries();
         currentAiEdition = defaultAiEdition();
         currentPhotoKind = photoCfg?.default_subsection || 'photo';
+        currentPhotoChain = photoCfg?.default_chain || 'tezos';
         currentMarketKind = mCfg?.default_kind || 'auctions';
         currentMarketChain = mCfg?.default_chain || 'base';
         rebuildCollectionToSeries();
@@ -484,6 +486,15 @@ const GallerySections = (() => {
             });
         });
 
+        document.querySelectorAll('[data-photo-chain]').forEach((el) => {
+            el.addEventListener('click', (e) => {
+                e.preventDefault();
+                const chain = el.dataset.photoChain;
+                if (!chain) return;
+                setPhotoChain(chain);
+            });
+        });
+
         document.querySelectorAll('[data-market-kind]').forEach((el) => {
             el.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -510,6 +521,7 @@ const GallerySections = (() => {
         const section = params.get('section');
         const ai = params.get('ai');
         const photo = params.get('photo');
+        const pchain = params.get('pchain');
         const market = params.get('market');
         const chain = params.get('chain') || params.get('auction');
         const series = params.get('series');
@@ -548,6 +560,12 @@ const GallerySections = (() => {
         } else if (currentSection === 'photography') {
             currentPhotoKind = config().photography?.default_subsection || 'photo';
         }
+        if (currentSection === 'photography') {
+            currentPhotoChain =
+                pchain || config().photography?.default_chain || 'tezos';
+        } else {
+            currentPhotoChain = config().photography?.default_chain || 'tezos';
+        }
 
         if (currentSection === 'atelier') {
             currentMarketKind = market || atelierCfg()?.default_kind || 'auctions';
@@ -568,6 +586,7 @@ const GallerySections = (() => {
         params.delete('section');
         params.delete('ai');
         params.delete('photo');
+        params.delete('pchain');
         params.delete('market');
         params.delete('chain');
         params.delete('auction');
@@ -595,8 +614,12 @@ const GallerySections = (() => {
         }
         if (currentSection === 'photography') {
             const def = config().photography?.default_subsection || 'photo';
+            const defChain = config().photography?.default_chain || 'tezos';
             if (currentPhotoKind !== def) {
                 params.set('photo', currentPhotoKind);
+            }
+            if (currentPhotoChain !== defChain) {
+                params.set('pchain', currentPhotoChain);
             }
         }
         if (currentSection === 'atelier') {
@@ -626,6 +649,7 @@ const GallerySections = (() => {
         }
         if (id === 'photography') {
             currentPhotoKind = config().photography?.default_subsection || 'photo';
+            currentPhotoChain = config().photography?.default_chain || 'tezos';
         }
         if (id === 'atelier') {
             currentMarketKind = atelierCfg()?.default_kind || 'auctions';
@@ -700,6 +724,13 @@ const GallerySections = (() => {
 
     function setPhotoKind(kind) {
         currentPhotoKind = kind;
+        syncNavUi();
+        writeUrl();
+        emitSectionChange('full');
+    }
+
+    function setPhotoChain(chain) {
+        currentPhotoChain = chain || 'tezos';
         syncNavUi();
         writeUrl();
         emitSectionChange('full');
@@ -795,6 +826,13 @@ const GallerySections = (() => {
         document.querySelectorAll('[data-photo-kind]').forEach((el) => {
             const active =
                 currentSection === 'photography' && el.dataset.photoKind === currentPhotoKind;
+            el.classList.toggle('is-active', active);
+            el.setAttribute('aria-pressed', String(active));
+        });
+        document.querySelectorAll('[data-photo-chain]').forEach((el) => {
+            const active =
+                currentSection === 'photography' &&
+                el.dataset.photoChain === currentPhotoChain;
             el.classList.toggle('is-active', active);
             el.setAttribute('aria-pressed', String(active));
         });
@@ -935,6 +973,14 @@ const GallerySections = (() => {
                 return true;
             }
             if (currentSection === 'photography') {
+                const isXrpl = nft.chain === 'xrpl';
+                if (currentPhotoChain === 'xrpl') {
+                    if (!isXrpl) return false;
+                    if (medium !== 'photography') return false;
+                    const kind = nft.photo_kind || 'photo';
+                    return kind === currentPhotoKind;
+                }
+                if (isXrpl) return false;
                 if (medium === 'objkt_auction') {
                     const kind = nft.photo_kind || 'photo';
                     return kind === currentPhotoKind;
@@ -985,6 +1031,10 @@ const GallerySections = (() => {
 
     function getPhotoKind() {
         return currentPhotoKind;
+    }
+
+    function getPhotoChain() {
+        return currentPhotoChain;
     }
 
     function getMarketKind() {
@@ -1047,6 +1097,14 @@ const GallerySections = (() => {
             const explore = titles[currentMarketKind] || base.explore_title;
             return { ...base, explore_title: explore };
         }
+        if (currentSection === 'photography' && currentPhotoChain === 'xrpl') {
+            const titles = base.explore_titles || {};
+            return {
+                ...base,
+                explore_title:
+                    titles.xrpl || 'Explore Photography & Artworks · XRPL',
+            };
+        }
         return base;
     }
 
@@ -1097,6 +1155,12 @@ const GallerySections = (() => {
         }
         if (currentSection === 'photography') {
             const msgs = config().photography?.empty_messages || {};
+            if (currentPhotoChain === 'xrpl') {
+                return (
+                    msgs.xrpl ||
+                    'XRPL photography and handmade works will appear here as they are released.'
+                );
+            }
             return msgs[currentPhotoKind] || 'No works in this section yet.';
         }
         if (currentSection === 'atelier') {
@@ -1141,9 +1205,17 @@ const GallerySections = (() => {
             currentAiSeries = series;
             currentAiEdition = edition;
         } else if (medium === 'photography' || medium === 'objkt_auction') {
-            if (currentSection === 'photography' && kind === currentPhotoKind) return;
+            const chain = nft.chain === 'xrpl' ? 'xrpl' : 'tezos';
+            if (
+                currentSection === 'photography' &&
+                kind === currentPhotoKind &&
+                chain === currentPhotoChain
+            ) {
+                return;
+            }
             currentSection = 'photography';
             currentPhotoKind = kind;
+            currentPhotoChain = chain;
         } else if (medium === 'manifold_auction') {
             const chainKey = nft.chain_key || nft.chain || 'base';
             if (
@@ -1188,6 +1260,7 @@ const GallerySections = (() => {
         noteLoadedNfts,
         sortBySeriesOrder,
         getPhotoKind,
+        getPhotoChain,
         setAiSeries,
         setAiEdition,
         getMarketKind,

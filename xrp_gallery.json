@@ -19,7 +19,7 @@
     "cdn_meta": "https://cdn.jsdelivr.net/gh/jackbeatnic/jb-nft-assets@main/meta/xrpl/jbn/{id}.json",
     "cdn_media": "https://cdn.jsdelivr.net/gh/jackbeatnic/jb-nft-assets@main/media/xrpl/jbn/{id}.jpg",
     "manifest": "XRPL/catalog/MANIFEST.csv",
-    "last_xrp_sync": "2026-08-29T22:07:43Z"
+    "last_xrp_sync": "2026-08-29T22:19:26Z"
   },
   "site": {
     "title": "Jack Beatnic · XRPL",
@@ -41,10 +41,10 @@
           "xrpl": "Explore Photography & Artworks · XRPL"
         },
         "empty_messages": {
-          "xrpl": "XRPL photography and handmade works will appear here as they are released. Lazy mint · 100 copies · 0.5 XRP."
+          "xrpl": "Nothing here yet — more XRPL photography and artworks will appear as they are released."
         },
         "promo_eyebrow": "Jack Beatnic · XRPL",
-        "promo_lead": "Photo & mixed media on XRPL — lazy mint, 100 copies, 0.5 XRP. Destination tag = catalog number.",
+        "promo_lead": "Lazy mint from the studio. Photography and artworks — up to 500 copies of each image. Pay with the destination tag, then accept the 0 XRP offer.",
         "promo_collections": []
       }
     }

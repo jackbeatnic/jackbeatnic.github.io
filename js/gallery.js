@@ -1370,7 +1370,7 @@ const Gallery = (() => {
             if (leadEl) {
                 leadEl.textContent =
                     kp.promo_lead ||
-                    'Photo and mixed media on the XRP Ledger — lazy mint, 100 copies, 0.5 XRP.';
+                    'Lazy mint from the studio. Photography and artworks — up to 500 copies of each image. Pay with the destination tag, then accept the 0 XRP offer.';
             }
             if (listEl) listEl.innerHTML = '';
             return;

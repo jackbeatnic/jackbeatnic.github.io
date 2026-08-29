@@ -72,6 +72,9 @@ const GalleryShare = (() => {
             params.set('section', 'photography');
             const kind = nft.photo_kind || 'photo';
             if (kind !== 'photo') params.set('photo', kind);
+            if (String(nft.chain || '').toLowerCase() === 'xrpl') {
+                params.set('pchain', 'xrpl');
+            }
         } else if (medium === 'xrpl_ai') {
             params.set('section', 'ai_art');
             params.set('ai', 'xrpl');

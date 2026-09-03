@@ -1809,33 +1809,47 @@ body.tip-open {
     left: 50%;
     bottom: 0.75rem;
     z-index: 3;
-    transform: translateX(-50%) translateY(0);
-    /* Always visible: mobile has no hover. Dark mode remaps --black to
-       off-white, so this pill keeps its own ink on a light fill. */
+    transform: translateX(-50%) translateY(0.35rem);
     appearance: none;
     -webkit-appearance: none;
     color-scheme: only light;
-    opacity: 1;
-    padding: 0.42rem 0.95rem;
+    opacity: 0;
+    pointer-events: none;
+    padding: 0.38rem 0.85rem;
     font-family: inherit;
-    font-size: 0.68rem;
+    font-size: 0.56rem;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: #0a0a0a;
-    background: rgba(255, 255, 255, 0.94);
-    border: 1px solid rgba(10, 10, 10, 0.18);
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(10, 10, 10, 0.16);
     border-radius: 999px;
     cursor: pointer;
     transition:
-        box-shadow 0.3s var(--ease-out),
-        background 0.3s var(--ease-out);
+        opacity 0.3s var(--ease-out),
+        transform 0.3s var(--ease-out),
+        box-shadow 0.3s var(--ease-out);
 }
 
-.nft-card:hover .nft-card__view,
-.nft-card__view:focus-visible {
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
-    background: #ffffff;
+@media (hover: hover) and (pointer: fine) {
+    .nft-card:hover .nft-card__view,
+    .nft-card__view:focus-visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.16);
+        background: #ffffff;
+    }
+}
+
+@media (hover: none) {
+    .nft-card__view {
+        display: none;
+    }
+    .nft-image-wrap {
+        cursor: zoom-in;
+    }
 }
 
 .nft-image-shield {
@@ -2272,7 +2286,7 @@ body.lightbox-open {
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.08);
-    color: var(--white);
+    color: #f4f4f4;
     font-size: 1.35rem;
     line-height: 1;
     cursor: pointer;
@@ -2296,7 +2310,7 @@ body.lightbox-open {
 .lightbox__image {
     display: block;
     max-width: min(92vw, 960px);
-    max-height: min(82vh, 900px);
+    max-height: min(74vh, 900px);
     width: auto;
     height: auto;
     object-fit: contain;
@@ -2309,11 +2323,30 @@ body.lightbox-open {
 
 .lightbox__caption {
     margin-top: 0.75rem;
+    padding: 0 0.5rem 0.15rem;
     text-align: center;
     font-family: var(--font-serif);
     font-size: 0.95rem;
-    color: var(--white);
+    /* Hard light ink: dark mode remaps --white to near-black. */
+    color: #f4f4f4;
     font-weight: 500;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.65);
+    max-width: min(92vw, 960px);
+}
+
+@media (max-width: 640px) {
+    .lightbox {
+        padding: 3.25rem 0.75rem 1.25rem;
+        align-items: flex-start;
+    }
+    .lightbox__image {
+        max-height: min(68vh, 900px);
+    }
+    .lightbox__caption {
+        font-size: 1.05rem;
+        margin-top: 0.85rem;
+        line-height: 1.35;
+    }
 }
 
 /* ── Footer ── */
@@ -2680,12 +2713,16 @@ body.lightbox-open {
         border-color: var(--gray-200);
     }
 
-    /* View pill stays black-on-white; --black is off-white in dark mode. */
     .nft-card__view {
         color: #0a0a0a;
-        background: rgba(255, 255, 255, 0.94);
-        border-color: rgba(10, 10, 10, 0.18);
+        background: rgba(255, 255, 255, 0.92);
+        border-color: rgba(10, 10, 10, 0.16);
         color-scheme: only light;
+    }
+
+    .lightbox__caption,
+    .lightbox__close {
+        color: #f4f4f4;
     }
 
     .gallery-empty,

@@ -11,6 +11,7 @@ TO NIE JEST Aneks 1 „Sposób A / Sposób B”.
 
   Ten plik: JAK kupujący płaci w sklepie GH za pulę B (GJB), na TYM SAMYM
   kontrakcie OS (ERC-1155). Bez nowego kontraktu kolekcji.
+  Skrzynka wpłat (MM): www/SHOP_EVM_SKRZYNKA.txt
 
 
 CO ZOSTAJE WSPÓLNE (A i B)
@@ -50,16 +51,21 @@ WARIANTY CHECKOUTU
 WARIANTY B — JAK JEST TERAZ
 ---------------------------
   Front: Connect → Buy → eth_sendTransaction
-    to    = pay_address studia (0xf0b8…)
+    to    = GjbShopPay 0x2f187f28cCf717D2f486f1ABB513A91383bdc5F9
+            (skrzynka, NIE nowy kontrakt kolekcji; AVAX idzie dalej do 0xf0b8…)
     value = okrągły pay_amount (np. 1.797 AVAX), NIE 1.797001
-    data  = 0x474a4231 || uint256 tokenId     (ASCII "GJB1")
+    data  = buy(uint256) 0xd96a094a || tokenId
+            MetaMask odrzuca native transfer+data na EOA
+            („External transactions to internal accounts cannot include data”).
+            WC na telefonie to przepuszczał; desktop MM — tylko call do kontraktu.
 
   Kasa (vps/worker/evm_watch.py, systemd kasa-evm):
-    1. tx.to == studio
-    2. parse data → token_id
+    1. tx.to == skrzynka (albo stary GJB1 na studio)
+    2. parse buy(uint256) → token_id
     3. exact wei AND token_id w shop_pay_wei.json v2
     4. EVM_LIVE=1 → safeTransferFrom(studio, payer, id, 1)  z klucza na VPS
-    5. brak data / inna kwota → status=tip, bez NFT
+    5. brak buy() / inna kwota → status=tip, bez NFT
+    Karta skrzynki: www/SHOP_EVM_SKRZYNKA.txt
 
   Cennik: listing/sale_index.csv → build_sale_index.py
           → www/data/sale_index.json

@@ -123,11 +123,11 @@ def build(
             "nft_serial": None,
             "name": name,
             "xrp_cafe_url": (
-                f"https://xrp.cafe/nft/{nft_id}" if nft_id else None
+                f"https://bidds.com/nft/{nft_id}" if nft_id else None
             ),
             # NIE wstawiaj meta .json jako marketplace_url (otwierało JSON w przeglądarce)
             "marketplace_url": (
-                f"https://xrp.cafe/nft/{nft_id}" if nft_id else None
+                f"https://bidds.com/nft/{nft_id}" if nft_id else None
             ),
             "collection_url": "https://jackbeatnic.github.io",
             "image_url": img,

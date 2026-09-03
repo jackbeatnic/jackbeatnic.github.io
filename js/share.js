@@ -163,11 +163,11 @@ const GalleryShare = (() => {
         const cafeUrl =
             nft?.xrp_cafe_url ||
             nft?.marketplace_url ||
-            (nft?.xrpl_nft_id ? `https://xrp.cafe/nft/${nft.xrpl_nft_id}` : '');
+            (nft?.xrpl_nft_id ? `https://bidds.com/nft/${nft.xrpl_nft_id}` : '');
         if (nft?.medium === 'xrpl_ai' && cafeUrl) {
             items.push({
                 id: 'xrp-cafe',
-                label: 'XRP.Cafe',
+                label: 'Bidds',
                 href: cafeUrl,
             });
         }

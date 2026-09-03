@@ -65,6 +65,11 @@ WARIANTY B — JAK JEST TERAZ
           → www/data/sale_index.json
           → www/data/shop_pay_wei.json (version 2)
 
+  Zmiana ceny = edycja CSV (price + pay_amount, okrągłe) → build → push Pages
+  + rsync shop_pay_wei.json na VPS. Kasa czyta JSON co pętlę, bez restartu.
+  ends_at chowa kartę po dacie. Cron „po 30 dniach wróć”: drugi CSV + ten sam
+  build/push (deploy key na kasie). Nie Seaport, nie mikro-AVAX.
+
   Ścięcie starych mikro-kwot (gdyby znów weszły):
     python3 listing/build_ns_avax_shop.py --round-csv
 

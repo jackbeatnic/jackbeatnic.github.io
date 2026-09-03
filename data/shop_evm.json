@@ -1,0 +1,8 @@
+{
+  "chain": "avalanche",
+  "chainId": 43114,
+  "studio": "0xf0b840349B3f285fc05c89Eac594DDD254183Fb9",
+  "pay_contract": "0x2f187f28cCf717D2f486f1ABB513A91383bdc5F9",
+  "buy_selector": "0xd96a094a",
+  "note": "MetaMask-safe inbox. buy(uint256) payable; AVAX forwarded to studio. Not an NFT contract."
+}

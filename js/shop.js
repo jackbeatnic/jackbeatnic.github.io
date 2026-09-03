@@ -1,6 +1,7 @@
 /**
- * Studio shop checkout — payment instructions only.
+ * Studio shop checkout — round AVAX + TOKEN ID in tx.data (wariant B).
  * No private key. No Seaport. Demo rows must not receive funds.
+ * XRPL and Atelier are different products.
  */
 const ShopCheckout = (() => {
     let modal;
@@ -16,7 +17,7 @@ const ShopCheckout = (() => {
     }
 
     function exactAmount(item) {
-        // Keep the catalog string. A JS number can round 1.797001 → 1.797.
+        // Keep the catalog string. Do not coerce through Number().
         const raw = item?.pay_amount ?? item?.shop_price ?? item?.price;
         if (raw == null || raw === '') return '';
         return String(raw).trim();
@@ -33,10 +34,13 @@ const ShopCheckout = (() => {
         return exactAmount(item);
     }
 
-    function truncatedAmount(exact) {
-        const m = String(exact).match(/^(\d+)\.(\d{4,})$/);
-        if (!m) return '';
-        return `${m[1]}.${m[2].slice(0, 3)}`;
+    /** ASCII GJB1 || uint256 tokenId — kasa reads this, not the amount. */
+    const BUY_MAGIC = '474a4231';
+
+    function encodeBuyData(tokenId) {
+        const n = BigInt(String(tokenId));
+        if (n < 1n) throw new Error('Bad token id');
+        return `0x${BUY_MAGIC}${n.toString(16).padStart(64, '0')}`;
     }
 
     const CHAINS = {
@@ -205,14 +209,18 @@ const ShopCheckout = (() => {
         if (!/^0x[0-9a-fA-F]{40}$/.test(to)) {
             throw new Error('Missing studio pay address.');
         }
+        if (item.token_id == null || item.token_id === '') {
+            throw new Error('Missing token id.');
+        }
         const value = amountToWeiHex(exactAmount(item));
+        const data = encodeBuyData(item.token_id);
         const { provider, from } = walletConnect
             ? await connectWalletConnect(chain)
             : await connectInjected();
         await ensureChain(provider, chain);
         const raw = await provider.request({
             method: 'eth_sendTransaction',
-            params: [{ from, to, value }],
+            params: [{ from, to, value, data }],
         });
         const hash =
             typeof raw === 'string' && raw && !raw.startsWith('0x') ? `0x${raw}` : raw;
@@ -239,7 +247,7 @@ const ShopCheckout = (() => {
                 statusEl.replaceChildren();
                 statusEl.appendChild(
                     document.createTextNode(
-                        `Sent from ${shortAddress(from)}. NFT goes there after confirmation. `,
+                        `Sent from ${shortAddress(from)}. The NFT is sent in a second transaction to this wallet. `,
                     ),
                 );
                 const a = document.createElement('a');
@@ -250,7 +258,7 @@ const ShopCheckout = (() => {
                 statusEl.appendChild(a);
             } else {
                 setPayStatus(
-                    `Sent from ${shortAddress(from)}. NFT goes there after confirmation.`,
+                    `Sent from ${shortAddress(from)}. The NFT is sent in a second transaction to this wallet.`,
                     'ok',
                 );
             }
@@ -327,7 +335,8 @@ const ShopCheckout = (() => {
                 amountHint.textContent = '';
             } else {
                 amountHint.hidden = false;
-                amountHint.textContent = 'Send this exact amount. Do not round or edit it.';
+                amountHint.textContent =
+                    'Pay with wallet so the token number goes with the payment. Do not change the amount.';
             }
         }
         if (addrEl) addrEl.textContent = addr || '—';
@@ -336,7 +345,7 @@ const ShopCheckout = (() => {
             fulfillEl.textContent =
                 fulfill === 'mint_on_demand'
                     ? 'After payment confirms, the NFT is created and sent to the wallet you paid from.'
-                    : 'After payment confirms, one edition is sent to the wallet you paid from.';
+                    : 'After payment confirms, one edition is sent in a second transaction to the wallet you paid from.';
         }
 
         if (banner) {
@@ -348,14 +357,14 @@ const ShopCheckout = (() => {
             } else {
                 banner.hidden = false;
                 banner.classList.add('shop-modal__banner--ok');
-                banner.textContent = 'Do not change the amount.';
+                banner.textContent = 'Pay with wallet. Do not change the amount.';
             }
         }
 
         if (lead) {
             lead.textContent = demo
                 ? 'This is a preview. Do not send funds.'
-                : '1. Pay with wallet.  2. Confirm.  3. Wait — NFT to that wallet.';
+                : '1. Pay with wallet.  2. Confirm.  3. Wait — NFT in a second transaction to that wallet.';
         }
 
         const payBtn = modal.querySelector('#shop-pay-wallet');
@@ -442,5 +451,5 @@ const ShopCheckout = (() => {
         });
     }
 
-    return { init, open, hide, amountToWeiHex };
+    return { init, open, hide, amountToWeiHex, encodeBuyData };
 })();

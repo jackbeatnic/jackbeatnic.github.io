@@ -1,0 +1,93 @@
+================================================================================
+  STUDIO SHOP EVM — skrzynka wpłat (GjbShopPay)
+  Jack Beatnic · zapis 2026-09-03 · żywy na Avalanche C-Chain
+  Checkout: wariant B (wpłata + kasa). Karta A/B: SHOP_CHECKOUT_A_B.txt
+================================================================================
+
+CO TO JEST
+----------
+  Mały kontrakt-skrzynka na Avalanche. Przyjmuje AVAX z numerem pracy
+  i od razu przesyła całą kwotę na portfel studia.
+
+  To NIE jest:
+    • nowy kontrakt Nature Stories / Flower Stories
+    • nowe TOKEN ID, drugi floor, SeaDrop, Seaport
+    • kontrakt, który trzyma NFT (NFT wychodzi z portfela studia, druga tx)
+
+  Po co: MetaMask na komputerze odrzuca zwykły przelew AVAX z dopiskiem
+  (token id w data) na zwykły adres (EOA):
+    „External transactions to internal accounts cannot include data”
+  WalletConnect na telefonie to przepuszczał. Wtyczka MM — nie.
+  Skrzynka = wywołanie funkcji buy(tokenId) — MM to akceptuje.
+
+
+ADRESY (Avalanche, chainId 43114)
+---------------------------------
+  Skrzynka   0x2f187f28cCf717D2f486f1ABB513A91383bdc5F9
+             https://snowtrace.io/address/0x2f187f28cCf717D2f486f1ABB513A91383bdc5F9
+
+  Studio     0xf0b840349B3f285fc05c89Eac594DDD254183Fb9
+             (jackbeatnicai — tu ląduje AVAX i stąd kasa wysyła NFT)
+
+  Deploy tx  0xcc418cdf967c087ccc193bafb0b871c9922a8d7f9c62505f3bb7806c8336144e
+             (VPS / Hostodo TPA, ten sam klucz co mint)
+
+  Funkcja    buy(uint256 tokenId) payable
+  Selector   0xd96a094a
+  JSON       www/data/shop_evm.json
+
+
+PRZEPŁYW (co widzi kto)
+-----------------------
+  1. Kupujący na jackbeatnic.github.io/?section=shop klika pracę
+     (numer tokenu bierze się z karty — nic nie wpisuje, inaczej niż XRPL tag).
+
+  2. Pay with wallet (Core / MM) albo WalletConnect.
+     Portfel: to = skrzynka, value = okrągła cena, data = buy(TOKEN_ID).
+     MM pokazuje Contract interaction, nie „Send + hex”.
+
+  3. Na Snowtrace przy skrzynce: buy(...) + wewnętrzny transfer AVAX → studio.
+     Przy studiu: wpływ AVAX (od skrzynki).
+
+  4. kasa-evm (VPS) widzi tx na skrzynkę, czyta tokenId + dokładną kwotę
+     z www/data/shop_pay_wei.json v2. Zgadza się → safeTransferFrom
+     1 szt. ERC-1155 ze studia do portfela, z którego zapłacono.
+     Ta druga tx też z VPS (IP USA).
+
+  5. Inna kwota albo przelew ręczny / QR bez buy() = napiwek, bez NFT.
+
+
+CZEGO NIE MIESZAĆ
+-----------------
+  Kontrakt OS (NS)     0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d  ← NFT
+  Skrzynka sklepu      0x2f187f28…c5F9                               ← tylko AVAX
+  Aneks 1 Sposób B     = własny cennik JSON (fundament)
+  Checkout wariant B   = wpłata + kasa (to tutaj)
+  XRPL                 = tag, bez tej skrzynki
+  Atelier              = później, inny kontrakt
+
+
+PLIKI
+-----
+  vps/worker/GjbShopPay.sol          źródło
+  vps/worker/GjbShopPay.bin / .abi   skompilowane
+  vps/worker/deploy_shop_pay.py      deploy z .env na VPS (nie commituj klucza)
+  vps/worker/shop_buy.py             encode/parse buy() + stary GJB1
+  vps/worker/evm_watch.py            nasłuch skrzynki + studia
+  www/data/shop_evm.json             adres dla frontu i kasy
+  www/js/shop.js                     to = pay_contract, data = buy(uint256)
+  www/SHOP_CHECKOUT_A_B.txt          warianty A/B
+
+  Redeploy tylko gdy zmieniasz logikę skrzynki. Adres w shop_evm.json
+  musi być ten sam na Pages i na VPS, potem restart kasa-evm.
+
+
+NA SNOWTRACE — JAK CZYTAĆ
+-------------------------
+  Kupno:  Method buy  →  Internal Tx AVAX do studia  →  później Transfer NFT
+          (trzy ślady, dwa hash-e: zapłata i wydanie).
+
+
+================================================================================
+  Koniec. Skrzynka żyje; kolekcja NS bez zmian.
+================================================================================

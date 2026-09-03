@@ -34,13 +34,29 @@ const ShopCheckout = (() => {
         return exactAmount(item);
     }
 
-    /** ASCII GJB1 || uint256 tokenId — kasa reads this, not the amount. */
-    const BUY_MAGIC = '474a4231';
+    /** buy(uint256) — MetaMask forbids native transfers-with-data to an EOA. */
+    const BUY_SELECTOR = 'd96a094a';
+    let shopEvm = { pay_contract: '', studio: '' };
 
     function encodeBuyData(tokenId) {
         const n = BigInt(String(tokenId));
         if (n < 1n) throw new Error('Bad token id');
-        return `0x${BUY_MAGIC}${n.toString(16).padStart(64, '0')}`;
+        return `0x${BUY_SELECTOR}${n.toString(16).padStart(64, '0')}`;
+    }
+
+    async function loadShopEvm() {
+        try {
+            const res = await fetch('data/shop_evm.json', { cache: 'no-cache' });
+            if (!res.ok) return shopEvm;
+            const doc = await res.json();
+            shopEvm = {
+                pay_contract: String(doc.pay_contract || '').trim(),
+                studio: String(doc.studio || '').trim(),
+            };
+        } catch {
+            /* keep empty */
+        }
+        return shopEvm;
     }
 
     const CHAINS = {
@@ -205,9 +221,11 @@ const ShopCheckout = (() => {
         if (!chain) {
             throw new Error(`Wallet pay is not wired for ${item.chain || 'this chain'} yet.`);
         }
-        const to = String(item.pay_address || '').trim();
+        const to = String(shopEvm.pay_contract || '').trim();
         if (!/^0x[0-9a-fA-F]{40}$/.test(to)) {
-            throw new Error('Missing studio pay address.');
+            throw new Error(
+                'Shop pay contract is not configured yet. Try WalletConnect, or wait a minute.',
+            );
         }
         if (item.token_id == null || item.token_id === '') {
             throw new Error('Missing token id.');
@@ -263,10 +281,16 @@ const ShopCheckout = (() => {
                 );
             }
         } catch (err) {
-            if (err?.code === 4001 || /rejected/i.test(String(err?.message || ''))) {
+            const msg = String(err?.message || '');
+            if (err?.code === 4001 || /rejected/i.test(msg)) {
                 setPayStatus('Cancelled in the wallet.', 'err');
+            } else if (/cannot include data/i.test(msg)) {
+                setPayStatus(
+                    'MetaMask blocked a plain send with data. Confirm again — the shop now uses a contract call.',
+                    'err',
+                );
             } else {
-                setPayStatus(err?.message || 'Wallet payment failed.', 'err');
+                setPayStatus(msg || 'Wallet payment failed.', 'err');
             }
         } finally {
             setPayBusy(false);
@@ -442,6 +466,7 @@ const ShopCheckout = (() => {
             e.preventDefault();
             handlePay(true);
         });
+        loadShopEvm();
         loadWalletConnectProjectId().then((id) => {
             const wcBtn = modal.querySelector('#shop-pay-wc');
             if (wcBtn && !id) {

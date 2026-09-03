@@ -76,7 +76,7 @@ const Gallery = (() => {
         objkt: 'OBJKT',
         opensea: 'OpenSea',
         salvor: 'Salvor',
-        xrp_cafe: 'XRP.Cafe',
+        xrp_cafe: 'Bidds',
         manifold: 'Manifold',
         tradeport: 'TradePort',
     };
@@ -279,7 +279,7 @@ const Gallery = (() => {
         if (isObjktAuction(nft)) return 'Bid on OBJKT';
         if (isManifoldAuction(nft)) return 'Bid on Manifold';
         if (canXrplMintCopy(nft)) return 'Mint';
-        if (isXrplMinted(nft)) return 'View on XRP.Cafe';
+        if (isXrplMinted(nft)) return 'View on Bidds';
         if (isLaunchpadMint(nft)) return 'Mint on TradePort';
         if (nft.source === 'manifold' && nft.manifold_url) return 'View on Manifold';
         return `View on ${marketplaceName(nft)}`;
@@ -311,7 +311,8 @@ const Gallery = (() => {
             if (nft.xrpl_nft_id) {
                 return (
                     nft.xrp_cafe_url ||
-                    `https://xrp.cafe/nft/${nft.xrpl_nft_id}`
+                    nft.marketplace_url ||
+                    `https://bidds.com/nft/${nft.xrpl_nft_id}`
                 );
             }
             // nie używaj marketplace_url jeśli to link do .json

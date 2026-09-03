@@ -1847,7 +1847,6 @@ const Gallery = (() => {
     function attachNftMedia(card, nft) {
         const img = card.querySelector('.nft-image-wrap img');
         const presentThumb = ImageProxy.presentUrl(nft, 'thumb');
-        const presentView = ImageProxy.presentUrl(nft, 'view');
         // Thumbs: our cache only. Do not queue behind weserv — that hung the grid
         // while View (direct present URL) stayed instant.
         if (img) {
@@ -1868,16 +1867,22 @@ const Gallery = (() => {
                 );
             }
         }
-        const views = presentView
-            ? [presentView]
-            : ImageProxy.viewCandidates(nft.image_url, IMAGE_PROXY, nft);
-        card.querySelector('.nft-card__view')?.addEventListener('click', () => {
+        const views = ImageProxy.viewCandidates(nft.image_url, IMAGE_PROXY, nft);
+        if (presentThumb && !views.includes(presentThumb)) views.push(presentThumb);
+        const caption = [nft.name, tokenLabel(nft)].filter(Boolean).join(' · ');
+        const openView = (e) => {
+            e?.stopPropagation?.();
             Lightbox.open({
                 src: views[0],
                 fallbacks: views.slice(1),
                 alt: nft.name,
-                label: nft.name,
+                label: caption,
             });
+        };
+        card.querySelector('.nft-card__view')?.addEventListener('click', openView);
+        card.querySelector('.nft-image-wrap')?.addEventListener('click', (e) => {
+            if (e.target.closest('.nft-card__view')) return;
+            openView(e);
         });
     }
 

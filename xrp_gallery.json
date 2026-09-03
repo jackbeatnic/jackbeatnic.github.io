@@ -19,7 +19,7 @@
     "cdn_meta": "https://cdn.jsdelivr.net/gh/jackbeatnic/jb-nft-assets@main/meta/xrpl/jbn/{id}.json",
     "cdn_media": "https://cdn.jsdelivr.net/gh/jackbeatnic/jb-nft-assets@main/media/xrpl/jbn/{id}.jpg",
     "manifest": "XRPL/catalog/MANIFEST.csv",
-    "last_xrp_sync": "2026-09-03T19:53:00Z"
+    "last_xrp_sync": "2026-09-03T19:53:49Z"
   },
   "site": {
     "title": "Jack Beatnic · XRPL",

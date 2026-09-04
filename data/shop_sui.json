@@ -1,5 +1,5 @@
 {
-  "mint_live": false,
+  "mint_live": true,
   "network": "mainnet",
   "package": "0x8ed428b569634082422d9d7887b1180cb6f4b2871bb10537a38ecc92b80d8d19",
   "vault": "0xc92f71b39b978c6509b33b662f2aea0eae257c6ead118e6e7ee3f40cff75174f",
@@ -7,5 +7,5 @@
   "studio": "0x98016fd60a85c24cb7d451a7b1a86d181ef9e1d6e405237b724d4741d56c652b",
   "buy_target": "0x8ed428b569634082422d9d7887b1180cb6f4b2871bb10537a38ecc92b80d8d19::ns::buy",
   "catalog": "SUI/catalog/MANIFEST.csv",
-  "note": "SUI_LIVE=0 na kasie. mint_live=true dopiero po teście 1 sztuki."
+  "note": "SUI_LIVE=1. Test NS #51 copy 3001 minted. Catalog prices restored."
 }

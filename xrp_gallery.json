@@ -11,15 +11,15 @@
     "supply_ref": 3000,
     "price_xrp_default": 0.89,
     "mint_live": true,
-    "catalog_size": 1298,
+    "catalog_size": 1299,
     "status_counts": {
       "listed": 1,
-      "available": 1297
+      "available": 1298
     },
     "cdn_meta": "https://cdn.jsdelivr.net/gh/jackbeatnic/jb-nft-assets@main/meta/xrpl/jbn/{id}.json",
     "cdn_media": "https://cdn.jsdelivr.net/gh/jackbeatnic/jb-nft-assets@main/media/xrpl/jbn/{id}.jpg",
     "manifest": "XRPL/catalog/MANIFEST.csv",
-    "last_xrp_sync": "2026-09-03T21:21:58Z"
+    "last_xrp_sync": "2026-09-04T00:47:27Z"
   },
   "site": {
     "title": "Jack Beatnic · XRPL",
@@ -64948,6 +64948,56 @@
       "marketplace": "gh_gallery",
       "price_xrp": 0.89,
       "drops": "890000",
+      "minted_count": 0
+    },
+    {
+      "token_id": 1299,
+      "xrpl_nft_id": null,
+      "nft_serial": null,
+      "name": "JBH #1 X",
+      "xrp_cafe_url": null,
+      "marketplace_url": null,
+      "collection_url": "https://jackbeatnic.github.io",
+      "image_url": "https://cdn.jsdelivr.net/gh/jackbeatnic/jb-nft-assets@main/media/xrpl/jbn/1299.jpg",
+      "meta_url": "https://cdn.jsdelivr.net/gh/jackbeatnic/jb-nft-assets@main/meta/xrpl/jbn/1299.json",
+      "supply": 1,
+      "traits": [
+        {
+          "trait_type": "Line",
+          "value": "AI Handmade"
+        },
+        {
+          "trait_type": "Series",
+          "value": "JBH"
+        }
+      ],
+      "ai": {
+        "description": "JB Nature blends handmade work with AI — drawings and photos finished in the machine, or AI prints brought back by paint and scan.\n\n(c) Jack Beatnic 2026 | XRPL Edition | JB AI Nature\nhttps://jackbeatnic.github.io",
+        "category": "handmade",
+        "vibe_tags": [
+          "xrpl",
+          "jbh",
+          "semi-exclusive"
+        ]
+      },
+      "likes_count": 0,
+      "status": "available",
+      "chain": "xrpl",
+      "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
+      "nft_taxon": 0,
+      "collection_id": "xrpl_jb_ai_nature",
+      "collection_name": "Jack Beatnic",
+      "listing_status": "Mint Available",
+      "listing_currency": "XRP",
+      "current_price_xrp": 50.0,
+      "display_rank": 1299,
+      "medium": "xrpl_ai",
+      "photo_kind": null,
+      "xrpl_line": "handmade",
+      "source": "catalog_manifest",
+      "marketplace": "gh_gallery",
+      "price_xrp": 50.0,
+      "drops": "50000000",
       "minted_count": 0
     }
   ]

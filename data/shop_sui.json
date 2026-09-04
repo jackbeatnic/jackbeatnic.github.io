@@ -1,0 +1,9 @@
+{
+  "mint_live": false,
+  "network": "mainnet",
+  "package": "",
+  "vault": "",
+  "admin_note": "Wypełni po publish Move z kasy. SUI_LIVE=0 aż test 1 szt.",
+  "studio": "0x98016fd60a85c24cb7d451a7b1a86d181ef9e1d6e405237b724d4741d56c652b",
+  "catalog": "SUI/catalog/MANIFEST.csv"
+}

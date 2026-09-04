@@ -112,17 +112,14 @@ const SuiMint = (() => {
 
     async function open(nft) {
         const name = nft?.name || 'NS';
-        const id = nft?.token_id;
         const sui = priceOf(nft);
         if (!isLive()) {
-            window.alert(
-                `${name}: studio-signed mint is not live yet.\nTradePort still sells the unsigned run.`,
-            );
+            window.alert(`${name}: the Studio mint is not open yet.`);
             return;
         }
         if (
             !window.confirm(
-                `Mint signed ${name} (copy after TradePort cap) for ${sui} SUI?\nCatalog #${id}`,
+                `Mint ${name} from the Studio — ${sui} SUI.\nA signed piece, sent directly by the artist.`,
             )
         ) {
             return;
@@ -131,8 +128,8 @@ const SuiMint = (() => {
             const digest = await buy(nft);
             window.alert(
                 digest
-                    ? `Payment sent ${digest}\nThe studio mints your signed copy in about a minute.`
-                    : 'Payment sent. Wait a minute for the signed NFT.',
+                    ? `Thank you. The studio is sending your piece — usually within a minute.\n${digest}`
+                    : 'Thank you. The studio is sending your piece — usually within a minute.',
             );
         } catch (err) {
             window.alert(err?.message || String(err));

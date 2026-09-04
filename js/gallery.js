@@ -370,7 +370,7 @@ const Gallery = (() => {
             const tp = escapeHtml(marketplaceUrl(nft));
             return `
                 <div class="nft-card__actions nft-card__actions--dual">
-                    <button type="button" class="btn btn--primary btn--block sui-mint">Mint signed</button>
+                    <button type="button" class="btn btn--primary btn--block sui-mint">From the Studio</button>
                     <a class="btn btn--ghost btn--block" href="${tp}" target="_blank" rel="noopener noreferrer">TradePort</a>
                 </div>`;
         }
@@ -567,6 +567,20 @@ const Gallery = (() => {
                 text: p != null && p !== '' ? `${p} ${symbol}` : 'Promo',
                 hint: bits.join(' · '),
                 kind: 'listed',
+            };
+        }
+        if (
+            isLaunchpadMint(nft) &&
+            typeof SuiMint !== 'undefined' &&
+            SuiMint.priceOf
+        ) {
+            const p = SuiMint.priceOf(nft);
+            return {
+                text: p > 0 ? `${p} SUI` : 'Studio price',
+                hint: SuiMint.isLive()
+                    ? 'From the Studio'
+                    : 'Sui · Nature Stories',
+                kind: 'mint',
             };
         }
         // XRPL catalog: available = mint on demand; listed = Cafe

@@ -362,6 +362,18 @@ const Gallery = (() => {
                     <button type="button" class="btn btn--primary btn--block xrpl-mint">${mintLabel}</button>
                 </div>`;
         }
+        if (
+            isLaunchpadMint(nft) &&
+            typeof SuiMint !== 'undefined' &&
+            SuiMint.isLive()
+        ) {
+            const tp = escapeHtml(marketplaceUrl(nft));
+            return `
+                <div class="nft-card__actions nft-card__actions--dual">
+                    <button type="button" class="btn btn--primary btn--block sui-mint">Mint signed</button>
+                    <a class="btn btn--ghost btn--block" href="${tp}" target="_blank" rel="noopener noreferrer">TradePort</a>
+                </div>`;
+        }
         const rawUrl = marketplaceUrl(nft);
         if (!rawUrl) {
             return '';
@@ -2007,6 +2019,11 @@ const Gallery = (() => {
             e.stopPropagation();
             if (typeof XrplMint !== 'undefined') XrplMint.open(nft);
         });
+        card.querySelector('.sui-mint')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (typeof SuiMint !== 'undefined') SuiMint.open(nft);
+        });
 
         return card;
     }
@@ -2014,7 +2031,11 @@ const Gallery = (() => {
     function init() {
         setupProtection();
         if (typeof XrplMint !== 'undefined') XrplMint.init();
-        load();
+        const ready =
+            typeof SuiMint !== 'undefined' && SuiMint.load
+                ? SuiMint.load()
+                : Promise.resolve();
+        Promise.resolve(ready).then(() => load());
     }
 
     return { init };

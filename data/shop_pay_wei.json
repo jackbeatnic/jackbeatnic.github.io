@@ -1,8 +1,9 @@
 {
   "version": 2,
-  "updated_at": "2026-09-03T00:25:58Z",
-  "encoding": "GJB1+uint256",
-  "magic": "0x474a4231",
+  "updated_at": "2026-09-04T20:36:27Z",
+  "encoding": "buy(uint256)",
+  "magic": "0xd96a094a",
+  "legacy_gjb1": "0x474a4231",
   "note": "Kasa matches exact wei AND token_id in tx.data. Pay without this data, or a different amount, is a tip.",
   "items": [
     {
@@ -20315,6 +20316,150 @@
       "token_id": 2345,
       "pay_amount": "1.707",
       "wei": "1707000000000000000",
+      "chain": "avalanche",
+      "qty_available": 100
+    },
+    {
+      "sku": "gjb-ns-2346",
+      "collection_id": "avalanche_nature_stories",
+      "token_id": 2346,
+      "pay_amount": "2.845",
+      "wei": "2845000000000000000",
+      "chain": "avalanche",
+      "qty_available": 100
+    },
+    {
+      "sku": "gjb-ns-2347",
+      "collection_id": "avalanche_nature_stories",
+      "token_id": 2347,
+      "pay_amount": "2.845",
+      "wei": "2845000000000000000",
+      "chain": "avalanche",
+      "qty_available": 100
+    },
+    {
+      "sku": "gjb-ns-2348",
+      "collection_id": "avalanche_nature_stories",
+      "token_id": 2348,
+      "pay_amount": "2.845",
+      "wei": "2845000000000000000",
+      "chain": "avalanche",
+      "qty_available": 100
+    },
+    {
+      "sku": "gjb-ns-2349",
+      "collection_id": "avalanche_nature_stories",
+      "token_id": 2349,
+      "pay_amount": "2.845",
+      "wei": "2845000000000000000",
+      "chain": "avalanche",
+      "qty_available": 100
+    },
+    {
+      "sku": "gjb-ns-2350",
+      "collection_id": "avalanche_nature_stories",
+      "token_id": 2350,
+      "pay_amount": "2.845",
+      "wei": "2845000000000000000",
+      "chain": "avalanche",
+      "qty_available": 100
+    },
+    {
+      "sku": "gjb-ns-2351",
+      "collection_id": "avalanche_nature_stories",
+      "token_id": 2351,
+      "pay_amount": "2.845",
+      "wei": "2845000000000000000",
+      "chain": "avalanche",
+      "qty_available": 100
+    },
+    {
+      "sku": "gjb-ns-2352",
+      "collection_id": "avalanche_nature_stories",
+      "token_id": 2352,
+      "pay_amount": "2.845",
+      "wei": "2845000000000000000",
+      "chain": "avalanche",
+      "qty_available": 100
+    },
+    {
+      "sku": "gjb-ns-2353",
+      "collection_id": "avalanche_nature_stories",
+      "token_id": 2353,
+      "pay_amount": "2.845",
+      "wei": "2845000000000000000",
+      "chain": "avalanche",
+      "qty_available": 100
+    },
+    {
+      "sku": "gjb-ns-2354",
+      "collection_id": "avalanche_nature_stories",
+      "token_id": 2354,
+      "pay_amount": "2.845",
+      "wei": "2845000000000000000",
+      "chain": "avalanche",
+      "qty_available": 100
+    },
+    {
+      "sku": "gjb-ns-2355",
+      "collection_id": "avalanche_nature_stories",
+      "token_id": 2355,
+      "pay_amount": "2.845",
+      "wei": "2845000000000000000",
+      "chain": "avalanche",
+      "qty_available": 100
+    },
+    {
+      "sku": "gjb-ns-2356",
+      "collection_id": "avalanche_nature_stories",
+      "token_id": 2356,
+      "pay_amount": "2.845",
+      "wei": "2845000000000000000",
+      "chain": "avalanche",
+      "qty_available": 100
+    },
+    {
+      "sku": "gjb-ns-2357",
+      "collection_id": "avalanche_nature_stories",
+      "token_id": 2357,
+      "pay_amount": "2.845",
+      "wei": "2845000000000000000",
+      "chain": "avalanche",
+      "qty_available": 100
+    },
+    {
+      "sku": "gjb-ns-2358",
+      "collection_id": "avalanche_nature_stories",
+      "token_id": 2358,
+      "pay_amount": "2.845",
+      "wei": "2845000000000000000",
+      "chain": "avalanche",
+      "qty_available": 100
+    },
+    {
+      "sku": "gjb-ns-2359",
+      "collection_id": "avalanche_nature_stories",
+      "token_id": 2359,
+      "pay_amount": "2.845",
+      "wei": "2845000000000000000",
+      "chain": "avalanche",
+      "qty_available": 100
+    },
+    {
+      "sku": "gjb-ns-2360",
+      "collection_id": "avalanche_nature_stories",
+      "token_id": 2360,
+      "pay_amount": "2.845",
+      "wei": "2845000000000000000",
+      "chain": "avalanche",
+      "qty_available": 100
+    },
+    {
+      "sku": "gjb-ns-2361",
+      "collection_id": "avalanche_nature_stories",
+      "token_id": 2361,
+      "pay_amount": "2.845",
+      "wei": "2845000000000000000",
       "chain": "avalanche",
       "qty_available": 100
     }

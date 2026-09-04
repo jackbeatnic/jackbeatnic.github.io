@@ -13,13 +13,13 @@
     "mint_live": true,
     "catalog_size": 1299,
     "status_counts": {
-      "listed": 1,
-      "available": 1298
+      "listed": 2,
+      "available": 1297
     },
     "cdn_meta": "https://cdn.jsdelivr.net/gh/jackbeatnic/jb-nft-assets@main/meta/xrpl/jbn/{id}.json",
     "cdn_media": "https://cdn.jsdelivr.net/gh/jackbeatnic/jb-nft-assets@main/media/xrpl/jbn/{id}.jpg",
     "manifest": "XRPL/catalog/MANIFEST.csv",
-    "last_xrp_sync": "2026-09-04T00:47:27Z"
+    "last_xrp_sync": "2026-09-04T00:53:40Z"
   },
   "site": {
     "title": "Jack Beatnic · XRPL",
@@ -64952,11 +64952,11 @@
     },
     {
       "token_id": 1299,
-      "xrpl_nft_id": null,
+      "xrpl_nft_id": "00192328C991C993639BFB85813235F2175B16ADADDCDBD829538E3E05BE71A3",
       "nft_serial": null,
       "name": "JBH #1 X",
-      "xrp_cafe_url": null,
-      "marketplace_url": null,
+      "xrp_cafe_url": "https://bidds.com/nft/00192328C991C993639BFB85813235F2175B16ADADDCDBD829538E3E05BE71A3",
+      "marketplace_url": "https://bidds.com/nft/00192328C991C993639BFB85813235F2175B16ADADDCDBD829538E3E05BE71A3",
       "collection_url": "https://jackbeatnic.github.io",
       "image_url": "https://cdn.jsdelivr.net/gh/jackbeatnic/jb-nft-assets@main/media/xrpl/jbn/1299.jpg",
       "meta_url": "https://cdn.jsdelivr.net/gh/jackbeatnic/jb-nft-assets@main/meta/xrpl/jbn/1299.json",
@@ -64981,13 +64981,13 @@
         ]
       },
       "likes_count": 0,
-      "status": "available",
+      "status": "listed",
       "chain": "xrpl",
       "contract_address": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
       "nft_taxon": 0,
       "collection_id": "xrpl_jb_ai_nature",
       "collection_name": "Jack Beatnic",
-      "listing_status": "Mint Available",
+      "listing_status": "For Sale",
       "listing_currency": "XRP",
       "current_price_xrp": 50.0,
       "display_rank": 1299,
@@ -64998,7 +64998,7 @@
       "marketplace": "gh_gallery",
       "price_xrp": 50.0,
       "drops": "50000000",
-      "minted_count": 0
+      "minted_count": 1
     }
   ]
 }

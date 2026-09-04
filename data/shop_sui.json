@@ -1,9 +1,11 @@
 {
   "mint_live": false,
   "network": "mainnet",
-  "package": "",
-  "vault": "",
-  "admin_note": "Wypełni po publish Move z kasy. SUI_LIVE=0 aż test 1 szt.",
+  "package": "0x8ed428b569634082422d9d7887b1180cb6f4b2871bb10537a38ecc92b80d8d19",
+  "vault": "0xc92f71b39b978c6509b33b662f2aea0eae257c6ead118e6e7ee3f40cff75174f",
+  "admin_cap": "0x969d89bd3eccba2ce2fb0230e889b01b1907b634233372736bae9c445ab4f7a3",
   "studio": "0x98016fd60a85c24cb7d451a7b1a86d181ef9e1d6e405237b724d4741d56c652b",
-  "catalog": "SUI/catalog/MANIFEST.csv"
+  "buy_target": "0x8ed428b569634082422d9d7887b1180cb6f4b2871bb10537a38ecc92b80d8d19::ns::buy",
+  "catalog": "SUI/catalog/MANIFEST.csv",
+  "note": "SUI_LIVE=0 na kasie. mint_live=true dopiero po teście 1 sztuki."
 }

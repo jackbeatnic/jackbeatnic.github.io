@@ -410,6 +410,31 @@
         </div>
     </div>
 
+    <div id="sui-mint-modal" class="shop-modal" hidden role="dialog" aria-modal="true" aria-labelledby="sui-mint-title">
+        <div class="shop-modal__backdrop" aria-hidden="true"></div>
+        <div class="shop-modal__dialog">
+            <button type="button" class="shop-modal__close" aria-label="Close">×</button>
+            <p id="sui-mint-banner" class="shop-modal__banner"></p>
+            <h2 id="sui-mint-title" class="shop-modal__title">Mint from the studio</h2>
+            <p id="sui-mint-lead" class="shop-modal__lead"></p>
+            <p id="sui-mint-name" class="shop-modal__name"></p>
+            <p id="sui-mint-meta" class="shop-modal__meta"></p>
+            <dl class="shop-modal__facts">
+                <div>
+                    <dt>Amount</dt>
+                    <dd id="sui-mint-amount"></dd>
+                    <button type="button" id="sui-copy-amount" class="btn btn--ghost btn--small">Copy amount</button>
+                </div>
+            </dl>
+            <div class="shop-modal__pay">
+                <button type="button" id="sui-mint-buy" class="btn btn--primary btn--block">Buy</button>
+                <p id="sui-mint-status" class="shop-modal__status" hidden></p>
+            </div>
+            <p id="sui-mint-fulfill" class="shop-modal__fulfill"></p>
+            <p class="shop-modal__terms">A signed piece, sent directly by the artist to the wallet you pay from.</p>
+        </div>
+    </div>
+
     <script src="js/images.js?v=20260816teznat"></script>
     <script src="js/opensea-links.js?v=20260712p"></script>
     <script src="js/lightbox.js?v=20260816fix2"></script>
@@ -422,7 +447,7 @@
     <script src="js/share.js?v=20260830xrpl"></script>
     <script src="js/shop.js?v=20260903mm"></script>
     <script src="js/xrpl-mint.js?v=20260828xrp01"></script>
-    <script src="js/sui-mint.js?v=20260904sui02"></script>
-    <script src="js/gallery.js?v=20260904sui02"></script>
+    <script src="js/sui-mint.js?v=20260906sui03"></script>
+    <script src="js/gallery.js?v=20260906sui03"></script>
 </body>
 </html>

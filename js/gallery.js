@@ -2045,6 +2045,7 @@ const Gallery = (() => {
     function init() {
         setupProtection();
         if (typeof XrplMint !== 'undefined') XrplMint.init();
+        if (typeof SuiMint !== 'undefined') SuiMint.init();
         const ready =
             typeof SuiMint !== 'undefined' && SuiMint.load
                 ? SuiMint.load()

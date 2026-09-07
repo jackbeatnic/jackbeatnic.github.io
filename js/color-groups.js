@@ -193,10 +193,15 @@ const GalleryColorGroups = (() => {
             .sort((a, b) => b.count - a.count || a.order - b.order);
     }
 
+    /**
+     * AND across selected palette chips: NFT must include EVERY active family
+     * (intersection / narrow-down). Vibes already use every(); colors used to OR.
+     * Jack 2026-09-07: selecting green+rose+tags should cross-filter, not sum.
+     */
     function nftMatchesFamilies(nft, activeFamilyIds) {
         if (!activeFamilyIds?.size) return true;
-        const nftFamilies = familiesForNft(nft);
-        return nftFamilies.some((id) => activeFamilyIds.has(id));
+        const nftFamilies = new Set(familiesForNft(nft));
+        return [...activeFamilyIds].every((id) => nftFamilies.has(id));
     }
 
     function labelForFamilyId(id) {

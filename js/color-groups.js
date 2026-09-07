@@ -72,13 +72,17 @@ const GalleryColorGroups = (() => {
             });
         };
 
-        // Near-black grey only — keep dark chromatics on their hue family
-        if (l <= 12 && s < 28) return ['charcoal'];
-        if (l <= 16 && s < 18) return ['charcoal'];
+        // Absolute chroma (max-min RGB) — HSL saturation blows up near white/black
+        const chroma = Math.max(...rgb) - Math.min(...rgb);
 
-        // True greys / near-white grey — leave pastel chromatics alone
-        if (s <= 8) return ['neutral'];
-        if (l >= 92 && s <= 18) return ['neutral'];
+        // Near-black grey only — keep dark chromatics on their hue family
+        if (l <= 12 && (s < 28 || chroma < 22)) return ['charcoal'];
+        if (l <= 16 && s < 18 && chroma < 18) return ['charcoal'];
+
+        // True greys / near-white: use chroma, not HSL s (e.g. #F4F7F9 s≈29% but chroma 5)
+        if (chroma <= 14) return ['neutral'];
+        if (l >= 90 && chroma <= 22) return ['neutral'];
+        if (s <= 8 && chroma <= 28) return ['neutral'];
 
         // --- Magenta / red / rose (330–360 / 0–12) ---
         if (h >= 330 || h < 12) {

@@ -51646,7 +51646,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A central blue fern frond standing over green and dark navy wave slopes, paint splatters, floating celestial spheres, and looping stream ribbons.",
+        "description": "Deep indigo fern rises through teal wave ridges, paint flecks and pale orbs drifting in the upper field.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -51655,10 +51655,11 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "botanical",
-          "serene",
-          "graphic",
-          "abstract"
+          "fern",
+          "watercolor",
+          "celestial",
+          "indigo",
+          "graphic"
         ],
         "category": "abstract",
         "mood_score": 9,
@@ -51699,7 +51700,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A central navy fern frond flanked by a white leaf stem, stippled texture mounds, green wave slopes, floating spheres, and looping line ribbons.",
+        "description": "Twin navy fronds meet a pale stem amid stippled mounds; green ridges curl under thin looping ribbons.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -51708,10 +51709,11 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "botanical",
-          "serene",
+          "fern",
+          "stipple",
           "graphic",
-          "abstract"
+          "nocturnal",
+          "ribbon"
         ],
         "category": "abstract",
         "mood_score": 9,
@@ -51752,7 +51754,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A navy fern frond set against a teal celestial orb, stippled wave mounds, a small leaf branch, dark blue slopes, and looping stream ribbons.",
+        "description": "Teal orb anchors a navy frond over stippled mounds, with a small branch and dark blue descending slopes.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -51761,10 +51763,11 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "botanical",
-          "graphic",
-          "serene",
-          "abstract"
+          "orb",
+          "navy",
+          "stipple",
+          "teal",
+          "graphic"
         ],
         "category": "abstract",
         "mood_score": 9,
@@ -51805,7 +51808,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A central green and cyan fern frond standing above stippled dark slopes, green wave contours, a small leaf stem, and sweeping line ribbons.",
+        "description": "Cyan-green fronds catch light above charcoal stipple; green contours and a thin stem cut the lower register.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -51814,10 +51817,11 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "botanical",
-          "serene",
-          "graphic",
-          "abstract"
+          "fern",
+          "cyan",
+          "charcoal",
+          "watercolor",
+          "contour"
         ],
         "category": "abstract",
         "mood_score": 9,
@@ -51858,7 +51862,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A green-and-navy central fern frond set against a white halo sun, stippled texture mounds, green wave slopes, small leaf stems, and line ribbons.",
+        "description": "White halo sun frames green-navy foliage; stippled mounds and slim stems sit on rolling green slopes.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -51867,10 +51871,11 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "botanical",
-          "serene",
-          "graphic",
-          "abstract"
+          "halo",
+          "sun",
+          "foliage",
+          "stipple",
+          "green"
         ],
         "category": "abstract",
         "mood_score": 9,
@@ -51911,7 +51916,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "An abstract composition featuring a large green textured sun orb, stippled dark wave mounds, fine line details, floating spheres, and stream ribbons.",
+        "description": "Large green textured sun dominates, ringed by dark stippled waves, fine lines, and scattered spheres.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -51920,10 +51925,11 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "abstract",
-          "graphic",
-          "serene",
-          "fluid"
+          "sun",
+          "textured",
+          "wave",
+          "celestial",
+          "graphic"
         ],
         "category": "abstract",
         "mood_score": 9,
@@ -51964,7 +51970,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A central navy plant motif standing before a green celestial orb, brushstroke waves, stippled texture clouds, dark slopes, and looping ribbons.",
+        "description": "Brushstroke green seas hold a navy plant silhouette against a green orb, with cloud stipple and dark slopes.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -51973,10 +51979,11 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "botanical",
-          "graphic",
-          "serene",
-          "abstract"
+          "brushstroke",
+          "silhouette",
+          "orb",
+          "nocturnal",
+          "sea"
         ],
         "category": "abstract",
         "mood_score": 9,
@@ -52017,7 +52024,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A dark central fern frond set against a green sun orb, stippled spray textures, green wave slopes, floating celestial spheres, and stream ribbons.",
+        "description": "Green sun orb backs a dark frond; spray stipple, floating spheres, and green ridges fill the midground.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -52026,10 +52033,11 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "botanical",
-          "serene",
-          "graphic",
-          "abstract"
+          "orb",
+          "spray",
+          "sphere",
+          "ridge",
+          "dark"
         ],
         "category": "abstract",
         "mood_score": 9,
@@ -52070,7 +52078,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A central navy fern frond standing before a cyan sun orb, green hill slopes, stippled spray textures, dark blue waves, and looping line ribbons.",
+        "description": "Cyan sun behind navy foliage; green hills, spray texture, and deep blue wave bands stack toward the base.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -52079,10 +52087,11 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "botanical",
-          "serene",
-          "graphic",
-          "abstract"
+          "cyan",
+          "sun",
+          "hills",
+          "spray",
+          "navy"
         ],
         "category": "abstract",
         "mood_score": 9,
@@ -52123,7 +52132,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A light blue central fern frond set against a soft peach sun orb, stippled spray textures, green wave slopes, dark leaf stems, and stream line ribbons.",
+        "description": "Soft peach sun warms a pale blue frond; spray stipple, green slopes, and dark stems finish the lower edge.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -52132,10 +52141,11 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "botanical",
-          "serene",
-          "graphic",
-          "abstract"
+          "peach",
+          "sun",
+          "soft",
+          "spray",
+          "pale"
         ],
         "category": "abstract",
         "mood_score": 9,

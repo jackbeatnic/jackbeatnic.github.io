@@ -1,6 +1,9 @@
 /**
  * Grupuje precyzyjne hexy z dominant_colors w kilka czytelnych palet filtrów.
  * Na kartach NFT zostają oryginalne kolory — tu tylko UX wyszukiwania.
+ *
+ * 2026-09-07: dark / forest greens no longer dump into Earth solely because L is low.
+ * Border aqua–green hues can match both green and teal so chips catch what eyes see.
  */
 const GalleryColorGroups = (() => {
     const FAMILIES = [
@@ -46,33 +49,65 @@ const GalleryColorGroups = (() => {
         return { h: h * 360, s: s * 100, l: l * 100 };
     }
 
+    /**
+     * Primary family for a hex (single bucket — used for swatch identity).
+     * Prefer green over earth for dark true greens; teal stays for aqua.
+     */
     function familyForHex(hex) {
-        const rgb = parseHex(hex);
-        if (!rgb) return null;
-        const { h, s, l } = rgbToHsl(...rgb);
+        const ids = familiesForHex(hex);
+        return ids[0] || null;
+    }
 
-        if (l <= 18 && s < 42) return 'charcoal';
-        if (s <= 12 || (l >= 88 && s <= 28)) return 'neutral';
+    /**
+     * One or more families a hex belongs to. Border hues may match two chips
+     * (e.g. forest aqua-green → green + teal) so filters match perception.
+     */
+    function familiesForHex(hex) {
+        const rgb = parseHex(hex);
+        if (!rgb) return [];
+        const { h, s, l } = rgbToHsl(...rgb);
+        const out = [];
+
+        if (l <= 18 && s < 42) return ['charcoal'];
+        if (s <= 12 || (l >= 88 && s <= 28)) return ['neutral'];
 
         if (h >= 285 || h < 12) {
-            if (s > 32 && l > 22 && l < 82) return 'rose';
-            return 'warm';
+            if (s > 32 && l > 22 && l < 82) return ['rose'];
+            return ['warm'];
         }
-        if (h < 38) return 'warm';
-        if (h < 78) return l < 42 ? 'earth' : 'green';
-        if (h < 145) return l < 40 ? 'earth' : 'green';
-        if (h < 215) return 'teal';
-        if (h < 248) return l < 36 ? 'deep_blue' : 'blue';
-        if (h < 285) return l < 42 ? 'deep_blue' : 'rose';
+        if (h < 38) return ['warm'];
 
-        return 'neutral';
+        // Yellow–olive fringe: muted/dark → earth; otherwise green
+        if (h < 70) {
+            if ((s < 32 && l < 48) || (h < 55 && l < 38)) return ['earth'];
+            if (s >= 28 || l >= 38) return ['green'];
+            return ['earth'];
+        }
+
+        // True greens including dark forest / emerald — do NOT dump low-L into earth
+        if (h < 155) {
+            if (h < 95 && s < 26 && l < 42) return ['earth'];
+            return ['green'];
+        }
+
+        // Green ↔ teal border (blue-green / pine aqua): match BOTH chips
+        if (h < 175) {
+            out.push('green');
+            out.push('teal');
+            return out;
+        }
+
+        if (h < 215) return ['teal'];
+        if (h < 248) return [l < 36 ? 'deep_blue' : 'blue'];
+        if (h < 285) return [l < 42 ? 'deep_blue' : 'rose'];
+
+        return ['neutral'];
     }
 
     function familiesForNft(nft) {
         const ids = new Set();
         (nft?.ai?.dominant_colors || []).forEach((hex) => {
-            const id = familyForHex(hex);
-            if (id) ids.add(id);
+            familiesForHex(hex).forEach((id) => ids.add(id));
         });
         return [...ids];
     }
@@ -110,6 +145,7 @@ const GalleryColorGroups = (() => {
     return {
         familiesPresent,
         familyForHex,
+        familiesForHex,
         familiesForNft,
         nftMatchesFamilies,
         labelForFamilyId,

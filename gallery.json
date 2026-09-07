@@ -39284,7 +39284,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A dynamic landscape with dark fern tree silhouettes along blue and green watercolor hills, paint splatters, and fine water contours.",
+        "description": "Emerald watercolor washes blend across swooping hill contours behind dark leafy stem silhouettes. Layered deep blue wave bands structure the foreground terrain beneath a cluster of floating circles. Concentric linework ribbons sweep gracefully along the lower white border.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -39293,18 +39293,19 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "dynamic",
-          "botanical",
           "fluid",
-          "expressive"
+          "watercolor",
+          "layered",
+          "graphic"
         ],
-        "category": "landscape",
+        "category": "abstract",
         "mood_score": 9,
         "keywords": [
-          "fern trees",
-          "watercolor hills",
-          "paint splatters",
-          "water contours",
+          "emerald washes",
+          "leafy stems",
+          "blue waves",
+          "linework ribbons",
+          "floating circles",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
@@ -39337,7 +39338,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A large vivid green watercolor sun orb setting behind dark dotted hills, stylized green leaf trees, and paint-drip water contours.",
+        "description": "Vibrant green striped leaves rise over dark stippled hills beneath a large dotted lime-green orb. Paint splatters and dripping ink trails spill down from the lower curved wave lines. Floating dark blue spheres surround the central orb against the pale sky.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -39347,17 +39348,18 @@
         ],
         "vibe_tags": [
           "vivid",
-          "expressive",
-          "graphic",
-          "atmospheric"
+          "stippled",
+          "dramatic",
+          "cosmic"
         ],
-        "category": "landscape",
+        "category": "abstract",
         "mood_score": 9,
         "keywords": [
-          "green sun orb",
-          "dotted hills",
-          "leaf trees",
-          "paint drips",
+          "striped leaves",
+          "green orb",
+          "dripping ink",
+          "stippled hills",
+          "floating spheres",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
@@ -39496,7 +39498,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A central dark fern frond standing above layered green and teal watercolor waves, fine line contours, and floating cosmic orbs.",
+        "description": "Deep blue fronds stand upright within a rounded watercolor emblem of teal and green landforms. Smooth white swooping ribbons cut through the dark hill base to guide the eye. Concentric line loops and floating celestial circles frame the tranquil composition.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -39505,18 +39507,19 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "botanical",
-          "serene",
+          "tranquil",
+          "emblem",
           "fluid",
-          "graphic"
+          "serene"
         ],
         "category": "abstract",
         "mood_score": 9,
         "keywords": [
-          "fern frond",
-          "watercolor waves",
-          "line contours",
-          "cosmic orbs",
+          "blue fronds",
+          "teal landforms",
+          "swooping ribbons",
+          "concentric loops",
+          "celestial circles",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
@@ -39761,7 +39764,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A serene mountain scene featuring a soft pink sun orb, rolling blue stippled slopes, delicate saplings, and flowing river lines.",
+        "description": "A soft pink sun glows quietly above icy blue mountain ridges and linear tree silhouettes. Delicate pink berry sprigs sprout near a calm water body in the foreground valley. Sweeping textured line ribbons and floating sky dots complete the winter landscape.",
         "dominant_colors": [
           "#113054",
           "#F5A3B5",
@@ -39770,18 +39773,19 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
+          "winter",
+          "alpine",
           "serene",
-          "poetic",
-          "landscape",
-          "atmospheric"
+          "minimalist"
         ],
         "category": "landscape",
         "mood_score": 9,
         "keywords": [
           "pink sun",
-          "stippled slopes",
-          "delicate saplings",
-          "river lines",
+          "ice blue mountains",
+          "tree silhouettes",
+          "berry sprigs",
+          "textured ribbons",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
@@ -39814,7 +39818,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A large dark fern frond leaning across rolling teal watercolor hills, smaller white ferns, flowing water ribbons, and sky particles.",
+        "description": "Large dark foliage sways diagonally across a dark hill cluster anchored by smaller white sprigs. Textured brush strokes and curved line bands wrap around the lower water surface. Scattered dark sky dots and watercolor splashes add subtle atmospheric rhythm.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -39823,18 +39827,19 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "botanical",
-          "serene",
+          "contrast",
           "fluid",
+          "tranquil",
           "graphic"
         ],
         "category": "abstract",
         "mood_score": 9,
         "keywords": [
-          "fern frond",
-          "watercolor hills",
-          "white ferns",
-          "water ribbons",
+          "dark foliage",
+          "white sprigs",
+          "water surface",
+          "brush strokes",
+          "curved bands",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
@@ -39920,7 +39925,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A central dark fern frond standing above rich blue and teal watercolor waves, fine line rings, and scattered cosmic dots.",
+        "description": "Layered, stylized waves of various blue shades fill the lower composition. Dark blue fern leaves sprout upwards, with a large one in the middle and smaller ones to the left. Small teal and blue bubbles and dots float in the white space above.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -39929,18 +39934,21 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "botanical",
-          "serene",
-          "fluid",
-          "graphic"
+          "Graphic",
+          "Layered",
+          "Marine",
+          "Clean",
+          "Organic"
         ],
-        "category": "abstract",
-        "mood_score": 9,
+        "category": "Illustration",
+        "mood_score": 50,
         "keywords": [
-          "fern frond",
-          "watercolor waves",
-          "line rings",
-          "cosmic dots",
+          "Waves",
+          "Ferns",
+          "Bubbles",
+          "Leaves",
+          "Minimalism",
+          "Fluid",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
@@ -40026,7 +40034,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A prominent dark fern frond rising over flowing teal and blue watercolor waves, fine contour lines, and floating celestial particles.",
+        "description": "This square illustration features a dark blue fern reaching upwards, flanked by smaller leaf-like fronds. Below the leaves, swirling, layered abstract forms in shades of blue resemble stylized water with fine white contour lines. The background is white, populated with scattered blue circular shapes of various sizes and dots.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -40035,18 +40043,22 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "botanical",
-          "serene",
-          "fluid",
-          "artistic"
+          "Graphic",
+          "Abstract",
+          "Clean",
+          "Flowing",
+          "Organic"
         ],
-        "category": "abstract",
-        "mood_score": 9,
+        "category": "Illustration",
+        "mood_score": 60,
         "keywords": [
-          "fern frond",
-          "watercolor waves",
-          "contour lines",
-          "celestial particles",
+          "Leaves",
+          "Waves",
+          "Fluid",
+          "Water",
+          "Circles",
+          "Minimalism",
+          "Design",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
@@ -40292,7 +40304,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A dynamic abstract landscape with a large blue ring orb, dotted textures, stylized pine silhouettes, and swirling organic blue shapes.",
+        "description": "Large, swirling abstract forms in various shades of blue and black create a flowing composition. Dark, stylized evergreen trees with textured trunks stand on rounded, textured blue mounds. A bright white circular shape and numerous white speckles look like snow and stars.",
         "dominant_colors": [
           "#113054",
           "#3378A8",
@@ -40301,18 +40313,22 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "abstract",
-          "dynamic",
-          "graphic",
-          "modern"
+          "Abstract",
+          "Dynamic",
+          "Fluid",
+          "Geometric",
+          "Textured"
         ],
-        "category": "abstract",
-        "mood_score": 8,
+        "category": "Illustration",
+        "mood_score": 70,
         "keywords": [
-          "blue ring orb",
-          "dotted textures",
-          "pine silhouettes",
-          "swirling shapes",
+          "Mountains",
+          "Trees",
+          "Snow",
+          "Circles",
+          "Waves",
+          "Flow",
+          "Stars",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
@@ -40345,7 +40361,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A calm, multi-layered landscape with teal and blue rolling hills, stippled textures, stylized pine saplings, and fine water contour lines.",
+        "description": "Layered, stylized hills in shades of blue and green stack up, covered in white speckles. Dark, geometric pine trees stand on a blue slope in the middle ground, beside swirling, textured water with white lines. A bright white circular shape and scattered teal dots populate the upper sky area.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -40354,18 +40370,23 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "tranquil",
-          "landscape",
-          "serene",
-          "graphic"
+          "Graphic",
+          "Geometric",
+          "Textured",
+          "Calm",
+          "Nature"
         ],
-        "category": "landscape",
-        "mood_score": 9,
+        "category": "Illustration",
+        "mood_score": 60,
         "keywords": [
-          "rolling hills",
-          "stippled textures",
-          "pine saplings",
-          "water contours",
+          "Hills",
+          "Trees",
+          "Water",
+          "Snow",
+          "Circles",
+          "Waves",
+          "Abstract",
+          "Landscape",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
@@ -40451,7 +40472,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A central dark blue fern frond over flowing teal and dark wave contours, fine line rings, and floating sky dots.",
+        "description": "Deep blues and teals fill this square composition, framed by a light blue border. Layered water currents carry fine white contour lines across the lower field. A large dark blue fern rises in the middle, with smaller pale fronds to the left, scattered dark circles above, and white speckles throughout.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -40460,18 +40481,22 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "botanical",
-          "serene",
-          "fluid",
-          "graphic"
+          "Graphic",
+          "Organic",
+          "Dynamic",
+          "Flowing",
+          "Nature"
         ],
-        "category": "abstract",
-        "mood_score": 9,
+        "category": "Illustration",
+        "mood_score": 70,
         "keywords": [
-          "fern frond",
-          "wave contours",
-          "line rings",
-          "sky dots",
+          "Leaves",
+          "Waves",
+          "Water",
+          "Circles",
+          "Minimalism",
+          "Design",
+          "Ferns",
           "avalanche",
           "avalanche_nature_stories",
           "ns"

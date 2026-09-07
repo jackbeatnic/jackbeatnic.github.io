@@ -4984,7 +4984,7 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "description": "Layered blue mountain peaks rise gently above a quiet body of water bordered by pine silhouettes. Soft pink circular forms glow behind the summit while small birds drift across the pale sky. Granular textures lend a modern graphic stillness to the landscape.",
         "dominant_colors": [
           "#16213E",
           "#4169E1",
@@ -4992,26 +4992,22 @@
           "#FAF0E6"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "celestial",
+          "graphic",
+          "nocturnal",
+          "stipple"
         ],
         "category": "landscape",
-        "mood_score": 9,
+        "mood_score": 8,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ]
+          "mountains",
+          "lake",
+          "birds",
+          "sunset",
+          "pines"
+        ],
+        "image_seen": true,
+        "source": "jbg-present"
       },
       "likes_count": 0,
       "status": "listed",
@@ -5148,7 +5144,7 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "description": "Vibrant magenta and indigo paint splatters burst behind a dark, sharp mountain silhouette. Fluid brushstrokes forming rolling blue waves sweep across the foreground below a ridge of evergreen trees. Dynamic textures contrast bold color splashes against deep midnight shadows.",
         "dominant_colors": [
           "#0D1B2A",
           "#00BFFF",
@@ -5156,26 +5152,22 @@
           "#F5F5F5"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "watercolor",
+          "graphic",
+          "stipple",
+          "nocturnal"
         ],
         "category": "landscape",
-        "mood_score": 8,
+        "mood_score": 7,
         "keywords": [
-          "blue tones",
+          "splatter",
+          "mountains",
+          "pines",
           "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ]
+          "magenta"
+        ],
+        "image_seen": true,
+        "source": "jbg-present"
       },
       "likes_count": 0,
       "status": "listed",
@@ -5311,7 +5303,7 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "description": "A striking pink disc anchors a textured circular sky patterned with diagonal brush lines and scattered dark specks. Dark blue mountain ridges slope down toward bare tree silhouettes standing along a stippled shoreline. Birds glide through the abstract atmosphere above calm waters.",
         "dominant_colors": [
           "#1C3A5F",
           "#4682B4",
@@ -5319,27 +5311,22 @@
           "#E0FFFF"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "celestial",
+          "graphic",
+          "stipple",
+          "watercolor"
         ],
         "category": "landscape",
-        "mood_score": 9,
+        "mood_score": 7,
         "keywords": [
-          "blue tones",
-          "hills",
-          "waves",
-          "abstract landscape",
-          "flowing lines",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ]
+          "disc",
+          "mountains",
+          "birds",
+          "trees",
+          "texture"
+        ],
+        "image_seen": true,
+        "source": "jbg-present"
       },
       "likes_count": 0,
       "status": "listed",
@@ -5474,7 +5461,7 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "description": "Curving blue waves roll beneath dark circular orbs suspended in a stippled sphere. Small stylized trees sprout from fluid hilltops detailed with fine speckles and cool gradients. Spattered textures add depth to this serene blue composition, where layered contours create a quiet, otherworldly landscape.",
         "dominant_colors": [
           "#0A1628",
           "#1E90FF",
@@ -5482,27 +5469,23 @@
           "#F0F8FF"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "celestial",
+          "graphic",
+          "stipple",
+          "nocturnal",
+          "brushwork"
         ],
-        "category": "landscape",
+        "category": "abstract",
         "mood_score": 8,
         "keywords": [
-          "blue tones",
+          "orbs",
           "waves",
-          "abstract landscape",
-          "circles",
-          "particles",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ]
+          "stylized trees",
+          "blue",
+          "stipple"
+        ],
+        "image_seen": true,
+        "source": "jbg-present"
       },
       "likes_count": 0,
       "status": "listed",
@@ -5638,7 +5621,7 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "description": "Sweeping circular brushstrokes frame a large blue orb resting behind dark mountain contours. Undulating sapphire waves and small pine tree silhouettes anchor the tranquil foreground terrain. Soft stippled textures bring balance to the celestial composition, while deep violet accents define the outer painted arc.",
         "dominant_colors": [
           "#16213E",
           "#4169E1",
@@ -5646,26 +5629,23 @@
           "#FAF0E6"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "celestial",
+          "graphic",
+          "stipple",
+          "nocturnal",
+          "minimalist"
         ],
         "category": "landscape",
-        "mood_score": 9,
+        "mood_score": 8,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ]
+          "orb",
+          "brushstrokes",
+          "mountains",
+          "pines",
+          "waves"
+        ],
+        "image_seen": true,
+        "source": "jbg-present"
       },
       "likes_count": 0,
       "status": "listed",
@@ -5802,7 +5782,7 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "description": "Layered mountain ridges in deep blue watercolor tones rise toward a pale pink celestial disk. Splatters and fluid brush strokes frame the scene, evoking a cool night high in alpine terrain. Dark lower contours and pale negative space give the graphic landscape a crisp, spacious finish.",
         "dominant_colors": [
           "#0D1B2A",
           "#00BFFF",
@@ -5810,26 +5790,22 @@
           "#F5F5F5"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "celestial",
+          "watercolor",
+          "nocturnal",
+          "graphic"
         ],
         "category": "landscape",
-        "mood_score": 8,
+        "mood_score": 7,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ]
+          "mountains",
+          "pink orb",
+          "blue layers",
+          "watercolor",
+          "alpine"
+        ],
+        "image_seen": true,
+        "source": "jbg-present"
       },
       "likes_count": 0,
       "status": "listed",
@@ -5965,7 +5941,7 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "description": "Enclosed within a circular emblem, dark mountain silhouettes wave beneath a dusty pink moon shape. Stippled textures create a starry cosmos effect across the deep blue background. Fine tonal transitions and a pale outer field emphasize the compact, nocturnal graphic design.",
         "dominant_colors": [
           "#1C3A5F",
           "#4682B4",
@@ -5973,27 +5949,22 @@
           "#E0FFFF"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "celestial",
+          "stipple",
+          "nocturnal",
+          "graphic"
         ],
         "category": "landscape",
-        "mood_score": 9,
+        "mood_score": 6,
         "keywords": [
-          "blue tones",
-          "hills",
-          "waves",
-          "abstract landscape",
-          "flowing lines",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ]
+          "circular art",
+          "stippling",
+          "moon",
+          "silhouettes",
+          "midnight"
+        ],
+        "image_seen": true,
+        "source": "jbg-present"
       },
       "likes_count": 0,
       "status": "listed",
@@ -6128,7 +6099,7 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "description": "Thick black curves frame a glowing pink celestial form nestled above blue ocean waves. Speckled spray textures accentuate the cresting horizon, blending bold graphic design with organic landscape forms. The stacked contours and open white space create a measured sense of depth.",
         "dominant_colors": [
           "#0A1628",
           "#1E90FF",
@@ -6136,27 +6107,22 @@
           "#F0F8FF"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "graphic",
+          "stipple",
+          "celestial",
+          "watercolor"
         ],
-        "category": "landscape",
+        "category": "abstract",
         "mood_score": 8,
         "keywords": [
-          "blue tones",
           "waves",
-          "abstract landscape",
-          "circles",
-          "particles",
+          "pink horizon",
           "minimalist",
-          "ethereal",
-          "nature",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ]
+          "bold lines",
+          "sea"
+        ],
+        "image_seen": true,
+        "source": "jbg-present"
       },
       "likes_count": 0,
       "status": "listed",
@@ -6292,7 +6258,7 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "description": "Heavy black paint strokes sweep diagonally across a textured teal and white canvas. A dark circular element balances the dynamic motion of blue splatters and coarse brush marks. Broad dry-brush edges and uneven pigment give the abstract arrangement a lively, tactile rhythm.",
         "dominant_colors": [
           "#16213E",
           "#4169E1",
@@ -6300,26 +6266,22 @@
           "#FAF0E6"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "graphic",
+          "watercolor",
+          "nocturnal",
+          "brushwork"
         ],
-        "category": "landscape",
-        "mood_score": 9,
+        "category": "abstract",
+        "mood_score": 5,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ]
+          "brushstrokes",
+          "teal",
+          "black circle",
+          "splatter",
+          "texture"
+        ],
+        "image_seen": true,
+        "source": "jbg-present"
       },
       "likes_count": 0,
       "status": "listed",
@@ -6456,7 +6418,7 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "description": "Broad black horizontal brush strokes anchor a composition of soft seafoam green and sky blue washes. A solid green orb sits among scattered dark specks, offering a peaceful focal balance. The layered bands and pale ground keep the abstract image airy while preserving its expressive, hand-painted texture.",
         "dominant_colors": [
           "#0D1B2A",
           "#00BFFF",
@@ -6464,26 +6426,22 @@
           "#F5F5F5"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "graphic",
+          "celestial",
+          "watercolor",
+          "minimalist"
         ],
-        "category": "landscape",
-        "mood_score": 8,
+        "category": "abstract",
+        "mood_score": 7,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ]
+          "green orb",
+          "horizontal strokes",
+          "seafoam",
+          "expressionism",
+          "dots"
+        ],
+        "image_seen": true,
+        "source": "jbg-present"
       },
       "likes_count": 0,
       "status": "listed",

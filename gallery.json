@@ -34883,7 +34883,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A tranquil seascape landscape with undulating blue and green water waves, dark leafy stems, fern silhouettes, and floating celestial orbs.",
+        "description": "Cool blue and teal bands roll across a crisp white field, forming layered hills and flowing contours. Dark foliage, fern fronds, and slim leaf stems rise from the lower forms. Floating circles and soft splatter marks fill the open sky, while fine white lines sweep through the foreground.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -34893,17 +34893,19 @@
         ],
         "vibe_tags": [
           "serene",
-          "fluid",
-          "botanical",
-          "atmospheric"
+          "abstract",
+          "flowing",
+          "airy",
+          "graphic"
         ],
-        "category": "landscape",
-        "mood_score": 9,
+        "category": "Abstract Landscape",
+        "mood_score": 8,
         "keywords": [
-          "water waves",
-          "leafy stems",
-          "fern silhouettes",
-          "celestial orbs",
+          "hills",
+          "fronds",
+          "circles",
+          "splatter",
+          "contours",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
@@ -34936,7 +34938,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A central dark blue fern frond standing above abstract flowing blue wave bands, textured paint splatters, and floating cosmic dots.",
+        "description": "A dark navy fern frond rises upright against a white field, framed by pale blue and deep midnight waves. White line work curls around the lower edge and adds layered motion. Blue and navy circles drift overhead with subtle spray textures scattered across the background.",
         "dominant_colors": [
           "#113054",
           "#3378A8",
@@ -34945,18 +34947,20 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "botanical",
-          "abstract",
-          "graphic",
-          "fluid"
+          "symmetrical",
+          "calm",
+          "minimal",
+          "flowing",
+          "stylized"
         ],
-        "category": "abstract",
-        "mood_score": 9,
+        "category": "Abstract Landscape",
+        "mood_score": 8.2,
         "keywords": [
-          "fern frond",
-          "wave bands",
-          "paint splatters",
-          "cosmic dots",
+          "fern",
+          "waves",
+          "circles",
+          "linework",
+          "spray",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
@@ -35206,7 +35210,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A winter mountain landscape with dark peaks, snowy hills, leaf-shaped trees, a blue sun orb, and textured blue water lines.",
+        "description": "Dark angular peaks cut across the white sky beneath bold blue and navy circles. Small teardrop-shaped trees line rolling pale hills above a calm blue band of water. Fine white flourishes and blue splatter accents trace the edges of the layered landscape.",
         "dominant_colors": [
           "#112E52",
           "#3378A8",
@@ -35215,18 +35219,20 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "winter",
+          "mountainous",
           "serene",
-          "stylized",
-          "graphic"
+          "graphic",
+          "whimsical",
+          "cool"
         ],
-        "category": "landscape",
-        "mood_score": 9,
+        "category": "Abstract Landscape",
+        "mood_score": 7.6,
         "keywords": [
-          "winter mountain",
-          "snowy hills",
-          "leaf trees",
-          "sun orb",
+          "peaks",
+          "trees",
+          "hills",
+          "circles",
+          "splatter",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
@@ -35259,7 +35265,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A central green and blue fern frond standing tall over layered blue wave contours, splash textures, and floating cosmic particles.",
+        "description": "Teal highlights brighten a large dark fern frond rising vertically through the composition. Turquoise and navy waves overlap behind it, with looping white line art gathered along the lower edge. Navy and pale blue circles float above fine spray textures in the open background.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -35268,18 +35274,20 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "botanical",
-          "serene",
-          "fluid",
-          "artistic"
+          "balanced",
+          "organic",
+          "tranquil",
+          "layered",
+          "modern"
         ],
-        "category": "abstract",
-        "mood_score": 9,
+        "category": "Abstract Landscape",
+        "mood_score": 8.1,
         "keywords": [
-          "fern frond",
-          "wave contours",
-          "splash textures",
-          "cosmic particles",
+          "frond",
+          "waves",
+          "circles",
+          "spray",
+          "linework",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
@@ -35524,7 +35532,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "An abstract landscape featuring fluid watercolor blue waves, dark silhouetted trees along rolling hills, and a bright blue celestial sun.",
+        "description": "Stylized trees and leafy plants sit among sweeping water-like hills and flowing dark waves. Deep navy, slate blue, and teal shapes contrast with the white field beneath them. Blue circles and watercolor-like wash marks gather across the upper area, creating a layered abstract scene.",
         "dominant_colors": [
           "#113054",
           "#3378A8",
@@ -35533,18 +35541,20 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "abstract",
+          "serene",
+          "organic",
+          "layered",
           "fluid",
-          "atmospheric",
-          "serene"
+          "dreamlike"
         ],
-        "category": "abstract",
-        "mood_score": 9,
+        "category": "Abstract Landscape",
+        "mood_score": 8,
         "keywords": [
-          "watercolor waves",
-          "silhouetted trees",
-          "rolling hills",
-          "blue celestial sun",
+          "trees",
+          "plants",
+          "hills",
+          "waves",
+          "circles",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
@@ -35633,7 +35643,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A vibrant mountain scene under a constellation of floating green celestial orbs, with dark tree silhouettes along blue river contours.",
+        "description": "Dark blue and green circles float above layered wave forms on a white background, giving the scene a playful, airy rhythm. Small blue pine trees sit along a dark hillside above textured water lines. Fine white dots drift across the lower hills and reinforce the cool abstract landscape.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -35642,18 +35652,20 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "vibrant",
-          "atmospheric",
-          "stylized",
-          "graphic"
+          "abstract",
+          "geometric",
+          "serene",
+          "winter",
+          "whimsical"
         ],
-        "category": "landscape",
-        "mood_score": 9,
+        "category": "Abstract Landscape",
+        "mood_score": 7.8,
         "keywords": [
-          "green celestial orbs",
-          "mountain scene",
-          "tree silhouettes",
-          "river contours",
+          "circles",
+          "waves",
+          "pines",
+          "hills",
+          "dots",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
@@ -35898,7 +35910,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A vibrant botanical illustration featuring green leaf fronds rising over layered blue hills, floating celestial circles, and textured water contours.",
+        "description": "Two green leaf stalks rise from dark rolling hills beneath a sky filled with blue floating circles. Smaller pine trees line the ridge beside fine blue splatter marks and pale open space. Textured brushstrokes form a curved, layered base along the bottom edge.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -35907,18 +35919,20 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "vibrant",
-          "botanical",
-          "fluid",
-          "graphic"
+          "organic",
+          "tranquil",
+          "playful",
+          "graphic",
+          "cool"
         ],
-        "category": "landscape",
-        "mood_score": 9,
+        "category": "Abstract Landscape",
+        "mood_score": 8.1,
         "keywords": [
-          "green fronds",
-          "blue hills",
-          "celestial circles",
-          "water contours",
+          "leaves",
+          "circles",
+          "splatter",
+          "hills",
+          "pines",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
@@ -36269,7 +36283,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A tranquil botanical composition centered on a dark blue fern frond over undulating teal watercolor waves and scattered cosmic particles.",
+        "description": "A single fern-like tree stands prominently above layered teal and dark blue hills. Dark circular shapes and tiny speckles accent the white sky, while curved terrain bands add depth below. Thin white lines frame the lower edge and echo the flowing contours of the composition.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -36278,18 +36292,20 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "tranquil",
-          "botanical",
-          "fluid",
-          "serene"
+          "calm",
+          "symmetrical",
+          "minimal",
+          "cool",
+          "modern"
         ],
-        "category": "abstract",
-        "mood_score": 9,
+        "category": "Abstract Landscape",
+        "mood_score": 7.5,
         "keywords": [
-          "fern frond",
-          "watercolor waves",
-          "cosmic particles",
-          "botanical composition",
+          "fern",
+          "hills",
+          "teal",
+          "speckles",
+          "lines",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
@@ -36593,7 +36609,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A prominent green leaf frond rising over rolling dark blue and teal hills, stylized tree silhouettes, and flowing river lines.",
+        "description": "Large green frond rests diagonally across rounded blue dunes and layered hills. Dark pine silhouettes flank the right side beside fine speckled texture in the pale sky. White wave lines flow across the bottom dark layer, tying the sweeping forms together.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -36602,18 +36618,20 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "botanical",
           "dynamic",
-          "graphic",
-          "fluid"
+          "peaceful",
+          "stylized",
+          "fresh",
+          "flowing"
         ],
-        "category": "landscape",
-        "mood_score": 9,
+        "category": "Abstract Landscape",
+        "mood_score": 8,
         "keywords": [
-          "green frond",
-          "rolling hills",
-          "tree silhouettes",
-          "river lines",
+          "frond",
+          "dunes",
+          "pines",
+          "waves",
+          "dots",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
@@ -36646,7 +36664,7 @@
       "ai": {
         "image_seen": true,
         "source": "jbg-present",
-        "description": "A central stylized green tree stem standing tall among silhouetted pine trees, blue watercolor hills, and fine white wave contours.",
+        "description": "Tall green leafy stem reaches upward before soft teal mountain waves and layered blue hills. Dark pine shapes line the foreground ridge beneath scattered blue dots and pale open space. Splattered paint texture gathers into a frothy wave along the bottom edge of the artwork.",
         "dominant_colors": [
           "#113054",
           "#3DA37A",
@@ -36655,18 +36673,20 @@
           "#F4F7F9"
         ],
         "vibe_tags": [
-          "botanical",
+          "balanced",
           "serene",
-          "graphic",
-          "stylized"
+          "crisp",
+          "cool",
+          "nature"
         ],
-        "category": "landscape",
-        "mood_score": 9,
+        "category": "Abstract Landscape",
+        "mood_score": 8.3,
         "keywords": [
-          "stylized tree",
-          "pine trees",
-          "watercolor hills",
-          "wave contours",
+          "stem",
+          "mountains",
+          "pines",
+          "dots",
+          "froth",
           "avalanche",
           "avalanche_nature_stories",
           "ns"

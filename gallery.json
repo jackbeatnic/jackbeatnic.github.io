@@ -977,7 +977,7 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "description": "Floating celestial orbs dance above sweeping blue hills and textured oceanic waves. Gentle stippled textures bring depth to this dreamy landscape. Take a moment to immerse yourself in its calm rhythm, where the restrained palette makes each drifting band feel both grounded and weightless.",
         "dominant_colors": [
           "#0A1628",
           "#1E90FF",
@@ -985,27 +985,26 @@
           "#F0F8FF"
         ],
         "vibe_tags": [
+          "celestial",
           "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "oceanic",
+          "rhythmic",
+          "dreamy"
         ],
-        "category": "landscape",
-        "mood_score": 8,
+        "category": "Abstract Landscape",
+        "mood_score": 82,
         "keywords": [
-          "blue tones",
+          "orbs",
           "waves",
-          "abstract landscape",
-          "circles",
-          "particles",
-          "minimalist",
-          "ethereal",
-          "nature",
+          "hills",
+          "blue",
+          "texture",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
-        ]
+        ],
+        "image_seen": true,
+        "source": "jbg-present"
       },
       "likes_count": 0,
       "status": "listed",
@@ -1085,7 +1084,7 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "Ethereal blue-toned artwork with dynamic wave patterns and scattered circular elements evoking celestial and terrestrial harmony. The minimalist design uses gradient blues and subtle textures to convey calmness and the quiet majesty of nature.",
+        "description": "Snow-capped peaks rise sharply under a glowing nocturnal arch sprinkled with delicate stars. Bare trees line the foreground amid undulating teal drifts. Step closer to experience the quiet enchantment of winter, its measured curves suggesting a quiet passage through an imagined winter night.",
         "dominant_colors": [
           "#0D1B2A",
           "#00BFFF",
@@ -1093,26 +1092,26 @@
           "#F5F5F5"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "wintry",
+          "nocturnal",
+          "enchanting",
+          "mountainous",
+          "crisp"
         ],
-        "category": "landscape",
-        "mood_score": 8,
+        "category": "Winter Mountain",
+        "mood_score": 88,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
+          "mountains",
+          "snow",
+          "stars",
+          "winter",
+          "trees",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
-        ]
+        ],
+        "image_seen": true,
+        "source": "jbg-present"
       },
       "likes_count": 0,
       "status": "listed",
@@ -1139,7 +1138,7 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "description": "Dramatic mountain slopes anchor a scene framed by dark evergreen silhouettes and energetic spray overhead. Layered turquoise ridges draw the eye toward the summit. Pause to explore the crisp alpine air captured here, as balanced planes invite a slow visual climb from forest edge to sky.",
         "dominant_colors": [
           "#16213E",
           "#4169E1",
@@ -1147,26 +1146,26 @@
           "#FAF0E6"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "alpine",
+          "dramatic",
+          "fresh",
+          "scenic",
+          "bold"
         ],
-        "category": "landscape",
-        "mood_score": 9,
+        "category": "Mountain Landscape",
+        "mood_score": 85,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
+          "summit",
+          "pines",
+          "ridges",
+          "alpine",
+          "turquoise",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
-        ]
+        ],
+        "image_seen": true,
+        "source": "jbg-present"
       },
       "likes_count": 0,
       "status": "listed",
@@ -1246,7 +1245,7 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "Ethereal blue-toned artwork with dynamic wave patterns and scattered circular elements evoking celestial and terrestrial harmony. The minimalist design uses gradient blues and subtle textures to convey calmness and the quiet majesty of nature.",
+        "description": "Soft mist bursts across dark mountain contours in a striking display of atmosphere and form. Sweeping wave-like ridges balance the luminous energy above. Let your gaze wander through these cool rolling horizons, where subtle grain turns the simple geometry into a tactile, almost musical passage.",
         "dominant_colors": [
           "#1C3A5F",
           "#4682B4",
@@ -1254,27 +1253,26 @@
           "#E0FFFF"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "atmospheric",
+          "misty",
+          "dynamic",
+          "fluid",
+          "cool"
         ],
-        "category": "landscape",
-        "mood_score": 9,
+        "category": "Atmospheric Mountain",
+        "mood_score": 80,
         "keywords": [
-          "blue tones",
-          "hills",
-          "waves",
-          "abstract landscape",
-          "flowing lines",
-          "minimalist",
-          "ethereal",
-          "nature",
+          "mist",
+          "contours",
+          "ridges",
+          "blue",
+          "horizon",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
-        ]
+        ],
+        "image_seen": true,
+        "source": "jbg-present"
       },
       "likes_count": 0,
       "status": "listed",
@@ -1301,7 +1299,7 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "description": "A dark tree silhouette anchors the foreground against a smooth green-tinted peak and a spray of starlight. Scattered organic tufts rest along gentle dark slopes. Discover the quiet balance of this twilight view, whose open spacing leaves room for a contemplative pause.",
         "dominant_colors": [
           "#0D1B2A",
           "#00BFFF",
@@ -1309,26 +1307,26 @@
           "#F5F5F5"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "tranquil",
+          "twilight",
+          "graphic",
+          "spacious",
+          "balanced"
         ],
-        "category": "landscape",
-        "mood_score": 8,
+        "category": "Night Nature",
+        "mood_score": 86,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
+          "tree",
+          "starlight",
+          "peak",
+          "silhouette",
+          "slopes",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
-        ]
+        ],
+        "image_seen": true,
+        "source": "jbg-present"
       },
       "likes_count": 0,
       "status": "listed",
@@ -1408,7 +1406,7 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "Ethereal blue-toned artwork with dynamic wave patterns and scattered circular elements evoking celestial and terrestrial harmony. The minimalist design uses gradient blues and subtle textures to convey calmness and the quiet majesty of nature.",
+        "description": "Graduated indigo mountain peaks rise dramatically above sweeping teal foothills framed within a stippled circular sky. Deep contrast and crisp geometric layering draw the eye inward toward the central summit. Step closer to admire the delicate speckled textures that give life to this quiet alpine scene.",
         "dominant_colors": [
           "#0A1628",
           "#1E90FF",
@@ -1416,27 +1414,26 @@
           "#F0F8FF"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "alpine",
+          "geometric",
+          "tranquil",
+          "textured",
+          "crisp"
         ],
-        "category": "landscape",
-        "mood_score": 8,
+        "category": "Digital Illustration",
+        "mood_score": 78,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "circles",
-          "particles",
-          "minimalist",
-          "ethereal",
-          "nature",
+          "mountain",
+          "summit",
+          "teal",
+          "indigo",
+          "circle",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
-        ]
+        ],
+        "image_seen": true,
+        "source": "jbg-present"
       },
       "likes_count": 0,
       "status": "listed",
@@ -1463,7 +1460,7 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "description": "Curved turquoise waves roll gently across the foreground beneath a flat-topped navy volcano and a dotted sky. Small silhouettes of coastal foliage add charming detail to the spacious, cool-toned landscape. Take a moment to explore how the playful splatter effects balance the clean vector lines.",
         "dominant_colors": [
           "#1C3A5F",
           "#4682B4",
@@ -1471,27 +1468,26 @@
           "#E0FFFF"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "coastal",
+          "playful",
+          "whimsical",
+          "cool",
+          "modern"
         ],
-        "category": "landscape",
-        "mood_score": 9,
+        "category": "Digital Illustration",
+        "mood_score": 82,
         "keywords": [
-          "blue tones",
-          "hills",
+          "volcano",
           "waves",
-          "abstract landscape",
-          "flowing lines",
-          "minimalist",
-          "ethereal",
-          "nature",
+          "turquoise",
+          "dots",
+          "tree",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
-        ]
+        ],
+        "image_seen": true,
+        "source": "jbg-present"
       },
       "likes_count": 0,
       "status": "listed",
@@ -1571,7 +1567,7 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "Ethereal blue-toned artwork with dynamic wave patterns and scattered circular elements evoking celestial and terrestrial harmony. The minimalist design uses gradient blues and subtle textures to convey calmness and the quiet majesty of nature.",
+        "description": "Silhouetted pine trees line rolling emerald hills against a backdrop of distant azure ridges and floating celestial spheres. A vast circular halo filled with stippled stars crowns the entire horizon. Pause to appreciate the harmony between organic forest forms and cosmic imagery.",
         "dominant_colors": [
           "#16213E",
           "#4169E1",
@@ -1579,26 +1575,26 @@
           "#FAF0E6"
         ],
         "vibe_tags": [
+          "cosmic",
+          "mystical",
+          "forested",
           "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "balanced"
         ],
-        "category": "landscape",
-        "mood_score": 9,
+        "category": "Digital Illustration",
+        "mood_score": 85,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
+          "pines",
+          "forest",
+          "orbs",
+          "mountains",
+          "halo",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
-        ]
+        ],
+        "image_seen": true,
+        "source": "jbg-present"
       },
       "likes_count": 0,
       "status": "listed",
@@ -1625,7 +1621,7 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "description": "Layered mountain ranges in hues of cobalt and seafoam green stretch gracefully across a luminous horizon. Dynamic brushstroke textures impart a sense of gentle motion throughout the valleys below. Enjoy looking closely at the soft radiance glowing behind the majestic peaks.",
         "dominant_colors": [
           "#0A1628",
           "#1E90FF",
@@ -1633,27 +1629,26 @@
           "#F0F8FF"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "expansive",
+          "radiant",
+          "flowing",
+          "harmonic",
+          "peaceful"
         ],
-        "category": "landscape",
-        "mood_score": 8,
+        "category": "Digital Illustration",
+        "mood_score": 80,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "circles",
-          "particles",
-          "minimalist",
-          "ethereal",
-          "nature",
+          "valleys",
+          "peaks",
+          "cobalt",
+          "seafoam",
+          "glow",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
-        ]
+        ],
+        "image_seen": true,
+        "source": "jbg-present"
       },
       "likes_count": 0,
       "status": "listed",
@@ -1733,7 +1728,7 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "Ethereal blue-toned artwork with dynamic wave patterns and scattered circular elements evoking celestial and terrestrial harmony. The minimalist design uses gradient blues and subtle textures to convey calmness and the quiet majesty of nature.",
+        "description": "Detailed organic fronds anchor the foreground while rolling cyan dunes lead toward a snow-capped mountain under a giant textured moon. The artwork captures a tranquil twilight atmosphere filled with scattered stars and gentle gradients. Discover the rich interplay of natural motifs and graphic patterns within this piece.",
         "dominant_colors": [
           "#0D1B2A",
           "#00BFFF",
@@ -1741,26 +1736,26 @@
           "#F5F5F5"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "graphic",
+          "twilight",
+          "dreamy",
+          "scenic",
+          "lush"
         ],
-        "category": "landscape",
-        "mood_score": 8,
+        "category": "Digital Illustration",
+        "mood_score": 88,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
+          "fronds",
+          "moon",
+          "dunes",
+          "cyan",
+          "twilight",
           "avalanche",
           "avalanche_nature_stories",
           "ns"
-        ]
+        ],
+        "image_seen": true,
+        "source": "jbg-present"
       },
       "likes_count": 0,
       "status": "listed",

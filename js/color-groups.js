@@ -1,6 +1,11 @@
 /**
  * Grupuje precyzyjne hexy z dominant_colors w kilka czytelnych palet filtrów.
  * Na kartach NFT zostają oryginalne kolory — tu tylko UX wyszukiwania.
+ *
+ * 2026-09-07: bucketing is perception-first for ALL families (not only green).
+ * - Dark chromatic hues stay on their family (not dumped to charcoal/earth).
+ * - Border hues may match two adjacent chips so filters catch what eyes see.
+ * - Browns/golds land on earth/warm; forest greens on green; navy on blue+deep_blue.
  */
 const GalleryColorGroups = (() => {
     const FAMILIES = [
@@ -47,32 +52,123 @@ const GalleryColorGroups = (() => {
     }
 
     function familyForHex(hex) {
+        const ids = familiesForHex(hex);
+        return ids[0] || null;
+    }
+
+    /**
+     * One or more filter families for a hex. Borders may dual-tag so a chip
+     * click matches human color reading (Jack: green was only an example —
+     * every family must not swallow neighbors' works).
+     */
+    function familiesForHex(hex) {
         const rgb = parseHex(hex);
-        if (!rgb) return null;
+        if (!rgb) return [];
         const { h, s, l } = rgbToHsl(...rgb);
+        const out = [];
+        const add = (...ids) => {
+            ids.forEach((id) => {
+                if (!out.includes(id)) out.push(id);
+            });
+        };
 
-        if (l <= 18 && s < 42) return 'charcoal';
-        if (s <= 12 || (l >= 88 && s <= 28)) return 'neutral';
+        // Near-black grey only — keep dark chromatics on their hue family
+        if (l <= 12 && s < 28) return ['charcoal'];
+        if (l <= 16 && s < 18) return ['charcoal'];
 
-        if (h >= 285 || h < 12) {
-            if (s > 32 && l > 22 && l < 82) return 'rose';
-            return 'warm';
+        // True greys / near-white grey — leave pastel chromatics alone
+        if (s <= 8) return ['neutral'];
+        if (l >= 92 && s <= 18) return ['neutral'];
+
+        // --- Magenta / red / rose (330–360 / 0–12) ---
+        if (h >= 330 || h < 12) {
+            if (s > 18 && l > 12 && l < 88) add('rose');
+            // tomato / coral / burgundy warmth
+            if (h < 18 || h >= 350 || (l < 40 && s > 25)) add('warm');
+            if (!out.length) add(l < 28 ? 'charcoal' : 'warm');
+            return out;
         }
-        if (h < 38) return 'warm';
-        if (h < 78) return l < 42 ? 'earth' : 'green';
-        if (h < 145) return l < 40 ? 'earth' : 'green';
-        if (h < 215) return 'teal';
-        if (h < 248) return l < 36 ? 'deep_blue' : 'blue';
-        if (h < 285) return l < 42 ? 'deep_blue' : 'rose';
 
-        return 'neutral';
+        // --- Orange / deep red-brown (12–28) ---
+        if (h < 28) {
+            if (l < 38 && s > 28) add('rose'); // burgundy / deep red
+            if (l < 48 && s < 58) add('earth', 'warm');
+            else add('warm');
+            if (!out.length) add('warm');
+            return out;
+        }
+
+        // --- Gold / brown (28–48) — was wrongly green when L high ---
+        if (h < 48) {
+            if (l < 52 && s < 65) add('earth');
+            if (s >= 30 || l >= 42) add('warm');
+            if (!out.length) add('earth');
+            return out;
+        }
+
+        // --- Olive / khaki (48–70) ---
+        if (h < 70) {
+            if (s < 32 && l < 52) add('earth');
+            else add('green');
+            if (h >= 58 && s >= 22) add('green');
+            if (!out.length) add('earth');
+            return out;
+        }
+
+        // --- True greens incl. dark forest / emerald (70–150) ---
+        if (h < 150) {
+            if (h < 95 && s < 24 && l < 42) add('earth');
+            else add('green');
+            return out;
+        }
+
+        // --- Green ↔ teal border ---
+        if (h < 168) {
+            add('green', 'teal');
+            return out;
+        }
+
+        // --- Teal / aqua ---
+        if (h < 195) {
+            add('teal');
+            if (h >= 185) add('blue');
+            return out;
+        }
+
+        // --- Sky / cyan-blue ---
+        if (h < 225) {
+            add('blue');
+            if (h < 210) add('teal');
+            if (l < 42) add('deep_blue');
+            return out;
+        }
+
+        // --- Blue / navy ---
+        if (h < 255) {
+            if (l < 45) add('deep_blue');
+            if (l >= 32) add('blue');
+            if (!out.length) add('deep_blue');
+            return out;
+        }
+
+        // --- Indigo / violet ---
+        if (h < 295) {
+            if (l < 48) add('deep_blue');
+            if (s > 22 && l > 22) add('rose');
+            if (!out.length) add('deep_blue');
+            return out;
+        }
+
+        // --- Magenta (295–330) ---
+        add('rose');
+        if (l < 36) add('deep_blue');
+        return out;
     }
 
     function familiesForNft(nft) {
         const ids = new Set();
         (nft?.ai?.dominant_colors || []).forEach((hex) => {
-            const id = familyForHex(hex);
-            if (id) ids.add(id);
+            familiesForHex(hex).forEach((id) => ids.add(id));
         });
         return [...ids];
     }
@@ -110,6 +206,7 @@ const GalleryColorGroups = (() => {
     return {
         familiesPresent,
         familyForHex,
+        familiesForHex,
         familiesForNft,
         nftMatchesFamilies,
         labelForFamilyId,

@@ -872,8 +872,7 @@ const Gallery = (() => {
     function saleItemsToNfts(doc) {
         const raw = Array.isArray(doc?.items) ? doc.items : [];
         const now = Date.now();
-        return raw
-            .filter((it) => {
+        const filtered = raw.filter((it) => {
                 if ((it.channel || 'shop') !== 'shop') return false;
                 if ((it.status || 'live') !== 'live') return false;
                 if ((it.qty_available || 0) <= 0) return false;
@@ -883,7 +882,18 @@ const Gallery = (() => {
                     if (!Number.isNaN(t) && t <= now) return false;
                 }
                 return true;
-            })
+            });
+        // Display only: one card per token_id, lowest pay_amount (t2 over t1).
+        const bestByTid = new Map();
+        for (const it of filtered) {
+            const tid = String(it.token_id ?? '');
+            const pay = Number(it.pay_amount ?? it.price);
+            const prev = bestByTid.get(tid);
+            const prevPay = prev == null ? Infinity : Number(prev.pay_amount ?? prev.price);
+            if (!Number.isFinite(pay)) continue;
+            if (prev == null || pay < prevPay) bestByTid.set(tid, it);
+        }
+        return Array.from(bestByTid.values())
             .map((it, idx) => {
                 const chain = (it.chain || '').toLowerCase();
                 const cur = (it.currency || 'USD').toUpperCase();

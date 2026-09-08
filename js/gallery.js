@@ -2052,8 +2052,22 @@ const Gallery = (() => {
         return card;
     }
 
+    function setupBackToTop() {
+        const btn = document.getElementById('back-to-top');
+        if (!btn) return;
+        const sync = () => {
+            btn.classList.toggle('is-visible', window.scrollY > 400);
+        };
+        btn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        window.addEventListener('scroll', sync, { passive: true });
+        sync();
+    }
+
     function init() {
         setupProtection();
+        setupBackToTop();
         if (typeof XrplMint !== 'undefined') XrplMint.init();
         if (typeof SuiMint !== 'undefined') SuiMint.init();
         const ready =

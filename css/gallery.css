@@ -192,6 +192,56 @@ a {
     flex-shrink: 0;
 }
 
+.back-to-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.28rem;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0.28rem 0.65rem;
+    border: 1px solid rgba(10, 10, 10, 0.18);
+    border-radius: 999px;
+    background: rgba(10, 10, 10, 0.04);
+    color: #0a0a0a;
+    font-family: inherit;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    line-height: 1.2;
+    white-space: nowrap;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(2px);
+    transition:
+        opacity 0.25s var(--ease-out),
+        visibility 0.25s var(--ease-out),
+        background 0.25s var(--ease-out),
+        border-color 0.25s var(--ease-out),
+        box-shadow 0.25s var(--ease-out),
+        transform 0.25s var(--ease-out);
+}
+
+.back-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: rgba(10, 10, 10, 0.1);
+    transform: translateY(-1px);
+}
+
+.back-to-top__icon {
+    font-size: 0.72rem;
+    line-height: 1;
+}
+
 .shop-chip {
     display: inline-flex;
     align-items: center;
@@ -253,7 +303,8 @@ a {
     }
 
     .featured-chip,
-    .shop-chip {
+    .shop-chip,
+    .back-to-top {
         font-size: 0.52rem;
         padding: 0.24rem 0.55rem;
         letter-spacing: 0.08em;
@@ -893,6 +944,10 @@ body.shop-open {
     font-size: 0.78rem;
     color: var(--gray-600);
     margin-bottom: 0.7rem;
+}
+
+.shop-modal__tip-lead {
+    margin: 0 0 0.75rem;
 }
 
 .shop-modal__qr {
@@ -2594,6 +2649,18 @@ body.lightbox-open {
         background: #f3f3f3;
         border-color: #fff;
         color: #0a0a0a;
+    }
+
+    .back-to-top {
+        border-color: rgba(255, 255, 255, 0.28);
+        background: rgba(255, 255, 255, 0.08);
+        color: #f3f3f3;
+        box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+    }
+
+    .back-to-top:hover {
+        background: rgba(255, 255, 255, 0.16);
+        color: #fff;
     }
 
     .nft-card__badge--shop {

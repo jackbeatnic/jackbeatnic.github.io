@@ -62,7 +62,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/gallery.css?v=20260903view2">
+    <link rel="stylesheet" href="css/gallery.css?v=20260908tip">
     <link rel="stylesheet" href="css/text-select.css?v=20260815copy">
 </head>
 <body class="gallery-protected">
@@ -95,6 +95,14 @@
             </div>
             <div class="site-header__actions">
                 <div class="header-chips">
+                    <button type="button"
+                            id="back-to-top"
+                            class="back-to-top"
+                            title="Back to top"
+                            aria-label="Back to top">
+                        <span class="back-to-top__icon" aria-hidden="true">↑</span>
+                        <span class="back-to-top__label">Top</span>
+                    </button>
                     <button type="button"
                             id="shop-chip"
                             class="shop-chip"
@@ -351,30 +359,31 @@
                 <button type="button" id="shop-pay-wc" class="btn btn--ghost btn--block" hidden>WalletConnect</button>
                 <p id="shop-modal-pay-status" class="shop-modal__status" hidden></p>
             </div>
-            <details class="shop-modal__manual">
-                <summary>Pay by hand (does not buy the NFT)</summary>
-            <dl class="shop-modal__facts">
-                <div>
-                    <dt>Amount</dt>
-                    <dd id="shop-modal-amount">—</dd>
-                    <p id="shop-modal-amount-hint" class="shop-modal__hint" hidden></p>
-                    <button type="button" id="shop-copy-amount" class="btn btn--ghost btn--small">Copy amount</button>
-                </div>
-                <div>
-                    <dt>Pay to</dt>
-                    <dd id="shop-modal-address">—</dd>
-                    <button type="button" id="shop-copy-address" class="btn btn--ghost btn--small">Copy address</button>
-                </div>
-                <div>
-                    <dt>Memo (optional)</dt>
-                    <dd id="shop-modal-memo">—</dd>
-                    <p class="shop-modal__hint">Optional.</p>
-                    <button type="button" id="shop-copy-memo" class="btn btn--ghost btn--small">Copy memo</button>
-                </div>
-            </dl>
-            <img id="shop-modal-qr" class="shop-modal__qr" width="160" height="160" alt="" hidden>
-            </details>
             <p id="shop-modal-fulfill" class="shop-modal__fulfill"></p>
+            <details class="shop-modal__manual">
+                <summary>Tip (no NFT)</summary>
+                <p class="shop-modal__hint shop-modal__tip-lead">Optional tip only — QR or manual send does not buy an NFT. Buy is Pay with wallet or WalletConnect.</p>
+                <dl class="shop-modal__facts">
+                    <div>
+                        <dt>Amount</dt>
+                        <dd id="shop-modal-amount">—</dd>
+                        <p id="shop-modal-amount-hint" class="shop-modal__hint" hidden></p>
+                        <button type="button" id="shop-copy-amount" class="btn btn--ghost btn--small">Copy amount</button>
+                    </div>
+                    <div>
+                        <dt>Pay to</dt>
+                        <dd id="shop-modal-address">—</dd>
+                        <button type="button" id="shop-copy-address" class="btn btn--ghost btn--small">Copy address</button>
+                    </div>
+                    <div>
+                        <dt>Memo (optional)</dt>
+                        <dd id="shop-modal-memo">—</dd>
+                        <p class="shop-modal__hint">Optional.</p>
+                        <button type="button" id="shop-copy-memo" class="btn btn--ghost btn--small">Copy memo</button>
+                    </div>
+                </dl>
+                <img id="shop-modal-qr" class="shop-modal__qr" width="160" height="160" alt="" hidden>
+            </details>
             <p class="shop-modal__terms"><a href="shop-terms.html">Studio shop terms</a></p>
         </div>
     </div>
@@ -445,9 +454,9 @@
     <script src="js/wallet.js?v=20260713e"></script>
     <script src="js/tip.js?v=20260712p"></script>
     <script src="js/share.js?v=20260830xrpl"></script>
-    <script src="js/shop.js?v=20260903mm"></script>
+    <script src="js/shop.js?v=20260908tip"></script>
     <script src="js/xrpl-mint.js?v=20260828xrp01"></script>
     <script src="js/sui-mint.js?v=20260906sui03"></script>
-    <script src="js/gallery.js?v=20260906sui03"></script>
+    <script src="js/gallery.js?v=20260908tip"></script>
 </body>
 </html>

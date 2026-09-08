@@ -360,7 +360,7 @@ const ShopCheckout = (() => {
             } else {
                 amountHint.hidden = false;
                 amountHint.textContent =
-                    'Pay with wallet so the token number goes with the payment. Do not change the amount.';
+                    'Optional tip via QR/address. This does not purchase the NFT.';
             }
         }
         if (addrEl) addrEl.textContent = addr || '—';

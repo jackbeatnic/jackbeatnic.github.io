@@ -1095,7 +1095,7 @@ const Gallery = (() => {
                             'No live studio offers right now.',
                         promo_eyebrow: 'Studio shop',
                         promo_lead:
-                            'Nature Stories · Avalanche. Studio price is 50% of the OpenSea listing. 100 editions, 45 days. OpenSea is a separate pool.',
+                            'Buy direct from the studio. Pick a work, pay with wallet — the NFT comes to that wallet.',
                         ...(mainSections.shop || {}),
                     },
                     ...mainSections,
@@ -1317,7 +1317,7 @@ const Gallery = (() => {
                         </p>
                         <p class="section-promo__collector">
                             Pay with wallet. Confirm the amount — do not edit it.
-                            <strong>The wallet sends the token number with the payment. Pay by hand without that number does not buy the NFT — it is a tip.</strong>
+                            <strong>The wallet sends the token number with the payment. A Tip (QR / manual send) does not buy the NFT.</strong>
                             The NFT is sent in a second transaction to the wallet you pay from.
                         </p>
                         <div class="section-promo__actions">

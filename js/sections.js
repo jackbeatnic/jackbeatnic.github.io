@@ -388,7 +388,7 @@ const GallerySections = (() => {
                     'No live studio-shop works right now.',
                 promo_eyebrow: 'Studio shop',
                 promo_lead:
-                    'Buy here. Pay the amount shown. The NFT goes to the wallet you pay from.',
+                    'Buy direct from the studio. Pick a work, pay with wallet — the NFT comes to that wallet.',
             };
         }
     }

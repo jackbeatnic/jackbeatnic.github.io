@@ -8944,33 +8944,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "A serene abstract composition featuring undulating blue layers reminiscent of mountains and water bodies under a soft glowing orb. Speckled textures and smooth curves create a sense of depth and tranquility in this modern take on natural beauty.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Luminous golden yellow sun rests enclosed within a larger blue circle above dark wave ridges. Textured black and cyan land ribbons sweep across the foreground space in graphic horizontal layers. Fine ink specks and line hatching accent the upper white backdrop.",
         "dominant_colors": [
-          "#16213E",
-          "#4169E1",
-          "#00CED1",
-          "#FAF0E6"
+          "#E5A93C",
+          "#1B6EA1",
+          "#0B131C",
+          "#124138",
+          "#FFFFFF"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "celestial",
+          "graphic",
+          "fluid",
+          "stipple",
+          "dramatic"
         ],
-        "category": "landscape",
+        "category": "abstract",
         "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "golden sun",
+          "blue circle",
+          "wave ridges",
+          "land ribbons",
+          "ink specks"
         ]
       },
       "likes_count": 0,
@@ -9105,33 +9103,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "A serene abstract composition featuring undulating blue layers reminiscent of mountains and water bodies under a soft glowing orb. Speckled textures and smooth curves create a sense of depth and tranquility in this modern take on natural beauty.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Deep midnight orb floats above a emerald dome and layered sea green wave bands. Textured black paint strokes extend dynamically beyond the inner white frame margins. Fine ink splatters and distant bird silhouettes dot the airy upper background.",
         "dominant_colors": [
-          "#0D1B2A",
-          "#00BFFF",
-          "#20B2AA",
-          "#F5F5F5"
+          "#0A1017",
+          "#0E5A53",
+          "#2C8B92",
+          "#FFFFFF",
+          "#1B4B5E"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "celestial",
+          "graphic",
+          "fluid",
+          "nocturnal",
+          "stipple"
         ],
-        "category": "landscape",
+        "category": "abstract",
         "mood_score": 8,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "midnight orb",
+          "emerald dome",
+          "wave bands",
+          "paint strokes",
+          "bird silhouettes"
         ]
       },
       "likes_count": 0,
@@ -9265,34 +9261,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "A serene abstract composition featuring undulating blue layers reminiscent of mountains and water bodies under a soft glowing orb. Speckled textures and smooth curves create a sense of depth and tranquility in this modern take on natural beauty.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Warm peach celestial disc overlaps a solid dark orb above rolling emerald and navy slopes. Swooping blue ribbons with dry-brush textures extend across the lower foreground field. Soft blue sky washes balance the rich, dark land contours below.",
         "dominant_colors": [
-          "#1C3A5F",
-          "#4682B4",
-          "#5F9EA0",
-          "#E0FFFF"
+          "#E8AC7B",
+          "#0A0F14",
+          "#1F5C4B",
+          "#2C6B82",
+          "#FFFFFF"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "celestial",
+          "graphic",
+          "fluid",
+          "dramatic",
+          "serene"
         ],
         "category": "landscape",
         "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "hills",
-          "waves",
-          "abstract landscape",
-          "flowing lines",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "peach disc",
+          "dark orb",
+          "emerald slopes",
+          "blue ribbons",
+          "dry brush"
         ]
       },
       "likes_count": 0,
@@ -9426,34 +9419,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "A serene abstract composition featuring undulating blue layers reminiscent of mountains and water bodies under a soft glowing orb. Speckled textures and smooth curves create a sense of depth and tranquility in this modern take on natural beauty.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Dark midnight circle stands against a stark white sky as birds fly toward light teal hill slopes. Sweeping navy and green wave bands carry heavy brushwork across the foreground terrain. Subtle stippled textures give organic depth to the lower sea green layer.",
         "dominant_colors": [
-          "#0A1628",
-          "#1E90FF",
-          "#00CED1",
-          "#F0F8FF"
+          "#0B131C",
+          "#50A8A3",
+          "#144B44",
+          "#FFFFFF",
+          "#1E4C5E"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "celestial",
+          "fluid",
+          "graphic",
+          "stipple",
+          "minimalist"
         ],
         "category": "landscape",
-        "mood_score": 8,
+        "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "circles",
-          "particles",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "midnight circle",
+          "birds flying",
+          "teal slopes",
+          "wave bands",
+          "stippled texture"
         ]
       },
       "likes_count": 0,
@@ -9588,33 +9578,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "A serene abstract composition featuring undulating blue layers reminiscent of mountains and water bodies under a soft glowing orb. Speckled textures and smooth curves create a sense of depth and tranquility in this modern take on natural beauty.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Solitary figure oars a small boat across quiet blue water amidst undulating green hills. Large white moon sphere and dark eclipse orb hover together over distant mountain silhouettes. Fine dry-brush lines and spray textures frame the upper night horizon.",
         "dominant_colors": [
-          "#16213E",
-          "#4169E1",
-          "#00CED1",
-          "#FAF0E6"
+          "#0A0F14",
+          "#1B6245",
+          "#1B4B78",
+          "#FFFFFF",
+          "#2E3B4E"
         ],
         "vibe_tags": [
           "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "nocturnal",
+          "celestial",
+          "scenic",
+          "fluid"
         ],
         "category": "landscape",
-        "mood_score": 9,
+        "mood_score": 10,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "boat figure",
+          "white moon",
+          "eclipse orb",
+          "green hills",
+          "mountain silhouettes"
         ]
       },
       "likes_count": 0,
@@ -9749,33 +9737,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "A serene abstract composition featuring undulating blue layers reminiscent of mountains and water bodies under a soft glowing orb. Speckled textures and smooth curves create a sense of depth and tranquility in this modern take on natural beauty.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Dark moon disc hangs quietly in a clean white sky above a pine tree silhouette resting atop sweeping emerald hill slopes. Textured navy wave bands and dry-brush strokes cross horizontally through the lower landscape. Fine ink specks drift across the upper right horizon line.",
         "dominant_colors": [
-          "#0D1B2A",
-          "#00BFFF",
-          "#20B2AA",
-          "#F5F5F5"
+          "#0A1017",
+          "#1B6B56",
+          "#1B4B5E",
+          "#FFFFFF",
+          "#2E3B4E"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "nocturnal",
+          "woodland",
+          "celestial",
+          "graphic",
+          "stipple"
         ],
         "category": "landscape",
-        "mood_score": 8,
+        "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "dark moon",
+          "pine tree silhouette",
+          "emerald hill",
+          "wave bands",
+          "dry brush"
         ]
       },
       "likes_count": 0,
@@ -9909,34 +9895,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "A serene abstract composition featuring undulating blue layers reminiscent of mountains and water bodies under a soft glowing orb. Speckled textures and smooth curves create a sense of depth and tranquility in this modern take on natural beauty.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Pale yellow solar disc pairs with a large dark teal celestial orb above dark undulating mountain ridges. Sweeping turquoise wave ribbons layer gracefully across the lower foreground base. Granular white specks scatter across the deep sea-green layers.",
         "dominant_colors": [
-          "#1C3A5F",
-          "#4682B4",
-          "#5F9EA0",
-          "#E0FFFF"
+          "#E5C86B",
+          "#0D3B36",
+          "#1B5E56",
+          "#0A0F14",
+          "#FFFFFF"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "celestial",
+          "graphic",
+          "fluid",
+          "stipple",
+          "dramatic"
         ],
         "category": "landscape",
         "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "hills",
-          "waves",
-          "abstract landscape",
-          "flowing lines",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "yellow sun",
+          "teal orb",
+          "mountain ridges",
+          "turquoise wave",
+          "stippled specks"
         ]
       },
       "likes_count": 0,
@@ -10070,34 +10053,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "A serene abstract composition featuring undulating blue layers reminiscent of mountains and water bodies under a soft glowing orb. Speckled textures and smooth curves create a sense of depth and tranquility in this modern take on natural beauty.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Luminous white sun rests inside a dark teal arc above crashing ocean waves and dark shore peaks. Small silhouetted figures and birds move along the turbulent water edge. Ink splatters and dry-brush textures impart dramatic energy to the coastal sky.",
         "dominant_colors": [
-          "#0A1628",
-          "#1E90FF",
-          "#00CED1",
-          "#F0F8FF"
+          "#1B565E",
+          "#0A0F14",
+          "#2C8B92",
+          "#FFFFFF",
+          "#123238"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "oceanic",
+          "dramatic",
+          "fluid",
+          "celestial",
+          "stipple"
         ],
         "category": "landscape",
-        "mood_score": 8,
+        "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "circles",
-          "particles",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "white sun",
+          "teal arc",
+          "ocean waves",
+          "coastal peaks",
+          "silhouetted figures"
         ]
       },
       "likes_count": 0,
@@ -10232,33 +10212,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "A serene abstract composition featuring undulating blue layers reminiscent of mountains and water bodies under a soft glowing orb. Speckled textures and smooth curves create a sense of depth and tranquility in this modern take on natural beauty.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Fine outlined moon ring overlaps a teal celestial disc above dark wave slopes. Granular white splash textures cut across sea-green and midnight foreground ribbons below. Ink specks spray dynamically along the upper right atmosphere edge.",
         "dominant_colors": [
-          "#16213E",
-          "#4169E1",
-          "#00CED1",
-          "#FAF0E6"
+          "#4EA199",
+          "#0B131C",
+          "#1E524D",
+          "#FFFFFF",
+          "#143834"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "celestial",
+          "fluid",
+          "graphic",
+          "stipple",
+          "oceanic"
         ],
-        "category": "landscape",
-        "mood_score": 9,
+        "category": "abstract",
+        "mood_score": 8,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "outlined moon",
+          "teal disc",
+          "wave slopes",
+          "splash textures",
+          "ink specks"
         ]
       },
       "likes_count": 0,
@@ -10393,33 +10371,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "A serene abstract composition featuring undulating blue layers reminiscent of mountains and water bodies under a soft glowing orb. Speckled textures and smooth curves create a sense of depth and tranquility in this modern take on natural beauty.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Two figures row small black boats upon calm water lines beneath a dark eclipse orb and glowing white sun. Layered green and navy mountain slopes sweep smoothly across the midground. Fine stippled noise coats the pale cyan sky horizon.",
         "dominant_colors": [
-          "#0D1B2A",
-          "#00BFFF",
-          "#20B2AA",
-          "#F5F5F5"
+          "#0A0F14",
+          "#1B5E43",
+          "#1B4B78",
+          "#87B5CB",
+          "#FFFFFF"
         ],
         "vibe_tags": [
           "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "nocturnal",
+          "celestial",
+          "scenic",
+          "fluid"
         ],
         "category": "landscape",
-        "mood_score": 8,
+        "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "rowing figures",
+          "dark eclipse",
+          "white sun",
+          "green slopes",
+          "calm water"
         ]
       },
       "likes_count": 0,

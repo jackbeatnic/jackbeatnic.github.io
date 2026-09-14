@@ -152,8 +152,8 @@
     "collection_id": "avalanche_nature_stories",
     "last_price_sync": "2026-07-24T18:02:13Z",
     "last_likes_sort": "2026-07-11T17:02:45Z",
-    "og_generated_at": "2026-09-06T05:28:07Z",
-    "og_cache_version": "202609060528",
+    "og_generated_at": "2026-09-08T21:43:45Z",
+    "og_cache_version": "202609082143",
     "last_objkt_sync": "2026-07-16T00:10:46Z",
     "xrpl_issuer_wallet": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
     "xrpl_nft_taxon": 0,
@@ -8186,33 +8186,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Dramatic indigo splatters erupt across upper white skies above layered mountain ridges. Lush green valley slopes framed by dark conifer silhouettes ground the lower vista. Deep, gentle watercolor washes give undulating hills vivid, layered depth.",
         "dominant_colors": [
-          "#16213E",
-          "#4169E1",
-          "#00CED1",
-          "#FAF0E6"
+          "#113054",
+          "#1B4D3E",
+          "#4A90E2",
+          "#0A1528",
+          "#E8ECEF"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "alpine",
+          "watercolor",
+          "graphic",
+          "woodland",
+          "scenic"
         ],
         "category": "landscape",
-        "mood_score": 9,
+        "mood_score": 8,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "indigo splatters",
+          "mountain ridges",
+          "conifer silhouettes",
+          "green valleys",
+          "watercolor hills"
         ]
       },
       "likes_count": 0,
@@ -8350,33 +8348,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "A glowing pale solar disc rests over misty blue mountain ranges and stippled cloud formations. Forest green hills populated with pine tree silhouettes gently slope into a central valley floor. Ink specks scatter lightly across the soft sky.",
         "dominant_colors": [
-          "#0D1B2A",
-          "#00BFFF",
-          "#20B2AA",
-          "#F5F5F5"
+          "#2E6B56",
+          "#3B7A9E",
+          "#102238",
+          "#7AB8C6",
+          "#F0F4F7"
         ],
         "vibe_tags": [
+          "panoramic",
+          "celestial",
+          "woodland",
           "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "stipple"
         ],
         "category": "landscape",
-        "mood_score": 8,
+        "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "solar disc",
+          "misty mountains",
+          "pine trees",
+          "ink specks",
+          "green hills"
         ]
       },
       "likes_count": 0,
@@ -8513,34 +8509,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "A spray of dense paint blooms high in the right corner above rolling navy slopes. Dark pine silhouettes line the right ridge as icy blue watercolor waves recede into the distance. A faint pale orb hangs quietly against the muted background.",
         "dominant_colors": [
-          "#1C3A5F",
-          "#4682B4",
-          "#5F9EA0",
-          "#E0FFFF"
+          "#0B192C",
+          "#1E4C7A",
+          "#5097C7",
+          "#9ECBE2",
+          "#ECEFF2"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "nocturnal",
+          "dramatic",
+          "watercolor",
+          "alpine",
+          "graphic"
         ],
         "category": "landscape",
-        "mood_score": 9,
+        "mood_score": 8,
         "keywords": [
-          "blue tones",
-          "hills",
-          "waves",
-          "abstract landscape",
-          "flowing lines",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "paint burst",
+          "navy slopes",
+          "pine silhouettes",
+          "icy waves",
+          "pale orb"
         ]
       },
       "likes_count": 0,
@@ -8676,34 +8669,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Vibrant purple and cyan alcohol ink blooms rise above dark rolling land contours. A bare white tree branch skeleton stands gracefully amid deep blue watercolor swirls. Fine black paint dots splatter dynamic texture along the upper boundary.",
         "dominant_colors": [
-          "#0A1628",
-          "#1E90FF",
-          "#00CED1",
-          "#F0F8FF"
+          "#5E3B9B",
+          "#1B6EA1",
+          "#0A1526",
+          "#62B5E5",
+          "#EAF2F8"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "fluid",
+          "watercolor",
+          "dramatic",
+          "abstract",
+          "stipple"
         ],
-        "category": "landscape",
-        "mood_score": 8,
+        "category": "abstract",
+        "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "circles",
-          "particles",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "purple ink bloom",
+          "cyan waves",
+          "tree skeleton",
+          "paint dots",
+          "land contours"
         ]
       },
       "likes_count": 0,
@@ -8840,33 +8830,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Large emerald green circular disc intersects a solid black orb atop sweeping dark wave forms. A bold blue ribbon cuts across the foreground over textured white and navy base layers. Fine stippled spray accents the clean minimalist geometry.",
         "dominant_colors": [
-          "#16213E",
-          "#4169E1",
-          "#00CED1",
-          "#FAF0E6"
+          "#1C8266",
+          "#0A0F14",
+          "#164366",
+          "#FFFFFF",
+          "#4EA1A1"
         ],
         "vibe_tags": [
-          "serene",
+          "graphic",
           "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "celestial",
+          "fluid",
+          "stipple"
         ],
-        "category": "landscape",
+        "category": "abstract",
         "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "emerald disc",
+          "black orb",
+          "blue ribbon",
+          "wave forms",
+          "stippled spray"
         ]
       },
       "likes_count": 0,
@@ -9004,33 +8992,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Rich forest green circular arc frames a pale solar disc rising over stylized pine trees. Dark navy hill contours transition into textured green base sweeps. Fine ink spray particles accent the upper right corner against crisp white space.",
         "dominant_colors": [
-          "#0D1B2A",
-          "#00BFFF",
-          "#20B2AA",
-          "#F5F5F5"
+          "#0D4238",
+          "#0B192C",
+          "#1B5E4B",
+          "#FFFFFF",
+          "#1E3A5F"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "celestial",
+          "woodland",
+          "graphic",
+          "stipple",
+          "serene"
         ],
         "category": "landscape",
-        "mood_score": 8,
+        "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "green arc",
+          "solar disc",
+          "pine trees",
+          "navy hills",
+          "ink spray"
         ]
       },
       "likes_count": 0,
@@ -9167,34 +9153,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Deep cobalt orb hangs over sweeping indigo wave bands and broad textured sea hills. Dark brush strokes carve dynamic horizontal movement across the lower foreground layers. Fine paint splatters scatter across the right sky boundary.",
         "dominant_colors": [
-          "#1C3A5F",
-          "#4682B4",
-          "#5F9EA0",
-          "#E0FFFF"
+          "#0A1526",
+          "#1B4E75",
+          "#4B8BAE",
+          "#87B1C9",
+          "#FFFFFF"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "nocturnal",
+          "fluid",
+          "graphic",
+          "watercolor",
+          "celestial"
         ],
-        "category": "landscape",
-        "mood_score": 9,
+        "category": "abstract",
+        "mood_score": 8,
         "keywords": [
-          "blue tones",
-          "hills",
-          "waves",
-          "abstract landscape",
-          "flowing lines",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "cobalt orb",
+          "indigo waves",
+          "sea hills",
+          "brush strokes",
+          "paint splatters"
         ]
       },
       "likes_count": 0,
@@ -9330,34 +9313,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Golden yellow sun sets inside a dark teal celestial ring above rolling blue ridges. Textured cyan and midnight wave ribbons flow smoothly across the lower foreground field. Stippled ink specks drift gently through the pale background.",
         "dominant_colors": [
-          "#0A1628",
-          "#1E90FF",
-          "#00CED1",
-          "#F0F8FF"
+          "#E5A93C",
+          "#1B4B48",
+          "#0B182B",
+          "#3B7BA8",
+          "#7FB3D5"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "celestial",
+          "fluid",
+          "graphic",
+          "stipple",
+          "dramatic"
         ],
         "category": "landscape",
-        "mood_score": 8,
+        "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "circles",
-          "particles",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "golden sun",
+          "teal ring",
+          "blue ridges",
+          "cyan ribbons",
+          "ink specks"
         ]
       },
       "likes_count": 0,
@@ -9494,33 +9474,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Textured blue moon disc looms above dark rolling mountain contours and bird silhouettes in flight. Sweeping teal and midnight wave bands structure the foreground base near tiny pine trees. Soft watercolor haze coats the distant sky.",
         "dominant_colors": [
-          "#16213E",
-          "#4169E1",
-          "#00CED1",
-          "#FAF0E6"
+          "#091424",
+          "#1D526D",
+          "#4A8DA3",
+          "#88C2D0",
+          "#EAF2F5"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "nocturnal",
+          "woodland",
+          "celestial",
+          "fluid",
+          "scenic"
         ],
         "category": "landscape",
         "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "textured moon",
+          "bird silhouettes",
+          "mountain contours",
+          "teal wave bands",
+          "pine trees"
         ]
       },
       "likes_count": 0,
@@ -9658,33 +9636,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Dark textured celestial orb hovers beside bird silhouettes in an airy white atmosphere. Evergreen tree silhouettes stand along rolling teal hills and dark wave contours. Granular brush textures wrap around the lower sea green ribbon.",
         "dominant_colors": [
-          "#0D1B2A",
-          "#00BFFF",
-          "#20B2AA",
-          "#F5F5F5"
+          "#0B192A",
+          "#215A63",
+          "#4FA3A8",
+          "#123238",
+          "#FFFFFF"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "woodland",
+          "celestial",
+          "fluid",
+          "stipple",
+          "serene"
         ],
         "category": "landscape",
-        "mood_score": 8,
+        "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "dark orb",
+          "evergreen trees",
+          "teal hills",
+          "sea green ribbon",
+          "bird silhouettes"
         ]
       },
       "likes_count": 0,
@@ -28811,7 +28787,7 @@
       "listing_currency": "AVAX",
       "display_rank": 557,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/557.html",
-      "og_image": "assets/og/nft-557.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-557.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -28864,7 +28840,7 @@
       "listing_currency": "AVAX",
       "display_rank": 558,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/558.html",
-      "og_image": "assets/og/nft-558.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-558.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -28917,7 +28893,7 @@
       "listing_currency": "AVAX",
       "display_rank": 559,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/559.html",
-      "og_image": "assets/og/nft-559.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-559.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -28970,7 +28946,7 @@
       "listing_currency": "AVAX",
       "display_rank": 560,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/560.html",
-      "og_image": "assets/og/nft-560.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-560.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -29023,7 +28999,7 @@
       "listing_currency": "AVAX",
       "display_rank": 562,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/562.html",
-      "og_image": "assets/og/nft-562.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-562.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -29076,7 +29052,7 @@
       "listing_currency": "AVAX",
       "display_rank": 563,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/563.html",
-      "og_image": "assets/og/nft-563.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-563.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -29131,7 +29107,7 @@
       "listing_currency": "AVAX",
       "display_rank": 564,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/564.html",
-      "og_image": "assets/og/nft-564.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-564.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -29184,7 +29160,7 @@
       "listing_currency": "AVAX",
       "display_rank": 565,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/565.html",
-      "og_image": "assets/og/nft-565.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-565.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -29237,7 +29213,7 @@
       "listing_currency": "AVAX",
       "display_rank": 567,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/567.html",
-      "og_image": "assets/og/nft-567.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-567.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -29292,7 +29268,7 @@
       "listing_currency": "AVAX",
       "display_rank": 568,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/568.html",
-      "og_image": "assets/og/nft-568.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-568.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -29345,7 +29321,7 @@
       "listing_currency": "AVAX",
       "display_rank": 569,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/569.html",
-      "og_image": "assets/og/nft-569.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-569.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -29398,7 +29374,7 @@
       "listing_currency": "AVAX",
       "display_rank": 571,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/571.html",
-      "og_image": "assets/og/nft-571.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-571.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -29451,7 +29427,7 @@
       "listing_currency": "AVAX",
       "display_rank": 572,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/572.html",
-      "og_image": "assets/og/nft-572.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-572.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -29504,7 +29480,7 @@
       "listing_currency": "AVAX",
       "display_rank": 573,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/573.html",
-      "og_image": "assets/og/nft-573.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-573.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -29557,7 +29533,7 @@
       "listing_currency": "AVAX",
       "display_rank": 576,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/576.html",
-      "og_image": "assets/og/nft-576.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-576.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -29610,7 +29586,7 @@
       "listing_currency": "AVAX",
       "display_rank": 577,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/577.html",
-      "og_image": "assets/og/nft-577.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-577.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -29663,7 +29639,7 @@
       "listing_currency": "AVAX",
       "display_rank": 578,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/578.html",
-      "og_image": "assets/og/nft-578.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-578.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -29716,7 +29692,7 @@
       "listing_currency": "AVAX",
       "display_rank": 579,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/579.html",
-      "og_image": "assets/og/nft-579.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-579.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -29771,7 +29747,7 @@
       "listing_currency": "AVAX",
       "display_rank": 581,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/581.html",
-      "og_image": "assets/og/nft-581.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-581.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -29824,7 +29800,7 @@
       "listing_currency": "AVAX",
       "display_rank": 582,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/582.html",
-      "og_image": "assets/og/nft-582.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-582.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -29877,7 +29853,7 @@
       "listing_currency": "AVAX",
       "display_rank": 583,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/583.html",
-      "og_image": "assets/og/nft-583.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-583.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -29930,7 +29906,7 @@
       "listing_currency": "AVAX",
       "display_rank": 584,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/584.html",
-      "og_image": "assets/og/nft-584.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-584.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -29986,7 +29962,7 @@
       "listing_currency": "AVAX",
       "display_rank": 585,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/585.html",
-      "og_image": "assets/og/nft-585.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-585.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -30039,7 +30015,7 @@
       "listing_currency": "AVAX",
       "display_rank": 586,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/586.html",
-      "og_image": "assets/og/nft-586.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-586.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -30092,7 +30068,7 @@
       "listing_currency": "AVAX",
       "display_rank": 588,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/588.html",
-      "og_image": "assets/og/nft-588.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-588.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -30145,7 +30121,7 @@
       "listing_currency": "AVAX",
       "display_rank": 589,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/589.html",
-      "og_image": "assets/og/nft-589.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-589.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -30198,7 +30174,7 @@
       "listing_currency": "AVAX",
       "display_rank": 590,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/590.html",
-      "og_image": "assets/og/nft-590.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-590.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -30251,7 +30227,7 @@
       "listing_currency": "AVAX",
       "display_rank": 591,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/591.html",
-      "og_image": "assets/og/nft-591.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-591.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -30307,7 +30283,7 @@
       "listing_currency": "AVAX",
       "display_rank": 592,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/592.html",
-      "og_image": "assets/og/nft-592.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-592.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -30362,7 +30338,7 @@
       "listing_currency": "AVAX",
       "display_rank": 593,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/593.html",
-      "og_image": "assets/og/nft-593.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-593.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -30415,7 +30391,7 @@
       "listing_currency": "AVAX",
       "display_rank": 594,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/594.html",
-      "og_image": "assets/og/nft-594.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-594.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -30471,7 +30447,7 @@
       "listing_currency": "AVAX",
       "display_rank": 595,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/595.html",
-      "og_image": "assets/og/nft-595.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-595.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -30524,7 +30500,7 @@
       "listing_currency": "AVAX",
       "display_rank": 596,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/596.html",
-      "og_image": "assets/og/nft-596.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-596.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -30577,7 +30553,7 @@
       "listing_currency": "AVAX",
       "display_rank": 597,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/597.html",
-      "og_image": "assets/og/nft-597.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-597.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -30630,7 +30606,7 @@
       "listing_currency": "AVAX",
       "display_rank": 598,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/598.html",
-      "og_image": "assets/og/nft-598.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-598.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -30683,7 +30659,7 @@
       "listing_currency": "AVAX",
       "display_rank": 599,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/599.html",
-      "og_image": "assets/og/nft-599.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-599.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -30736,7 +30712,7 @@
       "listing_currency": "AVAX",
       "display_rank": 600,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/600.html",
-      "og_image": "assets/og/nft-600.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-600.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -30789,7 +30765,7 @@
       "listing_currency": "AVAX",
       "display_rank": 601,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/601.html",
-      "og_image": "assets/og/nft-601.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-601.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -30842,7 +30818,7 @@
       "listing_currency": "AVAX",
       "display_rank": 602,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/602.html",
-      "og_image": "assets/og/nft-602.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-602.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -30895,7 +30871,7 @@
       "listing_currency": "AVAX",
       "display_rank": 603,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/603.html",
-      "og_image": "assets/og/nft-603.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-603.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -30948,7 +30924,7 @@
       "listing_currency": "AVAX",
       "display_rank": 604,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/604.html",
-      "og_image": "assets/og/nft-604.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-604.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -31003,7 +30979,7 @@
       "listing_currency": "AVAX",
       "display_rank": 605,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/605.html",
-      "og_image": "assets/og/nft-605.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-605.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -31058,7 +31034,7 @@
       "listing_currency": "AVAX",
       "display_rank": 606,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/606.html",
-      "og_image": "assets/og/nft-606.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-606.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -31114,7 +31090,7 @@
       "listing_currency": "AVAX",
       "display_rank": 607,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/607.html",
-      "og_image": "assets/og/nft-607.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-607.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -31169,7 +31145,7 @@
       "listing_currency": "AVAX",
       "display_rank": 608,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/608.html",
-      "og_image": "assets/og/nft-608.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-608.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -31225,7 +31201,7 @@
       "listing_currency": "AVAX",
       "display_rank": 609,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/609.html",
-      "og_image": "assets/og/nft-609.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-609.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -31282,7 +31258,7 @@
       "listing_currency": "AVAX",
       "display_rank": 610,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/610.html",
-      "og_image": "assets/og/nft-610.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-610.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -31335,7 +31311,7 @@
       "listing_currency": "AVAX",
       "display_rank": 611,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/611.html",
-      "og_image": "assets/og/nft-611.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-611.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -31388,7 +31364,7 @@
       "listing_currency": "AVAX",
       "display_rank": 612,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/612.html",
-      "og_image": "assets/og/nft-612.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-612.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -31441,7 +31417,7 @@
       "listing_currency": "AVAX",
       "display_rank": 613,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/613.html",
-      "og_image": "assets/og/nft-613.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-613.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -31494,7 +31470,7 @@
       "listing_currency": "AVAX",
       "display_rank": 614,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/614.html",
-      "og_image": "assets/og/nft-614.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-614.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -31547,7 +31523,7 @@
       "listing_currency": "AVAX",
       "display_rank": 615,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/615.html",
-      "og_image": "assets/og/nft-615.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-615.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -31600,7 +31576,7 @@
       "listing_currency": "AVAX",
       "display_rank": 616,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/616.html",
-      "og_image": "assets/og/nft-616.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-616.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -31653,7 +31629,7 @@
       "listing_currency": "AVAX",
       "display_rank": 617,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/617.html",
-      "og_image": "assets/og/nft-617.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-617.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -31706,7 +31682,7 @@
       "listing_currency": "AVAX",
       "display_rank": 618,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/618.html",
-      "og_image": "assets/og/nft-618.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-618.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -31759,7 +31735,7 @@
       "listing_currency": "AVAX",
       "display_rank": 619,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/619.html",
-      "og_image": "assets/og/nft-619.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-619.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -31812,7 +31788,7 @@
       "listing_currency": "AVAX",
       "display_rank": 620,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/620.html",
-      "og_image": "assets/og/nft-620.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-620.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -31865,7 +31841,7 @@
       "listing_currency": "AVAX",
       "display_rank": 621,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/621.html",
-      "og_image": "assets/og/nft-621.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-621.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -31918,7 +31894,7 @@
       "listing_currency": "AVAX",
       "display_rank": 622,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/622.html",
-      "og_image": "assets/og/nft-622.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-622.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -31971,7 +31947,7 @@
       "listing_currency": "AVAX",
       "display_rank": 623,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/623.html",
-      "og_image": "assets/og/nft-623.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-623.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -32024,7 +32000,7 @@
       "listing_currency": "AVAX",
       "display_rank": 624,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/624.html",
-      "og_image": "assets/og/nft-624.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-624.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -32081,7 +32057,7 @@
       "listing_currency": "AVAX",
       "display_rank": 625,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/625.html",
-      "og_image": "assets/og/nft-625.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-625.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -32134,7 +32110,7 @@
       "listing_currency": "AVAX",
       "display_rank": 626,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/626.html",
-      "og_image": "assets/og/nft-626.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-626.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -32187,7 +32163,7 @@
       "listing_currency": "AVAX",
       "display_rank": 627,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/627.html",
-      "og_image": "assets/og/nft-627.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-627.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -32240,7 +32216,7 @@
       "listing_currency": "AVAX",
       "display_rank": 628,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/628.html",
-      "og_image": "assets/og/nft-628.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-628.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -32293,7 +32269,7 @@
       "listing_currency": "AVAX",
       "display_rank": 629,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/629.html",
-      "og_image": "assets/og/nft-629.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-629.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -32346,7 +32322,7 @@
       "listing_currency": "AVAX",
       "display_rank": 630,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/630.html",
-      "og_image": "assets/og/nft-630.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-630.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -32402,7 +32378,7 @@
       "listing_currency": "AVAX",
       "display_rank": 631,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/631.html",
-      "og_image": "assets/og/nft-631.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-631.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -32455,7 +32431,7 @@
       "listing_currency": "AVAX",
       "display_rank": 632,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/632.html",
-      "og_image": "assets/og/nft-632.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-632.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -32508,7 +32484,7 @@
       "listing_currency": "AVAX",
       "display_rank": 633,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/633.html",
-      "og_image": "assets/og/nft-633.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-633.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -32561,7 +32537,7 @@
       "listing_currency": "AVAX",
       "display_rank": 634,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/634.html",
-      "og_image": "assets/og/nft-634.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-634.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -32618,7 +32594,7 @@
       "listing_currency": "AVAX",
       "display_rank": 635,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/635.html",
-      "og_image": "assets/og/nft-635.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-635.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -32675,7 +32651,7 @@
       "listing_currency": "AVAX",
       "display_rank": 636,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/636.html",
-      "og_image": "assets/og/nft-636.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-636.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -32728,7 +32704,7 @@
       "listing_currency": "AVAX",
       "display_rank": 637,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/637.html",
-      "og_image": "assets/og/nft-637.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-637.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -32781,7 +32757,7 @@
       "listing_currency": "AVAX",
       "display_rank": 638,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/638.html",
-      "og_image": "assets/og/nft-638.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-638.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -32834,7 +32810,7 @@
       "listing_currency": "AVAX",
       "display_rank": 639,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/639.html",
-      "og_image": "assets/og/nft-639.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-639.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -32887,7 +32863,7 @@
       "listing_currency": "AVAX",
       "display_rank": 640,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/640.html",
-      "og_image": "assets/og/nft-640.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-640.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -32940,7 +32916,7 @@
       "listing_currency": "AVAX",
       "display_rank": 641,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/641.html",
-      "og_image": "assets/og/nft-641.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-641.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -32995,7 +32971,7 @@
       "listing_currency": "AVAX",
       "display_rank": 642,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/642.html",
-      "og_image": "assets/og/nft-642.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-642.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -33050,7 +33026,7 @@
       "listing_currency": "AVAX",
       "display_rank": 643,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/643.html",
-      "og_image": "assets/og/nft-643.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-643.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -33103,7 +33079,7 @@
       "listing_currency": "AVAX",
       "display_rank": 644,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/644.html",
-      "og_image": "assets/og/nft-644.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-644.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -33156,7 +33132,7 @@
       "listing_currency": "AVAX",
       "display_rank": 645,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/645.html",
-      "og_image": "assets/og/nft-645.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-645.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -33209,7 +33185,7 @@
       "listing_currency": "AVAX",
       "display_rank": 646,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/646.html",
-      "og_image": "assets/og/nft-646.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-646.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -33262,7 +33238,7 @@
       "listing_currency": "AVAX",
       "display_rank": 647,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/647.html",
-      "og_image": "assets/og/nft-647.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-647.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -33315,7 +33291,7 @@
       "listing_currency": "AVAX",
       "display_rank": 648,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/648.html",
-      "og_image": "assets/og/nft-648.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-648.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -33368,7 +33344,7 @@
       "listing_currency": "AVAX",
       "display_rank": 649,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/649.html",
-      "og_image": "assets/og/nft-649.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-649.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -33421,7 +33397,7 @@
       "listing_currency": "AVAX",
       "display_rank": 650,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/650.html",
-      "og_image": "assets/og/nft-650.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-650.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -33474,7 +33450,7 @@
       "listing_currency": "AVAX",
       "display_rank": 651,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/651.html",
-      "og_image": "assets/og/nft-651.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-651.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -33527,7 +33503,7 @@
       "listing_currency": "AVAX",
       "display_rank": 652,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/652.html",
-      "og_image": "assets/og/nft-652.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-652.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -33580,7 +33556,7 @@
       "listing_currency": "AVAX",
       "display_rank": 653,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/653.html",
-      "og_image": "assets/og/nft-653.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-653.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -33633,7 +33609,7 @@
       "listing_currency": "AVAX",
       "display_rank": 654,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/654.html",
-      "og_image": "assets/og/nft-654.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-654.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -33688,7 +33664,7 @@
       "listing_currency": "AVAX",
       "display_rank": 655,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/655.html",
-      "og_image": "assets/og/nft-655.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-655.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -33741,7 +33717,7 @@
       "listing_currency": "AVAX",
       "display_rank": 656,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/656.html",
-      "og_image": "assets/og/nft-656.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-656.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -33794,7 +33770,7 @@
       "listing_currency": "AVAX",
       "display_rank": 657,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/657.html",
-      "og_image": "assets/og/nft-657.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-657.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -33849,7 +33825,7 @@
       "listing_currency": "AVAX",
       "display_rank": 658,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/658.html",
-      "og_image": "assets/og/nft-658.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-658.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -33904,7 +33880,7 @@
       "listing_currency": "AVAX",
       "display_rank": 659,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/659.html",
-      "og_image": "assets/og/nft-659.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-659.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -33959,7 +33935,7 @@
       "listing_currency": "AVAX",
       "display_rank": 660,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/660.html",
-      "og_image": "assets/og/nft-660.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-660.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -34014,7 +33990,7 @@
       "listing_currency": "AVAX",
       "display_rank": 661,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/661.html",
-      "og_image": "assets/og/nft-661.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-661.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -34067,7 +34043,7 @@
       "listing_currency": "AVAX",
       "display_rank": 662,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/662.html",
-      "og_image": "assets/og/nft-662.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-662.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -34120,7 +34096,7 @@
       "listing_currency": "AVAX",
       "display_rank": 663,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/663.html",
-      "og_image": "assets/og/nft-663.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-663.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -34174,7 +34150,7 @@
       "listing_currency": "AVAX",
       "display_rank": 664,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/664.html",
-      "og_image": "assets/og/nft-664.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-664.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -34229,7 +34205,7 @@
       "listing_currency": "AVAX",
       "display_rank": 665,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/665.html",
-      "og_image": "assets/og/nft-665.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-665.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -34282,7 +34258,7 @@
       "listing_currency": "AVAX",
       "display_rank": 666,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/666.html",
-      "og_image": "assets/og/nft-666.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-666.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -34336,7 +34312,7 @@
       "listing_currency": "AVAX",
       "display_rank": 667,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/667.html",
-      "og_image": "assets/og/nft-667.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-667.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -34392,7 +34368,7 @@
       "listing_currency": "AVAX",
       "display_rank": 668,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/668.html",
-      "og_image": "assets/og/nft-668.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-668.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -34446,7 +34422,7 @@
       "listing_currency": "AVAX",
       "display_rank": 669,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/669.html",
-      "og_image": "assets/og/nft-669.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-669.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -34502,7 +34478,7 @@
       "listing_currency": "AVAX",
       "display_rank": 670,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/670.html",
-      "og_image": "assets/og/nft-670.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-670.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -34556,7 +34532,7 @@
       "listing_currency": "AVAX",
       "display_rank": 671,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/671.html",
-      "og_image": "assets/og/nft-671.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-671.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -34609,7 +34585,7 @@
       "listing_currency": "AVAX",
       "display_rank": 673,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/673.html",
-      "og_image": "assets/og/nft-673.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-673.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -34662,7 +34638,7 @@
       "listing_currency": "AVAX",
       "display_rank": 674,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/674.html",
-      "og_image": "assets/og/nft-674.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-674.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -34716,7 +34692,7 @@
       "listing_currency": "AVAX",
       "display_rank": 675,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/675.html",
-      "og_image": "assets/og/nft-675.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-675.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -34771,7 +34747,7 @@
       "listing_currency": "AVAX",
       "display_rank": 676,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/676.html",
-      "og_image": "assets/og/nft-676.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-676.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -34826,7 +34802,7 @@
       "listing_currency": "AVAX",
       "display_rank": 677,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/677.html",
-      "og_image": "assets/og/nft-677.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-677.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -34879,7 +34855,7 @@
       "listing_currency": "AVAX",
       "display_rank": 678,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/678.html",
-      "og_image": "assets/og/nft-678.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-678.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -34934,7 +34910,7 @@
       "listing_currency": "AVAX",
       "display_rank": 679,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/679.html",
-      "og_image": "assets/og/nft-679.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-679.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -34990,7 +34966,7 @@
       "listing_currency": "AVAX",
       "display_rank": 680,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/680.html",
-      "og_image": "assets/og/nft-680.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-680.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -35043,7 +35019,7 @@
       "listing_currency": "AVAX",
       "display_rank": 681,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/681.html",
-      "og_image": "assets/og/nft-681.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-681.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -35098,7 +35074,7 @@
       "listing_currency": "AVAX",
       "display_rank": 682,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/682.html",
-      "og_image": "assets/og/nft-682.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-682.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -35153,7 +35129,7 @@
       "listing_currency": "AVAX",
       "display_rank": 683,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/683.html",
-      "og_image": "assets/og/nft-683.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-683.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -35206,7 +35182,7 @@
       "listing_currency": "AVAX",
       "display_rank": 684,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/684.html",
-      "og_image": "assets/og/nft-684.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-684.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -35259,7 +35235,7 @@
       "listing_currency": "AVAX",
       "display_rank": 685,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/685.html",
-      "og_image": "assets/og/nft-685.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-685.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -35312,7 +35288,7 @@
       "listing_currency": "AVAX",
       "display_rank": 686,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/686.html",
-      "og_image": "assets/og/nft-686.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-686.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -35365,7 +35341,7 @@
       "listing_currency": "AVAX",
       "display_rank": 687,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/687.html",
-      "og_image": "assets/og/nft-687.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-687.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -35420,7 +35396,7 @@
       "listing_currency": "AVAX",
       "display_rank": 688,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/688.html",
-      "og_image": "assets/og/nft-688.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-688.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -35476,7 +35452,7 @@
       "listing_currency": "AVAX",
       "display_rank": 689,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/689.html",
-      "og_image": "assets/og/nft-689.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-689.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -35531,7 +35507,7 @@
       "listing_currency": "AVAX",
       "display_rank": 690,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/690.html",
-      "og_image": "assets/og/nft-690.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-690.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -35584,7 +35560,7 @@
       "listing_currency": "AVAX",
       "display_rank": 691,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/691.html",
-      "og_image": "assets/og/nft-691.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-691.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -35637,7 +35613,7 @@
       "listing_currency": "AVAX",
       "display_rank": 692,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/692.html",
-      "og_image": "assets/og/nft-692.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-692.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -35690,7 +35666,7 @@
       "listing_currency": "AVAX",
       "display_rank": 693,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/693.html",
-      "og_image": "assets/og/nft-693.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-693.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -35743,7 +35719,7 @@
       "listing_currency": "AVAX",
       "display_rank": 694,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/694.html",
-      "og_image": "assets/og/nft-694.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-694.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -35798,7 +35774,7 @@
       "listing_currency": "AVAX",
       "display_rank": 695,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/695.html",
-      "og_image": "assets/og/nft-695.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-695.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -35851,7 +35827,7 @@
       "listing_currency": "AVAX",
       "display_rank": 696,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/696.html",
-      "og_image": "assets/og/nft-696.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-696.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -35904,7 +35880,7 @@
       "listing_currency": "AVAX",
       "display_rank": 697,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/697.html",
-      "og_image": "assets/og/nft-697.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-697.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -35957,7 +35933,7 @@
       "listing_currency": "AVAX",
       "display_rank": 698,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/698.html",
-      "og_image": "assets/og/nft-698.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-698.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -36010,7 +35986,7 @@
       "listing_currency": "AVAX",
       "display_rank": 699,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/699.html",
-      "og_image": "assets/og/nft-699.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-699.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -36063,7 +36039,7 @@
       "listing_currency": "AVAX",
       "display_rank": 700,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/700.html",
-      "og_image": "assets/og/nft-700.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-700.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -36116,7 +36092,7 @@
       "listing_currency": "AVAX",
       "display_rank": 701,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/701.html",
-      "og_image": "assets/og/nft-701.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-701.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -36171,7 +36147,7 @@
       "listing_currency": "AVAX",
       "display_rank": 702,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/702.html",
-      "og_image": "assets/og/nft-702.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-702.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -36227,7 +36203,7 @@
       "listing_currency": "AVAX",
       "display_rank": 703,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/703.html",
-      "og_image": "assets/og/nft-703.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-703.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -36280,7 +36256,7 @@
       "listing_currency": "AVAX",
       "display_rank": 704,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/704.html",
-      "og_image": "assets/og/nft-704.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-704.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -36333,7 +36309,7 @@
       "listing_currency": "AVAX",
       "display_rank": 705,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/705.html",
-      "og_image": "assets/og/nft-705.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-705.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -36389,7 +36365,7 @@
       "listing_currency": "AVAX",
       "display_rank": 706,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/706.html",
-      "og_image": "assets/og/nft-706.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-706.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -36442,7 +36418,7 @@
       "listing_currency": "AVAX",
       "display_rank": 707,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/707.html",
-      "og_image": "assets/og/nft-707.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-707.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -36497,7 +36473,7 @@
       "listing_currency": "AVAX",
       "display_rank": 708,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/708.html",
-      "og_image": "assets/og/nft-708.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-708.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -36552,7 +36528,7 @@
       "listing_currency": "AVAX",
       "display_rank": 709,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/709.html",
-      "og_image": "assets/og/nft-709.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-709.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -36606,7 +36582,7 @@
       "listing_currency": "AVAX",
       "display_rank": 710,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/710.html",
-      "og_image": "assets/og/nft-710.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-710.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -36659,7 +36635,7 @@
       "listing_currency": "AVAX",
       "display_rank": 711,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/711.html",
-      "og_image": "assets/og/nft-711.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-711.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -36712,7 +36688,7 @@
       "listing_currency": "AVAX",
       "display_rank": 712,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/712.html",
-      "og_image": "assets/og/nft-712.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-712.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -36765,7 +36741,7 @@
       "listing_currency": "AVAX",
       "display_rank": 713,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/713.html",
-      "og_image": "assets/og/nft-713.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-713.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -36819,7 +36795,7 @@
       "listing_currency": "AVAX",
       "display_rank": 714,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/714.html",
-      "og_image": "assets/og/nft-714.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-714.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -36873,7 +36849,7 @@
       "listing_currency": "AVAX",
       "display_rank": 715,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/715.html",
-      "og_image": "assets/og/nft-715.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-715.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -36926,7 +36902,7 @@
       "listing_currency": "AVAX",
       "display_rank": 716,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/716.html",
-      "og_image": "assets/og/nft-716.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-716.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -36979,7 +36955,7 @@
       "listing_currency": "AVAX",
       "display_rank": 717,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/717.html",
-      "og_image": "assets/og/nft-717.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-717.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -37032,7 +37008,7 @@
       "listing_currency": "AVAX",
       "display_rank": 718,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/718.html",
-      "og_image": "assets/og/nft-718.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-718.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -37086,7 +37062,7 @@
       "listing_currency": "AVAX",
       "display_rank": 719,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/719.html",
-      "og_image": "assets/og/nft-719.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-719.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -37140,7 +37116,7 @@
       "listing_currency": "AVAX",
       "display_rank": 720,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/720.html",
-      "og_image": "assets/og/nft-720.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-720.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -37194,7 +37170,7 @@
       "listing_currency": "AVAX",
       "display_rank": 721,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/721.html",
-      "og_image": "assets/og/nft-721.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-721.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -37247,7 +37223,7 @@
       "listing_currency": "AVAX",
       "display_rank": 722,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/722.html",
-      "og_image": "assets/og/nft-722.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-722.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -37300,7 +37276,7 @@
       "listing_currency": "AVAX",
       "display_rank": 723,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/723.html",
-      "og_image": "assets/og/nft-723.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-723.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -37353,7 +37329,7 @@
       "listing_currency": "AVAX",
       "display_rank": 724,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/724.html",
-      "og_image": "assets/og/nft-724.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-724.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -37406,7 +37382,7 @@
       "listing_currency": "AVAX",
       "display_rank": 725,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/725.html",
-      "og_image": "assets/og/nft-725.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-725.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -37460,7 +37436,7 @@
       "listing_currency": "AVAX",
       "display_rank": 726,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/726.html",
-      "og_image": "assets/og/nft-726.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-726.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -37513,7 +37489,7 @@
       "listing_currency": "AVAX",
       "display_rank": 727,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/727.html",
-      "og_image": "assets/og/nft-727.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-727.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -37567,7 +37543,7 @@
       "listing_currency": "AVAX",
       "display_rank": 728,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/728.html",
-      "og_image": "assets/og/nft-728.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-728.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -37621,7 +37597,7 @@
       "listing_currency": "AVAX",
       "display_rank": 729,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/729.html",
-      "og_image": "assets/og/nft-729.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-729.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -37674,7 +37650,7 @@
       "listing_currency": "AVAX",
       "display_rank": 730,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/730.html",
-      "og_image": "assets/og/nft-730.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-730.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -37728,7 +37704,7 @@
       "listing_currency": "AVAX",
       "display_rank": 731,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/731.html",
-      "og_image": "assets/og/nft-731.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-731.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -37781,7 +37757,7 @@
       "listing_currency": "AVAX",
       "display_rank": 732,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/732.html",
-      "og_image": "assets/og/nft-732.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-732.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -37834,7 +37810,7 @@
       "listing_currency": "AVAX",
       "display_rank": 733,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/733.html",
-      "og_image": "assets/og/nft-733.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-733.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -37887,7 +37863,7 @@
       "listing_currency": "AVAX",
       "display_rank": 734,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/734.html",
-      "og_image": "assets/og/nft-734.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-734.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -37941,7 +37917,7 @@
       "listing_currency": "AVAX",
       "display_rank": 735,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/735.html",
-      "og_image": "assets/og/nft-735.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-735.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -37995,7 +37971,7 @@
       "listing_currency": "AVAX",
       "display_rank": 736,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/736.html",
-      "og_image": "assets/og/nft-736.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-736.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -38049,7 +38025,7 @@
       "listing_currency": "AVAX",
       "display_rank": 737,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/737.html",
-      "og_image": "assets/og/nft-737.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-737.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -38102,7 +38078,7 @@
       "listing_currency": "AVAX",
       "display_rank": 738,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/738.html",
-      "og_image": "assets/og/nft-738.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-738.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -38155,7 +38131,7 @@
       "listing_currency": "AVAX",
       "display_rank": 739,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/739.html",
-      "og_image": "assets/og/nft-739.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-739.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -38208,7 +38184,7 @@
       "listing_currency": "AVAX",
       "display_rank": 740,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/740.html",
-      "og_image": "assets/og/nft-740.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-740.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -38261,7 +38237,7 @@
       "listing_currency": "AVAX",
       "display_rank": 741,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/741.html",
-      "og_image": "assets/og/nft-741.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-741.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -38314,7 +38290,7 @@
       "listing_currency": "AVAX",
       "display_rank": 742,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/742.html",
-      "og_image": "assets/og/nft-742.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-742.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -38367,7 +38343,7 @@
       "listing_currency": "AVAX",
       "display_rank": 743,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/743.html",
-      "og_image": "assets/og/nft-743.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-743.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -38421,7 +38397,7 @@
       "listing_currency": "AVAX",
       "display_rank": 744,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/744.html",
-      "og_image": "assets/og/nft-744.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-744.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -38474,7 +38450,7 @@
       "listing_currency": "AVAX",
       "display_rank": 745,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/745.html",
-      "og_image": "assets/og/nft-745.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-745.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -38528,7 +38504,7 @@
       "listing_currency": "AVAX",
       "display_rank": 746,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/746.html",
-      "og_image": "assets/og/nft-746.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-746.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -38581,7 +38557,7 @@
       "listing_currency": "AVAX",
       "display_rank": 747,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/747.html",
-      "og_image": "assets/og/nft-747.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-747.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -38637,7 +38613,7 @@
       "listing_currency": "AVAX",
       "display_rank": 748,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/748.html",
-      "og_image": "assets/og/nft-748.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-748.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -38690,7 +38666,7 @@
       "listing_currency": "AVAX",
       "display_rank": 750,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/750.html",
-      "og_image": "assets/og/nft-750.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-750.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -38743,7 +38719,7 @@
       "listing_currency": "AVAX",
       "display_rank": 751,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/751.html",
-      "og_image": "assets/og/nft-751.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-751.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -38796,7 +38772,7 @@
       "listing_currency": "AVAX",
       "display_rank": 752,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/752.html",
-      "og_image": "assets/og/nft-752.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-752.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -38849,7 +38825,7 @@
       "listing_currency": "AVAX",
       "display_rank": 753,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/753.html",
-      "og_image": "assets/og/nft-753.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-753.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -38902,7 +38878,7 @@
       "listing_currency": "AVAX",
       "display_rank": 754,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/754.html",
-      "og_image": "assets/og/nft-754.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-754.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -38956,7 +38932,7 @@
       "listing_currency": "AVAX",
       "display_rank": 755,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/755.html",
-      "og_image": "assets/og/nft-755.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-755.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -39010,7 +38986,7 @@
       "listing_currency": "AVAX",
       "display_rank": 756,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/756.html",
-      "og_image": "assets/og/nft-756.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-756.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -39063,7 +39039,7 @@
       "listing_currency": "AVAX",
       "display_rank": 757,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/757.html",
-      "og_image": "assets/og/nft-757.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-757.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -39117,7 +39093,7 @@
       "listing_currency": "AVAX",
       "display_rank": 758,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/758.html",
-      "og_image": "assets/og/nft-758.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-758.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -39171,7 +39147,7 @@
       "listing_currency": "AVAX",
       "display_rank": 759,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/759.html",
-      "og_image": "assets/og/nft-759.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-759.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -39225,7 +39201,7 @@
       "listing_currency": "AVAX",
       "display_rank": 760,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/760.html",
-      "og_image": "assets/og/nft-760.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-760.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -39278,7 +39254,7 @@
       "listing_currency": "AVAX",
       "display_rank": 761,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/761.html",
-      "og_image": "assets/og/nft-761.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-761.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -39331,7 +39307,7 @@
       "listing_currency": "AVAX",
       "display_rank": 762,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/762.html",
-      "og_image": "assets/og/nft-762.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-762.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -39385,7 +39361,7 @@
       "listing_currency": "AVAX",
       "display_rank": 763,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/763.html",
-      "og_image": "assets/og/nft-763.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-763.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -39438,7 +39414,7 @@
       "listing_currency": "AVAX",
       "display_rank": 764,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/764.html",
-      "og_image": "assets/og/nft-764.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-764.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -39491,7 +39467,7 @@
       "listing_currency": "AVAX",
       "display_rank": 765,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/765.html",
-      "og_image": "assets/og/nft-765.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-765.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -39544,7 +39520,7 @@
       "listing_currency": "AVAX",
       "display_rank": 766,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/766.html",
-      "og_image": "assets/og/nft-766.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-766.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -39597,7 +39573,7 @@
       "listing_currency": "AVAX",
       "display_rank": 767,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/767.html",
-      "og_image": "assets/og/nft-767.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-767.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -39651,7 +39627,7 @@
       "listing_currency": "AVAX",
       "display_rank": 768,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/768.html",
-      "og_image": "assets/og/nft-768.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-768.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -39705,7 +39681,7 @@
       "listing_currency": "AVAX",
       "display_rank": 769,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/769.html",
-      "og_image": "assets/og/nft-769.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-769.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -39758,7 +39734,7 @@
       "listing_currency": "AVAX",
       "display_rank": 770,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/770.html",
-      "og_image": "assets/og/nft-770.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-770.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -39814,7 +39790,7 @@
       "listing_currency": "AVAX",
       "display_rank": 771,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/771.html",
-      "og_image": "assets/og/nft-771.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-771.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -39867,7 +39843,7 @@
       "listing_currency": "AVAX",
       "display_rank": 772,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/772.html",
-      "og_image": "assets/og/nft-772.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-772.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -39924,7 +39900,7 @@
       "listing_currency": "AVAX",
       "display_rank": 773,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/773.html",
-      "og_image": "assets/og/nft-773.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-773.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -39977,7 +39953,7 @@
       "listing_currency": "AVAX",
       "display_rank": 774,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/774.html",
-      "og_image": "assets/og/nft-774.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-774.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -40030,7 +40006,7 @@
       "listing_currency": "AVAX",
       "display_rank": 775,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/775.html",
-      "og_image": "assets/og/nft-775.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-775.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -40083,7 +40059,7 @@
       "listing_currency": "AVAX",
       "display_rank": 776,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/776.html",
-      "og_image": "assets/og/nft-776.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-776.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -40137,7 +40113,7 @@
       "listing_currency": "AVAX",
       "display_rank": 777,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/777.html",
-      "og_image": "assets/og/nft-777.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-777.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -40194,7 +40170,7 @@
       "listing_currency": "AVAX",
       "display_rank": 778,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/778.html",
-      "og_image": "assets/og/nft-778.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-778.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -40252,7 +40228,7 @@
       "listing_currency": "AVAX",
       "display_rank": 779,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/779.html",
-      "og_image": "assets/og/nft-779.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-779.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -40305,7 +40281,7 @@
       "listing_currency": "AVAX",
       "display_rank": 780,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/780.html",
-      "og_image": "assets/og/nft-780.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-780.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -40362,7 +40338,7 @@
       "listing_currency": "AVAX",
       "display_rank": 781,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/781.html",
-      "og_image": "assets/og/nft-781.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-781.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -40415,7 +40391,7 @@
       "listing_currency": "AVAX",
       "display_rank": 782,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/782.html",
-      "og_image": "assets/og/nft-782.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-782.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -40469,7 +40445,7 @@
       "listing_currency": "AVAX",
       "display_rank": 783,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/783.html",
-      "og_image": "assets/og/nft-783.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-783.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -40523,7 +40499,7 @@
       "listing_currency": "AVAX",
       "display_rank": 784,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/784.html",
-      "og_image": "assets/og/nft-784.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-784.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -40577,7 +40553,7 @@
       "listing_currency": "AVAX",
       "display_rank": 785,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/785.html",
-      "og_image": "assets/og/nft-785.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-785.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -40631,7 +40607,7 @@
       "listing_currency": "AVAX",
       "display_rank": 786,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/786.html",
-      "og_image": "assets/og/nft-786.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-786.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -40684,7 +40660,7 @@
       "listing_currency": "AVAX",
       "display_rank": 787,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/787.html",
-      "og_image": "assets/og/nft-787.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-787.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -40739,7 +40715,7 @@
       "listing_currency": "AVAX",
       "display_rank": 788,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/788.html",
-      "og_image": "assets/og/nft-788.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-788.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -40793,7 +40769,7 @@
       "listing_currency": "AVAX",
       "display_rank": 789,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/789.html",
-      "og_image": "assets/og/nft-789.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-789.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -40848,7 +40824,7 @@
       "listing_currency": "AVAX",
       "display_rank": 790,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/790.html",
-      "og_image": "assets/og/nft-790.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-790.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -40902,7 +40878,7 @@
       "listing_currency": "AVAX",
       "display_rank": 791,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/791.html",
-      "og_image": "assets/og/nft-791.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-791.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -40955,7 +40931,7 @@
       "listing_currency": "AVAX",
       "display_rank": 792,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/792.html",
-      "og_image": "assets/og/nft-792.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-792.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -41008,7 +40984,7 @@
       "listing_currency": "AVAX",
       "display_rank": 793,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/793.html",
-      "og_image": "assets/og/nft-793.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-793.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -41063,7 +41039,7 @@
       "listing_currency": "AVAX",
       "display_rank": 794,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/794.html",
-      "og_image": "assets/og/nft-794.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-794.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -41118,7 +41094,7 @@
       "listing_currency": "AVAX",
       "display_rank": 795,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/795.html",
-      "og_image": "assets/og/nft-795.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-795.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -41171,7 +41147,7 @@
       "listing_currency": "AVAX",
       "display_rank": 796,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/796.html",
-      "og_image": "assets/og/nft-796.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-796.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -41224,7 +41200,7 @@
       "listing_currency": "AVAX",
       "display_rank": 797,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/797.html",
-      "og_image": "assets/og/nft-797.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-797.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -41280,7 +41256,7 @@
       "listing_currency": "AVAX",
       "display_rank": 798,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/798.html",
-      "og_image": "assets/og/nft-798.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-798.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -41335,7 +41311,7 @@
       "listing_currency": "AVAX",
       "display_rank": 799,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/799.html",
-      "og_image": "assets/og/nft-799.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-799.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -41391,7 +41367,7 @@
       "listing_currency": "AVAX",
       "display_rank": 800,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/800.html",
-      "og_image": "assets/og/nft-800.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-800.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -41446,7 +41422,7 @@
       "listing_currency": "AVAX",
       "display_rank": 801,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/801.html",
-      "og_image": "assets/og/nft-801.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-801.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -41499,7 +41475,7 @@
       "listing_currency": "AVAX",
       "display_rank": 802,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/802.html",
-      "og_image": "assets/og/nft-802.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-802.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -41552,7 +41528,7 @@
       "listing_currency": "AVAX",
       "display_rank": 803,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/803.html",
-      "og_image": "assets/og/nft-803.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-803.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -41607,7 +41583,7 @@
       "listing_currency": "AVAX",
       "display_rank": 804,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/804.html",
-      "og_image": "assets/og/nft-804.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-804.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -41662,7 +41638,7 @@
       "listing_currency": "AVAX",
       "display_rank": 805,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/805.html",
-      "og_image": "assets/og/nft-805.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-805.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -41718,7 +41694,7 @@
       "listing_currency": "AVAX",
       "display_rank": 807,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/807.html",
-      "og_image": "assets/og/nft-807.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-807.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -41774,7 +41750,7 @@
       "listing_currency": "AVAX",
       "display_rank": 809,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/809.html",
-      "og_image": "assets/og/nft-809.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-809.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -41830,7 +41806,7 @@
       "listing_currency": "AVAX",
       "display_rank": 810,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/810.html",
-      "og_image": "assets/og/nft-810.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-810.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -41883,7 +41859,7 @@
       "listing_currency": "AVAX",
       "display_rank": 811,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/811.html",
-      "og_image": "assets/og/nft-811.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-811.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -41939,7 +41915,7 @@
       "listing_currency": "AVAX",
       "display_rank": 812,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/812.html",
-      "og_image": "assets/og/nft-812.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-812.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -41992,7 +41968,7 @@
       "listing_currency": "AVAX",
       "display_rank": 813,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/813.html",
-      "og_image": "assets/og/nft-813.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-813.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -42047,7 +42023,7 @@
       "listing_currency": "AVAX",
       "display_rank": 814,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/814.html",
-      "og_image": "assets/og/nft-814.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-814.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -42100,7 +42076,7 @@
       "listing_currency": "AVAX",
       "display_rank": 815,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/815.html",
-      "og_image": "assets/og/nft-815.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-815.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -42153,7 +42129,7 @@
       "listing_currency": "AVAX",
       "display_rank": 816,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/816.html",
-      "og_image": "assets/og/nft-816.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-816.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -42206,7 +42182,7 @@
       "listing_currency": "AVAX",
       "display_rank": 817,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/817.html",
-      "og_image": "assets/og/nft-817.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-817.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -42261,7 +42237,7 @@
       "listing_currency": "AVAX",
       "display_rank": 818,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/818.html",
-      "og_image": "assets/og/nft-818.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-818.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -42314,7 +42290,7 @@
       "listing_currency": "AVAX",
       "display_rank": 819,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/819.html",
-      "og_image": "assets/og/nft-819.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-819.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -42367,7 +42343,7 @@
       "listing_currency": "AVAX",
       "display_rank": 820,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/820.html",
-      "og_image": "assets/og/nft-820.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-820.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -42420,7 +42396,7 @@
       "listing_currency": "AVAX",
       "display_rank": 821,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/821.html",
-      "og_image": "assets/og/nft-821.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-821.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -42473,7 +42449,7 @@
       "listing_currency": "AVAX",
       "display_rank": 822,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/822.html",
-      "og_image": "assets/og/nft-822.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-822.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -42526,7 +42502,7 @@
       "listing_currency": "AVAX",
       "display_rank": 823,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/823.html",
-      "og_image": "assets/og/nft-823.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-823.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -42579,7 +42555,7 @@
       "listing_currency": "AVAX",
       "display_rank": 824,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/824.html",
-      "og_image": "assets/og/nft-824.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-824.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -42634,7 +42610,7 @@
       "listing_currency": "AVAX",
       "display_rank": 825,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/825.html",
-      "og_image": "assets/og/nft-825.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-825.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -42687,7 +42663,7 @@
       "listing_currency": "AVAX",
       "display_rank": 826,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/826.html",
-      "og_image": "assets/og/nft-826.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-826.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -42740,7 +42716,7 @@
       "listing_currency": "AVAX",
       "display_rank": 827,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/827.html",
-      "og_image": "assets/og/nft-827.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-827.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -42793,7 +42769,7 @@
       "listing_currency": "AVAX",
       "display_rank": 828,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/828.html",
-      "og_image": "assets/og/nft-828.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-828.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -42846,7 +42822,7 @@
       "listing_currency": "AVAX",
       "display_rank": 829,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/829.html",
-      "og_image": "assets/og/nft-829.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-829.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -42901,7 +42877,7 @@
       "listing_currency": "AVAX",
       "display_rank": 830,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/830.html",
-      "og_image": "assets/og/nft-830.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-830.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -42954,7 +42930,7 @@
       "listing_currency": "AVAX",
       "display_rank": 831,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/831.html",
-      "og_image": "assets/og/nft-831.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-831.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -43009,7 +42985,7 @@
       "listing_currency": "AVAX",
       "display_rank": 832,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/832.html",
-      "og_image": "assets/og/nft-832.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-832.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -43064,7 +43040,7 @@
       "listing_currency": "AVAX",
       "display_rank": 833,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/833.html",
-      "og_image": "assets/og/nft-833.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-833.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -43117,7 +43093,7 @@
       "listing_currency": "AVAX",
       "display_rank": 834,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/834.html",
-      "og_image": "assets/og/nft-834.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-834.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -43170,7 +43146,7 @@
       "listing_currency": "AVAX",
       "display_rank": 835,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/835.html",
-      "og_image": "assets/og/nft-835.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-835.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -43223,7 +43199,7 @@
       "listing_currency": "AVAX",
       "display_rank": 836,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/836.html",
-      "og_image": "assets/og/nft-836.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-836.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -43276,7 +43252,7 @@
       "listing_currency": "AVAX",
       "display_rank": 837,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/837.html",
-      "og_image": "assets/og/nft-837.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-837.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -43329,7 +43305,7 @@
       "listing_currency": "AVAX",
       "display_rank": 838,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/838.html",
-      "og_image": "assets/og/nft-838.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-838.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -43382,7 +43358,7 @@
       "listing_currency": "AVAX",
       "display_rank": 839,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/839.html",
-      "og_image": "assets/og/nft-839.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-839.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -43435,7 +43411,7 @@
       "listing_currency": "AVAX",
       "display_rank": 840,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/840.html",
-      "og_image": "assets/og/nft-840.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-840.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -43488,7 +43464,7 @@
       "listing_currency": "AVAX",
       "display_rank": 841,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/841.html",
-      "og_image": "assets/og/nft-841.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-841.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -43541,7 +43517,7 @@
       "listing_currency": "AVAX",
       "display_rank": 842,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/842.html",
-      "og_image": "assets/og/nft-842.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-842.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -43594,7 +43570,7 @@
       "listing_currency": "AVAX",
       "display_rank": 843,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/843.html",
-      "og_image": "assets/og/nft-843.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-843.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -43647,7 +43623,7 @@
       "listing_currency": "AVAX",
       "display_rank": 844,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/844.html",
-      "og_image": "assets/og/nft-844.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-844.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -43700,7 +43676,7 @@
       "listing_currency": "AVAX",
       "display_rank": 845,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/845.html",
-      "og_image": "assets/og/nft-845.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-845.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -43753,7 +43729,7 @@
       "listing_currency": "AVAX",
       "display_rank": 846,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/846.html",
-      "og_image": "assets/og/nft-846.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-846.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -43806,7 +43782,7 @@
       "listing_currency": "AVAX",
       "display_rank": 847,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/847.html",
-      "og_image": "assets/og/nft-847.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-847.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -43859,7 +43835,7 @@
       "listing_currency": "AVAX",
       "display_rank": 848,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/848.html",
-      "og_image": "assets/og/nft-848.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-848.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -43912,7 +43888,7 @@
       "listing_currency": "AVAX",
       "display_rank": 849,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/849.html",
-      "og_image": "assets/og/nft-849.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-849.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -43965,7 +43941,7 @@
       "listing_currency": "AVAX",
       "display_rank": 850,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/850.html",
-      "og_image": "assets/og/nft-850.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-850.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -44018,7 +43994,7 @@
       "listing_currency": "AVAX",
       "display_rank": 851,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/851.html",
-      "og_image": "assets/og/nft-851.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-851.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -44071,7 +44047,7 @@
       "listing_currency": "AVAX",
       "display_rank": 852,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/852.html",
-      "og_image": "assets/og/nft-852.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-852.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -44124,7 +44100,7 @@
       "listing_currency": "AVAX",
       "display_rank": 853,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/853.html",
-      "og_image": "assets/og/nft-853.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-853.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -44177,7 +44153,7 @@
       "listing_currency": "AVAX",
       "display_rank": 854,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/854.html",
-      "og_image": "assets/og/nft-854.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-854.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -44230,7 +44206,7 @@
       "listing_currency": "AVAX",
       "display_rank": 855,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/855.html",
-      "og_image": "assets/og/nft-855.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-855.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -44283,7 +44259,7 @@
       "listing_currency": "AVAX",
       "display_rank": 856,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/856.html",
-      "og_image": "assets/og/nft-856.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-856.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -44336,7 +44312,7 @@
       "listing_currency": "AVAX",
       "display_rank": 857,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/857.html",
-      "og_image": "assets/og/nft-857.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-857.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -44389,7 +44365,7 @@
       "listing_currency": "AVAX",
       "display_rank": 858,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/858.html",
-      "og_image": "assets/og/nft-858.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-858.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -44442,7 +44418,7 @@
       "listing_currency": "AVAX",
       "display_rank": 859,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/859.html",
-      "og_image": "assets/og/nft-859.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-859.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -44495,7 +44471,7 @@
       "listing_currency": "AVAX",
       "display_rank": 860,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/860.html",
-      "og_image": "assets/og/nft-860.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-860.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -44548,7 +44524,7 @@
       "listing_currency": "AVAX",
       "display_rank": 861,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/861.html",
-      "og_image": "assets/og/nft-861.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-861.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -44601,7 +44577,7 @@
       "listing_currency": "AVAX",
       "display_rank": 862,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/862.html",
-      "og_image": "assets/og/nft-862.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-862.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -44654,7 +44630,7 @@
       "listing_currency": "AVAX",
       "display_rank": 863,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/863.html",
-      "og_image": "assets/og/nft-863.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-863.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -44707,7 +44683,7 @@
       "listing_currency": "AVAX",
       "display_rank": 864,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/864.html",
-      "og_image": "assets/og/nft-864.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-864.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -44760,7 +44736,7 @@
       "listing_currency": "AVAX",
       "display_rank": 865,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/865.html",
-      "og_image": "assets/og/nft-865.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-865.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -44813,7 +44789,7 @@
       "listing_currency": "AVAX",
       "display_rank": 866,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/866.html",
-      "og_image": "assets/og/nft-866.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-866.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -44866,7 +44842,7 @@
       "listing_currency": "AVAX",
       "display_rank": 867,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/867.html",
-      "og_image": "assets/og/nft-867.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-867.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -44919,7 +44895,7 @@
       "listing_currency": "AVAX",
       "display_rank": 868,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/868.html",
-      "og_image": "assets/og/nft-868.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-868.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -44972,7 +44948,7 @@
       "listing_currency": "AVAX",
       "display_rank": 869,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/869.html",
-      "og_image": "assets/og/nft-869.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-869.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -45025,7 +45001,7 @@
       "listing_currency": "AVAX",
       "display_rank": 870,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/870.html",
-      "og_image": "assets/og/nft-870.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-870.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -45078,7 +45054,7 @@
       "listing_currency": "AVAX",
       "display_rank": 871,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/871.html",
-      "og_image": "assets/og/nft-871.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-871.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -45131,7 +45107,7 @@
       "listing_currency": "AVAX",
       "display_rank": 872,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/872.html",
-      "og_image": "assets/og/nft-872.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-872.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -45184,7 +45160,7 @@
       "listing_currency": "AVAX",
       "display_rank": 873,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/873.html",
-      "og_image": "assets/og/nft-873.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-873.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -45237,7 +45213,7 @@
       "listing_currency": "AVAX",
       "display_rank": 874,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/874.html",
-      "og_image": "assets/og/nft-874.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-874.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -45290,7 +45266,7 @@
       "listing_currency": "AVAX",
       "display_rank": 875,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/875.html",
-      "og_image": "assets/og/nft-875.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-875.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -45343,7 +45319,7 @@
       "listing_currency": "AVAX",
       "display_rank": 876,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/876.html",
-      "og_image": "assets/og/nft-876.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-876.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -45396,7 +45372,7 @@
       "listing_currency": "AVAX",
       "display_rank": 877,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/877.html",
-      "og_image": "assets/og/nft-877.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-877.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -45449,7 +45425,7 @@
       "listing_currency": "AVAX",
       "display_rank": 878,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/878.html",
-      "og_image": "assets/og/nft-878.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-878.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -45502,7 +45478,7 @@
       "listing_currency": "AVAX",
       "display_rank": 879,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/879.html",
-      "og_image": "assets/og/nft-879.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-879.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -45555,7 +45531,7 @@
       "listing_currency": "AVAX",
       "display_rank": 880,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/880.html",
-      "og_image": "assets/og/nft-880.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-880.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -45608,7 +45584,7 @@
       "listing_currency": "AVAX",
       "display_rank": 885,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/885.html",
-      "og_image": "assets/og/nft-885.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-885.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -45661,7 +45637,7 @@
       "listing_currency": "AVAX",
       "display_rank": 886,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/886.html",
-      "og_image": "assets/og/nft-886.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-886.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -45714,7 +45690,7 @@
       "listing_currency": "AVAX",
       "display_rank": 887,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/887.html",
-      "og_image": "assets/og/nft-887.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-887.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -45767,7 +45743,7 @@
       "listing_currency": "AVAX",
       "display_rank": 888,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/888.html",
-      "og_image": "assets/og/nft-888.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-888.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -45820,7 +45796,7 @@
       "listing_currency": "AVAX",
       "display_rank": 889,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/889.html",
-      "og_image": "assets/og/nft-889.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-889.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -45873,7 +45849,7 @@
       "listing_currency": "AVAX",
       "display_rank": 890,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/890.html",
-      "og_image": "assets/og/nft-890.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-890.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -45926,7 +45902,7 @@
       "listing_currency": "AVAX",
       "display_rank": 891,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/891.html",
-      "og_image": "assets/og/nft-891.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-891.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -45979,7 +45955,7 @@
       "listing_currency": "AVAX",
       "display_rank": 892,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/892.html",
-      "og_image": "assets/og/nft-892.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-892.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -46032,7 +46008,7 @@
       "listing_currency": "AVAX",
       "display_rank": 893,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/893.html",
-      "og_image": "assets/og/nft-893.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-893.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -46085,7 +46061,7 @@
       "listing_currency": "AVAX",
       "display_rank": 894,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/894.html",
-      "og_image": "assets/og/nft-894.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-894.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -46138,7 +46114,7 @@
       "listing_currency": "AVAX",
       "display_rank": 895,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/895.html",
-      "og_image": "assets/og/nft-895.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-895.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -46191,7 +46167,7 @@
       "listing_currency": "AVAX",
       "display_rank": 896,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/896.html",
-      "og_image": "assets/og/nft-896.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-896.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -46244,7 +46220,7 @@
       "listing_currency": "AVAX",
       "display_rank": 897,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/897.html",
-      "og_image": "assets/og/nft-897.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-897.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -46297,7 +46273,7 @@
       "listing_currency": "AVAX",
       "display_rank": 898,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/898.html",
-      "og_image": "assets/og/nft-898.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-898.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -46350,7 +46326,7 @@
       "listing_currency": "AVAX",
       "display_rank": 899,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/899.html",
-      "og_image": "assets/og/nft-899.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-899.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -46403,7 +46379,7 @@
       "listing_currency": "AVAX",
       "display_rank": 900,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/900.html",
-      "og_image": "assets/og/nft-900.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-900.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -46456,7 +46432,7 @@
       "listing_currency": "AVAX",
       "display_rank": 901,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/901.html",
-      "og_image": "assets/og/nft-901.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-901.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -46509,7 +46485,7 @@
       "listing_currency": "AVAX",
       "display_rank": 902,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/902.html",
-      "og_image": "assets/og/nft-902.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-902.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -46562,7 +46538,7 @@
       "listing_currency": "AVAX",
       "display_rank": 903,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/903.html",
-      "og_image": "assets/og/nft-903.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-903.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -46615,7 +46591,7 @@
       "listing_currency": "AVAX",
       "display_rank": 904,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/904.html",
-      "og_image": "assets/og/nft-904.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-904.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -46668,7 +46644,7 @@
       "listing_currency": "AVAX",
       "display_rank": 905,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/905.html",
-      "og_image": "assets/og/nft-905.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-905.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -46721,7 +46697,7 @@
       "listing_currency": "AVAX",
       "display_rank": 906,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/906.html",
-      "og_image": "assets/og/nft-906.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-906.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -46774,7 +46750,7 @@
       "listing_currency": "AVAX",
       "display_rank": 907,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/907.html",
-      "og_image": "assets/og/nft-907.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-907.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -46827,7 +46803,7 @@
       "listing_currency": "AVAX",
       "display_rank": 908,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/908.html",
-      "og_image": "assets/og/nft-908.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-908.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -46880,7 +46856,7 @@
       "listing_currency": "AVAX",
       "display_rank": 909,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/909.html",
-      "og_image": "assets/og/nft-909.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-909.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -46933,7 +46909,7 @@
       "listing_currency": "AVAX",
       "display_rank": 910,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/910.html",
-      "og_image": "assets/og/nft-910.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-910.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -46986,7 +46962,7 @@
       "listing_currency": "AVAX",
       "display_rank": 911,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/911.html",
-      "og_image": "assets/og/nft-911.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-911.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -47039,7 +47015,7 @@
       "listing_currency": "AVAX",
       "display_rank": 912,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/912.html",
-      "og_image": "assets/og/nft-912.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-912.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -47092,7 +47068,7 @@
       "listing_currency": "AVAX",
       "display_rank": 913,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/913.html",
-      "og_image": "assets/og/nft-913.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-913.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -47145,7 +47121,7 @@
       "listing_currency": "AVAX",
       "display_rank": 914,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/914.html",
-      "og_image": "assets/og/nft-914.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-914.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -47198,7 +47174,7 @@
       "listing_currency": "AVAX",
       "display_rank": 915,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/915.html",
-      "og_image": "assets/og/nft-915.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-915.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -47251,7 +47227,7 @@
       "listing_currency": "AVAX",
       "display_rank": 916,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/916.html",
-      "og_image": "assets/og/nft-916.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-916.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -47304,7 +47280,7 @@
       "listing_currency": "AVAX",
       "display_rank": 917,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/917.html",
-      "og_image": "assets/og/nft-917.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-917.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -47357,7 +47333,7 @@
       "listing_currency": "AVAX",
       "display_rank": 918,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/918.html",
-      "og_image": "assets/og/nft-918.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-918.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -47410,7 +47386,7 @@
       "listing_currency": "AVAX",
       "display_rank": 919,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/919.html",
-      "og_image": "assets/og/nft-919.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-919.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -47463,7 +47439,7 @@
       "listing_currency": "AVAX",
       "display_rank": 920,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/920.html",
-      "og_image": "assets/og/nft-920.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-920.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -47516,7 +47492,7 @@
       "listing_currency": "AVAX",
       "display_rank": 921,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/921.html",
-      "og_image": "assets/og/nft-921.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-921.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -47569,7 +47545,7 @@
       "listing_currency": "AVAX",
       "display_rank": 922,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/922.html",
-      "og_image": "assets/og/nft-922.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-922.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -47622,7 +47598,7 @@
       "listing_currency": "AVAX",
       "display_rank": 923,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/923.html",
-      "og_image": "assets/og/nft-923.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-923.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -47675,7 +47651,7 @@
       "listing_currency": "AVAX",
       "display_rank": 924,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/924.html",
-      "og_image": "assets/og/nft-924.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-924.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -47728,7 +47704,7 @@
       "listing_currency": "AVAX",
       "display_rank": 925,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/925.html",
-      "og_image": "assets/og/nft-925.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-925.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -47781,7 +47757,7 @@
       "listing_currency": "AVAX",
       "display_rank": 926,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/926.html",
-      "og_image": "assets/og/nft-926.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-926.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -47834,7 +47810,7 @@
       "listing_currency": "AVAX",
       "display_rank": 927,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/927.html",
-      "og_image": "assets/og/nft-927.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-927.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -47887,7 +47863,7 @@
       "listing_currency": "AVAX",
       "display_rank": 932,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/932.html",
-      "og_image": "assets/og/nft-932.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-932.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -47940,7 +47916,7 @@
       "listing_currency": "AVAX",
       "display_rank": 933,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/933.html",
-      "og_image": "assets/og/nft-933.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-933.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -47993,7 +47969,7 @@
       "listing_currency": "AVAX",
       "display_rank": 934,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/934.html",
-      "og_image": "assets/og/nft-934.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-934.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -48046,7 +48022,7 @@
       "listing_currency": "AVAX",
       "display_rank": 935,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/935.html",
-      "og_image": "assets/og/nft-935.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-935.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -48099,7 +48075,7 @@
       "listing_currency": "AVAX",
       "display_rank": 936,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/936.html",
-      "og_image": "assets/og/nft-936.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-936.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -48152,7 +48128,7 @@
       "listing_currency": "AVAX",
       "display_rank": 937,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/937.html",
-      "og_image": "assets/og/nft-937.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-937.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -48205,7 +48181,7 @@
       "listing_currency": "AVAX",
       "display_rank": 938,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/938.html",
-      "og_image": "assets/og/nft-938.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-938.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -48258,7 +48234,7 @@
       "listing_currency": "AVAX",
       "display_rank": 939,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/939.html",
-      "og_image": "assets/og/nft-939.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-939.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -48311,7 +48287,7 @@
       "listing_currency": "AVAX",
       "display_rank": 940,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/940.html",
-      "og_image": "assets/og/nft-940.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-940.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -48364,7 +48340,7 @@
       "listing_currency": "AVAX",
       "display_rank": 941,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/941.html",
-      "og_image": "assets/og/nft-941.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-941.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -48417,7 +48393,7 @@
       "listing_currency": "AVAX",
       "display_rank": 942,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/942.html",
-      "og_image": "assets/og/nft-942.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-942.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -48470,7 +48446,7 @@
       "listing_currency": "AVAX",
       "display_rank": 943,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/943.html",
-      "og_image": "assets/og/nft-943.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-943.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -48523,7 +48499,7 @@
       "listing_currency": "AVAX",
       "display_rank": 944,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/944.html",
-      "og_image": "assets/og/nft-944.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-944.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -50166,7 +50142,7 @@
       "listing_currency": "AVAX",
       "display_rank": 976,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/976.html",
-      "og_image": "assets/og/nft-976.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-976.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -50219,7 +50195,7 @@
       "listing_currency": "AVAX",
       "display_rank": 977,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/977.html",
-      "og_image": "assets/og/nft-977.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-977.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -50272,7 +50248,7 @@
       "listing_currency": "AVAX",
       "display_rank": 978,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/978.html",
-      "og_image": "assets/og/nft-978.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-978.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -50325,7 +50301,7 @@
       "listing_currency": "AVAX",
       "display_rank": 979,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/979.html",
-      "og_image": "assets/og/nft-979.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-979.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -50378,7 +50354,7 @@
       "listing_currency": "AVAX",
       "display_rank": 980,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/980.html",
-      "og_image": "assets/og/nft-980.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-980.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -50431,7 +50407,7 @@
       "listing_currency": "AVAX",
       "display_rank": 981,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/981.html",
-      "og_image": "assets/og/nft-981.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-981.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -50484,7 +50460,7 @@
       "listing_currency": "AVAX",
       "display_rank": 982,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/982.html",
-      "og_image": "assets/og/nft-982.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-982.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -50537,7 +50513,7 @@
       "listing_currency": "AVAX",
       "display_rank": 983,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/983.html",
-      "og_image": "assets/og/nft-983.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-983.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -50590,7 +50566,7 @@
       "listing_currency": "AVAX",
       "display_rank": 984,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/984.html",
-      "og_image": "assets/og/nft-984.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-984.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -50643,7 +50619,7 @@
       "listing_currency": "AVAX",
       "display_rank": 985,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/985.html",
-      "og_image": "assets/og/nft-985.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-985.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -50696,7 +50672,7 @@
       "listing_currency": "AVAX",
       "display_rank": 986,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/986.html",
-      "og_image": "assets/og/nft-986.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-986.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -50749,7 +50725,7 @@
       "listing_currency": "AVAX",
       "display_rank": 987,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/987.html",
-      "og_image": "assets/og/nft-987.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-987.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -50802,7 +50778,7 @@
       "listing_currency": "AVAX",
       "display_rank": 988,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/988.html",
-      "og_image": "assets/og/nft-988.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-988.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -50855,7 +50831,7 @@
       "listing_currency": "AVAX",
       "display_rank": 989,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/989.html",
-      "og_image": "assets/og/nft-989.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-989.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -50908,7 +50884,7 @@
       "listing_currency": "AVAX",
       "display_rank": 990,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/990.html",
-      "og_image": "assets/og/nft-990.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-990.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -50961,7 +50937,7 @@
       "listing_currency": "AVAX",
       "display_rank": 991,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/991.html",
-      "og_image": "assets/og/nft-991.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-991.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -51014,7 +50990,7 @@
       "listing_currency": "AVAX",
       "display_rank": 992,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/992.html",
-      "og_image": "assets/og/nft-992.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-992.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -51067,7 +51043,7 @@
       "listing_currency": "AVAX",
       "display_rank": 993,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/993.html",
-      "og_image": "assets/og/nft-993.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-993.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -51120,7 +51096,7 @@
       "listing_currency": "AVAX",
       "display_rank": 994,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/994.html",
-      "og_image": "assets/og/nft-994.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-994.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -51173,7 +51149,7 @@
       "listing_currency": "AVAX",
       "display_rank": 995,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/995.html",
-      "og_image": "assets/og/nft-995.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-995.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -51226,7 +51202,7 @@
       "listing_currency": "AVAX",
       "display_rank": 996,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/996.html",
-      "og_image": "assets/og/nft-996.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-996.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -51279,7 +51255,7 @@
       "listing_currency": "AVAX",
       "display_rank": 997,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/997.html",
-      "og_image": "assets/og/nft-997.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-997.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -51332,7 +51308,7 @@
       "listing_currency": "AVAX",
       "display_rank": 998,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/998.html",
-      "og_image": "assets/og/nft-998.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-998.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -51385,7 +51361,7 @@
       "listing_currency": "AVAX",
       "display_rank": 999,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/999.html",
-      "og_image": "assets/og/nft-999.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-999.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -51438,7 +51414,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1000,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1000.html",
-      "og_image": "assets/og/nft-1000.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1000.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -51491,7 +51467,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1001,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1001.html",
-      "og_image": "assets/og/nft-1001.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1001.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -51544,7 +51520,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1002,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1002.html",
-      "og_image": "assets/og/nft-1002.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1002.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -51597,7 +51573,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1003,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1003.html",
-      "og_image": "assets/og/nft-1003.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1003.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -51650,7 +51626,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1004,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1004.html",
-      "og_image": "assets/og/nft-1004.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1004.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -51703,7 +51679,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1005,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1005.html",
-      "og_image": "assets/og/nft-1005.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1005.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -51757,7 +51733,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1006,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1006.html",
-      "og_image": "assets/og/nft-1006.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1006.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -51811,7 +51787,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1007,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1007.html",
-      "og_image": "assets/og/nft-1007.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1007.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -51865,7 +51841,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1008,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1008.html",
-      "og_image": "assets/og/nft-1008.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1008.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -51919,7 +51895,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1009,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1009.html",
-      "og_image": "assets/og/nft-1009.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1009.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -51973,7 +51949,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1010,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1010.html",
-      "og_image": "assets/og/nft-1010.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1010.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -52027,7 +52003,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1011,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1011.html",
-      "og_image": "assets/og/nft-1011.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1011.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -52081,7 +52057,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1012,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1012.html",
-      "og_image": "assets/og/nft-1012.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1012.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -52135,7 +52111,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1013,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1013.html",
-      "og_image": "assets/og/nft-1013.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1013.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -52189,7 +52165,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1014,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1014.html",
-      "og_image": "assets/og/nft-1014.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1014.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -52243,7 +52219,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1015,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1015.html",
-      "og_image": "assets/og/nft-1015.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1015.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -52297,7 +52273,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1016,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1016.html",
-      "og_image": "assets/og/nft-1016.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1016.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -52351,7 +52327,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1017,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1017.html",
-      "og_image": "assets/og/nft-1017.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1017.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -52405,7 +52381,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1018,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1018.html",
-      "og_image": "assets/og/nft-1018.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1018.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -52459,7 +52435,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1020,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1020.html",
-      "og_image": "assets/og/nft-1020.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1020.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -52513,7 +52489,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1021,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1021.html",
-      "og_image": "assets/og/nft-1021.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1021.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -52567,7 +52543,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1022,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1022.html",
-      "og_image": "assets/og/nft-1022.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1022.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -52621,7 +52597,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1023,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1023.html",
-      "og_image": "assets/og/nft-1023.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1023.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -52675,7 +52651,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1024,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1024.html",
-      "og_image": "assets/og/nft-1024.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1024.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -52729,7 +52705,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1025,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1025.html",
-      "og_image": "assets/og/nft-1025.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1025.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -52783,7 +52759,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1026,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1026.html",
-      "og_image": "assets/og/nft-1026.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1026.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -52836,7 +52812,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1027,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1027.html",
-      "og_image": "assets/og/nft-1027.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1027.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -52889,7 +52865,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1028,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1028.html",
-      "og_image": "assets/og/nft-1028.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1028.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -52942,7 +52918,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1029,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1029.html",
-      "og_image": "assets/og/nft-1029.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1029.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -52995,7 +52971,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1030,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1030.html",
-      "og_image": "assets/og/nft-1030.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1030.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -53048,7 +53024,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1031,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1031.html",
-      "og_image": "assets/og/nft-1031.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1031.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -53101,7 +53077,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1032,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1032.html",
-      "og_image": "assets/og/nft-1032.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1032.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -53154,7 +53130,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1033,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1033.html",
-      "og_image": "assets/og/nft-1033.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1033.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -53207,7 +53183,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1034,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1034.html",
-      "og_image": "assets/og/nft-1034.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1034.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -53260,7 +53236,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1035,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1035.html",
-      "og_image": "assets/og/nft-1035.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1035.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -53313,7 +53289,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1036,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1036.html",
-      "og_image": "assets/og/nft-1036.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1036.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -53370,7 +53346,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1037,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1037.html",
-      "og_image": "assets/og/nft-1037.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1037.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -53427,7 +53403,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1038,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1038.html",
-      "og_image": "assets/og/nft-1038.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1038.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -53484,7 +53460,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1039,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1039.html",
-      "og_image": "assets/og/nft-1039.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1039.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -53541,7 +53517,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1040,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1040.html",
-      "og_image": "assets/og/nft-1040.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1040.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -53598,7 +53574,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1041,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1041.html",
-      "og_image": "assets/og/nft-1041.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1041.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -53655,7 +53631,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1042,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1042.html",
-      "og_image": "assets/og/nft-1042.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1042.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -53712,7 +53688,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1043,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1043.html",
-      "og_image": "assets/og/nft-1043.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1043.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -53769,7 +53745,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1044,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1044.html",
-      "og_image": "assets/og/nft-1044.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1044.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -53826,7 +53802,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1045,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1045.html",
-      "og_image": "assets/og/nft-1045.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1045.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"
@@ -53883,7 +53859,7 @@
       "listing_currency": "AVAX",
       "display_rank": 1046,
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1046.html",
-      "og_image": "assets/og/nft-1046.jpg",
+      "og_image": "assets/og/avalanche-nature-stories-1046.jpg",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Avalanche"

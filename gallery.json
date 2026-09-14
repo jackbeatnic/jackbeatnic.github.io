@@ -9797,34 +9797,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Textured pale moon and dark green sphere hover side-by-side above a dark gnarled pine silhouette. Sweeping white and deep teal wave ribbons construct the lower land contours under a clean blue sky. Fine stippled ink spray accentuates the nocturnal horizon.",
         "dominant_colors": [
-          "#1C3A5F",
-          "#4682B4",
-          "#5F9EA0",
-          "#E0FFFF"
+          "#2C6B82",
+          "#112E27",
+          "#EADAA2",
+          "#0A0F14",
+          "#FFFFFF"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "nocturnal",
+          "celestial",
+          "stipple",
+          "woodland",
+          "graphic"
         ],
         "category": "landscape",
         "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "hills",
-          "waves",
-          "abstract landscape",
-          "flowing lines",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "gnarled pine",
+          "pale moon",
+          "green sphere",
+          "teal ribbons",
+          "stippled spray"
         ]
       },
       "likes_count": 0,
@@ -9960,34 +9957,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Solitary figure sits in a small black rowboat floating upon calm water lines. Layered green and teal hill slopes curve below a dark textured moon disc against a pale sky. Fine ink splatters drift across distant blue mountain ridges.",
         "dominant_colors": [
-          "#0A1628",
-          "#1E90FF",
-          "#00CED1",
-          "#F0F8FF"
+          "#0B121B",
+          "#3E8362",
+          "#4B89A3",
+          "#7CB1C9",
+          "#FFFFFF"
         ],
         "vibe_tags": [
           "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "nocturnal",
+          "watercolor",
+          "celestial",
+          "scenic"
         ],
         "category": "landscape",
-        "mood_score": 8,
+        "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "circles",
-          "particles",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "rowboat figure",
+          "textured moon",
+          "green slopes",
+          "blue ridges",
+          "calm water"
         ]
       },
       "likes_count": 0,
@@ -10124,33 +10118,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Large teal circle sits behind a smaller white moon sphere as birds fly in distant formation. Dark dry-brush land contours and teal wave bands roll horizontally across the foreground space. Stippled ink spray accents the upper white backdrop.",
         "dominant_colors": [
-          "#16213E",
-          "#4169E1",
-          "#00CED1",
-          "#FAF0E6"
+          "#1B6B68",
+          "#0A0F14",
+          "#2B5E75",
+          "#FFFFFF",
+          "#E3E8EC"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "celestial",
+          "graphic",
+          "stipple",
+          "fluid",
+          "minimalist"
         ],
-        "category": "landscape",
-        "mood_score": 9,
+        "category": "abstract",
+        "mood_score": 8,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "teal circle",
+          "white moon",
+          "bird flock",
+          "dry brush",
+          "wave bands"
         ]
       },
       "likes_count": 0,
@@ -10288,33 +10280,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Dark midnight orb overlaps a large teal celestial disc above crashing watercolor wave forms. Bright white and light blue swooping ribbons create dynamic water motion in the foreground. Fine black spray bursts across the right sky edge.",
         "dominant_colors": [
-          "#0D1B2A",
-          "#00BFFF",
-          "#20B2AA",
-          "#F5F5F5"
+          "#2E7D8A",
+          "#0B131C",
+          "#8AB9C7",
+          "#FFFFFF",
+          "#1D4255"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "fluid",
+          "celestial",
+          "dramatic",
+          "stipple",
+          "oceanic"
         ],
-        "category": "landscape",
-        "mood_score": 8,
+        "category": "abstract",
+        "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "teal disc",
+          "midnight orb",
+          "swooping ribbons",
+          "watercolor waves",
+          "spray bursts"
         ]
       },
       "likes_count": 0,
@@ -10451,34 +10441,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "An abstract minimalist interpretation of nature rendered in calming shades of blue, teal, and navy. Layered flowing forms suggest hills, waves, and organic landscapes, punctuated by textured circular motifs and delicate particle-like details on a luminous background. The overall mood is peaceful, introspective, and deeply connected to the natural world.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Concentric emerald green circles form a massive solar disc behind a black tree silhouette. Sweeping white ribbons and textured navy wave slopes ground the lower field. Granular white specks scatter across the dark base layers.",
         "dominant_colors": [
-          "#1C3A5F",
-          "#4682B4",
-          "#5F9EA0",
-          "#E0FFFF"
+          "#0D3B2E",
+          "#1D6A4E",
+          "#1B5675",
+          "#0A0E13",
+          "#FFFFFF"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "celestial",
+          "woodland",
+          "graphic",
+          "stipple",
+          "dramatic"
         ],
         "category": "landscape",
         "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "hills",
-          "waves",
-          "abstract landscape",
-          "flowing lines",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "emerald solar disc",
+          "tree silhouette",
+          "white ribbons",
+          "navy slopes",
+          "granular specks"
         ]
       },
       "likes_count": 0,

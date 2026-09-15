@@ -16271,35 +16271,32 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "Very similar graphic style to #0608 in blue, teal and black. Features a black silhouette of a mountain goat in a slightly different pose on layered hills. Large blue celestial circle with splatter and mountain detail. Flowing lines and terrain textures. Another variation emphasizing wildlife within the stylized mountain landscape series.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Silhouetted mountain goat stands atop textured blue and emerald alpine ridges under a vast celestial sun sphere. Splattered ink sprays and paint textures fill the upper sky with expressive energy. Fluid wave bands sweep across the deep navy foreground base.",
         "dominant_colors": [
-          "#C0C0E0",
-          "#E0E0E0",
-          "#000000",
-          "#000020",
-          "#000040"
+          "#0A1324",
+          "#1B4E75",
+          "#2E6B56",
+          "#4A8DAE",
+          "#FFFFFF"
         ],
         "vibe_tags": [
-          "ethereal",
-          "graphic",
-          "dynamic",
           "wildlife",
-          "ink-splatter",
-          "mountainous"
+          "alpine",
+          "graphic",
+          "stipple",
+          "dramatic"
         ],
         "category": "wildlife",
-        "mood_score": 8,
+        "mood_score": 9,
         "keywords": [
-          "ethereal",
-          "graphic",
-          "dynamic",
-          "wildlife",
-          "nature stories",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ],
-        "image_seen": true
+          "mountain goat",
+          "alpine ridges",
+          "sun sphere",
+          "ink spray",
+          "wave bands"
+        ]
       },
       "likes_count": 0,
       "status": "listed",
@@ -16782,36 +16779,32 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "Two stags stand in shallow blue water beneath a tall compound leaf that fills the center like a tree. The left deer is white, the right is navy. Soft green hills rise on the left, pale blue peaks and three dark pines on the right. A dark disc and a faint moon sit in a white sky; white contour lines sweep the water. Clean flat graphic, not the same picture as #0734.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Tall stylized fern stalk rises between a white deer and silhouetted black stag on a snowy riverbank. Soft blue mountain peaks and pine tree groves border the serene winter valley. Curved line waves sweep across the lower turquoise riverbed.",
         "dominant_colors": [
-          "#1E3A5F",
-          "#3D7A5A",
-          "#87A8D8",
-          "#F5F7FA",
-          "#0A1628"
+          "#0B182B",
+          "#2E62A6",
+          "#3DA37A",
+          "#9ECBE2",
+          "#FFFFFF"
         ],
         "vibe_tags": [
+          "wildlife",
+          "woodland",
+          "botanical",
           "serene",
-          "graphic",
-          "peaceful",
-          "contemplative",
-          "botanical"
+          "scenic"
         ],
-        "category": "landscape",
-        "mood_score": 8,
+        "category": "wildlife",
+        "mood_score": 9,
         "keywords": [
-          "deer",
-          "stag",
-          "fern",
-          "pines",
-          "green hills",
-          "moon",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ],
-        "image_seen": true,
-        "source": "local_backup_jpg"
+          "fern stalk",
+          "white deer",
+          "black stag",
+          "pine grove",
+          "riverbank"
+        ]
       },
       "likes_count": 0,
       "status": "listed",
@@ -17010,36 +17003,32 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "Two navy stag silhouettes face each other on a dark ridge under a tall fern-tree whose leaflets grade from lilac at the top to deep blue below. Pine stands close both sides. Cool blue mountains fill the distance; a teal disc hangs in a dotted sky. A wide band of pale current lines crosses the foreground water. Same family as #0730, different palette and both deer dark.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Large purple-tinted leaf frond anchors two silhouetted deer standing amid pine tree groves. Sharp alpine crests rise in the misty background beneath floating celestial circles. Etched stream lines flow in smooth curves along the dark foreground margin.",
         "dominant_colors": [
-          "#1A2A5A",
-          "#5B6BB5",
-          "#4A90C8",
-          "#F5F7FA",
-          "#0A1628"
+          "#0A1426",
+          "#1E4C7A",
+          "#6B4EA1",
+          "#87C2E2",
+          "#FFFFFF"
         ],
         "vibe_tags": [
-          "serene",
-          "graphic",
-          "peaceful",
-          "ethereal",
-          "botanical"
+          "wildlife",
+          "botanical",
+          "alpine",
+          "woodland",
+          "serene"
         ],
-        "category": "landscape",
-        "mood_score": 8,
+        "category": "wildlife",
+        "mood_score": 9,
         "keywords": [
-          "deer",
-          "stag",
-          "fern",
-          "pines",
-          "lilac",
-          "river",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ],
-        "image_seen": true,
-        "source": "local_backup_jpg"
+          "purple leaf frond",
+          "deer silhouettes",
+          "pine groves",
+          "alpine crests",
+          "etched stream"
+        ]
       },
       "likes_count": 0,
       "status": "listed",
@@ -17183,36 +17172,32 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "A doe without antlers and a larger antlered stag, both navy silhouettes, stand on a pale snowy rise under a tall blue fern-tree. Soft mint hills sit left; three dark pines sit right. Teal discs float in a lavender sky. White contour lines sweep a teal-green foreground like a frozen current. Winter graphic, two deer, no water band as dark as #0734.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Slender blue leaf branch towers over two dark deer silhouettes on a snowy hill slope. Soft pine trees and light blue mountain contours frame the quiet woodland environment. Smooth parallel stream lines curve along the lower teal border.",
         "dominant_colors": [
-          "#1A3A6A",
-          "#5B8FD4",
-          "#2A8A8A",
-          "#E8EEF8",
-          "#0A1628"
+          "#0A1528",
+          "#1B4E75",
+          "#3B85B8",
+          "#87C2E2",
+          "#FFFFFF"
         ],
         "vibe_tags": [
+          "wildlife",
+          "woodland",
+          "botanical",
           "serene",
-          "wintry",
-          "graphic",
-          "peaceful",
-          "botanical"
+          "minimalist"
         ],
-        "category": "landscape",
+        "category": "wildlife",
         "mood_score": 8,
         "keywords": [
-          "doe",
-          "stag",
-          "fern",
-          "snow",
-          "pines",
-          "teal",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ],
-        "image_seen": true,
-        "source": "local_backup_jpg"
+          "blue leaf branch",
+          "deer silhouettes",
+          "snowy hill",
+          "pine trees",
+          "stream lines"
+        ]
       },
       "likes_count": 0,
       "status": "listed",
@@ -18344,35 +18329,32 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "A small human silhouette walks at the foot of a tall teal fern-tree. Snow-edged teal peaks and a pale disc with a mint inner moon sit behind pine ranks. White current lines on a pale ground. Same family as #0766, walker beside the stem not in the river.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Solitary traveler silhouette walks beside a giant green fern stem towering against snow-capped peaks. Dense pine forest flanks both sides of the central mountain pass under a glowing halo sky. Etched wave lines frame the lower base of the composition.",
         "dominant_colors": [
-          "#0A2A32",
-          "#1A6A5A",
-          "#7EC8B8",
-          "#E8F4F0",
-          "#123038"
+          "#091218",
+          "#123238",
+          "#2E6B56",
+          "#7AB8C6",
+          "#FFFFFF"
         ],
         "vibe_tags": [
-          "contemplative",
-          "serene",
-          "graphic",
           "botanical",
-          "ethereal"
+          "alpine",
+          "woodland",
+          "scenic",
+          "graphic"
         ],
         "category": "landscape",
-        "mood_score": 8,
+        "mood_score": 9,
         "keywords": [
-          "human",
-          "fern tree",
-          "teal peaks",
-          "pines",
-          "walker",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ],
-        "image_seen": true,
-        "source": "local_backup_jpg"
+          "traveler silhouette",
+          "fern stem",
+          "snow-capped peaks",
+          "pine forest",
+          "mountain pass"
+        ]
       },
       "likes_count": 0,
       "status": "listed",
@@ -18561,33 +18543,32 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "The same alpine valley as nearby peaks, but darker: two tall pines left, one isolated pine right, ink spatters in the sky and on the snow. The river is pale with dark rocks. No birds flock — only dots. Mood heavier than #0771.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Jagged snow-capped alpine peak dominates the upper view under scattered blue ink splatters. Winding icy river meanders through dark evergreen forest slopes in the foreground valley. Fine linework details define frozen banks and snowdrifts along the water edge.",
         "dominant_colors": [
-          "#0A1A40",
-          "#2A4A88",
-          "#A8C0D8",
-          "#F4F6FA",
-          "#0A1428"
+          "#0A1528",
+          "#1B4E75",
+          "#4A8DAE",
+          "#87C2E2",
+          "#FFFFFF"
         ],
         "vibe_tags": [
-          "wintry",
-          "dramatic",
-          "graphic",
-          "contemplative"
+          "alpine",
+          "woodland",
+          "stipple",
+          "scenic",
+          "nocturnal"
         ],
         "category": "landscape",
-        "mood_score": 6,
+        "mood_score": 9,
         "keywords": [
-          "dark valley",
-          "pines",
-          "spatters",
-          "river rocks",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ],
-        "image_seen": true,
-        "source": "local_backup_jpg"
+          "alpine peak",
+          "snow-capped",
+          "icy river",
+          "evergreen forest",
+          "ink splatters"
+        ]
       },
       "likes_count": 0,
       "status": "listed",
@@ -18667,34 +18648,32 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "Close-in alpine: a tall pine left, a rocky pale bank with dark boulders, a blue river turning right. The peak is sharp and snow-streaked; birds in the upper right. No isolated right-hand spruce like #0773 — rocks dominate the near ground.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Rocky mountain spire towers over a boulder-strewn creek in snowy alpine basin. Birds fly in loose formation past the upper peak against a clean white backdrop. Dark conifer trees line the foreground shores along swirling blue water streams.",
         "dominant_colors": [
-          "#0A2468",
-          "#3A6AB0",
-          "#C8D8E8",
-          "#F7F9FC",
-          "#122850"
+          "#0B182B",
+          "#1E4C7A",
+          "#5097C7",
+          "#9ECBE2",
+          "#FFFFFF"
         ],
         "vibe_tags": [
-          "wintry",
+          "alpine",
+          "scenic",
+          "woodland",
           "serene",
-          "graphic",
-          "contemplative"
+          "graphic"
         ],
         "category": "landscape",
-        "mood_score": 7,
+        "mood_score": 9,
         "keywords": [
-          "boulders",
-          "river bend",
-          "peak",
-          "left pine",
-          "birds",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ],
-        "image_seen": true,
-        "source": "local_backup_jpg"
+          "mountain spire",
+          "boulder creek",
+          "conifer trees",
+          "flying birds",
+          "water streams"
+        ]
       },
       "likes_count": 0,
       "status": "listed",
@@ -18775,33 +18754,32 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "A doe without antlers walks right under a tall fern-tree. Twin snow peaks and a large pink disc with birds. Pine and small leafless trees. White current. Pink sun plus deer — not the empty #0775.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Blushing pink sun halo glows behind snow-covered mountain peaks and a prominent pine stem. Small deer silhouette stands quietly near pine groves along the riverbank edge. Parallel line waves form a clean curved base under the valley scene.",
         "dominant_colors": [
-          "#0A2A32",
-          "#E8A0B8",
-          "#4A8890",
-          "#E8F2F2",
-          "#123038"
+          "#0A1426",
+          "#1B4E75",
+          "#F4B6C8",
+          "#87C2E2",
+          "#FFFFFF"
         ],
         "vibe_tags": [
-          "serene",
-          "graphic",
-          "peaceful",
-          "botanical"
+          "wildlife",
+          "botanical",
+          "alpine",
+          "woodland",
+          "serene"
         ],
-        "category": "landscape",
-        "mood_score": 8,
+        "category": "wildlife",
+        "mood_score": 9,
         "keywords": [
-          "doe",
-          "pink sun",
-          "fern tree",
-          "twin peaks",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ],
-        "image_seen": true,
-        "source": "local_backup_jpg"
+          "pink sun halo",
+          "snowy peaks",
+          "deer silhouette",
+          "pine groves",
+          "curved base"
+        ]
       },
       "likes_count": 0,
       "status": "listed",
@@ -19518,33 +19496,32 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "Sister to #0825: white wolf portrait, fern through the body, but the disc is warm pink and the chest fur picks up rose. Same pose family, different sky — hashes differ.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "White arctic wolf stands gracefully behind a dark fern branch in a winter forest setting. Soft pink circular halo illuminates the background above layered evergreen tree silhouettes. Delicate parallel wave lines curve smoothly along the snowy lower ground.",
         "dominant_colors": [
-          "#0A2A38",
-          "#E8B0C0",
-          "#E8EEF0",
-          "#2A6A58",
-          "#F8F4F6"
+          "#091218",
+          "#123238",
+          "#4A8DAE",
+          "#F4D3DC",
+          "#FFFFFF"
         ],
         "vibe_tags": [
+          "wildlife",
+          "botanical",
+          "woodland",
           "serene",
-          "graphic",
-          "ethereal",
-          "botanical"
+          "graphic"
         ],
         "category": "wildlife",
-        "mood_score": 8,
+        "mood_score": 10,
         "keywords": [
-          "white wolf",
-          "pink disc",
-          "fern",
-          "rose fur",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ],
-        "image_seen": true,
-        "source": "local_backup_jpg"
+          "arctic wolf",
+          "fern branch",
+          "pink halo",
+          "evergreen silhouettes",
+          "wave lines"
+        ]
       },
       "likes_count": 0,
       "status": "listed",
@@ -19729,32 +19706,32 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "A small human stands at the foot of a fern-tree under a pale disc. Teal peaks, pines, white current. Same grammar as #0828, slightly cooler teal.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Dark wolf silhouette stands in profile masked by a prominent fern leaf structure. Soft pink lunar disc glows softly in the pale sky behind layered pine trees. Concentric line waves wrap smoothly across the lower teal riverbed.",
         "dominant_colors": [
-          "#0A2A38",
-          "#1A6A68",
-          "#C0D8D8",
-          "#F2F6F6",
-          "#123038"
+          "#0A1017",
+          "#123238",
+          "#2E6B56",
+          "#F2C4CE",
+          "#FFFFFF"
         ],
         "vibe_tags": [
-          "contemplative",
-          "serene",
-          "graphic",
-          "botanical"
+          "wildlife",
+          "botanical",
+          "woodland",
+          "scenic",
+          "graphic"
         ],
-        "category": "landscape",
-        "mood_score": 8,
+        "category": "wildlife",
+        "mood_score": 9,
         "keywords": [
-          "human",
-          "fern tree",
-          "pale disc",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ],
-        "image_seen": true,
-        "source": "local_backup_jpg"
+          "wolf silhouette",
+          "fern leaf",
+          "pink lunar disc",
+          "pine trees",
+          "line waves"
+        ]
       },
       "likes_count": 0,
       "status": "listed",
@@ -19992,32 +19969,32 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "A white wolf in left profile; fern through the body; huge pale disc. Pines, teal hills, white current. White profile to match the dark #0834.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Dark teal wolf profile stands proudly behind a prominent black fern branch overlay. Silhouetted pine trees and sharp mountain peaks frame the woodland background under floating ink dots. Parallel wave lines sweep gracefully along the lower curved base.",
         "dominant_colors": [
-          "#0A2A38",
-          "#E8EEF0",
-          "#2A6A58",
-          "#F6F8F8",
-          "#123038"
+          "#091218",
+          "#123238",
+          "#2C8B92",
+          "#7AB8C6",
+          "#FFFFFF"
         ],
         "vibe_tags": [
-          "serene",
-          "graphic",
-          "ethereal",
-          "botanical"
+          "wildlife",
+          "botanical",
+          "woodland",
+          "scenic",
+          "graphic"
         ],
         "category": "wildlife",
-        "mood_score": 8,
+        "mood_score": 9,
         "keywords": [
-          "white wolf profile",
-          "fern",
-          "pale disc",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ],
-        "image_seen": true,
-        "source": "local_backup_jpg"
+          "wolf profile",
+          "fern branch",
+          "pine trees",
+          "mountain peaks",
+          "wave lines"
+        ]
       },
       "likes_count": 0,
       "status": "listed",

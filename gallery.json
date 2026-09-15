@@ -3441,33 +3441,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "Ethereal blue-toned artwork with dynamic wave patterns and scattered circular elements evoking celestial and terrestrial harmony. The minimalist design uses gradient blues and subtle textures to convey calmness and the quiet majesty of nature.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Luminous white sun glows brightly within a stippled cyan sky arch over sharp dark blue mountain peaks. Small conifer tree silhouettes dot the rolling midground hills above flowing navy wave bands. Fine ink specks scatter across the bright upper horizon.",
         "dominant_colors": [
-          "#16213E",
-          "#4169E1",
-          "#00CED1",
-          "#FAF0E6"
+          "#0A1426",
+          "#113054",
+          "#3B7BA8",
+          "#7AB3D5",
+          "#FFFFFF"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "alpine",
+          "stipple",
+          "celestial",
+          "woodland",
+          "serene"
         ],
         "category": "landscape",
         "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "white sun",
+          "stippled arch",
+          "conifer silhouettes",
+          "navy wave",
+          "mountain peaks"
         ]
       },
       "likes_count": 0,
@@ -3599,33 +3597,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "Ethereal blue-toned artwork with dynamic wave patterns and scattered circular elements evoking celestial and terrestrial harmony. The minimalist design uses gradient blues and subtle textures to convey calmness and the quiet majesty of nature.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Textured blue celestial discs hover within a stippled sky arch over sharp alpine ridges. Slender pine tree silhouettes line the dark midground slopes above swooping cyan water ribbons. Fine dark specks drift through the cool upper atmosphere.",
         "dominant_colors": [
-          "#0D1B2A",
-          "#00BFFF",
-          "#20B2AA",
-          "#F5F5F5"
+          "#0A1324",
+          "#1B4E75",
+          "#4B8EB8",
+          "#87B5CB",
+          "#FFFFFF"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "celestial",
+          "alpine",
+          "woodland",
+          "stipple",
+          "graphic"
         ],
         "category": "landscape",
-        "mood_score": 8,
+        "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "celestial discs",
+          "stippled arch",
+          "alpine ridges",
+          "pine silhouettes",
+          "water ribbons"
         ]
       },
       "likes_count": 0,
@@ -3757,34 +3753,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "Ethereal blue-toned artwork with dynamic wave patterns and scattered circular elements evoking celestial and terrestrial harmony. The minimalist design uses gradient blues and subtle textures to convey calmness and the quiet majesty of nature.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Bright white solar sphere sets behind layered blue mountain crests encircled by granular paint spray. Slender pine tree silhouettes frame the left and right foreground ridges over dry-brush water lines. Deep midnight tones anchor the sweeping lower base.",
         "dominant_colors": [
-          "#1C3A5F",
-          "#4682B4",
-          "#5F9EA0",
-          "#E0FFFF"
+          "#0B182B",
+          "#1E4C7A",
+          "#5097C7",
+          "#87B8D4",
+          "#FFFFFF"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "celestial",
+          "alpine",
+          "stipple",
+          "woodland",
+          "fluid"
         ],
         "category": "landscape",
-        "mood_score": 9,
+        "mood_score": 8,
         "keywords": [
-          "blue tones",
-          "hills",
-          "waves",
-          "abstract landscape",
-          "flowing lines",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "solar sphere",
+          "paint spray",
+          "mountain crests",
+          "pine silhouettes",
+          "water lines"
         ]
       },
       "likes_count": 0,
@@ -3916,34 +3909,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "Ethereal blue-toned artwork with dynamic wave patterns and scattered circular elements evoking celestial and terrestrial harmony. The minimalist design uses gradient blues and subtle textures to convey calmness and the quiet majesty of nature.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Luminous stippled sky halo rises behind a smooth blue mountain dune and rolling midground ridge. Deciduous tree silhouettes stand along the dark slope above grassy foreground contours. Floating dark dots add subtle cosmic texture across the white sky.",
         "dominant_colors": [
-          "#0A1628",
-          "#1E90FF",
-          "#00CED1",
-          "#F0F8FF"
+          "#0A1528",
+          "#113054",
+          "#3B7BA8",
+          "#7AB3D5",
+          "#FFFFFF"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "scenic",
+          "stipple",
+          "woodland",
+          "celestial",
+          "serene"
         ],
         "category": "landscape",
-        "mood_score": 8,
+        "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "circles",
-          "particles",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "stippled halo",
+          "mountain dune",
+          "tree silhouettes",
+          "grassy contours",
+          "cosmic texture"
         ]
       },
       "likes_count": 0,
@@ -4075,33 +4065,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "Ethereal blue-toned artwork with dynamic wave patterns and scattered circular elements evoking celestial and terrestrial harmony. The minimalist design uses gradient blues and subtle textures to convey calmness and the quiet majesty of nature.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Granular blue paint spray arches dramatically over a sharp alpine peak and dark valley pass. Parallel line waves sweep smoothly across the deep midnight foreground base. Light cyan washes highlight the layered middle mountain ridges.",
         "dominant_colors": [
-          "#16213E",
-          "#4169E1",
-          "#00CED1",
-          "#FAF0E6"
+          "#0A1426",
+          "#153B60",
+          "#3B85B8",
+          "#7AC1E4",
+          "#87B5CB"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "alpine",
+          "dramatic",
+          "stipple",
+          "fluid",
+          "graphic"
         ],
         "category": "landscape",
         "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "paint spray",
+          "alpine peak",
+          "line waves",
+          "valley pass",
+          "cyan washes"
         ]
       },
       "likes_count": 0,
@@ -4233,33 +4221,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "Ethereal blue-toned artwork with dynamic wave patterns and scattered circular elements evoking celestial and terrestrial harmony. The minimalist design uses gradient blues and subtle textures to convey calmness and the quiet majesty of nature.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Dark blue orbiting spheres float within a stippled cyan celestial dome over sharp mountain ridges. Delicate plant branch silhouettes frame the lower foreground corners above navy wave slopes. Clusters of black ink dots scatter across the upper right horizon.",
         "dominant_colors": [
-          "#0D1B2A",
-          "#00BFFF",
-          "#20B2AA",
-          "#F5F5F5"
+          "#0A1528",
+          "#1B4E75",
+          "#4A8DAE",
+          "#7AB3D5",
+          "#FFFFFF"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "celestial",
+          "alpine",
+          "stipple",
+          "graphic",
+          "scenic"
         ],
         "category": "landscape",
-        "mood_score": 8,
+        "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "orbiting spheres",
+          "cyan dome",
+          "mountain ridges",
+          "plant silhouettes",
+          "ink dots"
         ]
       },
       "likes_count": 0,
@@ -4391,34 +4377,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "Ethereal blue-toned artwork with dynamic wave patterns and scattered circular elements evoking celestial and terrestrial harmony. The minimalist design uses gradient blues and subtle textures to convey calmness and the quiet majesty of nature.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Blushing pink arch sets behind blue mountain slopes encircled by an explosive cyan spray burst. Two pine tree silhouettes stand along the right midground ridge overlooking dark stippled wave contours. Granular particles drift across the lower midnight base layer.",
         "dominant_colors": [
-          "#1C3A5F",
-          "#4682B4",
-          "#5F9EA0",
-          "#E0FFFF"
+          "#0A1426",
+          "#1B4B78",
+          "#4B8EB8",
+          "#F4A6C1",
+          "#FFFFFF"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "celestial",
+          "alpine",
+          "woodland",
+          "stipple",
+          "dramatic"
         ],
         "category": "landscape",
         "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "hills",
-          "waves",
-          "abstract landscape",
-          "flowing lines",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "pink arch",
+          "spray burst",
+          "pine silhouettes",
+          "mountain slopes",
+          "stippled waves"
         ]
       },
       "likes_count": 0,
@@ -4550,34 +4533,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "Ethereal blue-toned artwork with dynamic wave patterns and scattered circular elements evoking celestial and terrestrial harmony. The minimalist design uses gradient blues and subtle textures to convey calmness and the quiet majesty of nature.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Large pink solar sphere rises beside a dark celestial moon encircled by a dry-brush blue sky arch. Evergreen tree silhouettes border the rolling midground hills and dark valley contours. Fine stippled textures give soft depth to the foreground slope.",
         "dominant_colors": [
-          "#0A1628",
-          "#1E90FF",
-          "#00CED1",
-          "#F0F8FF"
+          "#0B182B",
+          "#1E4C7A",
+          "#5097C7",
+          "#F2C4CE",
+          "#FFFFFF"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "celestial",
+          "alpine",
+          "woodland",
+          "stipple",
+          "serene"
         ],
         "category": "landscape",
-        "mood_score": 8,
+        "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "circles",
-          "particles",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "pink solar sphere",
+          "celestial moon",
+          "brush arch",
+          "evergreen silhouettes",
+          "valley contours"
         ]
       },
       "likes_count": 0,
@@ -4709,33 +4689,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "Ethereal blue-toned artwork with dynamic wave patterns and scattered circular elements evoking celestial and terrestrial harmony. The minimalist design uses gradient blues and subtle textures to convey calmness and the quiet majesty of nature.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Pink solar disc with a white base sets behind dark mountain peaks surrounded by a vibrant cyan spray halo. Textured navy wave slopes roll across the foreground base in layered horizontal rhythms. Granular specks dot the lower ocean terrain.",
         "dominant_colors": [
-          "#16213E",
-          "#4169E1",
-          "#00CED1",
-          "#FAF0E6"
+          "#091322",
+          "#153B60",
+          "#3B7BA8",
+          "#87C2E2",
+          "#E56B98"
         ],
         "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "celestial",
+          "fluid",
+          "stipple",
+          "dramatic",
+          "oceanic"
         ],
         "category": "landscape",
-        "mood_score": 9,
+        "mood_score": 8,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "pink solar disc",
+          "cyan spray halo",
+          "mountain peaks",
+          "wave slopes",
+          "granular specks"
         ]
       },
       "likes_count": 0,
@@ -4867,33 +4845,31 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "description": "Ethereal blue-toned artwork with dynamic wave patterns and scattered circular elements evoking celestial and terrestrial harmony. The minimalist design uses gradient blues and subtle textures to convey calmness and the quiet majesty of nature.",
+        "image_seen": true,
+        "source": "jbg-present",
+        "description": "Textured blue celestial orb with diagonal linear hatching sits beside soft pink mountain contours. Black ink dots shower across the upper right sky pass like cosmic rain. Swooping navy wave lines define the fluid lower terrain.",
         "dominant_colors": [
-          "#0D1B2A",
-          "#00BFFF",
-          "#20B2AA",
-          "#F5F5F5"
+          "#0A1528",
+          "#1B4E75",
+          "#4A8DAE",
+          "#F4D3DC",
+          "#FFFFFF"
         ],
         "vibe_tags": [
-          "serene",
+          "celestial",
+          "stipple",
+          "graphic",
           "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious"
+          "fluid"
         ],
         "category": "landscape",
-        "mood_score": 8,
+        "mood_score": 9,
         "keywords": [
-          "blue tones",
-          "waves",
-          "abstract landscape",
-          "minimalist",
-          "ethereal",
-          "nature",
-          "gradients",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
+          "blue celestial orb",
+          "pink contours",
+          "ink dots",
+          "linear hatching",
+          "wave lines"
         ]
       },
       "likes_count": 0,

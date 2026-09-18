@@ -16,6 +16,8 @@
     • UPSERT po (collection_id, token_id) — nie kasuje FS / Photo
     • miniatury TYLKO z jbg-present/{collection}/{token_id}.thumb.webp
     • qty i cena zawsze z CSV/flag, nigdy zgadywane z SYSTEM.md
+    • metki OS / SHOP / FEATURED na miniaturze (AI + Shop + Featured)
+    • gdy token jest też w Shop: przycisk Studio shop (bez fee) + OpenSea
 
   Przywrócenie:
 

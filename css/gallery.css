@@ -2133,6 +2133,44 @@ body.tip-open {
     background: rgba(10, 10, 10, 0.78);
 }
 
+.nft-card__marks {
+    position: absolute;
+    top: 0.5rem;
+    left: 0;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.18rem;
+    pointer-events: none;
+}
+
+.nft-card__mark {
+    padding: 0.16rem 0.42rem 0.16rem 0.36rem;
+    font-size: 0.52rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    border-radius: 0 2px 2px 0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+}
+
+.nft-card__mark--os {
+    background: #1e6fd9;
+    color: #ffffff;
+}
+
+.nft-card__mark--shop {
+    background: #0b5c3a;
+    color: #ffffff;
+}
+
+.nft-card__mark--featured {
+    background: #6a6a6a;
+    color: #ffffff;
+}
+
 .nft-card__price {
     margin: 0 0 0.4rem;
     font-size: 0.72rem;
@@ -2142,7 +2180,25 @@ body.tip-open {
 }
 
 .nft-card__price-value {
+    display: block;
     transition: text-shadow 0.35s var(--ease-out);
+}
+
+.nft-card__price-alt {
+    display: block;
+    margin-top: 0.12rem;
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--gray-500);
+}
+
+.nft-card__shop-note {
+    margin: -0.25rem 0 0.5rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.04em;
+    color: #0b5c3a;
+    font-weight: 500;
 }
 
 .nft-card:hover .nft-card__price-value {
@@ -2739,6 +2795,10 @@ body.lightbox-open {
         color: var(--black);
         border-color: var(--gray-200);
         background: transparent;
+    }
+
+    .nft-card__shop-note {
+        color: #7ed0a8;
     }
 
     .btn--ghost:hover {

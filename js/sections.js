@@ -950,10 +950,29 @@ const GallerySections = (() => {
             if (currentSection === 'shop') {
                 return medium === 'shop';
             }
-            // keep promo / shop cards out of AI Art / Photo / Atelier
-            if (medium === 'featured_promo' || medium === 'shop') return false;
 
             if (currentSection === 'ai_art') {
+                // Featured extras (not already in gallery.json) show in the collection.
+                if (medium === 'shop') return false;
+                if (medium === 'featured_promo') {
+                    if (!nft.in_featured || nft.in_gallery) return false;
+                    if (currentAiKind === 'xrpl') return (nft.chain || '') === 'xrpl';
+                    if (currentAiKind === 'sui') return (nft.chain || '') === 'sui';
+                    if (!isEvmAiKind()) return false;
+                    const nftSeries = resolveAiSeries(nft);
+                    if (!nftSeries || hiddenSeries.has(nftSeries)) return false;
+                    if (currentAiSeries !== 'all' && nftSeries !== currentAiSeries) {
+                        return false;
+                    }
+                    if (
+                        seriesHasEditions(currentAiSeries) &&
+                        currentAiEdition &&
+                        currentAiEdition !== 'all'
+                    ) {
+                        return resolveAiEdition(nft) === currentAiEdition;
+                    }
+                    return true;
+                }
                 if (currentAiKind === 'xrpl') return medium === 'xrpl_ai';
                 if (currentAiKind === 'sui') return medium === 'sui_ai';
                 if (medium !== 'ai_art') return false;
@@ -972,6 +991,8 @@ const GallerySections = (() => {
                 }
                 return true;
             }
+            // keep promo / shop cards out of Photo / Atelier
+            if (medium === 'featured_promo' || medium === 'shop') return false;
             if (currentSection === 'photography') {
                 const isXrpl = nft.chain === 'xrpl';
                 if (currentPhotoChain === 'xrpl') {

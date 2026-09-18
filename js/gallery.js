@@ -329,14 +329,27 @@ const Gallery = (() => {
     }
 
     function buildMarketActionsHtml(nft) {
-        if (isShopNft(nft)) {
-            const coming = nft.shop_status === 'coming' || (nft.qty_available || 0) <= 0;
-            const label = escapeHtml(marketplaceLabel(nft));
+        const shopReady = studioShopReady(nft);
+        const osHref = evmOpenSeaUrl(nft);
+        if (shopReady) {
+            const coming =
+                nft.shop_status === 'coming' ||
+                (isShopNft(nft) && (nft.qty_available || 0) <= 0);
             const disabled = coming ? ' disabled' : '';
+            const shopLabel = escapeHtml(shopCtaLabel(nft));
+            const note = `<p class="nft-card__shop-note">Studio shop · no marketplace fee</p>`;
+            if (osHref) {
+                const osLabel = escapeHtml(osCtaLabel(nft));
+                return `
+                <div class="nft-card__actions nft-card__actions--dual">
+                    <button type="button" class="btn btn--primary btn--block shop-buy"${disabled}>${shopLabel}</button>
+                    <a class="btn btn--ghost btn--block" href="${escapeHtml(osHref)}" target="_blank" rel="noopener noreferrer">${osLabel}</a>
+                </div>${note}`;
+            }
             return `
                 <div class="nft-card__actions">
-                    <button type="button" class="btn btn--primary btn--block shop-buy"${disabled}>${label}</button>
-                </div>`;
+                    <button type="button" class="btn btn--primary btn--block shop-buy"${disabled}>${shopLabel}</button>
+                </div>${note}`;
         }
         const dual = resolveDualMarketplaces(nft);
         if (dual) {
@@ -534,18 +547,37 @@ const Gallery = (() => {
             }
             return { text: 'Live auction', hint: chainLabel(nft), kind: 'listed' };
         }
-        if (isShopNft(nft)) {
-            const symbol = (nft.listing_currency || nft.currency || 'USD').toUpperCase();
-            const p = nft.pay_amount || nft.shop_price || priceField(nft, 'current_price', symbol);
+        if (isShopNft(nft) || (nft.in_shop && (isFeaturedPromoNft(nft) || nft.in_featured))) {
+            const shopCur = (
+                nft.shop_currency ||
+                nft.listing_currency ||
+                nft.currency ||
+                'AVAX'
+            ).toUpperCase();
+            const shopP =
+                nft.shop_pay_amount ||
+                nft.pay_amount ||
+                nft.shop_price ||
+                priceField(nft, 'current_price', shopCur);
+            const osP = nft.os_list_price;
+            const osCur = (nft.os_list_currency || shopCur).toUpperCase();
             const q = nft.qty_available ?? nft.promo_quantity;
-            const bits = [];
+            const bits = ['Studio shop · no marketplace fee'];
             if (q != null) bits.push(`${q} available`);
             if (nft.promo_days_left != null) bits.push(`${nft.promo_days_left}d left`);
-            if (nft.fulfill === 'mint_on_demand') bits.push('mint on demand');
-            if (nft.demo) bits.push('demo');
+            if (osP != null && osP !== '') bits.push(`OpenSea ${osP} ${osCur}`);
             bits.push(chainLabel(nft));
             return {
-                text: p != null && p !== '' ? `${p} ${symbol}` : 'Studio price',
+                text:
+                    shopP != null && shopP !== ''
+                        ? `${shopP} ${shopCur}`
+                        : 'Studio price',
+                alt:
+                    osP != null && osP !== '' && String(osP) !== String(shopP)
+                        ? `OpenSea ${osP} ${osCur}`
+                        : osP != null && osP !== ''
+                          ? `OpenSea ${osP} ${osCur}`
+                          : '',
                 hint: bits.join(' · '),
                 kind: nft.shop_status === 'coming' ? 'mint' : 'listed',
             };
@@ -748,6 +780,7 @@ const Gallery = (() => {
         const extraNfts = extras.flatMap((payload) => payload?.nfts || []);
         if (!extraNfts.length) return;
         allNfts = [...allNfts, ...extraNfts];
+        attachChannelLinks(allNfts);
         if (typeof GallerySections !== 'undefined' && GallerySections.noteLoadedNfts) {
             GallerySections.noteLoadedNfts(allNfts);
         }
@@ -789,6 +822,136 @@ const Gallery = (() => {
 
     function isShopNft(nft) {
         return nft?.medium === 'shop';
+    }
+
+    function catalogKey(nft) {
+        const cid = String(nft?.collection_id || '').trim();
+        const tid = String(nft?.token_id ?? '').trim();
+        if (!cid || tid === '') return '';
+        return `${cid}:${tid}`;
+    }
+
+    function isEvmChain(nft) {
+        const c = String(nft?.chain || '').toLowerCase();
+        return c === 'avalanche' || c === 'base' || c === 'polygon' || c === 'ethereum';
+    }
+
+    function firstPrice(nft, keys) {
+        for (const k of keys) {
+            if (nft?.[k] != null && nft[k] !== '') return nft[k];
+        }
+        return null;
+    }
+
+    function attachChannelLinks(nfts) {
+        const shop = new Map();
+        const featured = new Map();
+        const gallery = new Set();
+        for (const nft of nfts) {
+            const k = catalogKey(nft);
+            if (!k) continue;
+            if (nft.medium === 'shop') shop.set(k, nft);
+            else if (nft.medium === 'featured_promo') featured.set(k, nft);
+            else gallery.add(k);
+        }
+        for (const nft of nfts) {
+            const k = catalogKey(nft);
+            if (!k) continue;
+            const s = shop.get(k);
+            const f = featured.get(k);
+            nft.in_shop = Boolean(s);
+            nft.in_featured = Boolean(f);
+            nft.in_gallery = gallery.has(k);
+            if (s && nft !== s) {
+                nft.shop_pay_amount = s.pay_amount || s.shop_price;
+                nft.shop_price = s.shop_price || s.pay_amount;
+                nft.shop_currency = (
+                    s.listing_currency ||
+                    s.currency ||
+                    'AVAX'
+                ).toUpperCase();
+                if (!nft.pay_amount) nft.pay_amount = s.pay_amount || s.shop_price;
+                if (!nft.pay_address) nft.pay_address = s.pay_address;
+                if (!nft.sku) nft.sku = s.sku;
+                if (!nft.memo) nft.memo = s.memo;
+                if (nft.qty_available == null) nft.qty_available = s.qty_available;
+                if (!nft.fulfill) nft.fulfill = s.fulfill;
+                if (!nft.pool) nft.pool = s.pool;
+                if (nft.demo == null) nft.demo = s.demo;
+            }
+            if (f) {
+                const fp = firstPrice(f, [
+                    'current_price_avax',
+                    'current_price_eth',
+                    'current_price_weth',
+                    'current_price_sui',
+                    'current_price_xrp',
+                ]);
+                if (fp != null) {
+                    nft.os_list_price = fp;
+                    nft.os_list_currency = (f.listing_currency || '').toUpperCase();
+                }
+                if (!nft.opensea_url) nft.opensea_url = f.opensea_url;
+            }
+            if (nft.os_list_price == null && s?.os_price) {
+                nft.os_list_price = s.os_price;
+                nft.os_list_currency = (
+                    s.listing_currency ||
+                    nft.listing_currency ||
+                    'AVAX'
+                ).toUpperCase();
+            }
+            const listed =
+                nft.listing_status === 'For Sale' || nft.status === 'listed';
+            nft.on_os = Boolean(
+                (isEvmChain(nft) && (f || nft.os_list_price != null || (listed && nft.opensea_url))) ||
+                    (isEvmChain(s) && (s?.opensea_url || s?.os_price)) ||
+                    (isEvmChain(f) && f?.opensea_url),
+            );
+        }
+    }
+
+    function studioShopReady(nft) {
+        if (!nft?.in_shop) return false;
+        const pay = nft.shop_pay_amount || nft.pay_amount || nft.shop_price;
+        const addr = nft.pay_address;
+        return Boolean(pay) && Boolean(addr);
+    }
+
+    function evmOpenSeaUrl(nft) {
+        if (!isEvmChain(nft)) return '';
+        const raw = nft.opensea_url || '';
+        if (!raw) return '';
+        if (/tradeport|xrp\.cafe|objkt|manifold/i.test(raw)) return '';
+        return OpenSeaLinks.buyUrl(raw);
+    }
+
+    function shopCtaLabel(nft) {
+        const p = nft.shop_pay_amount || nft.pay_amount || nft.shop_price;
+        const cur = (nft.shop_currency || nft.listing_currency || 'AVAX').toUpperCase();
+        if (p != null && p !== '') return `Studio shop · ${p} ${cur}`;
+        return 'Buy from studio';
+    }
+
+    function osCtaLabel(nft) {
+        const p = nft.os_list_price;
+        const cur = (nft.os_list_currency || nft.listing_currency || 'AVAX').toUpperCase();
+        if (p != null && p !== '') return `OpenSea · ${p} ${cur}`;
+        return 'OpenSea';
+    }
+
+    function channelMarksHtml(nft) {
+        const marks = [];
+        if (nft.on_os) marks.push(['os', 'OS']);
+        if (nft.in_shop) marks.push(['shop', 'SHOP']);
+        if (nft.in_featured) marks.push(['featured', 'FEATURED']);
+        if (!marks.length) return '';
+        return `<div class="nft-card__marks" aria-hidden="true">${marks
+            .map(
+                ([k, label]) =>
+                    `<span class="nft-card__mark nft-card__mark--${k}">${label}</span>`,
+            )
+            .join('')}</div>`;
     }
 
     /** featured_promo.json → cards in Featured tab (all chains). */
@@ -1037,6 +1200,7 @@ const Gallery = (() => {
             if (shopNfts?.length) {
                 allNfts = [...allNfts, ...shopNfts];
             }
+            attachChannelLinks(allNfts);
             collectionInfo = {
                 ...(data.collection_info || {}),
                 xrpl: xrpData.collection_info || {},
@@ -1977,13 +2141,14 @@ const Gallery = (() => {
             .map((tag) => `<span class="nft-tag">${escapeHtml(tag)}</span>`)
             .join('');
 
-        const shopBadge = isShopNft(nft)
-            ? `<span class="nft-card__badge nft-card__badge--shop">${nft.demo ? 'Demo' : 'Studio shop'}</span>`
+        const marks = channelMarksHtml(nft);
+        const priceAlt = price.alt
+            ? `<span class="nft-card__price-alt">${escapeHtml(price.alt)}</span>`
             : '';
 
         card.innerHTML = `
             <div class="nft-image-wrap">
-                ${shopBadge}
+                ${marks}
                 <img alt="${name}"
                      loading="lazy"
                      decoding="async"
@@ -2017,6 +2182,7 @@ const Gallery = (() => {
                 </div>
                 <p class="nft-card__price" title="${escapeHtml(price.hint)}">
                     <span class="nft-card__price-value">${escapeHtml(price.text)}</span>
+                    ${priceAlt}
                 </p>
                 ${descriptionHtml}
                 <div class="nft-card__tags">${tagsHtml}</div>
@@ -2033,10 +2199,12 @@ const Gallery = (() => {
 
         attachNftMedia(card, nft);
         bindEngage(card, nft, key);
-        card.querySelector('.shop-buy')?.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (typeof ShopCheckout !== 'undefined') ShopCheckout.open(nft);
+        card.querySelectorAll('.shop-buy').forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (typeof ShopCheckout !== 'undefined') ShopCheckout.open(nft);
+            });
         });
         card.querySelector('.xrpl-mint')?.addEventListener('click', (e) => {
             e.preventDefault();

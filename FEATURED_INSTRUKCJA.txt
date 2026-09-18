@@ -1,0 +1,24 @@
+================================================================================
+  FEATURED / Wyróżnione — źródło kart na GH
+================================================================================
+
+  Live:  https://jackbeatnic.github.io/?section=featured
+  JSON:  data/featured_promo.json     ← TĘ nazwę pushujemy
+  Backup na PC:  ~/jb_nft/old_featured_promo.json
+
+  Skrypt (za rączkę, jak STUDIO):
+
+    python3 listing/featured_studio.py
+    karta:  listing/JAK_FEATURED.txt
+
+  Zasady:
+    • nowe karty na GÓRZE
+    • UPSERT po (collection_id, token_id) — nie kasuje FS / Photo
+    • miniatury TYLKO z jbg-present/{collection}/{token_id}.thumb.webp
+    • qty i cena zawsze z CSV/flag, nigdy zgadywane z SYSTEM.md
+
+  Przywrócenie:
+
+    python3 listing/featured_studio.py restore --push
+
+================================================================================

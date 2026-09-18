@@ -51,13 +51,23 @@ const GalleryShare = (() => {
     }
 
     function workUrl(nft) {
-        // Prefer namespaced landing (fresh OG). Ignore stale flat share_url
-        // like …/nft/3.html that collided across collections.
+        // Prefer namespaced landing (fresh OG) for gallery works.
+        // Shop / Featured often have no nft/{col}/{id}.html yet — deep link.
         const landing = shareLandingUrl(nft);
-        if (nft?.share_url && String(nft.share_url).includes(`/nft/${collectionId(nft)}/`)) {
+        const medium = nft?.medium || 'ai_art';
+        const needsDeep =
+            medium === 'shop' ||
+            medium === 'featured_promo' ||
+            !nft?.collection_id;
+
+        if (
+            !needsDeep &&
+            nft?.share_url &&
+            String(nft.share_url).includes(`/nft/${collectionId(nft)}/`)
+        ) {
             return nft.share_url;
         }
-        if (landing && nft?.collection_id) return landing;
+        if (!needsDeep && landing && nft?.collection_id) return landing;
 
         if (nft?.share_url && !/\/nft\/\d+\.html$/.test(String(nft.share_url))) {
             return nft.share_url;
@@ -66,8 +76,6 @@ const GalleryShare = (() => {
         const params = new URLSearchParams();
         params.set('work', String(nft.token_id));
         if (nft.collection_id) params.set('collection', String(nft.collection_id));
-        const medium = nft.medium || 'ai_art';
-
         if (medium === 'photography') {
             params.set('section', 'photography');
             const kind = nft.photo_kind || 'photo';
@@ -114,8 +122,94 @@ const GalleryShare = (() => {
         return `${siteUrl}?${params}`;
     }
 
+    const COLLECTION_LABELS = {
+        avalanche_nature_stories: 'Nature Stories',
+        base_nature_stories_vol3: 'Nature Stories',
+        polygon_nature_stories_vol2: 'Nature Stories',
+        avalanche_flower_stories: 'Flower Stories',
+        base_flower_stories_vol3: 'Flower Stories',
+        polygon_flower_stories_vol2: 'Flower Stories',
+        avalanche_nature_jam: 'Nature Jam',
+        avalanche_nature_jam_vol2: 'Nature Jam vol. 2',
+        base_jb_based_ai: 'JB Based AI',
+        base_jb_based_ai_vol2: 'JB Based AI vol. 2',
+        polygon_jb_ai_play: 'JB AI Play',
+        base_jb_ai_play: 'JB AI Play',
+        sui_nature_stories_tradeport: 'Nature Stories SE',
+        sui_nature_stories_1of1_tradeport: 'Nature Stories SE 1/1',
+        xrpl_jb_ai_nature: 'JB AI Nature',
+        xrpl_jbn: 'JB AI Nature',
+        objkt_jack_beatnic_open_editions: 'Open Editions',
+        "objkt_jack's_nature": "Jack's Nature",
+        objkt_jacks_nature: "Jack's Nature",
+    };
+
+    const CHAIN_LABELS = {
+        avalanche: 'Avalanche',
+        base: 'Base',
+        polygon: 'Polygon',
+        ethereum: 'Ethereum',
+        sui: 'Sui',
+        xrpl: 'XRPL',
+        tezos: 'Tezos',
+    };
+
+    function artworkTitle(nft) {
+        const n = String(nft?.name || '').trim();
+        if (n && n !== 'Artwork' && n !== `#${nft?.token_id}`) return n;
+        if (nft?.token_id != null && nft.token_id !== '') {
+            const cid = String(nft.collection_id || '');
+            const prefix = /flower/i.test(cid) ? 'FS' : 'NS';
+            return `${prefix} #${nft.token_id}`;
+        }
+        return 'Artwork';
+    }
+
+    function collectionLabel(nft) {
+        const fromNft = String(nft?.collection_name || '').trim();
+        if (fromNft && !/^[a-z0-9_]+$/i.test(fromNft)) return fromNft;
+        const cid = String(nft?.collection_id || '').trim();
+        if (COLLECTION_LABELS[cid]) return COLLECTION_LABELS[cid];
+        if (cid.includes('nature_stories')) return 'Nature Stories';
+        if (cid.includes('flower_stories')) return 'Flower Stories';
+        if (cid.includes('nature_jam')) return 'Nature Jam';
+        if (cid.includes('based_ai')) return 'JB Based AI';
+        if (cid.includes('ai_play')) return 'JB AI Play';
+        if (fromNft) return fromNft.replace(/_/g, ' ');
+        if (cid) return cid.replace(/_/g, ' ').replace(/-/g, ' ');
+        return '';
+    }
+
+    function editionLabel(nft) {
+        const ed = String(nft?.edition_label || '').trim();
+        if (ed && !['all', 'evm'].includes(ed.toLowerCase())) {
+            return ed.charAt(0).toUpperCase() + ed.slice(1);
+        }
+        const chain = String(nft?.chain || '').toLowerCase();
+        return CHAIN_LABELS[chain] || '';
+    }
+
+    /** Caption for intents: artwork + collection (no URL). */
     function shareText(nft) {
-        return `${nft.name || 'Artwork'} — Jack Beatnic Gallery`;
+        const title = artworkTitle(nft);
+        const col = collectionLabel(nft);
+        const ed = editionLabel(nft);
+        const line2 = [col, ed].filter(Boolean).join(' · ');
+        const lines = [title];
+        if (line2 && !title.toLowerCase().includes(line2.toLowerCase())) {
+            lines.push(line2);
+        }
+        lines.push('Jack Beatnic Gallery');
+        return lines.join('\n');
+    }
+
+    /** Clipboard / WhatsApp / email: caption + live link. */
+    function shareCopy(nft, url) {
+        const caption = shareText(nft);
+        const link = url || workUrl(nft);
+        if (!link) return caption;
+        if (caption.includes(link)) return caption;
+        return `${caption}\n${link}`;
     }
 
     function canNativeShare() {
@@ -152,6 +246,7 @@ const GalleryShare = (() => {
     }
 
     function channels(nft, url, text) {
+        const copyPayload = shareCopy(nft, url);
         const items = [
             { id: 'copy', label: 'Copy link', action: 'copy' },
         ];
@@ -200,7 +295,7 @@ const GalleryShare = (() => {
             {
                 id: 'whatsapp',
                 label: 'WhatsApp',
-                href: `https://wa.me/?text=${enc(`${text} ${url}`)}`,
+                href: `https://wa.me/?text=${enc(copyPayload)}`,
             },
             {
                 id: 'telegram',
@@ -225,7 +320,7 @@ const GalleryShare = (() => {
         items.push({
             id: 'email',
             label: 'Email',
-            href: `mailto:?subject=${enc(text)}&body=${enc(`${text}\n\n${url}`)}`,
+            href: `mailto:?subject=${enc(artworkTitle(nft))}&body=${enc(copyPayload)}`,
         });
 
         return items;
@@ -270,7 +365,9 @@ const GalleryShare = (() => {
 
     async function handleCopy(btn) {
         const original = btn.textContent;
-        const ok = await copyToClipboard(activeUrl);
+        const ok = await copyToClipboard(
+            shareCopy(activeNft, activeUrl) || activeUrl,
+        );
         btn.textContent = ok ? 'Copied' : 'Copy failed';
         window.setTimeout(() => {
             btn.textContent = original;
@@ -282,7 +379,10 @@ const GalleryShare = (() => {
         activeText = shareText(nft);
 
         const workEl = popover.querySelector('.share-popover__work');
-        workEl.textContent = nft.name || 'Artwork';
+        const col = collectionLabel(nft);
+        workEl.textContent = col
+            ? `${artworkTitle(nft)} · ${col}`
+            : artworkTitle(nft);
         grid.innerHTML = channels(nft, activeUrl, activeText)
             .map((item) => {
                 if (item.action) {
@@ -300,8 +400,8 @@ const GalleryShare = (() => {
         }
         try {
             await navigator.share({
-                title: shareText(nft),
-                text,
+                title: artworkTitle(nft),
+                text: shareText(nft),
                 url,
             });
             close();
@@ -373,7 +473,11 @@ const GalleryShare = (() => {
 
         if (canNativeShare()) {
             try {
-                await navigator.share({ title: text, text, url });
+                await navigator.share({
+                    title: artworkTitle(nft),
+                    text,
+                    url,
+                });
                 return;
             } catch (err) {
                 if (err?.name === 'AbortError') return;

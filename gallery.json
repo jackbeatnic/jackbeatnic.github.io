@@ -58775,6 +58775,24 @@
           "contract": "0x548B2af6Ae458ea588260b3A07cc0DdB4E74aa1a",
           "community_url": "https://arena.social/community/0x548B2af6Ae458ea588260b3A07cc0DdB4E74aa1a?ref=JackBeatnic",
           "cta_label": "Arena community →"
+        },
+        {
+          "id": "jbeatnicai-arena",
+          "title": "$JBEATNICAI on Arena",
+          "symbol": "$JBEATNICAI",
+          "chain": "Avalanche",
+          "contract": "0x77D579A3248B2D3AA8efa12b9C279b9A61D79b99",
+          "community_url": "https://arena.social/community/0x77D579A3248B2D3AA8efa12b9C279b9A61D79b99?ref=JackBeatnic",
+          "cta_label": "Arena community →"
+        },
+        {
+          "id": "aiart-arena",
+          "title": "$AIART on Arena",
+          "symbol": "$AIART",
+          "chain": "Avalanche",
+          "contract": "0xD0af60C725b62a9518cD19B079687A4B33e5F814",
+          "community_url": "https://arena.social/community/0xD0af60C725b62a9518cD19B079687A4B33e5F814?ref=JackBeatnic",
+          "cta_label": "Arena community →"
         }
       ]
     },

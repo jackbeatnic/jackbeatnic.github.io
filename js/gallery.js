@@ -786,6 +786,7 @@ const Gallery = (() => {
         }
         syncSectionNfts('full');
         refresh();
+        scrollHashTarget();
     }
 
     async function loadSupplementaryGalleries() {
@@ -1329,6 +1330,7 @@ const Gallery = (() => {
             GalleryFilters.bindOnce();
             preselectWorkSection();
             syncSectionNfts('full');
+            scrollHashTarget();
             TipCreator.init({
                 evm_wallet: collectionInfo.creator_wallet,
                 btc_wallet: collectionInfo.btc_tip_wallet,
@@ -2220,6 +2222,38 @@ const Gallery = (() => {
         return card;
     }
 
+    function scrollToPageAnchor(id, { smooth = true } = {}) {
+        const el = document.getElementById(id);
+        if (!el) return false;
+        el.scrollIntoView({
+            behavior: smooth ? 'smooth' : 'auto',
+            block: 'start',
+        });
+        return true;
+    }
+
+    function bindHeroAnchors() {
+        document.getElementById('hero-marketplaces')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            const ok = scrollToPageAnchor('about-marketplaces');
+            if (ok) {
+                history.replaceState(
+                    {},
+                    '',
+                    `${window.location.pathname}${window.location.search}#about-marketplaces`,
+                );
+            }
+        });
+    }
+
+    function scrollHashTarget() {
+        const id = (window.location.hash || '').replace(/^#/, '');
+        if (!id) return;
+        if (id === 'about-marketplaces' || id === 'about' || id === 'explore') {
+            window.requestAnimationFrame(() => scrollToPageAnchor(id, { smooth: false }));
+        }
+    }
+
     function setupBackToTop() {
         const btn = document.getElementById('back-to-top');
         if (!btn) return;
@@ -2236,6 +2270,7 @@ const Gallery = (() => {
     function init() {
         setupProtection();
         setupBackToTop();
+        bindHeroAnchors();
         if (typeof XrplMint !== 'undefined') XrplMint.init();
         if (typeof SuiMint !== 'undefined') SuiMint.init();
         const ready =

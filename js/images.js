@@ -18,6 +18,16 @@ const ImageProxy = (() => {
     // the old sized-proxy path (XRPL jsDelivr, Tezos/Sui via weserv).
     const PRESENT_COLLECTIONS = new Set([
         'avalanche_nature_stories',
+        'avalanche_flower_stories',
+        'avalanche_nature_jam',
+        'avalanche_nature_jam_vol2',
+        'base_nature_stories_vol3',
+        'base_flower_stories_vol3',
+        'base_jb_based_ai',
+        'base_jb_based_ai_vol2',
+        'polygon_nature_stories_vol2',
+        'polygon_flower_stories_vol2',
+        'polygon_jb_ai_play',
         'sui_nature_stories_tradeport',
         'sui_nature_stories_1of1_tradeport',
     ]);

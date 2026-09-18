@@ -184,7 +184,8 @@ const GallerySections = (() => {
     function noteLoadedNfts(nfts) {
         loadedEditionKeys = new Set();
         (nfts || []).forEach((nft) => {
-            if ((nft?.medium || 'ai_art') !== 'ai_art') return;
+            const medium = nft?.medium || 'ai_art';
+            if (medium !== 'ai_art' && medium !== 'featured_promo') return;
             const series = resolveAiSeries(nft);
             const edition = resolveAiEdition(nft);
             if (series && edition) loadedEditionKeys.add(`${series}::${edition}`);

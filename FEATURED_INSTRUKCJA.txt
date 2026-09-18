@@ -4,6 +4,8 @@
 
   Live:    https://jackbeatnic.github.io/?section=featured
   Skrypt:  python3 listing/featured_studio.py     (bez argumentów = ta karta)
+  Prezentacja Base/Polygon (thumbs + AI + OS):  listing/JAK_PREZENT.txt
+    python3 listing/prezent_studio.py
   JSON:    www/data/featured_promo.json           ← TĘ nazwę pushujemy na GH
   Backup:  ~/jb_nft/old_featured_promo.json
   Miniatury: jbg-present/{collection_id}/{token_id}.thumb.webp

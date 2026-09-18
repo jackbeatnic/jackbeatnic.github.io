@@ -43,6 +43,7 @@
 
 html {
     -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6.5rem;
 }
 
 body {
@@ -1550,7 +1551,13 @@ body.tip-open {
     border-radius: 4px;
     background: var(--white);
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
-    scroll-margin-top: 5rem;
+    scroll-margin-top: 6.5rem;
+}
+
+#about,
+#about-marketplaces,
+.site-footer {
+    scroll-margin-top: 6.5rem;
 }
 
 .filters-panel__head {

@@ -1,0 +1,155 @@
+================================================================================
+  PREZENT STUDIO — wybrane tokeny na GH (Base / Polygon / Avax)
+  Gemini / Grok Bot: czytaj TĘ kartę i generuj TYLKO te komendy.
+  Jack podaje ludzkie parametry. Nie zgaduj TOKEN ID. Najpierw --dry-run.
+================================================================================
+
+Skrypt:
+  python3 listing/prezent_studio.py          # ta karta
+  python3 listing/featured_studio.py show …  # to samo pod spodem
+
+Live:     https://jackbeatnic.github.io/?section=ai_art
+Featured: https://jackbeatnic.github.io/?section=featured
+
+Zawsze:  cd ~/jb_nft
+Komputer: jb@jb  (listing OS idzie przez VPS / aniołek)
+
+
+ZŁOTA ZASADA — TOKEN ID ≠ NS #
+------------------------------
+  --id / --ids  = TOKEN ID na kontrakcie (OpenSea).
+  --ns N        = numer w NAZWIE (NS #174). Studio SAM znajdzie token.
+
+  Base TOKEN 1  = NS #174     (NIE obrazek NS #1)
+  Base TOKEN 501 = NS #3248
+  Polygon: to samo, inny kontrakt, inny TOKEN ID.
+
+  Źle:  --id 174  gdy chcesz dzieło NS #174 na Base
+  Dobrze: --ns 174   albo  --id 1
+
+
+PARAMETRY OD JACKA (nie wymyślaj)
+---------------------------------
+  kolekcja   base_nature_stories_vol3 | polygon_nature_stories_vol2
+             | avalanche_nature_stories | *_flower_stories_* …
+  TOKEN ID   lista, np. 501  albo  501,502,510
+  qty        szt. oferty (np. 1000) — tylko gdy OS promo
+  pay        cena wyprzedaży (Shop / baza). OS = pay / (1 − 2.5% fee)
+  days       pobyt Featured + ważność OS (np. 7)
+  hours      opcjonalnie krótki Featured (OS min. 1 dzień)
+
+  Base i Polygon: BEZ Shop (studio samo wyłączy).
+  NS Avalanche: Shop + OS drożej o fee + Featured.
+
+
+A. TYLKO MINIATURY (jbg-present WebP)
+-------------------------------------
+  python3 listing/prezent_studio.py thumbs \
+    --kolekcja base_nature_stories_vol3 --ids 501 --dry-run
+
+  python3 listing/prezent_studio.py thumbs \
+    --kolekcja base_nature_stories_vol3 --ids 501 --push
+
+  Wiele: --ids 501,502,510
+  Po nazwie: --ns 174
+  JPG: backup_offline/by_collection/<kolekcja>/media/<TOKEN_ID>.jpg
+
+
+B. WCHODZI DO SEKCJI AI (gallery.json) — bez listingu
+-----------------------------------------------------
+  python3 listing/prezent_studio.py galeria \
+    --kolekcja base_nature_stories_vol3 --ids 501 --dry-run
+
+  python3 listing/prezent_studio.py galeria \
+    --kolekcja base_nature_stories_vol3 --ids 501 --push
+
+  Karta w Nature Stories → edycja Base (albo Polygon). display_rank=0 (na górze).
+  Miniatura z jbg-present. Nie nadpisuje istniejącego opisu AI.
+
+
+C. PEŁNY POKAZ — thumbs + AI + OS promo + Featured  (to kopiujesz najczęściej)
+------------------------------------------------------------------------------
+  1) DRY-RUN (zawsze najpierw — Jack sprawdza TOKEN = nazwę):
+
+  python3 listing/prezent_studio.py show \
+    --kolekcja KOLEKCJA --ids TOKENY \
+    --qty QTY --pay CENA --days DNI --dry-run
+
+  2) LIVE (aniołek VPS wystawia OS):
+
+  python3 listing/prezent_studio.py show \
+    --kolekcja KOLEKCJA --ids TOKENY \
+    --qty QTY --pay CENA --days DNI
+
+Przykład Base (bez Shop):
+
+  python3 listing/prezent_studio.py show \
+    --kolekcja base_nature_stories_vol3 --ids 501 \
+    --qty 1000 --pay 0.0005 --days 7 --dry-run
+
+  python3 listing/prezent_studio.py show \
+    --kolekcja base_nature_stories_vol3 --ids 501 \
+    --qty 1000 --pay 0.0005 --days 7
+
+Przykład Polygon:
+
+  python3 listing/prezent_studio.py show \
+    --kolekcja polygon_nature_stories_vol2 --ids TOKEN \
+    --qty 1000 --pay 0.0005 --days 7 --dry-run
+
+Przykład NS Avalanche (Shop 0.03 + OS 0.03077 + Featured + AI):
+
+  python3 listing/prezent_studio.py show \
+    --kolekcja avalanche_nature_stories --ids 2311 \
+    --qty 1000 --pay 0.03 --days 7 --dry-run
+
+
+D. TYLKO OS+FEATURED (już jest w AI / miniatura jest)
+-----------------------------------------------------
+  python3 listing/featured_studio.py promo \
+    --kolekcja base_nature_stories_vol3 --ids 501 \
+    --qty 1000 --pay 0.0005 --days 7 --galeria --dry-run
+
+
+E. KONIEC POBYTU W FEATURED
+---------------------------
+  python3 listing/featured_studio.py expire --dry-run
+  python3 listing/featured_studio.py expire --push
+  VPS cron: kasa-featured.timer  (karta: FEATURED_INSTRUKCJA.txt)
+
+
+CO STUDIO ROBI SAM
+------------------
+  thumbs   → WebP 440/900, plik = TOKEN ID, drukuje TOKEN n = NS #m
+  galeria  → upsert gallery.json (nie kasuje innych kart, nie rusza opisów AI)
+  show     → thumbs + galeria + (gdy qty+pay) listing OS przez VPS + Featured
+  Shop     → tylko avalanche_nature_stories
+  Featured → upsert na górze, metki OS / SHOP / FEATURED
+  OS cena  → pay / (1 − 2.5%)  albo --os-price
+
+
+CZEGO NIE ROBIĆ (Gemini: nie proponuj)
+--------------------------------------
+  ✗ ręczny JSON featured / gallery
+  ✗ --id = numer z nazwy NS #
+  ✗ listing_ops --generuj-dodatkowy
+  ✗ ns_avax_studio.py present dla Base/Polygon
+  ✗ gallery.json / AI Art dump całej kolekcji
+  ✗ wpisywanie "ETH" w CSV Base (puste = native)
+
+
+KOLEKCJE (id do --kolekcja)
+---------------------------
+  avalanche_nature_stories
+  base_nature_stories_vol3
+  polygon_nature_stories_vol2
+  avalanche_flower_stories
+  base_flower_stories_vol3
+  polygon_flower_stories_vol2
+  avalanche_nature_jam
+  avalanche_nature_jam_vol2
+  base_jb_based_ai
+  base_jb_based_ai_vol2
+  polygon_jb_ai_play
+
+================================================================================

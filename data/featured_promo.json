@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-09-17T00:02:26.558725+00:00",
+  "updated_at": "2026-09-18T01:52:25.779811+00:00",
   "promo": {
-    "label": "Photos-1-001 + Photo4/dziewczyny · FS Avalanche · 30 days",
+    "label": "OFF 0% · 30 days",
     "pct_off": 0,
     "days": 30,
-    "starts_at": "2026-09-17T00:02:26.558725+00:00",
-    "ends_at": "2026-10-17T00:02:26.558725+00:00"
+    "starts_at": "2026-09-18T01:52:25.779811+00:00",
+    "ends_at": "2026-10-18T01:52:25.779811+00:00"
   },
   "items": [
     {
@@ -55,51 +55,6 @@
       "ends_at": "2026-10-17T00:02:26.558725+00:00",
       "opensea_url": "https://opensea.io/assets/base/0x642073e93508606b94d0732324411135c8bc44c3/500",
       "marketplace_url": "https://opensea.io/assets/base/0x642073e93508606b94d0732324411135c8bc44c3/500"
-    },
-    {
-      "collection_id": "avalanche_nature_stories",
-      "collection_name": "Nature Stories",
-      "chain": "avalanche",
-      "token_id": 1,
-      "name": "Nature stories #0001",
-      "image_url": "https://ipfs.io/ipfs/bafybeiemw7ftfgifx3kiynqyt6lx2cub7d7t24c62cbe25ddztxl5khewq",
-      "price": 3.594,
-      "currency": "AVAX",
-      "quantity": 100,
-      "days": 30,
-      "pct_off": 40,
-      "ends_at": "2026-09-08T11:35:46.087047+00:00",
-      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/1"
-    },
-    {
-      "collection_id": "avalanche_nature_stories",
-      "collection_name": "Nature Stories",
-      "chain": "avalanche",
-      "token_id": 2,
-      "name": "Nature stories #0002",
-      "image_url": "https://ipfs.io/ipfs/bafybeiakpgsvolupwjgqjtuc4zhn7u4uuxd3ajchmik3hziyd2wi2jqebm",
-      "price": 3.594,
-      "currency": "AVAX",
-      "quantity": 100,
-      "days": 30,
-      "pct_off": 40,
-      "ends_at": "2026-09-08T11:35:46.087047+00:00",
-      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/2"
-    },
-    {
-      "collection_id": "avalanche_nature_stories",
-      "collection_name": "Nature Stories",
-      "chain": "avalanche",
-      "token_id": 3,
-      "name": "Nature stories #0003",
-      "image_url": "https://ipfs.io/ipfs/bafybeifbwhr7uo5al4kmfkdtvlku4vzs56tigzekelrddnpsd4pcy2hnv4",
-      "price": 3.594,
-      "currency": "AVAX",
-      "quantity": 100,
-      "days": 30,
-      "pct_off": 40,
-      "ends_at": "2026-09-08T11:35:46.087047+00:00",
-      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/3"
     },
     {
       "collection_id": "avalanche_flower_stories",

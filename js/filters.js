@@ -4,9 +4,16 @@
 const GalleryFilters = (() => {
     const activeVibes = new Set();
     const activeColorFamilies = new Set();
+    const activeMarks = new Set();
     let searchQuery = '';
     let listedOnly = false;
     let lastFilterNfts = [];
+
+    const MARK_FLAGS = {
+        os: (nft) => nft.on_os === true,
+        shop: (nft) => nft.in_shop === true,
+        featured: (nft) => nft.in_featured === true,
+    };
 
     /** Series/chain labels — not artistic mood filters */
     const META_VIBE_TAGS = new Set([
@@ -204,6 +211,26 @@ const GalleryFilters = (() => {
         return [...display.values()].sort((a, b) => a.localeCompare(b));
     }
 
+    function setupLibraryMarks(nfts) {
+        const has = { os: false, shop: false, featured: false };
+        (nfts || []).forEach((nft) => {
+            if (MARK_FLAGS.os(nft)) has.os = true;
+            if (MARK_FLAGS.shop(nft)) has.shop = true;
+            if (MARK_FLAGS.featured(nft)) has.featured = true;
+        });
+        ['os', 'shop', 'featured'].forEach((mark) => {
+            const btn = document.getElementById(`filter-${mark}`);
+            if (!btn) return;
+            const show = has[mark];
+            btn.hidden = !show;
+            if (!show && activeMarks.has(mark)) {
+                activeMarks.delete(mark);
+                btn.classList.remove('is-active');
+                btn.setAttribute('aria-pressed', 'false');
+            }
+        });
+    }
+
     function setupColors(nfts) {
         const container = document.getElementById('color-filters');
         if (!container) return;
@@ -368,6 +395,14 @@ const GalleryFilters = (() => {
 
             if (listedOnly && !isListedNft(nft)) return false;
 
+            if (activeMarks.size > 0) {
+                const ok = [...activeMarks].every((mark) => {
+                    const test = MARK_FLAGS[mark];
+                    return test ? test(nft) : false;
+                });
+                if (!ok) return false;
+            }
+
             if (q) {
                 const haystack = [
                     nft.name,
@@ -380,6 +415,9 @@ const GalleryFilters = (() => {
                     nft.edition_label ? `${nft.edition_label} edition` : '',
                     nft.ai?.description,
                     nft.ai?.category,
+                    nft.on_os ? 'os opensea' : '',
+                    nft.in_shop ? 'shop studio' : '',
+                    nft.in_featured ? 'featured promo' : '',
                     ...(nft.ai?.vibe_tags || []),
                     ...(nft.ai?.keywords || []),
                     ...(nft.ai?.dominant_colors || []),
@@ -414,6 +452,11 @@ const GalleryFilters = (() => {
         listedOnly = false;
         const listedBtn = document.getElementById('filter-listed');
         if (listedBtn) listedBtn.classList.remove('is-active');
+        activeMarks.clear();
+        document.querySelectorAll('.library-mark.is-active').forEach((el) => {
+            el.classList.remove('is-active');
+            el.setAttribute('aria-pressed', 'false');
+        });
 
         dispatchChange();
     }
@@ -430,6 +473,21 @@ const GalleryFilters = (() => {
             listedOnly = !listedOnly;
             btn.classList.toggle('is-active', listedOnly);
             dispatchChange();
+        });
+        ['os', 'shop', 'featured'].forEach((mark) => {
+            document.getElementById(`filter-${mark}`)?.addEventListener('click', (e) => {
+                const btn = e.currentTarget;
+                if (activeMarks.has(mark)) {
+                    activeMarks.delete(mark);
+                    btn.classList.remove('is-active');
+                    btn.setAttribute('aria-pressed', 'false');
+                } else {
+                    activeMarks.add(mark);
+                    btn.classList.add('is-active');
+                    btn.setAttribute('aria-pressed', 'true');
+                }
+                dispatchChange();
+            });
         });
         document.getElementById('filter-saved')?.addEventListener('click', (e) => {
             e.preventDefault();
@@ -464,6 +522,11 @@ const GalleryFilters = (() => {
         listedOnly = false;
         const listedBtn = document.getElementById('filter-listed');
         if (listedBtn) listedBtn.classList.remove('is-active');
+        activeMarks.clear();
+        document.querySelectorAll('.library-mark.is-active').forEach((el) => {
+            el.classList.remove('is-active');
+            el.setAttribute('aria-pressed', 'false');
+        });
     }
 
     function init(nfts, { rebind = false } = {}) {
@@ -471,6 +534,7 @@ const GalleryFilters = (() => {
         clearUnsupportedFilters(nfts);
         setupCategory(nfts);
         setupColors(nfts);
+        setupLibraryMarks(nfts);
         setupVibes(nfts);
         syncSeriesScopedFilters(nfts);
         if (rebind) bind();
@@ -481,6 +545,7 @@ const GalleryFilters = (() => {
         clearUnsupportedFilters(nfts);
         setupCategory(nfts);
         setupColors(nfts);
+        setupLibraryMarks(nfts);
         setupVibes(nfts);
         syncSeriesScopedFilters(nfts);
     }

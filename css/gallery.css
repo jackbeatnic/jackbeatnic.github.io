@@ -1642,10 +1642,38 @@ body.tip-open {
 }
 
 .color-filter--group {
-    width: 1.55rem;
-    height: 1.55rem;
+    width: 1.72rem;
+    height: 1.72rem;
     border: 2px solid rgba(255, 255, 255, 0.9);
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.14);
+}
+
+.library-mark {
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    font-size: 0.58rem;
+}
+
+.library-mark--os {
+    background: #1e6fd9;
+    color: #fff;
+    border-color: #1e6fd9;
+}
+
+.library-mark--shop {
+    background: #0b5c3a;
+    color: #fff;
+    border-color: #0b5c3a;
+}
+
+.library-mark--featured {
+    background: #6a6a6a;
+    color: #fff;
+    border-color: #6a6a6a;
+}
+
+.library-mark.is-active {
+    box-shadow: 0 0 0 2px var(--white), 0 0 0 3px var(--black);
 }
 
 .color-filter:hover {

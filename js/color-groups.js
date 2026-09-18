@@ -9,15 +9,19 @@
  */
 const GalleryColorGroups = (() => {
     const FAMILIES = [
-        { id: 'deep_blue', label: 'Deep blue', swatch: '#1A3A5C', order: 1 },
-        { id: 'blue', label: 'Blue', swatch: '#4A8FD4', order: 2 },
-        { id: 'teal', label: 'Teal & aqua', swatch: '#2BB5A0', order: 3 },
-        { id: 'green', label: 'Green', swatch: '#6B9E7A', order: 4 },
+        { id: 'red', label: 'Red', swatch: '#C44536', order: 1 },
+        { id: 'orange', label: 'Orange', swatch: '#E07A3D', order: 2 },
+        { id: 'yellow', label: 'Yellow', swatch: '#E4C441', order: 3 },
+        { id: 'warm', label: 'Gold', swatch: '#C9A66B', order: 4 },
         { id: 'earth', label: 'Earth', swatch: '#8B7D6B', order: 5 },
-        { id: 'warm', label: 'Warm', swatch: '#C9A66B', order: 6 },
-        { id: 'rose', label: 'Rose & violet', swatch: '#B07A9A', order: 7 },
-        { id: 'neutral', label: 'Neutral', swatch: '#E4E4E4', order: 8 },
-        { id: 'charcoal', label: 'Charcoal', swatch: '#2C2C2C', order: 9 },
+        { id: 'green', label: 'Green', swatch: '#6B9E7A', order: 6 },
+        { id: 'teal', label: 'Teal', swatch: '#2BB5A0', order: 7 },
+        { id: 'blue', label: 'Blue', swatch: '#4A8FD4', order: 8 },
+        { id: 'deep_blue', label: 'Deep blue', swatch: '#1A3A5C', order: 9 },
+        { id: 'purple', label: 'Purple', swatch: '#7B5EA7', order: 10 },
+        { id: 'rose', label: 'Rose', swatch: '#B07A9A', order: 11 },
+        { id: 'neutral', label: 'Neutral', swatch: '#E4E4E4', order: 12 },
+        { id: 'charcoal', label: 'Charcoal', swatch: '#2C2C2C', order: 13 },
     ];
 
     const BY_ID = Object.fromEntries(FAMILIES.map((f) => [f.id, f]));
@@ -84,42 +88,46 @@ const GalleryColorGroups = (() => {
         if (l >= 90 && chroma <= 22) return ['neutral'];
         if (s <= 8 && chroma <= 28) return ['neutral'];
 
-        // --- Magenta / red / rose (330–360 / 0–12) ---
-        if (h >= 330 || h < 12) {
-            if (s > 18 && l > 12 && l < 88) add('rose');
-            // tomato / coral / burgundy warmth
-            if (h < 18 || h >= 350 || (l < 40 && s > 25)) add('warm');
-            if (!out.length) add(l < 28 ? 'charcoal' : 'warm');
+        // --- Red (350–12) ---
+        if (h >= 350 || h < 12) {
+            if (s > 22 && l > 14 && l < 72) add('red');
+            if (l > 42 && s > 18) add('rose');
+            if (h < 10 && l < 42 && s > 28) add('warm');
+            if (!out.length) add(l < 28 ? 'charcoal' : 'red');
             return out;
         }
 
-        // --- Orange / deep red-brown (12–28) ---
-        if (h < 28) {
-            if (l < 38 && s > 28) add('rose'); // burgundy / deep red
-            if (l < 48 && s < 58) add('earth', 'warm');
+        // --- Orange / coral (12–38) ---
+        if (h < 38) {
+            if (s >= 32 && l >= 28) add('orange');
+            if (l < 40 && s > 28) add('red');
+            if (l < 50 && s < 55) add('earth', 'warm');
             else add('warm');
-            if (!out.length) add('warm');
+            if (!out.length) add('orange');
             return out;
         }
 
-        // --- Gold / brown (28–48) — was wrongly green when L high ---
-        if (h < 48) {
-            if (l < 52 && s < 65) add('earth');
-            if (s >= 30 || l >= 42) add('warm');
+        // --- Gold / yellow / brown (38–58) ---
+        if (h < 58) {
+            if (l >= 48 && s >= 35) add('yellow');
+            if (l < 55 && s < 70) add('earth');
+            if (s >= 28 || l >= 40) add('warm');
+            if (h >= 50 && s >= 28) add('yellow');
             if (!out.length) add('earth');
             return out;
         }
 
-        // --- Olive / khaki (48–70) ---
-        if (h < 70) {
+        // --- Olive / lime / yellow-green (58–78) ---
+        if (h < 78) {
+            if (l >= 50 && s >= 40 && h < 70) add('yellow');
             if (s < 32 && l < 52) add('earth');
             else add('green');
-            if (h >= 58 && s >= 22) add('green');
+            if (h >= 62 && s >= 22) add('green');
             if (!out.length) add('earth');
             return out;
         }
 
-        // --- True greens incl. dark forest / emerald (70–150) ---
+        // --- True greens incl. dark forest / emerald (78–150) ---
         if (h < 150) {
             if (h < 95 && s < 24 && l < 42) add('earth');
             else add('green');
@@ -155,16 +163,18 @@ const GalleryColorGroups = (() => {
             return out;
         }
 
-        // --- Indigo / violet ---
-        if (h < 295) {
+        // --- Indigo / violet / purple ---
+        if (h < 310) {
+            add('purple');
             if (l < 48) add('deep_blue');
-            if (s > 22 && l > 22) add('rose');
-            if (!out.length) add('deep_blue');
+            if (h >= 290 && s > 22 && l > 28) add('rose');
+            if (!out.length) add('purple');
             return out;
         }
 
-        // --- Magenta (295–330) ---
+        // --- Magenta / pink (310–350) ---
         add('rose');
+        if (h < 330 && s > 28) add('purple');
         if (l < 36) add('deep_blue');
         return out;
     }
@@ -190,7 +200,7 @@ const GalleryColorGroups = (() => {
 
         return FAMILIES.filter((f) => counts.has(f.id))
             .map((f) => ({ ...f, count: counts.get(f.id) }))
-            .sort((a, b) => b.count - a.count || a.order - b.order);
+            .sort((a, b) => a.order - b.order);
     }
 
     /**

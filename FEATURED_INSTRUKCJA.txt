@@ -24,16 +24,41 @@ SZYBKA WYPRZEDAŻ — jeden token, full promo (Shop + OS + Featured)
   Listing OS leci przez VPS (aniołek).
 
   python3 listing/featured_studio.py promo \
-    --id 2311 --qty 1000 --pay 0.03 --dry-run
+    --id 2311 --qty 1000 --pay 0.03 --days 7 --dry-run
 
   python3 listing/featured_studio.py promo \
-    --id 2311 --qty 1000 --pay 0.03
+    --id 2311 --qty 1000 --pay 0.03 --days 7
 
-  Token musi już być w Shop (po mincie: ns_avax_studio.py po).
+  --days = pobyt w Featured I ważność listingu OS (aniołek VPS).
+  --hours 12 = krótki Featured (OS i tak min. 1 dzień).
+  Cron na kasie zdejmuje kartę po ends_at:  featured_studio.py expire
+    (timer: vps/worker/kasa-featured.timer).
+
+  Token NS A musi już być w Shop (po mincie: ns_avax_studio.py po).
   Qty i --pay PODAJESZ TY. --fee 2.5 (%% OS) albo --os-price 0.031 gdy chcesz inną.
-  Base: --kolekcja base_nature_stories_vol3  (Shop sam się wyłączy).
   Awaria VPS: --local-os
   Tylko kanały: --no-os / --no-shop / --no-featured
+
+BASE (OS + Featured, bez Shop) — TOKEN ID ≠ NS #
+------------------------------------------------
+  Base TOKEN 1 = NS #174  (nie obrazek NS #1). Miniatura = plik {TOKEN_ID}.thumb.webp.
+
+  python3 listing/featured_studio.py present \
+    --kolekcja base_nature_stories_vol3 --id 1 --dry-run
+  # albo po numerze dzieła:
+  python3 listing/featured_studio.py present \
+    --kolekcja base_nature_stories_vol3 --ns 174 --dry-run
+
+  python3 listing/featured_studio.py promo \
+    --kolekcja base_nature_stories_vol3 \
+    --id 501 --qty 1000 --pay 0.0005 --days 7 --dry-run
+
+  python3 listing/featured_studio.py promo \
+    --kolekcja base_nature_stories_vol3 \
+    --id 501 --qty 1000 --pay 0.0005 --days 7
+
+  Shop sam się wyłączy. Źródło JPG: backup_offline/by_collection/<cid>/media/<TOKEN_ID>.jpg
+  (nie numer z nazwy). Studio wypisze: TOKEN 1 = NS #174.
 
 
 CO TO JEST

@@ -63,7 +63,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/gallery.css?v=20260918marks">
+    <link rel="stylesheet" href="css/gallery.css?v=20260919lib">
     <link rel="stylesheet" href="css/text-select.css?v=20260815copy">
 </head>
 <body class="gallery-protected">
@@ -261,9 +261,12 @@
                 <div id="vibe-filters" class="filters__tags"></div>
             </div>
 
-            <div class="filters-row">
+            <div class="filters-row" id="filters-row-library">
                 <span class="filters-row__label">Library</span>
-                <div class="filters__tags">
+                <div class="filters__tags" id="library-filters" role="group" aria-label="Library marks">
+                    <button type="button" id="filter-os" class="filter-tag library-mark library-mark--os" aria-pressed="false">OS</button>
+                    <button type="button" id="filter-shop" class="filter-tag library-mark library-mark--shop" aria-pressed="false">SHOP</button>
+                    <button type="button" id="filter-featured" class="filter-tag library-mark library-mark--featured" aria-pressed="false">FEATURED</button>
                     <button type="button" id="filter-listed" class="filter-tag listed-filter">Listed</button>
                     <button type="button" id="filter-saved" class="filter-tag saved-filter">Saved for later</button>
                 </div>
@@ -449,8 +452,8 @@
     <script src="js/opensea-links.js?v=20260712p"></script>
     <script src="js/lightbox.js?v=20260816fix2"></script>
     <script src="js/likes.js?v=20260821likes"></script>
-    <script src="js/color-groups.js?v=20260907palette03and"></script>
-    <script src="js/filters.js?v=20260907palette03and"></script>
+    <script src="js/color-groups.js?v=20260919palette"></script>
+    <script src="js/filters.js?v=20260919lib"></script>
     <script src="js/sections.js?v=20260919present"></script>
     <script src="js/wallet.js?v=20260713e"></script>
     <script src="js/tip.js?v=20260712p"></script>

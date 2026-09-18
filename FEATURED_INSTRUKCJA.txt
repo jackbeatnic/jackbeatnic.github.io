@@ -16,6 +16,26 @@
   Zawsze z TEGO komputera (jb@jb). Nie ręczny JSON.
 
 
+SZYBKA WYPRZEDAŻ — jeden token, full promo (Shop + OS + Featured)
+-----------------------------------------------------------------
+  1000 szt. NS A #XXXX po 0.03 w Shop (bez fee).
+  OpenSea samo drożej o prowizję 2.5% (0.03 → 0.03077), żeby po fee netto ≈ Shop.
+  Featured na górze, metki OS/SHOP/FEATURED, dwa przyciski.
+  Listing OS leci przez VPS (aniołek).
+
+  python3 listing/featured_studio.py promo \
+    --id 2311 --qty 1000 --pay 0.03 --dry-run
+
+  python3 listing/featured_studio.py promo \
+    --id 2311 --qty 1000 --pay 0.03
+
+  Token musi już być w Shop (po mincie: ns_avax_studio.py po).
+  Qty i --pay PODAJESZ TY. --fee 2.5 (%% OS) albo --os-price 0.031 gdy chcesz inną.
+  Base: --kolekcja base_nature_stories_vol3  (Shop sam się wyłączy).
+  Awaria VPS: --local-os
+  Tylko kanały: --no-os / --no-shop / --no-featured
+
+
 CO TO JEST
 ----------
   Zakładka Featured na GH to JEDEN grid dla wszystkich chainów promo
@@ -124,10 +144,9 @@ D. DOKLEJ KARTĘ (bez kasowania FS/Photo)
 
 E. CODZIENNA PROMO WERYFIKACJA OS  (SALE→OOS, poza SYSTEM.md)
 -------------------------------------------------------------
-  Cel: 1–3 tanie oferty / dzień — płynność, sprzedaż, próg 50k USD na OS.
-  Typowo:  1× NS Avalanche na OS  +  1× NS Base na OS (Shop Base jeszcze nie)
-           + opcjonalnie 1× INNY NS Avalanche w Shop.
-  Qty i cena PODAJESZ TY. Nie sztywne.
+  NS A, ten sam token na Shop+OS+Featured → komenda `promo` na górze (szybciej).
+
+  Ten blok: gdy A i B (Base) i/lub INNY id na Shop, osobne ceny.
 
   python3 listing/featured_studio.py dzien \
     --avax-id AVAX_TID --avax-qty Q --avax-price P \

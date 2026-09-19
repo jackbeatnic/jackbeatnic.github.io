@@ -152,8 +152,8 @@
     "collection_id": "avalanche_nature_stories",
     "last_price_sync": "2026-07-24T18:02:13Z",
     "last_likes_sort": "2026-07-11T17:02:45Z",
-    "og_generated_at": "2026-09-19T22:17:58Z",
-    "og_cache_version": "202609192217",
+    "og_generated_at": "2026-09-19T22:23:04Z",
+    "og_cache_version": "202609192223",
     "last_objkt_sync": "2026-07-16T00:10:46Z",
     "xrpl_issuer_wallet": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
     "xrpl_nft_taxon": 0,
@@ -414,6 +414,38 @@
     "temp_evm_sync_note": "Names from staging/backup v4 meta; prices from OpenSea reports. AI color/mood filters still from archived rich gallery."
   },
   "nfts": [
+    {
+      "token_id": 1,
+      "name": "NS #54",
+      "opensea_url": "https://opensea.io/assets/polygon/0xa0d6ff855d88cc5587f30de654966e0f33b3b30f/1",
+      "image_url": "https://jackbeatnic.github.io/jbg-present/polygon_nature_stories_vol2/1.thumb.webp",
+      "supply": 10000,
+      "traits": {},
+      "ai": {
+        "description": "",
+        "dominant_colors": [],
+        "vibe_tags": [],
+        "category": "",
+        "keywords": [
+          "polygon",
+          "polygon_nature_stories_vol2"
+        ]
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "polygon",
+      "contract_address": "0xa0d6ff855d88cc5587f30de654966e0f33b3b30f",
+      "collection_id": "polygon_nature_stories_vol2",
+      "listing_status": "For Sale",
+      "listing_currency": "WETH",
+      "display_rank": 0,
+      "share_url": "https://jackbeatnic.github.io/nft/polygon-nature-stories-vol2/1.html",
+      "og_image": "assets/og/polygon-nature-stories-vol2-1.jpg",
+      "medium": "ai_art",
+      "ai_series": "nature_stories",
+      "edition_label": "Polygon",
+      "current_price_weth": 0.00052
+    },
     {
       "token_id": 2310,
       "name": "NS #4884",

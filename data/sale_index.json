@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-19T22:51:58Z",
+  "updated_at": "2026-09-19T22:53:55Z",
   "source_csv": "listing/sale_index.csv",
   "note": "Studio shop price list. JSON does not mint tokens. pool=gjb only in Shop. OS-listed units stay off this list.",
   "defaults": {
@@ -8,10 +8,10 @@
     "pay_address_xrpl": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn"
   },
   "counts": {
-    "all": 4568,
-    "shop": 4568,
+    "all": 4569,
+    "shop": 4569,
     "atelier": 0,
-    "live_shop": 4568,
+    "live_shop": 4569,
     "demo": 0
   },
   "items": [
@@ -89,7 +89,7 @@
       "os_listed_qty": 0,
       "pay_address": "0xf0b840349b3f285fc05c89eac594ddd254183fb9",
       "memo": "GJB-NS-3",
-      "image_url": "https://gateway.pinata.cloud/ipfs/bafybeifbwhr7uo5al4kmfkdtvlku4vzs56tigzekelrddnpsd4pcy2hnv4",
+      "image_url": "https://jackbeatnic.github.io/jbg-present/avalanche_nature_stories/3.thumb.webp",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/3",
       "status": "live",
       "demo": false,
@@ -64209,7 +64209,7 @@
       "os_listed_qty": 0,
       "pay_address": "0xf0b840349b3f285fc05c89eac594ddd254183fb9",
       "memo": "GJB-NS-3-T2",
-      "image_url": "https://gateway.pinata.cloud/ipfs/bafybeifbwhr7uo5al4kmfkdtvlku4vzs56tigzekelrddnpsd4pcy2hnv4",
+      "image_url": "https://jackbeatnic.github.io/jbg-present/avalanche_nature_stories/3.thumb.webp",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/3",
       "status": "live",
       "demo": false,
@@ -127917,6 +127917,34 @@
       "starts_at": "2026-08-21T09:57:50Z",
       "ends_at": "2026-10-05T09:57:50Z",
       "os_price": 3.414,
+      "pct_of_os": null
+    },
+    {
+      "sku": "gjb-ns-3-t3",
+      "collection_id": "avalanche_nature_stories",
+      "token_id": "3",
+      "name": "NS #3",
+      "chain": "avalanche",
+      "price": 0.03,
+      "pay_amount": "0.03",
+      "currency": "AVAX",
+      "price_usd": null,
+      "qty_available": 1000,
+      "channel": "shop",
+      "pool": "gjb",
+      "fulfill": "stock",
+      "os_listed": false,
+      "os_listed_qty": 0,
+      "pay_address": "0xf0b840349b3f285fc05c89eac594ddd254183fb9",
+      "memo": "GJB-NS-3-T3",
+      "image_url": "https://jackbeatnic.github.io/jbg-present/avalanche_nature_stories/3.thumb.webp",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/3",
+      "status": "live",
+      "demo": false,
+      "note": "promo OS-verify 0.03 x1000",
+      "starts_at": "2026-08-21T09:57:50Z",
+      "ends_at": "2026-10-05T09:57:50Z",
+      "os_price": 3.594,
       "pct_of_os": null
     }
   ]

@@ -31,7 +31,11 @@ SZYBKA WYPRZEDAŻ — jeden token, full promo (Shop + OS + Featured)
   python3 listing/featured_studio.py promo \
     --id 2311 --qty 1000 --pay 0.03 --days 7
 
+  Telegram Aniołek:  promo 2311 0.03
+  (Arena od razu, z @JackBeatnicAI. Shop+OS+Featured = ta komenda na PC.)
+
   --days = pobyt w Featured I ważność listingu OS (aniołek VPS).
+  Krok 5: post JackBeatnicGallery_agent (oznacza @JackBeatnicAI). --no-arena żeby pominąć.
   --hours 12 = krótki Featured (OS i tak min. 1 dzień).
   Cron na kasie zdejmuje kartę po ends_at:  featured_studio.py expire
     (timer: vps/worker/kasa-featured.timer).
@@ -90,7 +94,7 @@ METKI (lewa krawędź miniatury) — AI + Shop + Featured
 
     [ Studio shop · 0.03 AVAX ]     ← kasa, bez fee
     [ OpenSea · 0.03 AVAX ]
-    „Studio shop · no marketplace fee”
+    „Studio shop · direct from the Artist”
 
   Cena Shop = najniższy pay_amount z sale_index (t1/t2/t3…).
   Cena OS   = cena z karty Featured (listing promo).

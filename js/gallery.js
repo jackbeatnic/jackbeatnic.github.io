@@ -337,7 +337,7 @@ const Gallery = (() => {
                 (isShopNft(nft) && (nft.qty_available || 0) <= 0);
             const disabled = coming ? ' disabled' : '';
             const shopLabel = escapeHtml(shopCtaLabel(nft));
-            const note = `<p class="nft-card__shop-note">Studio shop · no marketplace fee</p>`;
+            const note = `<p class="nft-card__shop-note">Studio shop · direct from the Artist</p>`;
             if (osHref) {
                 const osLabel = escapeHtml(osCtaLabel(nft));
                 return `
@@ -562,7 +562,7 @@ const Gallery = (() => {
             const osP = nft.os_list_price;
             const osCur = (nft.os_list_currency || shopCur).toUpperCase();
             const q = nft.qty_available ?? nft.promo_quantity;
-            const bits = ['Studio shop · no marketplace fee'];
+            const bits = ['Studio shop · direct from the Artist'];
             if (q != null) bits.push(`${q} available`);
             if (nft.promo_days_left != null) bits.push(`${nft.promo_days_left}d left`);
             if (osP != null && osP !== '') bits.push(`OpenSea ${osP} ${osCur}`);

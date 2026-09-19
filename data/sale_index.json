@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-19T22:19:22Z",
+  "updated_at": "2026-09-19T22:51:58Z",
   "source_csv": "listing/sale_index.csv",
   "note": "Studio shop price list. JSON does not mint tokens. pool=gjb only in Shop. OS-listed units stay off this list.",
   "defaults": {

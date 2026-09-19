@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-19T22:24:30.055326+00:00",
+  "updated_at": "2026-09-19T22:52:09.746576+00:00",
   "promo": {
     "label": "OFF 0% · 180 days",
     "pct_off": 0,
@@ -8,6 +8,22 @@
     "ends_at": "2027-03-17T01:19:50.051208+00:00"
   },
   "items": [
+    {
+      "collection_id": "avalanche_nature_stories",
+      "collection_name": "Nature Stories",
+      "chain": "avalanche",
+      "token_id": 4,
+      "name": "NS #4",
+      "image_url": "https://jackbeatnic.github.io/jbg-present/avalanche_nature_stories/4.thumb.webp",
+      "price": 0.03077,
+      "currency": "AVAX",
+      "quantity": 1000,
+      "days": 14,
+      "pct_off": 0,
+      "ends_at": "2026-10-03T22:52:09.745116+00:00",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/4",
+      "marketplace_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/4"
+    },
     {
       "collection_id": "polygon_nature_stories_vol2",
       "collection_name": "Nature Stories vol. 2",
@@ -23,22 +39,6 @@
       "ends_at": "2026-10-03T22:24:30.053774+00:00",
       "opensea_url": "https://opensea.io/assets/polygon/0xa0d6ff855d88cc5587f30de654966e0f33b3b30f/1",
       "marketplace_url": "https://opensea.io/assets/polygon/0xa0d6ff855d88cc5587f30de654966e0f33b3b30f/1"
-    },
-    {
-      "collection_id": "avalanche_nature_stories",
-      "collection_name": "Nature Stories",
-      "chain": "avalanche",
-      "token_id": 4,
-      "name": "NS #4",
-      "image_url": "https://jackbeatnic.github.io/jbg-present/avalanche_nature_stories/4.thumb.webp",
-      "price": 0.03,
-      "currency": "AVAX",
-      "quantity": 1000,
-      "days": 7,
-      "pct_off": 0,
-      "ends_at": "2026-09-26T16:42:28.746319+00:00",
-      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/4",
-      "marketplace_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/4"
     },
     {
       "collection_id": "avalanche_nature_stories",

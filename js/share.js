@@ -52,13 +52,12 @@ const GalleryShare = (() => {
 
     function workUrl(nft) {
         // Prefer namespaced landing (fresh OG) for gallery works.
-        // Shop / Featured often have no nft/{col}/{id}.html yet — deep link.
+        // Shop often has no nft/{col}/{id}.html yet — deep link.
+        // Featured promo is a clone of a gallery token: same landing (crawlers
+        // read OG there; the page JS still opens ?section=featured).
         const landing = shareLandingUrl(nft);
         const medium = nft?.medium || 'ai_art';
-        const needsDeep =
-            medium === 'shop' ||
-            medium === 'featured_promo' ||
-            !nft?.collection_id;
+        const needsDeep = medium === 'shop' || !nft?.collection_id;
 
         if (
             !needsDeep &&
@@ -69,7 +68,11 @@ const GalleryShare = (() => {
         }
         if (!needsDeep && landing && nft?.collection_id) return landing;
 
-        if (nft?.share_url && !/\/nft\/\d+\.html$/.test(String(nft.share_url))) {
+        if (
+            nft?.share_url &&
+            String(nft.share_url).includes('/nft/') &&
+            !/\/nft\/\d+\.html$/.test(String(nft.share_url))
+        ) {
             return nft.share_url;
         }
 

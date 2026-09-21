@@ -1,0 +1,16 @@
+.DS_Store
+Thumbs.db
+*~
+*.swp
+.env
+.env.*
+
+# Lokalne notatki / przypadkowe pliki (nie deploy)
+layout_notes/*.docx
+/*.jpg
+/*.jpeg
+/*.png
+!assets/**
+# GH Pages soft-limit: never re-commit per-NFT OG JPGs (~1GB broke builds)
+assets/og/
+assets/og/**

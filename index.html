@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="robots" content="index, follow, noimageindex">
+    <meta name="google-site-verification" content="VthdtOk9aQDizbfCyk8iB2bzL9CJWbQyZ9fWaGikH4Y" />
+    <meta name="base:app_id" content="6aa9447709ac89ef27559e0c" />
+    <meta name="description" content="Jack Beatnic — AI art and photography NFT gallery. Nature Stories on Avalanche (OpenSea) and the new Nature Stories SE mint on Sui (TradePort). Flower Stories, landscapes and collages on Avalanche, Polygon, Base and more.">
+    <meta name="keywords" content="Jack Beatnic, AI art, NFT photography, Nature Stories, Flower Stories, Avalanche NFT, Polygon NFT, generative art, landscape photography">
+    <meta name="author" content="Jack Beatnic">
+    <link rel="canonical" href="https://jackbeatnic.github.io/">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://jackbeatnic.github.io/sitemap.xml">
+    <title>Jack Beatnic — AI Art and Photography Gallery | NFT Artist</title>
+
+    <!-- Open Graph / X (Twitter) + Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Jack Beatnic Gallery">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://jackbeatnic.github.io/">
+    <meta property="og:title" content="Jack Beatnic — AI Art and Photography Gallery">
+    <meta property="og:description" content="From the lens to AI — photography, memory and imagination. Nature Stories on Avalanche + primary mint Nature Stories SE on Sui (TradePort). NFTs across Avalanche, Polygon, Base and Sui.">
+    <meta property="og:image" content="https://jackbeatnic.github.io/assets/og-preview.jpg?v=202609212247">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Jack Beatnic Gallery — AI art and photography">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@JackBeatnicAI">
+    <meta name="twitter:creator" content="@JackBeatnicAI">
+    <meta name="twitter:title" content="Jack Beatnic — AI Art and Photography Gallery">
+    <meta name="twitter:description" content="From the lens to AI. Photography meets generative art — Nature Stories, landscapes, collages and more.">
+    <meta name="twitter:image" content="https://jackbeatnic.github.io/assets/og-preview.jpg?v=202609212247">
+    <meta name="twitter:image:alt" content="Jack Beatnic Gallery preview">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "name": "Jack Beatnic Gallery",
+        "url": "https://jackbeatnic.github.io/",
+        "description": "AI art and photography NFT gallery by Jack Beatnic — from the lens to generative intelligence.",
+        "mainEntity": {
+            "@type": "Person",
+            "name": "Jack Beatnic",
+            "url": "https://jackbeatnic.github.io/",
+            "jobTitle": "AI Artist & Photographer",
+            "sameAs": [
+                "https://opensea.io/JackBeatnic",
+                "https://twitter.com/JackBeatnicAI",
+                "https://www.instagram.com/jackbeatnicai/",
+                "https://base.app/profile/jackbeatnic",
+                "https://farcaster.xyz/jackbeatnic",
+                "https://arena.social/JackBeatnic",
+                "https://zora.co/@jackbeatnic",
+                "https://zora.co/@jackbeatnicai",
+                "https://objkt.com/@jackbeatnic/",
+                "https://objkt.com/@jackbeatnicai/",
+                "https://xrp.cafe/profile/rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn"
+            ]
+        }
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/gallery.css?v=20260919mkt">
+    <link rel="stylesheet" href="css/text-select.css?v=20260815copy">
+</head>
+<body class="gallery-protected">
+    <header class="site-header site-header--sticky">
+        <div class="site-header__inner">
+            <div class="site-brand">
+                <h1 class="site-logo">
+                    <span class="visually-hidden">Jack Beatnic</span>
+                    <div class="signature-logo-wrap" aria-hidden="true">
+                        <picture>
+                            <source media="(prefers-color-scheme: dark)"
+                                    type="image/webp"
+                                    srcset="assets/signature-ice-ink.webp">
+                            <source media="(prefers-color-scheme: dark)"
+                                    type="image/png"
+                                    srcset="assets/signature-ice-ink.png">
+                            <img class="signature-logo"
+                                 src="assets/signature.png"
+                                 alt=""
+                                 width="360"
+                                 height="150"
+                                 decoding="async"
+                                 draggable="false"
+                                 referrerpolicy="no-referrer">
+                        </picture>
+                        <div class="signature-shield"></div>
+                    </div>
+                </h1>
+                <p class="artist-subtitle">Digital Art · NFT</p>
+            </div>
+            <div class="site-header__actions">
+                <div class="header-chips">
+                    <button type="button"
+                            id="back-to-top"
+                            class="back-to-top"
+                            title="Back to top"
+                            aria-label="Back to top">
+                        <span class="back-to-top__icon" aria-hidden="true">↑</span>
+                        <span class="back-to-top__label">Top</span>
+                    </button>
+                    <button type="button"
+                            id="shop-chip"
+                            class="shop-chip"
+                            data-section="shop"
+                            aria-pressed="false"
+                            title="Studio shop">
+                        <span class="shop-chip__label">Shop</span>
+                        <span class="shop-chip__count" id="shop-chip-count" hidden></span>
+                    </button>
+                <!-- Featured: sticky chip (not in tab bar) — mobile + desktop -->
+                <button type="button"
+                        id="featured-chip"
+                        class="featured-chip"
+                        data-section="featured"
+                        hidden
+                        aria-pressed="false"
+                        title="Featured promos">
+                    <span class="featured-chip__dot" aria-hidden="true"></span>
+                    <span class="featured-chip__label">Featured</span>
+                    <span class="featured-chip__count" id="featured-chip-count" hidden></span>
+                </button>
+                </div>
+                <nav class="site-nav" aria-label="Main">
+                    <a href="#gallery-root" data-section="ai_art">AI Art</a>
+                    <a href="#gallery-root" data-section="photography">Photography &amp; Artworks</a>
+                    <a href="#gallery-root" data-section="atelier">The Atelier</a>
+                    <a href="#about">About</a>
+                    <button type="button" class="site-nav__tip" data-tip-open aria-expanded="false">Tip</button>
+                </nav>
+            </div>
+        </div>
+        <div class="site-header__rule" aria-hidden="true"></div>
+    </header>
+
+    <main id="gallery-root" class="main">
+        <nav class="section-nav" aria-label="Gallery sections">
+            <a href="#gallery-root" class="section-nav__tab" data-section="ai_art">AI Art</a>
+            <a href="#gallery-root" class="section-nav__tab" data-section="photography">
+                <span class="section-nav__label section-nav__label--full">Photography &amp; Artworks</span>
+                <span class="section-nav__label section-nav__label--short">Photo &amp; Artworks</span>
+            </a>
+            <a href="#gallery-root" class="section-nav__tab" data-section="atelier">
+                <span class="section-nav__label section-nav__label--full">The Atelier</span>
+                <span class="section-nav__label section-nav__label--short">Atelier</span>
+            </a>
+            <button type="button" class="section-nav__tab section-nav__tab--tip" data-tip-open aria-expanded="false">Tip</button>
+        </nav>
+
+        <div id="ai-subnav" class="section-subnav" hidden aria-label="AI Art chains">
+            <button type="button" class="section-subnav__tab" data-ai-kind="evm">EVM</button>
+            <button type="button" class="section-subnav__tab" data-ai-kind="xrpl">XRPL</button>
+            <button type="button" class="section-subnav__tab" data-ai-kind="tezos">Tezos</button>
+            <button type="button" class="section-subnav__tab" data-ai-kind="sui">Sui</button>
+        </div>
+
+        <div id="ai-series-subnav" class="section-subnav section-subnav--wrap" hidden aria-label="AI Art series">
+            <select id="ai-series-select" class="section-subnav__select" aria-label="Series"></select>
+            <button type="button" class="section-subnav__tab" data-ai-series="nature_stories">Nature Stories</button>
+            <button type="button" class="section-subnav__tab" data-ai-series="nature_jam">Nature Jam</button>
+            <button type="button" class="section-subnav__tab" data-ai-series="flower_stories">Flower Stories</button>
+            <button type="button" class="section-subnav__tab" data-ai-series="based_ai">Based AI</button>
+            <button type="button" class="section-subnav__tab" data-ai-series="jb_ai_play">AI Play</button>
+            <button type="button" class="section-subnav__tab" data-ai-series="all">All</button>
+        </div>
+
+        <div id="ai-edition-subnav" class="section-subnav section-subnav--wrap section-subnav--edition" hidden aria-label="Edition (chain)">
+            <select id="ai-edition-select" class="section-subnav__select" aria-label="Edition"></select>
+            <button type="button" class="section-subnav__tab" data-ai-edition="avalanche">Avalanche</button>
+            <button type="button" class="section-subnav__tab" data-ai-edition="polygon">Polygon</button>
+            <button type="button" class="section-subnav__tab" data-ai-edition="base">Base</button>
+            <button type="button" class="section-subnav__tab" data-ai-edition="all">All editions</button>
+        </div>
+
+        <div id="market-subnav" class="section-subnav section-subnav--market" hidden aria-label="The Atelier">
+            <div class="section-subnav__row" role="group" aria-label="Listing type">
+                <button type="button" class="section-subnav__tab" data-market-kind="auctions">Auctions</button>
+                <button type="button" class="section-subnav__tab" data-market-kind="editions">Limited Editions</button>
+            </div>
+            <div class="section-subnav__row" role="group" aria-label="Network">
+                <button type="button" class="section-subnav__tab" data-market-chain="base">Base</button>
+                <button type="button" class="section-subnav__tab" data-market-chain="ethereum">Ethereum</button>
+            </div>
+        </div>
+
+        <div id="photo-subnav" class="section-subnav section-subnav--market" hidden aria-label="Photography categories">
+            <div class="section-subnav__row" role="group" aria-label="Kind">
+                <button type="button" class="section-subnav__tab" data-photo-kind="photo">Photography</button>
+                <button type="button" class="section-subnav__tab" data-photo-kind="other">Other</button>
+            </div>
+            <div class="section-subnav__row" role="group" aria-label="Network">
+                <button type="button" class="section-subnav__tab" data-photo-chain="tezos">Tezos</button>
+                <button type="button" class="section-subnav__tab" data-photo-chain="xrpl">XRPL</button>
+            </div>
+        </div>
+
+        <aside id="section-promo" class="section-promo" hidden aria-label="Community tokens">
+            <p id="section-promo-eyebrow" class="section-promo__eyebrow"></p>
+            <p id="section-promo-lead" class="section-promo__text"></p>
+            <div id="section-promo-tokens" class="section-promo__tokens"></div>
+        </aside>
+
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero__media">
+                <img id="hero-image"
+                     class="hero__image"
+                     src="assets/hero-bg.jpg"
+                     alt="Jack Beatnic — From the Lens to AI"
+                     width="1280"
+                     height="640"
+                     decoding="async"
+                     draggable="false"
+                     referrerpolicy="no-referrer"
+                     data-hero-fallbacks="assets/hero-bg.jpg https://jackbeatnic.github.io/jbg-present/avalanche_nature_stories/1.view.webp https://raw.githubusercontent.com/jackbeatnic/jackbeatnic.github.io/main/assets/hero-bg.jpg"
+                     onerror="(function(img){var list=(img.getAttribute('data-hero-fallbacks')||'').split(/\s+/).filter(Boolean);var i=Number(img.dataset.heroFb||0);while(i<list.length&&list[i]===img.getAttribute('src'))i++;if(i<list.length){img.dataset.heroFb=String(i+1);img.src=list[i];}else{img.onerror=null;img.removeAttribute('src');img.hidden=true;}})(this);">
+                <div class="hero__veil" aria-hidden="true"></div>
+            </div>
+            <div class="hero__content">
+                <div class="hero__brand">
+                    <h2 id="hero-title" class="hero__title">…</h2>
+                    <p id="hero-tagline" class="hero__tagline">…</p>
+                </div>
+                <div class="hero__prose">
+                    <div id="hero-description" class="hero__description"></div>
+                    <div class="hero__actions">
+                        <a href="#explore" class="btn btn--primary">Explore the Gallery</a>
+                        <a id="hero-marketplaces" class="btn btn--ghost" href="#about-marketplaces">Marketplaces</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="explore" class="filters-panel" aria-label="Filters">
+            <div class="filters-panel__head">
+                <span class="filters-panel__title">Explore</span>
+                <span id="filter-count" class="filters-panel__count"></span>
+                <button type="button" id="reset-filters" class="filters__reset">Clear all</button>
+            </div>
+
+            <div class="filters-row">
+                <label class="filters-row__label" for="search-filter">Search</label>
+                <input type="search" id="search-filter" class="filters-search" placeholder="Name, keyword, tag, color…" autocomplete="off">
+            </div>
+
+            <div class="filters-row">
+                <label class="filters-row__label" for="category-filter">Category</label>
+                <select id="category-filter" class="filters__select" aria-label="Category">
+                    <option value="">All categories</option>
+                </select>
+            </div>
+
+            <div class="filters-row" id="filters-row-palette">
+                <span class="filters-row__label">Palette</span>
+                <div id="color-filters" class="color-filters" role="group" aria-label="Color palette"></div>
+            </div>
+
+            <div class="filters-row" id="filters-row-mood">
+                <span class="filters-row__label">Mood</span>
+                <div id="vibe-filters" class="filters__tags"></div>
+            </div>
+
+            <div class="filters-row" id="filters-row-library">
+                <span class="filters-row__label">Library</span>
+                <div class="filters__tags" id="library-filters" role="group" aria-label="Library marks">
+                    <button type="button" id="filter-os" class="filter-tag library-mark library-mark--os" aria-pressed="false">OS</button>
+                    <button type="button" id="filter-shop" class="filter-tag library-mark library-mark--shop" aria-pressed="false">SHOP</button>
+                    <button type="button" id="filter-featured" class="filter-tag library-mark library-mark--featured" aria-pressed="false">FEATURED</button>
+                    <button type="button" id="filter-listed" class="filter-tag listed-filter">Listed</button>
+                    <button type="button" id="filter-saved" class="filter-tag saved-filter">Saved for later</button>
+                </div>
+            </div>
+        </section>
+
+        <div id="gallery-grid" class="gallery-grid"></div>
+
+        <section id="about" class="about-section" aria-labelledby="about-title">
+            <h2 id="about-title" class="about-section__title">About</h2>
+            <div id="about-content" class="about-section__body"></div>
+            <div class="about-section__social">
+                <span class="social-links__label">Connect</span>
+                <nav id="about-social" class="social-links" aria-label="Social and community profiles" hidden></nav>
+            </div>
+            <div class="about-section__wallets">
+                <span class="social-links__label">Wallets</span>
+                <p class="wallet-names__hint">On-chain names — find, tip, or search on Zora, Base, OpenSea, OBJKT</p>
+                <div id="about-wallets" class="wallet-names" aria-label="Wallet names" hidden></div>
+            </div>
+            <div id="about-marketplaces" class="about-section__marketplaces">
+                <span class="social-links__label">Marketplaces</span>
+                <p class="marketplace-links__lead">OpenSea is the main hub for EVM works; photography and other chains live on their native platforms.</p>
+                <nav id="about-marketplaces-nav" class="marketplace-links" aria-label="NFT marketplaces" hidden></nav>
+            </div>
+        </section>
+
+        <div id="lightbox" class="lightbox" hidden role="dialog" aria-modal="true" aria-label="Artwork preview">
+            <button type="button" class="lightbox__close" aria-label="Close">×</button>
+            <div class="lightbox__backdrop" aria-hidden="true"></div>
+            <figure class="lightbox__figure">
+                <img id="lightbox-image" class="lightbox__image" alt="" draggable="false" referrerpolicy="no-referrer">
+                <figcaption id="lightbox-caption" class="lightbox__caption"></figcaption>
+            </figure>
+        </div>
+
+        <footer class="site-footer">
+            <p class="site-footer__copy">© Jack Beatnic — 2026</p>
+        </footer>
+    </main>
+
+    <div id="tip-modal" class="tip-modal" hidden role="dialog" aria-modal="true" aria-labelledby="tip-modal-title">
+        <div class="tip-modal__backdrop" aria-hidden="true"></div>
+        <div class="tip-modal__dialog">
+            <button type="button" class="tip-modal__close" aria-label="Close">×</button>
+            <h2 id="tip-modal-title" class="tip-modal__title">Tip the artist</h2>
+            <p class="tip-modal__lead">Enjoying the work? Send a tip directly — no marketplace, no middleman.</p>
+
+            <div class="tip-modal__wallets">
+                <section class="tip-wallet">
+                    <h3 class="tip-wallet__label">EVM chains</h3>
+                    <p class="tip-wallet__hint">AVAX · ETH · Polygon · Base · ERC-20 tokens</p>
+                    <img id="tip-qr-evm" class="tip-wallet__qr" width="140" height="140" alt="">
+                    <p id="tip-address-evm" class="tip-wallet__address"></p>
+                    <div id="tip-evm-domains" class="tip-wallet__domains" hidden></div>
+                    <button type="button" id="tip-copy-evm" class="btn btn--ghost btn--small">Copy address</button>
+                </section>
+
+                <section id="tip-btc-block" class="tip-wallet" hidden>
+                    <h3 class="tip-wallet__label">Bitcoin</h3>
+                    <p class="tip-wallet__hint">BTC only — native SegWit</p>
+                    <img id="tip-qr-btc" class="tip-wallet__qr" width="140" height="140" alt="">
+                    <p id="tip-address-btc" class="tip-wallet__address"></p>
+                    <button type="button" id="tip-copy-btc" class="btn btn--ghost btn--small">Copy address</button>
+                </section>
+
+                <section id="tip-sol-block" class="tip-wallet" hidden>
+                    <h3 class="tip-wallet__label">Solana</h3>
+                    <p class="tip-wallet__hint">SOL &amp; SPL tokens</p>
+                    <img id="tip-qr-sol" class="tip-wallet__qr" width="140" height="140" alt="">
+                    <p id="tip-address-sol" class="tip-wallet__address"></p>
+                    <button type="button" id="tip-copy-sol" class="btn btn--ghost btn--small">Copy address</button>
+                </section>
+            </div>
+
+            <div id="tip-tez-line" class="tip-modal__names" hidden>
+                <span class="tip-modal__names-label">Tezos domains</span>
+                <div id="tip-tez-domains" class="tip-modal__names-pills"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="shop-modal" class="shop-modal" hidden role="dialog" aria-modal="true" aria-labelledby="shop-modal-title">
+        <div class="shop-modal__backdrop" aria-hidden="true"></div>
+        <div class="shop-modal__dialog">
+            <button type="button" class="shop-modal__close" aria-label="Close">×</button>
+            <p id="shop-modal-banner" class="shop-modal__banner" hidden></p>
+            <h2 id="shop-modal-title" class="shop-modal__title">Pay the studio</h2>
+            <p id="shop-modal-lead" class="shop-modal__lead"></p>
+            <p id="shop-modal-name" class="shop-modal__name"></p>
+            <p id="shop-modal-meta" class="shop-modal__meta"></p>
+            <div class="shop-modal__pay">
+                <button type="button" id="shop-pay-wallet" class="btn btn--primary btn--block">Pay with wallet</button>
+                <button type="button" id="shop-pay-wc" class="btn btn--ghost btn--block" hidden>WalletConnect</button>
+                <p id="shop-modal-pay-status" class="shop-modal__status" hidden></p>
+            </div>
+            <p id="shop-modal-fulfill" class="shop-modal__fulfill"></p>
+            <details class="shop-modal__manual">
+                <summary>Tip (no NFT)</summary>
+                <p class="shop-modal__hint shop-modal__tip-lead">Optional tip only — QR or manual send does not buy an NFT. Buy is Pay with wallet or WalletConnect.</p>
+                <dl class="shop-modal__facts">
+                    <div>
+                        <dt>Amount</dt>
+                        <dd id="shop-modal-amount">—</dd>
+                        <p id="shop-modal-amount-hint" class="shop-modal__hint" hidden></p>
+                        <button type="button" id="shop-copy-amount" class="btn btn--ghost btn--small">Copy amount</button>
+                    </div>
+                    <div>
+                        <dt>Pay to</dt>
+                        <dd id="shop-modal-address">—</dd>
+                        <button type="button" id="shop-copy-address" class="btn btn--ghost btn--small">Copy address</button>
+                    </div>
+                    <div>
+                        <dt>Memo (optional)</dt>
+                        <dd id="shop-modal-memo">—</dd>
+                        <p class="shop-modal__hint">Optional.</p>
+                        <button type="button" id="shop-copy-memo" class="btn btn--ghost btn--small">Copy memo</button>
+                    </div>
+                </dl>
+                <img id="shop-modal-qr" class="shop-modal__qr" width="160" height="160" alt="" hidden>
+            </details>
+            <p class="shop-modal__terms"><a href="shop-terms.html">Studio shop terms</a></p>
+        </div>
+    </div>
+
+    <div id="xrpl-mint-modal" class="shop-modal" hidden role="dialog" aria-modal="true" aria-labelledby="xrpl-mint-title">
+        <div class="shop-modal__backdrop" aria-hidden="true"></div>
+        <div class="shop-modal__dialog">
+            <button type="button" class="shop-modal__close" aria-label="Close">×</button>
+            <p id="xrpl-mint-banner" class="shop-modal__banner"></p>
+            <h2 id="xrpl-mint-title" class="shop-modal__title">Mint from the studio</h2>
+            <p id="xrpl-mint-lead" class="shop-modal__lead"></p>
+            <p id="xrpl-mint-name" class="shop-modal__name"></p>
+            <p id="xrpl-mint-meta" class="shop-modal__meta"></p>
+            <dl class="shop-modal__facts">
+                <div>
+                    <dt>Amount</dt>
+                    <dd id="xrpl-mint-amount"></dd>
+                    <button type="button" id="xrpl-copy-amount" class="btn btn--ghost btn--small">Copy amount</button>
+                </div>
+                <div>
+                    <dt>Send XRP to</dt>
+                    <dd id="xrpl-mint-address"></dd>
+                    <button type="button" id="xrpl-copy-address" class="btn btn--ghost btn--small">Copy address</button>
+                </div>
+                <div>
+                    <dt>Destination tag (required)</dt>
+                    <dd id="xrpl-mint-tag"></dd>
+                    <button type="button" id="xrpl-copy-tag" class="btn btn--ghost btn--small">Copy tag</button>
+                </div>
+            </dl>
+            <p id="xrpl-mint-fulfill" class="shop-modal__fulfill"></p>
+            <p class="shop-modal__terms">After payment, accept the 0 XRP sell offer in your wallet. That is how the NFT reaches you.</p>
+        </div>
+    </div>
+
+    <div id="sui-mint-modal" class="shop-modal" hidden role="dialog" aria-modal="true" aria-labelledby="sui-mint-title">
+        <div class="shop-modal__backdrop" aria-hidden="true"></div>
+        <div class="shop-modal__dialog">
+            <button type="button" class="shop-modal__close" aria-label="Close">×</button>
+            <p id="sui-mint-banner" class="shop-modal__banner"></p>
+            <h2 id="sui-mint-title" class="shop-modal__title">Mint from the studio</h2>
+            <p id="sui-mint-lead" class="shop-modal__lead"></p>
+            <p id="sui-mint-name" class="shop-modal__name"></p>
+            <p id="sui-mint-meta" class="shop-modal__meta"></p>
+            <dl class="shop-modal__facts">
+                <div>
+                    <dt>Amount</dt>
+                    <dd id="sui-mint-amount"></dd>
+                    <button type="button" id="sui-copy-amount" class="btn btn--ghost btn--small">Copy amount</button>
+                </div>
+            </dl>
+            <div class="shop-modal__pay">
+                <button type="button" id="sui-mint-buy" class="btn btn--primary btn--block">Buy</button>
+                <p id="sui-mint-status" class="shop-modal__status" hidden></p>
+            </div>
+            <p id="sui-mint-fulfill" class="shop-modal__fulfill"></p>
+            <p class="shop-modal__terms">A signed piece, sent directly by the artist to the wallet you pay from.</p>
+        </div>
+    </div>
+
+    <script src="js/images.js?v=20260919present"></script>
+    <script src="js/opensea-links.js?v=20260712p"></script>
+    <script src="js/lightbox.js?v=20260816fix2"></script>
+    <script src="js/likes.js?v=20260821likes"></script>
+    <script src="js/color-groups.js?v=20260919palette"></script>
+    <script src="js/filters.js?v=20260919lib"></script>
+    <script src="js/sections.js?v=20260919present"></script>
+    <script src="js/wallet.js?v=20260713e"></script>
+    <script src="js/tip.js?v=20260712p"></script>
+    <script src="js/share.js?v=20260919share2"></script>
+    <script src="js/shop.js?v=20260908shoplead"></script>
+    <script src="js/xrpl-mint.js?v=20260828xrp01"></script>
+    <script src="js/sui-mint.js?v=20260906sui03"></script>
+    <script src="js/gallery.js?v=20260919shopnote"></script>
+</body>
+</html>

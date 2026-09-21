@@ -1,0 +1,18 @@
+/* Overlay for live Pages until the main gallery.css cache-bust ships.
+   Same rule as css/gallery.css: copy text, not pictures. */
+body.gallery-protected {
+    -webkit-user-select: text;
+    user-select: text;
+    -webkit-touch-callout: default;
+}
+
+body.gallery-protected img,
+body.gallery-protected .nft-image-wrap,
+body.gallery-protected .hero__image,
+body.gallery-protected .signature-logo-wrap,
+body.gallery-protected .lightbox__image,
+body.gallery-protected .tip-wallet__qr {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}

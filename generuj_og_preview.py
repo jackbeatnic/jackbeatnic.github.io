@@ -1,0 +1,1254 @@
+#!/usr/bin/env python3
+"""Generate Open Graph previews for Jack Beatnic Gallery.
+
+- Site card: assets/og-preview.jpg (homepage)
+- Per-NFT cards: JB_NFT_OG_DIR (default ../og-cache) — NOT committed under assets/og (Pages 1GB limit)
+- Share landing pages: nft/{collection_id}/{id}.html (OG meta → redirect)
+  Legacy flat nft/{id}.html kept as redirect stubs when unique.
+"""
+
+from __future__ import annotations
+
+import argparse
+import html
+import json
+import re
+import sys
+import urllib.request
+from datetime import datetime, timezone
+from io import BytesIO
+from pathlib import Path
+
+from PIL import Image, ImageDraw, ImageFont
+
+ROOT = Path(__file__).resolve().parent
+GALLERY_JSON = ROOT / "gallery.json"
+SITE_OG_PATH = ROOT / "assets" / "og-preview.jpg"
+# Per-NFT OG JPGs used to live in assets/og and blew past the GH Pages ~1GB
+# soft limit (Pages builds errored; live hero went black). Default: write OG
+# JPGs under ../og-cache (outside the Pages tree). Override with JB_NFT_OG_DIR.
+# Share HTML still goes to nft/; og:image URLs fall back to jbg-present thumbs
+# when the jpg is not published under assets/og/.
+_default_og = (ROOT.parent / "og-cache").resolve()
+NFT_OG_DIR = Path((__import__("os").environ.get("JB_NFT_OG_DIR") or str(_default_og))).expanduser()
+NFT_PAGES_DIR = ROOT / "nft"
+FONTS_DIR = ROOT / "assets" / "fonts"
+
+# Share landings are generated from every feed the gallery loads, not just
+# gallery.json. Missing files here are the SHARE → X 404.
+EXTRA_FEED_FILES = (
+    "xrp_gallery.json",
+    "sui_gallery.json",
+    "nature_jam_gallery.json",
+    "ai_play_gallery.json",
+    "based_ai_gallery.json",
+    "auctions_gallery.json",
+    "objkt_auctions_gallery.json",
+)
+SALE_INDEX_JSON = ROOT / "data" / "sale_index.json"
+FEATURED_PROMO_JSON = ROOT / "data" / "featured_promo.json"
+LEGACY_OG_COLLECTION = "avalanche-nature-stories"
+SHOP_COLLECTION_NAMES = {
+    "avalanche_nature_stories": "Nature Stories",
+    "avalanche_flower_stories": "Flower Stories",
+    "xrpl_jb_ai_nature": "Jack Beatnic",
+    "xrpl_jack_beatnic": "Jack Beatnic",
+    "xrpl_jbn": "Jack Beatnic",
+}
+
+WIDTH = 1200
+HEIGHT = 630
+SITE_BRAND_TITLE = "Jack Beatnic"
+SITE_BRAND_TAGLINE = "From the Lens to AI"
+SITE_GALLERY_LABEL = "AI Art and Photography Gallery"
+INDEX_HTML = ROOT / "index.html"
+
+NFT_PAD = 36
+NFT_THUMB = HEIGHT - NFT_PAD * 2
+NFT_TEXT_X = NFT_PAD + NFT_THUMB + 48
+
+
+def load_gallery() -> dict:
+    with GALLERY_JSON.open(encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+def save_gallery(data: dict) -> None:
+    with GALLERY_JSON.open("w", encoding="utf-8") as fh:
+        json.dump(data, fh, ensure_ascii=False, indent=2)
+        fh.write("\n")
+
+
+def site_base_url(info: dict) -> str:
+    url = (info.get("site_url") or "https://jackbeatnic.github.io/").rstrip("/")
+    return url
+
+
+def og_cache_version(when: datetime | None = None) -> str:
+    when = when or datetime.now(timezone.utc)
+    return when.strftime("%Y%m%d%H%M")
+
+
+def og_url_with_version(base_url: str, asset_path: str, version: str) -> str:
+    path = asset_path.lstrip("/")
+    return f"{base_url}/{path}?v={version}"
+
+
+def fetch_image(url: str) -> Image.Image:
+    req = urllib.request.Request(url, headers={"User-Agent": "JackBeatnicGallery/1.0"})
+    last_err: Exception | None = None
+    import ssl
+
+    contexts = [None]
+    try:
+        contexts.append(ssl._create_unverified_context())
+    except Exception:
+        pass
+    for ctx in contexts:
+        try:
+            with urllib.request.urlopen(req, timeout=12, context=ctx) as resp:
+                data = resp.read()
+            return Image.open(BytesIO(data)).convert("RGB")
+        except Exception as exc:  # noqa: BLE001
+            last_err = exc
+    raise last_err or RuntimeError(f"fetch failed: {url}")
+
+
+def _id_variants(nft: dict) -> list[int]:
+    ids: list[int] = []
+    for key in ("token_id", "onchain_token_id", "launchpad_token_id"):
+        raw = nft.get(key)
+        if raw in (None, ""):
+            continue
+        try:
+            n = int(raw)
+        except (TypeError, ValueError):
+            continue
+        if n not in ids:
+            ids.append(n)
+    name = str(nft.get("name") or "")
+    m = re.search(r"#\s*0*(\d+)\b", name)
+    if m:
+        n = int(m.group(1))
+        if n not in ids:
+            ids.append(n)
+    return ids
+
+
+def local_image_path(nft: dict) -> Path | None:
+    """Prefer studio cache over IPFS/OpenSea CDNs."""
+    ids = _id_variants(nft)
+    if not ids:
+        return None
+    cid = (nft.get("collection_id") or "").strip()
+    slug_us = nft_collection_id(nft).replace("-", "_")
+    folders = []
+    for folder in (cid, slug_us):
+        if folder and folder not in folders:
+            folders.append(folder)
+
+    candidates: list[Path] = []
+    for tid in ids:
+        for folder in folders:
+            candidates.append(PRESENT_ROOT / folder / f"{tid}.view.webp")
+            candidates.append(PRESENT_ROOT / folder / f"{tid}.thumb.webp")
+            media = BACKUP_ROOT / folder / "media"
+            for ext in (".jpg", ".jpeg", ".png", ".webp"):
+                candidates.append(media / f"{tid}{ext}")
+        if (nft.get("medium") == "xrpl_ai") or "xrpl" in cid or "xrpl" in slug_us:
+            candidates.append(ASSETS_MEDIA / "xrpl" / "jbn" / f"{tid}.jpg")
+            candidates.append(ASSETS_MEDIA / "xrpl" / "jbn" / f"{tid}.webp")
+
+    for path in candidates:
+        if path.is_file():
+            return path
+    return None
+
+
+def load_nft_image(nft: dict) -> Image.Image:
+    local = local_image_path(nft)
+    if local is not None:
+        return Image.open(local).convert("RGB")
+    url = (nft.get("image_url") or "").strip()
+    if url.startswith("http://") or url.startswith("https://"):
+        return fetch_image(url)
+    raise FileNotFoundError(f"no image for {nft_collection_id(nft)} #{nft.get('token_id')}")
+
+
+def cover_crop(img: Image.Image, width: int, height: int, focus_y: float = 0.4) -> Image.Image:
+    src_w, src_h = img.size
+    target_ratio = width / height
+    src_ratio = src_w / src_h
+
+    if src_ratio > target_ratio:
+        new_h = src_h
+        new_w = int(src_h * target_ratio)
+    else:
+        new_w = src_w
+        new_h = int(src_w / target_ratio)
+
+    left = (src_w - new_w) // 2
+    top = int((src_h - new_h) * focus_y)
+    top = max(0, min(top, src_h - new_h))
+    cropped = img.crop((left, top, left + new_w, top + new_h))
+    return cropped.resize((width, height), Image.Resampling.LANCZOS)
+
+
+def fit_square(img: Image.Image, size: int) -> Image.Image:
+    return cover_crop(img, size, size, focus_y=0.42)
+
+
+def fit_contain(img: Image.Image, max_w: int, max_h: int) -> Image.Image:
+    src_w, src_h = img.size
+    scale = min(max_w / src_w, max_h / src_h)
+    new_w = max(1, int(src_w * scale))
+    new_h = max(1, int(src_h * scale))
+    return img.resize((new_w, new_h), Image.Resampling.LANCZOS)
+
+
+def fonts() -> dict[str, ImageFont.FreeTypeFont]:
+    return {
+        "title_lg": ImageFont.truetype(str(FONTS_DIR / "Inter.ttf"), 52),
+        "title_md": ImageFont.truetype(str(FONTS_DIR / "Inter.ttf"), 46),
+        "body": ImageFont.truetype(str(FONTS_DIR / "Inter.ttf"), 26),
+        "label": ImageFont.truetype(str(FONTS_DIR / "Inter.ttf"), 24),
+        "price": ImageFont.truetype(str(FONTS_DIR / "Inter.ttf"), 50),
+    }
+
+
+def og_plain_text(text: str) -> str:
+    """Strip HTML entities and spell out ampersands for OG overlay text."""
+    plain = html.unescape(text or "")
+    plain = re.sub(r"\s*&\s*", " and ", plain)
+    return re.sub(r"\s+", " ", plain).strip()
+
+
+def draw_bold(draw: ImageDraw.ImageDraw, xy: tuple[int, int], text: str, font, fill) -> None:
+    x, y = xy
+    for dx, dy in ((0, 0), (1, 0), (0, 1)):
+        draw.text((x + dx, y + dy), text, font=font, fill=fill)
+
+
+CHAIN_LABELS = {
+    "avalanche": "Avalanche",
+    "tezos": "Tezos",
+    "polygon": "Polygon",
+    "base": "Base",
+    "ethereum": "Ethereum",
+    "sui": "Sui",
+    "xrpl": "XRPL",
+}
+
+CHAIN_CURRENCIES = {
+    "avalanche": "AVAX",
+    "tezos": "XTZ",
+    "polygon": "POL",
+    "base": "ETH",
+    "ethereum": "ETH",
+    "xrpl": "XRP",
+    "sui": "SUI",
+}
+
+PRESENT_ROOT = ROOT.parent / "jbg-present"
+ASSETS_MEDIA = ROOT.parent / "jb-nft-assets" / "media"
+BACKUP_ROOT = ROOT.parent / "backup_offline" / "by_collection"
+# X/Facebook draw a domain chip on the bottom of summary_large_image.
+OG_SAFE_BOTTOM = 96
+
+
+def collection_display_name(info: dict) -> str:
+    desc = info.get("description") or ""
+    head = re.split(r"\s*[–—-]\s*", desc, maxsplit=1)[0].strip()
+    if head:
+        return head
+    cid = info.get("collection_id") or ""
+    return cid.replace("_", " ").title() or "Collection"
+
+
+COLLECTION_LABELS = {
+    "avalanche_nature_stories": "Nature Stories",
+    "avalanche_nature_jam": "Nature Jam",
+    "avalanche_nature_jam_vol2": "Nature Jam vol.2",
+    "xrpl_jb_ai_nature": "Jack Beatnic",
+    "xrpl_jack_beatnic": "Jack Beatnic",
+    "sui_nature_stories_tradeport": "Nature Stories SE",
+    "sui_nature_stories_1of1_tradeport": "Nature Stories SE 1/1",
+    "polygon_jb_ai_play": "JB AI Play",
+    "objkt_jack_beatnic_open_editions": "Open Editions",
+    "objkt_jacks_nature": "Jack's Nature",
+}
+
+
+def nft_collection_name(nft: dict, info: dict) -> str:
+    name = (nft.get("collection_name") or "").strip()
+    if name:
+        return name
+    cid = (nft.get("collection_id") or "").strip()
+    if cid in COLLECTION_LABELS:
+        return COLLECTION_LABELS[cid]
+    if cid in SHOP_COLLECTION_NAMES:
+        return SHOP_COLLECTION_NAMES[cid]
+    # Do not fall back to gallery.json (Nature Stories) for other feeds.
+    if cid:
+        return cid.replace("_", " ").replace("-", " ").title()
+    return collection_display_name(info)
+
+
+def nft_chain(nft: dict, info: dict) -> str:
+    return (nft.get("chain") or info.get("chain") or "avalanche").lower()
+
+
+def nft_currency(nft: dict, info: dict) -> str:
+    if nft.get("listing_currency"):
+        return str(nft["listing_currency"]).upper()
+    return CHAIN_CURRENCIES.get(nft_chain(nft, info), "AVAX")
+
+
+def nft_chain_label(nft: dict, info: dict) -> str:
+    chain = nft_chain(nft, info)
+    return CHAIN_LABELS.get(chain, chain.title())
+
+
+def nft_artwork_title(nft: dict) -> str:
+    name = (nft.get("name") or "").strip()
+    if name:
+        return name
+    return f"Token #{nft.get('token_id', '?')}"
+
+
+def wrap_text_lines(text: str, font, max_width: int) -> list[str]:
+    words = text.split()
+    if not words:
+        return [text]
+
+    lines: list[str] = []
+    current = ""
+    for word in words:
+        trial = f"{current} {word}".strip()
+        bbox = font.getbbox(trial)
+        if bbox[2] - bbox[0] <= max_width:
+            current = trial
+        else:
+            if current:
+                lines.append(current)
+            current = word
+    if current:
+        lines.append(current)
+    return lines or [text]
+
+
+def pick_title_layout(text: str, max_width: int, max_lines: int = 2) -> tuple[ImageFont.FreeTypeFont, list[str]]:
+    for size in (40, 34, 28, 24):
+        font = ImageFont.truetype(str(FONTS_DIR / "Inter.ttf"), size)
+        lines = wrap_text_lines(text, font, max_width)
+        if len(lines) <= max_lines:
+            return font, lines
+    font = ImageFont.truetype(str(FONTS_DIR / "Inter.ttf"), 24)
+    lines = wrap_text_lines(text, font, max_width)[:max_lines]
+    if len(lines) == max_lines:
+        last = lines[-1]
+        while len(last) > 1:
+            trial = f"{last}…"
+            bbox = font.getbbox(trial)
+            if bbox[2] - bbox[0] <= max_width:
+                lines[-1] = trial
+                break
+            last = last[:-1]
+    return font, lines
+
+
+def draw_title_block(draw, x: int, y: int, text: str, max_width: int, fill) -> int:
+    font, lines = pick_title_layout(text, max_width)
+    cursor_y = y
+    for line in lines:
+        draw_bold(draw, (x, cursor_y), line, font, fill)
+        bbox = font.getbbox(line)
+        cursor_y += (bbox[3] - bbox[1]) + 8
+    return cursor_y
+
+
+def price_field(nft: dict, prefix: str, symbol: str):
+    key = f"{prefix}_{symbol.lower()}"
+    if nft.get(key) not in (None, ""):
+        return nft[key]
+    if symbol == "AVAX" and nft.get(f"{prefix}_avax") not in (None, ""):
+        return nft[f"{prefix}_avax"]
+    return None
+
+
+def format_amount(value) -> str:
+    """Exact catalog figure. Never :g — that turns 1.797001 into 1.797."""
+    if value is None or value == "":
+        return ""
+    if isinstance(value, str):
+        return value.strip()
+    from decimal import Decimal, InvalidOperation
+
+    try:
+        d = Decimal(str(value))
+    except InvalidOperation:
+        return str(value)
+    s = format(d, "f")
+    if "." in s:
+        s = s.rstrip("0").rstrip(".")
+    return s or "0"
+
+
+def format_share_price(nft: dict, info: dict) -> tuple[str, str]:
+    symbol = nft_currency(nft, info)
+    # Studio shop: token id lives in pay_amount. Do not round.
+    if (nft.get("medium") == "shop") and nft.get("pay_amount") not in (None, ""):
+        return f"{format_amount(nft['pay_amount'])} {symbol}", "Studio shop"
+
+    listed = price_field(nft, "current_price", symbol)
+    last_sale = price_field(nft, "last_sale_price", symbol)
+    mint = price_field(nft, "mint_price", symbol)
+
+    if listed is None and symbol == "XTZ" and nft.get("current_price_xtz") not in (None, ""):
+        listed = nft["current_price_xtz"]
+    if listed is None and symbol == "XRP" and nft.get("current_price_xrp") not in (None, ""):
+        listed = nft["current_price_xrp"]
+    if listed is None and nft.get("price_xrp") not in (None, ""):
+        listed = nft["price_xrp"]
+        if symbol != "XRP":
+            symbol = "XRP"
+
+    status = (nft.get("listing_status") or nft.get("status") or "").lower()
+    if listed is not None and status in {
+        "for sale",
+        "listed",
+        "available",
+        "mint available",
+    }:
+        hint = "Listed" if status in {"for sale", "listed"} else "Mint"
+        return f"{format_amount(listed)} {symbol}", hint
+    if last_sale is not None:
+        return f"{format_amount(last_sale)} {symbol}", "Last sale"
+    if mint is not None:
+        return f"{format_amount(mint)} {symbol}", "Mint price"
+    if listed is not None:
+        return f"{format_amount(listed)} {symbol}", "Price"
+    if nft.get("medium") == "sui_ai":
+        return "Sui", "Mint"
+    if nft.get("medium") == "xrpl_ai" or nft.get("chain") == "xrpl":
+        px = nft.get("current_price_xrp")
+        if px in (None, ""):
+            px = nft.get("price_xrp")
+        if px not in (None, ""):
+            return f"{format_amount(px)} XRP", "Mint"
+        return "0.1 XRP", "Mint"
+    return nft_chain_label(nft, info), "Jack Beatnic Gallery"
+
+
+def draw_site_brand_overlay(
+    base: Image.Image,
+    title: str,
+    tagline: str,
+    gallery_label: str,
+) -> Image.Image:
+    """Top-right: name + claim; bottom-left: gallery label."""
+    overlay = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(overlay)
+
+    # Top-right readability gradient
+    for y in range(0, int(HEIGHT * 0.42)):
+        for x in range(int(WIDTH * 0.45), WIDTH):
+            tx = (x - WIDTH * 0.45) / max(1, WIDTH * 0.55)
+            ty = 1 - y / max(1, HEIGHT * 0.42)
+            alpha = int(175 * tx * ty)
+            if alpha > 0:
+                overlay.putpixel((x, y), (10, 10, 10, alpha))
+
+    # Bottom-left readability gradient
+    for y in range(int(HEIGHT * 0.58), HEIGHT):
+        for x in range(0, int(WIDTH * 0.55)):
+            tx = 1 - x / max(1, WIDTH * 0.55)
+            ty = (y - HEIGHT * 0.58) / max(1, HEIGHT * 0.42)
+            alpha = int(165 * tx * ty)
+            if alpha > 0:
+                overlay.putpixel((x, y), (10, 10, 10, alpha))
+
+    canvas = Image.alpha_composite(base.convert("RGBA"), overlay)
+    draw = ImageDraw.Draw(canvas)
+    f = fonts()
+    white = (255, 255, 255, 255)
+    muted = (230, 230, 230, 255)
+
+    pad_r = 56
+    pad_l = 56
+    title_font = f["title_md"]
+    tagline_font = ImageFont.truetype(str(FONTS_DIR / "Inter.ttf"), 22)
+    label_font = ImageFont.truetype(str(FONTS_DIR / "Inter.ttf"), 24)
+
+    tagline_bbox = tagline_font.getbbox(tagline)
+    title_bbox = title_font.getbbox(title)
+    tagline_w = tagline_bbox[2] - tagline_bbox[0]
+    title_w = title_bbox[2] - title_bbox[0]
+
+    text_right = WIDTH - pad_r
+    title_x = text_right - title_w
+    tagline_x = text_right - tagline_w
+    title_y = 48
+    tagline_y = title_y + 58
+
+    draw_bold(draw, (title_x, title_y), title, title_font, white)
+    draw.text((tagline_x, tagline_y), tagline, font=tagline_font, fill=muted)
+
+    label_bbox = label_font.getbbox(gallery_label)
+    label_h = label_bbox[3] - label_bbox[1]
+    label_y = HEIGHT - 56 - label_h
+    draw_bold(draw, (pad_l, label_y), gallery_label, label_font, white)
+    return canvas
+
+
+def _load_site_hero_bg(data: dict) -> tuple[Image.Image, str]:
+    """Locked hero_image wins — never rotate with gallery front / jbg-present promo."""
+    info = data.get("collection_info") or {}
+    locked = (info.get("hero_image") or info.get("hero_bg") or "").strip()
+    if locked:
+        if locked.startswith(("http://", "https://")):
+            return fetch_image(locked), locked
+        path = ROOT / locked
+        if path.is_file():
+            return Image.open(path).convert("RGB"), str(path)
+        raise SystemExit(f"gallery.json hero_image missing file: {path}")
+    nfts = data.get("nfts") or []
+    if not nfts:
+        raise SystemExit("gallery.json: brak NFT do tła strony (i brak hero_image)")
+    label = nfts[0].get("name", "—")
+    return fetch_image(nfts[0]["image_url"]), f"nfts[0]={label}"
+
+
+def generate_site_og(data: dict, output: Path = SITE_OG_PATH) -> Path:
+    info = data["collection_info"]
+    title = og_plain_text(info.get("hero_title") or info.get("artist") or SITE_BRAND_TITLE)
+    tagline = og_plain_text(info.get("hero_tagline") or SITE_BRAND_TAGLINE)
+    gallery_label = og_plain_text(SITE_GALLERY_LABEL)
+
+    bg, src = _load_site_hero_bg(data)
+    print(f"[site] Tło (locked): {src}")
+    canvas = draw_site_brand_overlay(
+        cover_crop(bg, WIDTH, HEIGHT, focus_y=0.4),
+        title,
+        tagline,
+        gallery_label,
+    )
+
+    output.parent.mkdir(parents=True, exist_ok=True)
+    canvas.convert("RGB").save(output, "JPEG", quality=92, optimize=True, subsampling=0)
+    print(f"[site] Zapisano: {output} ({output.stat().st_size // 1024} KB)")
+    return output
+
+
+def nft_card_background() -> Image.Image:
+    """Dark blue gradient similar to OpenSea share cards."""
+    base = Image.new("RGB", (WIDTH, HEIGHT), (13, 27, 42))
+    overlay = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(overlay)
+
+    for x in range(WIDTH):
+        t = x / max(1, WIDTH - 1)
+        alpha = int(90 * t)
+        draw.line([(x, 0), (x, HEIGHT)], fill=(27, 38, 59, alpha))
+
+    return Image.alpha_composite(base.convert("RGBA"), overlay)
+
+
+def rounded_thumb(img: Image.Image, size: int, radius: int = 18) -> Image.Image:
+    inner = size - 8
+    fitted = fit_contain(img, inner, inner)
+    tile = Image.new("RGBA", (size, size), (20, 32, 48, 255))
+    ox = (size - fitted.width) // 2
+    oy = (size - fitted.height) // 2
+    tile.paste(fitted, (ox, oy))
+
+    mask = Image.new("L", (size, size), 0)
+    draw = ImageDraw.Draw(mask)
+    draw.rounded_rectangle((0, 0, size - 1, size - 1), radius=radius, fill=255)
+    bordered = Image.new("RGBA", (size + 4, size + 4), (255, 255, 255, 255))
+    bordered.paste(tile, (2, 2))
+    bordered.putalpha(Image.new("L", bordered.size, 255))
+    bordered.putalpha(mask.resize(bordered.size))
+    return bordered
+
+
+def fit_price_font(text: str, max_width: int) -> ImageFont.FreeTypeFont:
+    for size in (50, 42, 36, 30, 24):
+        font = ImageFont.truetype(str(FONTS_DIR / "Inter.ttf"), size)
+        bbox = font.getbbox(text)
+        if bbox[2] - bbox[0] <= max_width:
+            return font
+    return ImageFont.truetype(str(FONTS_DIR / "Inter.ttf"), 24)
+
+
+def generate_nft_og(nft: dict, info: dict, thumb: Image.Image | None = None) -> Image.Image:
+    f = fonts()
+    collection = nft_collection_name(nft, info)
+    artwork_title = nft_artwork_title(nft)
+    price_text, _hint = format_share_price(nft, info)
+    white = (255, 255, 255, 255)
+    muted = (210, 220, 235, 255)
+    text_max_w = WIDTH - NFT_TEXT_X - NFT_PAD
+
+    if thumb is None:
+        thumb = load_nft_image(nft)
+
+    canvas = nft_card_background()
+    tile = rounded_thumb(thumb, NFT_THUMB)
+    canvas.paste(tile, (NFT_PAD, NFT_PAD), tile)
+
+    draw = ImageDraw.Draw(canvas)
+    draw.text((NFT_TEXT_X, NFT_PAD + 8), collection, font=f["label"], fill=muted)
+    draw_title_block(draw, NFT_TEXT_X, NFT_PAD + 48, artwork_title, text_max_w, white)
+    price_font = fit_price_font(price_text, text_max_w)
+    price_bbox = price_font.getbbox(price_text)
+    price_h = price_bbox[3] - price_bbox[1]
+    price_y = HEIGHT - OG_SAFE_BOTTOM - price_h
+    draw_bold(draw, (NFT_TEXT_X, price_y), price_text, price_font, white)
+    return canvas
+
+
+def og_output_path(nft: dict, output_dir: Path = NFT_OG_DIR) -> Path:
+    tid = token_id_int(nft)
+    col = nft_collection_id(nft)
+    return output_dir / f"{col}-{tid}.jpg"
+
+
+def generate_nft_ogs(
+    data: dict,
+    token_ids: set[int] | None = None,
+    output_dir: Path = NFT_OG_DIR,
+    nfts: list[dict] | None = None,
+    skip_existing: bool = False,
+    limit: int | None = None,
+) -> list[Path]:
+    info = data["collection_info"]
+    if nfts is None:
+        nfts = collect_all_share_nfts(data)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    written: list[Path] = []
+    skipped = 0
+    failed = 0
+    done = 0
+
+    for nft in nfts:
+        token_id = token_id_int(nft)
+        if token_id is None:
+            continue
+        if token_ids is not None and token_id not in token_ids:
+            continue
+        if limit is not None and done >= limit:
+            break
+
+        col = nft_collection_id(nft)
+        out = output_dir / f"{col}-{token_id}.jpg"
+        if skip_existing and out.is_file():
+            skipped += 1
+            continue
+
+        label = nft.get("name") or f"#{token_id}"
+        try:
+            card = generate_nft_og(nft, info)
+            card.convert("RGB").save(out, "JPEG", quality=80, optimize=True, subsampling=0)
+            written.append(out)
+            if col == LEGACY_OG_COLLECTION:
+                legacy = output_dir / f"nft-{token_id}.jpg"
+                legacy.write_bytes(out.read_bytes())
+            done += 1
+            if done <= 8 or done % 50 == 0:
+                print(f"[og] {done} {col}/{token_id} {label} ({out.stat().st_size // 1024} KB)")
+        except Exception as exc:  # noqa: BLE001
+            failed += 1
+            print(f"[og] FAIL {col}/{token_id} {label}: {exc}")
+
+    print(f"[og] zapisano {len(written)}, pominięte {skipped}, błędy {failed}")
+    return written
+
+
+def slugify_collection_id(raw: str) -> str:
+    """Filesystem/URL-safe collection slug (no spaces, quotes, colons)."""
+    import re
+
+    s = (raw or "").strip().lower()
+    s = s.replace("'", "").replace('"', "")
+    s = re.sub(r"[^a-z0-9]+", "-", s)
+    s = re.sub(r"-+", "-", s).strip("-")
+    return s or "collection"
+
+
+def nft_collection_id(nft: dict) -> str:
+    col = (nft.get("collection_id") or "").strip()
+    if col:
+        return slugify_collection_id(col)
+    # Fallback slug so share paths stay unique across chains/media
+    medium = (nft.get("medium") or "work").strip() or "work"
+    chain = (nft.get("chain") or "x").strip() or "x"
+    return slugify_collection_id(f"{medium}_{chain}")
+
+
+def share_path_for_nft(nft: dict) -> str:
+    """Unique share path: nft/{collection_slug}/{token_id}.html"""
+    col = nft_collection_id(nft)
+    token_id = int(nft["token_id"])
+    return f"nft/{col}/{token_id}.html"
+
+
+def gallery_deep_link(nft: dict, base_url: str) -> str:
+    """Disambiguated deep link — token_id alone collides across NS/NJ/Sui."""
+    from urllib.parse import urlencode
+
+    token_id = int(nft["token_id"])
+    q: dict[str, str] = {"work": str(token_id)}
+    col = nft.get("collection_id")
+    if col:
+        q["collection"] = str(col)
+    medium = nft.get("medium") or "ai_art"
+    if medium == "photography" or medium == "objkt_auction":
+        q["section"] = "photography"
+        kind = nft.get("photo_kind") or "photo"
+        if kind != "photo":
+            q["photo"] = kind
+        if (nft.get("chain") or "").lower() == "xrpl":
+            q["pchain"] = "xrpl"
+    elif medium == "xrpl_ai":
+        q["section"] = "ai_art"
+        q["ai"] = "xrpl"
+    elif medium == "sui_ai":
+        q["section"] = "ai_art"
+        q["ai"] = "sui"
+    elif medium == "shop":
+        q["section"] = "shop"
+    elif medium == "featured_promo":
+        q["section"] = "featured"
+    elif medium == "manifold_auction":
+        q["section"] = "atelier"
+        q["market"] = "auctions"
+        chain = nft.get("chain_key") or nft.get("chain") or "base"
+        if chain != "base":
+            q["chain"] = str(chain)
+    elif medium == "manifold_edition":
+        q["section"] = "atelier"
+        q["market"] = "editions"
+        chain = nft.get("chain_key") or nft.get("chain") or "base"
+        if chain != "base":
+            q["chain"] = str(chain)
+    elif medium == "ai_art":
+        q["section"] = "ai_art"
+        q["ai"] = "evm"
+        series = nft.get("ai_series")
+        if series and series != "nature_stories":
+            q["series"] = series
+        edition = str(nft.get("edition_label") or nft.get("chain") or "").lower()
+        if edition in {"avalanche", "polygon", "base"}:
+            q["edition"] = edition
+    return f"{base_url}/?{urlencode(q)}"
+
+
+def token_id_int(nft: dict) -> int | None:
+    raw = nft.get("token_id")
+    if raw is None or raw == "":
+        return None
+    try:
+        return int(raw)
+    except (TypeError, ValueError):
+        return None
+
+
+def share_key(nft: dict) -> tuple[str, int] | None:
+    tid = token_id_int(nft)
+    if tid is None:
+        return None
+    return nft_collection_id(nft), tid
+
+
+def nfts_from_json_file(path: Path) -> list[dict]:
+    if not path.is_file():
+        return []
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if isinstance(data, dict):
+        nfts = data.get("nfts")
+        if isinstance(nfts, list):
+            return nfts
+        items = data.get("items")
+        if isinstance(items, list):
+            return items
+    if isinstance(data, list):
+        return [item for item in data if isinstance(item, dict)]
+    return []
+
+
+def shop_nfts_from_sale_index() -> list[dict]:
+    if not SALE_INDEX_JSON.is_file():
+        return []
+    doc = json.loads(SALE_INDEX_JSON.read_text(encoding="utf-8"))
+    out: list[dict] = []
+    for it in doc.get("items") or []:
+        if (it.get("channel") or "shop") != "shop":
+            continue
+        if (it.get("status") or "live") != "live":
+            continue
+        cid = it.get("collection_id")
+        tid = it.get("token_id")
+        if not cid or tid in (None, ""):
+            continue
+        chain = (it.get("chain") or "avalanche").lower()
+        cur = (it.get("currency") or "AVAX").upper()
+        price = it.get("price")
+        if price in (None, ""):
+            price = it.get("pay_amount")
+        nft: dict = {
+            "token_id": tid,
+            "name": it.get("name") or f"#{tid}",
+            "collection_id": cid,
+            "collection_name": SHOP_COLLECTION_NAMES.get(str(cid))
+            or str(cid).replace("_", " ").title(),
+            "chain": chain,
+            "medium": "shop",
+            "image_url": it.get("image_url"),
+            "listing_status": "For Sale",
+            "listing_currency": cur,
+            "status": "listed",
+        }
+        if price not in (None, ""):
+            try:
+                nft[f"current_price_{cur.lower()}"] = float(price)
+            except (TypeError, ValueError):
+                nft[f"current_price_{cur.lower()}"] = price
+        out.append(nft)
+    return out
+
+
+def featured_nfts_from_promo() -> list[dict]:
+    if not FEATURED_PROMO_JSON.is_file():
+        return []
+    doc = json.loads(FEATURED_PROMO_JSON.read_text(encoding="utf-8"))
+    out: list[dict] = []
+    for it in doc.get("items") or []:
+        cid = it.get("collection_id")
+        tid = it.get("token_id")
+        if not cid or tid in (None, ""):
+            continue
+        chain = (it.get("chain") or "").lower()
+        cur = (it.get("currency") or "AVAX").upper()
+        nft: dict = {
+            "token_id": tid,
+            "name": it.get("name") or f"#{tid}",
+            "collection_id": cid,
+            "collection_name": it.get("collection_name"),
+            "chain": chain,
+            "medium": "featured_promo",
+            "image_url": it.get("image_url"),
+            "listing_status": "For Sale",
+            "listing_currency": cur,
+        }
+        price = it.get("price")
+        if price not in (None, ""):
+            nft[f"current_price_{cur.lower()}"] = price
+        out.append(nft)
+    return out
+
+
+def collect_all_share_nfts(gallery_data: dict) -> list[dict]:
+    """One NFT per (collection slug, token_id). gallery.json wins, then extra feeds, then shop."""
+    collected: list[dict] = []
+    seen: set[tuple[str, int]] = set()
+
+    def add_many(nfts: list[dict]) -> None:
+        for nft in nfts:
+            key = share_key(nft)
+            if key is None or key in seen:
+                continue
+            seen.add(key)
+            collected.append(nft)
+
+    add_many(gallery_data.get("nfts") or [])
+    for name in EXTRA_FEED_FILES:
+        add_many(nfts_from_json_file(ROOT / name))
+    add_many(featured_nfts_from_promo())
+    add_many(shop_nfts_from_sale_index())
+    return collected
+
+
+def published_og_rel(col: str, token_id: int) -> str | None:
+    """Only return assets/og/... if the JPG is actually in the Pages tree."""
+    published_dir = ROOT / "assets" / "og"
+    prefixed = published_dir / f"{col}-{token_id}.jpg"
+    if prefixed.is_file():
+        return f"assets/og/{col}-{token_id}.jpg"
+    legacy = published_dir / f"nft-{token_id}.jpg"
+    if col == LEGACY_OG_COLLECTION and legacy.is_file():
+        return f"assets/og/nft-{token_id}.jpg"
+    return None
+
+
+def present_fallback_url(nft: dict) -> str | None:
+    """jbg-present view thumb hosted on Pages — non-black OG when assets/og is absent."""
+    col = nft_collection_id(nft)
+    tid = token_id_int(nft)
+    if not col or tid is None:
+        return None
+    # Try common folder spellings used under jbg-present/
+    candidates = []
+    for f in (col, col.replace("_", "-"), col.replace("-", "_")):
+        if f not in candidates:
+            candidates.append(f)
+    # Prefer first candidate URL (Pages mirrors jbg-present); crawlers tolerate 404 less than black.
+    return f"https://jackbeatnic.github.io/jbg-present/{candidates[0]}/{tid}.view.webp"
+
+
+def og_image_url(nft: dict, base_url: str, og_version: str) -> str:
+    token_id = int(nft["token_id"])
+    col = nft_collection_id(nft)
+    published = published_og_rel(col, token_id)
+    if published:
+        return og_url_with_version(base_url, published, og_version)
+
+    rel = str(nft.get("og_image") or "").strip()
+    if rel and not rel.startswith("http://") and not rel.startswith("https://"):
+        local = ROOT / rel.lstrip("/")
+        if local.is_file():
+            return og_url_with_version(base_url, rel.lstrip("/"), og_version)
+
+    img = str(nft.get("image_url") or "").strip()
+    if img.startswith("https://") or img.startswith("http://"):
+        return img
+    if img:
+        return og_url_with_version(base_url, img.lstrip("/"), og_version)
+    present = present_fallback_url(nft)
+    if present:
+        return present
+    return og_url_with_version(base_url, "assets/og-preview.jpg", og_version)
+
+
+def share_page_html(nft: dict, info: dict, base_url: str, og_version: str) -> str:
+    token_id = int(nft["token_id"])
+    collection = nft_collection_name(nft, info)
+    artwork_title = nft_artwork_title(nft)
+    price_text, price_hint = format_share_price(nft, info)
+    rel_path = share_path_for_nft(nft)
+    share_url = f"{base_url}/{rel_path}"
+    og_image = og_image_url(nft, base_url, og_version)
+    gallery_url = gallery_deep_link(nft, base_url)
+    title = f"{artwork_title} | Jack Beatnic Gallery"
+    description = f"{price_text} · {collection} — {price_hint}"
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{html.escape(description)}">
+    <title>{html.escape(title)}</title>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{html.escape(share_url)}">
+    <meta property="og:title" content="{html.escape(title)}">
+    <meta property="og:description" content="{html.escape(description)}">
+    <meta property="og:image" content="{html.escape(og_image)}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="{html.escape(info.get('twitter_handle') or '@JackBeatnicAI')}">
+    <meta name="twitter:title" content="{html.escape(title)}">
+    <meta name="twitter:description" content="{html.escape(description)}">
+    <meta name="twitter:image" content="{html.escape(og_image)}">
+    <meta name="twitter:image:alt" content="{html.escape(title)}">
+    <link rel="canonical" href="{html.escape(share_url)}">
+    <script>location.replace({json.dumps(gallery_url)});</script>
+    <style>
+      html,body{{margin:0;min-height:100vh;background:#0d1b2a;color:#e8eef6;
+      font-family:Inter,system-ui,sans-serif;display:flex;align-items:center;justify-content:center}}
+      a{{color:#fff}}
+    </style>
+</head>
+<body>
+    <p><a href="{html.escape(gallery_url)}">Open in Jack Beatnic Gallery</a></p>
+</body>
+</html>
+"""
+
+
+def legacy_redirect_html(target_url: str) -> str:
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0;url={html.escape(target_url)}">
+    <link rel="canonical" href="{html.escape(target_url)}">
+    <title>Redirecting…</title>
+</head>
+<body>
+    <p><a href="{html.escape(target_url)}">Continue to artwork</a></p>
+</body>
+</html>
+"""
+
+
+def generate_share_pages(
+    data: dict,
+    token_ids: set[int] | None = None,
+    output_dir: Path = NFT_PAGES_DIR,
+    nfts: list[dict] | None = None,
+    cleanup_stale: bool = True,
+) -> list[Path]:
+    info = data["collection_info"]
+    base_url = site_base_url(info)
+    og_version = info.get("og_cache_version") or og_cache_version()
+    if nfts is None:
+        nfts = collect_all_share_nfts(data)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    written: list[Path] = []
+    active_paths: set[Path] = set()
+    per_col: dict[str, int] = {}
+    # Flat nft/{id}.html only when this token_id is unique across ALL feeds
+    # (nie po przefiltrowanym --chain — inaczej XRPL nadpisze NS #1).
+    tid_counts: dict[int, int] = {}
+    for nft in collect_all_share_nfts(data):
+        tid = token_id_int(nft)
+        if tid is None:
+            continue
+        tid_counts[tid] = tid_counts.get(tid, 0) + 1
+
+    for nft in nfts:
+        token_id = token_id_int(nft)
+        if token_id is None:
+            continue
+        if token_ids is not None and token_id not in token_ids:
+            continue
+
+        rel = share_path_for_nft(nft)
+        out = ROOT / rel
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(share_page_html(nft, info, base_url, og_version), encoding="utf-8")
+        written.append(out)
+        active_paths.add(out.resolve())
+        share_url = f"{base_url}/{rel}"
+        nft["share_url"] = share_url
+        col = nft_collection_id(nft)
+        published = published_og_rel(col, token_id)
+        if published:
+            nft["og_image"] = published
+        elif nft.get("og_image"):
+            rel = str(nft["og_image"]).lstrip("/")
+            if rel.startswith("assets/og/") and not (ROOT / rel).is_file():
+                nft.pop("og_image", None)
+            elif not rel.startswith("http") and not (ROOT / rel).is_file():
+                nft.pop("og_image", None)
+        per_col[col] = per_col.get(col, 0) + 1
+
+        # Legacy flat nft/{id}.html — only when this token_id is unique
+        if tid_counts.get(token_id, 0) == 1:
+            legacy = output_dir / f"{token_id}.html"
+            legacy.write_text(legacy_redirect_html(share_url), encoding="utf-8")
+            written.append(legacy)
+            active_paths.add(legacy.resolve())
+
+    # Keep existing flat nft/{id}.html (old tweets).
+    # Drop stale namespaced pages only on a full run — a --token filter
+    # must not wipe the rest of the catalog.
+    if cleanup_stale and token_ids is None:
+        for sub in output_dir.iterdir():
+            if not sub.is_dir():
+                continue
+            for stale in sub.glob("*.html"):
+                if stale.resolve() not in active_paths:
+                    stale.unlink()
+                    print(f"[page] Usunięto nieaktualny: {stale.relative_to(ROOT)}")
+            if not any(sub.iterdir()):
+                sub.rmdir()
+
+    for col, n in sorted(per_col.items()):
+        print(f"[page] {col}: {n}")
+    print(f"[page] razem {len(written)} plików")
+    return written
+
+
+def stamp_gallery_meta(data: dict, when: datetime | None = None) -> str:
+    when = when or datetime.now(timezone.utc)
+    info = data["collection_info"]
+    version = og_cache_version(when)
+    info["og_generated_at"] = when.replace(microsecond=0).isoformat().replace("+00:00", "Z")
+    info["og_cache_version"] = version
+    return version
+
+
+def update_site_index_og(data: dict, version: str) -> None:
+    info = data["collection_info"]
+    base_url = site_base_url(info)
+    og_image = og_url_with_version(base_url, "assets/og-preview.jpg", version)
+    html_text = INDEX_HTML.read_text(encoding="utf-8")
+
+    for attr in ("property=\"og:image\"", "name=\"twitter:image\""):
+        pattern = rf'(<meta {attr} content=")[^"]*(")'
+        html_text, count = re.subn(pattern, rf"\1{og_image}\2", html_text, count=1)
+        if count != 1:
+            raise SystemExit(f"index.html: nie znaleziono meta {attr}")
+
+    INDEX_HTML.write_text(html_text, encoding="utf-8")
+    print(f"[site] index.html — og:image?v={version}")
+
+
+def generate_all(
+    *,
+    site: bool = True,
+    nft: bool = True,
+    pages: bool = True,
+    write_gallery: bool = True,
+    token_ids: set[int] | None = None,
+) -> None:
+    data = load_gallery()
+
+    version = stamp_gallery_meta(data)
+
+    if site:
+        generate_site_og(data)
+        update_site_index_og(data, version)
+    if nft:
+        generate_nft_ogs(data, token_ids=token_ids)
+    if pages:
+        generate_share_pages(data, token_ids=token_ids)
+
+    if write_gallery and (site or pages):
+        save_gallery(data)
+        print("[meta] gallery.json — og_cache_version / share_url / og_generated_at")
+
+
+def parse_args(argv: list[str]) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Generuj karty Open Graph dla galerii.")
+    parser.add_argument("--site-only", action="store_true", help="Tylko og-preview.jpg (strona główna)")
+    parser.add_argument("--nft-only", action="store_true", help="Tylko karty per NFT + strony share")
+    parser.add_argument(
+        "--pages-only",
+        action="store_true",
+        help="Tylko strony share (wszystkie feedy: XRPL/Sui/NJ/shop). Bez kart JPG.",
+    )
+    parser.add_argument(
+        "--og-all",
+        action="store_true",
+        help="Karty OG JPG dla wszystkich feedów (NS/XRPL/Sui/NJ/shop) + odśwież landingi.",
+    )
+    parser.add_argument(
+        "--skip-existing",
+        action="store_true",
+        help="Nie nadpisuj kart OG, które już są na dysku.",
+    )
+    parser.add_argument("--limit", type=int, default=None, help="Maks. liczba nowych kart OG (test).")
+    parser.add_argument("--no-gallery-json", action="store_true", help="Nie zapisuj share_url w gallery.json")
+    parser.add_argument("--token", type=int, action="append", dest="tokens", help="Tylko wybrane token_id")
+    parser.add_argument(
+        "--kolekcja",
+        help="Tylko ta collection_id (np. polygon_nature_stories_vol2).",
+    )
+    parser.add_argument(
+        "--chain",
+        help="Tylko ten chain (np. xrpl). Nie kasuje landingów innych kolekcji.",
+    )
+    return parser.parse_args(argv)
+
+
+def _norm_cid(s: str) -> str:
+    return (s or "").strip().lower().replace("-", "_")
+
+
+def nfts_for_run(data: dict, *, chain: str | None = None, kolekcja: str | None = None) -> list[dict]:
+    nfts = collect_all_share_nfts(data)
+    if kolekcja:
+        want_c = _norm_cid(kolekcja)
+        nfts = [
+            n
+            for n in nfts
+            if _norm_cid(nft_collection_id(n)) == want_c
+            or _norm_cid(n.get("collection_id") or "") == want_c
+        ]
+    if not chain:
+        return nfts
+    want = chain.strip().lower()
+    out = []
+    for nft in nfts:
+        ch = (nft.get("chain") or "").lower()
+        if ch == want or (want == "xrpl" and ch in ("xrpl", "xrp")):
+            out.append(nft)
+    return out
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = parse_args(argv or sys.argv[1:])
+    token_ids = set(args.tokens) if args.tokens else None
+    chain = (args.chain or "").strip() or None
+    kolekcja = (getattr(args, "kolekcja", None) or "").strip() or None
+    subset = bool(token_ids or chain or kolekcja)
+
+    if args.site_only:
+        data = load_gallery()
+        version = stamp_gallery_meta(data)
+        generate_site_og(data)
+        update_site_index_og(data, version)
+        if not args.no_gallery_json:
+            save_gallery(data)
+        return 0
+
+    if args.pages_only:
+        data = load_gallery()
+        nfts = nfts_for_run(data, chain=chain, kolekcja=kolekcja)
+        generate_share_pages(
+            data,
+            token_ids=token_ids,
+            nfts=nfts,
+            cleanup_stale=not subset,
+        )
+        if not args.no_gallery_json:
+            save_gallery(data)
+            print("[meta] gallery.json — share_url")
+        return 0
+
+    if args.og_all:
+        data = load_gallery()
+        version = stamp_gallery_meta(data)
+        nfts = nfts_for_run(data, chain=chain, kolekcja=kolekcja)
+        generate_nft_ogs(
+            data,
+            token_ids=token_ids,
+            nfts=nfts,
+            skip_existing=args.skip_existing,
+            limit=args.limit,
+        )
+        generate_share_pages(
+            data,
+            token_ids=token_ids,
+            nfts=nfts,
+            cleanup_stale=not subset,
+        )
+        if not args.no_gallery_json:
+            save_gallery(data)
+            print(f"[meta] gallery.json — og_cache_version={version}")
+        return 0
+
+    if args.nft_only:
+        data = load_gallery()
+        version = stamp_gallery_meta(data)
+        nfts = nfts_for_run(data, chain=chain, kolekcja=kolekcja)
+        generate_nft_ogs(
+            data,
+            token_ids=token_ids,
+            nfts=nfts,
+            skip_existing=args.skip_existing,
+            limit=args.limit,
+        )
+        generate_share_pages(
+            data,
+            token_ids=token_ids,
+            nfts=nfts,
+            cleanup_stale=not subset,
+        )
+        if not args.no_gallery_json:
+            save_gallery(data)
+        return 0
+
+    generate_all(
+        write_gallery=not args.no_gallery_json,
+        token_ids=token_ids,
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

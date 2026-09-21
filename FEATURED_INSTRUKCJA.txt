@@ -1,0 +1,259 @@
+================================================================================
+  FEATURED — pełna instrukcja (zakładka + metki OS/SHOP/FEATURED)
+================================================================================
+
+  Live:    https://jackbeatnic.github.io/?section=featured
+  Skrypt:  python3 listing/featured_studio.py     (bez argumentów = ta karta)
+  Prezentacja Base/Polygon (thumbs + AI + OS):  listing/JAK_PREZENT.txt
+    python3 listing/prezent_studio.py
+  JSON:    www/data/featured_promo.json           ← TĘ nazwę pushujemy na GH
+  Backup:  ~/jb_nft/old_featured_promo.json
+  Miniatury: jbg-present/{collection_id}/{token_id}.thumb.webp
+
+  Ta sama karta (identyczna treść):
+    listing/FEATURED_INSTRUKCJA.txt   ← kanon; to drukuje studio
+    listing/JAK_FEATURED.txt          ← kopia (jak JAK_NS_AVAX_SHOP)
+    www/FEATURED_INSTRUKCJA.txt       ← kopia na GitHub Pages
+
+  Zawsze z TEGO komputera (jb@jb). Nie ręczny JSON.
+
+
+SZYBKA WYPRZEDAŻ — jeden token, full promo (Shop + OS + Featured)
+-----------------------------------------------------------------
+  1000 szt. NS A #XXXX po 0.03 w Shop (bez fee).
+  OpenSea samo drożej o prowizję 2.5% (0.03 → 0.03077), żeby po fee netto ≈ Shop.
+  Featured na górze, metki OS/SHOP/FEATURED, dwa przyciski.
+  Listing OS leci przez VPS (aniołek).
+
+  python3 listing/featured_studio.py promo \
+    --id 2311 --qty 1000 --pay 0.03 --days 7 --dry-run
+
+  python3 listing/featured_studio.py promo \
+    --id 2311 --qty 1000 --pay 0.03 --days 7
+
+  Telegram Aniołek:  promo 2311 0.03
+  (Arena od razu, z @JackBeatnicAI. Shop+OS+Featured = ta komenda na PC.)
+
+  --days = pobyt w Featured I ważność listingu OS (aniołek VPS).
+  Krok 5: post JackBeatnicGallery_agent (oznacza @JackBeatnicAI). --no-arena żeby pominąć.
+  --hours 12 = krótki Featured (OS i tak min. 1 dzień).
+  Cron na kasie zdejmuje kartę po ends_at:  featured_studio.py expire
+    (timer: vps/worker/kasa-featured.timer).
+
+  Token NS A musi już być w Shop (po mincie: ns_avax_studio.py po).
+  Qty i --pay PODAJESZ TY. --fee 2.5 (%% OS) albo --os-price 0.031 gdy chcesz inną.
+  Awaria VPS: --local-os
+  Tylko kanały: --no-os / --no-shop / --no-featured
+
+BASE (OS + Featured, bez Shop) — TOKEN ID ≠ NS #
+------------------------------------------------
+  Base TOKEN 1 = NS #174  (nie obrazek NS #1). Miniatura = plik {TOKEN_ID}.thumb.webp.
+
+  python3 listing/featured_studio.py present \
+    --kolekcja base_nature_stories_vol3 --id 1 --dry-run
+  # albo po numerze dzieła:
+  python3 listing/featured_studio.py present \
+    --kolekcja base_nature_stories_vol3 --ns 174 --dry-run
+
+  python3 listing/featured_studio.py promo \
+    --kolekcja base_nature_stories_vol3 \
+    --id 501 --qty 1000 --pay 0.0005 --days 7 --dry-run
+
+  python3 listing/featured_studio.py promo \
+    --kolekcja base_nature_stories_vol3 \
+    --id 501 --qty 1000 --pay 0.0005 --days 7
+
+  Shop sam się wyłączy. Źródło JPG: backup_offline/by_collection/<cid>/media/<TOKEN_ID>.jpg
+  (nie numer z nazwy). Studio wypisze: TOKEN 1 = NS #174.
+
+
+CO TO JEST
+----------
+  Zakładka Featured na GH to JEDEN grid dla wszystkich chainów promo
+  (Avalanche OpenSea, Base OpenSea, Sui TradePort, XRPL, …).
+
+  Źródło kart: TYLKO www/data/featured_promo.json
+  Po ends_at karta sama znika z siatki.
+
+  Qty i cena ZAWSZE z flag / CSV. Skrypt nie zgaduje z SYSTEM.md.
+  (codzienna weryfikacja OS to wyłom SALE→OOS — liczby podajesz Ty.)
+
+
+METKI (lewa krawędź miniatury) — AI + Shop + Featured
+-----------------------------------------------------
+  Strona sama skleja kanały po (collection_id, token_id).
+  Nic nie dopisujesz ręcznie do gallery.json.
+
+  niebieski, białe „OS”     = jest listing na OpenSea
+  głęboki zielony „SHOP”    = jest w Studio Shop (kasa, BEZ fee marketplace)
+  szary „FEATURED”          = karta jest w featured_promo.json
+
+  Widoczne w KAŻDEJ sekcji: AI Art (kolekcja), Shop, Featured.
+
+  Gdy ten sam token jest i na OS, i w Shop — dwa przyciski z prawd. cenami:
+
+    [ Studio shop · 0.03 AVAX ]     ← kasa, bez fee
+    [ OpenSea · 0.03 AVAX ]
+    „Studio shop · direct from the Artist”
+
+  Cena Shop = najniższy pay_amount z sale_index (t1/t2/t3…).
+  Cena OS   = cena z karty Featured (listing promo).
+  Przykład: #1800 ma OS 0.03 i Shop 0.03 → oba przyciski.
+            #2310 ma OS 0.03 i Shop 0.75 → oba, uczciwe kwoty.
+            Base #500 → tylko OS + FEATURED (Shop jeszcze nie obsługuje Base).
+
+  Token z Featured, którego nie ma w 10-ce/galerii AI, i tak widać
+  w prezentacji kolekcji (Nature Stories / Flower Stories, właściwy chain).
+
+
+PLIKI
+-----
+  listing/featured_studio.py          — STUDIO (add / po / dzien / present / restore)
+  listing/ns_avax_studio.py extra     — trzeci rząd Shop (t3/t4), nie rusza 0.75
+  listing/listing_studio.py csv       — JEDEN wiersz CSV do OpenSea
+  listing/sync_featured_promo.py      — stary silnik SUI/XRPL (teraz bezpieczny upsert)
+  www/js/gallery.js + css/gallery.css — metki i podwójne CTA
+  www/data/featured_promo.json        — feed zakładki
+  www/data/sale_index.json            — Shop (kasa czyta shop_pay_wei.json)
+
+
+A. STATUS / CHECK
+-----------------
+  cd ~/jb_nft
+  python3 listing/featured_studio.py
+  python3 listing/featured_studio.py status
+  python3 listing/featured_studio.py check     # JSON + lokalne WebP → OK / ZGODNE
+
+
+B. PRZYWRÓCENIE (gdy JSON znowu 2–3 karty)
+------------------------------------------
+  python3 listing/featured_studio.py restore --dry-run
+  python3 listing/featured_studio.py restore --push
+
+  Źródło:  ~/jb_nft/old_featured_promo.json
+  Cel:     www/data/featured_promo.json
+
+
+C. MINIATURA — DOWOLNY CHAIN (Base też)
+---------------------------------------
+  Źródło JPG (pierwsze które jest):
+    1) mintowanie/przygotowane/<collection_id>_<token_id>.jpg
+    2) backup_offline/by_collection/<collection_id>/media/<token_id>.jpg
+    3) jb-nft-assets/media/… (art_id z meta)
+
+  python3 listing/featured_studio.py present \
+    --kolekcja base_nature_stories_vol3 --ids 501 --dry-run
+  python3 listing/featured_studio.py present \
+    --kolekcja base_nature_stories_vol3 --ids 501 --push
+
+  Albo z CSV (kilka kolekcji):
+  python3 listing/featured_studio.py present --csv listing/kolejka/featured_dzis.csv --push
+
+  NIE używaj ns_avax_studio.py present do Base — on jest tylko NS Avalanche.
+
+
+D. DOKLEJ KARTĘ (bez kasowania FS/Photo)
+----------------------------------------
+  UPSERT po (collection_id, token_id). Nowe na GÓRZE. Reszta zostaje.
+
+  python3 listing/featured_studio.py po \
+    --item avalanche_nature_stories:TOKEN:QTY:CENA \
+    --item base_nature_stories_vol3:TOKEN:QTY:CENA \
+    --dry-run
+
+  python3 listing/featured_studio.py po \
+    --item avalanche_nature_stories:TOKEN:QTY:CENA \
+    --item base_nature_stories_vol3:TOKEN:QTY:CENA
+
+  `po` = present (WebP) + upsert JSON + git push present i www.
+  `--local` = tylko dysk, bez git.
+
+  Albo CSV (collection_id,token_id,quantity,price[,nazwa]):
+
+  python3 listing/featured_studio.py po --csv listing/kolejka/featured_dzis.csv
+
+
+E. CODZIENNA PROMO WERYFIKACJA OS  (SALE→OOS, poza SYSTEM.md)
+-------------------------------------------------------------
+  NS A, ten sam token na Shop+OS+Featured → komenda `promo` na górze (szybciej).
+
+  Ten blok: gdy A i B (Base) i/lub INNY id na Shop, osobne ceny.
+
+  python3 listing/featured_studio.py dzien \
+    --avax-id AVAX_TID --avax-qty Q --avax-price P \
+    --base-id BASE_TID --base-qty Q --base-price P \
+    --shop-id SHOP_TID --shop-qty Q --shop-pay P \
+    --dry-run
+
+  python3 listing/featured_studio.py dzien \
+    --avax-id AVAX_TID --avax-qty Q --avax-price P \
+    --base-id BASE_TID --base-qty Q --base-price P \
+    --shop-id SHOP_TID --shop-qty Q --shop-pay P \
+    --push
+
+  Bez Shop (tylko OS A+B) — odetnij --shop-*:
+
+  python3 listing/featured_studio.py dzien \
+    --avax-id AVAX_TID --avax-qty Q --avax-price P \
+    --base-id BASE_TID --base-qty Q --base-price P \
+    --push
+
+  Co robi `dzien`:
+    1. listing_studio.py csv  → JEDEN wiersz / token
+       (NIE listing_ops --generuj-dodatkowy — sypie cały supply-bucket)
+    2. drukuje:  python3 vps/brama.py listing --csv … --run
+       (--os-run odpala bramę od razu)
+    3. Shop: ns_avax_studio.py extra  → sku gjb-ns-{id}-t3/t4
+       (nie rusza t1 ani t2 0.75; --shop-sync = kasa + check)
+    4. present + upsert Featured na górze + push (--push)
+
+  OpenSea CSV: currency PUSTE = native (AVAX / ETH na Base).
+  NIE wpisuj „ETH” w wierszu Base.
+
+
+F. SHOP extra (gdy 0.75 już zajmuje -t2)
+----------------------------------------
+  python3 listing/ns_avax_studio.py extra --ids SHOP_TID --pay 0.03 --qty 1000 --dry-run
+  python3 listing/ns_avax_studio.py extra --ids SHOP_TID --pay 0.03 --qty 1000
+  python3 listing/ns_avax_studio.py sync
+  python3 listing/ns_avax_studio.py check     # musi: OK / ZGODNE
+
+  extra dobiera sku gjb-ns-{id}-t3 (albo t4…).
+  Nie wołaj `t2 --pay 0.03` gdy -t2 już jest 0.75 — zderzy się SKU.
+
+  Po sync metka SHOP i przycisk Studio shop same wchodzą na kartę Featured
+  (ten sam collection_id + token_id). Nie trzeba ręcznie dublować JSON.
+
+
+G. SUI / XRPL (stary silnik, teraz bezpieczny)
+----------------------------------------------
+  python3 listing/sync_featured_promo.py --merge-keep \
+    --xrpl-id 1 --xrpl-price 16.5 --days 30 --pct-off 0
+
+  python3 listing/sync_featured_promo.py --merge-keep \
+    --sui-manifest listing/SUI_PROMO_40OFF_MANIFEST.json --pct-off 40 --days 30
+
+  --merge-keep = UPSERT po kluczu, nowe na górze.
+  BEZ --merge-keep NADPISUJE cały featured_promo.json.
+  Nie podawaj --replace-chains avalanche  — wykasuje FS/Photo.
+
+
+Czego NIE ruszać
+----------------
+  ✗ ręczny www/data/featured_promo.json
+  ✗ sync_featured_promo.py bez --merge-keep
+  ✗ listing_ops --generuj-dodatkowy jako źródło Featured
+  ✗ ns_avax_studio.py present dla Base/Polygon
+  ✗ gallery.json / AI Art (metki liczą się same)
+  ✗ surowy rsync shop_pay_wei.json  (kasa: ns_avax_studio.py sync)
+
+
+CO SIĘ ZEPSUŁO (i czemu tak więcej nie robimy)
+----------------------------------------------
+  sync_featured_promo.py --merge-keep kasował WSZYSTKIE karty chainu z CSV
+  (Avalanche = NS + FS/Photo). CSV z --generuj-dodatkowy sypał cały bucket,
+  image_url brał z gallery.json (IPFS / puste) zamiast jbg-present.
+  Instrukcja www/FEATURED_INSTRUKCJA.txt zniknęła — stąd ta karta w trzech miejscach.
+
+
+================================================================================

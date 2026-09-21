@@ -9,22 +9,6 @@
   },
   "items": [
     {
-      "collection_id": "polygon_nature_stories_vol2",
-      "collection_name": "Nature Stories vol. 2",
-      "chain": "polygon",
-      "token_id": 3,
-      "name": "NS #56",
-      "image_url": "https://jackbeatnic.github.io/jbg-present/polygon_nature_stories_vol2/3.thumb.webp",
-      "price": 0.00072,
-      "currency": "WETH",
-      "quantity": 1000,
-      "days": 14,
-      "pct_off": 0,
-      "ends_at": "2026-10-05T22:49:45.778146+00:00",
-      "opensea_url": "https://opensea.io/assets/polygon/0xa0d6ff855d88cc5587f30de654966e0f33b3b30f/3",
-      "marketplace_url": "https://opensea.io/assets/polygon/0xa0d6ff855d88cc5587f30de654966e0f33b3b30f/3"
-    },
-    {
       "collection_id": "base_nature_stories_vol3",
       "collection_name": "Nature Stories vol. 3",
       "chain": "base",

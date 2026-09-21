@@ -495,18 +495,32 @@ def draw_site_brand_overlay(
     return canvas
 
 
-def generate_site_og(data: dict, output: Path = SITE_OG_PATH) -> Path:
+def _load_site_hero_bg(data: dict) -> tuple[Image.Image, str]:
+    """Locked hero_image wins — never rotate with gallery front / jbg-present promo."""
+    info = data.get("collection_info") or {}
+    locked = (info.get("hero_image") or info.get("hero_bg") or "").strip()
+    if locked:
+        if locked.startswith(("http://", "https://")):
+            return fetch_image(locked), locked
+        path = ROOT / locked
+        if path.is_file():
+            return Image.open(path).convert("RGB"), str(path)
+        raise SystemExit(f"gallery.json hero_image missing file: {path}")
     nfts = data.get("nfts") or []
     if not nfts:
-        raise SystemExit("gallery.json: brak NFT do tła strony")
+        raise SystemExit("gallery.json: brak NFT do tła strony (i brak hero_image)")
+    label = nfts[0].get("name", "—")
+    return fetch_image(nfts[0]["image_url"]), f"nfts[0]={label}"
 
+
+def generate_site_og(data: dict, output: Path = SITE_OG_PATH) -> Path:
     info = data["collection_info"]
     title = og_plain_text(info.get("hero_title") or info.get("artist") or SITE_BRAND_TITLE)
     tagline = og_plain_text(info.get("hero_tagline") or SITE_BRAND_TAGLINE)
     gallery_label = og_plain_text(SITE_GALLERY_LABEL)
 
-    print(f"[site] Tło: {nfts[0].get('name', '—')}")
-    bg = fetch_image(nfts[0]["image_url"])
+    bg, src = _load_site_hero_bg(data)
+    print(f"[site] Tło (locked): {src}")
     canvas = draw_site_brand_overlay(
         cover_crop(bg, WIDTH, HEIGHT, focus_y=0.4),
         title,

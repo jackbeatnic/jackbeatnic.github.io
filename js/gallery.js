@@ -1418,7 +1418,18 @@ const Gallery = (() => {
 
         const hero = document.querySelector('.hero');
         if (imgEl) {
-            if (featured?.image_url) {
+            // Locked site hero (collection_info.hero_image) — never rotate with
+            // gallery front / promo NFT thumbs from jbg-present.
+            const lockedHero = (info.hero_image || info.hero_bg || '').trim();
+            if (lockedHero) {
+                const abs = /^https?:\/\//i.test(lockedHero)
+                    ? lockedHero
+                    : new URL(lockedHero, window.location.href).href;
+                imgEl.src = abs;
+                imgEl.alt = title;
+                imgEl.hidden = false;
+                hero?.classList.remove('hero--text-only');
+            } else if (featured?.image_url) {
                 ImageProxy.bindFallback(
                     imgEl,
                     ImageProxy.displayCandidates(

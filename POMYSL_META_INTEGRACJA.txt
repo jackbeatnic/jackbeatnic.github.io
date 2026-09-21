@@ -1,0 +1,15 @@
+META (Facebook / Instagram) — kierunek na później
+=================================================
+
+Już teraz działa:
+  - og:title, og:description, og:image, og:site_name, og:locale
+  - To samo co X/Twitter Card (summary_large_image)
+
+Kolejne kroki (gdy skupimy się na Meta):
+  1. Meta Business Suite — zweryfikuj domenę jackbeatnic.github.io
+  2. Sharing Debugger (developers.facebook.com) — odśwież cache og-preview.jpg
+  3. Opcjonalnie: osobny og:image 1200×630 pod IG Feed (może być ten sam plik)
+  4. Instagram Link in Bio → ta sama strona; Reels/Stories = osobne assety (prezentacja/)
+  5. Pixel NIE jest potrzebny na statycznej galerii — dopiero przy sklepie / lead ads
+
+Priorytet na razie: X (validator) + Google Search Console (sitemap opcjonalnie).

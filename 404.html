@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page not found | Jack Beatnic Gallery</title>
+    <meta name="robots" content="noindex">
+    <link rel="canonical" href="https://jackbeatnic.github.io/">
+    <script>
+        (function () {
+            var m = location.pathname.match(/^\/nft\/([^/]+)\/([^/]+?)(?:\.html)?$/);
+            if (!m) return;
+            var slug = decodeURIComponent(m[1] || "");
+            var token = decodeURIComponent(m[2] || "").replace(/\.html$/, "");
+            if (!slug || !token) return;
+            var col = slug.replace(/-/g, "_");
+            location.replace("/?work=" + encodeURIComponent(token) + "&collection=" + encodeURIComponent(col));
+        })();
+    </script>
+</head>
+<body>
+    <p>This page is missing.</p>
+    <p><a href="https://jackbeatnic.github.io/">Open Jack Beatnic Gallery</a></p>
+</body>
+</html>

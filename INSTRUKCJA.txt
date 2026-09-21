@@ -1,0 +1,224 @@
+================================================================================
+  Jack Beatnic Gallery — strona www/
+  Podgląd lokalny + synchronizacja cen z raportów OpenSea
+  Strona live: https://jackbeatnic.github.io/
+  Repo:         https://github.com/jackbeatnic/jackbeatnic.github.io
+================================================================================
+
+
+PODGLĄD LOKALNY
+---------------
+  cd /home/jb/jb_nft/www
+  python3 -m http.server 8080
+
+  Przeglądarka: http://localhost:8080
+  Zatrzymanie: Ctrl+C
+
+
+AKTUALIZACJA CEN + GITHUB PAGES (jedna komenda)
+-----------------------------------------------
+  export OPENSEA_API_KEY="twój-klucz"
+  cd /home/jb/jb_nft/www
+  ./odswiez_i_wgraj.sh
+
+  Robi: raport OS (--krok report) → gallery.json → git push (jeśli są zmiany).
+
+  Warianty:
+    ./odswiez_i_wgraj.sh --dry-run
+    ./odswiez_i_wgraj.sh --no-push
+    ./odswiez_i_wgraj.sh --kolekcja avalanche_nature_stories
+
+  Pierwszy deploy: DEPLOY_GITHUB.txt
+  Przeprowadzenie GitHub: GITHUB_KROK_PO_KROKU.txt
+  Automatyzacja cron: POMYSL_GITHUB_ACTIONS_CENY.txt (na później)
+
+
+CO DOKŁADNIE ROBI odswiez_i_wgraj.sh (żeby się nie zgubić)
+----------------------------------------------------------
+  To NIE jest „podwójna robota” — to łańcuch 3 kroków:
+
+  [1] raportuj_kolekcje.py --krok report
+        → zapisuje LOKALNIE (w jb_nft/, NIE na GitHub):
+          raportowanie/raporty/avalanche_nature_stories_raport.csv
+        → odświeża CAŁĄ kolekcję (wszystkie tokeny z dane/), nie tylko 10 z galerii
+        → ~1–2 min; ten sam raport używasz też do listingu
+
+  [2] aktualizuj_ceny_z_raportu.py
+        → czyta ten CSV i aktualizuje TYLKO NFT z gallery.json
+          (dopasowanie: chain + kontrakt + token_id)
+        → zapisuje www/gallery.json
+
+  [3] git commit + push
+        → na GitHub leci WYŁĄCZNIE gallery.json (jeśli się zmienił)
+        → raport CSV zostaje u Ciebie na dysku, nigdy nie trafia na stronę publiczną
+
+  W skrócie:
+    OpenSea → raport CSV (lokalnie, cała kolekcja)
+            → gallery.json (tylko 10 NFT w galerii)
+            → jackbeatnic.github.io
+
+  Gdy raport masz już świeży (np. przed chwilą robiłeś go pod listing):
+    pomiń krok 1 — uruchom tylko krok 2 i 3 (sekcja poniżej).
+
+  Gdy chcesz sync lokalnie, bez publikacji na stronie:
+    ./odswiez_i_wgraj.sh --no-push
+
+
+AKTUALIZACJA CEN (ręcznie, krok po kroku)
+-----------------------------------------
+  1. cd /home/jb/jb_nft/raportowanie
+     export OPENSEA_API_KEY="twój-klucz"
+     python3 raportuj_kolekcje.py --kolekcja avalanche_nature_stories --krok report
+
+  2. cd /home/jb/jb_nft/www
+     python3 aktualizuj_ceny_z_raportu.py --kolekcja avalanche_nature_stories
+
+  3. git add gallery.json && git commit -m "sync prices" && git push
+
+  Test bez zapisu:
+     python3 aktualizuj_ceny_z_raportu.py --kolekcja avalanche_nature_stories --dry-run
+
+
+CO UZUPEŁNIA SKRYPT?
+--------------------
+  Dla każdego NFT w gallery.json (dopasowanie: chain + kontrakt + token_id):
+    • current_price_avax / current_price_eth / … — CENA ZA 1 SZTUKĘ z raportu
+      (raportuj_kolekcje normalizuje API OpenSea: total order ÷ remaining_quantity)
+    • listing_status  (For Sale / Not Listed)
+    • listing_currency
+    • opensea_url, name (jeśli zmienione w raporcie)
+    • collection_info.last_price_sync
+
+  Pola AI (opisy, kolory, tagi) — NIE rusza. Edytujesz ręcznie / Grok.com.
+
+
+LIKES I KOLEJNOŚĆ (LocalStorage + cron)
+---------------------------------------
+  Na stronie: serduszko (like) i gwiazdka (save) — dane w przeglądarce.
+  Filtr „Saved for later” w Explore.
+
+  Raz dziennie (po aktualizacji likes_count w JSON lub stats/):
+    python3 aktualizuj_pozycje_z_likes.py
+    git add gallery.json && git commit -m "chore: daily likes sort" && git push
+
+  Szczegóły: POMYSL_LIKES_CRON.txt
+
+
+PODGLĄD NA X / FACEBOOK / DISCORD (Open Graph)
+----------------------------------------------
+  Strona główna: assets/og-preview.jpg (1200×630) + meta w index.html
+  Per NFT (jak OpenSea — miniatura + cena):
+    assets/og/nft-{id}.jpg  +  nft/{id}.html  (share_url w gallery.json)
+
+  Generowanie (wszystko naraz):
+    python3 generuj_og_preview.py
+    # tylko karty NFT:  python3 generuj_og_preview.py --nft-only
+    # jeden token:      python3 generuj_og_preview.py --token 3
+
+  Przy syncu cen (odswiez_i_wgraj.sh) OG odświeża się automatycznie.
+
+  Link do udostępnienia pojedynczego dzieła:
+    https://jackbeatnic.github.io/nft/1.html
+    (przekierowuje na galerię ?work=1)
+
+  Cache X: https://cards-dev.twitter.com/validator
+
+
+TIP (modal)
+-----------
+  Tip w nagłówku (desktop) i pasku sekcji (mobile) + ikona ◎ na każdej karcie NFT.
+  EVM: creator_wallet w gallery.json | BTC: btc_tip_wallet
+  Odśwież cache X po zmianie og-preview.jpg
+
+
+SEKCJE AI ART / PHOTOGRAPHY
+---------------------------
+  Patrz STRUKTURA_SEKCJI.txt — pola medium, photo_kind, blok site w gallery.json.
+
+
+OBJKT (Tezos) — photography w gallery.json
+------------------------------------------
+  Skrypt: aktualizuj_objkt_do_galerii.py
+  Źródło: data.objkt.com (GraphQL) — created_tokens + supply + saldo portfela
+
+  Na objkt.com/@jackbeatnic widać CAŁĄ historię utworzonych (także spalone).
+  Do gallery.json trafiają tylko POSIADANE (supply>0 i quantity>0 u Ciebie).
+
+  cd /home/jb/jb_nft/www
+  python3 aktualizuj_objkt_do_galerii.py              # sync galerii + audyt CSV
+  python3 aktualizuj_objkt_do_galerii.py --dry-run
+  python3 aktualizuj_objkt_do_galerii.py --audyt      # tylko CSV, bez gallery.json
+
+  Audyt (porównanie z backupem po tezos_token_id):
+    raportowanie/audyt/objkt_audyt_posiadane_*.csv
+    raportowanie/audyt/objkt_audyt_sprzedane_*.csv   # odeszły z portfela
+    raportowanie/audyt/objkt_audyt_spalone_*.csv     # supply=0 on-chain
+
+  ownership_status w gallery.json: posiadane | (sprzedane/spalone nie trafiają)
+
+
+OBJKT — live aukcje (photography, z przodu galerii)
+----------------------------------------------------
+  Skrypt: aktualizuj_objkt_aukcje_do_galerii.py
+  Wyjście: objkt_auctions_gallery.json (ładowane przez gallery.js)
+  Źródło: english_auction_active + dutch_auction_active (seller lub creator)
+
+  Gdy aukcja jest aktywna:
+    • karta „Live auction” na początku sekcji Photography
+    • baner section-promo z linkiem Bid on OBJKT
+    • zwykła karta OBJKT tego samego tokena jest ukryta (bez duplikatu)
+
+  python3 aktualizuj_objkt_aukcje_do_galerii.py
+  python3 aktualizuj_objkt_aukcje_do_galerii.py --dry-run
+
+
+SALVOR — photography (JackBeatnic, nie AI)
+------------------------------------------
+  Skrypt: aktualizuj_salvor_foto_do_galerii.py
+  Profil: https://salvor.io/profile/JackBeatnic
+  API: salvor.io/api/profile/JackBeatnic/listings (+ /nfts)
+
+  Do gallery.json trafiają tylko listingi z ceną AVAX (pomija kontrakty AI
+  z raportowanie/kolekcje.json).
+
+  python3 aktualizuj_salvor_foto_do_galerii.py
+  python3 aktualizuj_salvor_foto_do_galerii.py --dry-run
+
+  Jeśli API zwraca 0 pozycji — sprawdź profil w przeglądarce; skrypt nie
+  nadpisuje istniejących wpisów salvor w gallery.json.
+
+
+PLIKI STRONY
+------------
+  index.html, css/gallery.css, js/*.js, gallery.json,
+  objkt_auctions_gallery.json, auctions_gallery.json, assets/
+
+
+GITHUB I TERMINAL — CZY SIĘ WYLOGOWYWAĆ?
+----------------------------------------
+  Możesz ZOSTAĆ zalogowany — to ułatwia dalszą pracę (push, setup, Grok w terminalu).
+
+  Co to znaczy „zalogowany”:
+    • gh auth login zapisał token w systemowym keyring (nie w venv, nie w repo)
+    • git push/pull działa bez wpisywania hasła za każdym razem
+    • token NIE jest w plikach www/ ani na stronie publicznej
+
+  Sprawdzenie:
+    gh auth status
+
+  Wylogowanie (opcjonalne, np. na cudzym komputerze):
+    gh auth logout
+
+  Bezpieczeństwo na co dzień:
+    • NIE commituj OPENSEA_API_KEY ani kluczy portfela — tylko export w terminalu
+    • repo jackbeatnic.github.io jest publiczne — tam tylko pliki strony (www/)
+    • jb_nft/ (raportowanie, listing, venv) zostaje lokalnie / w osobnym repo później
+
+  Aktualizacja samej strony (HTML/CSS/JS, bez cen):
+    cd /home/jb/jb_nft/www
+    git add .
+    git commit -m "opis zmiany"
+    git push
+
+
+================================================================================

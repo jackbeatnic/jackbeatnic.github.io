@@ -1,0 +1,61 @@
+# ETAP III — Własna sprzedaż (dla laika)
+
+Jack Beatnic · plan SALE · 2026-08-15  
+Kanon modelu: `docs/blueprint/ANEKS_1_SALE.md`  
+Operator: `listing/SALE_INDEX.txt`
+
+Status: **Aneks 1 przyjęty** (2026-08-15). Shop EVM na puli GJB.  
+Checkout (2026-09-03): **wariant B** (wpłata + kasa). Wariant A (Seaport u nas) w szufladzie.  
+Karta: `www/SHOP_CHECKOUT_A_B.txt`  — nie mylić z Aneks 1 Sposób A/B.
+
+---
+
+## Zasada
+
+OpenSea zostaje witryną obcą na dotychczasowym zapasie. GitHub Pages jest naszym sklepem z cennikiem w JSON. The Atelier zabiera wybrane prace na aukcję. XRPL mint-on-demand czeka na VPS.
+
+Nie konkurujemy z OS o ten sam listing. Dokładamy kanał, którego OS nie zatwierdza.
+
+---
+
+## Sposób B (wybrany)
+
+CSV → `sale_index.json` → cena na stronie w minutę po pushu. Klient płaci na nasz adres. Token schodzi z puli GJB (zapas albo nowy mint). JSON nie tworzy tokenów.
+
+Sposób A (Seaport = ten sam order co OS) odkładamy.
+
+ERC-1155: dodatkowy mint tego samego ID **zwiększa SUPPLY**, nie robi nowego TOKEN ID. Dwa baseny (10k OS + 10k GJB tego samego NS #1234) = 20k jednego ID. Nie sprzedawaj tych samych jednostek dwa razy.
+
+Tantiemy wtórne zostają na starym kontrakcie. Nowy kontrakt „pod sklep” jest zbędny.
+
+---
+
+## Szkielet (jest)
+
+- Aneks 1 + ten plik + `www/SHOP_CHECKOUT_A_B.txt`
+- `listing/sale_index.csv` + `listing/build_sale_index.py`
+- `www/data/sale_index.json` + `www/data/shop_pay_wei.json` v2
+- sekcja `/?section=shop` (chip Shop)
+- checkout **wariant B**: Pay with wallet → okrągła kwota + TOKEN ID w tx.data; kasa transfer
+- `orders/` + `evm_payments` na kasie
+- `www/shop-terms.html`
+
+## Jeszcze nie
+
+- nowe repo JPG+JSON 1:1
+- checkout **wariant A** (Seaport u nas, bez API OS) — karta SHOP_CHECKOUT_A_B.txt
+- Aneks 1 Sposób A (ta sama oferta co OS)
+
+---
+
+## Polecenia
+
+    python3 listing/build_sale_index.py
+    python3 listing/build_sale_index.py --csv listing/sale_index.csv
+    # potem push www/data/sale_index.json
+
+Przełączenie na Atelier: w CSV `channel=atelier` → znika ze Shop.
+
+---
+
+Prawo: nie jestem adwokatem. Podatki liczysz z księgowym. Regulamin EN: shop-terms.html.

@@ -2,7 +2,7 @@
 """Generate Open Graph previews for Jack Beatnic Gallery.
 
 - Site card: assets/og-preview.jpg (homepage)
-- Per-NFT cards: assets/og/nft-{id}.jpg (OpenSea-style: thumb + price)
+- Per-NFT cards: JB_NFT_OG_DIR (default ../og-cache) — NOT committed under assets/og (Pages 1GB limit)
 - Share landing pages: nft/{collection_id}/{id}.html (OG meta → redirect)
   Legacy flat nft/{id}.html kept as redirect stubs when unique.
 """
@@ -24,7 +24,13 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parent
 GALLERY_JSON = ROOT / "gallery.json"
 SITE_OG_PATH = ROOT / "assets" / "og-preview.jpg"
-NFT_OG_DIR = ROOT / "assets" / "og"
+# Per-NFT OG JPGs used to live in assets/og and blew past the GH Pages ~1GB
+# soft limit (Pages builds errored; live hero went black). Default: write OG
+# JPGs under ../og-cache (outside the Pages tree). Override with JB_NFT_OG_DIR.
+# Share HTML still goes to nft/; og:image URLs fall back to jbg-present thumbs
+# when the jpg is not published under assets/og/.
+_default_og = (ROOT.parent / "og-cache").resolve()
+NFT_OG_DIR = Path((__import__("os").environ.get("JB_NFT_OG_DIR") or str(_default_og))).expanduser()
 NFT_PAGES_DIR = ROOT / "nft"
 FONTS_DIR = ROOT / "assets" / "fonts"
 
@@ -863,18 +869,39 @@ def collect_all_share_nfts(gallery_data: dict) -> list[dict]:
     return collected
 
 
+def published_og_rel(col: str, token_id: int) -> str | None:
+    """Only return assets/og/... if the JPG is actually in the Pages tree."""
+    published_dir = ROOT / "assets" / "og"
+    prefixed = published_dir / f"{col}-{token_id}.jpg"
+    if prefixed.is_file():
+        return f"assets/og/{col}-{token_id}.jpg"
+    legacy = published_dir / f"nft-{token_id}.jpg"
+    if col == LEGACY_OG_COLLECTION and legacy.is_file():
+        return f"assets/og/nft-{token_id}.jpg"
+    return None
+
+
+def present_fallback_url(nft: dict) -> str | None:
+    """jbg-present view thumb hosted on Pages — non-black OG when assets/og is absent."""
+    col = nft_collection_id(nft)
+    tid = token_id_int(nft)
+    if not col or tid is None:
+        return None
+    # Try common folder spellings used under jbg-present/
+    candidates = []
+    for f in (col, col.replace("_", "-"), col.replace("-", "_")):
+        if f not in candidates:
+            candidates.append(f)
+    # Prefer first candidate URL (Pages mirrors jbg-present); crawlers tolerate 404 less than black.
+    return f"https://jackbeatnic.github.io/jbg-present/{candidates[0]}/{tid}.view.webp"
+
+
 def og_image_url(nft: dict, base_url: str, og_version: str) -> str:
     token_id = int(nft["token_id"])
     col = nft_collection_id(nft)
-    prefixed = NFT_OG_DIR / f"{col}-{token_id}.jpg"
-    if prefixed.is_file():
-        return og_url_with_version(base_url, f"assets/og/{col}-{token_id}.jpg", og_version)
-
-    # Flat nft-{id}.jpg cards were built only for Nature Stories in gallery.json.
-    # Reusing them for XRPL/Sui/NJ would show the wrong artwork (token_id collides).
-    legacy = NFT_OG_DIR / f"nft-{token_id}.jpg"
-    if col == LEGACY_OG_COLLECTION and legacy.is_file():
-        return og_url_with_version(base_url, f"assets/og/nft-{token_id}.jpg", og_version)
+    published = published_og_rel(col, token_id)
+    if published:
+        return og_url_with_version(base_url, published, og_version)
 
     rel = str(nft.get("og_image") or "").strip()
     if rel and not rel.startswith("http://") and not rel.startswith("https://"):
@@ -887,6 +914,9 @@ def og_image_url(nft: dict, base_url: str, og_version: str) -> str:
         return img
     if img:
         return og_url_with_version(base_url, img.lstrip("/"), og_version)
+    present = present_fallback_url(nft)
+    if present:
+        return present
     return og_url_with_version(base_url, "assets/og-preview.jpg", og_version)
 
 
@@ -994,14 +1024,14 @@ def generate_share_pages(
         share_url = f"{base_url}/{rel}"
         nft["share_url"] = share_url
         col = nft_collection_id(nft)
-        prefixed = NFT_OG_DIR / f"{col}-{token_id}.jpg"
-        if prefixed.is_file():
-            nft["og_image"] = f"assets/og/{col}-{token_id}.jpg"
-        elif col == LEGACY_OG_COLLECTION and (NFT_OG_DIR / f"nft-{token_id}.jpg").is_file():
-            nft["og_image"] = f"assets/og/nft-{token_id}.jpg"
+        published = published_og_rel(col, token_id)
+        if published:
+            nft["og_image"] = published
         elif nft.get("og_image"):
             rel = str(nft["og_image"]).lstrip("/")
-            if not (ROOT / rel).is_file():
+            if rel.startswith("assets/og/") and not (ROOT / rel).is_file():
+                nft.pop("og_image", None)
+            elif not rel.startswith("http") and not (ROOT / rel).is_file():
                 nft.pop("og_image", None)
         per_col[col] = per_col.get(col, 0) + 1
 

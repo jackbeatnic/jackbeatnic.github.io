@@ -1396,7 +1396,6 @@ const Gallery = (() => {
 
     function applyHero() {
         const info = collectionInfo;
-        const featured = heroFeaturedNft();
         const titleEl = document.getElementById('hero-title');
         const taglineEl = document.getElementById('hero-tagline');
         const descEl = document.getElementById('hero-description');
@@ -1417,42 +1416,68 @@ const Gallery = (() => {
         if (marketplacesEl) marketplacesEl.hidden = !(info.marketplace_links || []).length;
 
         const hero = document.querySelector('.hero');
-        if (imgEl) {
-            // Locked site hero (collection_info.hero_image) — never rotate with
-            // gallery front / promo NFT thumbs from jbg-present.
-            const lockedHero = (info.hero_image || info.hero_bg || '').trim();
-            if (lockedHero) {
-                const abs = /^https?:\/\//i.test(lockedHero)
-                    ? lockedHero
-                    : new URL(lockedHero, window.location.href).href;
-                imgEl.src = abs;
-                imgEl.alt = title;
-                imgEl.hidden = false;
-                hero?.classList.remove('hero--text-only');
-            } else if (featured?.image_url) {
-                ImageProxy.bindFallback(
-                    imgEl,
-                    ImageProxy.displayCandidates(
-                        featured.image_url,
-                        IMAGE_PROXY,
-                        ImageProxy.VIEW_MAX_WIDTH,
-                        ImageProxy.VIEW_MAX_HEIGHT,
-                        'inside',
-                        featured,
-                        'view',
-                    ),
-                );
-                imgEl.alt = featured.name || title;
-                imgEl.hidden = false;
-                hero?.classList.remove('hero--text-only');
-            } else {
-                imgEl.removeAttribute('src');
-                imgEl.alt = title;
-                imgEl.hidden = true;
-                hero?.classList.add('hero--text-only');
+        if (!imgEl) return;
+
+        // Locked site hero — never rotate with gallery front / promo NFT thumbs (jbg-present).
+        // Never use nfts[0] for the page hero. On error, keep a non-black fallback chain.
+        const lockedHero = (info.hero_image || info.hero_bg || '').trim();
+        const HARD_FALLBACKS = [
+            'assets/hero-bg.jpg',
+            'https://jackbeatnic.github.io/jbg-present/avalanche_nature_stories/1.view.webp',
+            'https://raw.githubusercontent.com/jackbeatnic/jackbeatnic.github.io/main/assets/hero-bg.jpg',
+        ];
+
+        const toAbs = (u) => {
+            if (!u) return '';
+            if (/^https?:\/\//i.test(u)) return u;
+            try {
+                return new URL(u, window.location.href).href;
+            } catch (_) {
+                return u;
             }
-        }
+        };
+
+        const candidates = [];
+        const pushUnique = (u) => {
+            const abs = toAbs(u);
+            if (abs && !candidates.includes(abs)) candidates.push(abs);
+        };
+        if (lockedHero) pushUnique(lockedHero);
+        HARD_FALLBACKS.forEach(pushUnique);
+
+        let idx = 0;
+        const tryNext = () => {
+            if (idx >= candidates.length) {
+                // Keep HTML first-paint src if any; otherwise text-only (not a black broken img).
+                if (!imgEl.getAttribute('src') || imgEl.naturalWidth === 0) {
+                    imgEl.removeAttribute('src');
+                    imgEl.hidden = true;
+                    hero?.classList.add('hero--text-only');
+                }
+                return;
+            }
+            const url = candidates[idx++];
+            const onErr = () => {
+                imgEl.removeEventListener('error', onErr);
+                tryNext();
+            };
+            imgEl.addEventListener('error', onErr);
+            imgEl.alt = title;
+            imgEl.hidden = false;
+            hero?.classList.remove('hero--text-only');
+            if (imgEl.src === url && imgEl.complete) {
+                if (imgEl.naturalWidth > 0) {
+                    imgEl.removeEventListener('error', onErr);
+                    return;
+                }
+                onErr();
+                return;
+            }
+            imgEl.src = url;
+        };
+        tryNext();
     }
+
 
     function showCommunityTokens() {
         const section = GallerySections.getCurrentSection();

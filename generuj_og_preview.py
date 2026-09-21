@@ -1091,14 +1091,30 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser.add_argument("--no-gallery-json", action="store_true", help="Nie zapisuj share_url w gallery.json")
     parser.add_argument("--token", type=int, action="append", dest="tokens", help="Tylko wybrane token_id")
     parser.add_argument(
+        "--kolekcja",
+        help="Tylko ta collection_id (np. polygon_nature_stories_vol2).",
+    )
+    parser.add_argument(
         "--chain",
         help="Tylko ten chain (np. xrpl). Nie kasuje landingów innych kolekcji.",
     )
     return parser.parse_args(argv)
 
 
-def nfts_for_run(data: dict, *, chain: str | None = None) -> list[dict]:
+def _norm_cid(s: str) -> str:
+    return (s or "").strip().lower().replace("-", "_")
+
+
+def nfts_for_run(data: dict, *, chain: str | None = None, kolekcja: str | None = None) -> list[dict]:
     nfts = collect_all_share_nfts(data)
+    if kolekcja:
+        want_c = _norm_cid(kolekcja)
+        nfts = [
+            n
+            for n in nfts
+            if _norm_cid(nft_collection_id(n)) == want_c
+            or _norm_cid(n.get("collection_id") or "") == want_c
+        ]
     if not chain:
         return nfts
     want = chain.strip().lower()
@@ -1114,7 +1130,8 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv or sys.argv[1:])
     token_ids = set(args.tokens) if args.tokens else None
     chain = (args.chain or "").strip() or None
-    subset = bool(token_ids or chain)
+    kolekcja = (getattr(args, "kolekcja", None) or "").strip() or None
+    subset = bool(token_ids or chain or kolekcja)
 
     if args.site_only:
         data = load_gallery()
@@ -1127,7 +1144,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.pages_only:
         data = load_gallery()
-        nfts = nfts_for_run(data, chain=chain)
+        nfts = nfts_for_run(data, chain=chain, kolekcja=kolekcja)
         generate_share_pages(
             data,
             token_ids=token_ids,
@@ -1142,7 +1159,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.og_all:
         data = load_gallery()
         version = stamp_gallery_meta(data)
-        nfts = nfts_for_run(data, chain=chain)
+        nfts = nfts_for_run(data, chain=chain, kolekcja=kolekcja)
         generate_nft_ogs(
             data,
             token_ids=token_ids,
@@ -1164,8 +1181,20 @@ def main(argv: list[str] | None = None) -> int:
     if args.nft_only:
         data = load_gallery()
         version = stamp_gallery_meta(data)
-        generate_nft_ogs(data, token_ids=token_ids)
-        generate_share_pages(data, token_ids=token_ids)
+        nfts = nfts_for_run(data, chain=chain, kolekcja=kolekcja)
+        generate_nft_ogs(
+            data,
+            token_ids=token_ids,
+            nfts=nfts,
+            skip_existing=args.skip_existing,
+            limit=args.limit,
+        )
+        generate_share_pages(
+            data,
+            token_ids=token_ids,
+            nfts=nfts,
+            cleanup_stale=not subset,
+        )
         if not args.no_gallery_json:
             save_gallery(data)
         return 0

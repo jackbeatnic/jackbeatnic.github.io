@@ -209,12 +209,15 @@
             <div class="hero__media">
                 <img id="hero-image"
                      class="hero__image"
-                     alt=""
+                     src="assets/hero-bg.jpg"
+                     alt="Jack Beatnic — From the Lens to AI"
                      width="1280"
                      height="640"
                      decoding="async"
                      draggable="false"
-                     referrerpolicy="no-referrer">
+                     referrerpolicy="no-referrer"
+                     data-hero-fallbacks="assets/hero-bg.jpg https://jackbeatnic.github.io/jbg-present/avalanche_nature_stories/1.view.webp https://raw.githubusercontent.com/jackbeatnic/jackbeatnic.github.io/main/assets/hero-bg.jpg"
+                     onerror="(function(img){var list=(img.getAttribute('data-hero-fallbacks')||'').split(/\s+/).filter(Boolean);var i=Number(img.dataset.heroFb||0);while(i<list.length&&list[i]===img.getAttribute('src'))i++;if(i<list.length){img.dataset.heroFb=String(i+1);img.src=list[i];}else{img.onerror=null;img.removeAttribute('src');img.hidden=true;}})(this);">
                 <div class="hero__veil" aria-hidden="true"></div>
             </div>
             <div class="hero__content">

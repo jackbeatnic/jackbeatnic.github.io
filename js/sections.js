@@ -372,7 +372,7 @@ const GallerySections = (() => {
             site.sections.featured = {
                 label: 'Featured',
                 label_short: 'Featured',
-                explore_title: 'Featured · promo (all chains)',
+                explore_title: 'Featured',
                 empty_message: 'No active promos right now — check back soon.',
             };
         }
@@ -384,12 +384,12 @@ const GallerySections = (() => {
             site.sections.shop = {
                 label: 'Shop',
                 label_short: 'Shop',
-                explore_title: 'Studio shop',
+                explore_title: 'Studio Shop',
                 empty_message:
-                    'No live studio-shop works right now.',
-                promo_eyebrow: 'Studio shop',
+                    'No Studio Shop offers right now — check back soon.',
+                promo_eyebrow: 'Studio Shop',
                 promo_lead:
-                    'Buy direct from the studio. Pick a work, pay with wallet — the NFT comes to that wallet.',
+                    'Buy direct from Studio Shop. Open a work, pay with your wallet — the NFT arrives in that wallet.',
             };
         }
     }
@@ -1154,7 +1154,7 @@ const GallerySections = (() => {
         if (currentSection === 'shop') {
             return (
                 config().shop?.empty_message ||
-                'The studio shop is a skeleton — no live works in the price list yet.'
+                'No Studio Shop offers right now — check back soon.'
             );
         }
         if (currentSection === 'ai_art') {

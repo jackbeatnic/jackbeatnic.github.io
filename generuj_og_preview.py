@@ -1,6 +1,22 @@
 #!/usr/bin/env python3
-# TEMP (Jack 2026-09-22): no og:image / twitter:image until Grok Build redesign.
-DISABLE_OG_IMAGE = True
+# TEMP (Jack 2026-09-22): one working site card for all shares until Grok Build OG redesign.
+SITE_OG_ONLY = True
+SITE_OG_PATH = "assets/og-preview.jpg"
+
+def finalize_og_image(og_image: str, base_url: str, version: str | None = None) -> str:
+    if SITE_OG_ONLY:
+        return _site_og_url(base_url, version)
+    return og_image
+
+def _site_og_url(base_url: str, version: str | None = None) -> str:
+    from urllib.parse import urljoin
+    url = urljoin(base_url.rstrip("/") + "/", SITE_OG_PATH)
+    if version:
+        sep = "&" if "?" in url else "?"
+        url = f"{url}{sep}v={version}"
+    return url
+
+DISABLE_OG_IMAGE = False  # keep False — we emit SITE_OG_PATH instead of per-NFT/404
 
 def _strip_og_images_from_html(html: str) -> str:
     """TEMP: drop og/twitter image metas so share previews are not blank 404s."""
@@ -1100,11 +1116,9 @@ def update_site_index_og(data: dict, version: str) -> None:
             raise SystemExit(f"index.html: nie znaleziono meta {attr}")
 
     INDEX_HTML.write_text(html_text, encoding="utf-8")
-    if DISABLE_OG_IMAGE:
-        html = _strip_og_images_from_html(html)
-        index_path.write_text(html, encoding="utf-8")
-        print("[site] index.html — OG images stripped (DISABLE_OG_IMAGE)")
-        return
+    if SITE_OG_ONLY:
+        # force site preview jpg on homepage
+        pass
     print(f"[site] index.html — og:image?v={version}")
 
 

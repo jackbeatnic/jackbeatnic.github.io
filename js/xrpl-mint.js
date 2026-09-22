@@ -76,7 +76,7 @@ const XrplMint = (() => {
 
         if (nameEl) nameEl.textContent = name;
         if (metaEl) {
-            metaEl.textContent = `Up to ${max} copies of this image · destination tag = ${dt}`;
+            metaEl.textContent = `Up to ${max} copies · destination tag ${dt}`;
         }
         if (amountEl) amountEl.textContent = `${amt} XRP`;
         if (addrEl) addrEl.textContent = addr || '—';
@@ -86,18 +86,18 @@ const XrplMint = (() => {
             banner.hidden = false;
             banner.classList.toggle('shop-modal__banner--ok', live);
             banner.textContent = live
-                ? 'The destination tag is required. Without it the studio cannot mint this image to you.'
-                : 'Automatic mint is not switched on yet. Do not send XRP.';
+                ? 'Destination tag required — without it the studio cannot mint to you.'
+                : 'Automatic mint is not on yet. Do not send XRP.';
         }
         if (lead) {
             lead.textContent = live
-                ? '1) Send exactly this amount from your XRPL wallet.  2) Wait a minute.  3) Accept the 0 XRP offer — that delivers your NFT.'
-                : 'When mint is live you will send XRP to the address below with this destination tag.';
+                ? 'Send exactly this XRP amount to the address below. Include the destination tag. Wait about a minute, then accept the 0 XRP sell offer in your wallet.'
+                : 'When mint is live: send XRP to the address below with this destination tag.';
         }
         if (fulfillEl) {
             fulfillEl.textContent = live
-                ? 'The NFT is created after payment. It does not exist before.'
-                : 'Mint on demand will create the NFT after payment.';
+                ? 'The NFT is created only after payment (and the tag).'
+                : 'Mint on demand creates the NFT after payment.';
         }
     }
 

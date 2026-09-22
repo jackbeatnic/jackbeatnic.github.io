@@ -63,7 +63,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/gallery.css?v=20260922heroLight">
+    <link rel="stylesheet" href="css/gallery.css?v=20260922heroHalo">
     <link rel="stylesheet" href="css/text-select.css?v=20260815copy">
 </head>
 <body class="gallery-protected">
@@ -368,13 +368,13 @@
             <p id="shop-modal-fulfill" class="shop-modal__fulfill"></p>
             <details class="shop-modal__manual">
                 <summary>Tip (no NFT)</summary>
-                <p class="shop-modal__hint shop-modal__tip-lead">Tip only — QR/manual send does not buy an NFT.</p>
+                <p class="shop-modal__hint shop-modal__tip-lead">Optional tip — any amount to the studio address. QR/manual send does not buy an NFT (buy uses Pay with wallet).</p>
                 <dl class="shop-modal__facts">
                     <div>
                         <dt>Amount</dt>
-                        <dd id="shop-modal-amount">—</dd>
+                        <dd id="shop-modal-amount">Any amount</dd>
                         <p id="shop-modal-amount-hint" class="shop-modal__hint" hidden></p>
-                        <button type="button" id="shop-copy-amount" class="btn btn--ghost btn--small">Copy amount</button>
+                        <!-- No Copy amount: tip is free-form; catalog price is only for Pay with wallet. -->
                     </div>
                     <div>
                         <dt>Pay to</dt>
@@ -459,7 +459,7 @@
     <script src="js/wallet.js?v=20260713e"></script>
     <script src="js/tip.js?v=20260712p"></script>
     <script src="js/share.js?v=20260919share2"></script>
-    <script src="js/shop.js?v=20260922shopCopy"></script>
+    <script src="js/shop.js?v=20260922tipAny"></script>
     <script src="js/xrpl-mint.js?v=20260922lazyCopy"></script>
     <script src="js/sui-mint.js?v=20260906sui03"></script>
     <script src="js/gallery.js?v=20260919shopnote"></script>

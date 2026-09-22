@@ -352,15 +352,16 @@ const ShopCheckout = (() => {
             ].filter(Boolean);
             metaEl.textContent = bits.join(' · ');
         }
-        if (amountEl) amountEl.textContent = amount;
+        // Tip panel: never force catalog buy amount (old token-id-in-amount UX).
+        if (amountEl) amountEl.textContent = 'Any amount';
         if (amountHint) {
-            if (demo || coming || !exact) {
+            if (demo || coming) {
                 amountHint.hidden = true;
                 amountHint.textContent = '';
             } else {
                 amountHint.hidden = false;
                 amountHint.textContent =
-                    'Tip only — does not buy the NFT.';
+                    'Tip is optional — choose any amount. Exact catalog price is only required for Pay with wallet.';
             }
         }
         if (addrEl) addrEl.textContent = addr || '—';
@@ -381,7 +382,7 @@ const ShopCheckout = (() => {
             } else {
                 banner.hidden = false;
                 banner.classList.add('shop-modal__banner--ok');
-                banner.textContent = 'Do not change the amount.';
+                banner.textContent = 'Pay with wallet uses the exact catalog amount.';
             }
         }
 
@@ -455,8 +456,9 @@ const ShopCheckout = (() => {
         modal.querySelector('#shop-copy-memo')?.addEventListener('click', () => {
             copy(modal.querySelector('#shop-copy-memo'), current?.memo || current?.sku || '');
         });
+        // Tip amount copy removed — tips are free-form. Buy path never used this button.
         modal.querySelector('#shop-copy-amount')?.addEventListener('click', () => {
-            copy(modal.querySelector('#shop-copy-amount'), amountCopy(current || {}));
+            /* no-op: keep listener safe if old markup cached */
         });
         modal.querySelector('#shop-pay-wallet')?.addEventListener('click', (e) => {
             e.preventDefault();

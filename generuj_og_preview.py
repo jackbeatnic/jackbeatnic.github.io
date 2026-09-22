@@ -1,4 +1,24 @@
 #!/usr/bin/env python3
+# TEMP (Jack 2026-09-22): no og:image / twitter:image until Grok Build redesign.
+DISABLE_OG_IMAGE = True
+
+def _strip_og_images_from_html(html: str) -> str:
+    """TEMP: drop og/twitter image metas so share previews are not blank 404s."""
+    import re
+    html = re.sub(
+        r'^\s*<meta[^>]*(?:property="og:image(?::\w+)?"|name="twitter:image(?::\w+)?")[^>]*>\s*\n?',
+        '',
+        html,
+        flags=re.I | re.M,
+    )
+    html = re.sub(
+        r'(<meta\s+name="twitter:card"\s+content=")summary_large_image(">)',
+        r'\1summary\2',
+        html,
+        flags=re.I,
+    )
+    return html
+
 """Generate Open Graph previews for Jack Beatnic Gallery.
 
 - Site card: assets/og-preview.jpg (homepage)
@@ -252,7 +272,7 @@ CHAIN_CURRENCIES = {
 PRESENT_ROOT = ROOT.parent / "jbg-present"
 ASSETS_MEDIA = ROOT.parent / "jb-nft-assets" / "media"
 BACKUP_ROOT = ROOT.parent / "backup_offline" / "by_collection"
-# X/Facebook draw a domain chip on the bottom of summary_large_image.
+# X/Facebook draw a domain chip on the bottom of summary.
 OG_SAFE_BOTTOM = 96
 
 
@@ -943,15 +963,11 @@ def share_page_html(nft: dict, info: dict, base_url: str, og_version: str) -> st
     <meta property="og:url" content="{html.escape(share_url)}">
     <meta property="og:title" content="{html.escape(title)}">
     <meta property="og:description" content="{html.escape(description)}">
-    <meta property="og:image" content="{html.escape(og_image)}">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="{html.escape(info.get('twitter_handle') or '@JackBeatnicAI')}">
     <meta name="twitter:title" content="{html.escape(title)}">
     <meta name="twitter:description" content="{html.escape(description)}">
-    <meta name="twitter:image" content="{html.escape(og_image)}">
-    <meta name="twitter:image:alt" content="{html.escape(title)}">
+
     <link rel="canonical" href="{html.escape(share_url)}">
     <script>location.replace({json.dumps(gallery_url)});</script>
     <style>
@@ -1084,6 +1100,11 @@ def update_site_index_og(data: dict, version: str) -> None:
             raise SystemExit(f"index.html: nie znaleziono meta {attr}")
 
     INDEX_HTML.write_text(html_text, encoding="utf-8")
+    if DISABLE_OG_IMAGE:
+        html = _strip_og_images_from_html(html)
+        index_path.write_text(html, encoding="utf-8")
+        print("[site] index.html — OG images stripped (DISABLE_OG_IMAGE)")
+        return
     print(f"[site] index.html — og:image?v={version}")
 
 

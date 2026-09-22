@@ -468,7 +468,7 @@ const GalleryFilters = (() => {
             dispatchChange();
         });
         document.getElementById('reset-filters')?.addEventListener('click', reset);
-        document.getElementById('filter-listed')?.addEventListener('click', (e) => {
+        document.getElementById('filter-listed')?.addEventListener('click', (e) => { /* Listed filter removed */ if (true) return;
             const btn = e.currentTarget;
             listedOnly = !listedOnly;
             btn.classList.toggle('is-active', listedOnly);

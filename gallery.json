@@ -152,8 +152,8 @@
     "collection_id": "avalanche_nature_stories",
     "last_price_sync": "2026-07-24T18:02:13Z",
     "last_likes_sort": "2026-07-11T17:02:45Z",
-    "og_generated_at": "2026-09-22T17:20:16Z",
-    "og_cache_version": "202609221720",
+    "og_generated_at": "2026-09-22T22:54:23Z",
+    "og_cache_version": "202609222254",
     "last_objkt_sync": "2026-07-16T00:10:46Z",
     "xrpl_issuer_wallet": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
     "xrpl_nft_taxon": 0,
@@ -416,6 +416,37 @@
     "hero_image_note": "Locked site hero / OG background. Do not rotate with gallery front NFT (jbg-present thumbs). Source: Avalanche NS #1 view."
   },
   "nfts": [
+    {
+      "token_id": 241,
+      "name": "NS #1208",
+      "opensea_url": "https://opensea.io/assets/base/0x642073e93508606b94d0732324411135c8bc44c3/241",
+      "image_url": "https://jackbeatnic.github.io/jbg-present/base_nature_stories_vol3/241.thumb.webp",
+      "supply": 10000,
+      "traits": {},
+      "ai": {
+        "description": "",
+        "dominant_colors": [],
+        "vibe_tags": [],
+        "category": "",
+        "keywords": [
+          "base",
+          "base_nature_stories_vol3"
+        ]
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "base",
+      "contract_address": "0x642073e93508606b94d0732324411135c8bc44c3",
+      "collection_id": "base_nature_stories_vol3",
+      "listing_status": "For Sale",
+      "listing_currency": "ETH",
+      "display_rank": 0,
+      "share_url": "https://jackbeatnic.github.io/nft/base-nature-stories-vol3/241.html",
+      "medium": "ai_art",
+      "ai_series": "nature_stories",
+      "edition_label": "Base",
+      "current_price_eth": 0.00052
+    },
     {
       "token_id": 5,
       "name": "NS #178",
@@ -58991,7 +59022,7 @@
     "sections": {
       "ai_art": {
         "label": "AI Art",
-        "explore_title": "Explore AI Art",
+        "explore_title": "Explore AI Art · EVM",
         "default_subsection": "evm",
         "default_series": "nature_stories",
         "all_series_label": "All",
@@ -59083,9 +59114,7 @@
         },
         "promo_auction_eyebrow": "Live on OBJKT",
         "promo_auction_lead": "Active Tezos auctions from your wallet — bid directly on OBJKT.",
-        "promo_auction_cta": "Bid on OBJKT",
-        "promo_eyebrow": "Photography & Artworks",
-        "promo_lead": "Real-world photographs and handmade pieces — light, landscape and quiet detail, listed on Tezos and XRPL."
+        "promo_auction_cta": "Bid on OBJKT"
       },
       "atelier": {
         "label": "The Atelier",
@@ -59142,14 +59171,6 @@
         "promo_eyebrow": "The Atelier",
         "promo_lead": "A private room for those who collect closely — rare auctions and numbered editions in small batches, offered straight from the studio. Only live sales appear here; the wider studio catalogue lives on Manifold.",
         "promo_collector": "Returning collectors may soon unlock early access and quiet releases — nothing personal, only your wallet."
-      },
-      "featured": {
-        "label": "Featured",
-        "label_short": "Featured",
-        "explore_title": "Featured",
-        "promo_eyebrow": "Featured",
-        "promo_lead": "Hand-picked works from across the studio — limited offers on Avalanche, Sui and more.",
-        "empty_message": "No Featured picks right now — check back soon."
       }
     }
   }

@@ -228,7 +228,7 @@ const Gallery = (() => {
     }
 
     function marketplaceName(nft) {
-        if (isShopNft(nft)) return 'Studio Shop';
+        if (isShopNft(nft)) return 'studio shop';
         if (isFeaturedPromoNft(nft)) {
             if (nft.tradeport_url || nft.chain === 'sui') {
                 return MARKETPLACE_NAMES.tradeport;
@@ -337,7 +337,7 @@ const Gallery = (() => {
                 (isShopNft(nft) && (nft.qty_available || 0) <= 0);
             const disabled = coming ? ' disabled' : '';
             const shopLabel = escapeHtml(shopCtaLabel(nft));
-            const note = `<p class="nft-card__shop-note">Studio Shop · direct from the Artist</p>`;
+            const note = `<p class="nft-card__shop-note">Studio shop · direct from the Artist</p>`;
             if (osHref) {
                 const osLabel = escapeHtml(osCtaLabel(nft));
                 return `
@@ -562,7 +562,7 @@ const Gallery = (() => {
             const osP = nft.os_list_price;
             const osCur = (nft.os_list_currency || shopCur).toUpperCase();
             const q = nft.qty_available ?? nft.promo_quantity;
-            const bits = ['Studio Shop · direct from the Artist'];
+            const bits = ['Studio shop · direct from the Artist'];
             if (q != null) bits.push(`${q} available`);
             if (nft.promo_days_left != null) bits.push(`${nft.promo_days_left}d left`);
             if (osP != null && osP !== '') bits.push(`OpenSea ${osP} ${osCur}`);
@@ -930,7 +930,7 @@ const Gallery = (() => {
     function shopCtaLabel(nft) {
         const p = nft.shop_pay_amount || nft.pay_amount || nft.shop_price;
         const cur = (nft.shop_currency || nft.listing_currency || 'AVAX').toUpperCase();
-        if (p != null && p !== '') return `Studio Shop · ${p} ${cur}`;
+        if (p != null && p !== '') return `Studio shop · ${p} ${cur}`;
         return 'Buy from studio';
     }
 
@@ -945,7 +945,7 @@ const Gallery = (() => {
         const marks = [];
         if (nft.on_os) marks.push(['os', 'OS']);
         if (nft.in_shop) marks.push(['shop', 'SHOP']);
-        if (nft.in_featured) marks.push(['featured', 'Featured']);
+        if (nft.in_featured) marks.push(['featured', 'FEATURED']);
         if (!marks.length) return '';
         return `<div class="nft-card__marks" aria-hidden="true">${marks
             .map(
@@ -1247,7 +1247,7 @@ const Gallery = (() => {
                     featured: {
                         label: 'Featured',
                         label_short: 'Featured',
-                        explore_title: 'Featured',
+                        explore_title: 'Featured · promo (Avalanche, Sui, …)',
                         empty_message:
                             'No active promos right now — check back soon.',
                         ...(mainSections.featured || {}),
@@ -1255,12 +1255,12 @@ const Gallery = (() => {
                     shop: {
                         label: 'Shop',
                         label_short: 'Shop',
-                        explore_title: 'Studio Shop',
+                        explore_title: 'Studio shop',
                         empty_message:
-                            'No Studio Shop offers right now — check back soon.',
-                        promo_eyebrow: 'Studio Shop',
+                            'No live studio offers right now.',
+                        promo_eyebrow: 'Studio shop',
                         promo_lead:
-                            'Buy direct from Studio Shop. Open a work, pay with your wallet — the NFT arrives in that wallet.',
+                            'Buy direct from the studio. Pick a work, pay with wallet — the NFT comes to that wallet.',
                         ...(mainSections.shop || {}),
                     },
                     ...mainSections,
@@ -1500,23 +1500,10 @@ const Gallery = (() => {
         const leadEl = document.getElementById('section-promo-lead');
         const listEl = document.getElementById('section-promo-tokens');
 
-        if (GallerySections.getCurrentSection() === 'featured') {
-            const meta = GallerySections.getSectionMeta();
-            el.hidden = false;
-            if (eyebrowEl) eyebrowEl.textContent = meta.promo_eyebrow || 'Featured';
-            if (leadEl) {
-                leadEl.textContent =
-                    meta.promo_lead ||
-                    'Hand-picked works from across the studio — limited offers on Avalanche, Sui and more.';
-            }
-            if (listEl) listEl.innerHTML = '';
-            return;
-        }
-
         if (GallerySections.getCurrentSection() === 'shop') {
             const meta = GallerySections.getSectionMeta();
             el.hidden = false;
-            if (eyebrowEl) eyebrowEl.textContent = meta.promo_eyebrow || 'Studio Shop';
+            if (eyebrowEl) eyebrowEl.textContent = meta.promo_eyebrow || 'Studio shop';
             if (leadEl) {
                 leadEl.textContent =
                     meta.promo_lead ||
@@ -1622,7 +1609,7 @@ const Gallery = (() => {
             if (leadEl) {
                 leadEl.textContent =
                     kp.promo_lead ||
-                    'Photography and handmade works on XRPL — mint from the studio when you are ready. Up to 500 editions per image.';
+                    'Lazy mint from the studio. Photography and artworks — up to 500 copies of each image. Pay with the destination tag, then accept the 0 XRP offer.';
             }
             if (listEl) listEl.innerHTML = '';
             return;
@@ -1698,7 +1685,7 @@ const Gallery = (() => {
             if (leadEl) {
                 leadEl.textContent =
                     kp.promo_lead ||
-                    'A quiet garden of Sui editions — landscape, light and gentle colour. Mint from the studio or browse on TradePort.';
+                    'A quiet garden of Sui editions — landscape, light and gentle colour, offered on TradePort.';
             }
             if (listEl) {
                 // bez kafelków marketplace / „Mint on TradePort”
@@ -1722,48 +1709,11 @@ const Gallery = (() => {
             if (leadEl) {
                 leadEl.textContent =
                     kp.promo_lead ||
-                    'AI scenes of place and mood on the XRP Ledger — quiet editions you can mint from the studio.';
+                    'Scenes of place and mood for the XRP Ledger — quiet, personal, one at a time.';
             }
             if (listEl) {
                 listEl.innerHTML = '';
             }
-            return;
-        }
-
-
-        if (
-            GallerySections.getCurrentSection() === 'ai_art' &&
-            GallerySections.getAiKind() === 'evm'
-        ) {
-            const meta = GallerySections.getSectionMeta();
-            el.hidden = false;
-            if (eyebrowEl) {
-                eyebrowEl.textContent =
-                    meta.promo_eyebrow || 'AI Art · EVM';
-            }
-            if (leadEl) {
-                leadEl.textContent =
-                    meta.promo_lead ||
-                    'Nature Stories, Flower Stories and more across Avalanche, Polygon and Base — browse by series, then open a card to collect on OpenSea.';
-            }
-            if (listEl) listEl.innerHTML = '';
-            return;
-        }
-
-
-        if (GallerySections.getCurrentSection() === 'photography') {
-            const meta = GallerySections.getSectionMeta();
-            el.hidden = false;
-            if (eyebrowEl) {
-                eyebrowEl.textContent =
-                    meta.promo_eyebrow || 'Photography & Artworks';
-            }
-            if (leadEl) {
-                leadEl.textContent =
-                    meta.promo_lead ||
-                    'Real-world photographs and handmade pieces — light, landscape and quiet detail, listed on Tezos and XRPL.';
-            }
-            if (listEl) listEl.innerHTML = '';
             return;
         }
 
@@ -1925,7 +1875,7 @@ const Gallery = (() => {
             let msg = GallerySections.emptyMessage();
             if (GalleryLikes.getSavedOnly()) {
                 msg = 'No saved works yet — tap ☆ on a card to bookmark it, then use Saved for later.';
-            } else if (false && GalleryFilters.getListedOnly()) {  /* Listed filter removed */
+            } else if (GalleryFilters.getListedOnly()) {
                 msg = 'No listed works in this view.';
             } else if (sectionNfts.length > 0) {
                 msg = 'No works match the selected filters.';

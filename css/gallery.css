@@ -1323,9 +1323,9 @@ body.tip-open {
 .hero__panel {
     padding: 1.15rem 1.25rem 1.3rem;
     border-radius: 1.05rem;
-    background: rgba(255, 255, 255, 0.58);
-    border: 1px solid rgba(255, 255, 255, 0.72);
-    box-shadow: 0 10px 36px rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
 }
 
 
@@ -2902,9 +2902,9 @@ body.lightbox-open {
     }
 
     .hero__panel {
-        background: rgba(12, 12, 12, 0.52);
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+        background: rgba(12, 12, 12, 0.58);
+        border: none;
+        box-shadow: 0 10px 32px rgba(0, 0, 0, 0.22);
     }
 
     .hero__content {
@@ -3000,7 +3000,7 @@ body.lightbox-open {
     }
 
     .hero__panel {
-        background: rgba(255, 255, 255, 0.66);
+        background: rgba(255, 255, 255, 0.88);
     }
 
     .hero__tagline {
@@ -3029,7 +3029,8 @@ body.lightbox-open {
     }
 
     .hero__panel {
-        background: rgba(10, 10, 10, 0.62);
+        background: rgba(10, 10, 10, 0.68);
+        border: none;
     }
 
     .hero__content {

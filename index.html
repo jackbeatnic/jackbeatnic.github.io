@@ -21,18 +21,18 @@
     <meta property="og:url" content="https://jackbeatnic.github.io/">
     <meta property="og:title" content="Jack Beatnic — AI Art and Photography Gallery">
     <meta property="og:description" content="From the lens to AI — photography, memory and imagination. Nature Stories on Avalanche + primary mint Nature Stories SE on Sui (TradePort). NFTs across Avalanche, Polygon, Base and Sui.">
-    <meta property="og:image" content="https://jackbeatnic.github.io/assets/og-preview.jpg?v=202609212247">
+    <meta property="og:image" content="https://jackbeatnic.github.io/assets/og-preview.jpg?v=202609222125">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Jack Beatnic Gallery — AI art and photography">
-    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image:alt" content="Jack Beatnic Gallery">
+<meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@JackBeatnicAI">
     <meta name="twitter:creator" content="@JackBeatnicAI">
     <meta name="twitter:title" content="Jack Beatnic — AI Art and Photography Gallery">
     <meta name="twitter:description" content="From the lens to AI. Photography meets generative art — Nature Stories, landscapes, collages and more.">
-    <meta name="twitter:image" content="https://jackbeatnic.github.io/assets/og-preview.jpg?v=202609212247">
-    <meta name="twitter:image:alt" content="Jack Beatnic Gallery preview">
-    <script type="application/ld+json">
+    <meta name="twitter:image" content="https://jackbeatnic.github.io/assets/og-preview.jpg?v=202609222125">
+    <meta name="twitter:image:alt" content="Jack Beatnic Gallery">
+<script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "ProfilePage",
@@ -63,7 +63,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/gallery.css?v=20260919mkt">
+    <link rel="stylesheet" href="css/gallery.css?v=20260922heroPanel3">
     <link rel="stylesheet" href="css/text-select.css?v=20260815copy">
 </head>
 <body class="gallery-protected">
@@ -109,7 +109,7 @@
                             class="shop-chip"
                             data-section="shop"
                             aria-pressed="false"
-                            title="Studio shop">
+                            title="Studio Shop">
                         <span class="shop-chip__label">Shop</span>
                         <span class="shop-chip__count" id="shop-chip-count" hidden></span>
                     </button>
@@ -220,16 +220,18 @@
                      onerror="(function(img){var list=(img.getAttribute('data-hero-fallbacks')||'').split(/\s+/).filter(Boolean);var i=Number(img.dataset.heroFb||0);while(i<list.length&&list[i]===img.getAttribute('src'))i++;if(i<list.length){img.dataset.heroFb=String(i+1);img.src=list[i];}else{img.onerror=null;img.removeAttribute('src');img.hidden=true;}})(this);">
                 <div class="hero__veil" aria-hidden="true"></div>
             </div>
-            <div class="hero__content">
-                <div class="hero__brand">
-                    <h2 id="hero-title" class="hero__title">…</h2>
-                    <p id="hero-tagline" class="hero__tagline">…</p>
-                </div>
-                <div class="hero__prose">
-                    <div id="hero-description" class="hero__description"></div>
-                    <div class="hero__actions">
-                        <a href="#explore" class="btn btn--primary">Explore the Gallery</a>
-                        <a id="hero-marketplaces" class="btn btn--ghost" href="#about-marketplaces">Marketplaces</a>
+                        <div class="hero__content">
+                <div class="hero__panel">
+                    <div class="hero__brand">
+                        <h2 id="hero-title" class="hero__title">…</h2>
+                        <p id="hero-tagline" class="hero__tagline">…</p>
+                    </div>
+                    <div class="hero__prose">
+                        <div id="hero-description" class="hero__description"></div>
+                        <div class="hero__actions">
+                            <a href="#explore" class="btn btn--primary">Explore the Gallery</a>
+                            <a id="hero-marketplaces" class="btn btn--ghost" href="#about-marketplaces">Marketplaces</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -269,8 +271,7 @@
                 <div class="filters__tags" id="library-filters" role="group" aria-label="Library marks">
                     <button type="button" id="filter-os" class="filter-tag library-mark library-mark--os" aria-pressed="false">OS</button>
                     <button type="button" id="filter-shop" class="filter-tag library-mark library-mark--shop" aria-pressed="false">SHOP</button>
-                    <button type="button" id="filter-featured" class="filter-tag library-mark library-mark--featured" aria-pressed="false">FEATURED</button>
-                    <button type="button" id="filter-listed" class="filter-tag listed-filter">Listed</button>
+                    <button type="button" id="filter-featured" class="filter-tag library-mark library-mark--featured" aria-pressed="false">Featured</button>
                     <button type="button" id="filter-saved" class="filter-tag saved-filter">Saved for later</button>
                 </div>
             </div>
@@ -369,7 +370,7 @@
             <p id="shop-modal-fulfill" class="shop-modal__fulfill"></p>
             <details class="shop-modal__manual">
                 <summary>Tip (no NFT)</summary>
-                <p class="shop-modal__hint shop-modal__tip-lead">Optional tip only — QR or manual send does not buy an NFT. Buy is Pay with wallet or WalletConnect.</p>
+                <p class="shop-modal__hint shop-modal__tip-lead">Tip only — QR/manual send does not buy an NFT.</p>
                 <dl class="shop-modal__facts">
                     <div>
                         <dt>Amount</dt>
@@ -385,13 +386,12 @@
                     <div>
                         <dt>Memo (optional)</dt>
                         <dd id="shop-modal-memo">—</dd>
-                        <p class="shop-modal__hint">Optional.</p>
                         <button type="button" id="shop-copy-memo" class="btn btn--ghost btn--small">Copy memo</button>
                     </div>
                 </dl>
                 <img id="shop-modal-qr" class="shop-modal__qr" width="160" height="160" alt="" hidden>
             </details>
-            <p class="shop-modal__terms"><a href="shop-terms.html">Studio shop terms</a></p>
+            <p class="shop-modal__terms"><a href="shop-terms.html">Studio Shop terms</a></p>
         </div>
     </div>
 
@@ -422,7 +422,7 @@
                 </div>
             </dl>
             <p id="xrpl-mint-fulfill" class="shop-modal__fulfill"></p>
-            <p class="shop-modal__terms">After payment, accept the 0 XRP sell offer in your wallet. That is how the NFT reaches you.</p>
+            <p class="shop-modal__terms">Keep the destination tag exact. Accept the 0 XRP sell offer to receive the NFT.</p>
         </div>
     </div>
 
@@ -461,8 +461,8 @@
     <script src="js/wallet.js?v=20260713e"></script>
     <script src="js/tip.js?v=20260712p"></script>
     <script src="js/share.js?v=20260919share2"></script>
-    <script src="js/shop.js?v=20260908shoplead"></script>
-    <script src="js/xrpl-mint.js?v=20260828xrp01"></script>
+    <script src="js/shop.js?v=20260922shopCopy"></script>
+    <script src="js/xrpl-mint.js?v=20260922lazyCopy"></script>
     <script src="js/sui-mint.js?v=20260906sui03"></script>
     <script src="js/gallery.js?v=20260919shopnote"></script>
 </body>

@@ -58991,7 +58991,7 @@
     "sections": {
       "ai_art": {
         "label": "AI Art",
-        "explore_title": "Explore AI Art",
+        "explore_title": "Explore AI Art · EVM",
         "default_subsection": "evm",
         "default_series": "nature_stories",
         "all_series_label": "All",
@@ -59083,9 +59083,7 @@
         },
         "promo_auction_eyebrow": "Live on OBJKT",
         "promo_auction_lead": "Active Tezos auctions from your wallet — bid directly on OBJKT.",
-        "promo_auction_cta": "Bid on OBJKT",
-        "promo_eyebrow": "Photography & Artworks",
-        "promo_lead": "Real-world photographs and handmade pieces — light, landscape and quiet detail, listed on Tezos and XRPL."
+        "promo_auction_cta": "Bid on OBJKT"
       },
       "atelier": {
         "label": "The Atelier",
@@ -59142,14 +59140,6 @@
         "promo_eyebrow": "The Atelier",
         "promo_lead": "A private room for those who collect closely — rare auctions and numbered editions in small batches, offered straight from the studio. Only live sales appear here; the wider studio catalogue lives on Manifold.",
         "promo_collector": "Returning collectors may soon unlock early access and quiet releases — nothing personal, only your wallet."
-      },
-      "featured": {
-        "label": "Featured",
-        "label_short": "Featured",
-        "explore_title": "Featured",
-        "promo_eyebrow": "Featured",
-        "promo_lead": "Hand-picked works from across the studio — limited offers on Avalanche, Sui and more.",
-        "empty_message": "No Featured picks right now — check back soon."
       }
     }
   }

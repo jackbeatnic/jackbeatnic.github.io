@@ -152,8 +152,8 @@
     "collection_id": "avalanche_nature_stories",
     "last_price_sync": "2026-07-24T18:02:13Z",
     "last_likes_sort": "2026-07-11T17:02:45Z",
-    "og_generated_at": "2026-09-22T22:54:23Z",
-    "og_cache_version": "202609222254",
+    "og_generated_at": "2026-09-22T22:59:16Z",
+    "og_cache_version": "202609222259",
     "last_objkt_sync": "2026-07-16T00:10:46Z",
     "xrpl_issuer_wallet": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
     "xrpl_nft_taxon": 0,
@@ -416,6 +416,37 @@
     "hero_image_note": "Locked site hero / OG background. Do not rotate with gallery front NFT (jbg-present thumbs). Source: Avalanche NS #1 view."
   },
   "nfts": [
+    {
+      "token_id": 1838,
+      "name": "NS #4124",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/1838",
+      "image_url": "https://jackbeatnic.github.io/jbg-present/avalanche_nature_stories/1838.thumb.webp",
+      "supply": 10000,
+      "traits": {},
+      "ai": {
+        "description": "",
+        "dominant_colors": [],
+        "vibe_tags": [],
+        "category": "",
+        "keywords": [
+          "avalanche",
+          "avalanche_nature_stories"
+        ]
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX",
+      "display_rank": 0,
+      "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/1838.html",
+      "medium": "ai_art",
+      "ai_series": "nature_stories",
+      "edition_label": "Avalanche",
+      "current_price_avax": 0.04103
+    },
     {
       "token_id": 241,
       "name": "NS #1208",

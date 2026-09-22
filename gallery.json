@@ -152,8 +152,8 @@
     "collection_id": "avalanche_nature_stories",
     "last_price_sync": "2026-07-24T18:02:13Z",
     "last_likes_sort": "2026-07-11T17:02:45Z",
-    "og_generated_at": "2026-09-22T01:11:49Z",
-    "og_cache_version": "202609220111",
+    "og_generated_at": "2026-09-22T01:20:32Z",
+    "og_cache_version": "202609220120",
     "last_objkt_sync": "2026-07-16T00:10:46Z",
     "xrpl_issuer_wallet": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
     "xrpl_nft_taxon": 0,
@@ -445,7 +445,8 @@
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Base",
-      "current_price_eth": 0.00072
+      "current_price_eth": 0.00072,
+      "og_image": "jbg-present/og/base-nature-stories-vol3-5.jpg"
     },
     {
       "token_id": 6,
@@ -476,7 +477,8 @@
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Polygon",
-      "current_price_weth": 0.00072
+      "current_price_weth": 0.00072,
+      "og_image": "jbg-present/og/polygon-nature-stories-vol2-6.jpg"
     },
     {
       "token_id": 3,
@@ -1315,7 +1317,8 @@
       "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-stories/13.html",
       "medium": "ai_art",
       "ai_series": "nature_stories",
-      "edition_label": "Avalanche"
+      "edition_label": "Avalanche",
+      "og_image": "jbg-present/og/avalanche-nature-stories-13.jpg"
     },
     {
       "token_id": 14,

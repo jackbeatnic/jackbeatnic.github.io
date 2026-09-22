@@ -152,8 +152,8 @@
     "collection_id": "avalanche_nature_stories",
     "last_price_sync": "2026-07-24T18:02:13Z",
     "last_likes_sort": "2026-07-11T17:02:45Z",
-    "og_generated_at": "2026-09-21T23:22:41Z",
-    "og_cache_version": "202609212322",
+    "og_generated_at": "2026-09-22T01:04:12Z",
+    "og_cache_version": "202609220104",
     "last_objkt_sync": "2026-07-16T00:10:46Z",
     "xrpl_issuer_wallet": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
     "xrpl_nft_taxon": 0,
@@ -416,6 +416,37 @@
     "hero_image_note": "Locked site hero / OG background. Do not rotate with gallery front NFT (jbg-present thumbs). Source: Avalanche NS #1 view."
   },
   "nfts": [
+    {
+      "token_id": 5,
+      "name": "NS #178",
+      "opensea_url": "https://opensea.io/assets/base/0x642073e93508606b94d0732324411135c8bc44c3/5",
+      "image_url": "https://jackbeatnic.github.io/jbg-present/base_nature_stories_vol3/5.thumb.webp",
+      "supply": 10000,
+      "traits": {},
+      "ai": {
+        "description": "",
+        "dominant_colors": [],
+        "vibe_tags": [],
+        "category": "",
+        "keywords": [
+          "base",
+          "base_nature_stories_vol3"
+        ]
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "base",
+      "contract_address": "0x642073e93508606b94d0732324411135c8bc44c3",
+      "collection_id": "base_nature_stories_vol3",
+      "listing_status": "For Sale",
+      "listing_currency": "ETH",
+      "display_rank": 0,
+      "share_url": "https://jackbeatnic.github.io/nft/base-nature-stories-vol3/5.html",
+      "medium": "ai_art",
+      "ai_series": "nature_stories",
+      "edition_label": "Base",
+      "current_price_eth": 0.00072
+    },
     {
       "token_id": 6,
       "name": "NS #55",

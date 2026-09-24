@@ -495,11 +495,26 @@ a {
     display: none;
 }
 
-@media (max-width: 390px) {
+.section-nav__tab[data-section="photography"] {
+    flex: 0 0 auto;
+    min-width: max-content;
+}
+
+@media (max-width: 767px) {
+    .section-nav {
+        gap: 0.2rem;
+        padding: 0 0.85rem;
+    }
+
     .section-nav__tab {
         font-size: 0.56rem;
-        letter-spacing: 0.05em;
-        padding: 0.65rem 0.15rem;
+        letter-spacing: 0.03em;
+        padding: 0.65rem 0.12rem;
+    }
+
+    .section-nav__tab--tip {
+        padding-left: 0.45rem;
+        padding-right: 0.45rem;
     }
 
     .section-nav__label--full {
@@ -654,7 +669,7 @@ a {
 
 .section-promo__title {
     margin: 0;
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-size: 1rem;
     font-weight: 600;
     color: var(--black);
@@ -786,6 +801,13 @@ a {
     color: var(--black);
 }
 
+@media (max-width: 767px) {
+    .section-nav__tab--tip {
+        padding-left: 0.45rem;
+        padding-right: 0.45rem;
+    }
+}
+
 /* ── Studio shop modal ── */
 .shop-modal[hidden] {
     display: none !important;
@@ -856,7 +878,7 @@ body.shop-open {
 }
 
 .shop-modal__title {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-size: 1.35rem;
     font-weight: 600;
     margin: 0 0 0.35rem;
@@ -1027,7 +1049,7 @@ body.tip-open {
 
 .tip-modal__title {
     margin: 0 2rem 0.35rem 0;
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-size: 1.15rem;
     font-weight: 600;
 }
@@ -1391,7 +1413,7 @@ body.tip-open {
 
 .about-section__title {
     margin: 0;
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-size: 1.35rem;
     font-weight: 600;
     letter-spacing: -0.01em;
@@ -2471,7 +2493,7 @@ body.lightbox-open {
     margin-top: 0.75rem;
     padding: 0 0.5rem 0.15rem;
     text-align: center;
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-size: 0.95rem;
     /* Hard light ink: dark mode remaps --white to near-black. */
     color: #f4f4f4;
@@ -2545,7 +2567,7 @@ body.lightbox-open {
 
 .featured-promo__title {
     margin: 0;
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-weight: 500;
     font-size: 1.35rem;
     letter-spacing: 0.01em;

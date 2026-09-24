@@ -152,17 +152,27 @@ def local_image_path(nft: dict) -> Path | None:
     for tid in ids:
         for folder in folders:
             candidates.append(PRESENT_ROOT / folder / f"{tid}.view.webp")
-            candidates.append(PRESENT_ROOT / folder / f"{tid}.thumb.webp")
             media = BACKUP_ROOT / folder / "media"
             for ext in (".jpg", ".jpeg", ".png", ".webp"):
                 candidates.append(media / f"{tid}{ext}")
+            # Tezos/Objkt studio squares (~650px) — enough for the 558px OG tile.
+            candidates.append(PROMO_TEZOS / "square" / f"{tid}.jpg")
+            candidates.append(PROMO_TEZOS / "vertical" / f"{tid}.jpg")
+            candidates.append(PRESENT_ROOT / folder / f"{tid}.thumb.webp")
         if (nft.get("medium") == "xrpl_ai") or "xrpl" in cid or "xrpl" in slug_us:
             candidates.append(ASSETS_MEDIA / "xrpl" / "jbn" / f"{tid}.jpg")
             candidates.append(ASSETS_MEDIA / "xrpl" / "jbn" / f"{tid}.webp")
 
     for path in candidates:
-        if path.is_file():
-            return path
+        if not path.is_file():
+            continue
+        try:
+            with Image.open(path) as im:
+                if min(im.size) < OG_MIN_SRC and "thumb" in path.name:
+                    continue
+        except Exception:
+            continue
+        return path
     return None
 
 
@@ -253,6 +263,9 @@ CHAIN_CURRENCIES = {
 PRESENT_ROOT = ROOT.parent / "jbg-present"
 ASSETS_MEDIA = ROOT.parent / "jb-nft-assets" / "media"
 BACKUP_ROOT = ROOT.parent / "backup_offline" / "by_collection"
+PROMO_TEZOS = ROOT.parent / "promo" / "tezos"
+# Don't use prezentacja *small-portrait* (~400px) — that batch looked soft on OG cards.
+OG_MIN_SRC = 500
 # X/Facebook draw a domain chip on the bottom of summary_large_image.
 OG_SAFE_BOTTOM = 96
 
@@ -650,7 +663,7 @@ def generate_nft_ogs(
         label = nft.get("name") or f"#{token_id}"
         try:
             card = generate_nft_og(nft, info)
-            card.convert("RGB").save(out, "JPEG", quality=80, optimize=True, subsampling=0)
+            card.convert("RGB").save(out, "JPEG", quality=88, optimize=True, subsampling=0)
             written.append(out)
             done += 1
             if done <= 8 or done % 50 == 0:

@@ -86,13 +86,13 @@ echo "=== [2/4] Sync gallery.json ==="
 )
 
 echo ""
-echo "=== [3/4] OG preview (site + per-NFT) ==="
+echo "=== [3/4] OG preview (site card + karty → jbg-og) ==="
 (
     cd "$WWW_DIR"
     if $DRY_RUN; then
         echo "[dry-run] Pominięto generuj_og_preview.py"
     else
-        "$PYTHON" generuj_og_preview.py
+        "$PYTHON" generuj_og_preview.py --skip-existing
     fi
 )
 
@@ -123,13 +123,13 @@ if ! git remote get-url origin >/dev/null 2>&1; then
     exit 1
 fi
 
-if git diff --quiet -- gallery.json assets/og-preview.jpg assets/og nft/ js/gallery.js \
-    && git diff --cached --quiet -- gallery.json assets/og-preview.jpg assets/og nft/ js/gallery.js; then
-    echo "Brak zmian (gallery / OG) — pomijam commit i push."
+if git diff --quiet -- gallery.json assets/og-preview.jpg nft/ js/gallery.js \
+    && git diff --cached --quiet -- gallery.json assets/og-preview.jpg nft/ js/gallery.js; then
+    echo "Brak zmian (gallery / landings) — pomijam commit i push."
     exit 0
 fi
 
-git add gallery.json assets/og-preview.jpg assets/og nft/ js/gallery.js generuj_og_preview.py
+git add gallery.json assets/og-preview.jpg nft/ js/gallery.js generuj_og_preview.py
 if [[ -z "$COMMIT_MSG" ]]; then
     COMMIT_MSG="sync prices ($KOLEKCJA) $(date -u +%Y-%m-%dT%H:%MZ)"
 fi

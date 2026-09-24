@@ -1,44 +1,9 @@
 #!/usr/bin/env python3
-# TEMP (Jack 2026-09-22): one working site card for all shares until Grok Build OG redesign.
-SITE_OG_ONLY = True
-SITE_OG_PATH = "assets/og-preview.jpg"
-
-def finalize_og_image(og_image: str, base_url: str, version: str | None = None) -> str:
-    if SITE_OG_ONLY:
-        return _site_og_url(base_url, version)
-    return og_image
-
-def _site_og_url(base_url: str, version: str | None = None) -> str:
-    from urllib.parse import urljoin
-    url = urljoin(base_url.rstrip("/") + "/", SITE_OG_PATH)
-    if version:
-        sep = "&" if "?" in url else "?"
-        url = f"{url}{sep}v={version}"
-    return url
-
-DISABLE_OG_IMAGE = False  # keep False — we emit SITE_OG_PATH instead of per-NFT/404
-
-def _strip_og_images_from_html(html: str) -> str:
-    """TEMP: drop og/twitter image metas so share previews are not blank 404s."""
-    import re
-    html = re.sub(
-        r'^\s*<meta[^>]*(?:property="og:image(?::\w+)?"|name="twitter:image(?::\w+)?")[^>]*>\s*\n?',
-        '',
-        html,
-        flags=re.I | re.M,
-    )
-    html = re.sub(
-        r'(<meta\s+name="twitter:card"\s+content=")summary_large_image(">)',
-        r'\1summary\2',
-        html,
-        flags=re.I,
-    )
-    return html
-
 """Generate Open Graph previews for Jack Beatnic Gallery.
 
-- Site card: assets/og-preview.jpg (homepage)
-- Per-NFT cards: JB_NFT_OG_DIR (default ../og-cache) — NOT committed under assets/og (Pages 1GB limit)
+- Site card: assets/og-preview.jpg (homepage, stays on WWW — one file)
+- Per-NFT cards: JB_NFT_OG_DIR (default ../jbg-og) — fourth repo, never assets/og
+- Public card URL: JB_NFT_OG_PUBLIC_BASE (https://jackbeatnic.github.io/jbg-og)
 - Share landing pages: nft/{collection_id}/{id}.html (OG meta → redirect)
   Legacy flat nft/{id}.html kept as redirect stubs when unique.
 """
@@ -48,6 +13,7 @@ from __future__ import annotations
 import argparse
 import html
 import json
+import os
 import re
 import sys
 import urllib.request
@@ -61,12 +27,11 @@ ROOT = Path(__file__).resolve().parent
 GALLERY_JSON = ROOT / "gallery.json"
 SITE_OG_PATH = ROOT / "assets" / "og-preview.jpg"
 # Per-NFT OG JPGs used to live in assets/og and blew past the GH Pages ~1GB
-# soft limit (Pages builds errored; live hero went black). Default: write OG
-# JPGs under ../og-cache (outside the Pages tree). Override with JB_NFT_OG_DIR.
-# Share HTML still goes to nft/; og:image URLs fall back to jbg-present thumbs
-# when the jpg is not published under assets/og/.
-_default_og = (ROOT.parent / "og-cache").resolve()
-NFT_OG_DIR = Path((__import__("os").environ.get("JB_NFT_OG_DIR") or str(_default_og))).expanduser()
+# soft limit. They live in the fourth repo jbg-og (not WWW, not thumbs).
+# Override with JB_NFT_OG_DIR / JB_NFT_OG_PUBLIC_BASE.
+_default_og = (ROOT.parent / "jbg-og").resolve()
+NFT_OG_DIR = Path((os.environ.get("JB_NFT_OG_DIR") or str(_default_og))).expanduser()
+OG_PUBLIC_BASE = (os.environ.get("JB_NFT_OG_PUBLIC_BASE") or "https://jackbeatnic.github.io/jbg-og").rstrip("/")
 NFT_PAGES_DIR = ROOT / "nft"
 FONTS_DIR = ROOT / "assets" / "fonts"
 
@@ -288,7 +253,7 @@ CHAIN_CURRENCIES = {
 PRESENT_ROOT = ROOT.parent / "jbg-present"
 ASSETS_MEDIA = ROOT.parent / "jb-nft-assets" / "media"
 BACKUP_ROOT = ROOT.parent / "backup_offline" / "by_collection"
-# X/Facebook draw a domain chip on the bottom of summary.
+# X/Facebook draw a domain chip on the bottom of summary_large_image.
 OG_SAFE_BOTTOM = 96
 
 
@@ -687,9 +652,6 @@ def generate_nft_ogs(
             card = generate_nft_og(nft, info)
             card.convert("RGB").save(out, "JPEG", quality=80, optimize=True, subsampling=0)
             written.append(out)
-            if col == LEGACY_OG_COLLECTION:
-                legacy = output_dir / f"nft-{token_id}.jpg"
-                legacy.write_bytes(out.read_bytes())
             done += 1
             if done <= 8 or done % 50 == 0:
                 print(f"[og] {done} {col}/{token_id} {label} ({out.stat().st_size // 1024} KB)")
@@ -905,55 +867,56 @@ def collect_all_share_nfts(gallery_data: dict) -> list[dict]:
     return collected
 
 
-def published_og_rel(col: str, token_id: int) -> str | None:
-    """Only return assets/og/... if the JPG is actually in the Pages tree."""
-    published_dir = ROOT / "assets" / "og"
-    prefixed = published_dir / f"{col}-{token_id}.jpg"
+def og_card_filename(col: str, token_id: int, *, legacy: bool = False) -> str:
+    if legacy:
+        return f"nft-{token_id}.jpg"
+    return f"{col}-{token_id}.jpg"
+
+
+def local_og_card(col: str, token_id: int) -> Path | None:
+    """Card JPEG in jbg-og (or JB_NFT_OG_DIR). Never www/assets/og."""
+    prefixed = NFT_OG_DIR / og_card_filename(col, token_id)
     if prefixed.is_file():
-        return f"assets/og/{col}-{token_id}.jpg"
-    legacy = published_dir / f"nft-{token_id}.jpg"
-    if col == LEGACY_OG_COLLECTION and legacy.is_file():
-        return f"assets/og/nft-{token_id}.jpg"
+        return prefixed
+    if col == LEGACY_OG_COLLECTION:
+        legacy = NFT_OG_DIR / og_card_filename(col, token_id, legacy=True)
+        if legacy.is_file():
+            return legacy
     return None
 
 
-def present_fallback_url(nft: dict) -> str | None:
-    """jbg-present view thumb hosted on Pages — non-black OG when assets/og is absent."""
-    col = nft_collection_id(nft)
-    tid = token_id_int(nft)
-    if not col or tid is None:
+def published_og_rel(col: str, token_id: int) -> str | None:
+    """Public path on the OG host, if the JPEG exists locally."""
+    local = local_og_card(col, token_id)
+    if local is None:
         return None
-    # Try common folder spellings used under jbg-present/
-    candidates = []
-    for f in (col, col.replace("_", "-"), col.replace("-", "_")):
-        if f not in candidates:
-            candidates.append(f)
-    # Prefer first candidate URL (Pages mirrors jbg-present); crawlers tolerate 404 less than black.
-    return f"https://jackbeatnic.github.io/jbg-present/{candidates[0]}/{tid}.view.webp"
+    return local.name
+
+
+def site_og_image_url(base_url: str, og_version: str) -> str:
+    return og_url_with_version(base_url, "assets/og-preview.jpg", og_version)
+
+
+def public_og_card_url(filename: str, og_version: str) -> str:
+    return f"{OG_PUBLIC_BASE}/{filename}?v={og_version}"
 
 
 def og_image_url(nft: dict, base_url: str, og_version: str) -> str:
+    """Branded 1200×630 card on jbg-og, else the homepage card — never a raw NFT photo."""
     token_id = int(nft["token_id"])
     col = nft_collection_id(nft)
-    published = published_og_rel(col, token_id)
-    if published:
-        return og_url_with_version(base_url, published, og_version)
+    local = local_og_card(col, token_id)
+    if local:
+        return public_og_card_url(local.name, og_version)
 
     rel = str(nft.get("og_image") or "").strip()
-    if rel and not rel.startswith("http://") and not rel.startswith("https://"):
-        local = ROOT / rel.lstrip("/")
-        if local.is_file():
-            return og_url_with_version(base_url, rel.lstrip("/"), og_version)
+    if rel.startswith(OG_PUBLIC_BASE + "/"):
+        path = rel.split("?", 1)[0]
+        name = path.rsplit("/", 1)[-1]
+        if name:
+            return public_og_card_url(name, og_version)
 
-    img = str(nft.get("image_url") or "").strip()
-    if img.startswith("https://") or img.startswith("http://"):
-        return img
-    if img:
-        return og_url_with_version(base_url, img.lstrip("/"), og_version)
-    present = present_fallback_url(nft)
-    if present:
-        return present
-    return og_url_with_version(base_url, "assets/og-preview.jpg", og_version)
+    return site_og_image_url(base_url, og_version)
 
 
 def share_page_html(nft: dict, info: dict, base_url: str, og_version: str) -> str:
@@ -979,11 +942,15 @@ def share_page_html(nft: dict, info: dict, base_url: str, og_version: str) -> st
     <meta property="og:url" content="{html.escape(share_url)}">
     <meta property="og:title" content="{html.escape(title)}">
     <meta property="og:description" content="{html.escape(description)}">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="{html.escape(og_image)}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="{html.escape(info.get('twitter_handle') or '@JackBeatnicAI')}">
     <meta name="twitter:title" content="{html.escape(title)}">
     <meta name="twitter:description" content="{html.escape(description)}">
-
+    <meta name="twitter:image" content="{html.escape(og_image)}">
+    <meta name="twitter:image:alt" content="{html.escape(title)}">
     <link rel="canonical" href="{html.escape(share_url)}">
     <script>location.replace({json.dumps(gallery_url)});</script>
     <style>
@@ -1058,13 +1025,9 @@ def generate_share_pages(
         col = nft_collection_id(nft)
         published = published_og_rel(col, token_id)
         if published:
-            nft["og_image"] = published
-        elif nft.get("og_image"):
-            rel = str(nft["og_image"]).lstrip("/")
-            if rel.startswith("assets/og/") and not (ROOT / rel).is_file():
-                nft.pop("og_image", None)
-            elif not rel.startswith("http") and not (ROOT / rel).is_file():
-                nft.pop("og_image", None)
+            nft["og_image"] = f"{OG_PUBLIC_BASE}/{published}"
+        else:
+            nft["og_image"] = f"{base_url}/assets/og-preview.jpg"
         per_col[col] = per_col.get(col, 0) + 1
 
         # Legacy flat nft/{id}.html — only when this token_id is unique
@@ -1116,9 +1079,6 @@ def update_site_index_og(data: dict, version: str) -> None:
             raise SystemExit(f"index.html: nie znaleziono meta {attr}")
 
     INDEX_HTML.write_text(html_text, encoding="utf-8")
-    if SITE_OG_ONLY:
-        # force site preview jpg on homepage
-        pass
     print(f"[site] index.html — og:image?v={version}")
 
 
@@ -1129,6 +1089,8 @@ def generate_all(
     pages: bool = True,
     write_gallery: bool = True,
     token_ids: set[int] | None = None,
+    skip_existing: bool = True,
+    limit: int | None = None,
 ) -> None:
     data = load_gallery()
 
@@ -1138,7 +1100,12 @@ def generate_all(
         generate_site_og(data)
         update_site_index_og(data, version)
     if nft:
-        generate_nft_ogs(data, token_ids=token_ids)
+        generate_nft_ogs(
+            data,
+            token_ids=token_ids,
+            skip_existing=skip_existing,
+            limit=limit,
+        )
     if pages:
         generate_share_pages(data, token_ids=token_ids)
 
@@ -1281,6 +1248,8 @@ def main(argv: list[str] | None = None) -> int:
     generate_all(
         write_gallery=not args.no_gallery_json,
         token_ids=token_ids,
+        skip_existing=args.skip_existing,
+        limit=args.limit,
     )
     return 0
 

@@ -418,6 +418,38 @@
   "nfts": [
     {
       "token_id": 1,
+      "name": "FS #4270",
+      "opensea_url": "https://opensea.io/assets/base/0xca201a1654acd30580c0fbab4cac88bf0df65e7d/1",
+      "image_url": "https://jackbeatnic.github.io/jbg-present/base_flower_stories_vol3/1.thumb.webp",
+      "supply": 20000,
+      "traits": {},
+      "ai": {
+        "description": "",
+        "dominant_colors": [],
+        "vibe_tags": [],
+        "category": "",
+        "keywords": [
+          "base",
+          "base_flower_stories_vol3"
+        ]
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "base",
+      "contract_address": "0xca201a1654acd30580c0fbab4cac88bf0df65e7d",
+      "collection_id": "base_flower_stories_vol3",
+      "listing_status": "For Sale",
+      "listing_currency": "ETH",
+      "display_rank": 0,
+      "share_url": "https://jackbeatnic.github.io/nft/base-flower-stories-vol3/1.html",
+      "og_image": "https://jackbeatnic.github.io/assets/og-preview.jpg",
+      "medium": "ai_art",
+      "ai_series": "flower_stories",
+      "edition_label": "Base",
+      "current_price_eth": 0.00062
+    },
+    {
+      "token_id": 1,
       "name": "FS #701",
       "opensea_url": "https://opensea.io/assets/polygon/0x515ac12338a428df618f4c7c2720754e35d612b8/1",
       "image_url": "https://jackbeatnic.github.io/jbg-present/polygon_flower_stories_vol2/1.thumb.webp",

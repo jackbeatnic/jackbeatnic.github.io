@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-24T22:00:28.139859+00:00",
+  "updated_at": "2026-09-24T22:19:55.336263+00:00",
   "promo": {
     "label": "OFF 0% · 180 days",
     "pct_off": 0,
@@ -8,6 +8,22 @@
     "ends_at": "2027-03-17T01:19:50.051208+00:00"
   },
   "items": [
+    {
+      "collection_id": "base_flower_stories_vol3",
+      "collection_name": "Flower Stories vol. 3",
+      "chain": "base",
+      "token_id": 1,
+      "name": "FS #4270",
+      "image_url": "https://jackbeatnic.github.io/jbg-present/base_flower_stories_vol3/1.thumb.webp",
+      "price": 0.00062,
+      "currency": "ETH",
+      "quantity": 500,
+      "days": 7,
+      "pct_off": 0,
+      "ends_at": "2026-10-01T22:19:55.310215+00:00",
+      "opensea_url": "https://opensea.io/assets/base/0xca201a1654acd30580c0fbab4cac88bf0df65e7d/1",
+      "marketplace_url": "https://opensea.io/assets/base/0xca201a1654acd30580c0fbab4cac88bf0df65e7d/1"
+    },
     {
       "collection_id": "avalanche_nature_stories",
       "collection_name": "Nature Stories",

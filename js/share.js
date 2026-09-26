@@ -312,11 +312,13 @@ const GalleryShare = (() => {
             }
         );
 
-        if (nft?.image_url) {
+        const board = promoSquareUrl(nft);
+        const pinMedia = board || nft?.image_url;
+        if (pinMedia) {
             items.push({
                 id: 'pinterest',
                 label: 'Pinterest',
-                href: `https://pinterest.com/pin/create/button/?url=${enc(url)}&media=${enc(nft.image_url)}&description=${enc(text)}`,
+                href: `https://pinterest.com/pin/create/button/?url=${enc(url)}&media=${enc(pinMedia)}&description=${enc(text)}`,
             });
         }
 

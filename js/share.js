@@ -396,17 +396,45 @@ const GalleryShare = (() => {
             .join('');
     }
 
+    // Promo square for every chain. The shared URL stays the landing,
+    // so OG (Telegram and others) is unchanged.
+    function promoSquareUrl(nft) {
+        const cid = collectionId(nft);
+        const tid = nft?.token_id;
+        if (!cid || tid == null) return '';
+        const n = String(tid).padStart(4, '0');
+        return `${siteUrl}jbg-present/promo/${encodeURIComponent(cid)}/${n}.jpg`;
+    }
+
     async function nativeShare(nft, url, text) {
         if (!canNativeShare()) {
             openMenu(nft, anchor);
             return;
         }
         try {
-            await navigator.share({
+            const payload = {
                 title: artworkTitle(nft),
                 text: shareText(nft),
                 url,
-            });
+            };
+            const board = promoSquareUrl(nft);
+            if (board && navigator.canShare) {
+                try {
+                    const res = await fetch(board);
+                    if (res.ok) {
+                        const blob = await res.blob();
+                        const file = new File([blob], 'promo.jpg', {
+                            type: blob.type || 'image/jpeg',
+                        });
+                        if (navigator.canShare({ files: [file] })) {
+                            payload.files = [file];
+                        }
+                    }
+                } catch {
+                    /* board not public yet — link share still works */
+                }
+            }
+            await navigator.share(payload);
             close();
         } catch (err) {
             if (err?.name === 'AbortError') return;

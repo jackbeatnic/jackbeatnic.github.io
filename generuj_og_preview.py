@@ -914,6 +914,26 @@ def public_og_card_url(filename: str, og_version: str) -> str:
     return f"{OG_PUBLIC_BASE}/{filename}?v={og_version}"
 
 
+PROMO_SQUARE_PUBLIC = "https://jackbeatnic.github.io/jbg-present/promo"
+PROMO_ROOT = ROOT.parent / "promo"
+
+
+def promo_square_url(nft: dict) -> str | None:
+    """Public promo board. Missing file → caller keeps the OG card."""
+    try:
+        tid = int(nft["token_id"])
+    except (KeyError, TypeError, ValueError):
+        return None
+    cid = nft_collection_id(nft)
+    folder = PROMO_ROOT / cid / "square"
+    if not folder.is_dir():
+        return None
+    for name in (f"{tid:04d}.jpg", f"{tid}.jpg"):
+        if (folder / name).is_file():
+            return f"{PROMO_SQUARE_PUBLIC}/{cid}/{name}"
+    return None
+
+
 def og_image_url(nft: dict, base_url: str, og_version: str) -> str:
     """Branded 1200×630 card on jbg-og, else the homepage card — never a raw NFT photo."""
     token_id = int(nft["token_id"])
@@ -940,6 +960,7 @@ def share_page_html(nft: dict, info: dict, base_url: str, og_version: str) -> st
     rel_path = share_path_for_nft(nft)
     share_url = f"{base_url}/{rel_path}"
     og_image = og_image_url(nft, base_url, og_version)
+    twitter_image = promo_square_url(nft) or og_image
     gallery_url = gallery_deep_link(nft, base_url)
     title = f"{artwork_title} | Jack Beatnic Gallery"
     description = f"{price_text} · {collection} — {price_hint}"
@@ -962,7 +983,7 @@ def share_page_html(nft: dict, info: dict, base_url: str, og_version: str) -> st
     <meta name="twitter:site" content="{html.escape(info.get('twitter_handle') or '@JackBeatnicAI')}">
     <meta name="twitter:title" content="{html.escape(title)}">
     <meta name="twitter:description" content="{html.escape(description)}">
-    <meta name="twitter:image" content="{html.escape(og_image)}">
+    <meta name="twitter:image" content="{html.escape(twitter_image)}">
     <meta name="twitter:image:alt" content="{html.escape(title)}">
     <link rel="canonical" href="{html.escape(share_url)}">
     <script>location.replace({json.dumps(gallery_url)});</script>

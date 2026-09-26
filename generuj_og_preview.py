@@ -959,8 +959,11 @@ def share_page_html(nft: dict, info: dict, base_url: str, og_version: str) -> st
     price_text, price_hint = format_share_price(nft, info)
     rel_path = share_path_for_nft(nft)
     share_url = f"{base_url}/{rel_path}"
-    og_image = og_image_url(nft, base_url, og_version)
-    twitter_image = promo_square_url(nft) or og_image
+    og_card = og_image_url(nft, base_url, og_version)
+    # Crawlers (X, Facebook, Telegram, LinkedIn) read the link.
+    # Promo board on GitHub first; the old OG card only if that file is missing.
+    og_image = promo_square_url(nft) or og_card
+    twitter_image = og_image
     gallery_url = gallery_deep_link(nft, base_url)
     title = f"{artwork_title} | Jack Beatnic Gallery"
     description = f"{price_text} · {collection} — {price_hint}"

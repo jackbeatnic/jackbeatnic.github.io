@@ -990,11 +990,7 @@ def share_page_html(nft: dict, info: dict, base_url: str, og_version: str) -> st
     <meta name="twitter:image:alt" content="{html.escape(title)}">
     <link rel="canonical" href="{html.escape(share_url)}">
     <script>location.replace({json.dumps(gallery_url)});</script>
-    <style>
-      html,body{{margin:0;min-height:100vh;background:#0d1b2a;color:#e8eef6;
-      font-family:Inter,system-ui,sans-serif;display:flex;align-items:center;justify-content:center}}
-      a{{color:#fff}}
-    </style>
+    <link rel="stylesheet" href="/css/redesign-pages.css?v=20261001">
 </head>
 <body>
     <p><a href="{html.escape(gallery_url)}">Open in Jack Beatnic Gallery</a></p>
@@ -1011,6 +1007,7 @@ def legacy_redirect_html(target_url: str) -> str:
     <meta http-equiv="refresh" content="0;url={html.escape(target_url)}">
     <link rel="canonical" href="{html.escape(target_url)}">
     <title>Redirecting…</title>
+    <link rel="stylesheet" href="/css/redesign-pages.css?v=20261001">
 </head>
 <body>
     <p><a href="{html.escape(target_url)}">Continue to artwork</a></p>

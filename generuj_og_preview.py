@@ -287,7 +287,7 @@ COLLECTION_LABELS = {
     "xrpl_jack_beatnic": "Jack Beatnic",
     "sui_nature_stories_tradeport": "Nature Stories SE",
     "sui_nature_stories_1of1_tradeport": "Nature Stories SE 1/1",
-    "polygon_jb_ai_play": "JB SI Play",
+    "polygon_jb_ai_play": "JB AI Play",
     "objkt_jack_beatnic_open_editions": "Open Editions",
     "objkt_jacks_nature": "Jack's Nature",
 }
@@ -983,7 +983,7 @@ def share_page_html(nft: dict, info: dict, base_url: str, og_version: str) -> st
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="{html.escape(info.get('twitter_handle') or '@JackBeatnicAI')}">
+    <meta name="twitter:site" content="{html.escape(info.get('twitter_handle') or '@JackBeatnicSI')}">
     <meta name="twitter:title" content="{html.escape(title)}">
     <meta name="twitter:description" content="{html.escape(description)}">
     <meta name="twitter:image" content="{html.escape(twitter_image)}">

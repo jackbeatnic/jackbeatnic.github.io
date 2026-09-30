@@ -134,14 +134,14 @@ const GalleryShare = (() => {
         polygon_flower_stories_vol2: 'Flower Stories',
         avalanche_nature_jam: 'Nature Jam',
         avalanche_nature_jam_vol2: 'Nature Jam vol. 2',
-        base_jb_based_ai: 'JB Based SI',
-        base_jb_based_ai_vol2: 'JB Based SI vol. 2',
-        polygon_jb_ai_play: 'JB SI Play',
-        base_jb_ai_play: 'JB SI Play',
+        base_jb_based_ai: 'JB Based AI',
+        base_jb_based_ai_vol2: 'JB Based AI vol. 2',
+        polygon_jb_ai_play: 'JB AI Play',
+        base_jb_ai_play: 'JB AI Play',
         sui_nature_stories_tradeport: 'Nature Stories SE',
         sui_nature_stories_1of1_tradeport: 'Nature Stories SE 1/1',
-        xrpl_jb_ai_nature: 'JB SI Nature',
-        xrpl_jbn: 'JB SI Nature',
+        xrpl_jb_ai_nature: 'JB AI Nature',
+        xrpl_jbn: 'JB AI Nature',
         objkt_jack_beatnic_open_editions: 'Open Editions',
         "objkt_jack's_nature": "Jack's Nature",
         objkt_jacks_nature: "Jack's Nature",
@@ -176,8 +176,8 @@ const GalleryShare = (() => {
         if (cid.includes('nature_stories')) return 'Nature Stories';
         if (cid.includes('flower_stories')) return 'Flower Stories';
         if (cid.includes('nature_jam')) return 'Nature Jam';
-        if (cid.includes('based_ai')) return 'JB Based SI';
-        if (cid.includes('ai_play')) return 'JB SI Play';
+        if (cid.includes('based_ai')) return 'JB Based AI';
+        if (cid.includes('ai_play')) return 'JB AI Play';
         if (fromNft) return fromNft.replace(/_/g, ' ');
         if (cid) return cid.replace(/_/g, ' ').replace(/-/g, ' ');
         return '';

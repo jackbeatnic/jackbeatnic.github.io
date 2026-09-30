@@ -28,7 +28,7 @@
       },
       {
         "id": "objkt-ai",
-        "label": "OBJKT SI",
+        "label": "OBJKT AI",
         "url": "https://objkt.com/@jackbeatnicai/"
       },
       {
@@ -54,12 +54,12 @@
       }
     ],
     "site_url": "https://jackbeatnic.github.io/",
-    "twitter_handle": "@JackBeatnicAI",
+    "twitter_handle": "@JackBeatnicSI",
     "social_links": [
       {
         "id": "x",
         "label": "X",
-        "url": "https://twitter.com/JackBeatnicAI"
+        "url": "https://twitter.com/JackBeatnicSI"
       },
       {
         "id": "instagram",
@@ -157,7 +157,7 @@
     "last_objkt_sync": "2026-07-16T00:10:46Z",
     "xrpl_issuer_wallet": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
     "xrpl_nft_taxon": 0,
-    "xrpl_collection_name": "JB SI Nature",
+    "xrpl_collection_name": "JB AI Nature",
     "xrp_cafe_profile": "https://xrp.cafe/user/rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
     "atelier_wallets": {
       "ai": {
@@ -316,7 +316,7 @@
           ]
         },
         "based_ai": {
-          "label": "Based SI",
+          "label": "Based AI",
           "standard": "ERC-721 vol.1 + ERC-1155 vol.2",
           "collection_ids": [
             "base_jb_based_ai",
@@ -324,7 +324,7 @@
           ]
         },
         "jb_ai_play": {
-          "label": "SI Play",
+          "label": "AI Play",
           "note": "Experimental 1/1 on Polygon — OpenSea slug jb-ai-play.",
           "standard": "ERC-1155 · supply 1",
           "collection_ids": [
@@ -59353,8 +59353,8 @@
           "nature_stories": "Nature Stories",
           "nature_jam": "Nature Jam",
           "flower_stories": "Flower Stories",
-          "based_ai": "Based SI",
-          "jb_ai_play": "SI Play",
+          "based_ai": "Based AI",
+          "jb_ai_play": "AI Play",
           "all": "All series"
         },
         "empty_messages": {
@@ -59367,8 +59367,8 @@
           "nature_stories": "Nature Stories — serene landscapes across Avalanche, Base and Polygon.",
           "nature_jam": "Nature Jam — expressive studies on Avalanche (OpenSea & Salvor).",
           "flower_stories": "Flower Stories — botanical forms across three chains.",
-          "based_ai": "Based SI — 1/1 and editions on Base.",
-          "jb_ai_play": "SI Play — experimental ERC-1155 on Polygon (OpenSea).",
+          "based_ai": "Based AI — 1/1 and editions on Base.",
+          "jb_ai_play": "AI Play — experimental ERC-1155 on Polygon (OpenSea).",
           "all": "No works match this view."
         }
       },

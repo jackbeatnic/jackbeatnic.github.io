@@ -65,7 +65,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/gallery.css?v=20260925type2">
     <link rel="stylesheet" href="css/text-select.css?v=20260815copy">
-    <link rel="stylesheet" href="css/redesign.css?v=20261001ux">
+    <link rel="stylesheet" href="css/redesign.css?v=20261001modal">
 </head>
 <body class="gallery-protected">
     <header class="site-header site-header--sticky">
@@ -364,11 +364,18 @@
         <div class="shop-modal__backdrop" aria-hidden="true"></div>
         <div class="shop-modal__dialog">
             <button type="button" class="shop-modal__close" aria-label="Close">×</button>
-            <p id="shop-modal-banner" class="shop-modal__banner" hidden></p>
+            <p class="shop-modal__kicker">Studio Shop</p>
             <h2 id="shop-modal-title" class="shop-modal__title">Pay the studio</h2>
+            <p id="shop-modal-banner" class="shop-modal__banner" hidden></p>
             <p id="shop-modal-lead" class="shop-modal__lead"></p>
-            <p id="shop-modal-name" class="shop-modal__name"></p>
-            <p id="shop-modal-meta" class="shop-modal__meta"></p>
+            <div class="shop-modal__item">
+                <img id="shop-modal-thumb" class="shop-modal__thumb" alt="" width="56" height="56" decoding="async" draggable="false" referrerpolicy="no-referrer" hidden>
+                <div class="shop-modal__item-text">
+                    <p id="shop-modal-name" class="shop-modal__name"></p>
+                    <p id="shop-modal-meta" class="shop-modal__meta"></p>
+                </div>
+                <p id="shop-modal-price" class="shop-modal__price" hidden></p>
+            </div>
             <div class="shop-modal__pay">
                 <button type="button" id="shop-pay-wallet" class="btn btn--primary btn--block">Pay with wallet</button>
                 <button type="button" id="shop-pay-wc" class="btn btn--ghost btn--block" hidden>WalletConnect</button>
@@ -399,7 +406,7 @@
                 </dl>
                 <img id="shop-modal-qr" class="shop-modal__qr" width="160" height="160" alt="" hidden>
             </details>
-            <p class="shop-modal__terms"><a href="shop-terms.html">Studio shop terms</a></p>
+            <p class="shop-modal__terms"><a href="shop-terms.html">Studio Shop terms</a></p>
         </div>
     </div>
 
@@ -407,12 +414,18 @@
         <div class="shop-modal__backdrop" aria-hidden="true"></div>
         <div class="shop-modal__dialog">
             <button type="button" class="shop-modal__close" aria-label="Close">×</button>
-            <p id="xrpl-mint-banner" class="shop-modal__banner"></p>
+            <p class="shop-modal__kicker">Lazy mint · XRPL</p>
             <h2 id="xrpl-mint-title" class="shop-modal__title">Mint from the studio</h2>
+            <p id="xrpl-mint-banner" class="shop-modal__banner"></p>
             <p id="xrpl-mint-lead" class="shop-modal__lead"></p>
-            <p id="xrpl-mint-name" class="shop-modal__name"></p>
-            <p id="xrpl-mint-meta" class="shop-modal__meta"></p>
-            <dl class="shop-modal__facts">
+            <div class="shop-modal__item">
+                <img id="xrpl-mint-thumb" class="shop-modal__thumb" alt="" width="56" height="56" decoding="async" draggable="false" referrerpolicy="no-referrer" hidden>
+                <div class="shop-modal__item-text">
+                    <p id="xrpl-mint-name" class="shop-modal__name"></p>
+                    <p id="xrpl-mint-meta" class="shop-modal__meta"></p>
+                </div>
+            </div>
+            <dl class="shop-modal__facts shop-modal__facts--xrpl">
                 <div>
                     <dt>Amount</dt>
                     <dd id="xrpl-mint-amount"></dd>
@@ -423,14 +436,14 @@
                     <dd id="xrpl-mint-address"></dd>
                     <button type="button" id="xrpl-copy-address" class="btn btn--ghost btn--small">Copy address</button>
                 </div>
-                <div>
+                <div class="shop-modal__fact--req">
                     <dt>Destination tag (required)</dt>
                     <dd id="xrpl-mint-tag"></dd>
                     <button type="button" id="xrpl-copy-tag" class="btn btn--ghost btn--small">Copy tag</button>
                 </div>
             </dl>
             <p id="xrpl-mint-fulfill" class="shop-modal__fulfill"></p>
-            <p class="shop-modal__terms">After payment, accept the 0 XRP sell offer in your wallet. That is how the NFT reaches you.</p>
+            <p class="shop-modal__terms shop-modal__terms--strong">After payment, accept the 0 XRP sell offer in your wallet. That is how the NFT reaches you.</p>
         </div>
     </div>
 
@@ -469,8 +482,8 @@
     <script src="js/wallet.js?v=20260713e"></script>
     <script src="js/tip.js?v=20260712p"></script>
     <script src="js/share.js?v=20260930si"></script>
-    <script src="js/shop.js?v=20260908shoplead"></script>
-    <script src="js/xrpl-mint.js?v=20260828xrp01"></script>
+    <script src="js/shop.js?v=20261001modal"></script>
+    <script src="js/xrpl-mint.js?v=20261001modal"></script>
     <script src="js/sui-mint.js?v=20260906sui03"></script>
     <script src="js/gallery.js?v=20261001ux"></script>
     <script src="js/nav-menu.js?v=20261001ux"></script>

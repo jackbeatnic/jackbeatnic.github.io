@@ -945,7 +945,7 @@ const Gallery = (() => {
         const marks = [];
         if (nft.on_os) marks.push(['os', 'OS']);
         if (nft.in_shop) marks.push(['shop', 'SHOP']);
-        if (nft.in_featured) marks.push(['featured', 'FEATURED']);
+        if (nft.in_featured) marks.push(['featured', 'Featured']);
         if (!marks.length) return '';
         return `<div class="nft-card__marks" aria-hidden="true">${marks
             .map(
@@ -2186,7 +2186,6 @@ const Gallery = (() => {
 
         card.innerHTML = `
             <div class="nft-image-wrap">
-                ${marks}
                 <img alt="${name}"
                      loading="lazy"
                      decoding="async"
@@ -2200,6 +2199,7 @@ const Gallery = (() => {
                     <div>
                         <h3 class="nft-card__title">${name}</h3>
                         <p class="nft-card__token">${escapeHtml(tokenLabelText)}</p>
+                        ${marks}
                         ${supplyMetaHtml}
                     </div>
                     <div class="nft-card__engage">

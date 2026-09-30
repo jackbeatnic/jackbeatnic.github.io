@@ -4,13 +4,13 @@
     "artist": "Jack Beatnic",
     "description": "Nature Stories – Minimalist landscapes in deep blues and turquoise. Works inspired by nature, silence, and movement.",
     "hero_title": "Jack Beatnic",
-    "hero_tagline": "From the Lens to AI",
+    "hero_tagline": "From the Lens to SI",
     "hero_intro": [
-      "Nature and landscape photographer weaving photography, memory, and imagination into AI-crafted digital art. My lens captures wind-swept seas, ancient forests, mountain peaks, wildlife in quiet light, street scenes, and classic black-and-white details. These moments become the living source for the AI works: Nature Stories — serene minimalist landscapes in flowing layers of deep blues and teals, rich studies of nature, animals, and blooming forms, delicate Flower Stories celebrating fresh femininity, vibrant collages where modern forms meet classical grace.",
+      "Nature and landscape photographer weaving photography, memory, and imagination into SI-crafted digital art. My lens captures wind-swept seas, ancient forests, mountain peaks, wildlife in quiet light, street scenes, and classic black-and-white details. These moments become the living source for the SI works: Nature Stories — serene minimalist landscapes in flowing layers of deep blues and teals, rich studies of nature, animals, and blooming forms, delicate Flower Stories celebrating fresh femininity, vibrant collages where modern forms meet classical grace.",
       "Pure photography keeps its own dedicated space here — unfiltered, real-world moments. Every so often, pencil and pastel find their way in — playful explorations where photography, drawing, and collage begin to meet. Whether generated or shot on location, every piece follows the same pursuit: detail, natural abstraction, light, and the quiet poetry found in between."
     ],
     "about": [
-      "I'm Jack Beatnic — in NFTs since 2022, a photographer who opened the door to AI art without leaving the classical path: light, landscape, quiet composition.",
+      "I'm Jack Beatnic — in NFTs since 2022, a photographer who opened the door to SI art without leaving the classical path: light, landscape, quiet composition.",
       "Wander the works above — let mood and color lead you. Most pieces grow where photography meets the machine; now and then, something is drawn by hand. Glad you're exploring with me."
     ],
     "opensea_profile": "https://opensea.io/JackBeatnic",
@@ -28,7 +28,7 @@
       },
       {
         "id": "objkt-ai",
-        "label": "OBJKT AI",
+        "label": "OBJKT SI",
         "url": "https://objkt.com/@jackbeatnicai/"
       },
       {
@@ -152,17 +152,17 @@
     "collection_id": "avalanche_nature_stories",
     "last_price_sync": "2026-07-24T18:02:13Z",
     "last_likes_sort": "2026-07-11T17:02:45Z",
-    "og_generated_at": "2026-09-24T19:30:20Z",
-    "og_cache_version": "202609241930",
+    "og_generated_at": "2026-09-30T14:59:46Z",
+    "og_cache_version": "202609301459",
     "last_objkt_sync": "2026-07-16T00:10:46Z",
     "xrpl_issuer_wallet": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
     "xrpl_nft_taxon": 0,
-    "xrpl_collection_name": "JB AI Nature",
+    "xrpl_collection_name": "JB SI Nature",
     "xrp_cafe_profile": "https://xrp.cafe/user/rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn",
     "atelier_wallets": {
       "ai": {
         "enabled": true,
-        "label": "AI Art",
+        "label": "SI Art",
         "creator_wallet": "0xf0b840349b3f285fc05c89eac594ddd254183fb9",
         "ens": "jackbeatnicai.base.eth",
         "contracts": {
@@ -198,7 +198,7 @@
         },
         {
           "id": "ai",
-          "label": "AI Art",
+          "label": "SI Art",
           "address": "0xf0b840349b3f285fc05c89eac594ddd254183fb9",
           "ens": "jackbeatnicai.base.eth"
         },
@@ -316,7 +316,7 @@
           ]
         },
         "based_ai": {
-          "label": "Based AI",
+          "label": "Based SI",
           "standard": "ERC-721 vol.1 + ERC-1155 vol.2",
           "collection_ids": [
             "base_jb_based_ai",
@@ -324,7 +324,7 @@
           ]
         },
         "jb_ai_play": {
-          "label": "AI Play",
+          "label": "SI Play",
           "note": "Experimental 1/1 on Polygon — OpenSea slug jb-ai-play.",
           "standard": "ERC-1155 · supply 1",
           "collection_ids": [
@@ -59194,8 +59194,8 @@
     "default_section": "ai_art",
     "community_tokens": {
       "enabled": true,
-      "eyebrow": "AI Art & Photography Tokens",
-      "lead": "Trade and support the gallery through on-chain community tokens — follow releases, support the work, and stay close across AI art and photography.",
+      "eyebrow": "SI Art & Photography Tokens",
+      "lead": "Trade and support the gallery through on-chain community tokens — follow releases, support the work, and stay close across SI art and photography.",
       "tokens": [
         {
           "id": "zora-cc",
@@ -59209,7 +59209,7 @@
         },
         {
           "id": "zora-cc-ai",
-          "title": "Creator Coin on Zora (AI)",
+          "title": "Creator Coin on Zora (SI)",
           "symbol": "$jackbeatnicai",
           "chain": "Zora",
           "contract": "0xffbee7f9b4190d31bd97d7299100811eb3aa41a7",
@@ -59248,8 +59248,8 @@
     },
     "sections": {
       "ai_art": {
-        "label": "AI Art",
-        "explore_title": "Explore AI Art · EVM",
+        "label": "SI Art",
+        "explore_title": "Explore SI Art · EVM",
         "default_subsection": "evm",
         "default_series": "nature_stories",
         "all_series_label": "All",
@@ -59259,7 +59259,7 @@
           "tezos"
         ],
         "subsection_notes": {
-          "tezos": "Tezos AI — coming soon"
+          "tezos": "Tezos SI — coming soon"
         },
         "subsections": [
           {
@@ -59280,31 +59280,31 @@
           }
         ],
         "explore_titles": {
-          "evm": "Explore AI Art · EVM",
+          "evm": "Explore SI Art · EVM",
           "xrpl": "Explore · XRPL",
-          "tezos": "Explore AI Art · Tezos",
+          "tezos": "Explore SI Art · Tezos",
           "sui": "Explore · Sui"
         },
         "series_explore_titles": {
           "nature_stories": "Nature Stories",
           "nature_jam": "Nature Jam",
           "flower_stories": "Flower Stories",
-          "based_ai": "Based AI",
-          "jb_ai_play": "AI Play",
+          "based_ai": "Based SI",
+          "jb_ai_play": "SI Play",
           "all": "All series"
         },
         "empty_messages": {
           "evm": "No works in this section yet.",
           "xrpl": "Nothing here yet — more XRPL works will appear as they are released.",
-          "tezos": "Tezos AI collections — coming soon.",
+          "tezos": "Tezos SI collections — coming soon.",
           "sui": "Nothing here yet — Sui works will appear as they are released."
         },
         "empty_messages_series": {
           "nature_stories": "Nature Stories — serene landscapes across Avalanche, Base and Polygon.",
           "nature_jam": "Nature Jam — expressive studies on Avalanche (OpenSea & Salvor).",
           "flower_stories": "Flower Stories — botanical forms across three chains.",
-          "based_ai": "Based AI — 1/1 and editions on Base.",
-          "jb_ai_play": "AI Play — experimental ERC-1155 on Polygon (OpenSea).",
+          "based_ai": "Based SI — 1/1 and editions on Base.",
+          "jb_ai_play": "SI Play — experimental ERC-1155 on Polygon (OpenSea).",
           "all": "No works match this view."
         }
       },

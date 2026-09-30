@@ -38,7 +38,7 @@ CAFE_BASE = "https://xrp.cafe"
 USER_AGENT = "JackBeatnicGallery/1.0"
 DEFAULT_ISSUER = "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn"
 DEFAULT_TAXON = 0
-DEFAULT_COLLECTION = "JB AI Nature"
+DEFAULT_COLLECTION = "JB SI Nature"
 DEFAULT_VANITY = "jb-ai-nature"
 DROPS_PER_XRP = 1_000_000
 
@@ -404,7 +404,7 @@ def build_entry(
         "traits": traits,
         "ai": {
             "description": description
-            or f"{name} — AI nature art on XRPL ({collection_name}).",
+            or f"{name} — SI nature art on XRPL ({collection_name}).",
             "dominant_colors": colors,
             "vibe_tags": vibe_tags,
             "category": category,
@@ -537,13 +537,13 @@ def sync(*, dry_run: bool = False, limit: int | None = None, skip_colors: bool =
                     ],
                     "default_subsection": "opensea",
                     "explore_titles": {
-                        "opensea": "Explore AI Art · OpenSea",
-                        "xrpl": "Explore AI Art · XRP.Cafe",
+                        "opensea": "Explore SI Art · OpenSea",
+                        "xrpl": "Explore SI Art · XRP.Cafe",
                     },
                     "empty_messages": {
-                        "xrpl": "JB AI Nature on XRP.Cafe will appear here after sync.",
+                        "xrpl": "JB SI Nature on XRP.Cafe will appear here after sync.",
                     },
-                    "promo_eyebrow": "JB AI Nature on XRPL",
+                    "promo_eyebrow": "JB SI Nature on XRPL",
                     "promo_lead": "Collect and trade on XRP.Cafe — every work links to the marketplace.",
                     "collection_url": cafe_collection_vanity_url(vanity),
                     "collection_cta": "View collection on XRP.Cafe",

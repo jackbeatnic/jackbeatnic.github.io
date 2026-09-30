@@ -1029,8 +1029,8 @@ const Gallery = (() => {
     const SHOP_COLLECTION_NAMES = {
         avalanche_nature_stories: 'Nature Stories',
         avalanche_flower_stories: 'Flower Stories',
-        xrpl_jb_ai_nature: 'JB AI Nature',
-        xrpl_jbn: 'JB AI Nature',
+        xrpl_jb_ai_nature: 'JB SI Nature',
+        xrpl_jbn: 'JB SI Nature',
     };
 
     function saleItemsToNfts(doc) {

@@ -481,7 +481,7 @@ def build_entry(
     opensea_url = (raport_row or {}).get("opensea_url") or opensea_asset_url(
         contract, onchain_id
     )
-    display_name = name or (raport_row or {}).get("name") or f"AI Play #{onchain_id}"
+    display_name = name or (raport_row or {}).get("name") or f"SI Play #{onchain_id}"
 
     entry = {
         "token_id": TOKEN_ID_BASE + int(onchain_id),
@@ -684,7 +684,7 @@ def sync(
     payload = {
         "collection_info": {
             "ai_series": "jb_ai_play",
-            "label": "JB AI Play",
+            "label": "JB SI Play",
             "opensea_slug": OPENSEA_SLUG,
             "chain": "polygon",
             "contract": contract.lower(),

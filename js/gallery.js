@@ -257,7 +257,7 @@ const Gallery = (() => {
     function xrplMintRequestTweetUrl(nft) {
         const name = nft.name || `JBN #${nft.token_id} X`;
         const price = nft.current_price_xrp ?? nft.price_xrp ?? 16.5;
-        const handle = (collectionInfo.twitter_handle || '@JackBeatnicAI').replace(
+        const handle = (collectionInfo.twitter_handle || '@JackBeatnicSI').replace(
             /^@/,
             '',
         );
@@ -1029,8 +1029,8 @@ const Gallery = (() => {
     const SHOP_COLLECTION_NAMES = {
         avalanche_nature_stories: 'Nature Stories',
         avalanche_flower_stories: 'Flower Stories',
-        xrpl_jb_ai_nature: 'JB SI Nature',
-        xrpl_jbn: 'JB SI Nature',
+        xrpl_jb_ai_nature: 'JB AI Nature',
+        xrpl_jbn: 'JB AI Nature',
     };
 
     function saleItemsToNfts(doc) {

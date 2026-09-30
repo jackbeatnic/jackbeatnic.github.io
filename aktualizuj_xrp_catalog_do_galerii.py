@@ -216,7 +216,7 @@ def build(
                     },
                     "promo_eyebrow": "Jack Beatnic · XRPL",
                     "promo_lead": (
-                        "Lazy mint from the studio. SI Nature up to 3000 copies; "
+                        "Lazy mint from the studio. AI Nature up to 3000 copies; "
                         "pay the destination tag, then accept the 0 XRP offer."
                     ),
                     "promo_collections": [],

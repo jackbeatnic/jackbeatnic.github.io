@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Hero A demo — Jack Beatnic (temporary, not indexed)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Outfit';src:url('assets/fonts/Outfit-Light.ttf') format('truetype');font-weight:300;font-display:swap}
+:root{--black:#0a0a0a;--white:#fff;--gray-400:#9a9a9a;--gray-500:#737373;--gray-600:#525252;--rule:rgba(0,0,0,.08);--nav:#5a9bb8;--nav-ink:#2a6580;--green:#0b5c3a;
+--ui:'Outfit','Inter',system-ui,sans-serif;--body:'Inter',system-ui,sans-serif;--sign:'Playfair Display',Georgia,serif}
+@media (prefers-color-scheme:dark){:root{--black:#f0f0f0;--white:#0c0c0c;--gray-500:#a3a3a3;--gray-600:#c4c4c4;--rule:rgba(255,255,255,.1);--nav-ink:#5a9bb8;--green:#7ed0a8}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--white);color:var(--black);font-family:var(--body);font-weight:300;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.hdr{position:absolute;top:0;left:0;right:0;z-index:5;border-bottom:1px solid rgba(255,255,255,.18)}
+.hdr__in{max-width:82rem;margin:0 auto;padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between}
+.hdr img{height:38px;width:auto;display:block;filter:drop-shadow(0 1px 6px rgba(0,0,0,.55))}
+.hdr nav{display:flex;gap:30px;font-family:var(--ui);font-size:14px}
+.hdr nav a{color:rgba(255,255,255,.8)} .hdr nav a:hover{color:#fff}
+.dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#7ed0a8;margin-right:7px;vertical-align:middle;transform:translateY(-1px)}
+.heroA{position:relative;height:100vh;min-height:640px;background:#05101f url('assets/hero-bg-2048.jpg') center 62%/cover no-repeat fixed;color:#fff;display:flex;align-items:flex-end}
+.heroA::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.3) 12%,rgba(0,0,0,0) 30%,rgba(0,0,0,0) 45%,rgba(0,0,0,.66) 100%)}
+.heroA__in{position:relative;width:100%;max-width:82rem;margin:0 auto;padding:0 40px 88px}
+.eyebrow{font-family:var(--ui);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+h1{font-family:var(--sign);font-style:italic;font-weight:400;font-size:112px;line-height:1;margin:18px 0 26px;text-shadow:0 2px 30px rgba(0,0,0,.25)}
+.lead{max-width:560px;font-size:17px;line-height:1.65;color:rgba(255,255,255,.9)}
+.ctas{display:flex;gap:34px;margin-top:34px;font-family:var(--ui);font-size:14px;letter-spacing:.06em;text-transform:uppercase}
+.ctas a{padding-bottom:6px;border-bottom:1px solid #fff} .ctas a+a{opacity:.75;border-bottom-color:transparent}
+.scroll{position:absolute;right:40px;bottom:88px;font-family:var(--ui);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);writing-mode:vertical-rl}
+.content{position:relative;background:var(--white)}
+.content__in{max-width:82rem;margin:0 auto;padding:72px 40px 96px;display:grid;grid-template-columns:5fr 7fr;gap:64px;border-bottom:1px solid var(--rule)}
+.content h2{font-family:var(--ui);font-weight:300;font-size:34px;line-height:1.15}
+.content .k{font-family:var(--ui);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gray-500);margin-bottom:14px}
+.content p{color:var(--gray-600);font-size:15.5px;line-height:1.75;margin-bottom:14px} .content p:first-child{color:var(--black)}
+.note{max-width:82rem;margin:0 auto;padding:28px 40px 48px;font-family:var(--ui);font-size:12px;color:var(--gray-400);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.note a{color:var(--nav-ink)}
+@media (max-width:768px){
+ .hdr__in{padding:0 20px;height:56px} .hdr img{height:26px} .hdr nav a:not(.keep){display:none}
+ .heroA{background-image:url('assets/hero-bg-1200.jpg');background-attachment:scroll;min-height:600px}
+ .heroA__in{padding:0 20px 56px} h1{font-size:62px} .lead{font-size:15px} .scroll{display:none} .ctas{gap:24px;font-size:12.5px}
+ .content__in{grid-template-columns:1fr;gap:24px;padding:44px 20px 56px} .note{padding:24px 20px 40px}
+}
+</style>
+</head>
+<body>
+<header class="hdr"><div class="hdr__in">
+ <img src="assets/signature-ice-ink.png" alt="Jack Beatnic">
+ <nav><a class="keep" href="./#gallery-root">Shop</a><a href="./#gallery-root"><span class="dot"></span>Featured</a><a href="./#gallery-root">SI Art</a><a href="./#gallery-root">Photography &amp; Artworks</a><a href="./#about">About</a></nav>
+</div></header>
+<section class="heroA">
+ <div class="heroA__in">
+  <p class="eyebrow">From the Lens to SI</p>
+  <h1>Jack Beatnic</h1>
+  <p class="lead">Nature and landscape photographer weaving photography, memory, and imagination into SI-crafted digital art.</p>
+  <div class="ctas"><a href="./#explore">Explore the Gallery</a><a href="./#about-marketplaces">Marketplaces</a></div>
+ </div>
+ <span class="scroll">Scroll</span>
+</section>
+<section class="content"><div class="content__in">
+ <div><p class="k">About the work</p><h2>From the lens to SI</h2></div>
+ <div><p>Nature and landscape photographer weaving photography, memory, and imagination into SI-crafted digital art. My lens captures wind-swept seas, ancient forests, mountain peaks, wildlife in quiet light, street scenes, and classic black-and-white details. These moments become the living source for the SI works: Nature Stories — serene minimalist landscapes in flowing layers of deep blues and teals, rich studies of nature, animals, and blooming forms, delicate Flower Stories celebrating fresh femininity, vibrant collages where modern forms meet classical grace.</p><p>Pure photography keeps its own dedicated space here — unfiltered, real-world moments. Every so often, pencil and pastel find their way in — playful explorations where photography, drawing, and collage begin to meet. Whether generated or shot on location, every piece follows the same pursuit: detail, natural abstraction, light, and the quiet poetry found in between.</p></div>
+</div></section>
+<div class="note"><span>Hero A demo — temporary preview, not linked from the site, not indexed.</span><a href="./">Back to the live gallery (Hero B) →</a></div>
+</body>
+</html>

@@ -283,7 +283,7 @@ def build_vol1_entry(
     display_name = (
         name
         or (raport or {}).get("name")
-        or f"JB Based AI #{tid}"
+        or f"JB Based SI #{tid}"
     ).strip()
     opensea_url = (raport or {}).get("opensea_url") or opensea_asset_url(contract, tid)
     manifold_url = manifold_token_url(manifold_id, tid)
@@ -351,7 +351,7 @@ def build_vol2_entry(
     display_name = (
         name
         or (raport or {}).get("name")
-        or f"JB Based AI vol. 2 #{tid}"
+        or f"JB Based SI vol. 2 #{tid}"
     ).strip()
     opensea_url = (raport or {}).get("opensea_url") or opensea_asset_url(contract, tid)
 
@@ -593,7 +593,7 @@ def sync(
     payload = {
         "collection_info": {
             "ai_series": AI_SERIES,
-            "label": "Based AI",
+            "label": "Based SI",
             "chain": CHAIN,
             "collections": [VOL1_ID, VOL2_ID],
             "vol1": {

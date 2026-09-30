@@ -352,15 +352,16 @@ const ShopCheckout = (() => {
             ].filter(Boolean);
             metaEl.textContent = bits.join(' · ');
         }
-        if (amountEl) amountEl.textContent = amount;
+        // Tip panel: never force catalog buy amount (old token-id-in-amount UX).
+        if (amountEl) amountEl.textContent = 'Any amount';
         if (amountHint) {
-            if (demo || coming || !exact) {
+            if (demo || coming) {
                 amountHint.hidden = true;
                 amountHint.textContent = '';
             } else {
                 amountHint.hidden = false;
                 amountHint.textContent =
-                    'Optional tip via QR/address. This does not purchase the NFT.';
+                    'Tip is optional — choose any amount. Exact catalog price is only required for Pay with wallet.';
             }
         }
         if (addrEl) addrEl.textContent = addr || '—';
@@ -368,8 +369,8 @@ const ShopCheckout = (() => {
         if (fulfillEl) {
             fulfillEl.textContent =
                 fulfill === 'mint_on_demand'
-                    ? 'After payment confirms, the NFT is created and sent to the wallet you paid from.'
-                    : 'After payment confirms, one edition is sent in a second transaction to the wallet you paid from.';
+                    ? 'NFT is minted to the wallet you paid from.'
+                    : 'NFT arrives in a second transaction to that wallet.';
         }
 
         if (banner) {
@@ -381,14 +382,14 @@ const ShopCheckout = (() => {
             } else {
                 banner.hidden = false;
                 banner.classList.add('shop-modal__banner--ok');
-                banner.textContent = 'Pay with wallet. Do not change the amount.';
+                banner.textContent = 'Pay with wallet uses the exact catalog amount.';
             }
         }
 
         if (lead) {
             lead.textContent = demo
                 ? 'This is a preview. Do not send funds.'
-                : '1. Pay with wallet.  2. Confirm.  3. Wait — NFT in a second transaction to that wallet.';
+                : 'Pay with wallet or WalletConnect, confirm, then wait for the NFT.';
         }
 
         const payBtn = modal.querySelector('#shop-pay-wallet');
@@ -455,8 +456,9 @@ const ShopCheckout = (() => {
         modal.querySelector('#shop-copy-memo')?.addEventListener('click', () => {
             copy(modal.querySelector('#shop-copy-memo'), current?.memo || current?.sku || '');
         });
+        // Tip amount copy removed — tips are free-form. Buy path never used this button.
         modal.querySelector('#shop-copy-amount')?.addEventListener('click', () => {
-            copy(modal.querySelector('#shop-copy-amount'), amountCopy(current || {}));
+            /* no-op: keep listener safe if old markup cached */
         });
         modal.querySelector('#shop-pay-wallet')?.addEventListener('click', (e) => {
             e.preventDefault();

@@ -56,6 +56,30 @@ const XrplMint = (() => {
             });
     }
 
+
+    /** Modal thumbnail — same image sources as the gallery card (display only). */
+    function setThumb(img, item) {
+        if (!img) return;
+        // Fresh node each open so old error-fallback listeners never pile up.
+        const fresh = img.cloneNode(false);
+        fresh.removeAttribute('src');
+        fresh.hidden = true;
+        img.replaceWith(fresh);
+        img = fresh;
+        if (!item || typeof ImageProxy === 'undefined') return;
+        try {
+            const list = ImageProxy.displayCandidates(
+                item.image_url, 'weserv', 160, 160, 'inside', item, 'thumb',
+            );
+            if (!list || !list.length) return;
+            img.alt = item.name || '';
+            img.onload = () => { img.hidden = false; };
+            ImageProxy.bindFallback(img, list);
+        } catch (_) {
+            /* thumbnail is decorative */
+        }
+    }
+
     function fill(nft) {
         current = nft;
         const live = isLive();
@@ -75,6 +99,7 @@ const XrplMint = (() => {
         const fulfillEl = modal.querySelector('#xrpl-mint-fulfill');
 
         if (nameEl) nameEl.textContent = name;
+        setThumb(modal.querySelector('#xrpl-mint-thumb'), nft);
         if (metaEl) {
             metaEl.textContent = `Up to ${max} copies · destination tag ${dt}`;
         }

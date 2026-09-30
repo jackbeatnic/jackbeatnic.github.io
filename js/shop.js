@@ -315,6 +315,30 @@ const ShopCheckout = (() => {
             });
     }
 
+
+    /** Modal thumbnail — same image sources as the gallery card (display only). */
+    function setThumb(img, item) {
+        if (!img) return;
+        // Fresh node each open so old error-fallback listeners never pile up.
+        const fresh = img.cloneNode(false);
+        fresh.removeAttribute('src');
+        fresh.hidden = true;
+        img.replaceWith(fresh);
+        img = fresh;
+        if (!item || typeof ImageProxy === 'undefined') return;
+        try {
+            const list = ImageProxy.displayCandidates(
+                item.image_url, 'weserv', 160, 160, 'inside', item, 'thumb',
+            );
+            if (!list || !list.length) return;
+            img.alt = item.name || '';
+            img.onload = () => { img.hidden = false; };
+            ImageProxy.bindFallback(img, list);
+        } catch (_) {
+            /* thumbnail is decorative */
+        }
+    }
+
     function fill(item) {
         current = item;
         const demo = Boolean(item.demo);
@@ -343,6 +367,13 @@ const ShopCheckout = (() => {
 
         if (title) title.textContent = demo ? 'Demo checkout' : 'Pay the studio';
         if (nameEl) nameEl.textContent = name;
+        setThumb(modal.querySelector('#shop-modal-thumb'), item);
+        const priceEl = modal.querySelector('#shop-modal-price');
+        if (priceEl) {
+            // Display only — the pay path still uses exactAmount(item) unchanged.
+            priceEl.textContent = exact ? `${exact} ${cur}` : '';
+            priceEl.hidden = !exact;
+        }
         if (metaEl) {
             const bits = [
                 item.collection_name || item.collection_id || '',

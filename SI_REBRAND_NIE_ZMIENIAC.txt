@@ -7,6 +7,7 @@ Stary handle X: @JackBeatnicAI -> nowy handle X: @JackBeatnicSI.
 (A) NIE DA SIĘ ZMIENIĆ (on-chain / stałe)
 -----------------------------------------
 - Tickery tokenów: $jackbeatnicai (Zora creator coin), $JBEATNICAI i $AIART (tokeny społeczności Arena).
+- Nazwy coinów i tickery zostają z AI (nazwy on-chain), w tym „Creator Coin on Zora (AI)” na stronie.
 - Domeny: jackbeatnicai.base.eth (Basename), jackbeatnicai.tez (Tezos). Ewentualnie tylko nowe aliasy
   (jackbeatnicsi.base.eth / jackbeatnicsi.tez) — płatne, decyzja Jacka.
 - Handle Arena @JackBeatnicAI — przez API Arena da się zmienić tylko nazwę wyświetlaną, bio i avatar
@@ -66,7 +67,7 @@ Stary handle X: @JackBeatnicAI -> nowy handle X: @JackBeatnicSI.
   zmieniono na „SI-crafted”.
 - Widoczny tekst strony: AI -> SI / Super Intelligence — tytuł strony, meta description/keywords, JSON-LD
   (m.in. jobTitle „SI Artist”), hero „From the Lens to SI”, sekcja About, etykieta sekcji „SI Art”,
-  „Explore SI Art · …”, „Tezos SI — coming soon”, „Creator Coin on Zora (SI)”, opisy ogólne
+  „Explore SI Art · …”, „Tezos SI — coming soon”, opisy ogólne
   („SI-crafted”, „SI artworks”, „playful SI creations/scenes”, „Super Intelligence (SI)”),
   nowy obrazek OG strony (assets/og-preview.jpg).
 - Opisy kolekcji zostają z SI, poza miejscami, gdzie fraza jest samą nazwą kolekcji (te wróciły do AI).

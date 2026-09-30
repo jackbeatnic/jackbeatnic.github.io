@@ -62,9 +62,10 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/gallery.css?v=20260925type2">
     <link rel="stylesheet" href="css/text-select.css?v=20260815copy">
+    <link rel="stylesheet" href="css/redesign.css?v=20261001ux">
 </head>
 <body class="gallery-protected">
     <header class="site-header site-header--sticky">
@@ -94,7 +95,8 @@
                 </h1>
                 <p class="artist-subtitle">Digital Art · NFT</p>
             </div>
-            <div class="site-header__actions">
+            <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Menu"><span class="nav-toggle__bar"></span><span class="nav-toggle__bar"></span><span class="nav-toggle__bar"></span></button>
+            <div class="site-header__actions" id="site-menu">
                 <div class="header-chips">
                     <button type="button"
                             id="back-to-top"
@@ -137,6 +139,42 @@
         </div>
         <div class="site-header__rule" aria-hidden="true"></div>
     </header>
+
+    <!-- HERO B (redesign 2026-10-01) — self-contained: fixed background band + text below.
+         Background comes from css/redesign.css (.hero--b .hero__media → assets/hero-bg-2048.jpg / hero-bg-1200.jpg).
+         Keep ids hero-image / hero-title / hero-tagline / hero-description / hero-marketplaces (js/gallery.js applyHero). -->
+    <section class="hero hero--b" aria-labelledby="hero-title">
+        <div class="hero__media" role="img" aria-label="Jack Beatnic — Nature Stories #1 (Avalanche)">
+            <img id="hero-image"
+                     class="hero__image"
+                     src="assets/hero-bg.jpg"
+                     alt="Jack Beatnic — From the Lens to SI"
+                     width="1280"
+                     height="640"
+                     decoding="async"
+                     loading="lazy"
+                     draggable="false"
+                     referrerpolicy="no-referrer"
+                     data-hero-fallbacks="assets/hero-bg.jpg https://jackbeatnic.github.io/jbg-present/avalanche_nature_stories/1.view.webp https://raw.githubusercontent.com/jackbeatnic/jackbeatnic.github.io/main/assets/hero-bg.jpg"
+                     onerror="(function(img){var list=(img.getAttribute('data-hero-fallbacks')||'').split(/\s+/).filter(Boolean);var i=Number(img.dataset.heroFb||0);while(i<list.length&&list[i]===img.getAttribute('src'))i++;if(i<list.length){img.dataset.heroFb=String(i+1);img.src=list[i];}else{img.onerror=null;img.removeAttribute('src');img.hidden=true;}})(this);">
+            <div class="hero__veil" aria-hidden="true"></div>
+        </div>
+        <div class="hero__content">
+            <div class="hero__panel">
+                <div class="hero__brand">
+                    <p id="hero-tagline" class="hero__tagline">From the Lens to SI</p>
+                    <h2 id="hero-title" class="hero__title">Jack Beatnic</h2>
+                    <div class="hero__actions">
+                        <a href="#explore" class="btn btn--primary">Explore the Gallery</a>
+                        <a id="hero-marketplaces" class="btn btn--ghost" href="#about-marketplaces">Marketplaces</a>
+                    </div>
+                </div>
+                <div class="hero__prose">
+                    <div id="hero-description" class="hero__description"></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <main id="gallery-root" class="main">
         <nav class="section-nav" aria-label="Gallery sections">
@@ -205,37 +243,6 @@
             <div id="section-promo-tokens" class="section-promo__tokens"></div>
         </aside>
 
-        <section class="hero" aria-labelledby="hero-title">
-            <div class="hero__media">
-                <img id="hero-image"
-                     class="hero__image"
-                     src="assets/hero-bg.jpg"
-                     alt="Jack Beatnic — From the Lens to SI"
-                     width="1280"
-                     height="640"
-                     decoding="async"
-                     draggable="false"
-                     referrerpolicy="no-referrer"
-                     data-hero-fallbacks="assets/hero-bg.jpg https://jackbeatnic.github.io/jbg-present/avalanche_nature_stories/1.view.webp https://raw.githubusercontent.com/jackbeatnic/jackbeatnic.github.io/main/assets/hero-bg.jpg"
-                     onerror="(function(img){var list=(img.getAttribute('data-hero-fallbacks')||'').split(/\s+/).filter(Boolean);var i=Number(img.dataset.heroFb||0);while(i<list.length&&list[i]===img.getAttribute('src'))i++;if(i<list.length){img.dataset.heroFb=String(i+1);img.src=list[i];}else{img.onerror=null;img.removeAttribute('src');img.hidden=true;}})(this);">
-                <div class="hero__veil" aria-hidden="true"></div>
-            </div>
-            <div class="hero__content">
-                <div class="hero__panel">
-                    <div class="hero__brand">
-                        <h2 id="hero-title" class="hero__title">…</h2>
-                        <p id="hero-tagline" class="hero__tagline">…</p>
-                    </div>
-                    <div class="hero__prose">
-                        <div id="hero-description" class="hero__description"></div>
-                        <div class="hero__actions">
-                            <a href="#explore" class="btn btn--primary">Explore the Gallery</a>
-                            <a id="hero-marketplaces" class="btn btn--ghost" href="#about-marketplaces">Marketplaces</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <section id="explore" class="filters-panel" aria-label="Filters">
             <div class="filters-panel__head">
@@ -271,8 +278,7 @@
                 <div class="filters__tags" id="library-filters" role="group" aria-label="Library marks">
                     <button type="button" id="filter-os" class="filter-tag library-mark library-mark--os" aria-pressed="false">OS</button>
                     <button type="button" id="filter-shop" class="filter-tag library-mark library-mark--shop" aria-pressed="false">SHOP</button>
-                    <button type="button" id="filter-featured" class="filter-tag library-mark library-mark--featured" aria-pressed="false">FEATURED</button>
-                    <button type="button" id="filter-listed" class="filter-tag listed-filter">Listed</button>
+                    <button type="button" id="filter-featured" class="filter-tag library-mark library-mark--featured" aria-pressed="false">Featured</button>
                     <button type="button" id="filter-saved" class="filter-tag saved-filter">Saved for later</button>
                 </div>
             </div>
@@ -466,6 +472,7 @@
     <script src="js/shop.js?v=20260908shoplead"></script>
     <script src="js/xrpl-mint.js?v=20260828xrp01"></script>
     <script src="js/sui-mint.js?v=20260906sui03"></script>
-    <script src="js/gallery.js?v=20260930si"></script>
+    <script src="js/gallery.js?v=20261001ux"></script>
+    <script src="js/nav-menu.js?v=20261001ux"></script>
 </body>
 </html>

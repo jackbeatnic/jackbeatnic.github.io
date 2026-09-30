@@ -17,12 +17,19 @@ Stary handle X: @JackBeatnicAI -> nowy handle X: @JackBeatnicSI.
 - Wartość traitu on-chain „AI Nature” (XRPL, kolekcja JB AI Nature).
 - Profile z handle AI: objkt.com/@jackbeatnicai, zora.co/@jackbeatnicai, salvor.io/profile/JackBeatnicAI — URL-e zostają.
 
+  OpenSea — nazwy i slugi niezmienne na OS
+  -----------------------------------------
+  - Nazwy kolekcji: „JB: AI Art Play”, „JB Based AI”, „JB Based AI vol. 2”.
+  - Slugi kolekcji: jb-ai-play, jb-based-ai, jb-based-ai-2.
+  - Stare slugi w URL-ach obrazów pozostają bez zmian: jb-based-ai-vol-2, flower-stories-vol-2/3,
+    nature-stories-vol-2/3.
+
 (B) ZOSTAWIONE NA POLECENIE JACKA — DO DALSZEJ PRACY Z GROK BUILD
 -----------------------------------------------------------------
 - Nazwy kolekcji/serii na stronie przywrócone do oryginału (są powiązane z on-chain):
   „JB AI Play” (tokeny „JB AI Play #NNN”), „AI Play”, „JB Based AI” / „Based AI” (+ „JB Based AI vol. 2”),
-  „JB AI Nature” / „AI Nature”, „JB AI Jam #NNN”, „JB AI #NNN”, „OBJKT AI”, „JB: AI Art Play” (OpenSea).
-  Slugi OpenSea: jb-ai-play, jb-based-ai (bez zmian).
+  „JB AI Nature” / „AI Nature”, „JB AI Jam #NNN”, „JB AI #NNN”, „OBJKT AI”, „JB: AI Art Play” (OpenSea;
+  szczegóły OpenSea poniżej).
 - Metadane i opisy tokenów NFT w repo jb-nft-assets — nadal „AI”. Skrypty synchronizacji
   aktualizuj_ai_play_do_galerii.py, aktualizuj_based_ai_do_galerii.py, aktualizuj_xrp_do_galerii.py
   pobierają nazwy z metadanych, więc przy następnym syncu przyjdą nazwy z „AI” (to zgodne z (B)).
@@ -34,6 +41,16 @@ Stary handle X: @JackBeatnicAI -> nowy handle X: @JackBeatnicSI.
   listing/sync_featured_promo.py l.281;
   listing/cena_exclusive.py l.202–203.
 
+  OpenSea — zostawione na później
+  -------------------------------
+  - W opisach kolekcji pozostają „Welcome to JB Based AI…” i „Dive into AI Play…” — są to nazwy kolekcji.
+  - Handle IG @jackbeatnicai i Zora @jackbeatnicai w opisach zostają do czasu ewentualnej zmiany nazw przez Jacka.
+  - Stary profil opensea.io/JackBeatnicAI (portfel studia 0xf0b840349b3f285fc05c89eac594ddd254183fb):
+    username, display name i link X wymagają logowania Jacka portfelem studia albo PAT-em z tego portfela.
+  - Link X na obu profilach wymaga ponownego połączenia przez OAuth X w ustawieniach OpenSea.
+  - Bio na poziomie konta opensea.io/JackBeatnic nadal zawiera „AI-crafted”; Jack zmienia je w Settings > Profile.
+  - Username JackBeatnicSI był wolny 30.09.2026.
+
 (C) CELOWO TECHNICZNIE NIE ZMIENIANE
 ------------------------------------
 - Klucze w kodzie, nazwy plików i ścieżki URL: ai_art, parametr ai= (evm/xrpl/sui/tezos), jb_ai_play, based_ai,
@@ -44,6 +61,9 @@ Stary handle X: @JackBeatnicAI -> nowy handle X: @JackBeatnicSI.
 
 (D) ZROBIONE
 ------------
+- OpenSea (30.09.2026): w opisach 11 kolekcji zmieniono „AI generations” -> „SI generations” oraz
+  „X @JackBeatnicAI” -> „X @JackBeatnicSI”; bio portfela 0xdd4b91ad6a86dbcaa032217a269d34e07f9957f0
+  zmieniono na „SI-crafted”.
 - Widoczny tekst strony: AI -> SI / Super Intelligence — tytuł strony, meta description/keywords, JSON-LD
   (m.in. jobTitle „SI Artist”), hero „From the Lens to SI”, sekcja About, etykieta sekcji „SI Art”,
   „Explore SI Art · …”, „Tezos SI — coming soon”, „Creator Coin on Zora (SI)”, opisy ogólne

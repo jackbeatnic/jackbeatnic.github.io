@@ -60,8 +60,8 @@ SHOP_COLLECTION_NAMES = {
 WIDTH = 1200
 HEIGHT = 630
 SITE_BRAND_TITLE = "Jack Beatnic"
-SITE_BRAND_TAGLINE = "From the Lens to AI"
-SITE_GALLERY_LABEL = "AI Art and Photography Gallery"
+SITE_BRAND_TAGLINE = "From the Lens to SI"
+SITE_GALLERY_LABEL = "SI Art and Photography Gallery"
 INDEX_HTML = ROOT / "index.html"
 
 NFT_PAD = 36
@@ -287,7 +287,7 @@ COLLECTION_LABELS = {
     "xrpl_jack_beatnic": "Jack Beatnic",
     "sui_nature_stories_tradeport": "Nature Stories SE",
     "sui_nature_stories_1of1_tradeport": "Nature Stories SE 1/1",
-    "polygon_jb_ai_play": "JB AI Play",
+    "polygon_jb_ai_play": "JB SI Play",
     "objkt_jack_beatnic_open_editions": "Open Editions",
     "objkt_jacks_nature": "Jack's Nature",
 }

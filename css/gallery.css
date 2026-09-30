@@ -1322,12 +1322,13 @@ body.tip-open {
 .hero__veil {
     position: absolute;
     inset: 0;
+    /* Light: light wash — readability from .hero__panel */
     background: linear-gradient(
         to top,
-        rgba(255, 255, 255, 0.98) 0%,
-        rgba(255, 255, 255, 0.94) 28%,
-        rgba(255, 255, 255, 0.72) 48%,
-        rgba(255, 255, 255, 0.2) 100%
+        rgba(255, 255, 255, 0.55) 0%,
+        rgba(255, 255, 255, 0.22) 42%,
+        rgba(255, 255, 255, 0.06) 70%,
+        transparent 100%
     );
 }
 
@@ -1340,6 +1341,17 @@ body.tip-open {
     padding: 1.35rem 1.25rem 1.85rem;
 }
 
+/* Matte readability panel — keep fonts/alignment inside */
+.hero__panel {
+    padding: 1.15rem 1.25rem 1.3rem;
+    border-radius: 1.05rem;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+}
+
+
+
 .hero__brand {
     text-align: left;
 }
@@ -1351,15 +1363,18 @@ body.tip-open {
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1.1;
+    color: #121212;
+    text-shadow: none;
 }
 
 .hero__tagline {
     margin: 0.4rem 0 0;
     font-size: clamp(0.68rem, 1.6vw, 0.78rem);
     font-weight: 500;
-    color: #2e2e2e;
+    color: #1c1c1c;
     letter-spacing: 0.14em;
     text-transform: uppercase;
+    text-shadow: none;
 }
 
 .hero__prose {
@@ -1370,10 +1385,11 @@ body.tip-open {
 .hero__description {
     margin: 0;
     font-size: clamp(0.76rem, 1.45vw, 0.84rem);
-    font-weight: 300;
-    color: #4f4f4f;
+    font-weight: 400;
+    color: #2a2a2a;
     line-height: 1.82;
     max-width: 42rem;
+    text-shadow: none;
 }
 
 .hero__description p {
@@ -1393,8 +1409,22 @@ body.tip-open {
 }
 
 .hero__actions .btn {
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: 0.06em;
+}
+
+.hero__actions .btn--primary {
+    box-shadow: none;
+}
+
+.hero__actions .btn--ghost {
+    color: #1a1a1a;
+    border-color: rgba(20, 20, 20, 0.28);
+    background: rgba(255, 255, 255, 0.52);
+}
+
+.hero__actions .btn--ghost:hover {
+    background: rgba(255, 255, 255, 0.78);
 }
 
 @media (min-width: 900px) {
@@ -1699,6 +1729,8 @@ body.tip-open {
     background: #6a6a6a;
     color: #fff;
     border-color: #6a6a6a;
+    text-transform: none;
+    letter-spacing: 0.04em;
 }
 
 .library-mark.is-active {
@@ -2226,7 +2258,10 @@ body.tip-open {
 .nft-card__mark--featured {
     background: #6a6a6a;
     color: #ffffff;
+    text-transform: none;
+    letter-spacing: 0.06em;
 }
+
 
 .nft-card__price {
     margin: 0 0 0.4rem;
@@ -2876,16 +2911,63 @@ body.lightbox-open {
         box-shadow: var(--glow-hover);
     }
 
-    /* Hero / gradient veils that assumed white */
-    .hero__veil,
-    .hero__content {
+    /* Hero: high-contrast title/subtitle/CTAs in dark (esp. mobile).
+       Hard-coded light-theme grays (#2e2e2e / #4f4f4f) otherwise vanish on black. */
+    .hero__veil {
         background: linear-gradient(
-            90deg,
-            var(--veil-strong) 0%,
-            var(--veil-mid) 28%,
-            rgba(12, 12, 12, 0.55) 48%,
-            rgba(12, 12, 12, 0.15) 100%
+            to top,
+            rgba(8, 8, 8, 0.55) 0%,
+            rgba(8, 8, 8, 0.28) 40%,
+            rgba(8, 8, 8, 0.1) 70%,
+            transparent 100%
         );
+    }
+
+    .hero__panel {
+        background: rgba(12, 12, 12, 0.58);
+        border: none;
+        box-shadow: 0 10px 32px rgba(0, 0, 0, 0.22);
+    }
+
+    .hero__content {
+        background: transparent;
+        color: #f5f5f5;
+        text-shadow: none;
+    }
+
+    .hero__title {
+        color: #ffffff;
+        text-shadow: none;
+    }
+
+    .hero__tagline {
+        color: #f0f0f0;
+    }
+
+    .hero__description,
+    .hero__description p {
+        color: #e8e8e8;
+        font-weight: 400;
+    }
+
+    .hero__actions .btn--primary {
+        background: #ffffff;
+        color: #0c0c0c;
+        border-color: #ffffff;
+        font-weight: 600;
+        box-shadow: none;
+    }
+
+    .hero__actions .btn--ghost {
+        color: #ffffff;
+        border-color: rgba(255, 255, 255, 0.72);
+        background: rgba(0, 0, 0, 0.28);
+        font-weight: 500;
+    }
+
+    .hero__actions .btn--ghost:hover {
+        background: rgba(255, 255, 255, 0.16);
+        color: #ffffff;
     }
 
     input,
@@ -2925,3 +3007,73 @@ body.lightbox-open {
         border-color: var(--gray-100);
     }
 }
+
+
+
+/* Light + mobile: slightly firmer veil under copy — still delicate vs dark */
+@media (prefers-color-scheme: light) and (max-width: 720px) {
+    .hero__veil {
+        background: linear-gradient(
+            to top,
+            rgba(255, 255, 255, 0.5) 0%,
+            rgba(255, 255, 255, 0.18) 50%,
+            transparent 100%
+        );
+    }
+
+    .hero__panel {
+        background: rgba(255, 255, 255, 0.88);
+    }
+
+    .hero__tagline {
+        color: #161616;
+    }
+
+    .hero__description,
+    .hero__description p {
+        color: #242424;
+    }
+}
+
+/* Dark + mobile: deepen veil so copy sits on near-opaque dark, not mid-tone image */
+@media (prefers-color-scheme: dark) and (max-width: 720px) {
+    .hero {
+        min-height: clamp(20rem, 78vw, 26rem);
+    }
+
+    .hero__veil {
+        background: linear-gradient(
+            to top,
+            rgba(6, 6, 6, 0.5) 0%,
+            rgba(6, 6, 6, 0.22) 55%,
+            transparent 100%
+        );
+    }
+
+    .hero__panel {
+        background: rgba(10, 10, 10, 0.68);
+        border: none;
+    }
+
+    .hero__content {
+        padding-top: 1.6rem;
+        padding-bottom: 1.6rem;
+    }
+
+    .hero__title {
+        font-size: clamp(1.38rem, 6vw, 1.85rem);
+    }
+
+    .hero__tagline {
+        font-size: 0.72rem;
+        color: #f5f5f5;
+    }
+
+    .hero__description,
+    .hero__description p {
+        font-size: 0.84rem;
+        line-height: 1.7;
+        color: #f0f0f0;
+    }
+}
+

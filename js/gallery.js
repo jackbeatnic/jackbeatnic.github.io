@@ -1,5 +1,5 @@
 /**
- * Jack Beatnic Gallery — showcase (blueprint Faza 3)
+ * Jack Beatnic Gallery — showcase (blueprint phase 3)
  */
 const Gallery = (() => {
     const IMAGE_PROXY = 'weserv';
@@ -151,8 +151,8 @@ const Gallery = (() => {
     }
 
     /**
-     * XRPL: w katalogu, jeszcze nie zmintowany — mint on demand
-     * (NIE launchpad Sui / TradePort).
+     * XRPL: in the catalog, not minted yet — mint on demand
+     * (NOT the Sui / TradePort launchpad).
      */
     function isXrplPendingMint(nft) {
         if (!isXrpCafeNft(nft) || nft.xrpl_nft_id) return false;
@@ -179,7 +179,7 @@ const Gallery = (() => {
         return nft?.xrpl_nft_id ? 1 : 0;
     }
 
-    /** Lazy mint: kolejne kopie aż do 3000, także gdy kopia 1 już wisi na Cafe. */
+    /** Lazy mint: further copies up to 3000, even when copy 1 is already listed on Cafe. */
     function canXrplMintCopy(nft) {
         if (!isXrpCafeNft(nft)) return false;
         if ((nft.status || '').toLowerCase() === 'sold' && !nft.xrpl_nft_id) {
@@ -189,7 +189,7 @@ const Gallery = (() => {
     }
 
     function isTradeportNft(nft) {
-        // XRPL katalog / Cafe nigdy nie jest TradePort
+        // XRPL catalog / Cafe is never TradePort
         if (isXrpCafeNft(nft)) return false;
         return (
             nft.chain === 'sui' ||
@@ -244,7 +244,7 @@ const Gallery = (() => {
     }
 
     function isLaunchpadMint(nft) {
-        // Sui TradePort launchpad only — nie mylić z XRPL "Mint Available"
+        // Sui TradePort launchpad only — not to be confused with XRPL "Mint Available"
         if (isXrpCafeNft(nft)) return false;
         return (
             nft.status === 'launchpad' ||
@@ -253,7 +253,7 @@ const Gallery = (() => {
         );
     }
 
-    /** Prośba o mint (lazy XRPL) — tweet do autora; później: automat mint_and_list. */
+    /** Mint request (lazy XRPL) — tweet to the artist; later: automated mint_and_list. */
     function xrplMintRequestTweetUrl(nft) {
         const name = nft.name || `JBN #${nft.token_id} X`;
         const price = nft.current_price_xrp ?? nft.price_xrp ?? 16.5;
@@ -315,7 +315,7 @@ const Gallery = (() => {
                     `https://bidds.com/nft/${nft.xrpl_nft_id}`
                 );
             }
-            // nie używaj marketplace_url jeśli to link do .json
+            // don't use marketplace_url if it links to a .json
             const mu = nft.marketplace_url || '';
             if (mu && !/\.json(\?|$)/i.test(mu) && !/meta\/xrpl\//i.test(mu)) {
                 return mu;
@@ -391,7 +391,7 @@ const Gallery = (() => {
         if (!rawUrl) {
             return '';
         }
-        // XRPL request / Cafe — nie przepuszczaj przez OpenSea buyUrl
+        // XRPL request / Cafe — don't route through OpenSea buyUrl
         const href = escapeHtml(
             isXrpCafeNft(nft) || isXrplPendingMint(nft)
                 ? rawUrl
@@ -1234,8 +1234,8 @@ const Gallery = (() => {
                 auctionSections.studio_market ||
                 auctionSections.auctions ||
                 {};
-            // NIE merguj promo_lead/promo_eyebrow z Sui/XRPL do wspólnego ai_art
-            // (Sui nadpisywał XRPL → na zakładce XRPL widać TradePort).
+            // Do NOT merge promo_lead/promo_eyebrow from Sui/XRPL into the shared ai_art
+            // (Sui overwrote XRPL → the XRPL tab showed TradePort).
             const xrpAi = xrpSections.ai_art || {};
             const suiAi = suiSections.ai_art || {};
             const mainAi = mainSections.ai_art || {};
@@ -1281,7 +1281,7 @@ const Gallery = (() => {
                             ...(xrpAi.explore_titles || {}),
                             ...(suiAi.explore_titles || {}),
                         },
-                        // promo per chain — czytane w syncSectionPromo
+                        // promo per chain — read in syncSectionPromo
                         kind_promo: {
                             xrpl: {
                                 promo_eyebrow: xrpAi.promo_eyebrow,
@@ -1677,7 +1677,7 @@ const Gallery = (() => {
             const meta = GallerySections.getSectionMeta();
             const kp = meta.kind_promo?.sui || {};
             const suiInfo = collectionInfo.sui || {};
-            // Tylko poetycki lead — bez wykładu o TradePort / sync
+            // Poetic lead only — no lecture about TradePort / sync
             el.hidden = false;
             if (eyebrowEl) {
                 eyebrowEl.textContent =
@@ -1689,7 +1689,7 @@ const Gallery = (() => {
                     'A quiet garden of Sui editions — landscape, light and gentle colour, offered on TradePort.';
             }
             if (listEl) {
-                // bez kafelków marketplace / „Mint on TradePort”
+                // no marketplace tiles / "Mint on TradePort"
                 listEl.innerHTML = '';
             }
             return;
@@ -1701,7 +1701,7 @@ const Gallery = (() => {
         ) {
             const meta = GallerySections.getSectionMeta();
             const kp = meta.kind_promo?.xrpl || {};
-            // NIE bierz collection_url z Sui / TradePort
+            // Do NOT take collection_url from Sui / TradePort
             el.hidden = false;
             if (eyebrowEl) {
                 eyebrowEl.textContent =

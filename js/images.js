@@ -1,10 +1,10 @@
 /**
- * Warstwa obrazów — miniatury przez proxy, bez bezpośredniego IPFS w <img src>.
+ * Image layer — thumbnails via proxy, no direct IPFS in <img src>.
  *
- * Tryby (ustaw IMAGE_PROXY w gallery.js):
- *   'weserv'     — darmowy proxy + resize (MVP, bez konta Cloudflare)
- *   'cloudflare' — Twój Worker (cloudflare/image-proxy-worker.js)
- *   'direct'     — tylko dev / awaryjnie (pełny IPFS w źródle strony)
+ * Modes (set IMAGE_PROXY in gallery.js):
+ *   'weserv'     — free proxy + resize (MVP, no Cloudflare account)
+ *   'cloudflare' — your Worker (cloudflare/image-proxy-worker.js)
+ *   'direct'     — dev / fallback only (full IPFS URL in page source)
  */
 const ImageProxy = (() => {
     const THUMB_WIDTH = 880;
@@ -32,7 +32,7 @@ const ImageProxy = (() => {
         'sui_nature_stories_1of1_tradeport',
     ]);
 
-    /** Po wdrożeniu Workera: https://img.twoja-domena.com */
+    /** After deploying the Worker: https://img.your-domain.com */
     const CLOUDFLARE_WORKER_BASE = '';
 
     function extractCid(url) {
@@ -95,8 +95,8 @@ const ImageProxy = (() => {
     }
 
     /**
-     * URL do atrybutu src — miniatura, nie oryginał.
-     * W HTML nigdy nie wstawiaj nft.image_url bezpośrednio.
+     * URL for the src attribute — thumbnail, not the original.
+     * Never put nft.image_url into the HTML directly.
      */
     /** ipfs.io often 403s; weserv then shows a blank thumb. Pinata still serves our CIDs. */
     function preferWorkingIpfsGateway(url) {
@@ -236,7 +236,7 @@ const ImageProxy = (() => {
     }
 
     /**
-     * URL do lightboxa (View) — zawsze przez proxy, fit=inside (pomniejsza, nie ścina).
+     * Lightbox (View) URL — always via proxy, fit=inside (downscales, never crops).
      */
     function viewUrl(originalUrl, mode = 'weserv') {
         return displayUrl(

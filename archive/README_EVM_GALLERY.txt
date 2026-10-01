@@ -1,9 +1,9 @@
-Archiwum gallery.json — warstwa AI (kolory, mood, własne opisy).
+gallery.json archive — AI layer (colours, mood, custom descriptions).
 
-Pliki gallery_rich_ai_filters_*.json = snapshot przed tymczasowym sync
-cen/nazw z OS raportów + meta v4 (staging).
+Files gallery_rich_ai_filters_*.json = snapshot taken before the temporary sync
+of prices/names from OS reports + meta v4 (staging).
 
-Cel archiwum: wrócić do pełnej prezentacji z filtrami kolor/mood
-po uporządkowaniu meta on-chain / własnych opisów.
+Purpose of the archive: return to the full presentation with colour/mood filters
+once on-chain meta / custom descriptions are cleaned up.
 
-Tymczasowy sync: www/sync_evm_gallery_temp.py
+Temporary sync: www/sync_evm_gallery_temp.py

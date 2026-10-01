@@ -1,5 +1,5 @@
 /**
- * Prosty lightbox — powiększenie miniatury (proxy, bez surowego IPFS).
+ * Simple lightbox — enlarged thumbnail (proxy, no raw IPFS).
  */
 const Lightbox = (() => {
     let root;

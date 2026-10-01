@@ -1,5 +1,5 @@
 /**
- * Sekcje galerii: AI Art, Photography, The Atelier + Tip.
+ * Gallery sections: AI Art, Photography, The Atelier + Tip.
  */
 const GallerySections = (() => {
     let site = {};

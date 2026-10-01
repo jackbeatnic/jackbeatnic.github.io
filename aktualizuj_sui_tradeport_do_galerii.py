@@ -708,7 +708,7 @@ def build_site_sections(collection_metas: list[dict]) -> dict:
                 "empty_messages": {
                     "sui": (
                         f"{primary_title} on TradePort — "
-                        "sync with aktualizuj_sui_tradeport_do_galerii.py"
+                        "coming soon"
                     )
                 },
                 "promo_eyebrow": "Nature Stories SE · Sui",

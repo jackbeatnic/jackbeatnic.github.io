@@ -228,7 +228,7 @@ const Gallery = (() => {
     }
 
     function marketplaceName(nft) {
-        if (isShopNft(nft)) return 'studio shop';
+        if (isShopNft(nft)) return 'Studio Shop';
         if (isFeaturedPromoNft(nft)) {
             if (nft.tradeport_url || nft.chain === 'sui') {
                 return MARKETPLACE_NAMES.tradeport;
@@ -271,7 +271,7 @@ const Gallery = (() => {
         if (isShopNft(nft)) {
             if (nft.shop_status === 'coming') return 'Coming soon';
             if (nft.demo) return 'Demo checkout';
-            return 'Buy from studio';
+            return 'Buy from Studio';
         }
         if (isFeaturedPromoNft(nft)) {
             return `View on ${marketplaceName(nft)}`;
@@ -337,7 +337,7 @@ const Gallery = (() => {
                 (isShopNft(nft) && (nft.qty_available || 0) <= 0);
             const disabled = coming ? ' disabled' : '';
             const shopLabel = escapeHtml(shopCtaLabel(nft));
-            const note = `<p class="nft-card__shop-note">Studio shop · direct from the Artist</p>`;
+            const note = `<p class="nft-card__shop-note">Studio Shop · direct from the Artist</p>`;
             if (osHref) {
                 const osLabel = escapeHtml(osCtaLabel(nft));
                 return `
@@ -562,7 +562,7 @@ const Gallery = (() => {
             const osP = nft.os_list_price;
             const osCur = (nft.os_list_currency || shopCur).toUpperCase();
             const q = nft.qty_available ?? nft.promo_quantity;
-            const bits = ['Studio shop · direct from the Artist'];
+            const bits = ['Studio Shop · direct from the Artist'];
             if (q != null) bits.push(`${q} available`);
             if (nft.promo_days_left != null) bits.push(`${nft.promo_days_left}d left`);
             if (osP != null && osP !== '') bits.push(`OpenSea ${osP} ${osCur}`);
@@ -930,8 +930,8 @@ const Gallery = (() => {
     function shopCtaLabel(nft) {
         const p = nft.shop_pay_amount || nft.pay_amount || nft.shop_price;
         const cur = (nft.shop_currency || nft.listing_currency || 'AVAX').toUpperCase();
-        if (p != null && p !== '') return `Studio shop · ${p} ${cur}`;
-        return 'Buy from studio';
+        if (p != null && p !== '') return `Studio Shop · ${p} ${cur}`;
+        return 'Buy from Studio';
     }
 
     function osCtaLabel(nft) {
@@ -1255,10 +1255,10 @@ const Gallery = (() => {
                     shop: {
                         label: 'Shop',
                         label_short: 'Shop',
-                        explore_title: 'Studio shop',
+                        explore_title: 'Studio Shop',
                         empty_message:
                             'No live studio offers right now.',
-                        promo_eyebrow: 'Studio shop',
+                        promo_eyebrow: 'Studio Shop',
                         promo_lead:
                             'Buy direct from the studio. Pick a work, pay with wallet — the NFT comes to that wallet.',
                         ...(mainSections.shop || {}),
@@ -1503,7 +1503,7 @@ const Gallery = (() => {
         if (GallerySections.getCurrentSection() === 'shop') {
             const meta = GallerySections.getSectionMeta();
             el.hidden = false;
-            if (eyebrowEl) eyebrowEl.textContent = meta.promo_eyebrow || 'Studio shop';
+            if (eyebrowEl) eyebrowEl.textContent = meta.promo_eyebrow || 'Studio Shop';
             if (leadEl) {
                 leadEl.textContent =
                     meta.promo_lead ||

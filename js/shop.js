@@ -365,7 +365,7 @@ const ShopCheckout = (() => {
         const qr = modal.querySelector('#shop-modal-qr');
         const fulfillEl = modal.querySelector('#shop-modal-fulfill');
 
-        if (title) title.textContent = demo ? 'Demo checkout' : 'Pay the studio';
+        if (title) title.textContent = demo ? 'Demo checkout' : 'Pay the Studio';
         if (nameEl) nameEl.textContent = name;
         setThumb(modal.querySelector('#shop-modal-thumb'), item);
         const priceEl = modal.querySelector('#shop-modal-price');

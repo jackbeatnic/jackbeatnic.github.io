@@ -337,19 +337,18 @@ const Gallery = (() => {
                 (isShopNft(nft) && (nft.qty_available || 0) <= 0);
             const disabled = coming ? ' disabled' : '';
             const shopLabel = escapeHtml(shopCtaLabel(nft));
-            const note = `<p class="nft-card__shop-note">Studio Shop · direct from the Artist</p>`;
             if (osHref) {
                 const osLabel = escapeHtml(osCtaLabel(nft));
                 return `
                 <div class="nft-card__actions nft-card__actions--dual">
                     <button type="button" class="btn btn--primary btn--block shop-buy"${disabled}>${shopLabel}</button>
                     <a class="btn btn--ghost btn--block" href="${escapeHtml(osHref)}" target="_blank" rel="noopener noreferrer">${osLabel}</a>
-                </div>${note}`;
+                </div>`;
             }
             return `
                 <div class="nft-card__actions">
                     <button type="button" class="btn btn--primary btn--block shop-buy"${disabled}>${shopLabel}</button>
-                </div>${note}`;
+                </div>`;
         }
         const dual = resolveDualMarketplaces(nft);
         if (dual) {
@@ -562,7 +561,7 @@ const Gallery = (() => {
             const osP = nft.os_list_price;
             const osCur = (nft.os_list_currency || shopCur).toUpperCase();
             const q = nft.qty_available ?? nft.promo_quantity;
-            const bits = ['Studio Shop · direct from the Artist'];
+            const bits = [];
             if (q != null) bits.push(`${q} available`);
             if (nft.promo_days_left != null) bits.push(`${nft.promo_days_left}d left`);
             if (osP != null && osP !== '') bits.push(`OpenSea ${osP} ${osCur}`);
@@ -1261,7 +1260,7 @@ const Gallery = (() => {
                             'No live studio offers right now.',
                         promo_eyebrow: 'Studio Shop',
                         promo_lead:
-                            'Buy direct from the studio. Pick a work, pay with wallet — the NFT comes to that wallet.',
+                            'Pick a work, pay with wallet — the NFT comes to that wallet.',
                         ...(mainSections.shop || {}),
                     },
                     ...mainSections,

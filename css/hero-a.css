@@ -1,9 +1,11 @@
-/* Hero A demo only (demo-hero-a.html, noindex). Loaded after css/redesign.css.
+/* Hero A — live home hero (index.html; same file used by demo-hero-a.html).
+   Loaded after css/redesign.css.
    Header: transparent over the hero (spacex.com-like), then the SAME translucent
-   frosted sticky header as the live site once .is-solid is set by js/demo-hero-a.js. */
+   frosted sticky header as the live site once .is-solid is set by js/hero-a.js.
+   Header rules are unchanged from the approved demo — keep them as they are. */
 
 /* ── Header: overlay → solid ─────────────────────────────────────────── */
-.gallery-protected.demo-hero-a .site-header--overlay {
+.gallery-protected.home-hero-a .site-header--overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -15,40 +17,40 @@
         -webkit-backdrop-filter 0.45s ease,
         backdrop-filter 0.45s ease;
 }
-.gallery-protected.demo-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) {
+.gallery-protected.home-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) {
     background-color: transparent;
     border-bottom-color: rgba(255, 255, 255, 0.16);
     -webkit-backdrop-filter: blur(0px) saturate(1);
     backdrop-filter: blur(0px) saturate(1);
 }
-.gallery-protected.demo-hero-a .site-header--overlay .site-nav a,
-.gallery-protected.demo-hero-a .site-header--overlay .site-nav__tip,
-.gallery-protected.demo-hero-a .site-header--overlay .shop-chip,
-.gallery-protected.demo-hero-a .site-header--overlay .featured-chip,
-.gallery-protected.demo-hero-a .site-header--overlay .artist-subtitle,
-.gallery-protected.demo-hero-a .site-header--overlay .nav-toggle {
+.gallery-protected.home-hero-a .site-header--overlay .site-nav a,
+.gallery-protected.home-hero-a .site-header--overlay .site-nav__tip,
+.gallery-protected.home-hero-a .site-header--overlay .shop-chip,
+.gallery-protected.home-hero-a .site-header--overlay .featured-chip,
+.gallery-protected.home-hero-a .site-header--overlay .artist-subtitle,
+.gallery-protected.home-hero-a .site-header--overlay .nav-toggle {
     transition: color 0.35s ease, opacity 0.35s ease;
 }
-.demo-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) :is(.site-nav a, .site-nav__tip, .shop-chip, .featured-chip) {
+.home-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) :is(.site-nav a, .site-nav__tip, .shop-chip, .featured-chip) {
     color: rgba(255, 255, 255, 0.84);
     text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
 }
-.demo-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) :is(.site-nav a:hover, .site-nav__tip:hover, .shop-chip:hover, .featured-chip:hover, .site-nav a.is-active) {
+.home-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) :is(.site-nav a:hover, .site-nav__tip:hover, .shop-chip:hover, .featured-chip:hover, .site-nav a.is-active) {
     color: #fff;
 }
-.demo-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) .site-nav::before {
+.home-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) .site-nav::before {
     background: rgba(255, 255, 255, 0.35);
 }
-.demo-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) .artist-subtitle {
+.home-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) .artist-subtitle {
     color: rgba(235, 235, 235, 0.78); /* light gray on the image */
     text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
 }
-.demo-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) .nav-toggle { color: #fff; }
+.home-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) .nav-toggle { color: #fff; }
 
 /* Logo crossfade: light ink over the hero, normal (scheme-aware) logo when solid */
-.gallery-protected.demo-hero-a .signature-logo-wrap { position: relative; }
-.gallery-protected.demo-hero-a .signature-logo-wrap picture { display: block; transition: opacity 0.4s ease; }
-.gallery-protected.demo-hero-a .signature-logo--onhero {
+.gallery-protected.home-hero-a .signature-logo-wrap { position: relative; }
+.gallery-protected.home-hero-a .signature-logo-wrap picture { display: block; transition: opacity 0.4s ease; }
+.gallery-protected.home-hero-a .signature-logo--onhero {
     position: absolute;
     left: 0;
     top: 0;
@@ -59,10 +61,10 @@
     filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.5));
     transition: opacity 0.4s ease;
 }
-.demo-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) .signature-logo-wrap picture { opacity: 0; }
-.demo-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) .signature-logo--onhero { opacity: 1; }
+.home-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) .signature-logo-wrap picture { opacity: 0; }
+.home-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) .signature-logo--onhero { opacity: 1; }
 
-/* ── Hero A ──────────────────────────────────────────────────────────── */
+/* ── Hero A (image) ──────────────────────────────────────────────────── */
 .gallery-protected .hero.hero--a {
     position: relative;
     display: flex;
@@ -74,6 +76,7 @@
     padding: 0;
     border: 0;
     color: #fff;
+    /* locked hero: Avalanche Nature Stories NS #1 */
     background: #05101f url('../assets/hero-bg-2048.jpg') center 62% / cover no-repeat fixed;
     overflow: hidden;
 }
@@ -94,18 +97,9 @@
     margin: 0 auto;
     padding: 0 40px 88px;
 }
-.gallery-protected .hero--a .hero-a__eyebrow {
-    margin: 0;
-    font-family: var(--rd-ui);
-    font-size: 13px;
-    font-weight: 300;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: #fff;
-    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
-}
+/* "Jack Beatnic" — Playfair Italic signature. Halo: off in light mode, soft in dark mode. */
 .gallery-protected .hero--a .hero-a__title {
-    margin: 18px 0 26px;
+    margin: 0 0 22px;
     font-family: var(--rd-sign);
     font-style: italic;
     font-weight: 400;
@@ -113,35 +107,20 @@
     line-height: 1;
     letter-spacing: -0.01em;
     color: #fff;
-    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.25);
+    text-shadow: none;
     text-transform: none;
 }
+/* Short description of the work, under the name (from demo version 1) */
 .gallery-protected .hero--a .hero-a__lead {
-    max-width: 560px;
+    max-width: 540px;
     margin: 0;
+    font-family: var(--rd-body);
     font-size: 17px;
+    font-weight: 300;
     line-height: 1.65;
     color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
 }
-.gallery-protected .hero--a .hero-a__desc[hidden] { display: none; }
-.gallery-protected .hero--a .hero-a__ctas {
-    display: flex;
-    gap: 34px;
-    margin-top: 34px;
-    font-family: var(--rd-ui);
-    font-size: 14px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-}
-.gallery-protected .hero--a .hero-a__cta {
-    padding-bottom: 6px;
-    color: #fff;
-    text-decoration: none;
-    border-bottom: 1px solid #fff;
-}
-.gallery-protected .hero--a .hero-a__cta--ghost { opacity: 0.75; border-bottom-color: transparent; }
-.gallery-protected .hero--a .hero-a__cta:hover { opacity: 1; }
-.gallery-protected .hero--a .hero-a__cta[hidden] { display: none; }
 .gallery-protected .hero--a .hero-a__scroll {
     position: absolute;
     right: 40px;
@@ -153,7 +132,11 @@
     color: rgba(255, 255, 255, 0.6);
     writing-mode: vertical-rl;
 }
-/* ── About band under the hero (Hero B panel style) ── */
+@media (prefers-color-scheme: dark) {
+    .gallery-protected .hero--a .hero-a__title { text-shadow: 0 0 28px rgba(0, 0, 0, 0.32); }
+}
+
+/* ── Band under the hero: motto + links (left), about text (right) ──── */
 .gallery-protected .hero-a-band { background: var(--rd-bg); color: var(--rd-fg); }
 .gallery-protected .hero-a-band__inner {
     display: grid;
@@ -165,30 +148,36 @@
     padding: 64px 40px 72px;
     border-bottom: 1px solid var(--rd-rule);
 }
-.gallery-protected .hero-a-band__eyebrow {
+/* Motto — the guiding thought of the site: gray, Outfit Light, larger, airy spacing,
+   introduced by one thin hairline. */
+.gallery-protected .hero-a-band__motto {
+    position: relative;
     margin: 0;
+    padding-top: 26px;
     font-family: var(--rd-ui);
-    font-size: 12px;
+    font-size: 32px;
     font-weight: 300;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
+    font-style: normal;
+    line-height: 1.3;
+    letter-spacing: 0.08em;
+    text-transform: none;
     color: var(--rd-muted);
 }
-.gallery-protected .hero-a-band__name {
-    margin: 14px 0 0;
-    font-family: var(--rd-sign);
-    font-style: italic;
-    font-weight: 400;
-    font-size: 56px;
-    line-height: 1.05;
-    letter-spacing: -0.01em;
-    color: var(--rd-fg);
+.gallery-protected .hero-a-band__motto::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 48px;
+    height: 1px;
+    background: var(--rd-muted);
+    opacity: 0.6;
 }
 .gallery-protected .hero-a-band__links {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    margin-top: 30px;
+    margin-top: 36px;
     font-family: var(--rd-ui);
     font-size: 13px;
     letter-spacing: 0.06em;
@@ -202,6 +191,7 @@
 }
 .gallery-protected .hero-a-band__link--ghost { opacity: 0.72; border-bottom-color: transparent; }
 .gallery-protected .hero-a-band__link:hover { opacity: 1; color: var(--rd-accent-ink); }
+.gallery-protected .hero-a-band__link[hidden] { display: none; }
 .gallery-protected .hero-a-band__prose,
 .gallery-protected .hero-a-band__prose p {
     font-family: var(--rd-body);
@@ -214,7 +204,7 @@
 .gallery-protected .hero-a-band__prose p:last-child { margin-bottom: 0; }
 .gallery-protected .hero-a-band__prose p:first-child { color: var(--rd-fg); }
 /* gallery starts right under the band */
-.gallery-protected.demo-hero-a .main { padding-top: 8px; }
+.gallery-protected.home-hero-a .main { padding-top: 8px; }
 
 /* iOS / touch Safari: never a fixed background (normal scroll) */
 @supports (-webkit-touch-callout: none) {
@@ -227,12 +217,19 @@
         background-attachment: scroll;
         background-position: center 60%;
     }
-    .gallery-protected .hero--a .hero-a__inner { padding: 0 20px 56px; }
-    .gallery-protected .hero--a .hero-a__title { font-size: 62px; }
-    .gallery-protected .hero--a .hero-a__lead { font-size: 15px; }
-    .gallery-protected .hero--a .hero-a__ctas { gap: 24px; font-size: 12.5px; }
+    .gallery-protected .hero--a .hero-a__veil {
+        background: linear-gradient(180deg,
+            rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.3) 12%, rgba(0, 0, 0, 0) 28%,
+            rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.45) 62%, rgba(0, 0, 0, 0.82) 100%);
+    }
+    .gallery-protected .hero--a .hero-a__inner { padding: 0 20px 52px; }
+    .gallery-protected .hero--a .hero-a__title { font-size: 62px; margin-bottom: 16px; }
+    .gallery-protected .hero--a .hero-a__lead { font-size: 15px; line-height: 1.6; max-width: 34em; }
     .gallery-protected .hero--a .hero-a__scroll { display: none; }
-    .gallery-protected .hero-a-band__inner { grid-template-columns: 1fr; gap: 24px; padding: 36px 20px 44px; }
-    .gallery-protected .hero-a-band__name { font-size: 44px; }
-    .gallery-protected .hero-a-band__links { gap: 24px; font-size: 12.5px; }
+    .gallery-protected .hero-a-band__inner { grid-template-columns: 1fr; gap: 28px; padding: 40px 20px 44px; }
+    .gallery-protected .hero-a-band__motto { font-size: 24px; letter-spacing: 0.07em; padding-top: 20px; }
+    .gallery-protected .hero-a-band__links { gap: 24px; margin-top: 26px; font-size: 12.5px; }
+}
+@media (max-width: 360px) {
+    .gallery-protected .hero--a .hero-a__title { font-size: 54px; }
 }

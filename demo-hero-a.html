@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="css/gallery.css?v=20260925type2">
     <link rel="stylesheet" href="css/text-select.css?v=20260815copy">
     <link rel="stylesheet" href="css/redesign.css?v=20261001modal">
-    <link rel="stylesheet" href="css/demo-hero-a.css?v=20261001a">
+    <link rel="stylesheet" href="css/demo-hero-a.css?v=20261001b">
 </head>
 <body class="gallery-protected demo-hero-a">
     <header class="site-header site-header--sticky site-header--overlay" id="site-header">
@@ -97,14 +97,26 @@
         <div class="hero-a__inner">
             <p id="hero-tagline" class="hero-a__eyebrow">From the Lens to SI</p>
             <h2 id="hero-title" class="hero-a__title">Jack Beatnic</h2>
-            <p class="hero-a__lead">Nature and landscape photographer weaving photography, memory, and imagination into SI-crafted digital art.</p>
-            <div id="hero-description" class="hero-a__desc" hidden></div>
             <div class="hero-a__ctas">
                 <a href="#explore" class="hero-a__cta">Explore the Gallery</a>
                 <a id="hero-marketplaces" class="hero-a__cta hero-a__cta--ghost" href="#about-marketplaces">Marketplaces</a>
             </div>
         </div>
         <span class="hero-a__scroll" aria-hidden="true">Scroll</span>
+    </section>
+    <!-- Hero A about band (like Hero B's two-column panel): left eyebrow/name/links, right the about text (filled by gallery.js). -->
+    <section class="hero-a-band" aria-label="About the work">
+        <div class="hero-a-band__inner">
+            <div class="hero-a-band__brand">
+                <p class="hero-a-band__eyebrow">From the Lens to SI</p>
+                <p class="hero-a-band__name">Jack Beatnic</p>
+                <div class="hero-a-band__links">
+                    <a href="#explore" class="hero-a-band__link">Explore the Gallery</a>
+                    <a href="#about-marketplaces" class="hero-a-band__link hero-a-band__link--ghost">Marketplaces</a>
+                </div>
+            </div>
+            <div id="hero-description" class="hero-a-band__prose"></div>
+        </div>
     </section>
 
     <main id="gallery-root" class="main">

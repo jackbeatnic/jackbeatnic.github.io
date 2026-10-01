@@ -2,6 +2,28 @@
 # Host-level robots.txt controls ALL paths on this domain,
 # including /jb-nft-assets/ (separate repo, same Pages host).
 
+# Link-preview bots (X cards, Telegram, Facebook, LinkedIn, …) must be able to
+# fetch the promo boards used as og:image on nft/<collection>/<id>.html.
+# Without this, X drops the card image (Twitterbot obeys robots.txt).
+User-agent: Twitterbot
+User-agent: TelegramBot
+User-agent: facebookexternalhit
+User-agent: Facebot
+User-agent: LinkedInBot
+User-agent: Slackbot
+User-agent: Slackbot-LinkExpanding
+User-agent: Discordbot
+User-agent: WhatsApp
+User-agent: Applebot
+Allow: /jbg-present/promo/
+Disallow: /jb-nft-assets/
+Disallow: /jb-nft-assets
+Disallow: /jbg-present/
+Disallow: /jbg-present
+Disallow: /jbg-shop/
+Disallow: /jbg-shop
+Allow: /
+
 User-agent: *
 Allow: /
 Disallow: /jb-nft-assets/

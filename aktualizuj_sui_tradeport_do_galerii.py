@@ -41,6 +41,9 @@ PAGE_SIZE = 100
 LAUNCHPAD_PAGE_SIZE = 50
 SUI_DECIMALS = 1_000_000_000
 DISPLAY_RANK_1OF1_OFFSET = 10_000
+# If a fresh sync returns fewer than this share of the previous works for a
+# collection, treat it as an API failure and keep the previous data.
+MIN_KEEP_RATIO = 0.5
 
 EDITION_ORDER = {"edition": 0, "1of1": 1}
 
@@ -148,9 +151,12 @@ def load_json(path: Path) -> dict:
 
 
 def save_json(path: Path, data: dict) -> None:
-    with path.open("w", encoding="utf-8") as fh:
+    # Atomic write: never leave a half-written JSON on disk if the run dies.
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    with tmp.open("w", encoding="utf-8") as fh:
         json.dump(data, fh, ensure_ascii=False, indent=2)
         fh.write("\n")
+    os.replace(tmp, path)
 
 
 def edition_kind(cfg: dict) -> str:
@@ -705,12 +711,9 @@ def build_site_sections(collection_metas: list[dict]) -> dict:
         "sections": {
             "ai_art": {
                 "explore_titles": {"sui": f"Explore {primary_title} · Sui"},
-                "empty_messages": {
-                    "sui": (
-                        f"{primary_title} on TradePort — "
-                        "coming soon"
-                    )
-                },
+                # Shown only if the Sui grid is empty. Neutral wording: Sui minting
+                # is live, so keep this an invitation, not a "not yet" notice.
+                "empty_messages": {"sui": f"View {primary_title} on TradePort"},
                 "promo_eyebrow": "Nature Stories SE · Sui",
                 "promo_lead": (
                     "A quiet garden of Sui editions — landscape, light and gentle colour, "
@@ -838,10 +841,47 @@ def sync(
     all_entries: list[dict] = []
     collection_metas: list[dict] = []
 
+    old_by_col: dict[str, list[dict]] = {}
+    for row in old_data.get("nfts") or []:
+        col = row.get("collection_id") or ""
+        if col:
+            old_by_col.setdefault(col, []).append(row)
+
+    refreshed_ok = 0
     for cfg in configs:
-        entries, meta = sync_one_collection(cfg, old_by_key=old_by_key, limit=limit)
+        col_key = cfg.get("id") or "sui_tradeport"
+        previous = old_by_col.get(col_key) or []
+        try:
+            entries, meta = sync_one_collection(cfg, old_by_key=old_by_key, limit=limit)
+            error = None
+        except SystemExit as exc:  # HTTP 5xx / timeout / GraphQL error from indexer.xyz
+            entries, meta, error = [], {}, str(exc)
+        # Keep the last good data when the TradePort API fails or returns an
+        # empty / badly shrunken list (e.g. indexer.xyz 502 or a degraded response).
+        # A deliberate --limit test run is exempt from the shrink check.
+        shrunk = (
+            limit is None
+            and previous
+            and len(entries) < max(1, int(len(previous) * MIN_KEEP_RATIO))
+        )
+        if previous and (error or not entries or shrunk):
+            reason = error or f"API returned {len(entries)} works (previously {len(previous)})"
+            print(f"[sui] WARNING {col_key}: {reason} — keeping last good {len(previous)} works")
+            all_entries.extend(previous)
+            collection_metas.append(_meta_from_old_entries(col_key, previous, old_data))
+            continue
+        if error:
+            raise SystemExit(error)
+        refreshed_ok += 1
         all_entries.extend(entries)
         collection_metas.append(meta)
+
+    if not all_entries:
+        print("[sui] ERROR: no works at all — not writing an empty sui_gallery.json")
+        return 1
+    if refreshed_ok == 0:
+        print("[sui] TradePort API unavailable — sui_gallery.json left unchanged (last good data)")
+        return 1
 
     # Partial sync: dołóż karty i meta z pozostałych kolekcji (bez kasowania)
     if only_collection:

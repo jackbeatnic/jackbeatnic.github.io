@@ -928,6 +928,25 @@ KEEP_JBG_OG_CARDS = os.environ.get("JB_OG_KEEP_CARDS") == "1"
 _PROMO_INDEX: dict | None = None
 
 
+def refresh_promo_index() -> None:
+    """With a local jbg-present clone (JB), re-read which boards are published
+    (origin/main) before writing share pages. JB_PROMO_INDEX_AUTO=0 disables."""
+    if os.environ.get("JB_PROMO_INDEX_AUTO", "1") == "0":
+        return
+    present = Path(os.environ.get("JB_PRESENT_DIR") or (ROOT.parent / "jbg-present"))
+    if not (present / ".git").exists():
+        return
+    global _PROMO_INDEX
+    try:
+        sys.path.insert(0, str(ROOT))
+        import buduj_indeks_tablic_promo as idx
+
+        idx.refresh("local", quiet=True)
+        _PROMO_INDEX = None
+    except Exception as exc:  # noqa: BLE001 — keep the committed index
+        print(f"[promo] WARN: indeks tablic nie odświeżony ({exc}) — używam {PROMO_INDEX_JSON.name}")
+
+
 def promo_index() -> dict:
     global _PROMO_INDEX
     if _PROMO_INDEX is None:
@@ -1082,6 +1101,7 @@ def generate_share_pages(
     info = data["collection_info"]
     base_url = site_base_url(info)
     og_version = info.get("og_cache_version") or og_cache_version()
+    refresh_promo_index()
     if nfts is None:
         nfts = collect_all_share_nfts(data)
     output_dir.mkdir(parents=True, exist_ok=True)

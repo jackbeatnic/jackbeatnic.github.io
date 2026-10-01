@@ -9,7 +9,7 @@ Board file name = ON-CHAIN token id, 4 digits: promo/<collection_id>/<NNNN>.jpg
    so the generator uses onchain_token_id when present).
 
 Sources (only what is committed = what GitHub Pages serves):
-  --local  : ../jbg-present (git ls-tree HEAD promo + PIL size)   [default if present]
+  --local  : ../jbg-present (git ls-tree origin/main promo + blob headers) [default if present]
   --github : GitHub API tree + 2 KB Range request per new board     [no clone needed]
 Unchanged boards (same blob sha) are reused from the existing index.
 
@@ -96,9 +96,19 @@ def list_github() -> dict[str, dict[str, str]]:
     return out
 
 
+def _present_ref() -> str:
+    """Published tree = origin/main (what Pages serves), else HEAD."""
+    for ref in ("origin/main", "HEAD"):
+        r = subprocess.run(["git", "rev-parse", "--verify", "-q", ref], cwd=PRESENT,
+                           capture_output=True, text=True)
+        if r.returncode == 0:
+            return ref
+    raise SystemExit(f"{PRESENT}: brak origin/main i HEAD")
+
+
 def list_local() -> dict[str, dict[str, str]]:
     r = subprocess.run(
-        ["git", "ls-tree", "-r", "HEAD", "promo"],
+        ["git", "ls-tree", "-r", _present_ref(), "promo"],
         cwd=PRESENT, capture_output=True, text=True, check=True,
     )
     out: dict[str, dict[str, str]] = {}
@@ -108,6 +118,38 @@ def list_local() -> dict[str, dict[str, str]]:
         if len(parts) != 3 or not parts[2].endswith(".jpg") or not parts[2][:-4].isdigit():
             continue
         out.setdefault(parts[1], {})[parts[2][:-4]] = meta.split()[2]
+    return out
+
+
+def sizes_local(items: list[tuple[str, str, str]]) -> dict[str, tuple[int, int]]:
+    """Read the committed blobs (git cat-file --batch) — not the working tree."""
+    if not items:
+        return {}
+    proc = subprocess.Popen(["git", "cat-file", "--batch"], cwd=PRESENT,
+                            stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    out: dict[str, tuple[int, int]] = {}
+    try:
+        for _col, _stem, sha in items:
+            proc.stdin.write(sha.encode() + b"\n")
+            proc.stdin.flush()
+            header = proc.stdout.readline().split()
+            if len(header) < 3 or header[1] == b"missing":
+                continue
+            data = proc.stdout.read(int(header[2]))
+            proc.stdout.read(1)  # trailing LF
+            size = jpeg_size(data[:65536])
+            if not size:
+                try:
+                    from PIL import Image
+                    with Image.open(BytesIO(data)) as im:
+                        size = im.size
+                except Exception:
+                    size = None
+            if size:
+                out[sha] = size
+    finally:
+        proc.stdin.close()
+        proc.wait()
     return out
 
 
@@ -128,23 +170,8 @@ def size_remote(col: str, stem: str) -> tuple[int, int] | None:
     return None
 
 
-def size_local(col: str, stem: str) -> tuple[int, int] | None:
-    p = PRESENT / "promo" / col / f"{stem}.jpg"
-    try:
-        with p.open("rb") as fh:
-            s = jpeg_size(fh.read(65536))
-        if s:
-            return s
-        from PIL import Image
-        with Image.open(p) as im:
-            return im.size
-    except Exception:
-        return None
-
-
 def build(source: str) -> dict:
     listing = list_local() if source == "local" else list_github()
-    sizer = size_local if source == "local" else size_remote
     old = (load_old().get("collections") or {})
     cols: dict[str, dict[str, list]] = {}
     todo: list[tuple[str, str, str]] = []
@@ -159,17 +186,26 @@ def build(source: str) -> dict:
                 todo.append((col, stem, sha))
     print(f"[promo-index] {sum(len(v) for v in listing.values())} boards, {len(todo)} to measure ({source})")
 
-    def work(item):
-        col, stem, sha = item
-        return item, sizer(col, stem)
-
     failed = 0
-    with ThreadPoolExecutor(max_workers=24 if source == "github" else 4) as ex:
-        for (col, stem, sha), size in ex.map(work, todo):
+    if source == "local":
+        sizes = sizes_local(todo)
+        for col, stem, sha in todo:
+            size = sizes.get(sha)
             if not size:
                 failed += 1
                 continue
             cols[col][stem] = [size[0], size[1], sha[:10]]
+    else:
+        def work(item):
+            col, stem, _sha = item
+            return item, size_remote(col, stem)
+
+        with ThreadPoolExecutor(max_workers=16) as ex:
+            for (col, stem, sha), size in ex.map(work, todo):
+                if not size:
+                    failed += 1
+                    continue
+                cols[col][stem] = [size[0], size[1], sha[:10]]
     if failed:
         print(f"[promo-index] WARN: {failed} boards without size (skipped)")
     return {
@@ -182,24 +218,37 @@ def build(source: str) -> dict:
     }
 
 
+def refresh(source: str | None = None, quiet: bool = False) -> dict:
+    """Rebuild and write the index (used by generuj_og_preview.py).
+    Writes only when the set of boards / sizes / shas changed."""
+    if source is None:
+        source = "local" if (PRESENT / ".git").exists() else "github"
+    doc = build(source)
+    total = sum(len(v) for v in doc["collections"].values())
+    prev = load_old()
+    if prev.get("collections") == doc["collections"]:
+        print(f"[promo-index] bez zmian ({total} boards)")
+        return prev
+    INDEX.parent.mkdir(parents=True, exist_ok=True)
+    INDEX.write_text(
+        json.dumps(doc, ensure_ascii=False, separators=(",", ":"), sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if not quiet:
+        for c, v in doc["collections"].items():
+            print(f"[promo-index] {c}: {len(v)}")
+    print(f"[promo-index] zapisano {INDEX.relative_to(ROOT)} ({total} boards)")
+    return doc
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     g = ap.add_mutually_exclusive_group()
-    g.add_argument("--local", action="store_true")
-    g.add_argument("--github", action="store_true")
+    g.add_argument("--local", action="store_true", help="../jbg-present clone (origin/main)")
+    g.add_argument("--github", action="store_true", help="GitHub API + Range requests")
     a = ap.parse_args(argv)
-    if a.github:
-        source = "github"
-    elif a.local or (PRESENT / ".git").exists():
-        source = "local"
-    else:
-        source = "github"
-    doc = build(source)
-    INDEX.parent.mkdir(parents=True, exist_ok=True)
-    INDEX.write_text(json.dumps(doc, ensure_ascii=False, separators=(",", ":"), sort_keys=True) + "\n", encoding="utf-8")
-    for c, v in doc["collections"].items():
-        print(f"[promo-index] {c}: {len(v)}")
-    print(f"[promo-index] zapisano {INDEX.relative_to(ROOT)}")
+    source = "github" if a.github else ("local" if a.local else None)
+    refresh(source)
     return 0
 
 

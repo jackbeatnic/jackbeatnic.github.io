@@ -10,6 +10,8 @@ const GalleryShare = (() => {
     let activeUrl = '';
     let activeText = '';
     let outsideHandler = null;
+    // Promo board JPG (jbg-present/promo) fetched for the mobile share sheet.
+    const boardCache = new Map();
 
     function enc(value) {
         return encodeURIComponent(value || '');
@@ -398,14 +400,127 @@ const GalleryShare = (() => {
             .join('');
     }
 
-    // Promo square for every chain. The shared URL stays the landing,
-    // so OG (Telegram and others) is unchanged.
+    // Promo boards live on the jbg-present Pages site (same origin as the
+    // gallery): /jbg-present/promo/<collection_id>/<NNNN>.jpg, NNNN = ON-CHAIN
+    // token id (NJ vol2 / AI Play gallery token_id is 10000+n / 700000000+n).
+    const BOARD_COLLECTIONS = new Set([
+        'avalanche_flower_stories',
+        'avalanche_nature_jam',
+        'avalanche_nature_jam_vol2',
+        'avalanche_nature_stories',
+        'base_flower_stories_vol3',
+        'base_jb_based_ai',
+        'base_jb_based_ai_vol2',
+        'base_nature_stories_vol3',
+        'polygon_flower_stories_vol2',
+        'polygon_jb_ai_play',
+        'polygon_nature_stories_vol2',
+    ]);
+
+    function promoBoardRef(nft) {
+        const cid = String(nft?.collection_id || '').trim().toLowerCase().replace(/-/g, '_');
+        if (!BOARD_COLLECTIONS.has(cid)) return null;
+        const raw = nft?.onchain_token_id ?? nft?.token_id;
+        const n = Number.parseInt(String(raw ?? ''), 10);
+        if (!Number.isFinite(n) || n < 0) return null;
+        const id = String(n).padStart(4, '0');
+        return {
+            url: `${siteUrl}jbg-present/promo/${cid}/${id}.jpg`,
+            name: `jack-beatnic-${cid.replace(/_/g, '-')}-${id}.jpg`,
+        };
+    }
+
     function promoSquareUrl(nft) {
-        const cid = collectionId(nft);
-        const tid = nft?.token_id;
-        if (!cid || tid == null) return '';
-        const n = String(tid).padStart(4, '0');
-        return `${siteUrl}jbg-present/promo/${encodeURIComponent(cid)}/${n}.jpg`;
+        return promoBoardRef(nft)?.url || '';
+    }
+
+    /** Phone / tablet — desktop keeps the menu (X intent with text + URL). */
+    function isMobileDevice() {
+        if (navigator.userAgentData && typeof navigator.userAgentData.mobile === 'boolean') {
+            if (navigator.userAgentData.mobile) return true;
+        }
+        const ua = navigator.userAgent || '';
+        if (/Android|iPhone|iPad|iPod|Mobile|Silk|Kindle/i.test(ua)) return true;
+        // iPadOS reports "Macintosh" — tell it apart by touch.
+        if (/Macintosh/.test(ua) && (navigator.maxTouchPoints || 0) > 1) return true;
+        return false;
+    }
+
+    function canShareFiles() {
+        if (typeof navigator.share !== 'function' || typeof navigator.canShare !== 'function') {
+            return false;
+        }
+        try {
+            const probe = new File([new Uint8Array([0xff, 0xd8, 0xff])], 'probe.jpg', { type: 'image/jpeg' });
+            return navigator.canShare({ files: [probe] });
+        } catch {
+            return false;
+        }
+    }
+
+    function wantsFileShare(nft) {
+        return isMobileDevice() && canShareFiles() && !!promoBoardRef(nft);
+    }
+
+    /** Promise<File|null> — cached per board, started early (pointerdown). */
+    function boardFile(nft) {
+        const ref = promoBoardRef(nft);
+        if (!ref) return Promise.resolve(null);
+        if (!boardCache.has(ref.url)) {
+            const job = fetch(ref.url, { mode: 'cors', credentials: 'omit' })
+                .then(async (res) => {
+                    const type = res.headers.get('content-type') || '';
+                    if (!res.ok || !type.startsWith('image/')) return null;
+                    const blob = await res.blob();
+                    if (!blob.size) return null;
+                    return new File([blob], ref.name, { type: 'image/jpeg' });
+                })
+                .catch(() => null)
+                .then((file) => {
+                    if (!file) boardCache.delete(ref.url); // retry later
+                    return file;
+                });
+            boardCache.set(ref.url, job);
+        }
+        return boardCache.get(ref.url);
+    }
+
+    function prefetchBoard(nft) {
+        if (wantsFileShare(nft)) boardFile(nft);
+    }
+
+    function withTimeout(promise, ms) {
+        return Promise.race([
+            promise,
+            new Promise((resolve) => window.setTimeout(() => resolve(null), ms)),
+        ]);
+    }
+
+    /**
+     * Mobile: share the real promo-board JPG + text + landing URL, so the X /
+     * Telegram apps post the image itself. Returns 'shared' | 'aborted' |
+     * 'blocked' (lost user activation — retry from the menu) | 'none'.
+     */
+    async function shareBoardFile(nft, url, text) {
+        if (!wantsFileShare(nft)) return 'none';
+        const file = await withTimeout(boardFile(nft), 6000);
+        if (!file) return 'none';
+        const data = { files: [file], text, url };
+        let ok = false;
+        try {
+            ok = navigator.canShare(data) || navigator.canShare({ files: [file] });
+        } catch {
+            ok = false;
+        }
+        if (!ok) return 'none';
+        try {
+            await navigator.share(data);
+            return 'shared';
+        } catch (err) {
+            if (err?.name === 'AbortError') return 'aborted';
+            if (err?.name === 'NotAllowedError') return 'blocked';
+            return 'none';
+        }
     }
 
     async function nativeShare(nft, url, text) {
@@ -413,30 +528,13 @@ const GalleryShare = (() => {
             openMenu(nft, anchor);
             return;
         }
+        const viaFile = await shareBoardFile(nft, url, shareText(nft));
+        if (viaFile === 'shared' || viaFile === 'aborted') {
+            close();
+            return;
+        }
         try {
-            const payload = {
-                title: artworkTitle(nft),
-                text: shareText(nft),
-                url,
-            };
-            const board = promoSquareUrl(nft);
-            if (board && navigator.canShare) {
-                try {
-                    const res = await fetch(board);
-                    if (res.ok) {
-                        const blob = await res.blob();
-                        const file = new File([blob], 'promo.jpg', {
-                            type: blob.type || 'image/jpeg',
-                        });
-                        if (navigator.canShare({ files: [file] })) {
-                            payload.files = [file];
-                        }
-                    }
-                } catch {
-                    /* board not public yet — link share still works */
-                }
-            }
-            await navigator.share(payload);
+            await navigator.share({ title: artworkTitle(nft), text: shareText(nft), url });
             close();
         } catch (err) {
             if (err?.name === 'AbortError') return;
@@ -504,7 +602,18 @@ const GalleryShare = (() => {
         const url = workUrl(nft);
         const text = shareText(nft);
 
-        if (canNativeShare()) {
+        // Phone/tablet with file sharing + a promo board → real JPG to the app.
+        const viaFile = await shareBoardFile(nft, url, text);
+        if (viaFile === 'shared' || viaFile === 'aborted') return;
+        if (viaFile === 'blocked') {
+            // Board was ready but the tap "expired" — the menu's Share… button
+            // (a fresh tap) shares the cached JPG instantly.
+            openMenu(nft, button);
+            return;
+        }
+
+        // Mobile without a board / file support: link share sheet (as before).
+        if (isMobileDevice() && canNativeShare()) {
             try {
                 await navigator.share({
                     title: artworkTitle(nft),
@@ -517,6 +626,7 @@ const GalleryShare = (() => {
             }
         }
 
+        // Desktop (and fallback): menu with X intent (text + URL), Telegram, copy…
         openMenu(nft, button);
     }
 
@@ -540,6 +650,12 @@ const GalleryShare = (() => {
         button.setAttribute('aria-haspopup', 'dialog');
         button.setAttribute('aria-expanded', 'false');
         button.setAttribute('aria-controls', 'share-popover');
+        // Start fetching the promo board before the click lands, so
+        // navigator.share() still runs inside the user's tap.
+        const warm = () => prefetchBoard(nft);
+        button.addEventListener('pointerdown', warm, { passive: true });
+        button.addEventListener('touchstart', warm, { passive: true });
+        button.addEventListener('focus', warm);
         button.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -547,5 +663,5 @@ const GalleryShare = (() => {
         });
     }
 
-    return { init, open, close, workUrl, bindButton };
+    return { init, open, close, workUrl, bindButton, promoBoardUrl: promoSquareUrl };
 })();

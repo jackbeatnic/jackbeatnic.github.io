@@ -384,10 +384,10 @@ const GallerySections = (() => {
             site.sections.shop = {
                 label: 'Shop',
                 label_short: 'Shop',
-                explore_title: 'Studio shop',
+                explore_title: 'Studio Shop',
                 empty_message:
                     'No live studio-shop works right now.',
-                promo_eyebrow: 'Studio shop',
+                promo_eyebrow: 'Studio Shop',
                 promo_lead:
                     'Buy direct from the studio. Pick a work, pay with wallet — the NFT comes to that wallet.',
             };

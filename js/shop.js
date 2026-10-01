@@ -420,7 +420,7 @@ const ShopCheckout = (() => {
         if (lead) {
             lead.textContent = demo
                 ? 'This is a preview. Do not send funds.'
-                : 'Pay with wallet or WalletConnect, confirm, then wait for the NFT.';
+                : 'Direct from the Studio. Pay with wallet or WalletConnect, confirm, then wait for the NFT.';
         }
 
         const payBtn = modal.querySelector('#shop-pay-wallet');

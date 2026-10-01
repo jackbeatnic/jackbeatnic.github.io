@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-01T01:52:01.006598+00:00",
+  "updated_at": "2026-10-01T22:00:03.610801+00:00",
   "promo": {
     "label": "OFF 0% · 180 days",
     "pct_off": 0,
@@ -231,22 +231,6 @@
       "ends_at": "2026-10-08T21:43:46+00:00",
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/17",
       "marketplace_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/17"
-    },
-    {
-      "collection_id": "polygon_flower_stories_vol2",
-      "collection_name": "Flower Stories vol. 2",
-      "chain": "polygon",
-      "token_id": 1,
-      "name": "FS #701",
-      "image_url": "https://jackbeatnic.github.io/jbg-present/polygon_flower_stories_vol2/1.thumb.webp",
-      "price": 0.00062,
-      "currency": "WETH",
-      "quantity": 500,
-      "days": 7,
-      "pct_off": 0,
-      "ends_at": "2026-10-01T21:47:54.148546+00:00",
-      "opensea_url": "https://opensea.io/assets/polygon/0x515ac12338a428df618f4c7c2720754e35d612b8/1",
-      "marketplace_url": "https://opensea.io/assets/polygon/0x515ac12338a428df618f4c7c2720754e35d612b8/1"
     },
     {
       "collection_id": "avalanche_nature_stories",

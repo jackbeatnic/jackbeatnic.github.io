@@ -962,6 +962,7 @@ const Gallery = (() => {
         const now = Date.now();
         return raw
             .filter((it) => {
+                if (it.permanent) return true;
                 const ea = it.ends_at || promo.ends_at;
                 if (!ea) return true;
                 const t = new Date(ea).getTime();
@@ -988,7 +989,7 @@ const Gallery = (() => {
                     supply: it.quantity,
                     promo_quantity: it.quantity,
                     promo_days: it.days != null ? it.days : promo.days,
-                    promo_days_left: left,
+                    promo_days_left: it.permanent ? null : left,
                     pct_off: it.pct_off != null ? it.pct_off : promo.pct_off,
                     ends_at: ends,
                     opensea_url: it.opensea_url,

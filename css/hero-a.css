@@ -47,6 +47,16 @@
 }
 .home-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) .nav-toggle { color: #fff; }
 
+/* Light mode, scrolled (.is-solid): semi-transparent frosted white, matching the
+   lightness of the dark-mode bar (was ~opaque rgba(255,255,255,0.94) via --rd-header-bg). */
+@media (prefers-color-scheme: light) {
+    .gallery-protected.home-hero-a .site-header--overlay.is-solid:not(.is-menu-open) {
+        background-color: rgba(255, 255, 255, 0.68);
+        -webkit-backdrop-filter: blur(16px) saturate(1.15);
+        backdrop-filter: blur(16px) saturate(1.15);
+    }
+}
+
 /* Logo crossfade: light ink over the hero, normal (scheme-aware) logo when solid */
 .gallery-protected.home-hero-a .signature-logo-wrap { position: relative; }
 .gallery-protected.home-hero-a .signature-logo-wrap picture { display: block; transition: opacity 0.4s ease; }

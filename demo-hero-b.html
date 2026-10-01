@@ -5,18 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light dark">
     <meta name="robots" content="noindex, nofollow, noarchive">
-    <title>Hero A demo — Jack Beatnic (same as the live home, not indexed)</title>
-    <!-- Hero A demo: identical to the live index.html (Hero A). Not linked, not indexed. -->
+    <title>Hero B demo — Jack Beatnic (previous home hero, not indexed)</title>
+    <!-- Hero B demo: the previous live home (Hero B), kept for comparison. Not linked, not indexed. -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/gallery.css?v=20260925type2">
     <link rel="stylesheet" href="css/text-select.css?v=20260815copy">
     <link rel="stylesheet" href="css/redesign.css?v=20261001tag">
-    <link rel="stylesheet" href="css/hero-a.css?v=20261001live">
 </head>
-<body class="gallery-protected home-hero-a">
-    <header class="site-header site-header--sticky site-header--overlay" id="site-header">
+<body class="gallery-protected">
+    <header class="site-header site-header--sticky">
         <div class="site-header__inner">
             <div class="site-brand">
                 <h1 class="site-logo">
@@ -38,7 +37,6 @@
                                  draggable="false"
                                  referrerpolicy="no-referrer">
                         </picture>
-                        <img class="signature-logo signature-logo--onhero" src="assets/signature-ice-ink.png" alt="" width="360" height="150" decoding="async" draggable="false">
                         <div class="signature-shield"></div>
                     </div>
                 </h1>
@@ -89,30 +87,39 @@
         <div class="site-header__rule" aria-hidden="true"></div>
     </header>
 
-    <!-- HERO A (live home since 2026-10-01): full-bleed fixed background (assets/hero-bg-2048.jpg,
-         1200 on mobile — Avalanche Nature Stories NS #1), signature name + short description on the image.
-         Band below: motto (#hero-tagline) + Explore | Marketplaces (left), about text (right).
-         Keep ids hero-image / hero-title / hero-tagline / hero-description / hero-marketplaces (js/gallery.js applyHero).
-         Hero B is kept for comparison at demo-hero-b.html (noindex). -->
-    <section class="hero hero--a" aria-labelledby="hero-title">
-        <img id="hero-image" class="hero__image" src="assets/hero-bg.jpg" alt="" width="1280" height="640" decoding="async" loading="lazy" draggable="false" referrerpolicy="no-referrer" hidden>
-        <div class="hero-a__veil" aria-hidden="true"></div>
-        <div class="hero-a__inner">
-            <h2 id="hero-title" class="hero-a__title">Jack Beatnic</h2>
-            <p class="hero-a__lead">Nature and landscape photographer weaving photography, memory, and imagination into SI-crafted digital art.</p>
+    <!-- HERO B (redesign 2026-10-01) — self-contained: fixed background band + text below.
+         Background comes from css/redesign.css (.hero--b .hero__media → assets/hero-bg-2048.jpg / hero-bg-1200.jpg).
+         Keep ids hero-image / hero-title / hero-tagline / hero-description / hero-marketplaces (js/gallery.js applyHero). -->
+    <section class="hero hero--b" aria-labelledby="hero-title">
+        <div class="hero__media" role="img" aria-label="Jack Beatnic — Nature Stories #1 (Avalanche)">
+            <img id="hero-image"
+                     class="hero__image"
+                     src="assets/hero-bg.jpg"
+                     alt="Jack Beatnic — From the Lens to SI"
+                     width="1280"
+                     height="640"
+                     decoding="async"
+                     loading="lazy"
+                     draggable="false"
+                     referrerpolicy="no-referrer"
+                     data-hero-fallbacks="assets/hero-bg.jpg https://jackbeatnic.github.io/jbg-present/avalanche_nature_stories/1.view.webp https://raw.githubusercontent.com/jackbeatnic/jackbeatnic.github.io/main/assets/hero-bg.jpg"
+                     onerror="(function(img){var list=(img.getAttribute('data-hero-fallbacks')||'').split(/\s+/).filter(Boolean);var i=Number(img.dataset.heroFb||0);while(i<list.length&&list[i]===img.getAttribute('src'))i++;if(i<list.length){img.dataset.heroFb=String(i+1);img.src=list[i];}else{img.onerror=null;img.removeAttribute('src');img.hidden=true;}})(this);">
+            <div class="hero__veil" aria-hidden="true"></div>
         </div>
-        <span class="hero-a__scroll" aria-hidden="true">Scroll</span>
-    </section>
-    <section class="hero-a-band" aria-label="About the work">
-        <div class="hero-a-band__inner">
-            <div class="hero-a-band__brand">
-                <p id="hero-tagline" class="hero-a-band__motto">From the Lens to SI</p>
-                <div class="hero-a-band__links">
-                    <a href="#explore" class="hero-a-band__link">Explore the Gallery</a>
-                    <a id="hero-marketplaces" href="#about-marketplaces" class="hero-a-band__link hero-a-band__link--ghost">Marketplaces</a>
+        <div class="hero__content">
+            <div class="hero__panel">
+                <div class="hero__brand">
+                    <p id="hero-tagline" class="hero__tagline">From the Lens to SI</p>
+                    <h2 id="hero-title" class="hero__title">Jack Beatnic</h2>
+                    <div class="hero__actions">
+                        <a href="#explore" class="btn btn--primary">Explore the Gallery</a>
+                        <a id="hero-marketplaces" class="btn btn--ghost" href="#about-marketplaces">Marketplaces</a>
+                    </div>
+                </div>
+                <div class="hero__prose">
+                    <div id="hero-description" class="hero__description"></div>
                 </div>
             </div>
-            <div id="hero-description" class="hero-a-band__prose"></div>
         </div>
     </section>
 
@@ -427,6 +434,5 @@
     <script src="js/sui-mint.js?v=20260906sui03"></script>
     <script src="js/gallery.js?v=20261001studio2"></script>
     <script src="js/nav-menu.js?v=20261001ux"></script>
-    <script src="js/hero-a.js?v=20261001live"></script>
 </body>
 </html>

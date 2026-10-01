@@ -1,4 +1,4 @@
-/* Hero A demo only: transparent header over the hero, the live frosted sticky
+/* Hero A (live home + demo-hero-a.html): transparent header over the hero, the live frosted sticky
    header after ~80% of the hero height has scrolled by. */
 (function () {
     'use strict';

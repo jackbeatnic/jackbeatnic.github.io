@@ -926,18 +926,14 @@ const Gallery = (() => {
         return OpenSeaLinks.buyUrl(raw);
     }
 
+    // Card CTAs carry no price: prices are shown at the top of the card and in the modal.
+    // The first card button gets ' →' via CSS (redesign.css); the OpenSea link adds its own.
     function shopCtaLabel(nft) {
-        const p = nft.shop_pay_amount || nft.pay_amount || nft.shop_price;
-        const cur = (nft.shop_currency || nft.listing_currency || 'AVAX').toUpperCase();
-        if (p != null && p !== '') return `Studio Shop · ${p} ${cur}`;
-        return 'Buy from Studio';
+        return 'Studio Shop';
     }
 
     function osCtaLabel(nft) {
-        const p = nft.os_list_price;
-        const cur = (nft.os_list_currency || nft.listing_currency || 'AVAX').toUpperCase();
-        if (p != null && p !== '') return `OpenSea · ${p} ${cur}`;
-        return 'OpenSea';
+        return 'OpenSea \u2192';
     }
 
     function channelMarksHtml(nft) {

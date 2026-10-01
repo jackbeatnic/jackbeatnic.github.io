@@ -1,0 +1,174 @@
+/* Hero A demo only (demo-hero-a.html, noindex). Loaded after css/redesign.css.
+   Header: transparent over the hero (spacex.com-like), then the SAME translucent
+   frosted sticky header as the live site once .is-solid is set by js/demo-hero-a.js. */
+
+/* ── Header: overlay → solid ─────────────────────────────────────────── */
+.gallery-protected.demo-hero-a .site-header--overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    transition:
+        background-color 0.45s ease,
+        border-color 0.45s ease,
+        -webkit-backdrop-filter 0.45s ease,
+        backdrop-filter 0.45s ease;
+}
+.gallery-protected.demo-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) {
+    background-color: transparent;
+    border-bottom-color: rgba(255, 255, 255, 0.16);
+    -webkit-backdrop-filter: blur(0px) saturate(1);
+    backdrop-filter: blur(0px) saturate(1);
+}
+.gallery-protected.demo-hero-a .site-header--overlay .site-nav a,
+.gallery-protected.demo-hero-a .site-header--overlay .site-nav__tip,
+.gallery-protected.demo-hero-a .site-header--overlay .shop-chip,
+.gallery-protected.demo-hero-a .site-header--overlay .featured-chip,
+.gallery-protected.demo-hero-a .site-header--overlay .artist-subtitle,
+.gallery-protected.demo-hero-a .site-header--overlay .nav-toggle {
+    transition: color 0.35s ease, opacity 0.35s ease;
+}
+.demo-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) :is(.site-nav a, .site-nav__tip, .shop-chip, .featured-chip) {
+    color: rgba(255, 255, 255, 0.84);
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+}
+.demo-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) :is(.site-nav a:hover, .site-nav__tip:hover, .shop-chip:hover, .featured-chip:hover, .site-nav a.is-active) {
+    color: #fff;
+}
+.demo-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) .site-nav::before {
+    background: rgba(255, 255, 255, 0.35);
+}
+.demo-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) .artist-subtitle {
+    color: rgba(235, 235, 235, 0.78); /* light gray on the image */
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+}
+.demo-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) .nav-toggle { color: #fff; }
+
+/* Logo crossfade: light ink over the hero, normal (scheme-aware) logo when solid */
+.gallery-protected.demo-hero-a .signature-logo-wrap { position: relative; }
+.gallery-protected.demo-hero-a .signature-logo-wrap picture { display: block; transition: opacity 0.4s ease; }
+.gallery-protected.demo-hero-a .signature-logo--onhero {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    opacity: 0;
+    pointer-events: none;
+    filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.5));
+    transition: opacity 0.4s ease;
+}
+.demo-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) .signature-logo-wrap picture { opacity: 0; }
+.demo-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) .signature-logo--onhero { opacity: 1; }
+
+/* ── Hero A ──────────────────────────────────────────────────────────── */
+.gallery-protected .hero.hero--a {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    height: 100vh;
+    height: 100svh;
+    min-height: 640px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: #fff;
+    background: #05101f url('../assets/hero-bg-2048.jpg') center 62% / cover no-repeat fixed;
+    overflow: hidden;
+}
+.gallery-protected .hero--a .hero__image,
+.gallery-protected .hero--a .hero__image:not([hidden]) { display: none; }
+.gallery-protected .hero--a .hero-a__veil {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg,
+        rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.34) 10%, rgba(0, 0, 0, 0.08) 22%, rgba(0, 0, 0, 0) 32%,
+        rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0.66) 100%);
+}
+.gallery-protected .hero--a .hero-a__inner {
+    position: relative;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 40px 88px;
+}
+.gallery-protected .hero--a .hero-a__eyebrow {
+    margin: 0;
+    font-family: var(--rd-ui);
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.82);
+}
+.gallery-protected .hero--a .hero-a__title {
+    margin: 18px 0 26px;
+    font-family: var(--rd-sign);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 112px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: #fff;
+    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.25);
+    text-transform: none;
+}
+.gallery-protected .hero--a .hero-a__lead {
+    max-width: 560px;
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.9);
+}
+.gallery-protected .hero--a .hero-a__desc[hidden] { display: none; }
+.gallery-protected .hero--a .hero-a__ctas {
+    display: flex;
+    gap: 34px;
+    margin-top: 34px;
+    font-family: var(--rd-ui);
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+.gallery-protected .hero--a .hero-a__cta {
+    padding-bottom: 6px;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid #fff;
+}
+.gallery-protected .hero--a .hero-a__cta--ghost { opacity: 0.75; border-bottom-color: transparent; }
+.gallery-protected .hero--a .hero-a__cta:hover { opacity: 1; }
+.gallery-protected .hero--a .hero-a__cta[hidden] { display: none; }
+.gallery-protected .hero--a .hero-a__scroll {
+    position: absolute;
+    right: 40px;
+    bottom: 88px;
+    font-family: var(--rd-ui);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    writing-mode: vertical-rl;
+}
+/* gallery starts right under the hero */
+.gallery-protected.demo-hero-a .main { padding-top: 8px; }
+
+/* iOS / touch Safari: never a fixed background (normal scroll) */
+@supports (-webkit-touch-callout: none) {
+    .gallery-protected .hero.hero--a { background-attachment: scroll; }
+}
+@media (max-width: 768px) {
+    .gallery-protected .hero.hero--a {
+        min-height: 560px;
+        background-image: url('../assets/hero-bg-1200.jpg');
+        background-attachment: scroll;
+        background-position: center 60%;
+    }
+    .gallery-protected .hero--a .hero-a__inner { padding: 0 20px 56px; }
+    .gallery-protected .hero--a .hero-a__title { font-size: 62px; }
+    .gallery-protected .hero--a .hero-a__lead { font-size: 15px; }
+    .gallery-protected .hero--a .hero-a__ctas { gap: 24px; font-size: 12.5px; }
+    .gallery-protected .hero--a .hero-a__scroll { display: none; }
+}

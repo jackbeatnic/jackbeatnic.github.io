@@ -123,13 +123,13 @@ if ! git remote get-url origin >/dev/null 2>&1; then
     exit 1
 fi
 
-if git diff --quiet -- gallery.json assets/og-preview.jpg nft/ js/gallery.js \
-    && git diff --cached --quiet -- gallery.json assets/og-preview.jpg nft/ js/gallery.js; then
+if git diff --quiet -- gallery.json assets/og-preview.jpg nft/ js/gallery.js data/promo_boards.json \
+    && git diff --cached --quiet -- gallery.json assets/og-preview.jpg nft/ js/gallery.js data/promo_boards.json; then
     echo "Brak zmian (gallery / landings) — pomijam commit i push."
     exit 0
 fi
 
-git add gallery.json assets/og-preview.jpg nft/ js/gallery.js generuj_og_preview.py
+git add gallery.json assets/og-preview.jpg nft/ js/gallery.js generuj_og_preview.py data/promo_boards.json
 if [[ -z "$COMMIT_MSG" ]]; then
     COMMIT_MSG="sync prices ($KOLEKCJA) $(date -u +%Y-%m-%dT%H:%MZ)"
 fi

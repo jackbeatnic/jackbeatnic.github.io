@@ -5,7 +5,7 @@ Thumbs.db
 .env
 .env.*
 
-# Lokalne notatki / przypadkowe pliki (nie deploy)
+# Local notes / stray files (not deployed)
 layout_notes/*.docx
 /*.jpg
 /*.jpeg

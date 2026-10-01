@@ -1,18 +1,18 @@
 /**
- * Cloudflare Worker — proxy miniatur IPFS (Faza późniejsza)
+ * Cloudflare Worker — IPFS thumbnail proxy (later phase)
  *
- * Wdrożenie (skrót):
+ * Deploy (short):
  *   1. cloudflare.com → Workers → Create Worker
- *   2. Wklej ten kod → Deploy
- *   3. Route: img.twoja-domena.com/*  (lub workers.dev URL na testy)
- *   4. W www/js/images.js ustaw CLOUDFLARE_WORKER_BASE na ten URL
- *   5. W www/js/gallery.js zmień IMAGE_PROXY na 'cloudflare'
+ *   2. Paste this code → Deploy
+ *   3. Route: img.your-domain.com/*  (or a workers.dev URL for testing)
+ *   4. In js/images.js set CLOUDFLARE_WORKER_BASE to that URL
+ *   5. In js/gallery.js change IMAGE_PROXY to 'cloudflare'
  *
- * Parametry GET:
- *   url  — pełny URL obrazka (np. https://ipfs.io/ipfs/CID...)
- *   w, h — opcjonalne; Worker przekazuje do images.weserv.nl (resize)
+ * GET parameters:
+ *   url  — full image URL (e.g. https://ipfs.io/ipfs/CID...)
+ *   w, h — optional; the Worker forwards them to images.weserv.nl (resize)
  *
- * Oryginalny CID nie trafia do HTML strony — tylko URL Workera.
+ * The original CID never reaches the page HTML — only the Worker URL.
  */
 const ALLOWED_HOSTS = [
   'ipfs.io',

@@ -113,13 +113,13 @@ echo "=== [4/4] Git commit + push (GitHub Pages) ==="
 cd "$WWW_DIR"
 
 if ! git rev-parse --git-dir >/dev/null 2>&1; then
-    echo "Błąd: brak repozytorium git w $WWW_DIR" >&2
-    echo "Pierwszy raz: zobacz DEPLOY_GITHUB.txt" >&2
+    echo "Error: no git repository in $WWW_DIR" >&2
+    echo "First run: see the local deploy notes (~/jb_nft/notes/gh_internal/DEPLOY_GITHUB.txt)" >&2
     exit 1
 fi
 
 if ! git remote get-url origin >/dev/null 2>&1; then
-    echo "Błąd: brak remote 'origin'. Zobacz DEPLOY_GITHUB.txt" >&2
+    echo "Error: no 'origin' remote. See the local deploy notes (~/jb_nft/notes/gh_internal/DEPLOY_GITHUB.txt)" >&2
     exit 1
 fi
 

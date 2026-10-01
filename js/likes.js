@@ -1,7 +1,7 @@
 /**
- * Likes & Save for later — LocalStorage (blueprint Faza 4).
- * Globalne likes_count: vps/worker/likes_daily.py (CSV + cron) albo
- * www/aktualizuj_pozycje_z_likes.py. Serduszko tutaj = tylko ta przeglądarka.
+ * Likes & Save for later — LocalStorage (blueprint phase 4).
+ * Global likes_count: vps/worker/likes_daily.py (CSV + cron) or the
+ * local likes-ranking script. Heart here = this browser only.
  */
 const GalleryLikes = (() => {
     const STORAGE_LIKES = 'jb_gallery_likes_v1';
@@ -91,7 +91,7 @@ const GalleryLikes = (() => {
         return nfts.filter((nft) => saved.has(nftKey(nft)));
     }
 
-    /** Kolejność z gallery.json (likes_count + display_rank z dziennego skryptu). */
+    /** Order from gallery.json (likes_count + display_rank from the daily script). */
     function sortForDisplay(nfts) {
         return [...nfts].sort((a, b) => {
             const rankA = a.display_rank ?? 999999;

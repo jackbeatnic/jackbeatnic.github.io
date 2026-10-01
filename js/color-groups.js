@@ -1,6 +1,6 @@
 /**
- * Grupuje precyzyjne hexy z dominant_colors w kilka czytelnych palet filtrów.
- * Na kartach NFT zostają oryginalne kolory — tu tylko UX wyszukiwania.
+ * Groups precise hexes from dominant_colors into a few readable filter palettes.
+ * NFT cards keep their original colours — this is search UX only.
  *
  * 2026-09-07: bucketing is perception-first for ALL families (not only green).
  * - Dark chromatic hues stay on their family (not dumped to charcoal/earth).

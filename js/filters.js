@@ -1,5 +1,5 @@
 /**
- * Filtry galerii — kategoria, palety kolorów, vibe, wyszukiwarka (dane z gallery.json)
+ * Gallery filters — category, colour palettes, vibe, search (data from gallery.json)
  */
 const GalleryFilters = (() => {
     const activeVibes = new Set();

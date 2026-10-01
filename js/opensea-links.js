@@ -1,6 +1,6 @@
 /**
- * OpenSea deep links — Buy / Make offer (blueprint Faza 3)
- * Offer: ?makeOffer=true na stronie assetu (wzorzec OpenSea UI)
+ * OpenSea deep links — Buy / Make offer (blueprint phase 3)
+ * Offer: ?makeOffer=true on the asset page (OpenSea UI pattern)
  */
 const OpenSeaLinks = (() => {
     function normalizeAssetUrl(url) {
@@ -9,12 +9,12 @@ const OpenSeaLinks = (() => {
         return url.replace('/item/', '/assets/');
     }
 
-    /** Strona NFT — przycisk Buy / listing */
+    /** NFT page — Buy / listing button */
     function buyUrl(openseaUrl) {
         return normalizeAssetUrl(openseaUrl);
     }
 
-    /** Otwiera modal oferty na OpenSea */
+    /** Opens the offer modal on OpenSea */
     function offerUrl(openseaUrl) {
         const base = normalizeAssetUrl(openseaUrl);
         if (!base) return '';

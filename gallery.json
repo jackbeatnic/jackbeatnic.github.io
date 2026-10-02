@@ -417,6 +417,38 @@
   },
   "nfts": [
     {
+      "token_id": 13,
+      "name": "NS #206",
+      "opensea_url": "https://opensea.io/assets/base/0x642073e93508606b94d0732324411135c8bc44c3/13",
+      "image_url": "https://jackbeatnic.github.io/jbg-present/base_nature_stories_vol3/13.thumb.webp",
+      "supply": 10000,
+      "traits": {},
+      "ai": {
+        "description": "",
+        "dominant_colors": [],
+        "vibe_tags": [],
+        "category": "",
+        "keywords": [
+          "base",
+          "base_nature_stories_vol3"
+        ]
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "base",
+      "contract_address": "0x642073e93508606b94d0732324411135c8bc44c3",
+      "collection_id": "base_nature_stories_vol3",
+      "listing_status": "For Sale",
+      "listing_currency": "ETH",
+      "display_rank": 0,
+      "share_url": "https://jackbeatnic.github.io/nft/base-nature-stories-vol3/13.html",
+      "og_image": "https://jackbeatnic.github.io/jbg-present/promo/base_nature_stories_vol3/0013.jpg?v=9c13fbf4",
+      "medium": "ai_art",
+      "ai_series": "nature_stories",
+      "edition_label": "Base",
+      "current_price_eth": 0.00565
+    },
+    {
       "token_id": 10,
       "name": "FS #709",
       "opensea_url": "https://opensea.io/assets/polygon/0x515ac12338a428df618f4c7c2720754e35d612b8/10",

@@ -48,10 +48,10 @@
 .home-hero-a .site-header--overlay:not(.is-solid):not(.is-menu-open) .nav-toggle { color: #fff; }
 
 /* Light mode, scrolled (.is-solid): almost-white, only minimally translucent frosted
-   bar for readability (0.68 was too see-through; base --rd-header-bg is 0.94). */
+   bar for readability (0.68, then 0.89 were too see-through; now 0.94 = base --rd-header-bg). */
 @media (prefers-color-scheme: light) {
     .gallery-protected.home-hero-a .site-header--overlay.is-solid:not(.is-menu-open) {
-        background-color: rgba(255, 255, 255, 0.89);
+        background-color: rgba(255, 255, 255, 0.94);
         -webkit-backdrop-filter: blur(16px) saturate(1.15);
         backdrop-filter: blur(16px) saturate(1.15);
     }

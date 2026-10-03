@@ -85,8 +85,9 @@ const GalleryShare = (() => {
             params.set('section', 'photography');
             const kind = nft.photo_kind || 'photo';
             if (kind !== 'photo') params.set('photo', kind);
-            if (String(nft.chain || '').toLowerCase() === 'xrpl') {
-                params.set('pchain', 'xrpl');
+            const photoChain = String(nft.chain || '').toLowerCase();
+            if (photoChain === 'xrpl' || photoChain === 'avalanche') {
+                params.set('pchain', photoChain);
             }
         } else if (medium === 'xrpl_ai') {
             params.set('section', 'ai_art');
@@ -138,6 +139,7 @@ const GalleryShare = (() => {
         avalanche_nature_jam_vol2: 'Nature Jam vol. 2',
         base_jb_based_ai: 'JB Based AI',
         base_jb_based_ai_vol2: 'JB Based AI vol. 2',
+        avalanche_jb_photography: 'JB Photography',
         polygon_jb_ai_play: 'JB AI Play',
         base_jb_ai_play: 'JB AI Play',
         sui_nature_stories_tradeport: 'Nature Stories SE',
@@ -415,10 +417,30 @@ const GalleryShare = (() => {
         'polygon_flower_stories_vol2',
         'polygon_jb_ai_play',
         'polygon_nature_stories_vol2',
+        'avalanche_jb_photography',
     ]);
 
-    function promoBoardRef(nft) {
+    // Salvor photography listings use another collection id; the boards on
+    // GitHub are avalanche_jb_photography/<on-chain token>.jpg.
+    const PHOTO_BOARD = 'avalanche_jb_photography';
+    const PHOTO_CONTRACT = '0xf3e01890467d204ff7cc0cdebb69f11e7f55f92c';
+
+    function boardFolder(nft) {
         const cid = String(nft?.collection_id || '').trim().toLowerCase().replace(/-/g, '_');
+        const contract = String(nft?.contract_address || '').trim().toLowerCase();
+        if (
+            cid === PHOTO_BOARD
+            || cid.startsWith('salvor_photo_')
+            || contract === PHOTO_CONTRACT
+            || nft?.source === 'salvor'
+        ) {
+            return PHOTO_BOARD;
+        }
+        return cid;
+    }
+
+    function promoBoardRef(nft) {
+        const cid = boardFolder(nft);
         if (!BOARD_COLLECTIONS.has(cid)) return null;
         const raw = nft?.onchain_token_id ?? nft?.token_id;
         const n = Number.parseInt(String(raw ?? ''), 10);

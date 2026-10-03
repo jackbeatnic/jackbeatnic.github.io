@@ -1003,6 +1003,13 @@ const GallerySections = (() => {
                     return kind === currentPhotoKind;
                 }
                 if (isXrpl) return false;
+                if (currentPhotoChain === 'avalanche') {
+                    if (nft.chain !== 'avalanche') return false;
+                    if (medium !== 'photography') return false;
+                    const kind = nft.photo_kind || 'photo';
+                    return kind === currentPhotoKind;
+                }
+                if (nft.chain === 'avalanche') return false;
                 if (medium === 'objkt_auction') {
                     const kind = nft.photo_kind || 'photo';
                     return kind === currentPhotoKind;
@@ -1227,7 +1234,8 @@ const GallerySections = (() => {
             currentAiSeries = series;
             currentAiEdition = edition;
         } else if (medium === 'photography' || medium === 'objkt_auction') {
-            const chain = nft.chain === 'xrpl' ? 'xrpl' : 'tezos';
+            const chain =
+                nft.chain === 'xrpl' ? 'xrpl' : nft.chain === 'avalanche' ? 'avalanche' : 'tezos';
             if (
                 currentSection === 'photography' &&
                 kind === currentPhotoKind &&

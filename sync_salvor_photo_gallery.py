@@ -33,6 +33,9 @@ USER_AGENT = "JackBeatnicGallery/1.0"
 
 SALVOR_PROFILE = "JackBeatnic"
 SALVOR_PROFILE_URL = "https://salvor.io/profile/JackBeatnic"
+# Promo squares on GitHub: jbg-present/promo/avalanche_jb_photography/<token>.jpg
+PHOTO_BOARD = "avalanche_jb_photography"
+PHOTO_CONTRACT = "0xf3e01890467d204ff7cc0cdebb69f11e7f55f92c"
 
 AI_COLLECTION_IDS = {
     "avalanche_nature_jam",
@@ -271,7 +274,10 @@ def build_entry(row: dict, *, display_rank: int, skip_contracts: set[str]) -> di
         "status": "listed",
         "chain": "avalanche",
         "contract_address": contract,
-        "collection_id": f"salvor_photo_{contract[:10]}",
+        "collection_id": (
+            PHOTO_BOARD if contract.lower() == PHOTO_CONTRACT else f"salvor_photo_{contract[:10]}"
+        ),
+        "collection_name": "JB Photography" if contract.lower() == PHOTO_CONTRACT else "",
         "listing_status": "For Sale",
         "listing_currency": "AVAX",
         "current_price_avax": price,
@@ -295,19 +301,118 @@ def merge_salvor_photo(data: dict, entries: list[dict]) -> int:
     return len(entries)
 
 
-def sync(*, dry_run: bool = False) -> int:
+def published_board_ids() -> set[int]:
+    """On-chain token ids that have a square in data/promo_boards.json."""
+    index_path = ROOT / "data" / "promo_boards.json"
+    if not index_path.is_file():
+        return set()
+    data = load_json(index_path)
+    folder = (data.get("collections") or {}).get(PHOTO_BOARD) or {}
+    ids: set[int] = set()
+    for key in folder:
+        if str(key).isdigit():
+            ids.add(int(key))
+    return ids
+
+
+def ipfs_http(uri: str) -> str:
+    raw = (uri or "").strip()
+    if not raw:
+        return ""
+    if raw.startswith("ipfs://"):
+        return "https://gateway.pinata.cloud/ipfs/" + raw[len("ipfs://"):].lstrip("/")
+    return raw
+
+
+def entries_from_manifest(path: Path) -> list[dict]:
+    """Works whose promo square is already published. No invented sale price."""
+    manifest = load_json(path)
+    tokens = manifest.get("tokens") or {}
+    contract = str(manifest.get("contract") or PHOTO_CONTRACT).lower()
+    boards = published_board_ids()
+    entries: list[dict] = []
+    for key in sorted(tokens, key=lambda item: int(item) if str(item).isdigit() else 10**9):
+        if not str(key).isdigit():
+            continue
+        token_id = int(key)
+        if boards and token_id not in boards:
+            continue
+        row = tokens[key] or {}
+        name = (row.get("name") or "").strip() or f"JB Photography #{token_id}"
+        image_url = ipfs_http(str(row.get("image") or ""))
+        salvor_url = salvor_asset_url(contract, token_id)
+        entries.append(
+            {
+                "token_id": stable_token_id(contract, token_id),
+                "onchain_token_id": token_id,
+                "name": name,
+                "salvor_url": salvor_url,
+                "opensea_url": opensea_asset_url(contract, token_id),
+                "marketplace_url": salvor_url,
+                "image_url": image_url,
+                "supply": 1,
+                "traits": {},
+                "ai": {
+                    "description": f"{name} — photography on Avalanche.",
+                    "dominant_colors": [],
+                    "vibe_tags": ["photography", "avalanche"],
+                    "category": "photography",
+                    "keywords": ["photography", "avalanche", "jackbeatnic"],
+                },
+                "likes_count": 0,
+                "status": "catalog",
+                "chain": "avalanche",
+                "contract_address": contract,
+                "collection_id": PHOTO_BOARD,
+                "collection_name": "JB Photography",
+                "listing_status": "Catalog",
+                "listing_currency": "AVAX",
+                "display_rank": token_id,
+                "medium": "photography",
+                "photo_kind": "photo",
+                "source": "salvor",
+                "marketplace": "salvor",
+                "marketplaces": ["salvor", "opensea"],
+            }
+        )
+    return entries
+
+
+def write_entries(gallery: dict, info: dict, entries: list[dict], *, dry_run: bool) -> int:
+    print(f"[salvor-photo] To gallery: {len(entries)}")
+    if not entries:
+        return 0
+    if dry_run:
+        print("[dry-run] Not writing gallery.json")
+        return 0
+    count = merge_salvor_photo(gallery, entries)
+    info["salvor_photo_profile"] = SALVOR_PROFILE_URL
+    info["last_salvor_photo_sync"] = (
+        datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+    )
+    info["salvor_photo_count"] = count
+    save_json(GALLERY_JSON, gallery)
+    print(f"[salvor-photo] Saved: {GALLERY_JSON.name}")
+    return 0
+
+
+def sync(*, dry_run: bool = False, manifest_path: Path | None = None) -> int:
     gallery = load_json(GALLERY_JSON)
     info = gallery.setdefault("collection_info", {})
     skip_contracts = ai_contracts()
 
-    print(f"[salvor-photo] Profil: {SALVOR_PROFILE_URL}")
+    print(f"[salvor-photo] Profile: {SALVOR_PROFILE_URL}")
     print(f"[salvor-photo] Skipping AI contracts: {len(skip_contracts)}")
 
     raw_rows = fetch_salvor_listings(SALVOR_PROFILE)
+    if not raw_rows and manifest_path:
+        entries = entries_from_manifest(manifest_path)
+        print(f"[salvor-photo] API empty — offline manifest boards: {len(entries)}")
+        return write_entries(gallery, info, entries, dry_run=dry_run)
     if not raw_rows:
         print(
             "[salvor-photo] No items from the Salvor API — gallery.json unchanged. "
-            "Check the profile in a browser or run the sync later.",
+            "Pass --from-manifest to load the offline photography backup.",
             file=sys.stderr,
         )
         return 0
@@ -329,31 +434,21 @@ def sync(*, dry_run: bool = False) -> int:
             entries.append(entry)
             rank += 1
 
-    print(f"[salvor-photo] To gallery (priced, non-AI): {len(entries)}")
-    if not entries:
-        return 0
-
-    if dry_run:
-        print("[dry-run] Not writing gallery.json")
-        return 0
-
-    count = merge_salvor_photo(gallery, entries)
-    info["salvor_photo_profile"] = SALVOR_PROFILE_URL
-    info["last_salvor_photo_sync"] = (
-        datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
-    )
-    info["salvor_photo_count"] = count
-    save_json(GALLERY_JSON, gallery)
-    print(f"[salvor-photo] Saved: {GALLERY_JSON}")
-    return 0
+    return write_entries(gallery, info, entries, dry_run=dry_run)
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Sync Salvor/JackBeatnic photography into gallery.json")
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument(
+        "--from-manifest",
+        type=Path,
+        default=None,
+        help="Offline collection manifest when the Salvor API returns no rows",
+    )
     args = parser.parse_args()
     try:
-        return sync(dry_run=args.dry_run)
+        return sync(dry_run=args.dry_run, manifest_path=args.from_manifest)
     except urllib.error.URLError as exc:
         print(f"[salvor-photo] Network error: {exc}", file=sys.stderr)
         return 1

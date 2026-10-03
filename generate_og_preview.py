@@ -675,8 +675,9 @@ def gallery_deep_link(nft: dict, base_url: str) -> str:
         kind = nft.get("photo_kind") or "photo"
         if kind != "photo":
             q["photo"] = kind
-        if (nft.get("chain") or "").lower() == "xrpl":
-            q["pchain"] = "xrpl"
+        photo_chain = (nft.get("chain") or "").lower()
+        if photo_chain in {"xrpl", "avalanche"}:
+            q["pchain"] = photo_chain
     elif medium == "xrpl_ai":
         q["section"] = "ai_art"
         q["ai"] = "xrpl"
@@ -886,9 +887,28 @@ def promo_index() -> dict:
     return _PROMO_INDEX
 
 
+# Salvor photography listings are not the board folder name. Squares live at
+# jbg-present/promo/avalanche_jb_photography/<on-chain token>.jpg.
+PHOTO_BOARD = "avalanche_jb_photography"
+PHOTO_CONTRACT = "0xf3e01890467d204ff7cc0cdebb69f11e7f55f92c"
+
+
+def promo_board_folder(nft: dict) -> str:
+    cid = (nft.get("collection_id") or "").strip().lower().replace("-", "_")
+    contract = (nft.get("contract_address") or "").strip().lower()
+    if (
+        cid == PHOTO_BOARD
+        or cid.startswith("salvor_photo_")
+        or contract == PHOTO_CONTRACT
+        or nft.get("source") == "salvor"
+    ):
+        return PHOTO_BOARD
+    return cid
+
+
 def promo_board_key(nft: dict) -> tuple[str, int] | None:
     """(board folder, on-chain token id) or None."""
-    cid = (nft.get("collection_id") or "").strip().lower().replace("-", "_")
+    cid = promo_board_folder(nft)
     if not cid:
         return None
     for key in ("onchain_token_id", "token_id"):

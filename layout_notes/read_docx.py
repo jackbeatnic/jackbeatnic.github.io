@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Wyciąga tekst z plików .docx w tym katalogu (layout_notes/)."""
+"""Extracts text from the .docx files in this folder (layout_notes/)."""
 from __future__ import annotations
 
 import sys
@@ -27,10 +27,9 @@ def docx_to_text(path: Path) -> str:
 def main() -> None:
     files = sorted(DIR.glob("*.docx"))
     if not files:
-        print(f"Brak plików .docx w {DIR}", file=sys.stderr)
-        print("Skopiuj tu pliki z Google Drive:", file=sys.stderr)
-        print("  01_Ocena_Layout_JackBeatnic_Gallery.docx", file=sys.stderr)
-        print("  02_Propozycja_Ulepszen_Kod_Fonty_Kolory.docx", file=sys.stderr)
+        print(f"No .docx files in {DIR}", file=sys.stderr)
+        print("Copy the files from Google Drive here:", file=sys.stderr)
+        print("  01_*.docx (layout review) and 02_*.docx (code/font/color proposals)", file=sys.stderr)
         sys.exit(1)
 
     for path in files:

@@ -1,5 +1,5 @@
 /**
- * Studio shop checkout — round AVAX + TOKEN ID in tx.data (wariant B).
+ * Studio shop checkout — round AVAX + TOKEN ID in tx.data (variant B).
  * No private key. No Seaport. Demo rows must not receive funds.
  * XRPL and Atelier are different products.
  */

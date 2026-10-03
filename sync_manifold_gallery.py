@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sync Manifold Gallery auctions → auctions_gallery.json (Blueprint Faza 6).
+"""Sync Manifold Gallery auctions → auctions_gallery.json (Blueprint phase 6).
 
 Open API (no key):
   https://marketplace.api.manifoldxyz.dev/listing/{marketplace}/{listingId}
@@ -10,8 +10,8 @@ Chains:
   - Ethereum L1 (optional, disabled until new contract)
 
 Usage:
-  python3 aktualizuj_manifold_do_galerii.py
-  python3 aktualizuj_manifold_do_galerii.py --dry-run
+  python3 sync_manifold_gallery.py
+  python3 sync_manifold_gallery.py --dry-run
 """
 
 from __future__ import annotations
@@ -288,7 +288,7 @@ def sync_chain(
     old_by_id: dict[str, dict],
 ) -> list[dict]:
     if not chain_cfg.get("enabled"):
-        print(f"  [{chain_key}] pominięty (disabled)")
+        print(f"  [{chain_key}] skipped (disabled)")
         return []
 
     marketplace = chain_cfg["marketplace_address"]
@@ -299,7 +299,7 @@ def sync_chain(
         seller=creator,
         pages=int(chain_cfg.get("activity_scan_pages", 3)),
     )
-    print(f"  [{chain_key}] activity scan: {len(activity_rows)} aukcji")
+    print(f"  [{chain_key}] activity scan: {len(activity_rows)} auctions")
 
     listing_ids = set(activity_rows.keys())
     for lid in chain_cfg.get("watch_listing_ids") or []:
@@ -410,14 +410,14 @@ def sync(*, dry_run: bool = False) -> int:
         "nfts": all_entries,
     }
 
-    print(f"[manifold] Gotowe: {len(all_entries)} live auction(s)")
+    print(f"[manifold] Done: {len(all_entries)} live auction(s)")
 
     if dry_run:
-        print("[dry-run] Bez zapisu auctions_gallery.json")
+        print("[dry-run] Not writing auctions_gallery.json")
         return 0
 
     save_json(AUCTIONS_GALLERY_JSON, payload)
-    print(f"[manifold] Zapisano: {AUCTIONS_GALLERY_JSON}")
+    print(f"[manifold] Saved: {AUCTIONS_GALLERY_JSON}")
     return 0
 
 

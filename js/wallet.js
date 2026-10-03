@@ -1,5 +1,5 @@
 /**
- * The Atelier — wallet connect & collector access (Blueprint Faza 5).
+ * The Atelier — wallet connect & collector access (Blueprint phase 5).
  * No personal data: address only, checked on-chain via viem.
  * Multi-wallet: atelier_wallets in gallery.json (photo / ai).
  */

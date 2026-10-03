@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""Zbuduj/odśwież www/xrp_gallery.json z katalogu JBN (MANIFEST + CDN).
+"""Build/refresh www/xrp_gallery.json from the JBN catalog (MANIFEST + CDN).
 
-Źródło prawdy: XRPL/catalog/MANIFEST.csv + opcjonalnie ledger (account_nfts).
-Statusy: available | minted | listed | sold
+Source of truth: XRPL/catalog/MANIFEST.csv + optionally the ledger (account_nfts).
+Statuses: available | minted | listed | sold
 
 Usage:
-  python3 aktualizuj_xrp_catalog_do_galerii.py
-  python3 aktualizuj_xrp_catalog_do_galerii.py --dry-run
-  python3 aktualizuj_xrp_catalog_do_galerii.py --sync-ledger   # sold jeśli NFT nie na koncie mintera a było minted
-  python3 aktualizuj_xrp_catalog_do_galerii.py --limit 20
+  python3 sync_xrp_catalog_gallery.py
+  python3 sync_xrp_catalog_gallery.py --dry-run
+  python3 sync_xrp_catalog_gallery.py --sync-ledger   # sold if the NFT left the minter account after being minted
+  python3 sync_xrp_catalog_gallery.py --limit 20
 """
 from __future__ import annotations
 
@@ -39,7 +39,7 @@ DEFAULT_ISSUER = "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn"
 
 def load_manifest() -> list[dict]:
     if not MANIFEST.is_file():
-        raise SystemExit(f"Brak {MANIFEST}")
+        raise SystemExit(f"Missing {MANIFEST}")
     rows = []
     with MANIFEST.open(encoding="utf-8") as fh:
         for row in csv.DictReader(fh):
@@ -52,7 +52,7 @@ def ledger_owned_ids(address: str) -> set[str]:
         from xrpl.clients import JsonRpcClient
         from xrpl.models.requests import AccountNFTs
     except ImportError:
-        print("warn: xrpl-py brak — pomijam --sync-ledger")
+        print("warn: xrpl-py missing — skipping --sync-ledger")
         return set()
     client = JsonRpcClient("https://s1.ripple.com:51234/")
     ids: set[str] = set()
@@ -89,11 +89,11 @@ def build(
         except (KeyError, ValueError):
             continue
         if limit and tid > limit and len(nfts) >= limit:
-            # limit = max id lub max count? użyj max count
+            # limit = max id or max count? use max count
             pass
         status = (row.get("status") or "available").strip().lower()
         nft_id = (row.get("xrpl_nft_id") or "").strip()
-        # ledger: jeśli było minted/listed a NFT zniknęło z konta → sold
+        # ledger: if it was minted/listed and the NFT left the account → sold
         if owned is not None and nft_id:
             if status in ("minted", "listed") and nft_id not in owned:
                 status = "sold"
@@ -116,7 +116,7 @@ def build(
         name = (row.get("name") or f"{cfg['prefix']} #{tid} X").strip()
         img = CDN_IMG.format(id=tid)
         medium = cfg["gh_medium"]
-        # lokalny fallback ścieżka względna (www nie serwuje XRPL/ — CDN primary)
+        # local fallback relative path (www does not serve XRPL/ — CDN primary)
         item = {
             "token_id": tid,
             "xrpl_nft_id": nft_id or None,
@@ -125,7 +125,7 @@ def build(
             "xrp_cafe_url": (
                 f"https://bidds.com/nft/{nft_id}" if nft_id else None
             ),
-            # NIE wstawiaj meta .json jako marketplace_url (otwierało JSON w przeglądarce)
+            # Do NOT use the meta .json as marketplace_url (it opened raw JSON in the browser)
             "marketplace_url": (
                 f"https://bidds.com/nft/{nft_id}" if nft_id else None
             ),
@@ -249,7 +249,7 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--sync-ledger", action="store_true")
-    ap.add_argument("--limit", type=int, default=0, help="max rekordów (0=all)")
+    ap.add_argument("--limit", type=int, default=0, help="max records (0=all)")
     args = ap.parse_args()
 
     rows = load_manifest()
@@ -266,10 +266,10 @@ def main() -> int:
     print("sample:", data["nfts"][0]["name"], data["nfts"][0]["status"])
 
     if args.dry_run:
-        print("[dry-run] bez zapisu")
+        print("[dry-run] not writing")
         return 0
 
-    # backup starej galerii jeśli była z Cafe
+    # back up the old gallery if it came from Cafe
     if OUT.is_file():
         bak = OUT.with_suffix(
             f".bak_{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}.json"

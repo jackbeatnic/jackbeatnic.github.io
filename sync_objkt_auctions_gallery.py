@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """Sync live OBJKT auctions (English + Dutch) → objkt_auctions_gallery.json.
 
-Źródło: https://data.objkt.com/v3/graphql
-Portfel: jackbeatnic.tez (seller_address lub creator tokena)
+Source: https://data.objkt.com/v3/graphql
+Wallet: jackbeatnic.tez (seller_address or token creator)
 
-Aukcje OBJKT są „powierzane” przez portfel marketplace — seller_address w API
-to nadal Twój adres tz… gdy aukcja jest aktywna.
+OBJKT auctions are held in escrow by the marketplace — seller_address in the API
+is still your tz… address while the auction is active.
 
 Usage:
-  python3 aktualizuj_objkt_aukcje_do_galerii.py
-  python3 aktualizuj_objkt_aukcje_do_galerii.py --dry-run
+  python3 sync_objkt_auctions_gallery.py
+  python3 sync_objkt_auctions_gallery.py --dry-run
 """
 
 from __future__ import annotations
@@ -185,7 +185,7 @@ def resolve_tezos_address(info: dict) -> str:
     data = graphql(RESOLVE_DOMAIN_QUERY, {"domain": domain})
     holders = data.get("holder") or []
     if not holders:
-        raise SystemExit(f"Nie znaleziono holdera dla domeny {domain}")
+        raise SystemExit(f"No holder found for domain {domain}")
     return holders[0]["address"]
 
 
@@ -357,7 +357,7 @@ def sync(*, dry_run: bool = False) -> int:
     }
 
     english, dutch = fetch_active_auctions(address)
-    print(f"[objkt-auctions] Aktywne: english={len(english)}, dutch={len(dutch)}")
+    print(f"[objkt-auctions] Active: english={len(english)}, dutch={len(dutch)}")
 
     entries: list[dict] = []
     rank = 0
@@ -396,11 +396,11 @@ def sync(*, dry_run: bool = False) -> int:
     }
 
     if dry_run:
-        print(f"[dry-run] Zapisano by {len(entries)} aukcji do {OUTPUT_JSON}")
+        print(f"[dry-run] Would write {len(entries)} auctions to {OUTPUT_JSON}")
         return 0
 
     save_json(OUTPUT_JSON, payload)
-    print(f"[objkt-auctions] Zapisano: {OUTPUT_JSON} ({len(entries)} aukcji)")
+    print(f"[objkt-auctions] Saved: {OUTPUT_JSON} ({len(entries)} auctions)")
     return 0
 
 
@@ -411,7 +411,7 @@ def main() -> int:
     try:
         return sync(dry_run=args.dry_run)
     except urllib.error.URLError as exc:
-        print(f"[objkt-auctions] Błąd sieci: {exc}", file=sys.stderr)
+        print(f"[objkt-auctions] Network error: {exc}", file=sys.stderr)
         return 1
     except RuntimeError as exc:
         print(f"[objkt-auctions] {exc}", file=sys.stderr)

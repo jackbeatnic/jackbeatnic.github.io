@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Sync JB AI Play → ai_play_gallery.json (Polygon OpenSea).
 
-Domyślnie obrazy z publicznych stron OpenSea (seadn.io CDN) — bez OPENSEA_API_KEY.
-Opcjonalnie: --images ipfs (on-chain uri) lub --images api (wymaga OPENSEA_API_KEY).
+By default images come from public OpenSea pages (seadn.io CDN) — no OPENSEA_API_KEY needed.
+Optional: --images ipfs (on-chain uri) or --images api (requires OPENSEA_API_KEY).
 
 Usage:
-  ./venv/bin/python3 aktualizuj_ai_play_do_galerii.py
-  ./venv/bin/python3 aktualizuj_ai_play_do_galerii.py --workers 16
-  ./venv/bin/python3 aktualizuj_ai_play_do_galerii.py --images api
+  ./venv/bin/python3 sync_ai_play_gallery.py
+  ./venv/bin/python3 sync_ai_play_gallery.py --workers 16
+  ./venv/bin/python3 sync_ai_play_gallery.py --images api
 """
 
 from __future__ import annotations
@@ -29,8 +29,8 @@ from web3 import Web3
 
 ROOT = Path(__file__).resolve().parent
 JB_NFT = ROOT.parent
-KOLEKCJE_JSON = JB_NFT / "raportowanie" / "kolekcje.json"
-RAPORTY_DIR = JB_NFT / "raportowanie" / "raporty"
+COLLECTIONS_JSON = JB_NFT / "raportowanie" / "kolekcje.json"
+REPORTS_DIR = JB_NFT / "raportowanie" / "raporty"
 AI_PLAY_JSON = ROOT / "ai_play_gallery.json"
 
 COLLECTION_ID = "polygon_jb_ai_play"
@@ -112,19 +112,19 @@ def ipfs_to_http(url: str) -> str:
 
 
 def load_collection() -> dict:
-    data = load_json(KOLEKCJE_JSON)
+    data = load_json(COLLECTIONS_JSON)
     for row in data.get("collections", []):
         if row.get("id") == COLLECTION_ID:
             return row
-    raise SystemExit(f"Brak {COLLECTION_ID} w kolekcje.json")
+    raise SystemExit(f"Missing {COLLECTION_ID}  in the collections config")
 
 
 def default_max_scan(collection: dict) -> int:
     return int(collection.get("max_token_id") or 2084)
 
 
-def load_raport_index() -> dict[str, dict]:
-    path = RAPORTY_DIR / f"{COLLECTION_ID}_raport.csv"
+def load_report_index() -> dict[str, dict]:
+    path = REPORTS_DIR / f"{COLLECTION_ID}_raport.csv"
     if not path.exists():
         return {}
     index: dict[str, dict] = {}
@@ -181,7 +181,7 @@ def resolve_minted_ids(
         except Exception:
             pass
         if tid % 200 == 0:
-            print(f"  skan supply… {tid}/{max_scan} ({len(minted)} minted)")
+            print(f"  scanning supply… {tid}/{max_scan} ({len(minted)} minted)")
     return minted
 
 
@@ -199,7 +199,7 @@ def opensea_asset_url(contract: str, token_id: int) -> str:
 
 
 def normalize_seadn_image_url(url: str) -> str:
-    """OpenSea podaje kwadrat 500×500 bez ?w=; pełna proporcja jest przy ?w=1000."""
+    """OpenSea serves a 500×500 square without ?w=; the full aspect ratio comes with ?w=1000."""
     if not url or "seadn.io" not in url:
         return url
     base = url.split("?", 1)[0]
@@ -302,8 +302,8 @@ def opensea_api_get(url: str, api_key: str, *, label: str = "") -> dict:
             if attempt < 4:
                 time.sleep(min(2 ** attempt, 30))
                 continue
-            raise RuntimeError(f"Błąd API {label or url}: {exc}") from exc
-    raise RuntimeError(f"Błąd API {label or url}: {last_error}")
+            raise RuntimeError(f"API error {label or url}: {exc}") from exc
+    raise RuntimeError(f"API error {label or url}: {last_error}")
 
 
 def _ingest_nft_batch(items: list[dict], out: dict[int, dict]) -> int:
@@ -334,7 +334,7 @@ def fetch_opensea_api_paginated(base_url: str, api_key: str, *, label: str) -> d
         batch = payload.get("nfts") or []
         _ingest_nft_batch(batch, out)
         if page == 1 or page % 5 == 0:
-            print(f"  OpenSea API ({label}): strona {page}, łącznie {len(out)}")
+            print(f"  OpenSea API ({label}): page {page}, total {len(out)}")
         cursor = payload.get("next")
         if not cursor:
             break
@@ -365,16 +365,16 @@ def fetch_opensea_api_bulk(
         try:
             out = fetch_opensea_api_paginated(base_url, api_key, label=label)
             if out:
-                print(f"  OpenSea API ({label}): {len(out)} tokenów")
+                print(f"  OpenSea API ({label}): {len(out)} tokens")
                 return out
-            errors.append(f"{label}: pusta odpowiedź")
+            errors.append(f"{label}: empty response")
         except RuntimeError as exc:
             errors.append(str(exc))
             print(f"  [api] {exc}")
     raise SystemExit(
-        "OpenSea API bulk nie działa (403/401?). "
-        + "Sprawdź klucz na https://docs.opensea.io/reference/api-keys — "
-        + f"próby: {' | '.join(errors)}",
+        "OpenSea API bulk does not work (403/401?). "
+        + "Check the key at https://docs.opensea.io/reference/api-keys — "
+        + f"attempts: {' | '.join(errors)}",
     )
 
 
@@ -414,7 +414,7 @@ def enrich_from_opensea_api(
 
     missing = [tid for tid in minted if not _api_image_url(out.get(tid, {}))]
     if missing:
-        print(f"  OpenSea API pojedynczo: {len(missing)} bez obrazu…")
+        print(f"  OpenSea API one by one: {len(missing)} without image…")
 
         def fetch_one(tid: int) -> tuple[int, dict | None]:
             return tid, fetch_opensea_api_single(
@@ -434,12 +434,12 @@ def enrich_from_opensea_api(
                 done += 1
                 if done % 100 == 0:
                     with_img = sum(1 for t in minted if _api_image_url(out.get(t, {})))
-                    print(f"    API single… {done}/{len(missing)} (łącznie z obrazem: {with_img})")
+                    print(f"    API single… {done}/{len(missing)} (total with image: {with_img})")
                 time.sleep(0.05)
 
     still_missing = [tid for tid in minted if not _api_image_url(out.get(tid, {}))]
     if still_missing:
-        print(f"  OpenSea scrape uzupełniająco: {len(still_missing)} tokenów…")
+        print(f"  OpenSea scrape to fill gaps: {len(still_missing)} tokens…")
         page_data = enrich_from_opensea_pages(contract, still_missing, workers=workers)
         for tid, (name, image_url) in page_data.items():
             if not image_url:
@@ -454,7 +454,7 @@ def enrich_from_opensea_api(
             }
 
     with_img = sum(1 for tid in minted if _api_image_url(out.get(tid, {})))
-    print(f"  OpenSea API+scrape: {with_img}/{len(minted)} z obrazem")
+    print(f"  OpenSea API+scrape: {with_img}/{len(minted)} with image")
     return out
 
 
@@ -465,7 +465,7 @@ def build_entry(
     name: str,
     image_url: str,
     description: str,
-    raport_row: dict | None,
+    report_row: dict | None,
     old: dict | None,
 ) -> dict | None:
     if not image_url and old:
@@ -475,13 +475,13 @@ def build_entry(
     if not image_url:
         return None
 
-    listing_status = (raport_row or {}).get("listing_status") or "Not Listed"
-    currency = ((raport_row or {}).get("currency") or "").strip()
-    price = parse_price((raport_row or {}).get("price", ""))
-    opensea_url = (raport_row or {}).get("opensea_url") or opensea_asset_url(
+    listing_status = (report_row or {}).get("listing_status") or "Not Listed"
+    currency = ((report_row or {}).get("currency") or "").strip()
+    price = parse_price((report_row or {}).get("price", ""))
+    opensea_url = (report_row or {}).get("opensea_url") or opensea_asset_url(
         contract, onchain_id
     )
-    display_name = name or (raport_row or {}).get("name") or f"AI Play #{onchain_id}"
+    display_name = name or (report_row or {}).get("name") or f"AI Play #{onchain_id}"
 
     entry = {
         "token_id": TOKEN_ID_BASE + int(onchain_id),
@@ -552,7 +552,7 @@ def enrich_from_opensea_pages(
                 done += 1
                 if done % 100 == 0:
                     with_img = sum(1 for _, img in results.values() if img)
-                    print(f"  {label}… {done}/{len(ids)} ({with_img} z obrazem)")
+                    print(f"  {label}… {done}/{len(ids)} ({with_img} with image)")
 
     scrape_pass(minted, workers, "OpenSea scrape")
     for attempt in range(1, retries + 1):
@@ -591,9 +591,9 @@ def sync(
     }
 
     w3 = Web3(Web3.HTTPProvider(RPC["polygon"], request_kwargs={"timeout": 60}))
-    raport = load_raport_index()
-    if raport:
-        print(f"  raport CSV: {len(raport)} wierszy")
+    report = load_report_index()
+    if report:
+        print(f"  report CSV: {len(report)}  rows")
 
     dense = collection.get("max_token_id")
     minted = resolve_minted_ids(
@@ -609,10 +609,10 @@ def sync(
         before = len(minted)
         minted = [tid for tid in minted if tid > excluded_burned]
         print(
-            f"  wykluczono spalone 1..{excluded_burned}: "
-            f"{before - len(minted)} tokenów"
+            f"  excluded burned 1..{excluded_burned}: "
+            f"{before - len(minted)} tokens"
         )
-    print(f"  on-chain minted: {len(minted)} tokenów")
+    print(f"  on-chain minted: {len(minted)} tokens")
 
     page_data: dict[int, tuple[str, str]] = {}
     api_data: dict[int, dict] = {}
@@ -621,7 +621,7 @@ def sync(
         api_key = os.environ.get("OPENSEA_API_KEY", "").strip()
         if not api_key:
             raise SystemExit("Brak OPENSEA_API_KEY dla --images api")
-        print("  pobieram metadane z OpenSea API…")
+        print("  fetching metadata from the OpenSea API…")
         api_data = enrich_from_opensea_api(
             api_key=api_key,
             chain="polygon",
@@ -631,12 +631,12 @@ def sync(
             workers=workers,
         )
     elif images == "opensea":
-        print("  pobieram obrazy ze stron OpenSea (seadn.io)…")
+        print("  fetching images from OpenSea pages (seadn.io)…")
         page_data = enrich_from_opensea_pages(contract, minted, workers=workers)
     elif images == "keep":
-        print("  obrazy: zachowuję z ai_play_gallery.json (tylko odświeżenie raportu)")
+        print("  images: kept from ai_play_gallery.json (report refresh only)")
     elif images != "ipfs":
-        raise SystemExit(f"Nieznany --images: {images}")
+        raise SystemExit(f"Unknown --images: {images}")
 
     entries: list[dict] = []
     skipped = 0
@@ -663,14 +663,14 @@ def sync(
             image_url = ipfs_to_http(meta.get("image") or meta.get("image_url") or "")
             description = str(meta.get("description") or "")
 
-        row = raport.get(str(onchain_id))
+        row = report.get(str(onchain_id))
         entry = build_entry(
             onchain_id=onchain_id,
             contract=contract,
             name=name,
             image_url=image_url,
             description=description,
-            raport_row=row,
+            report_row=row,
             old=old,
         )
         if entry is None:
@@ -679,7 +679,7 @@ def sync(
             entries.append(entry)
 
     entries.sort(key=lambda e: e.get("onchain_token_id", 0))
-    print(f"  pominięto bez obrazu: {skipped}")
+    print(f"  skipped without image: {skipped}")
 
     payload = {
         "collection_info": {
@@ -700,14 +700,14 @@ def sync(
         "nfts": entries,
     }
 
-    print(f"[ai_play] Gotowe: {len(entries)} tokenów w galerii")
+    print(f"[ai_play] Done: {len(entries)} tokens in the gallery")
 
     if dry_run:
-        print("[dry-run] Bez zapisu ai_play_gallery.json")
+        print("[dry-run] Not writing ai_play_gallery.json")
         return 0
 
     save_json(AI_PLAY_JSON, payload)
-    print(f"[ai_play] Zapisano: {AI_PLAY_JSON}")
+    print(f"[ai_play] Saved: {AI_PLAY_JSON}")
     return 0
 
 
@@ -719,7 +719,7 @@ def main(argv: list[str] | None = None) -> int:
         "--images",
         choices=("opensea", "api", "ipfs", "keep"),
         default="opensea",
-        help="Skąd brać obrazy: opensea (strony, domyślnie), api, ipfs, keep (z JSON)",
+        help="Image source: opensea (pages, default), api, ipfs, keep (from JSON)",
     )
     parser.add_argument("--workers", type=int, default=12)
     args = parser.parse_args(argv)

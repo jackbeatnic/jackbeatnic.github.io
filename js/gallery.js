@@ -2102,6 +2102,28 @@ const Gallery = (() => {
         });
     }
 
+    // Artwork caption: own ai.description, else the same work's caption from the main
+    // gallery (Featured / Shop entries carry no ai block). Read-only lookup.
+    let captionIndex = null;
+    let captionIndexSize = -1;
+    function captionFor(nft) {
+        const own = typeof nft?.ai?.description === 'string' ? nft.ai.description.trim() : '';
+        if (own) return own;
+        if (!nft || nft.token_id == null || !nft.collection_id) return '';
+        if (!captionIndex || captionIndexSize !== allNfts.length) {
+            captionIndex = new Map();
+            captionIndexSize = allNfts.length;
+            allNfts.forEach((n) => {
+                const d = typeof n?.ai?.description === 'string' ? n.ai.description.trim() : '';
+                if (d && n.collection_id && n.token_id != null) {
+                    const k = `${n.collection_id}|${n.token_id}`;
+                    if (!captionIndex.has(k)) captionIndex.set(k, d);
+                }
+            });
+        }
+        return captionIndex.get(`${nft.collection_id}|${nft.token_id}`) || '';
+    }
+
     function buildAuctionCard(nft) {
         const card = document.createElement('article');
         card.className = 'nft-card nft-card--auction';
@@ -2111,7 +2133,7 @@ const Gallery = (() => {
         card.dataset.nftKey = key;
 
         const name = escapeHtml(nft.name);
-        const description = escapeHtml((nft.ai?.description || '').trim());
+        const description = escapeHtml(captionFor(nft));
         const descriptionHtml = description
             ? `<p class="nft-card__description">${description}</p>`
             : '';
@@ -2211,7 +2233,7 @@ const Gallery = (() => {
         card.dataset.nftKey = key;
 
         const name = escapeHtml(nft.name);
-        const description = escapeHtml((nft.ai?.description || '').trim());
+        const description = escapeHtml(captionFor(nft));
         const descriptionHtml = description
             ? `<p class="nft-card__description">${description}</p>`
             : '';

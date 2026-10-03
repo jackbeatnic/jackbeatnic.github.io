@@ -2,8 +2,9 @@
 """Generate Open Graph previews for Jack Beatnic Gallery.
 
 - Site card: assets/og-preview.jpg (homepage, stays on WWW — one file)
-- Per-NFT cards: JB_NFT_OG_DIR (default ../jbg-og) — fourth repo, never assets/og
-- Public card URL: JB_NFT_OG_PUBLIC_BASE (https://jackbeatnic.github.io/jbg-og)
+- Per-NFT share image: the published promo board (jbg-present/promo), else the
+  one fallback assets/og-preview.jpg. The old per-NFT price cards repo
+  was retired on 2026-10-03; no per-NFT OG cards are generated any more.
 - Share landing pages: nft/{collection_id}/{id}.html (OG meta → redirect)
   Legacy flat nft/{id}.html kept as redirect stubs when unique.
 """
@@ -26,12 +27,8 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parent
 GALLERY_JSON = ROOT / "gallery.json"
 SITE_OG_PATH = ROOT / "assets" / "og-preview.jpg"
-# Per-NFT OG JPGs used to live in assets/og and blew past the GH Pages ~1GB
-# soft limit. They live in the fourth repo jbg-og (not WWW, not thumbs).
-# Override with JB_NFT_OG_DIR / JB_NFT_OG_PUBLIC_BASE.
-_default_og = (ROOT.parent / "jbg-og").resolve()
-NFT_OG_DIR = Path((os.environ.get("JB_NFT_OG_DIR") or str(_default_og))).expanduser()
-OG_PUBLIC_BASE = (os.environ.get("JB_NFT_OG_PUBLIC_BASE") or "https://jackbeatnic.github.io/jbg-og").rstrip("/")
+# Per-NFT OG price cards (old separate repo) are retired (2026-10-03): share pages
+# use the promo board, else assets/og-preview.jpg.
 NFT_PAGES_DIR = ROOT / "nft"
 FONTS_DIR = ROOT / "assets" / "fonts"
 
@@ -48,7 +45,6 @@ EXTRA_FEED_FILES = (
 )
 SALE_INDEX_JSON = ROOT / "data" / "sale_index.json"
 FEATURED_PROMO_JSON = ROOT / "data" / "featured_promo.json"
-LEGACY_OG_COLLECTION = "avalanche-nature-stories"
 SHOP_COLLECTION_NAMES = {
     "avalanche_nature_stories": "Nature Stories",
     "avalanche_flower_stories": "Flower Stories",
@@ -622,58 +618,18 @@ def generate_nft_og(nft: dict, info: dict, thumb: Image.Image | None = None) -> 
     return canvas
 
 
-def og_output_path(nft: dict, output_dir: Path = NFT_OG_DIR) -> Path:
-    tid = token_id_int(nft)
-    col = nft_collection_id(nft)
-    return output_dir / f"{col}-{tid}.jpg"
-
-
 def generate_nft_ogs(
     data: dict,
     token_ids: set[int] | None = None,
-    output_dir: Path = NFT_OG_DIR,
+    output_dir: Path | None = None,
     nfts: list[dict] | None = None,
     skip_existing: bool = False,
     limit: int | None = None,
 ) -> list[Path]:
-    info = data["collection_info"]
-    if nfts is None:
-        nfts = collect_all_share_nfts(data)
-    output_dir.mkdir(parents=True, exist_ok=True)
-    written: list[Path] = []
-    skipped = 0
-    failed = 0
-    done = 0
-
-    for nft in nfts:
-        token_id = token_id_int(nft)
-        if token_id is None:
-            continue
-        if token_ids is not None and token_id not in token_ids:
-            continue
-        if limit is not None and done >= limit:
-            break
-
-        col = nft_collection_id(nft)
-        out = output_dir / f"{col}-{token_id}.jpg"
-        if skip_existing and out.is_file():
-            skipped += 1
-            continue
-
-        label = nft.get("name") or f"#{token_id}"
-        try:
-            card = generate_nft_og(nft, info)
-            card.convert("RGB").save(out, "JPEG", quality=88, optimize=True, subsampling=0)
-            written.append(out)
-            done += 1
-            if done <= 8 or done % 50 == 0:
-                print(f"[og] {done} {col}/{token_id} {label} ({out.stat().st_size // 1024} KB)")
-        except Exception as exc:  # noqa: BLE001
-            failed += 1
-            print(f"[og] FAIL {col}/{token_id} {label}: {exc}")
-
-    print(f"[og] zapisano {len(written)}, pominięte {skipped}, błędy {failed}")
-    return written
+    """Retired (2026-10-03): no per-NFT OG cards. Share pages use the promo
+    board or the single fallback assets/og-preview.jpg."""
+    print("[og] per-NFT OG cards retired — share pages use promo boards / og-preview.jpg")
+    return []
 
 
 def slugify_collection_id(raw: str) -> str:
@@ -880,38 +836,8 @@ def collect_all_share_nfts(gallery_data: dict) -> list[dict]:
     return collected
 
 
-def og_card_filename(col: str, token_id: int, *, legacy: bool = False) -> str:
-    if legacy:
-        return f"nft-{token_id}.jpg"
-    return f"{col}-{token_id}.jpg"
-
-
-def local_og_card(col: str, token_id: int) -> Path | None:
-    """Card JPEG in jbg-og (or JB_NFT_OG_DIR). Never www/assets/og."""
-    prefixed = NFT_OG_DIR / og_card_filename(col, token_id)
-    if prefixed.is_file():
-        return prefixed
-    if col == LEGACY_OG_COLLECTION:
-        legacy = NFT_OG_DIR / og_card_filename(col, token_id, legacy=True)
-        if legacy.is_file():
-            return legacy
-    return None
-
-
-def published_og_rel(col: str, token_id: int) -> str | None:
-    """Public path on the OG host, if the JPEG exists locally."""
-    local = local_og_card(col, token_id)
-    if local is None:
-        return None
-    return local.name
-
-
 def site_og_image_url(base_url: str, og_version: str) -> str:
     return og_url_with_version(base_url, "assets/og-preview.jpg", og_version)
-
-
-def public_og_card_url(filename: str, og_version: str) -> str:
-    return f"{OG_PUBLIC_BASE}/{filename}?v={og_version}"
 
 
 # Promo boards (white 1:1 board, ~683–687 px) — public on the jbg-present
@@ -923,8 +849,6 @@ def public_og_card_url(filename: str, og_version: str) -> str:
 # robots.txt must keep /jbg-present/promo/ allowed for Twitterbot & co.
 PROMO_INDEX_JSON = ROOT / "data" / "promo_boards.json"
 PROMO_PUBLIC_BASE = "https://jackbeatnic.github.io/jbg-present/promo"
-# 1 = keep old jbg-og 1200x630 cards for works without a board (default: site card).
-KEEP_JBG_OG_CARDS = os.environ.get("JB_OG_KEEP_CARDS") == "1"
 _PROMO_INDEX: dict | None = None
 
 
@@ -1000,19 +924,7 @@ def promo_square_url(nft: dict) -> str | None:
 
 
 def og_image_url(nft: dict, base_url: str, og_version: str) -> str:
-    """Fallback card when there is no promo board: site og-preview.jpg
-    (old jbg-og 1200x630 cards only with JB_OG_KEEP_CARDS=1)."""
-    if KEEP_JBG_OG_CARDS:
-        token_id = int(nft["token_id"])
-        col = nft_collection_id(nft)
-        local = local_og_card(col, token_id)
-        if local:
-            return public_og_card_url(local.name, og_version)
-        rel = str(nft.get("og_image") or "").strip()
-        if rel.startswith(OG_PUBLIC_BASE + "/"):
-            name = rel.split("?", 1)[0].rsplit("/", 1)[-1]
-            if name:
-                return public_og_card_url(name, og_version)
+    """Fallback share image when there is no promo board: the site og-preview.jpg."""
     return site_og_image_url(base_url, og_version)
 
 
@@ -1022,7 +934,7 @@ def share_og_image(nft: dict, base_url: str, og_version: str) -> tuple[str, int,
     if board:
         return board["url"], board["width"], board["height"], "board"
     url = og_image_url(nft, base_url, og_version)
-    return url, WIDTH, HEIGHT, ("card" if OG_PUBLIC_BASE in url else "site")
+    return url, WIDTH, HEIGHT, "site"
 
 
 def share_page_html(nft: dict, info: dict, base_url: str, og_version: str) -> str:
@@ -1163,7 +1075,7 @@ def generate_share_pages(
     for col, n in sorted(per_col.items()):
         print(f"[page] {col}: {n}")
     print(f"[page] og:image — promo board: {per_kind.get('board', 0)}, "
-          f"og-preview.jpg: {per_kind.get('site', 0)}, jbg-og card: {per_kind.get('card', 0)}")
+          f"og-preview.jpg: {per_kind.get('site', 0)}")
     print(f"[page] razem {len(written)} plików")
     return written
 

@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """Sync Nature Jam (ERC-721) → nature_jam_gallery.json.
 
-Źródła:
-  - raportowanie/raporty/avalanche_nature_jam_raport.csv (OpenSea, listing)
-  - raportowanie/raporty/avalanche_nature_jam_salvor.csv (ceny Salvor)
-  - obrazy: strony OpenSea (seadn.io ?w=1000 — pełna proporcja)
+Sources:
+  - local report CSV avalanche_nature_jam_raport.csv (OpenSea, listing)
+  - local CSV avalanche_nature_jam_salvor.csv (Salvor prices)
+  - images: OpenSea pages (seadn.io ?w=1000 — full aspect ratio)
 
 Usage:
-  ./venv/bin/python3 aktualizuj_nature_jam_do_galerii.py
-  ./venv/bin/python3 aktualizuj_nature_jam_do_galerii.py --workers 16
-  ./venv/bin/python3 aktualizuj_nature_jam_do_galerii.py --skip-images
+  ./venv/bin/python3 sync_nature_jam_gallery.py
+  ./venv/bin/python3 sync_nature_jam_gallery.py --workers 16
+  ./venv/bin/python3 sync_nature_jam_gallery.py --skip-images
 """
 
 from __future__ import annotations
@@ -27,8 +27,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 JB_NFT = ROOT.parent
-KOLEKCJE_JSON = JB_NFT / "raportowanie" / "kolekcje.json"
-RAPORTY_DIR = JB_NFT / "raportowanie" / "raporty"
+COLLECTIONS_JSON = JB_NFT / "raportowanie" / "kolekcje.json"
+REPORTS_DIR = JB_NFT / "raportowanie" / "raporty"
 OUTPUT_JSON = ROOT / "nature_jam_gallery.json"
 
 COLLECTION_ID = "avalanche_nature_jam"
@@ -54,11 +54,11 @@ def save_json(path: Path, data: dict) -> None:
 
 
 def load_collection() -> dict:
-    data = load_json(KOLEKCJE_JSON)
+    data = load_json(COLLECTIONS_JSON)
     for row in data.get("collections", []):
         if row.get("id") == COLLECTION_ID:
             return row
-    raise SystemExit(f"Brak {COLLECTION_ID} w kolekcje.json")
+    raise SystemExit(f"Missing {COLLECTION_ID}  in the collections config")
 
 
 def parse_price(value: str) -> float | None:
@@ -123,10 +123,10 @@ def salvor_asset_url(contract: str, token_id: int) -> str:
     return f"https://salvor.io/asset/{contract}/{token_id}"
 
 
-def load_raport_rows() -> dict[int, dict]:
-    path = RAPORTY_DIR / f"{COLLECTION_ID}_raport.csv"
+def load_report_rows() -> dict[int, dict]:
+    path = REPORTS_DIR / f"{COLLECTION_ID}_raport.csv"
     if not path.exists():
-        raise SystemExit(f"Brak raportu: {path}")
+        raise SystemExit(f"Report missing: {path}")
     rows: dict[int, dict] = {}
     with path.open(encoding="utf-8", newline="") as fh:
         for row in csv.DictReader(fh):
@@ -140,9 +140,9 @@ def load_raport_rows() -> dict[int, dict]:
 
 
 def load_salvor_prices() -> dict[int, dict]:
-    path = RAPORTY_DIR / f"{COLLECTION_ID}_salvor.csv"
+    path = REPORTS_DIR / f"{COLLECTION_ID}_salvor.csv"
     if not path.exists():
-        raise SystemExit(f"Brak tabeli Salvor: {path}")
+        raise SystemExit(f"Salvor table missing: {path}")
     prices: dict[int, dict] = {}
     with path.open(encoding="utf-8", newline="") as fh:
         for row in csv.DictReader(fh):
@@ -185,7 +185,7 @@ def enrich_images(
                     results[tid] = image
                 done += 1
                 if done % 100 == 0:
-                    print(f"  {label}… {done}/{len(ids)} ({len(results)} z obrazem)")
+                    print(f"  {label}… {done}/{len(ids)} ({len(results)} with image)")
 
     if pending:
         scrape_pass(pending, workers, "OpenSea scrape")
@@ -206,7 +206,7 @@ def build_entry(
     *,
     tid: int,
     contract: str,
-    raport: dict,
+    report: dict,
     salvor: dict | None,
     image_url: str,
     old: dict | None,
@@ -214,18 +214,18 @@ def build_entry(
     if not image_url:
         return None
 
-    name = (raport.get("name") or salvor.get("nazwa") if salvor else "") or f"JB NJ #{tid:04d}"
-    opensea_url = raport.get("opensea_url") or (
+    name = (report.get("name") or salvor.get("nazwa") if salvor else "") or f"JB NJ #{tid:04d}"
+    opensea_url = report.get("opensea_url") or (
         f"https://opensea.io/assets/avalanche/{contract}/{tid}"
     )
     salvor_url = salvor_asset_url(contract, tid)
 
-    os_price = parse_price((raport.get("price") or "").strip())
+    os_price = parse_price((report.get("price") or "").strip())
     if os_price is None and salvor:
         os_price = parse_price((salvor.get("cena_opensea") or "").strip())
     salvor_price = parse_price((salvor or {}).get("cena_salvor") or "")
 
-    listing_status = raport.get("listing_status") or "Not Listed"
+    listing_status = report.get("listing_status") or "Not Listed"
     if salvor_price is not None and listing_status != "For Sale":
         listing_status = "For Sale"
 
@@ -286,10 +286,10 @@ def sync(*, dry_run: bool = False, workers: int = 12, skip_images: bool = False)
     contract = collection["contract"].lower()
     print(f"[nature_jam] {COLLECTION_ID} · contract={contract}")
 
-    raport = load_raport_rows()
+    report = load_report_rows()
     salvor = load_salvor_prices()
-    token_ids = sorted(raport.keys())
-    print(f"  raport: {len(token_ids)} tokenów · salvor: {len(salvor)} cen")
+    token_ids = sorted(report.keys())
+    print(f"  report: {len(token_ids)} tokens · salvor: {len(salvor)} prices")
 
     old_data = load_json(OUTPUT_JSON) if OUTPUT_JSON.exists() else {}
     old_by_id = {
@@ -305,7 +305,7 @@ def sync(*, dry_run: bool = False, workers: int = 12, skip_images: bool = False)
             if old_img:
                 images[tid] = normalize_seadn_image_url(old_img)
     else:
-        print("  pobieram obrazy ze stron OpenSea (seadn.io ?w=1000)…")
+        print("  fetching images from OpenSea pages (seadn.io ?w=1000)…")
         images = enrich_images(
             contract,
             token_ids,
@@ -319,7 +319,7 @@ def sync(*, dry_run: bool = False, workers: int = 12, skip_images: bool = False)
         entry = build_entry(
             tid=tid,
             contract=contract,
-            raport=raport[tid],
+            report=report[tid],
             salvor=salvor.get(tid),
             image_url=images.get(tid, ""),
             old=old_by_id.get(tid),
@@ -330,7 +330,7 @@ def sync(*, dry_run: bool = False, workers: int = 12, skip_images: bool = False)
             entries.append(entry)
 
     entries.sort(key=lambda e: e.get("onchain_token_id", 0))
-    print(f"  pominięto bez obrazu: {skipped}")
+    print(f"  skipped without image: {skipped}")
 
     payload = {
         "collection_info": {
@@ -353,13 +353,13 @@ def sync(*, dry_run: bool = False, workers: int = 12, skip_images: bool = False)
         "nfts": entries,
     }
 
-    print(f"[nature_jam] Gotowe: {len(entries)} tokenów w galerii")
+    print(f"[nature_jam] Done: {len(entries)} tokens in the gallery")
     if dry_run:
-        print("[dry-run] Bez zapisu nature_jam_gallery.json")
+        print("[dry-run] Not writing nature_jam_gallery.json")
         return 0
 
     save_json(OUTPUT_JSON, payload)
-    print(f"[nature_jam] Zapisano: {OUTPUT_JSON}")
+    print(f"[nature_jam] Saved: {OUTPUT_JSON}")
     return 0
 
 
@@ -370,7 +370,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--skip-images",
         action="store_true",
-        help="Zachowaj obrazy z poprzedniego JSON (tylko ceny/URL)",
+        help="Keep images from the previous JSON (prices/URLs only)",
     )
     args = parser.parse_args(argv)
     return sync(dry_run=args.dry_run, workers=args.workers, skip_images=args.skip_images)

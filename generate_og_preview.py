@@ -260,7 +260,7 @@ PRESENT_ROOT = ROOT.parent / "jbg-present"
 ASSETS_MEDIA = ROOT.parent / "jb-nft-assets" / "media"
 BACKUP_ROOT = ROOT.parent / "backup_offline" / "by_collection"
 PROMO_TEZOS = ROOT.parent / "promo" / "tezos"
-# Don't use prezentacja *small-portrait* (~400px) — that batch looked soft on OG cards.
+# Don't use the local presentation *small-portrait* (~400px) — that batch looked soft on OG cards.
 OG_MIN_SRC = 500
 # X/Facebook draw a domain chip on the bottom of summary_large_image.
 OG_SAFE_BOTTOM = 96
@@ -524,7 +524,7 @@ def _load_site_hero_bg(data: dict) -> tuple[Image.Image, str]:
         raise SystemExit(f"gallery.json hero_image missing file: {path}")
     nfts = data.get("nfts") or []
     if not nfts:
-        raise SystemExit("gallery.json: brak NFT do tła strony (i brak hero_image)")
+        raise SystemExit("gallery.json: no NFT for the page background (and no hero_image)")
     label = nfts[0].get("name", "—")
     return fetch_image(nfts[0]["image_url"]), f"nfts[0]={label}"
 
@@ -536,7 +536,7 @@ def generate_site_og(data: dict, output: Path = SITE_OG_PATH) -> Path:
     gallery_label = og_plain_text(SITE_GALLERY_LABEL)
 
     bg, src = _load_site_hero_bg(data)
-    print(f"[site] Tło (locked): {src}")
+    print(f"[site] Background (locked): {src}")
     canvas = draw_site_brand_overlay(
         cover_crop(bg, WIDTH, HEIGHT, focus_y=0.4),
         title,
@@ -546,7 +546,7 @@ def generate_site_og(data: dict, output: Path = SITE_OG_PATH) -> Path:
 
     output.parent.mkdir(parents=True, exist_ok=True)
     canvas.convert("RGB").save(output, "JPEG", quality=92, optimize=True, subsampling=0)
-    print(f"[site] Zapisano: {output} ({output.stat().st_size // 1024} KB)")
+    print(f"[site] Saved: {output} ({output.stat().st_size // 1024} KB)")
     return output
 
 
@@ -844,7 +844,7 @@ def site_og_image_url(base_url: str, og_version: str) -> str:
 # Pages site: https://jackbeatnic.github.io/jbg-present/promo/<collection_id>/<NNNN>.jpg
 # NNNN = ON-CHAIN token id (NJ vol2 / AI Play gallery token_id is synthetic).
 # Which boards are actually published comes from data/promo_boards.json
-# (buduj_indeks_tablic_promo.py) — never guess from local files, a local board
+# (build_promo_board_index.py) — never guess from local files, a local board
 # that was not pushed would be a 404 card.
 # robots.txt must keep /jbg-present/promo/ allowed for Twitterbot & co.
 PROMO_INDEX_JSON = ROOT / "data" / "promo_boards.json"
@@ -867,12 +867,12 @@ def refresh_promo_index() -> None:
     global _PROMO_INDEX
     try:
         sys.path.insert(0, str(ROOT))
-        import buduj_indeks_tablic_promo as idx
+        import build_promo_board_index as idx
 
         idx.refresh("local", quiet=True)
         _PROMO_INDEX = None
     except Exception as exc:  # noqa: BLE001 — keep the committed index
-        print(f"[promo] WARN: indeks tablic nie odświeżony ({exc}) — używam {PROMO_INDEX_JSON.name}")
+        print(f"[promo] WARN: board index not refreshed ({exc}) — using {PROMO_INDEX_JSON.name}")
 
 
 def promo_index() -> dict:
@@ -881,7 +881,7 @@ def promo_index() -> dict:
         try:
             _PROMO_INDEX = json.loads(PROMO_INDEX_JSON.read_text(encoding="utf-8"))
         except FileNotFoundError:
-            print(f"[promo] brak {PROMO_INDEX_JSON.name} — share pages use og-preview.jpg")
+            print(f"[promo] missing {PROMO_INDEX_JSON.name} — share pages use og-preview.jpg")
             _PROMO_INDEX = {}
     return _PROMO_INDEX
 
@@ -1065,7 +1065,7 @@ def generate_share_pages(
     per_col: dict[str, int] = {}
     per_kind: dict[str, int] = {}
     # Flat nft/{id}.html only when this token_id is unique across ALL feeds
-    # (nie po przefiltrowanym --chain — inaczej XRPL nadpisze NS #1).
+    # (not after the --chain filter — otherwise XRPL overwrites NS #1).
     tid_counts: dict[int, int] = {}
     for nft in collect_all_share_nfts(data):
         tid = token_id_int(nft)
@@ -1118,7 +1118,7 @@ def generate_share_pages(
             for stale in sub.glob("*.html"):
                 if stale.resolve() not in active_paths:
                     stale.unlink()
-                    print(f"[page] Usunięto nieaktualny: {stale.relative_to(ROOT)}")
+                    print(f"[page] Removed stale: {stale.relative_to(ROOT)}")
             if not any(sub.iterdir()):
                 sub.rmdir()
 
@@ -1127,7 +1127,7 @@ def generate_share_pages(
     print(f"[page] og:image — promo board: {per_kind.get('board', 0)}, "
           f"og-preview.jpg: {per_kind.get('site', 0)}, "
           f"Arena -a.html (banner): {per_kind.get('banner', 0)}")
-    print(f"[page] razem {len(written)} plików")
+    print(f"[page] total {len(written)} files")
     return written
 
 
@@ -1150,7 +1150,7 @@ def update_site_index_og(data: dict, version: str) -> None:
         pattern = rf'(<meta {attr} content=")[^"]*(")'
         html_text, count = re.subn(pattern, rf"\1{og_image}\2", html_text, count=1)
         if count != 1:
-            raise SystemExit(f"index.html: nie znaleziono meta {attr}")
+            raise SystemExit(f"index.html: meta {attr} not found")
 
     INDEX_HTML.write_text(html_text, encoding="utf-8")
     print(f"[site] index.html — og:image?v={version}")
@@ -1189,34 +1189,34 @@ def generate_all(
 
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Generuj karty Open Graph dla galerii.")
-    parser.add_argument("--site-only", action="store_true", help="Tylko og-preview.jpg (strona główna)")
-    parser.add_argument("--nft-only", action="store_true", help="Tylko karty per NFT + strony share")
+    parser = argparse.ArgumentParser(description="Generate Open Graph cards for the gallery.")
+    parser.add_argument("--site-only", action="store_true", help="Only og-preview.jpg (homepage)")
+    parser.add_argument("--nft-only", action="store_true", help="Only per-NFT cards + share pages")
     parser.add_argument(
         "--pages-only",
         action="store_true",
-        help="Tylko strony share (wszystkie feedy: XRPL/Sui/NJ/shop). Bez kart JPG.",
+        help="Only share pages (all feeds: XRPL/Sui/NJ/shop). No JPG cards.",
     )
     parser.add_argument(
         "--og-all",
         action="store_true",
-        help="Karty OG JPG dla wszystkich feedów (NS/XRPL/Sui/NJ/shop) + odśwież landingi.",
+        help="OG JPG cards for all feeds (NS/XRPL/Sui/NJ/shop) + refresh landings.",
     )
     parser.add_argument(
         "--skip-existing",
         action="store_true",
-        help="Nie nadpisuj kart OG, które już są na dysku.",
+        help="Do not overwrite OG cards already on disk.",
     )
-    parser.add_argument("--limit", type=int, default=None, help="Maks. liczba nowych kart OG (test).")
-    parser.add_argument("--no-gallery-json", action="store_true", help="Nie zapisuj share_url w gallery.json")
-    parser.add_argument("--token", type=int, action="append", dest="tokens", help="Tylko wybrane token_id")
+    parser.add_argument("--limit", type=int, default=None, help="Max number of new OG cards (test).")
+    parser.add_argument("--no-gallery-json", action="store_true", help="Do not write share_url into gallery.json")
+    parser.add_argument("--token", type=int, action="append", dest="tokens", help="Only the given token_id(s)")
     parser.add_argument(
-        "--kolekcja",
-        help="Tylko ta collection_id (np. polygon_nature_stories_vol2).",
+        "--collection",
+        help="Only this collection_id (e.g. polygon_nature_stories_vol2).",
     )
     parser.add_argument(
         "--chain",
-        help="Tylko ten chain (np. xrpl). Nie kasuje landingów innych kolekcji.",
+        help="Only this chain (e.g. xrpl). Does not delete other collections' landings.",
     )
     return parser.parse_args(argv)
 
@@ -1225,10 +1225,10 @@ def _norm_cid(s: str) -> str:
     return (s or "").strip().lower().replace("-", "_")
 
 
-def nfts_for_run(data: dict, *, chain: str | None = None, kolekcja: str | None = None) -> list[dict]:
+def nfts_for_run(data: dict, *, chain: str | None = None, collection_filter: str | None = None) -> list[dict]:
     nfts = collect_all_share_nfts(data)
-    if kolekcja:
-        want_c = _norm_cid(kolekcja)
+    if collection_filter:
+        want_c = _norm_cid(collection_filter)
         nfts = [
             n
             for n in nfts
@@ -1250,8 +1250,8 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv or sys.argv[1:])
     token_ids = set(args.tokens) if args.tokens else None
     chain = (args.chain or "").strip() or None
-    kolekcja = (getattr(args, "kolekcja", None) or "").strip() or None
-    subset = bool(token_ids or chain or kolekcja)
+    collection_filter = (getattr(args, "collection", None) or "").strip() or None
+    subset = bool(token_ids or chain or collection_filter)
 
     if args.site_only:
         data = load_gallery()
@@ -1264,7 +1264,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.pages_only:
         data = load_gallery()
-        nfts = nfts_for_run(data, chain=chain, kolekcja=kolekcja)
+        nfts = nfts_for_run(data, chain=chain, collection_filter=collection_filter)
         generate_share_pages(
             data,
             token_ids=token_ids,
@@ -1279,7 +1279,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.og_all:
         data = load_gallery()
         version = stamp_gallery_meta(data)
-        nfts = nfts_for_run(data, chain=chain, kolekcja=kolekcja)
+        nfts = nfts_for_run(data, chain=chain, collection_filter=collection_filter)
         generate_nft_ogs(
             data,
             token_ids=token_ids,
@@ -1301,7 +1301,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.nft_only:
         data = load_gallery()
         version = stamp_gallery_meta(data)
-        nfts = nfts_for_run(data, chain=chain, kolekcja=kolekcja)
+        nfts = nfts_for_run(data, chain=chain, collection_filter=collection_filter)
         generate_nft_ogs(
             data,
             token_ids=token_ids,

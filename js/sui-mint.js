@@ -1,6 +1,6 @@
 /**
  * SUI studio-signed lazy mint. No private key in the browser.
- * Live: PTB buy(art_id) on shared Vault. Kasa mints Copy S+1…2S.
+ * Live: PTB buy(art_id) on shared Vault. The VPS checkout worker mints Copy S+1…2S.
  * Checkout is the in-page shop modal (same as XRPL) — never window.confirm/alert.
  */
 const SuiMint = (() => {

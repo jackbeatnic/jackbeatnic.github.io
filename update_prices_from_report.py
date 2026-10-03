@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
 """
-Synchronizuje ceny listingów OpenSea z raportów CSV -> www/gallery.json
+Syncs OpenSea listing prices from report CSVs -> www/gallery.json
 
-Źródło: raportowanie/raporty/{collection_id}_raport.csv
-Cel:    current_price_{waluta}, listing_status, opensea_url
+Source: local report CSV {collection_id}_raport.csv (reporting pipeline)
+Target: current_price_{currency}, listing_status, opensea_url
 
-Uwaga:  kolumna price w raporcie = cena za 1 szt. (nie wartość całej partii).
+Note:   the price column in the report = price per 1 item (not the whole batch value).
 
-Najpierw wygeneruj świeży raport:
-  cd /home/jb/jb_nft/raportowanie
-  export OPENSEA_API_KEY="..."
-  python3 raportuj_kolekcje.py --kolekcja avalanche_nature_stories
+Generate a fresh report first with the local OpenSea report step
+(needs OPENSEA_API_KEY), e.g. for avalanche_nature_stories.
 """
 
 from __future__ import annotations
@@ -25,8 +23,8 @@ from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 JB_NFT = SCRIPT_DIR.parent
-RAPORTY_DIR = JB_NFT / "raportowanie" / "raporty"
-KOLEKCJE_PATH = JB_NFT / "raportowanie" / "kolekcje.json"
+REPORTS_DIR = JB_NFT / "raportowanie" / "raporty"
+COLLECTIONS_JSON = JB_NFT / "raportowanie" / "kolekcje.json"
 DEFAULT_GALLERY = SCRIPT_DIR / "gallery.json"
 
 OPENSEA_ASSET_RE = re.compile(
@@ -46,7 +44,7 @@ def save_json(path: Path, data: dict) -> None:
 
 
 def load_contract_map() -> dict[str, dict]:
-    data = load_json(KOLEKCJE_PATH)
+    data = load_json(COLLECTIONS_JSON)
     out: dict[str, dict] = {}
     for col in data.get("collections", []):
         contract = str(col.get("contract") or "").strip()
@@ -76,9 +74,9 @@ def parse_opensea_url(url: str) -> tuple[str, str, str] | None:
     return m.group(1), m.group(2).lower(), m.group(3)
 
 
-def load_raport_index(raport_path: Path) -> dict[tuple[str, str, str], dict]:
+def load_report_index(report_path: Path) -> dict[tuple[str, str, str], dict]:
     index: dict[tuple[str, str, str], dict] = {}
-    with raport_path.open(encoding="utf-8", newline="") as f:
+    with report_path.open(encoding="utf-8", newline="") as f:
         for row in csv.DictReader(f):
             key = (
                 row["chain"],
@@ -89,12 +87,12 @@ def load_raport_index(raport_path: Path) -> dict[tuple[str, str, str], dict]:
     return index
 
 
-def resolve_raport_path(collection_id: str) -> Path:
-    path = RAPORTY_DIR / f"{collection_id}_raport.csv"
+def resolve_report_path(collection_id: str) -> Path:
+    path = REPORTS_DIR / f"{collection_id}_raport.csv"
     if not path.exists():
         raise SystemExit(
-            f"Brak raportu: {path}\n"
-            f"Uruchom: python3 raportuj_kolekcje.py --kolekcja {collection_id}"
+            f"Report missing: {path}\n"
+            f"Run the local OpenSea report step for {collection_id} first."
         )
     return path
 
@@ -121,7 +119,7 @@ def sync_gallery(
     contract_map = load_contract_map()
     nfts = gallery.get("nfts", [])
     if not nfts:
-        raise SystemExit("gallery.json nie ma żadnych NFT.")
+        raise SystemExit("gallery.json has no NFTs.")
 
     inferred_ids: set[str] = set()
     for nft in nfts:
@@ -132,15 +130,15 @@ def sync_gallery(
                 inferred_ids.add(col["id"])
 
     if collection_id:
-        raport_ids = [collection_id]
+        report_ids = [collection_id]
     elif len(inferred_ids) == 1:
-        raport_ids = [next(iter(inferred_ids))]
+        report_ids = [next(iter(inferred_ids))]
     else:
-        raport_ids = sorted(inferred_ids)
+        report_ids = sorted(inferred_ids)
 
     indexes: dict[str, dict] = {}
-    for rid in raport_ids:
-        indexes[rid] = load_raport_index(resolve_raport_path(rid))
+    for rid in report_ids:
+        indexes[rid] = load_report_index(resolve_report_path(rid))
 
     updated = 0
     listed = 0
@@ -153,16 +151,16 @@ def sync_gallery(
             continue
 
         col = contract_map.get(key[1])
-        raport_row = None
+        report_row = None
         if col and col["id"] in indexes:
-            raport_row = indexes[col["id"]].get(key)
-        if raport_row is None:
+            report_row = indexes[col["id"]].get(key)
+        if report_row is None:
             for idx in indexes.values():
                 if key in idx:
-                    raport_row = idx[key]
+                    report_row = idx[key]
                     break
 
-        if raport_row is None:
+        if report_row is None:
             missing += 1
             continue
 
@@ -171,14 +169,14 @@ def sync_gallery(
             nft.setdefault("contract_address", col["contract"])
             nft.setdefault("collection_id", col["id"])
 
-        currency = (raport_row.get("currency") or "").strip()
+        currency = (report_row.get("currency") or "").strip()
         if currency and currency != "N/A":
             nft["listing_currency"] = currency
 
-        listing_status = raport_row.get("listing_status", "")
+        listing_status = report_row.get("listing_status", "")
         nft["listing_status"] = listing_status
 
-        price = parse_price(raport_row.get("price", ""))
+        price = parse_price(report_row.get("price", ""))
         if currency and currency != "N/A":
             field = price_field_name(currency)
             if listing_status == "For Sale" and price is not None:
@@ -187,17 +185,17 @@ def sync_gallery(
             else:
                 nft[field] = None
 
-        if raport_row.get("opensea_url"):
-            nft["opensea_url"] = raport_row["opensea_url"]
+        if report_row.get("opensea_url"):
+            nft["opensea_url"] = report_row["opensea_url"]
 
-        if raport_row.get("name"):
-            nft["name"] = raport_row["name"]
+        if report_row.get("name"):
+            nft["name"] = report_row["name"]
 
         updated += 1
 
     info = gallery.setdefault("collection_info", {})
-    if raport_ids:
-        info["collection_id"] = raport_ids[0] if len(raport_ids) == 1 else raport_ids
+    if report_ids:
+        info["collection_id"] = report_ids[0] if len(report_ids) == 1 else report_ids
     if inferred_ids:
         first_col = contract_map.get(nft_key(nfts[0], contract_map)[1]) if nfts else None
         if first_col:
@@ -211,23 +209,23 @@ def sync_gallery(
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Aktualizuj gallery.json cenami z raportów OpenSea (raportowanie/)."
+        description="Update gallery.json with prices from OpenSea reports (local reporting pipeline)."
     )
     parser.add_argument(
         "--gallery",
         type=Path,
         default=DEFAULT_GALLERY,
-        help=f"Ścieżka do gallery.json (domyślnie: {DEFAULT_GALLERY})",
+        help=f"Path to gallery.json (default: {DEFAULT_GALLERY})",
     )
     parser.add_argument(
-        "--kolekcja",
+        "--collection",
         dest="collection_id",
-        help="collection_id z kolekcje.json (np. avalanche_nature_stories)",
+        help="collection_id from the collections config (e.g. avalanche_nature_stories)",
     )
     parser.add_argument(
         "--dry-run",
         action="store_true",
-        help="Pokaż podsumowanie bez zapisu",
+        help="Show a summary without writing",
     )
     args = parser.parse_args()
 
@@ -240,14 +238,14 @@ def main() -> None:
         dry_run=args.dry_run,
     )
 
-    print(f"Galeria: {gallery_path}")
-    print(f"Zaktualizowano wpisów: {updated}")
-    print(f"Z aktywnym listingiem (cena): {listed}")
+    print(f"Gallery: {gallery_path}")
+    print(f"Updated entries: {updated}")
+    print(f"With an active listing (price): {listed}")
     if missing:
-        print(f"Bez dopasowania w raporcie: {missing}")
+        print(f"No match in the report: {missing}")
 
     if args.dry_run:
-        print("\n[dry-run] Nie zapisano gallery.json")
+        print("\n[dry-run] gallery.json not written")
         for nft in gallery.get("nfts", [])[:5]:
             tid = nft.get("token_id")
             cur = nft.get("listing_currency", "?")
@@ -256,7 +254,7 @@ def main() -> None:
             print(f"  token {tid}: {nft.get('listing_status')} -> {price} {cur}")
     else:
         save_json(gallery_path, gallery)
-        print(f"\nZapisano: {gallery_path}")
+        print(f"\nSaved: {gallery_path}")
 
 
 if __name__ == "__main__":

@@ -1,21 +1,21 @@
 #!/usr/bin/env bash
-# Odśwież ceny z OpenSea (raport → gallery.json) i wgraj na GitHub Pages.
+# Refresh prices from OpenSea (report → gallery.json) and push to GitHub Pages.
 #
-# Wymaga: OPENSEA_API_KEY, git z remote w tym katalogu (www/).
+# Requires: OPENSEA_API_KEY, git with a remote in this folder (www/).
 #
-# Użycie:
+# Usage:
 #   export OPENSEA_API_KEY="..."
-#   ./odswiez_i_wgraj.sh
-#   ./odswiez_i_wgraj.sh --kolekcja avalanche_nature_stories
-#   ./odswiez_i_wgraj.sh --dry-run          # raport + podgląd sync, bez zapisu i push
-#   ./odswiez_i_wgraj.sh --no-push          # sync lokalnie, bez git push
-#   ./odswiez_i_wgraj.sh -m "sync after listing batch"
+#   ./refresh_and_push.sh
+#   ./refresh_and_push.sh --collection avalanche_nature_stories
+#   ./refresh_and_push.sh --dry-run          # report + sync preview, no write and no push
+#   ./refresh_and_push.sh --no-push          # local sync, no git push
+#   ./refresh_and_push.sh -m "sync after listing batch"
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 JB_NFT="$(dirname "$SCRIPT_DIR")"
-RAPORT_DIR="$JB_NFT/raportowanie"
+REPORTS_ROOT="$JB_NFT/raportowanie"
 WWW_DIR="$SCRIPT_DIR"
 if [[ -x "$JB_NFT/venv/bin/python3" ]]; then
     PYTHON="$JB_NFT/venv/bin/python3"
@@ -23,7 +23,7 @@ else
     PYTHON="python3"
 fi
 
-KOLEKCJA="${KOLEKCJA:-avalanche_nature_stories}"
+COLLECTION="${COLLECTION:-avalanche_nature_stories}"
 DRY_RUN=false
 NO_PUSH=false
 COMMIT_MSG=""
@@ -34,8 +34,8 @@ usage() {
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --kolekcja)
-            KOLEKCJA="$2"
+        --collection)
+            COLLECTION="$2"
             shift 2
             ;;
         --dry-run)
@@ -55,7 +55,7 @@ while [[ $# -gt 0 ]]; do
             exit 0
             ;;
         *)
-            echo "Nieznany argument: $1" >&2
+            echo "Unknown argument: $1" >&2
             usage >&2
             exit 1
             ;;
@@ -63,15 +63,15 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [[ -z "${OPENSEA_API_KEY:-}" ]]; then
-    echo "Błąd: brak OPENSEA_API_KEY." >&2
-    echo "  export OPENSEA_API_KEY=\"twój-klucz\"" >&2
+    echo "Error: OPENSEA_API_KEY is not set." >&2
+    echo "  export OPENSEA_API_KEY=\"your-key\"" >&2
     exit 1
 fi
 
-echo "=== [1/4] Raport OpenSea (--krok report) — $KOLEKCJA ==="
+echo "=== [1/4] OpenSea report — $COLLECTION ==="
 (
-    cd "$RAPORT_DIR"
-    "$PYTHON" raportuj_kolekcje.py --kolekcja "$KOLEKCJA" --krok report
+    cd "$REPORTS_ROOT"
+    "$PYTHON" raportuj_kolekcje.py --kolekcja "$COLLECTION" --krok report  # local report tool (its own CLI)
 )
 
 echo ""
@@ -79,9 +79,9 @@ echo "=== [2/4] Sync gallery.json ==="
 (
     cd "$WWW_DIR"
     if $DRY_RUN; then
-        "$PYTHON" aktualizuj_ceny_z_raportu.py --kolekcja "$KOLEKCJA" --dry-run
+        "$PYTHON" update_prices_from_report.py --collection "$COLLECTION" --dry-run
     else
-        "$PYTHON" aktualizuj_ceny_z_raportu.py --kolekcja "$KOLEKCJA"
+        "$PYTHON" update_prices_from_report.py --collection "$COLLECTION"
     fi
 )
 
@@ -90,21 +90,21 @@ echo "=== [3/4] OG preview (site card + share pages: promo board or og-preview.j
 (
     cd "$WWW_DIR"
     if $DRY_RUN; then
-        echo "[dry-run] Pominięto generuj_og_preview.py"
+        echo "[dry-run] Skipped generate_og_preview.py"
     else
-        "$PYTHON" generuj_og_preview.py --skip-existing
+        "$PYTHON" generate_og_preview.py --skip-existing
     fi
 )
 
 if $DRY_RUN; then
     echo ""
-    echo "[dry-run] Pominięto zapis gallery.json (jeśli --dry-run w sync) i git push."
+    echo "[dry-run] Skipped writing gallery.json (with --dry-run in the sync) and git push."
     exit 0
 fi
 
 if $NO_PUSH; then
     echo ""
-    echo "[--no-push] gallery.json zaktualizowany lokalnie. Bez commit/push."
+    echo "[--no-push] gallery.json updated locally. No commit/push."
     exit 0
 fi
 
@@ -125,16 +125,16 @@ fi
 
 if git diff --quiet -- gallery.json assets/og-preview.jpg nft/ js/gallery.js data/promo_boards.json \
     && git diff --cached --quiet -- gallery.json assets/og-preview.jpg nft/ js/gallery.js data/promo_boards.json; then
-    echo "Brak zmian (gallery / landings) — pomijam commit i push."
+    echo "No changes (gallery / landings) — skipping commit and push."
     exit 0
 fi
 
-git add gallery.json assets/og-preview.jpg nft/ js/gallery.js generuj_og_preview.py data/promo_boards.json
+git add gallery.json assets/og-preview.jpg nft/ js/gallery.js generate_og_preview.py data/promo_boards.json
 if [[ -z "$COMMIT_MSG" ]]; then
-    COMMIT_MSG="sync prices ($KOLEKCJA) $(date -u +%Y-%m-%dT%H:%MZ)"
+    COMMIT_MSG="sync prices ($COLLECTION) $(date -u +%Y-%m-%dT%H:%MZ)"
 fi
 git commit -m "$COMMIT_MSG"
 git push
 
 echo ""
-echo "Gotowe. GitHub Pages odświeży się za ok. 1–2 minuty."
+echo "Done. GitHub Pages refreshes in about 1–2 minutes."

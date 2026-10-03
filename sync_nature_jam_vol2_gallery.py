@@ -2,15 +2,15 @@
 """Sync Nature Jam vol.2 (ERC-1155) into nature_jam_gallery.json alongside vol.1.
 
 Vol.1  avalanche_nature_jam       — leaves existing entries
-Vol.2  avalanche_nature_jam_vol2  — from raport CSV + jb-nft-assets images
+Vol.2  avalanche_nature_jam_vol2  — from the report CSV + jb-nft-assets images
 
 Images for vol.2:
   - prefer GH Pages media: …/jb-nft-assets/media/nature-jam-2/{id}.jpg
   - else image from meta JSON (ipfs:// → gateway)
 
 Usage:
-  python3 aktualizuj_nature_jam_vol2_do_galerii.py
-  python3 aktualizuj_nature_jam_vol2_do_galerii.py --dry-run
+  python3 sync_nature_jam_vol2_gallery.py
+  python3 sync_nature_jam_vol2_gallery.py --dry-run
 """
 from __future__ import annotations
 
@@ -23,8 +23,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 JB = ROOT.parent
-RAPORT = JB / "raportowanie" / "raporty" / "avalanche_nature_jam_vol2_raport.csv"
-KOLEKCJE = JB / "raportowanie" / "kolekcje.json"
+REPORT_CSV = JB / "raportowanie" / "raporty" / "avalanche_nature_jam_vol2_raport.csv"
+COLLECTIONS_JSON = JB / "raportowanie" / "kolekcje.json"
 ASSETS_META = JB / "jb-nft-assets" / "meta" / "avalanche" / "nature-jam-2"
 ASSETS_MEDIA = JB / "jb-nft-assets" / "media" / "nature-jam-2"
 OUTPUT = ROOT / "nature_jam_gallery.json"
@@ -74,11 +74,11 @@ def image_for_token(tid: int) -> str:
     return ""
 
 
-def load_raport() -> dict[int, dict]:
-    if not RAPORT.exists():
-        raise SystemExit(f"Brak raportu: {RAPORT}")
+def load_report() -> dict[int, dict]:
+    if not REPORT_CSV.exists():
+        raise SystemExit(f"Report missing: {REPORT_CSV}")
     out: dict[int, dict] = {}
-    with RAPORT.open(encoding="utf-8") as fh:
+    with REPORT_CSV.open(encoding="utf-8") as fh:
         for row in csv.DictReader(fh):
             tid = int(row["token_id"])
             out[tid] = row
@@ -86,32 +86,32 @@ def load_raport() -> dict[int, dict]:
 
 
 def contract_for_vol2() -> str:
-    data = load_json(KOLEKCJE)
+    data = load_json(COLLECTIONS_JSON)
     for c in data.get("collections", []):
         if c.get("id") == VOL2_ID:
             return (c.get("contract") or "").lower()
     return "0xfeafbadf5f0fe4821ae34d1d379625e6a4acb55a"
 
 
-def build_vol2_entry(tid: int, raport: dict, contract: str, old: dict | None) -> dict | None:
+def build_vol2_entry(tid: int, report: dict, contract: str, old: dict | None) -> dict | None:
     image_url = image_for_token(tid)
     if not image_url and old:
         image_url = old.get("image_url") or ""
     if not image_url:
         return None
 
-    name = (raport.get("name") or "").strip() or f"JB NJ #{tid + 786:04d}"
-    price = parse_price((raport.get("price") or "").strip())
-    listing_status = raport.get("listing_status") or "Not Listed"
-    supply = int(float(raport.get("supply") or 3000))
+    name = (report.get("name") or "").strip() or f"JB NJ #{tid + 786:04d}"
+    price = parse_price((report.get("price") or "").strip())
+    listing_status = report.get("listing_status") or "Not Listed"
+    supply = int(float(report.get("supply") or 3000))
 
     entry: dict = {
         "token_id": VOL2_RANK_OFFSET + tid,
         "onchain_token_id": tid,
         "name": name,
-        "opensea_url": raport.get("opensea_url")
+        "opensea_url": report.get("opensea_url")
         or f"https://opensea.io/assets/avalanche/{contract}/{tid}",
-        "marketplace_url": raport.get("opensea_url")
+        "marketplace_url": report.get("opensea_url")
         or f"https://opensea.io/assets/avalanche/{contract}/{tid}",
         "image_url": image_url,
         "supply": supply,
@@ -173,8 +173,8 @@ def build_vol2_entry(tid: int, raport: dict, contract: str, old: dict | None) ->
 
 def sync(*, dry_run: bool = False) -> int:
     contract = contract_for_vol2()
-    raport = load_raport()
-    print(f"[nj_vol2] raport tokens: {len(raport)} contract={contract}")
+    report = load_report()
+    print(f"[nj_vol2] report tokens: {len(report)} contract={contract}")
 
     old = load_json(OUTPUT) if OUTPUT.exists() else {}
     old_nfts = list(old.get("nfts") or [])
@@ -193,8 +193,8 @@ def sync(*, dry_run: bool = False) -> int:
 
     vol2_entries: list[dict] = []
     skipped = 0
-    for tid in sorted(raport.keys()):
-        e = build_vol2_entry(tid, raport[tid], contract, old_vol2.get(tid))
+    for tid in sorted(report.keys()):
+        e = build_vol2_entry(tid, report[tid], contract, old_vol2.get(tid))
         if e is None:
             skipped += 1
         else:

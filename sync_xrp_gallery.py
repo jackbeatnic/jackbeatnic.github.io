@@ -9,9 +9,9 @@ Data sources (open, no API key):
 All marketplace links point to https://xrp.cafe/
 
 Usage:
-  python3 aktualizuj_xrp_do_galerii.py
-  python3 aktualizuj_xrp_do_galerii.py --dry-run
-  python3 aktualizuj_xrp_do_galerii.py --limit 5
+  python3 sync_xrp_gallery.py
+  python3 sync_xrp_gallery.py --dry-run
+  python3 sync_xrp_gallery.py --limit 5
 """
 
 from __future__ import annotations
@@ -128,7 +128,7 @@ def parse_next_data(html: str) -> dict:
         re.DOTALL,
     )
     if not match:
-        raise RuntimeError("Brak __NEXT_DATA__ na stronie XRP.Cafe")
+        raise RuntimeError("No __NEXT_DATA__ on the XRP.Cafe page")
     payload = json.loads(match.group(1))
     return payload.get("props", {}).get("pageProps") or {}
 
@@ -467,15 +467,15 @@ def sync(*, dry_run: bool = False, limit: int | None = None, skip_colors: bool =
         if row.get("xrpl_nft_id")
     }
 
-    print(f"[xrp] Issuer: {issuer} | taxon: {taxon} | źródło: XRP.Cafe")
-    print("[xrp] Pobieram indeks kolekcji z XRP.Cafe…")
+    print(f"[xrp] Issuer: {issuer} | taxon: {taxon} | source: XRP.Cafe")
+    print("[xrp] Fetching the collection index from XRP.Cafe…")
     collection_index = fetch_cafe_collection_index(issuer, taxon)
-    print(f"[xrp] Indeks kolekcji (strona 1): {len(collection_index)} NFT")
+    print(f"[xrp] Collection index (page 1): {len(collection_index)} NFT")
 
     raw = fetch_account_nfts(issuer)
     filtered = [row for row in raw if int(row.get("NFTokenTaxon", -1)) == taxon]
     filtered.sort(key=lambda row: int(row.get("nft_serial") or 0))
-    print(f"[xrp] Ledger (XRPScan): {len(raw)} NFT | w kolekcji: {len(filtered)}")
+    print(f"[xrp] Ledger (XRPScan): {len(raw)} NFT | in collection: {len(filtered)}")
 
     if limit:
         filtered = filtered[: int(limit)]
@@ -505,7 +505,7 @@ def sync(*, dry_run: bool = False, limit: int | None = None, skip_colors: bool =
             ok += 1
         except Exception as exc:
             fail += 1
-            print(f"    BŁĄD: {exc}", file=sys.stderr)
+            print(f"    ERROR: {exc}", file=sys.stderr)
         if i < len(filtered) - 1:
             time.sleep(0.15)
 
@@ -553,22 +553,22 @@ def sync(*, dry_run: bool = False, limit: int | None = None, skip_colors: bool =
         "nfts": entries,
     }
 
-    print(f"[xrp] Gotowe: {ok} OK, {fail} błędów | na sprzedaż: {listed}/{len(entries)}")
+    print(f"[xrp] Done: {ok} OK, {fail} errors | for sale: {listed}/{len(entries)}")
 
     if dry_run:
-        print("[dry-run] Bez zapisu xrp_gallery.json")
+        print("[dry-run] Not writing xrp_gallery.json")
         return 0 if fail == 0 else 1
 
     save_json(XRP_GALLERY_JSON, payload)
-    print(f"[xrp] Zapisano: {XRP_GALLERY_JSON} ({len(entries)} prac)")
+    print(f"[xrp] Saved: {XRP_GALLERY_JSON} ({len(entries)} works)")
     return 0 if fail == 0 else 1
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Sync XRP.Cafe / XRPL NFTs → xrp_gallery.json")
     parser.add_argument("--dry-run", action="store_true")
-    parser.add_argument("--limit", type=int, help="max liczba NFT (test)")
-    parser.add_argument("--skip-colors", action="store_true", help="pomiń analizę kolorów (szybciej)")
+    parser.add_argument("--limit", type=int, help="max number of NFTs (test)")
+    parser.add_argument("--skip-colors", action="store_true", help="skip color analysis (faster)")
     args = parser.parse_args(argv)
     return sync(dry_run=args.dry_run, limit=args.limit, skip_colors=args.skip_colors)
 

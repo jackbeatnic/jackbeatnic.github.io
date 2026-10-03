@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """Import photography listings from Salvor / JackBeatnic → gallery.json.
 
-Źródło: https://salvor.io/api/profile/{slug}/listings
-Profil: JackBeatnic (fotografia — nie JackBeatnicAI)
+Source: https://salvor.io/api/profile/{slug}/listings
+Profile: JackBeatnic (photography — not JackBeatnicAI)
 
-Do galerii trafiają pozycje z aktywną ceną na Salvor (AVAX).
-Gdy API Salvor zwraca pustą listę, skrypt kończy się bez zmian w JSON
-(i wypisuje ostrzeżenie).
+Items with an active price on Salvor (AVAX) go to the gallery.
+When the Salvor API returns an empty list, the script exits without changing the JSON
+(and prints a warning).
 
 Usage:
-  python3 aktualizuj_salvor_foto_do_galerii.py
-  python3 aktualizuj_salvor_foto_do_galerii.py --dry-run
+  python3 sync_salvor_photo_gallery.py
+  python3 sync_salvor_photo_gallery.py --dry-run
 """
 
 from __future__ import annotations
@@ -27,7 +27,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 JB_NFT = ROOT.parent
 GALLERY_JSON = ROOT / "gallery.json"
-KOLEKCJE_JSON = JB_NFT / "raportowanie" / "kolekcje.json"
+COLLECTIONS_JSON = JB_NFT / "raportowanie" / "kolekcje.json"
 SALVOR_API = "https://salvor.io/api"
 USER_AGENT = "JackBeatnicGallery/1.0"
 
@@ -109,8 +109,8 @@ def normalize_image(url: str) -> str:
 
 def ai_contracts() -> set[str]:
     contracts: set[str] = set()
-    if KOLEKCJE_JSON.exists():
-        data = load_json(KOLEKCJE_JSON)
+    if COLLECTIONS_JSON.exists():
+        data = load_json(COLLECTIONS_JSON)
         for row in data.get("collections") or []:
             col_id = row.get("id") or ""
             contract = (row.get("contract") or "").lower()
@@ -145,10 +145,10 @@ def fetch_salvor_listings(profile: str) -> list[dict]:
         try:
             payload = fetch_json(url)
             batch = extract_listing_rows(payload)
-            print(f"[salvor-foto] {url} → {len(batch)} pozycji")
+            print(f"[salvor-photo] {url} → {len(batch)} items")
             rows.extend(batch)
         except urllib.error.URLError as exc:
-            print(f"[salvor-foto] {url}: {exc}", file=sys.stderr)
+            print(f"[salvor-photo] {url}: {exc}", file=sys.stderr)
     return rows
 
 
@@ -227,7 +227,7 @@ def row_price_avax(row: dict) -> float | None:
 
 
 def stable_token_id(contract: str, token_id: int) -> int:
-    """Unikalny token_id w gallery.json (nie koliduje z OBJKT pk)."""
+    """Unique token_id in gallery.json (does not collide with OBJKT pk)."""
     suffix = int(contract[-6:], 16) % 500_000
     return 700_000_000 + suffix * 10_000 + (token_id % 10_000)
 
@@ -300,14 +300,14 @@ def sync(*, dry_run: bool = False) -> int:
     info = gallery.setdefault("collection_info", {})
     skip_contracts = ai_contracts()
 
-    print(f"[salvor-foto] Profil: {SALVOR_PROFILE_URL}")
-    print(f"[salvor-foto] Pomijam kontrakty AI: {len(skip_contracts)}")
+    print(f"[salvor-photo] Profil: {SALVOR_PROFILE_URL}")
+    print(f"[salvor-photo] Skipping AI contracts: {len(skip_contracts)}")
 
     raw_rows = fetch_salvor_listings(SALVOR_PROFILE)
     if not raw_rows:
         print(
-            "[salvor-foto] Brak pozycji z API Salvor — gallery.json bez zmian. "
-            "Sprawdź profil w przeglądarce lub uruchom sync później.",
+            "[salvor-photo] No items from the Salvor API — gallery.json unchanged. "
+            "Check the profile in a browser or run the sync later.",
             file=sys.stderr,
         )
         return 0
@@ -329,12 +329,12 @@ def sync(*, dry_run: bool = False) -> int:
             entries.append(entry)
             rank += 1
 
-    print(f"[salvor-foto] Do galerii (z ceną, nie-AI): {len(entries)}")
+    print(f"[salvor-photo] To gallery (priced, non-AI): {len(entries)}")
     if not entries:
         return 0
 
     if dry_run:
-        print("[dry-run] Bez zapisu gallery.json")
+        print("[dry-run] Not writing gallery.json")
         return 0
 
     count = merge_salvor_photo(gallery, entries)
@@ -344,7 +344,7 @@ def sync(*, dry_run: bool = False) -> int:
     )
     info["salvor_photo_count"] = count
     save_json(GALLERY_JSON, gallery)
-    print(f"[salvor-foto] Zapisano: {GALLERY_JSON}")
+    print(f"[salvor-photo] Saved: {GALLERY_JSON}")
     return 0
 
 
@@ -355,7 +355,7 @@ def main() -> int:
     try:
         return sync(dry_run=args.dry_run)
     except urllib.error.URLError as exc:
-        print(f"[salvor-foto] Błąd sieci: {exc}", file=sys.stderr)
+        print(f"[salvor-photo] Network error: {exc}", file=sys.stderr)
         return 1
 
 

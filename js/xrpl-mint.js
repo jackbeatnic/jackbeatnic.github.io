@@ -1,6 +1,6 @@
 /**
  * XRPL lazy mint — payment sheet. No private key in the browser.
- * Kasa on the VPS watches Destination Tag = catalog number.
+ * The VPS checkout worker watches Destination Tag = catalog number.
  */
 const XrplMint = (() => {
     let modal;

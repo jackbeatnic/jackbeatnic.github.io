@@ -4,7 +4,7 @@
   "encoding": "buy(uint256)",
   "magic": "0xd96a094a",
   "legacy_gjb1": "0x474a4231",
-  "note": "Kasa matches exact wei AND token_id in tx.data. Pay without this data, or a different amount, is a tip.",
+  "note": "The checkout server matches exact wei AND token_id in tx.data. Pay without this data, or a different amount, is a tip.",
   "items": [
     {
       "sku": "gjb-ns-1",

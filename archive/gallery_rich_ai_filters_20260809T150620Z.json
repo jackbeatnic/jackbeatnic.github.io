@@ -269,7 +269,7 @@
             "polygon_nature_stories_vol2",
             "base_nature_stories_vol3"
           ],
-          "note": "Sui TradePort — osobny portfel, poza tym nurtem na razie"
+          "note": "Sui TradePort — separate wallet, outside this series for now"
         },
         "nature_jam": {
           "label": "Nature Jam",
@@ -15027,7 +15027,7 @@
       "mint_timestamp": "2026-01-07T19:07:32+00:00",
       "supply": 5000,
       "wallet_quantity": 5000,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/75758508.html",
       "og_image": "assets/og/nft-75758508.jpg"
     },
@@ -15078,7 +15078,7 @@
       "mint_timestamp": "2025-12-17T19:39:28+00:00",
       "supply": 49,
       "wallet_quantity": 49,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/75531282.html",
       "og_image": "assets/og/nft-75531282.jpg"
     },
@@ -15125,7 +15125,7 @@
       "mint_timestamp": "2025-12-14T21:11:16+00:00",
       "supply": 10000,
       "wallet_quantity": 10000,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/75504153.html",
       "og_image": "assets/og/nft-75504153.jpg"
     },
@@ -15174,7 +15174,7 @@
       "mint_timestamp": "2025-12-01T23:13:48+00:00",
       "supply": 5000,
       "wallet_quantity": 5000,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/75240452.html",
       "og_image": "assets/og/nft-75240452.jpg"
     },
@@ -15227,7 +15227,7 @@
       "mint_timestamp": "2025-12-01T23:11:32+00:00",
       "supply": 5000,
       "wallet_quantity": 4999,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/75240437.html",
       "og_image": "assets/og/nft-75240437.jpg"
     },
@@ -15280,7 +15280,7 @@
       "mint_timestamp": "2025-12-01T23:09:40+00:00",
       "supply": 5000,
       "wallet_quantity": 5000,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/75240413.html",
       "og_image": "assets/og/nft-75240413.jpg"
     },
@@ -15333,7 +15333,7 @@
       "mint_timestamp": "2025-11-30T17:12:28+00:00",
       "supply": 1000,
       "wallet_quantity": 999,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/75232891.html",
       "og_image": "assets/og/nft-75232891.jpg"
     },
@@ -15384,7 +15384,7 @@
       "mint_timestamp": "2025-10-27T00:19:28+00:00",
       "supply": 20,
       "wallet_quantity": 20,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/75013149.html",
       "og_image": "assets/og/nft-75013149.jpg"
     },
@@ -15435,7 +15435,7 @@
       "mint_timestamp": "2025-10-27T00:15:52+00:00",
       "supply": 20,
       "wallet_quantity": 20,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/75013139.html",
       "og_image": "assets/og/nft-75013139.jpg"
     },
@@ -15486,7 +15486,7 @@
       "mint_timestamp": "2025-10-27T00:08:12+00:00",
       "supply": 20,
       "wallet_quantity": 20,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/75013125.html",
       "og_image": "assets/og/nft-75013125.jpg"
     },
@@ -15537,7 +15537,7 @@
       "mint_timestamp": "2025-10-27T00:03:44+00:00",
       "supply": 20,
       "wallet_quantity": 20,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/75013107.html",
       "og_image": "assets/og/nft-75013107.jpg"
     },
@@ -15588,7 +15588,7 @@
       "mint_timestamp": "2025-10-27T00:00:24+00:00",
       "supply": 20,
       "wallet_quantity": 20,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/75013102.html",
       "og_image": "assets/og/nft-75013102.jpg"
     },
@@ -15640,7 +15640,7 @@
       "mint_timestamp": "2025-10-26T23:48:48+00:00",
       "supply": 20,
       "wallet_quantity": 20,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/75013082.html",
       "og_image": "assets/og/nft-75013082.jpg"
     },
@@ -15693,7 +15693,7 @@
       "mint_timestamp": "2024-09-09T18:24:30+00:00",
       "supply": 10,
       "wallet_quantity": 10,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69441704.html",
       "og_image": "assets/og/nft-69441704.jpg"
     },
@@ -15746,7 +15746,7 @@
       "mint_timestamp": "2024-09-09T18:18:40+00:00",
       "supply": 7,
       "wallet_quantity": 7,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69441661.html",
       "og_image": "assets/og/nft-69441661.jpg"
     },
@@ -15799,7 +15799,7 @@
       "mint_timestamp": "2024-09-09T18:16:20+00:00",
       "supply": 7,
       "wallet_quantity": 7,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69441642.html",
       "og_image": "assets/og/nft-69441642.jpg"
     },
@@ -15852,7 +15852,7 @@
       "mint_timestamp": "2024-09-09T18:13:10+00:00",
       "supply": 7,
       "wallet_quantity": 7,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69441614.html",
       "og_image": "assets/og/nft-69441614.jpg"
     },
@@ -15905,7 +15905,7 @@
       "mint_timestamp": "2024-09-09T18:11:10+00:00",
       "supply": 7,
       "wallet_quantity": 7,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69441596.html",
       "og_image": "assets/og/nft-69441596.jpg"
     },
@@ -15958,7 +15958,7 @@
       "mint_timestamp": "2024-09-09T18:08:30+00:00",
       "supply": 5,
       "wallet_quantity": 5,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69441564.html",
       "og_image": "assets/og/nft-69441564.jpg"
     },
@@ -16011,7 +16011,7 @@
       "mint_timestamp": "2024-09-09T18:06:00+00:00",
       "supply": 5,
       "wallet_quantity": 5,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69441534.html",
       "og_image": "assets/og/nft-69441534.jpg"
     },
@@ -16064,7 +16064,7 @@
       "mint_timestamp": "2024-09-09T18:03:50+00:00",
       "supply": 5,
       "wallet_quantity": 5,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69441389.html",
       "og_image": "assets/og/nft-69441389.jpg"
     },
@@ -16116,7 +16116,7 @@
       "mint_timestamp": "2024-09-09T18:01:40+00:00",
       "supply": 10,
       "wallet_quantity": 10,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69441250.html",
       "og_image": "assets/og/nft-69441250.jpg"
     },
@@ -16169,7 +16169,7 @@
       "mint_timestamp": "2024-09-09T17:58:50+00:00",
       "supply": 10,
       "wallet_quantity": 10,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69441171.html",
       "og_image": "assets/og/nft-69441171.jpg"
     },
@@ -16220,7 +16220,7 @@
       "mint_timestamp": "2024-09-08T18:49:45+00:00",
       "supply": 5,
       "wallet_quantity": 5,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69423425.html",
       "og_image": "assets/og/nft-69423425.jpg"
     },
@@ -16271,7 +16271,7 @@
       "mint_timestamp": "2024-09-08T18:43:45+00:00",
       "supply": 5,
       "wallet_quantity": 5,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69423371.html",
       "og_image": "assets/og/nft-69423371.jpg"
     },
@@ -16322,7 +16322,7 @@
       "mint_timestamp": "2024-09-08T18:41:15+00:00",
       "supply": 5,
       "wallet_quantity": 5,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69423255.html",
       "og_image": "assets/og/nft-69423255.jpg"
     },
@@ -16373,7 +16373,7 @@
       "mint_timestamp": "2024-09-08T18:38:25+00:00",
       "supply": 5,
       "wallet_quantity": 5,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69423233.html",
       "og_image": "assets/og/nft-69423233.jpg"
     },
@@ -16426,7 +16426,7 @@
       "mint_timestamp": "2024-09-08T11:22:50+00:00",
       "supply": 4,
       "wallet_quantity": 4,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69419444.html",
       "og_image": "assets/og/nft-69419444.jpg"
     },
@@ -16479,7 +16479,7 @@
       "mint_timestamp": "2024-09-08T11:20:30+00:00",
       "supply": 5,
       "wallet_quantity": 5,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69419432.html",
       "og_image": "assets/og/nft-69419432.jpg"
     },
@@ -16532,7 +16532,7 @@
       "mint_timestamp": "2024-09-08T11:17:55+00:00",
       "supply": 5,
       "wallet_quantity": 5,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69419420.html",
       "og_image": "assets/og/nft-69419420.jpg"
     },
@@ -16583,7 +16583,7 @@
       "mint_timestamp": "2024-09-07T17:49:00+00:00",
       "supply": 10,
       "wallet_quantity": 10,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69411470.html",
       "og_image": "assets/og/nft-69411470.jpg"
     },
@@ -16636,7 +16636,7 @@
       "mint_timestamp": "2024-09-07T13:35:05+00:00",
       "supply": 15,
       "wallet_quantity": 15,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69407509.html",
       "og_image": "assets/og/nft-69407509.jpg"
     },
@@ -16689,7 +16689,7 @@
       "mint_timestamp": "2024-09-07T13:32:05+00:00",
       "supply": 15,
       "wallet_quantity": 15,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69407478.html",
       "og_image": "assets/og/nft-69407478.jpg"
     },
@@ -16742,7 +16742,7 @@
       "mint_timestamp": "2024-09-07T13:28:05+00:00",
       "supply": 14,
       "wallet_quantity": 14,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69407436.html",
       "og_image": "assets/og/nft-69407436.jpg"
     },
@@ -16795,7 +16795,7 @@
       "mint_timestamp": "2024-09-07T13:21:05+00:00",
       "supply": 15,
       "wallet_quantity": 15,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69407351.html",
       "og_image": "assets/og/nft-69407351.jpg"
     },
@@ -16848,7 +16848,7 @@
       "mint_timestamp": "2024-09-07T13:18:45+00:00",
       "supply": 15,
       "wallet_quantity": 15,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69407309.html",
       "og_image": "assets/og/nft-69407309.jpg"
     },
@@ -16901,7 +16901,7 @@
       "mint_timestamp": "2024-09-07T13:16:05+00:00",
       "supply": 15,
       "wallet_quantity": 15,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69407283.html",
       "og_image": "assets/og/nft-69407283.jpg"
     },
@@ -16954,7 +16954,7 @@
       "mint_timestamp": "2024-09-07T13:13:55+00:00",
       "supply": 15,
       "wallet_quantity": 15,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69407260.html",
       "og_image": "assets/og/nft-69407260.jpg"
     },
@@ -17007,7 +17007,7 @@
       "mint_timestamp": "2024-09-07T13:11:15+00:00",
       "supply": 14,
       "wallet_quantity": 14,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69407229.html",
       "og_image": "assets/og/nft-69407229.jpg"
     },
@@ -17060,7 +17060,7 @@
       "mint_timestamp": "2024-09-07T11:25:35+00:00",
       "supply": 15,
       "wallet_quantity": 15,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69405359.html",
       "og_image": "assets/og/nft-69405359.jpg"
     },
@@ -17113,7 +17113,7 @@
       "mint_timestamp": "2024-09-07T11:20:55+00:00",
       "supply": 15,
       "wallet_quantity": 15,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69405323.html",
       "og_image": "assets/og/nft-69405323.jpg"
     },
@@ -17166,7 +17166,7 @@
       "mint_timestamp": "2024-09-07T11:17:15+00:00",
       "supply": 15,
       "wallet_quantity": 15,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69405269.html",
       "og_image": "assets/og/nft-69405269.jpg"
     },
@@ -17219,7 +17219,7 @@
       "mint_timestamp": "2024-09-07T11:13:30+00:00",
       "supply": 15,
       "wallet_quantity": 15,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69405244.html",
       "og_image": "assets/og/nft-69405244.jpg"
     },
@@ -17272,7 +17272,7 @@
       "mint_timestamp": "2024-09-07T10:14:25+00:00",
       "supply": 15,
       "wallet_quantity": 15,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69404917.html",
       "og_image": "assets/og/nft-69404917.jpg"
     },
@@ -17325,7 +17325,7 @@
       "mint_timestamp": "2024-09-07T10:09:05+00:00",
       "supply": 15,
       "wallet_quantity": 15,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69404881.html",
       "og_image": "assets/og/nft-69404881.jpg"
     },
@@ -17378,7 +17378,7 @@
       "mint_timestamp": "2024-09-07T10:03:25+00:00",
       "supply": 15,
       "wallet_quantity": 15,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69404839.html",
       "og_image": "assets/og/nft-69404839.jpg"
     },
@@ -17431,7 +17431,7 @@
       "mint_timestamp": "2024-09-05T00:26:50+00:00",
       "supply": 20,
       "wallet_quantity": 20,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69363338.html",
       "og_image": "assets/og/nft-69363338.jpg"
     },
@@ -17484,7 +17484,7 @@
       "mint_timestamp": "2024-09-04T15:29:25+00:00",
       "supply": 20,
       "wallet_quantity": 20,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69355245.html",
       "og_image": "assets/og/nft-69355245.jpg"
     },
@@ -17537,7 +17537,7 @@
       "mint_timestamp": "2024-09-04T12:27:35+00:00",
       "supply": 20,
       "wallet_quantity": 20,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69352779.html",
       "og_image": "assets/og/nft-69352779.jpg"
     },
@@ -17590,7 +17590,7 @@
       "mint_timestamp": "2024-08-27T18:01:55+00:00",
       "supply": 10,
       "wallet_quantity": 10,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69191922.html",
       "og_image": "assets/og/nft-69191922.jpg"
     },
@@ -17639,7 +17639,7 @@
       "mint_timestamp": "2024-08-27T15:01:20+00:00",
       "supply": 12,
       "wallet_quantity": 12,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69190015.html",
       "og_image": "assets/og/nft-69190015.jpg"
     },
@@ -17692,7 +17692,7 @@
       "mint_timestamp": "2024-08-27T11:19:55+00:00",
       "supply": 11,
       "wallet_quantity": 11,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69188046.html",
       "og_image": "assets/og/nft-69188046.jpg"
     },
@@ -17745,7 +17745,7 @@
       "mint_timestamp": "2024-08-26T23:42:45+00:00",
       "supply": 11,
       "wallet_quantity": 11,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69184133.html",
       "og_image": "assets/og/nft-69184133.jpg"
     },
@@ -17798,7 +17798,7 @@
       "mint_timestamp": "2024-08-25T23:58:20+00:00",
       "supply": 11,
       "wallet_quantity": 11,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69173197.html",
       "og_image": "assets/og/nft-69173197.jpg"
     },
@@ -17849,7 +17849,7 @@
       "mint_timestamp": "2024-08-25T19:31:45+00:00",
       "supply": 11,
       "wallet_quantity": 11,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69171324.html",
       "og_image": "assets/og/nft-69171324.jpg"
     },
@@ -17900,7 +17900,7 @@
       "mint_timestamp": "2024-08-25T14:30:15+00:00",
       "supply": 11,
       "wallet_quantity": 11,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69168303.html",
       "og_image": "assets/og/nft-69168303.jpg"
     },
@@ -17953,7 +17953,7 @@
       "mint_timestamp": "2024-08-24T16:32:55+00:00",
       "supply": 11,
       "wallet_quantity": 11,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69159715.html",
       "og_image": "assets/og/nft-69159715.jpg"
     },
@@ -18006,7 +18006,7 @@
       "mint_timestamp": "2024-08-24T14:49:15+00:00",
       "supply": 11,
       "wallet_quantity": 11,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69158656.html",
       "og_image": "assets/og/nft-69158656.jpg"
     },
@@ -18059,7 +18059,7 @@
       "mint_timestamp": "2024-08-23T12:52:45+00:00",
       "supply": 11,
       "wallet_quantity": 11,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69140375.html",
       "og_image": "assets/og/nft-69140375.jpg"
     },
@@ -18112,7 +18112,7 @@
       "mint_timestamp": "2024-08-22T22:49:50+00:00",
       "supply": 11,
       "wallet_quantity": 11,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69135044.html",
       "og_image": "assets/og/nft-69135044.jpg"
     },
@@ -18165,7 +18165,7 @@
       "mint_timestamp": "2024-08-22T20:48:25+00:00",
       "supply": 11,
       "wallet_quantity": 11,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69134057.html",
       "og_image": "assets/og/nft-69134057.jpg"
     },
@@ -18218,7 +18218,7 @@
       "mint_timestamp": "2024-08-22T15:50:55+00:00",
       "supply": 11,
       "wallet_quantity": 11,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69130697.html",
       "og_image": "assets/og/nft-69130697.jpg"
     },
@@ -18271,7 +18271,7 @@
       "mint_timestamp": "2024-08-22T12:49:05+00:00",
       "supply": 11,
       "wallet_quantity": 11,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69126899.html",
       "og_image": "assets/og/nft-69126899.jpg"
     },
@@ -18324,7 +18324,7 @@
       "mint_timestamp": "2024-08-22T06:31:00+00:00",
       "supply": 11,
       "wallet_quantity": 10,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69124192.html",
       "og_image": "assets/og/nft-69124192.jpg"
     },
@@ -18377,7 +18377,7 @@
       "mint_timestamp": "2024-08-21T16:42:40+00:00",
       "supply": 11,
       "wallet_quantity": 11,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69117512.html",
       "og_image": "assets/og/nft-69117512.jpg"
     },
@@ -18430,7 +18430,7 @@
       "mint_timestamp": "2024-08-20T10:30:40+00:00",
       "supply": 11,
       "wallet_quantity": 11,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69100094.html",
       "og_image": "assets/og/nft-69100094.jpg"
     },
@@ -18483,7 +18483,7 @@
       "mint_timestamp": "2024-08-19T18:19:15+00:00",
       "supply": 11,
       "wallet_quantity": 11,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/69091132.html",
       "og_image": "assets/og/nft-69091132.jpg"
     },
@@ -18536,7 +18536,7 @@
       "mint_timestamp": "2024-08-19T13:06:40+00:00",
       "supply": 1,
       "wallet_quantity": 1,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jb-soul-shots-1-1-ed/69086526.html",
       "og_image": "assets/og/nft-69086526.jpg"
     },
@@ -18589,7 +18589,7 @@
       "mint_timestamp": "2024-08-18T23:42:05+00:00",
       "supply": 1,
       "wallet_quantity": 1,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jb-soul-shots-1-1-ed/68969290.html",
       "og_image": "assets/og/nft-68969290.jpg"
     },
@@ -18642,7 +18642,7 @@
       "mint_timestamp": "2024-08-18T15:17:50+00:00",
       "supply": 1,
       "wallet_quantity": 1,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jb-soul-shots-1-1-ed/68933257.html",
       "og_image": "assets/og/nft-68933257.jpg"
     },
@@ -18695,7 +18695,7 @@
       "mint_timestamp": "2024-08-01T23:52:40+00:00",
       "supply": 30,
       "wallet_quantity": 30,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/68480012.html",
       "og_image": "assets/og/nft-68480012.jpg"
     },
@@ -18748,7 +18748,7 @@
       "mint_timestamp": "2024-07-28T14:53:55+00:00",
       "supply": 30,
       "wallet_quantity": 30,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/68258155.html",
       "og_image": "assets/og/nft-68258155.jpg"
     },
@@ -18801,7 +18801,7 @@
       "mint_timestamp": "2024-07-28T14:48:30+00:00",
       "supply": 30,
       "wallet_quantity": 30,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/68258070.html",
       "og_image": "assets/og/nft-68258070.jpg"
     },
@@ -18854,7 +18854,7 @@
       "mint_timestamp": "2024-07-13T00:17:25+00:00",
       "supply": 50,
       "wallet_quantity": 50,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/68113923.html",
       "og_image": "assets/og/nft-68113923.jpg"
     },
@@ -18907,7 +18907,7 @@
       "mint_timestamp": "2024-06-09T10:44:00+00:00",
       "supply": 20,
       "wallet_quantity": 19,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/67760968.html",
       "og_image": "assets/og/nft-67760968.jpg"
     },
@@ -18960,7 +18960,7 @@
       "mint_timestamp": "2024-05-26T15:54:58+00:00",
       "supply": 10,
       "wallet_quantity": 10,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/67574841.html",
       "og_image": "assets/og/nft-67574841.jpg"
     },
@@ -19013,7 +19013,7 @@
       "mint_timestamp": "2024-05-24T17:37:49+00:00",
       "supply": 20,
       "wallet_quantity": 20,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/67532294.html",
       "og_image": "assets/og/nft-67532294.jpg"
     },
@@ -19066,7 +19066,7 @@
       "mint_timestamp": "2024-02-11T15:13:13+00:00",
       "supply": 15,
       "wallet_quantity": 15,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/65563008.html",
       "og_image": "assets/og/nft-65563008.jpg"
     },
@@ -19119,7 +19119,7 @@
       "mint_timestamp": "2024-01-14T23:26:14+00:00",
       "supply": 15,
       "wallet_quantity": 14,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/64988508.html",
       "og_image": "assets/og/nft-64988508.jpg"
     },
@@ -19172,7 +19172,7 @@
       "mint_timestamp": "2024-01-05T00:09:18+00:00",
       "supply": 33,
       "wallet_quantity": 33,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/64784553.html",
       "og_image": "assets/og/nft-64784553.jpg"
     },
@@ -19213,7 +19213,7 @@
       "mint_timestamp": "2023-09-25T11:32:14+00:00",
       "supply": 20,
       "wallet_quantity": 19,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/61061162.html",
       "og_image": "assets/og/nft-61061162.jpg"
     },
@@ -19265,7 +19265,7 @@
       "mint_timestamp": "2023-09-20T13:05:26+00:00",
       "supply": 15,
       "wallet_quantity": 14,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/55036730.html",
       "og_image": "assets/og/nft-55036730.jpg"
     },
@@ -19306,7 +19306,7 @@
       "mint_timestamp": "2023-09-03T19:12:13+00:00",
       "supply": 15,
       "wallet_quantity": 10,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/54549133.html",
       "og_image": "assets/og/nft-54549133.jpg"
     },
@@ -19359,7 +19359,7 @@
       "mint_timestamp": "2023-08-26T15:18:01+00:00",
       "supply": 15,
       "wallet_quantity": 13,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/54227377.html",
       "og_image": "assets/og/nft-54227377.jpg"
     },
@@ -19412,7 +19412,7 @@
       "mint_timestamp": "2023-08-15T18:31:01+00:00",
       "supply": 15,
       "wallet_quantity": 12,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/53877335.html",
       "og_image": "assets/og/nft-53877335.jpg"
     },
@@ -19465,7 +19465,7 @@
       "mint_timestamp": "2023-08-15T16:09:38+00:00",
       "supply": 15,
       "wallet_quantity": 14,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/53873582.html",
       "og_image": "assets/og/nft-53873582.jpg"
     },
@@ -19518,7 +19518,7 @@
       "mint_timestamp": "2023-08-15T08:54:59+00:00",
       "supply": 15,
       "wallet_quantity": 13,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/53864049.html",
       "og_image": "assets/og/nft-53864049.jpg"
     },
@@ -19571,7 +19571,7 @@
       "mint_timestamp": "2023-07-31T14:10:23+00:00",
       "supply": 15,
       "wallet_quantity": 12,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jack-beatnic-open-editions/53187178.html",
       "og_image": "assets/og/nft-53187178.jpg"
     },
@@ -19622,7 +19622,7 @@
       "mint_timestamp": "2023-07-16T22:58:24+00:00",
       "supply": 11,
       "wallet_quantity": 7,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/52569422.html",
       "og_image": "assets/og/nft-52569422.jpg"
     },
@@ -19675,7 +19675,7 @@
       "mint_timestamp": "2023-07-06T12:26:15+00:00",
       "supply": 66,
       "wallet_quantity": 64,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/52164125.html",
       "og_image": "assets/og/nft-52164125.jpg"
     },
@@ -19728,7 +19728,7 @@
       "mint_timestamp": "2023-06-21T21:55:26+00:00",
       "supply": 66,
       "wallet_quantity": 61,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/49200476.html",
       "og_image": "assets/og/nft-49200476.jpg"
     },
@@ -19781,7 +19781,7 @@
       "mint_timestamp": "2023-06-21T21:46:26+00:00",
       "supply": 66,
       "wallet_quantity": 65,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/49200283.html",
       "og_image": "assets/og/nft-49200283.jpg"
     },
@@ -19833,7 +19833,7 @@
       "mint_timestamp": "2023-06-08T22:40:13+00:00",
       "supply": 33,
       "wallet_quantity": 32,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/48772931.html",
       "og_image": "assets/og/nft-48772931.jpg"
     },
@@ -19885,7 +19885,7 @@
       "mint_timestamp": "2023-06-08T22:35:50+00:00",
       "supply": 33,
       "wallet_quantity": 32,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/48772889.html",
       "og_image": "assets/og/nft-48772889.jpg"
     },
@@ -19938,7 +19938,7 @@
       "mint_timestamp": "2023-06-02T00:09:30+00:00",
       "supply": 100,
       "wallet_quantity": 94,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/48134481.html",
       "og_image": "assets/og/nft-48134481.jpg"
     },
@@ -19991,7 +19991,7 @@
       "mint_timestamp": "2023-06-01T23:55:15+00:00",
       "supply": 97,
       "wallet_quantity": 84,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/48122002.html",
       "og_image": "assets/og/nft-48122002.jpg"
     },
@@ -20044,7 +20044,7 @@
       "mint_timestamp": "2023-06-01T22:19:29+00:00",
       "supply": 20,
       "wallet_quantity": 18,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/48041118.html",
       "og_image": "assets/og/nft-48041118.jpg"
     },
@@ -20097,7 +20097,7 @@
       "mint_timestamp": "2023-05-28T18:54:26+00:00",
       "supply": 100,
       "wallet_quantity": 95,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/29651951.html",
       "og_image": "assets/og/nft-29651951.jpg"
     },
@@ -20148,7 +20148,7 @@
       "mint_timestamp": "2023-05-28T16:59:24+00:00",
       "supply": 50,
       "wallet_quantity": 49,
-      "ownership_status": "posiadane",
+      "ownership_status": "owned",
       "share_url": "https://jackbeatnic.github.io/nft/objkt-jacks-nature/29649551.html",
       "og_image": "assets/og/nft-29649551.jpg"
     }

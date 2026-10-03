@@ -10,7 +10,7 @@ Source on Drive:
 Then in a terminal:
 
   cd ~/jb_nft/www/layout_notes
-  python3 odczytaj_docx.py
+  python3 read_docx.py
 
 The extracted text is used to apply the layout fixes and publish them to
 jackbeatnic.github.io.

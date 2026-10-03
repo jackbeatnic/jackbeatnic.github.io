@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build data/promo_boards.json — which promo boards (jbg-present/promo) are PUBLIC.
 
-generuj_og_preview.py reads this index to put the work's promo board into
+generate_og_preview.py reads this index to put the work's promo board into
 og:image / twitter:image of nft/<collection>/<id>.html (fallback: og-preview.jpg).
 
 Board file name = ON-CHAIN token id, 4 digits: promo/<collection_id>/<NNNN>.jpg
@@ -16,8 +16,8 @@ Sources (only what is committed = what GitHub Pages serves):
 Unchanged boards (same blob sha) are reused from the existing index.
 
 Usage:
-  python3 buduj_indeks_tablic_promo.py            # auto
-  python3 buduj_indeks_tablic_promo.py --github
+  python3 build_promo_board_index.py            # auto
+  python3 build_promo_board_index.py --github
 """
 from __future__ import annotations
 
@@ -113,7 +113,7 @@ def _present_ref() -> str:
                            capture_output=True, text=True)
         if r.returncode == 0:
             return ref
-    raise SystemExit(f"{PRESENT}: brak origin/main i HEAD")
+    raise SystemExit(f"{PRESENT}: no origin/main and no HEAD")
 
 
 def list_local(top: str = "promo") -> dict[str, dict[str, str]]:
@@ -227,7 +227,7 @@ def build(source: str) -> dict:
     return {
         "_doc": "Public promo boards on jbg-present Pages. Key = on-chain token id (4 digits). "
                 "Value = [width, height, blob sha (cache-bust ?v=)]. 'banners' = horizontal 1200x630 boards "
-                "(promo_banner/, Arena share pages). Built by buduj_indeks_tablic_promo.py.",
+                "(promo_banner/, Arena share pages). Built by build_promo_board_index.py.",
         "base": PUBLIC_BASE,
         "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
         "source": source,
@@ -238,7 +238,7 @@ def build(source: str) -> dict:
 
 
 def refresh(source: str | None = None, quiet: bool = False) -> dict:
-    """Rebuild and write the index (used by generuj_og_preview.py).
+    """Rebuild and write the index (used by generate_og_preview.py).
     Writes only when the set of boards / sizes / shas changed."""
     if source is None:
         source = "local" if (PRESENT / ".git").exists() else "github"
@@ -247,7 +247,7 @@ def refresh(source: str | None = None, quiet: bool = False) -> dict:
     prev = load_old()
     nb = sum(len(v) for v in doc["banners"].values())
     if prev.get("collections") == doc["collections"] and prev.get("banners") == doc["banners"]:
-        print(f"[promo-index] bez zmian ({total} boards, {nb} banners)")
+        print(f"[promo-index] unchanged ({total} boards, {nb} banners)")
         return prev
     INDEX.parent.mkdir(parents=True, exist_ok=True)
     INDEX.write_text(
@@ -257,7 +257,7 @@ def refresh(source: str | None = None, quiet: bool = False) -> dict:
     if not quiet:
         for c, v in doc["collections"].items():
             print(f"[promo-index] {c}: {len(v)}")
-    print(f"[promo-index] zapisano {INDEX.relative_to(ROOT)} ({total} boards, {nb} banners)")
+    print(f"[promo-index] saved {INDEX.relative_to(ROOT)} ({total} boards, {nb} banners)")
     return doc
 
 

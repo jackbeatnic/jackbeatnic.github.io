@@ -5,16 +5,16 @@ TradePort NFT Data API (GraphQL):
   POST https://api.indexer.xyz/graphql
   Headers: x-api-key, x-api-user
 
-Kolekcje: wszystkie wpisy chain=sui + tradeport_collection_id w raportowanie/kolekcje.json
-  (domyślnie: edycje, potem 1/1).
+Collections: every entry with chain=sui + tradeport_collection_id in the local collections config
+  (default: editions, then 1/1).
 
 Usage:
   export TRADEPORT_API_KEY="..."
   export TRADEPORT_API_USER="..."
-  # albo (preferowane dla agenta): www/.env z tymi zmiennymi (gitignored)
-  ./venv/bin/python3 aktualizuj_sui_tradeport_do_galerii.py
-  ./venv/bin/python3 aktualizuj_sui_tradeport_do_galerii.py --dry-run --limit 5
-  ./venv/bin/python3 aktualizuj_sui_tradeport_do_galerii.py --collection sui_nature_stories_1of1_tradeport
+  # or (preferred for the agent): www/.env with these variables (gitignored)
+  ./venv/bin/python3 sync_sui_tradeport_gallery.py
+  ./venv/bin/python3 sync_sui_tradeport_gallery.py --dry-run --limit 5
+  ./venv/bin/python3 sync_sui_tradeport_gallery.py --collection sui_nature_stories_1of1_tradeport
 """
 
 from __future__ import annotations
@@ -32,7 +32,7 @@ from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 
 ROOT = Path(__file__).resolve().parent
 JB_NFT = ROOT.parent
-KOLEKCJE_JSON = JB_NFT / "raportowanie" / "kolekcje.json"
+COLLECTIONS_JSON = JB_NFT / "raportowanie" / "kolekcje.json"
 OUTPUT_JSON = ROOT / "sui_gallery.json"
 
 GRAPHQL_URL = "https://api.indexer.xyz/graphql"
@@ -170,21 +170,21 @@ def edition_kind(cfg: dict) -> str:
 
 
 def load_sui_tradeport_configs(*, only_id: str | None = None) -> list[dict]:
-    data = load_json(KOLEKCJE_JSON)
+    data = load_json(COLLECTIONS_JSON)
     rows: list[dict] = []
     for row in data.get("collections", []):
         if row.get("chain") != "sui":
             continue
         if not row.get("tradeport_collection_id"):
             continue
-        # enabled=false dotyczy tylko OpenSea (raportuj_kolekcje); Sui sync zawsze z tradeport_collection_id.
+        # enabled=false applies to OpenSea only (local report tool); the Sui sync always uses tradeport_collection_id.
         if only_id and row.get("id") != only_id:
             continue
         rows.append(row)
     if only_id and not rows:
-        raise SystemExit(f"Brak {only_id} (chain=sui, tradeport_collection_id) w kolekcje.json")
+        raise SystemExit(f"Missing {only_id} (chain=sui, tradeport_collection_id) in the collections config")
     if not rows:
-        raise SystemExit("Brak kolekcji Sui TradePort w raportowanie/kolekcje.json")
+        raise SystemExit("No Sui TradePort collections in the local collections config")
     rows.sort(key=lambda r: (EDITION_ORDER.get(edition_kind(r), 9), r.get("id") or ""))
     return rows
 
@@ -195,8 +195,8 @@ def api_credentials() -> tuple[str, str]:
     api_user = os.environ.get("TRADEPORT_API_USER", "").strip()
     if not api_key or not api_user:
         raise SystemExit(
-            "Ustaw TRADEPORT_API_KEY i TRADEPORT_API_USER "
-            "(export lub www/.env — nagłówki x-api-key / x-api-user, patrz tradeport.xyz/docs)"
+            "Set TRADEPORT_API_KEY and TRADEPORT_API_USER "
+            "(export or www/.env — headers x-api-key / x-api-user, see tradeport.xyz/docs)"
         )
     return api_key, api_user
 
@@ -242,7 +242,7 @@ def normalize_media_url(url: str) -> str:
 
 
 def try_launchpad_api_row(launchpad_id: str) -> dict | None:
-    """Opcjonalnie: edition_launches (gdy TradePort włączy tabelę na kluczu API)."""
+    """Optional: edition_launches (once TradePort enables the table for the API key)."""
     if not launchpad_id:
         return None
     data = graphql(
@@ -566,7 +566,7 @@ def fetch_launchpad_public_page(launchpad_id: str, *, page: int, page_size: int)
     except (urllib.error.URLError, TimeoutError, OSError) as exc:
         raise SystemExit(f"Launchpad public API failed: {exc}") from exc
     if not isinstance(body, dict):
-        raise SystemExit("Launchpad public API: nieoczekiwana odpowiedź")
+        raise SystemExit("Launchpad public API: unexpected response")
     return body
 
 
@@ -616,7 +616,7 @@ def build_launchpad_item_entry(
     local_rank: int,
     old: dict | None,
 ) -> dict | None:
-    """Pojedyncza praca dostępna do mintu na TradePort Launchpad."""
+    """A single work available to mint on TradePort Launchpad."""
     launchpad_base = (cfg.get("tradeport_launchpad_url") or "").strip()
     token_uuid = str(item.get("id") or "").strip()
     if not launchpad_base or not token_uuid:
@@ -736,7 +736,7 @@ def sync_one_collection(
     meta_data = graphql(COLLECTION_QUERY, {"collectionId": tradeport_uuid})
     collections = (meta_data.get("sui") or {}).get("collections") or []
     if not collections:
-        raise SystemExit(f"TradePort: brak kolekcji {tradeport_uuid}")
+        raise SystemExit(f"TradePort: collection {tradeport_uuid} not found")
     col = collections[0]
     slug = col.get("semantic_slug") or col.get("slug") or tradeport_uuid
     title = col.get("title") or cfg.get("name") or "Nature Stories · Sui"
@@ -790,7 +790,7 @@ def sync_one_collection(
             else:
                 entries.append(lp_entry)
         if skipped_lp:
-            print(f"  launchpad: pominięto bez obrazu: {skipped_lp}")
+            print(f"  launchpad: skipped without image: {skipped_lp}")
         if entries:
             hit = apply_tradeport_prices(
                 entries,
@@ -809,8 +809,8 @@ def sync_one_collection(
     minted_n = sum(1 for e in entries if not e.get("launchpad"))
     launchpad_n = len(entries) - minted_n
     print(
-        f"  w galerii: {len(entries)} "
-        f"(zmintowane={minted_n}, launchpad={launchpad_n}) · pominięto bez obrazu: {skipped}"
+        f"  in gallery: {len(entries)} "
+        f"(minted={minted_n}, launchpad={launchpad_n}) · skipped without image: {skipped}"
     )
 
     collection_url = collection_public_url(slug)
@@ -883,7 +883,7 @@ def build_site_sections(collection_metas: list[dict]) -> dict:
 
 
 def _meta_from_old_entries(collection_id: str, entries: list[dict], old_data: dict) -> dict:
-    """Odtwórz meta kolekcji z istniejącego JSON (gdy partial sync nie odświeża tej kolekcji)."""
+    """Rebuild collection meta from the existing JSON (when a partial sync does not refresh that collection)."""
     old_details = (old_data.get("collection_info") or {}).get("collection_details") or []
     for m in old_details:
         if m.get("collection_id") == collection_id:
@@ -908,7 +908,7 @@ def deploy_sui_gallery_to_github(*, dry_run: bool = False) -> int:
     import subprocess
 
     if not OUTPUT_JSON.is_file():
-        print("[deploy] Brak sui_gallery.json — najpierw zrób sync.")
+        print("[deploy] sui_gallery.json missing — run the sync first.")
         return 1
 
     rel = "sui_gallery.json"
@@ -923,7 +923,7 @@ def deploy_sui_gallery_to_github(*, dry_run: bool = False) -> int:
         print(f"[deploy] git status failed: {status.stderr.strip()}")
         return 1
     if not status.stdout.strip():
-        print("[deploy] Brak zmian w sui_gallery.json — nic do push.")
+        print("[deploy] No changes in sui_gallery.json — nothing to push.")
         return 0
 
     count = 0
@@ -937,7 +937,7 @@ def deploy_sui_gallery_to_github(*, dry_run: bool = False) -> int:
     msg = f"Sui gallery: sync TradePort → {count} works ({last})"
     print(f"[deploy] {msg}")
     if dry_run:
-        print("[deploy] dry-run — bez git commit/push")
+        print("[deploy] dry-run — no git commit/push")
         return 0
 
     for cmd in (
@@ -958,12 +958,12 @@ def deploy_sui_gallery_to_github(*, dry_run: bool = False) -> int:
                     check=False,
                 )
                 if not chk.stdout.strip():
-                    print("[deploy] commit: brak zmian (OK)")
+                    print("[deploy] commit: no changes (OK)")
                     continue
-            print(f"[deploy] Błąd: {' '.join(cmd)} → exit {r.returncode}")
+            print(f"[deploy] Error: {' '.join(cmd)} → exit {r.returncode}")
             return r.returncode or 1
 
-    print("[deploy] OK — GH Pages zaktualizuje się w ~1 min: https://jackbeatnic.github.io/")
+    print("[deploy] OK — GH Pages updates in ~1 min: https://jackbeatnic.github.io/")
     return 0
 
 
@@ -976,9 +976,9 @@ def sync(
 ) -> int:
     """Sync Sui collections → sui_gallery.json.
 
-    WAŻNE: --collection odświeża TYLKO wskazaną kolekcję, ale ZACHOWUJE pozostałe
-    z istniejącego sui_gallery.json (wcześniej partial sync NADPISYWAŁ całą galerię
-    i na GH zostawało samo 1/1 albo samo SE).
+    IMPORTANT: --collection refreshes ONLY the given collection but KEEPS the others
+    from the existing sui_gallery.json (a partial sync used to OVERWRITE the whole gallery
+    and GH was left with only 1/1 or only SE).
     """
     all_configs = load_sui_tradeport_configs()
     configs = load_sui_tradeport_configs(only_id=only_collection)
@@ -1037,7 +1037,7 @@ def sync(
         print("[sui] TradePort API unavailable — sui_gallery.json left unchanged (last good data)")
         return 1
 
-    # Partial sync: dołóż karty i meta z pozostałych kolekcji (bez kasowania)
+    # Partial sync: add cards and meta from the other collections (no deletion)
     if only_collection:
         kept = 0
         by_col: dict[str, list[dict]] = {}
@@ -1052,9 +1052,9 @@ def sync(
         if kept:
             print(
                 f"[sui] Partial --collection={only_collection}: "
-                f"zachowano {kept} kart z innych kolekcji w sui_gallery.json"
+                f"kept {kept} cards from other collections in sui_gallery.json"
             )
-        # Utrzymaj kanoniczną kolejność SE → 1/1 jak w kolekcje.json
+        # Keep the canonical order SE → 1/1 as in the collections config
         order = {c.get("id"): i for i, c in enumerate(all_configs)}
         collection_metas.sort(key=lambda m: order.get(m.get("collection_id"), 99))
 
@@ -1098,25 +1098,25 @@ def sync(
     }
 
     print(
-        f"[sui] Gotowe: {len(all_entries)} kart "
+        f"[sui] Done: {len(all_entries)} cards "
         f"(zmintowane={minted_count}, launchpad={launchpad_count})"
     )
 
     if dry_run:
-        print("[dry-run] Bez zapisu sui_gallery.json")
+        print("[dry-run] Not writing sui_gallery.json")
         if deploy:
             return deploy_sui_gallery_to_github(dry_run=True)
         return 0
 
     save_json(OUTPUT_JSON, payload)
-    print(f"[sui] Zapisano: {OUTPUT_JSON}")
+    print(f"[sui] Saved: {OUTPUT_JSON}")
 
     if deploy:
         return deploy_sui_gallery_to_github(dry_run=False)
     print(
-        "[sui] Lokalnie OK. Na GH: "
-        "./venv/bin/python3 aktualizuj_sui_tradeport_do_galerii.py --deploy-only"
-        "  (albo --deploy przy sync)"
+        "[sui] Local OK. For GH: "
+        "./venv/bin/python3 sync_sui_tradeport_gallery.py --deploy-only"
+        "  (or --deploy with the sync)"
     )
     return 0
 
@@ -1158,27 +1158,27 @@ def refresh_prices_only(*, dry_run: bool = False, deploy: bool = False) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        description="Sync Sui TradePort collections → sui_gallery.json (+ opcjonalnie deploy GH)"
+        description="Sync Sui TradePort collections → sui_gallery.json (+ optional GH deploy)"
     )
     parser.add_argument("--dry-run", action="store_true")
-    parser.add_argument("--limit", type=int, default=None, help="Max NFTów na kolekcję (test)")
+    parser.add_argument("--limit", type=int, default=None, help="Max NFTs per collection (test)")
     parser.add_argument(
         "--collection",
         default=None,
         help=(
-            "Odśwież tylko tę kolekcję; pozostałe ZACHOWAJ z istniejącego JSON "
-            "(nie kasuje galerii — wcześniej partial sync nadpisywał całość)"
+            "Refresh only this collection; KEEP the others from the existing JSON "
+            "(does not wipe the gallery — a partial sync used to overwrite everything)"
         ),
     )
     parser.add_argument(
         "--deploy",
         action="store_true",
-        help="Po zapisie: git commit + push sui_gallery.json na jackbeatnic.github.io",
+        help="After writing: git commit + push sui_gallery.json to jackbeatnic.github.io",
     )
     parser.add_argument(
         "--deploy-only",
         action="store_true",
-        help="Tylko commit+push istniejącego sui_gallery.json (bez odświeżania z API)",
+        help="Only commit+push the existing sui_gallery.json (no API refresh)",
     )
     parser.add_argument(
         "--prices-only",

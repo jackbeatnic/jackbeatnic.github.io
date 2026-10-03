@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 """Sync Based AI vol.1 + vol.2 → based_ai_gallery.json (Base).
 
-Jeden plik, jeden nurt (ai_series: based_ai) — bez osobnych zakładek w UI.
+One file, one series (ai_series: based_ai) — no separate tabs in the UI.
 
   vol.1  base_jb_based_ai      ERC-721  ~751×1/1  Manifold + OpenSea
   vol.2  base_jb_based_ai_vol2 ERC-1155 ~500 ed.  OpenSea
 
-Źródła:
-  - raportowanie/raporty/{collection_id}_raport.csv (gdy jest — preferowane)
-  - zapasowo: skan on-chain (ownerOf / totalSupply)
-  - obrazy: scrape OpenSea seadn.io ?w=1000
+Sources:
+  - local report CSV {collection_id}_raport.csv (preferred when present)
+  - fallback: on-chain scan (ownerOf / totalSupply)
+  - images: scraped from OpenSea seadn.io ?w=1000
 
 Usage:
-  ./venv/bin/python3 aktualizuj_based_ai_do_galerii.py
-  ./venv/bin/python3 aktualizuj_based_ai_do_galerii.py --workers 16
-  ./venv/bin/python3 aktualizuj_based_ai_do_galerii.py --skip-images
-  ./venv/bin/python3 aktualizuj_based_ai_do_galerii.py --vol vol2 --dry-run
+  ./venv/bin/python3 sync_based_ai_gallery.py
+  ./venv/bin/python3 sync_based_ai_gallery.py --workers 16
+  ./venv/bin/python3 sync_based_ai_gallery.py --skip-images
+  ./venv/bin/python3 sync_based_ai_gallery.py --vol vol2 --dry-run
 """
 
 from __future__ import annotations
@@ -35,8 +35,8 @@ from web3 import Web3
 
 ROOT = Path(__file__).resolve().parent
 JB_NFT = ROOT.parent
-KOLEKCJE_JSON = JB_NFT / "raportowanie" / "kolekcje.json"
-RAPORTY_DIR = JB_NFT / "raportowanie" / "raporty"
+COLLECTIONS_JSON = JB_NFT / "raportowanie" / "kolekcje.json"
+REPORTS_DIR = JB_NFT / "raportowanie" / "raporty"
 OUTPUT_JSON = ROOT / "based_ai_gallery.json"
 
 AI_SERIES = "based_ai"
@@ -89,11 +89,11 @@ def save_json(path: Path, data: dict) -> None:
 
 
 def load_collection(collection_id: str) -> dict:
-    data = load_json(KOLEKCJE_JSON)
+    data = load_json(COLLECTIONS_JSON)
     for row in data.get("collections", []):
         if row.get("id") == collection_id:
             return row
-    raise SystemExit(f"Brak {collection_id} w kolekcje.json")
+    raise SystemExit(f"Missing {collection_id}  in the collections config")
 
 
 def rpc_call(fn, *, retries: int = 4):
@@ -175,8 +175,8 @@ def fetch_opensea_page(contract: str, token_id: int) -> tuple[str, str]:
     return name, image
 
 
-def load_raport_rows(collection_id: str) -> dict[int, dict]:
-    path = RAPORTY_DIR / f"{collection_id}_raport.csv"
+def load_report_rows(collection_id: str) -> dict[int, dict]:
+    path = REPORTS_DIR / f"{collection_id}_raport.csv"
     if not path.exists():
         return {}
     rows: dict[int, dict] = {}
@@ -201,7 +201,7 @@ def scan_erc721_minted(w3: Web3, contract: str, *, max_scan: int) -> list[int]:
         except Exception:
             pass
         if tid % 100 == 0:
-            print(f"  skan ownerOf… {tid}/{max_scan} ({len(minted)} minted)")
+            print(f"  scanning ownerOf… {tid}/{max_scan} ({len(minted)} minted)")
             time.sleep(0.15)
     return minted
 
@@ -217,7 +217,7 @@ def scan_erc1155_minted(w3: Web3, contract: str, *, max_scan: int) -> dict[int, 
         if supply > 0:
             minted[tid] = supply
         if tid % 50 == 0:
-            print(f"  skan totalSupply… {tid}/{max_scan} ({len(minted)} typów)")
+            print(f"  scanning totalSupply… {tid}/{max_scan} ({len(minted)} types)")
             time.sleep(0.2)
     return minted
 
@@ -254,7 +254,7 @@ def enrich_images(
                     results[tid] = image
                 done += 1
                 if done % 75 == 0:
-                    print(f"  {label}… {done}/{len(ids)} ({len(results)} z obrazem)")
+                    print(f"  {label}… {done}/{len(ids)} ({len(results)} with image)")
 
     if pending:
         scrape_pass(pending, workers, "OpenSea scrape")
@@ -274,7 +274,7 @@ def build_vol1_entry(
     manifold_id: str,
     name: str,
     image_url: str,
-    raport: dict | None,
+    report: dict | None,
     old: dict | None,
 ) -> dict | None:
     if not image_url:
@@ -282,15 +282,15 @@ def build_vol1_entry(
 
     display_name = (
         name
-        or (raport or {}).get("name")
+        or (report or {}).get("name")
         or f"JB Based AI #{tid}"
     ).strip()
-    opensea_url = (raport or {}).get("opensea_url") or opensea_asset_url(contract, tid)
+    opensea_url = (report or {}).get("opensea_url") or opensea_asset_url(contract, tid)
     manifold_url = manifold_token_url(manifold_id, tid)
 
-    listing_status = (raport or {}).get("listing_status") or "Not Listed"
-    currency = ((raport or {}).get("currency") or "ETH").strip()
-    price = parse_price((raport or {}).get("price", ""))
+    listing_status = (report or {}).get("listing_status") or "Not Listed"
+    currency = ((report or {}).get("currency") or "ETH").strip()
+    price = parse_price((report or {}).get("price", ""))
 
     entry: dict = {
         "token_id": tid,
@@ -342,7 +342,7 @@ def build_vol2_entry(
     supply: int,
     name: str,
     image_url: str,
-    raport: dict | None,
+    report: dict | None,
     old: dict | None,
 ) -> dict | None:
     if not image_url:
@@ -350,14 +350,14 @@ def build_vol2_entry(
 
     display_name = (
         name
-        or (raport or {}).get("name")
+        or (report or {}).get("name")
         or f"JB Based AI vol. 2 #{tid}"
     ).strip()
-    opensea_url = (raport or {}).get("opensea_url") or opensea_asset_url(contract, tid)
+    opensea_url = (report or {}).get("opensea_url") or opensea_asset_url(contract, tid)
 
-    listing_status = (raport or {}).get("listing_status") or "Not Listed"
-    currency = ((raport or {}).get("currency") or "ETH").strip()
-    price = parse_price((raport or {}).get("price", ""))
+    listing_status = (report or {}).get("listing_status") or "Not Listed"
+    currency = ((report or {}).get("currency") or "ETH").strip()
+    price = parse_price((report or {}).get("price", ""))
 
     entry: dict = {
         "token_id": tid,
@@ -425,12 +425,12 @@ def sync_vol1(
 
     print(f"[based_ai vol.1] {VOL1_ID} · contract={contract}")
 
-    raport = load_raport_rows(VOL1_ID)
-    if raport:
-        token_ids = sorted(raport.keys())
-        print(f"  raport CSV: {len(token_ids)} tokenów")
+    report = load_report_rows(VOL1_ID)
+    if report:
+        token_ids = sorted(report.keys())
+        print(f"  report CSV: {len(token_ids)} tokens")
     else:
-        print(f"  brak raportu — skan ownerOf 1..{max_scan}")
+        print(f"  no report — scanning ownerOf 1..{max_scan}")
         token_ids = scan_erc721_minted(w3, contract, max_scan=max_scan)
         print(f"  on-chain minted: {len(token_ids)}")
 
@@ -447,7 +447,7 @@ def sync_vol1(
             if old_img:
                 images[tid] = normalize_seadn_image_url(old_img)
     else:
-        print("  pobieram obrazy ze stron OpenSea (seadn.io ?w=1000)…")
+        print("  fetching images from OpenSea pages (seadn.io ?w=1000)…")
         images = enrich_images(
             contract, token_ids, workers=workers, old_by_id=old_vol1
         )
@@ -461,7 +461,7 @@ def sync_vol1(
             manifold_id=manifold_id,
             name="",
             image_url=images.get(tid, ""),
-            raport=raport.get(tid),
+            report=report.get(tid),
             old=old_vol1.get(tid),
         )
         if entry is None:
@@ -469,7 +469,7 @@ def sync_vol1(
         else:
             entries.append(entry)
 
-    print(f"  vol.1 w galerii: {len(entries)} · pominięto bez obrazu: {skipped}")
+    print(f"  vol.1 in gallery: {len(entries)} · skipped without image: {skipped}")
     return entries
 
 
@@ -486,22 +486,22 @@ def sync_vol2(
 
     print(f"[based_ai vol.2] {VOL2_ID} · contract={contract}")
 
-    raport = load_raport_rows(VOL2_ID)
+    report = load_report_rows(VOL2_ID)
     supplies: dict[int, int] = {}
 
-    if raport:
-        for tid, row in raport.items():
+    if report:
+        for tid, row in report.items():
             try:
                 supplies[tid] = int(row.get("supply") or row.get("max_supply") or 0)
             except (TypeError, ValueError):
                 supplies[tid] = 0
             if supplies[tid] <= 0:
                 supplies[tid] = 500
-        print(f"  raport CSV: {len(supplies)} typów")
+        print(f"  report CSV: {len(supplies)} types")
     else:
-        print(f"  brak raportu — skan totalSupply 1..{max_scan}")
+        print(f"  no report — scanning totalSupply 1..{max_scan}")
         supplies = scan_erc1155_minted(w3, contract, max_scan=max_scan)
-        print(f"  on-chain typów: {len(supplies)}")
+        print(f"  on-chain types: {len(supplies)}")
 
     token_ids = sorted(supplies.keys())
 
@@ -518,7 +518,7 @@ def sync_vol2(
             if old_img:
                 images[tid] = normalize_seadn_image_url(old_img)
     else:
-        print("  pobieram obrazy ze stron OpenSea (seadn.io ?w=1000)…")
+        print("  fetching images from OpenSea pages (seadn.io ?w=1000)…")
         images = enrich_images(
             contract, token_ids, workers=workers, old_by_id=old_vol2
         )
@@ -532,7 +532,7 @@ def sync_vol2(
             supply=supplies[tid],
             name="",
             image_url=images.get(tid, ""),
-            raport=raport.get(tid) if raport else None,
+            report=report.get(tid) if report else None,
             old=old_vol2.get(tid),
         )
         if entry is None:
@@ -540,7 +540,7 @@ def sync_vol2(
         else:
             entries.append(entry)
 
-    print(f"  vol.2 w galerii: {len(entries)} · pominięto bez obrazu: {skipped}")
+    print(f"  vol.2 in gallery: {len(entries)} · skipped without image: {skipped}")
     return entries
 
 
@@ -620,14 +620,14 @@ def sync(
         "nfts": entries,
     }
 
-    print(f"[based_ai] Gotowe: {len(entries)} tokenów (vol.1={vol1_count}, vol.2={vol2_count})")
+    print(f"[based_ai] Done: {len(entries)} tokens (vol.1={vol1_count}, vol.2={vol2_count})")
 
     if dry_run:
-        print("[dry-run] Bez zapisu based_ai_gallery.json")
+        print("[dry-run] Not writing based_ai_gallery.json")
         return 0
 
     save_json(OUTPUT_JSON, payload)
-    print(f"[based_ai] Zapisano: {OUTPUT_JSON}")
+    print(f"[based_ai] Saved: {OUTPUT_JSON}")
     return 0
 
 
@@ -642,7 +642,7 @@ def main(argv: list[str] | None = None) -> int:
         "--vol",
         choices=("all", "vol1", "vol2"),
         default="all",
-        help="Którą kolekcję synchronizować (domyślnie obie)",
+        help="Which collection to sync (default: both)",
     )
     args = parser.parse_args(argv)
     return sync(

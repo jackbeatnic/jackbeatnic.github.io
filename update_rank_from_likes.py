@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 """
-Ustawia kolejność NFT w gallery.json według likes_count (malejąco).
+Sets the NFT order in gallery.json by likes_count (descending).
 
-Źródło: likes_count w każdym NFT (aktualizujesz ręcznie lub z eksportu statystyk).
-Efekt: display_rank 1 = najwyżej na stronie po codziennym uruchomieniu.
+Source: likes_count on each NFT (updated by hand or from a stats export).
+Effect: display_rank 1 = top of the page after the daily run.
 
-Uruchomienie (np. cron raz dziennie, po zebraniu statystyk):
+Run (e.g. daily cron, after collecting stats):
   cd /home/jb/jb_nft/www
-  python3 aktualizuj_pozycje_z_likes.py
-  ./odswiez_i_wgraj.sh --no-push   # tylko JSON lokalnie
+  python3 update_rank_from_likes.py
+  ./refresh_and_push.sh --no-push   # local JSON only
   git add gallery.json && git commit -m "chore: daily likes sort" && git push
 
-Opcjonalnie: --stats stats/likes_aggregate.json nadpisuje likes_count przed sortem.
-Format JSON: { "chain:contract:token_id": 12, ... } lub lista { "key", "likes_count" }.
+Optional: --stats stats/likes_aggregate.json overrides likes_count before sorting.
+JSON format: { "chain:contract:token_id": 12, ... } or a list of { "key", "likes_count" }.
 """
 
 from __future__ import annotations
@@ -86,12 +86,12 @@ def assign_ranks(nfts: list[dict]) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Sortuj gallery.json według likes_count.")
+    parser = argparse.ArgumentParser(description="Sort gallery.json by likes_count.")
     parser.add_argument("--gallery", type=Path, default=DEFAULT_GALLERY)
     parser.add_argument(
         "--stats",
         type=Path,
-        help="Opcjonalny JSON z zagregowanymi likes (nadpisuje likes_count)",
+        help="Optional JSON with aggregated likes (overrides likes_count)",
     )
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
@@ -100,20 +100,20 @@ def main() -> None:
     gallery = load_json(gallery_path)
     nfts = gallery.get("nfts", [])
     if not nfts:
-        raise SystemExit("Brak NFT w gallery.json")
+        raise SystemExit("No NFTs in gallery.json")
 
     if args.stats:
         if not args.stats.exists():
-            raise SystemExit(f"Brak pliku statystyk: {args.stats}")
+            raise SystemExit(f"Stats file missing: {args.stats}")
         n = apply_stats(nfts, args.stats)
-        print(f"Zaktualizowano likes_count z {args.stats}: {n} wpisów")
+        print(f"Updated likes_count from {args.stats}: {n} entries")
 
     assign_ranks(nfts)
     info = gallery.setdefault("collection_info", {})
     info["last_likes_sort"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     top = sorted(nfts, key=lambda x: x.get("display_rank", 999))[:3]
-    print("Kolejność (top 3):")
+    print("Order (top 3):")
     for nft in top:
         print(
             f"  #{nft.get('display_rank')} token {nft.get('token_id')} "
@@ -121,10 +121,10 @@ def main() -> None:
         )
 
     if args.dry_run:
-        print("[dry-run] Nie zapisano gallery.json")
+        print("[dry-run] gallery.json not written")
     else:
         save_json(gallery_path, gallery)
-        print(f"Zapisano: {gallery_path}")
+        print(f"Saved: {gallery_path}")
 
 
 if __name__ == "__main__":

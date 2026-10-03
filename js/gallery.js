@@ -446,8 +446,7 @@ const Gallery = (() => {
         if (isShopNft(nft)) {
             const col = nft.collection_name || nft.collection_id || '';
             const chain = chainLabel(nft);
-            const pool = nft.pool === 'gjb' ? 'GJB pool' : nft.pool || '';
-            return [col, chain, pool].filter(Boolean).join(' · ');
+            return [col, chain].filter(Boolean).join(' · ');
         }
         if (isFeaturedPromoNft(nft)) {
             const col = nft.collection_name || nft.collection_id || '';

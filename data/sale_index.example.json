@@ -36,7 +36,7 @@
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/1",
       "status": "live",
       "demo": true,
-      "note": "Demo GJB pool — not live inventory. Do not send funds."
+      "note": "Demo. Not live inventory. Do not send funds."
     },
     {
       "sku": "gjb-ns-2",
@@ -59,7 +59,7 @@
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/2",
       "status": "live",
       "demo": true,
-      "note": "Demo GJB pool — not live inventory. Do not send funds."
+      "note": "Demo. Not live inventory. Do not send funds."
     },
     {
       "sku": "gjb-ns-3",
@@ -82,7 +82,7 @@
       "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/3",
       "status": "live",
       "demo": true,
-      "note": "Demo GJB pool — not live inventory. Do not send funds."
+      "note": "Demo. Not live inventory. Do not send funds."
     },
     {
       "sku": "atelier-ns-4",

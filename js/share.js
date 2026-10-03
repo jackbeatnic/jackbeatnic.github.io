@@ -258,6 +258,12 @@ const GalleryShare = (() => {
             { id: 'copy', label: 'Copy link', action: 'copy' },
         ];
 
+        // Phone: the share sheet already attaches the square JPG. This copies
+        // that same file so it can be pasted outside X.
+        if (isMobileDevice() && promoBoardRef(nft)) {
+            items.push({ id: 'copy-graphic', label: 'Copy graphic', action: 'copy-graphic' });
+        }
+
         if (canNativeShare()) {
             items.push({ id: 'native', label: 'Share…', action: 'native' });
         }
@@ -367,6 +373,10 @@ const GalleryShare = (() => {
             handleCopy(btn);
             return;
         }
+        if (action === 'copy-graphic') {
+            handleCopyGraphic(btn);
+            return;
+        }
         if (action === 'native') {
             nativeShare(activeNft, activeUrl, activeText);
         }
@@ -377,6 +387,36 @@ const GalleryShare = (() => {
         const ok = await copyToClipboard(
             shareCopy(activeNft, activeUrl) || activeUrl,
         );
+        btn.textContent = ok ? 'Copied' : 'Copy failed';
+        window.setTimeout(() => {
+            btn.textContent = original;
+        }, 1600);
+    }
+
+    /** Square promo JPG → PNG on the clipboard (mobile paste targets want PNG). */
+    async function copyGraphicFile(nft) {
+        const file = await withTimeout(boardFile(nft), 6000);
+        if (!file || !navigator.clipboard || typeof ClipboardItem === 'undefined') return false;
+        const bitmap = await createImageBitmap(file);
+        const canvas = document.createElement('canvas');
+        canvas.width = bitmap.width;
+        canvas.height = bitmap.height;
+        canvas.getContext('2d').drawImage(bitmap, 0, 0);
+        bitmap.close?.();
+        const png = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
+        if (!png) return false;
+        await navigator.clipboard.write([new ClipboardItem({ 'image/png': png })]);
+        return true;
+    }
+
+    async function handleCopyGraphic(btn) {
+        const original = btn.textContent;
+        let ok = false;
+        try {
+            ok = await copyGraphicFile(activeNft);
+        } catch {
+            ok = false;
+        }
         btn.textContent = ok ? 'Copied' : 'Copy failed';
         window.setTimeout(() => {
             btn.textContent = original;

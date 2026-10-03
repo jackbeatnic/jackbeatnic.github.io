@@ -72,6 +72,15 @@ const Gallery = (() => {
         return symbol.toLowerCase();
     }
 
+    /* Card action icons (2026-10-03): inline SVG, thin strokes, no text labels.
+       Heart = Like, Bookmark = Save for later, Share = share sheet, Coin = Tip. */
+    const CARD_ICONS = {
+        like: '<svg class="nft-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M12 20.3s-7.6-4.6-9.2-9.4C1.7 7.6 3.9 4.4 7.3 4.4c2 0 3.6 1.1 4.7 2.8 1.1-1.7 2.7-2.8 4.7-2.8 3.4 0 5.6 3.2 4.5 6.5-1.6 4.8-9.2 9.4-9.2 9.4z"/></svg>',
+        save: '<svg class="nft-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M6.5 3.5h11v17l-5.5-4-5.5 4z"/></svg>',
+        share: '<svg class="nft-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path class="nft-icon__line" d="M12 14.5V3.5M8 7.3l4-3.8 4 3.8"/><path class="nft-icon__line" d="M8.5 10.5H6v10h12v-10h-2.5"/></svg>',
+        tip: '<svg class="nft-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><circle class="nft-icon__line" cx="12" cy="12" r="8.5"/><path class="nft-icon__line" d="M14.6 9.2c-.5-.9-1.5-1.4-2.6-1.4-1.4 0-2.5.8-2.5 2s1.1 1.6 2.5 1.9 2.6.8 2.6 2.1-1.2 2.1-2.6 2.1c-1.2 0-2.2-.5-2.7-1.5M12 6.3v1.5M12 16.2v1.5"/></svg>',
+    };
+
     const MARKETPLACE_NAMES = {
         objkt: 'OBJKT',
         opensea: 'OpenSea',
@@ -1806,32 +1815,93 @@ const Gallery = (() => {
         });
     }
 
+    /* About → "Find me" hub (2026-10-03). Every URL comes from gallery.json
+       (collection_info.social_links + marketplace_links); this only decides the
+       display name, the handle and the group. Duplicates (same URL) are listed once. */
+    const HUB_META = {
+        x: { name: 'X', group: 'follow' },
+        instagram: { name: 'Instagram', group: 'follow' },
+        farcaster: { name: 'Farcaster', group: 'follow' },
+        base: { name: 'Base App', group: 'follow' },
+        arena: { name: 'Arena', group: 'follow' },
+        zora: { name: 'Zora', group: 'follow' },
+        'zora-ai': { name: 'Zora', group: 'follow' },
+        opensea: { name: 'OpenSea', group: 'collect', handle: 'All EVM collections' },
+        'tradeport-sui': { name: 'TradePort', group: 'collect', handle: 'Nature Stories SE · Sui' },
+        objkt: { name: 'OBJKT', group: 'collect' },
+        'objkt-main': { name: 'OBJKT', group: 'collect' },
+        'objkt-ai': { name: 'OBJKT', group: 'collect' },
+        'salvor-main': { name: 'Salvor', group: 'collect' },
+        'salvor-ai': { name: 'Salvor', group: 'collect' },
+        'xrp-cafe': { name: 'XRP.Cafe', group: 'collect', handle: 'XRPL works' },
+    };
+    const HUB_ORDER = [
+        'x', 'instagram', 'farcaster', 'base', 'arena', 'zora', 'zora-ai',
+        'opensea', 'tradeport-sui', 'objkt', 'objkt-main', 'objkt-ai', 'salvor-main', 'salvor-ai', 'xrp-cafe',
+    ];
+
+    function hubHandle(url) {
+        try {
+            const u = new URL(url);
+            const seg = u.pathname.split('/').filter(Boolean).pop() || '';
+            if (!seg) return u.hostname.replace(/^www\./, '');
+            return seg.startsWith('@') ? seg : `@${seg}`;
+        } catch {
+            return '';
+        }
+    }
+
+    function hubKey(url) {
+        return String(url || '').toLowerCase().replace(/^https?:\/\/(www\.)?/, '').replace(/\/+$/, '');
+    }
+
+    function renderFindHub(info) {
+        const follow = document.getElementById('about-social');
+        const collect = document.getElementById('about-marketplaces-nav');
+        const seen = new Set();
+        const rows = { follow: [], collect: [] };
+        const all = [...(info?.social_links || []), ...(info?.marketplace_links || [])]
+            .filter((item) => item?.url && /^https:\/\//.test(item.url));
+        all.sort((a, b) => {
+            const ia = HUB_ORDER.indexOf(a.id);
+            const ib = HUB_ORDER.indexOf(b.id);
+            return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+        });
+        all.forEach((item) => {
+            const key = hubKey(item.url);
+            if (seen.has(key)) return;
+            seen.add(key);
+            const meta = HUB_META[item.id] || {
+                name: String(item.label || item.id || 'Link').split('/')[0].trim(),
+                group: (info?.marketplace_links || []).includes(item) ? 'collect' : 'follow',
+            };
+            const handle = meta.handle || hubHandle(item.url);
+            const name = escapeHtml(meta.name);
+            rows[meta.group].push(
+                `<li><a class="find-hub__link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer me" aria-label="${name} ${escapeHtml(handle)} (opens in a new tab)">` +
+                    `<span class="find-hub__name">${name}</span>` +
+                    `<span class="find-hub__handle">${escapeHtml(handle)}</span>` +
+                    `<span class="find-hub__arrow" aria-hidden="true">↗</span>` +
+                    `</a></li>`,
+            );
+        });
+        if (follow) {
+            follow.innerHTML = rows.follow.join('');
+            follow.hidden = !rows.follow.length;
+        }
+        if (collect) {
+            collect.innerHTML = rows.collect.join('');
+            collect.hidden = !rows.collect.length;
+        }
+    }
+
     function renderSocialLinks(info) {
-        renderLinkPills('about-social', info?.social_links);
+        renderFindHub(info);
         renderWalletNames('about-wallets', info?.wallet_names || info?.domain_links);
     }
 
-    function renderMarketplaceLinks(info) {
-        const el = document.getElementById('about-marketplaces-nav');
-        if (!el) return;
-
-        const items = (info?.marketplace_links || []).filter((item) => item?.url);
-        if (!items.length) {
-            el.hidden = true;
-            el.innerHTML = '';
-            return;
-        }
-
-        el.innerHTML = items
-            .map((item, index) => {
-                const label = escapeHtml(item.label || item.id || 'Marketplace');
-                const url = escapeHtml(item.url);
-                const primary = index === 0 ? ' marketplace-links__link--primary' : '';
-                const note = item.note ? ` title="${escapeHtml(item.note)}"` : '';
-                return `<a class="marketplace-links__link${primary}" href="${url}" target="_blank" rel="noopener noreferrer"${note}>${label}</a>`;
-            })
-            .join('');
-        el.hidden = false;
+    function renderMarketplaceLinks() {
+        // Marketplaces are part of the About hub (renderFindHub → #about-marketplaces-nav).
     }
 
     function applyCollectionInfo(info) {
@@ -1870,7 +1940,7 @@ const Gallery = (() => {
             container.classList.remove('gallery-grid--busy');
             let msg = GallerySections.emptyMessage();
             if (GalleryLikes.getSavedOnly()) {
-                msg = 'No saved works yet — tap ☆ on a card to bookmark it, then use Saved for later.';
+                msg = 'No saved works yet — tap the bookmark icon on a card to save it, then use Saved for later.';
             } else if (GalleryFilters.getListedOnly()) {
                 msg = 'No listed works in this view.';
             } else if (sectionNfts.length > 0) {
@@ -1913,6 +1983,16 @@ const Gallery = (() => {
         }
 
         requestAnimationFrame(appendChunk);
+    }
+
+    // Artwork caption: full text on desktop; on phones a few lines, tap to read all.
+    function bindCaption(card) {
+        const cap = card.querySelector('.nft-card__description');
+        if (!cap) return;
+        cap.addEventListener('click', (e) => {
+            e.stopPropagation();
+            cap.classList.toggle('is-open');
+        });
     }
 
     function bindEngage(card, nft, key) {
@@ -2059,7 +2139,7 @@ const Gallery = (() => {
                     </div>
                     <div class="nft-card__engage">
                         <button type="button" class="nft-share" aria-label="Share ${name}" title="Share">
-                            <span class="nft-share__icon" aria-hidden="true">↗</span>
+                            ${CARD_ICONS.share}
                         </button>
                     </div>
                 </div>
@@ -2075,6 +2155,7 @@ const Gallery = (() => {
 
         attachNftMedia(card, nft);
         GalleryShare.bindButton(card.querySelector('.nft-share'), nft);
+        bindCaption(card);
 
         return card;
     }
@@ -2199,18 +2280,18 @@ const Gallery = (() => {
                         ${supplyMetaHtml}
                     </div>
                     <div class="nft-card__engage">
-                        <button type="button" class="nft-like" aria-label="Like ${name}" aria-pressed="false">
-                            <span class="nft-like__icon" aria-hidden="true">♥</span>
-                            <span class="nft-like__count">${likesCount}</span>
+                        <button type="button" class="nft-like" aria-label="Like ${name}" title="Like" aria-pressed="false">
+                            ${CARD_ICONS.like}
+                            <span class="nft-like__count"${likesCount > 0 ? '' : ' hidden'}>${likesCount}</span>
                         </button>
                         <button type="button" class="nft-save" aria-label="Save ${name} for later" aria-pressed="false" title="Save for later">
-                            <span class="nft-save__icon" aria-hidden="true">☆</span>
+                            ${CARD_ICONS.save}
                         </button>
                         <button type="button" class="nft-share" aria-label="Share ${name}" title="Share">
-                            <span class="nft-share__icon" aria-hidden="true">↗</span>
+                            ${CARD_ICONS.share}
                         </button>
                         <button type="button" class="nft-tip" aria-label="Tip the artist" title="Tip the artist">
-                            <span class="nft-tip__icon" aria-hidden="true">◎</span>
+                            ${CARD_ICONS.tip}
                         </button>
                     </div>
                 </div>
@@ -2233,6 +2314,7 @@ const Gallery = (() => {
 
         attachNftMedia(card, nft);
         bindEngage(card, nft, key);
+        bindCaption(card);
         card.querySelectorAll('.shop-buy').forEach((btn) => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -2254,25 +2336,88 @@ const Gallery = (() => {
         return card;
     }
 
+    /* Anchor scroll that survives a growing page (2026-10-03).
+       The grid appends cards in rAF chunks and images lazy-load, so a single
+       scrollIntoView() computed at click time lands "halfway". We scroll, then keep
+       re-aiming at the target while the layout keeps changing (ResizeObserver),
+       until it is stable or the user scrolls/touches. CSS scroll-margin-top covers
+       the fixed header. */
+    let anchorSettle = null;
+
+    function stopAnchorSettle() {
+        if (!anchorSettle) return;
+        anchorSettle.stop();
+        anchorSettle = null;
+    }
+
+    function anchorTop(el) {
+        const margin = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
+        const top = el.getBoundingClientRect().top + window.scrollY - margin;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        return Math.max(0, Math.min(top, max));
+    }
+
     function scrollToPageAnchor(id, { smooth = true } = {}) {
         const el = document.getElementById(id);
         if (!el) return false;
-        el.scrollIntoView({
-            behavior: smooth ? 'smooth' : 'auto',
-            block: 'start',
-        });
+        stopAnchorSettle();
+
+        const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: anchorTop(el), behavior: smooth && !reduce ? 'smooth' : 'auto' });
+
+        const started = Date.now();
+        let lastTarget = anchorTop(el);
+        let stableSince = Date.now();
+        let timer = 0;
+        const aim = () => {
+            const t = anchorTop(el);
+            if (Math.abs(t - lastTarget) > 2) {
+                lastTarget = t;
+                stableSince = Date.now();
+                window.scrollTo({ top: t, behavior: 'auto' });
+            } else if (Math.abs(window.scrollY - t) > 2 && Date.now() - started > 900) {
+                // smooth scroll finished short of a moved target
+                window.scrollTo({ top: t, behavior: 'auto' });
+            }
+            if (Date.now() - stableSince > 1200 || Date.now() - started > 8000) {
+                stopAnchorSettle();
+            }
+        };
+        const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(aim) : null;
+        ro?.observe(document.body);
+        timer = window.setInterval(aim, 150);
+        const cancel = () => stopAnchorSettle();
+        const opts = { passive: true, once: true };
+        window.addEventListener('wheel', cancel, opts);
+        window.addEventListener('touchstart', cancel, opts);
+        window.addEventListener('keydown', cancel, { once: true });
+        anchorSettle = {
+            stop() {
+                ro?.disconnect();
+                window.clearInterval(timer);
+                window.removeEventListener('wheel', cancel);
+                window.removeEventListener('touchstart', cancel);
+                window.removeEventListener('keydown', cancel);
+            },
+        };
         return true;
     }
 
+    const PAGE_ANCHORS = ['about', 'about-marketplaces', 'about-find'];
+
     function bindHeroAnchors() {
-        document.getElementById('hero-marketplaces')?.addEventListener('click', (e) => {
+        // Hero band "Marketplaces" / "About" + top-bar "About" (and any in-page link to them).
+        document.addEventListener('click', (e) => {
+            const a = e.target.closest?.('a[href^="#"]');
+            if (!a) return;
+            const id = a.getAttribute('href').slice(1);
+            if (!PAGE_ANCHORS.includes(id)) return;
             e.preventDefault();
-            const ok = scrollToPageAnchor('about-marketplaces');
-            if (ok) {
+            if (scrollToPageAnchor(id)) {
                 history.replaceState(
                     {},
                     '',
-                    `${window.location.pathname}${window.location.search}#about-marketplaces`,
+                    `${window.location.pathname}${window.location.search}#${id}`,
                 );
             }
         });
@@ -2281,20 +2426,39 @@ const Gallery = (() => {
     function scrollHashTarget() {
         const id = (window.location.hash || '').replace(/^#/, '');
         if (!id) return;
-        if (id === 'about-marketplaces' || id === 'about' || id === 'explore') {
+        if (PAGE_ANCHORS.includes(id) || id === 'explore') {
             window.requestAnimationFrame(() => scrollToPageAnchor(id, { smooth: false }));
         }
     }
 
     function setupBackToTop() {
         const btn = document.getElementById('back-to-top');
-        if (!btn) return;
-        const sync = () => {
-            btn.classList.toggle('is-visible', window.scrollY > 400);
-        };
-        btn.addEventListener('click', () => {
+        const fab = document.getElementById('scroll-top-fab');
+        const brand = document.querySelector('.site-brand');
+        const toTop = () => {
+            stopAnchorSettle();
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        };
+        const sync = () => {
+            btn?.classList.toggle('is-visible', window.scrollY > 400);
+            // Subtle mobile arrow: only after a long scroll (~3 screens).
+            fab?.classList.toggle('is-visible', window.scrollY > window.innerHeight * 3);
+        };
+        btn?.addEventListener('click', toTop);
+        fab?.addEventListener('click', toTop);
+        // Tap the signature / brand in the top bar → back to top.
+        if (brand) {
+            brand.setAttribute('role', 'link');
+            brand.setAttribute('tabindex', '0');
+            brand.setAttribute('aria-label', 'Jack Beatnic — back to top');
+            brand.addEventListener('click', toTop);
+            brand.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toTop();
+                }
+            });
+        }
         window.addEventListener('scroll', sync, { passive: true });
         sync();
     }

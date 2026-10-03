@@ -1,5 +1,5 @@
 /**
- * Wallet sign-in: EVM (browser or WalletConnect), Sui, XRPL (Xaman, Joey, GemWallet, Crossmark), Tezos, Solana.
+ * Wallet sign-in: EVM (browser or WalletConnect), Sui, XRPL (Xaman, GemWallet, Crossmark), Tezos (Temple, Kukai), Solana.
  * Signature only, no transaction, no fee.
  * <script src="js/wallet-signin.js" data-api="https://api.jackbeatnic.shop"></script>
  * Adds one floating wallet button (bottom-left). Session token lives in sessionStorage only.
@@ -28,34 +28,78 @@
         icons: ['https://jackbeatnic.github.io/assets/og-preview.jpg'],
     };
     const enc_ = encodeURIComponent;
-    const hasEvm = () => Boolean(window.ethereum);
-    const hasSol = () => Boolean(window.phantom?.solana || window.solflare || window.solana);
-    // Top level: chains. Each chain lists wallet options; `run` = adapter id, `href` = open-in-app deeplink.
+    const log = (...a) => console.info('wallet sign-in:', ...a);
+    const WC_ICON = new URL('../assets/wallets/walletconnect.svg', (script && script.src) || location.href).href;
+    const B58 = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+    const b58 = (bytes) => {
+        let n = 0n; for (const x of bytes) n = n * 256n + BigInt(x);
+        let out = ''; while (n > 0n) { out = B58[Number(n % 58n)] + out; n /= 58n; }
+        for (const x of bytes) { if (x !== 0) break; out = '1' + out; }
+        return out;
+    };
+    const TRUST_ICON = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><rect width="40" height="40" rx="9" fill="#0500FF"/><path d="M20 8l10 3.6v8.2c0 6.2-4.2 10.4-10 12.2-5.8-1.8-10-6-10-12.2v-8.2z" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/></svg>');
+    const KUKAI_ICON = 'data:image/png;base64,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';
+    const BEACON_JS = 'https://cdn.jsdelivr.net/npm/@airgap/beacon-sdk@4.8.1/dist/walletbeacon.min.js';
+    const BEACON_SRI = 'sha384-BRG93bqbyUWvDu3ImCSrlsOmHKakx1XM9AZiihMekRYBJinl0IKE5XZxTU14EG1K';
+    const JOEY_ENABLED = false;
+    const JOEY_ICON = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><rect width="40" height="40" rx="9" fill="#F47B20"/><g fill="#fff"><ellipse cx="15" cy="12" rx="3.6" ry="9" transform="rotate(-12 15 12)"/><ellipse cx="25" cy="12" rx="3.6" ry="9" transform="rotate(12 25 12)"/><ellipse cx="20" cy="26" rx="10" ry="8.5"/></g><circle cx="16.5" cy="25" r="1.4" fill="#F47B20"/><circle cx="23.5" cy="25" r="1.4" fill="#F47B20"/></svg>');
+    // EIP-6963: every EVM extension announces itself (MetaMask, Core, Rabby, Coinbase, ...)
+    const evmProviders = new Map();
+    window.addEventListener('eip6963:announceProvider', (e) => {
+        const d = e.detail;
+        if (d && d.info && d.provider && !evmProviders.has(d.info.uuid)) { evmProviders.set(d.info.uuid, d); log('EVM wallet found', d.info.name, d.info.rdns); }
+    });
+    window.dispatchEvent(new Event('eip6963:requestProvider'));
+    let walletsApi = null;
+    async function standardWallets(feature) {
+        try {
+            if (!walletsApi) walletsApi = (await import('https://esm.sh/@wallet-standard/app@1.1.0')).getWallets();
+            await sleep(150);
+            const list = walletsApi.get().filter((w) => w.features && w.features[feature]);
+            log('wallet-standard', feature, list.map((w) => w.name));
+            return list;
+        } catch (e) { log('wallet-standard load failed', e.message); return []; }
+    }
+    const hasSolLegacy = () => Boolean(window.phantom?.solana || window.solflare || window.solana);
+    const wIcon = (w) => (w.icon || (w.info && w.info.icon) || '');
+    // Top level: chains. options() -> list of { label, glyph|icon, run: () => Promise<session> | href | copy }
     const CHAINS = [
-        { id: 'evm', label: 'EVM', glyph: 'Ξ', options: () => [
-            hasEvm() && { label: 'Browser', glyph: '🧩', run: 'evm' },
-            { label: 'WalletConnect', glyph: 'WC', run: 'evmWc' },
-            MOBILE && !hasEvm() && { label: 'MetaMask', glyph: '🦊', href: `https://metamask.app.link/dapp/${PAGE.replace(/^https?:\/\//, '')}` },
+        { id: 'evm', label: 'EVM', glyph: 'Ξ', options: async () => {
+            window.dispatchEvent(new Event('eip6963:requestProvider'));
+            await sleep(120);
+            const found = [...evmProviders.values()].map((d) => ({ label: d.info.name, icon: d.info.icon, run: () => adapters.evm(d.provider, d.info.name) }));
+            if (!found.length && window.ethereum) found.push({ label: 'Browser', glyph: '🧩', run: () => adapters.evm(window.ethereum, 'Browser') });
+            return [...found,
+                { label: 'WalletConnect', icon: WC_ICON, run: () => adapters.evmWc() },
+                MOBILE && !found.length && { label: 'MetaMask', glyph: '🦊', href: `https://metamask.app.link/dapp/${PAGE.replace(/^https?:\/\//, '')}` }];
+        } },
+        { id: 'sui', label: 'Sui', glyph: '💧', options: async () => {
+            const ws = (await standardWallets('sui:signPersonalMessage')).map((w) => ({ label: w.name, icon: wIcon(w), run: () => adapters.sui(w) }));
+            if (!ws.length && !MOBILE) return [{ label: 'No Sui wallet', glyph: '∅', run: async () => { throw new Error('No Sui wallet'); } }];
+            return [...ws, MOBILE && !ws.length && { label: 'Slush', glyph: '💧', href: `https://my.slush.app/browse/${enc_(PAGE)}` }];
+        } },
+        { id: 'xrpl', label: 'XRPL', glyph: 'X', options: async () => [
+            { label: 'Xaman', glyph: 'Xa', run: () => adapters.xaman() },
+            // Joey is disabled: it broadcast the sign-in transaction despite submit:false. No sign-only method yet.
+            JOEY_ENABLED && { label: 'Joey', icon: JOEY_ICON, run: () => adapters.joey() },
+            !MOBILE && { label: 'GemWallet', glyph: '💎', run: () => adapters.gem() },
+            !MOBILE && { label: 'Crossmark', glyph: '✚', run: () => adapters.crossmark() },
         ] },
-        { id: 'sui', label: 'Sui', glyph: '💧', options: () => [
-            { label: 'Sui wallet', glyph: '🧩', run: 'sui' },
-            MOBILE && { label: 'Slush', glyph: '💧', href: `https://my.slush.app/browse/${enc_(PAGE)}` },
-        ] },
-        { id: 'xrpl', label: 'XRPL', glyph: 'X', options: () => [
-            { label: 'Xaman', glyph: 'Xa', run: 'xaman' },
-            { label: 'Joey', glyph: '🦘', run: 'joey' },
-            !MOBILE && { label: 'Gem / Crossmark', glyph: '🧩', run: 'xrpl' },
-        ] },
-        { id: 'tezos', label: 'Tezos', glyph: 'ꜩ', options: () => [
-            !MOBILE && { label: 'Temple', glyph: '🧩', run: 'tezos' },
+        { id: 'tezos', label: 'Tezos', glyph: 'ꜩ', options: async () => [
+            !MOBILE && { label: 'Temple', glyph: '🏛', run: () => adapters.tezos() },
+            { label: 'Kukai', icon: KUKAI_ICON, run: () => adapters.kukai() },
             MOBILE && { label: 'Copy link', glyph: '🔗', copy: true, hint: 'Open the copied link in the Temple app browser' },
         ] },
-        { id: 'solana', label: 'Solana', glyph: '◎', options: () => [
-            hasSol() && { label: 'Browser', glyph: '🧩', run: 'solana' },
-            !hasSol() && MOBILE && { label: 'Phantom', glyph: '👻', href: `https://phantom.app/ul/browse/${enc_(PAGE)}?ref=${enc_(location.origin)}` },
-            !hasSol() && MOBILE && { label: 'Solflare', glyph: '☀', href: `https://solflare.com/ul/v1/browse/${enc_(PAGE)}?ref=${enc_(location.origin)}` },
-            !hasSol() && !MOBILE && { label: 'Phantom', glyph: '🧩', run: 'solana' },
-        ] },
+        { id: 'solana', label: 'Solana', glyph: '◎', options: async () => {
+            const ws = (await standardWallets('solana:signMessage')).map((w) => ({ label: w.name, icon: wIcon(w), run: () => adapters.solanaStd(w) }));
+            if (!ws.length && hasSolLegacy()) ws.push({ label: 'Browser', glyph: '🧩', run: () => adapters.solana() });
+            return [...ws,
+                { label: 'Trust Wallet', icon: TRUST_ICON, run: () => adapters.solanaWc('trust') },
+                { label: 'WalletConnect', icon: WC_ICON, run: () => adapters.solanaWc('wc') },
+                !ws.length && MOBILE && { label: 'Phantom', glyph: '👻', href: `https://phantom.app/ul/browse/${enc_(PAGE)}?ref=${enc_(location.origin)}` },
+                !ws.length && MOBILE && { label: 'Solflare', glyph: '☀', href: `https://solflare.com/ul/v1/browse/${enc_(PAGE)}?ref=${enc_(location.origin)}` },
+                !ws.length && !MOBILE && { label: 'Solflare', glyph: '☀', href: 'https://solflare.com/download', newTab: true, hint: 'Get Solflare' }];
+        } },
     ];
 
     const enc = new TextEncoder();
@@ -104,12 +148,13 @@
 
     /* ---------- chain adapters: each returns the verify() result ---------- */
     const adapters = {
-        async evm() {
-            const eth = window.ethereum;
+        async evm(eth = window.ethereum, name = 'Browser') {
             if (!eth) throw new Error('No EVM wallet');
+            log('EVM connect', name);
             const [address] = await eth.request({ method: 'eth_requestAccounts' });
             const cid = parseInt(await eth.request({ method: 'eth_chainId' }), 16);
             const n = await nonce('evm', address, EVM_CHAINS.includes(cid) ? cid : 43114);
+            log('EVM sign', name, address, 'chain', cid);
             const signature = await eth.request({ method: 'personal_sign', params: [`0x${hex(enc.encode(n.message))}`, address] });
             return verify({ nonce: n.nonce, signature });
         },
@@ -169,43 +214,150 @@
                 up.disconnect().catch(() => {});
             }
         },
-        async sui() {
-            const { getWallets } = await import('https://esm.sh/@wallet-standard/app@1.1.0');
-            const w = getWallets().get().find((x) => x.features['sui:signPersonalMessage']);
+        async sui(w) {
             if (!w) throw new Error('No Sui wallet');
-            const { accounts } = await w.features['standard:connect'].connect();
-            const account = accounts[0];
+            log('Sui connect', w.name, Object.keys(w.features));
+            const res = await w.features['standard:connect'].connect();
+            const account = (res && res.accounts && res.accounts[0]) || w.accounts[0];
+            if (!account) throw new Error('No Sui account');
+            log('Sui account', account.address, account.chains);
             const n = await nonce('sui', account.address);
-            const { signature } = await w.features['sui:signPersonalMessage'].signPersonalMessage({ message: enc.encode(n.message), account });
-            return verify({ nonce: n.nonce, signature });
+            const out = await w.features['sui:signPersonalMessage'].signPersonalMessage({ message: enc.encode(n.message), account, chain: 'sui:mainnet' });
+            log('Sui signed, scheme flag', out && out.signature ? atob(out.signature).charCodeAt(0) : '?');
+            return verify({ nonce: n.nonce, signature: out.signature });
         },
-        async xrpl() {
-            const gem = await import('https://esm.sh/@gemwallet/api@3').catch(() => null);
-            if (gem && (await gem.isInstalled())?.result?.isInstalled) {
-                const pk = (await gem.getPublicKey())?.result;
-                if (!pk) throw new Error('Rejected');
-                const n = await nonce('xrpl', pk.address);
-                const signed = (await gem.signMessage(n.message))?.result?.signedMessage;
-                return verify({ nonce: n.nonce, signature: signed, publicKey: pk.publicKey });
-            }
+        async gem() {
+            const gem = await import('https://esm.sh/@gemwallet/api@3');
+            const inst = await gem.isInstalled();
+            log('GemWallet installed', inst?.result?.isInstalled);
+            if (!inst?.result?.isInstalled) throw new Error('GemWallet not found');
+            const pk = (await gem.getPublicKey())?.result;
+            if (!pk) throw new Error('Rejected');
+            log('GemWallet account', pk.address);
+            const n = await nonce('xrpl', pk.address);
+            const signed = (await gem.signMessage(n.message))?.result?.signedMessage;
+            if (!signed) throw new Error('Rejected');
+            return verify({ nonce: n.nonce, signature: signed, publicKey: pk.publicKey });
+        },
+        async crossmark() {
             const cm = (await import('https://esm.sh/@crossmarkio/sdk@0.4')).default;
-            if (!cm?.sync?.isInstalled?.()) throw new Error('No XRPL wallet (GemWallet or Crossmark)');
+            const installed = await Promise.race([Promise.resolve(cm.sync.isInstalled()), sleep(1500).then(() => cm.sync.isInstalled())]);
+            log('Crossmark installed', installed);
+            if (!installed) throw new Error('Crossmark not found');
             const first = (await cm.methods.signInAndWait()).response.data;
+            log('Crossmark account', first.address);
             const n = await nonce('xrpl', first.address);
             const d = (await cm.methods.signInAndWait(hex(enc.encode(n.message)))).response.data;
             return verify({ nonce: n.nonce, signature: d.signature, publicKey: d.publicKey });
         },
         async tezos() {
-            const { TempleWallet } = await import('https://esm.sh/@temple-wallet/dapp@8');
-            if (!(await TempleWallet.isAvailable())) throw new Error('No Tezos wallet (Temple)');
-            const w = new TempleWallet('Jack Beatnic Gallery');
-            await w.connect('mainnet');
-            const address = await w.getPKH();
-            const n = await nonce('tezos', address);
+            const req = (payload, timeout = 120000) => new Promise((resolve, reject) => {
+                const reqId = Math.random().toString(36).slice(2) + Date.now().toString(36);
+                const t = setTimeout(() => { window.removeEventListener('message', h); reject(new Error('Temple timeout')); }, timeout);
+                const h = (evt) => {
+                    const r = evt.data;
+                    if (evt.source !== window || !r || r.reqId !== reqId) return;
+                    if (r.type === 'TEMPLE_PAGE_RESPONSE') { clearTimeout(t); window.removeEventListener('message', h); resolve(r.payload); }
+                    if (r.type === 'TEMPLE_PAGE_ERROR_RESPONSE') { clearTimeout(t); window.removeEventListener('message', h); reject(new Error(r.payload === 'NOT_GRANTED' ? 'Rejected' : String(r.payload || 'Temple error'))); }
+                };
+                window.addEventListener('message', h);
+                window.postMessage({ type: 'TEMPLE_PAGE_REQUEST', payload, reqId }, '*');
+            });
+            const available = await new Promise((resolve) => {
+                const h = (evt) => { if (evt.source === window && evt.data?.type === 'TEMPLE_PAGE_RESPONSE' && evt.data?.payload === 'PONG') { done(true); } };
+                const done = (v) => { window.removeEventListener('message', h); clearTimeout(t); resolve(v); };
+                window.addEventListener('message', h);
+                window.postMessage({ type: 'TEMPLE_PAGE_REQUEST', payload: 'PING' }, '*');
+                const t = setTimeout(() => done(false), 800);
+            });
+            log('Temple available', available);
+            if (!available) throw new Error('Temple not found');
+            const perm = await req({ type: 'PERMISSION_REQUEST', network: 'mainnet', appMeta: { name: 'Jack Beatnic Gallery' }, force: false });
+            log('Temple account', perm && perm.pkh);
+            if (!perm || !perm.pkh) throw new Error('Rejected');
+            const n = await nonce('tezos', perm.pkh);
             const b = enc.encode(n.message);
             const payload = `0501${b.length.toString(16).padStart(8, '0')}${hex(b)}`;
-            const signature = await w.sign(payload);
-            return verify({ nonce: n.nonce, signature, publicKey: w.permission?.publicKey || w.publicKey });
+            const res = await req({ type: 'SIGN_REQUEST', sourcePkh: perm.pkh, payload });
+            return verify({ nonce: n.nonce, signature: res.signature, publicKey: perm.publicKey });
+        },
+        async kukai() {
+            // Beacon pairing (Kukai featured first). Sign-only: requestSignPayload, never an operation.
+            // Beacon relay nodes reject requests that carry a Referer header (HTTP 403), so drop it for this page from now on.
+            if (!document.querySelector('meta[name="referrer"][content="no-referrer"]')) {
+                const m = document.createElement('meta'); m.name = 'referrer'; m.content = 'no-referrer'; document.head.appendChild(m);
+            }
+            if (!window.beacon || !window.beacon.DAppClient) {
+                log('Beacon loading');
+                await new Promise((resolve, reject) => {
+                    const sc = document.createElement('script');
+                    sc.src = BEACON_JS; sc.integrity = BEACON_SRI; sc.crossOrigin = 'anonymous'; sc.async = true;
+                    sc.onload = resolve; sc.onerror = () => reject(new Error('Beacon failed to load'));
+                    document.head.appendChild(sc);
+                });
+            }
+            const B = window.beacon;
+            const client = new B.DAppClient({ name: 'Jack Beatnic Gallery', network: { type: B.NetworkType.MAINNET }, featuredWallets: ['kukai', 'temple'] });
+            try {
+                await client.clearActiveAccount().catch(() => {});
+                const perm = await client.requestPermissions();
+                const address = perm.address || perm.accountInfo?.address;
+                const publicKey = perm.publicKey || perm.accountInfo?.publicKey;
+                log('Beacon account', address, perm.walletKey || '');
+                if (!address || !publicKey) throw new Error('Rejected');
+                const n = await nonce('tezos', address);
+                const b = enc.encode(n.message);
+                const payload = `0501${b.length.toString(16).padStart(8, '0')}${hex(b)}`;
+                const res = await client.requestSignPayload({ signingType: B.SigningType.MICHELINE, payload, sourceAddress: address });
+                return await verify({ nonce: n.nonce, signature: res.signature, publicKey });
+            } catch (e) {
+                const t = e && (e.errorType || e.title || e.message);
+                log('Beacon error', t);
+                if (/ABORTED|NOT_GRANTED|aborted/i.test(String(t))) throw new Error('Rejected');
+                throw e;
+            } finally {
+                client.clearActiveAccount().catch(() => {});
+                client.disconnect && client.disconnect().catch(() => {});
+            }
+        },
+        async solanaWc(wallet) {
+            // WalletConnect v2, Solana namespace, sign-only (solana_signMessage). wallet: 'trust' or 'wc'.
+            const SOL_MAIN = 'solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp';
+            const projectId = await wcProjectId();
+            const { default: UniversalProvider } = await import('https://esm.sh/@walletconnect/universal-provider@2.21.1');
+            const up = await UniversalProvider.init({ projectId, metadata: WC_META });
+            const label = wallet === 'trust' ? 'Trust Wallet' : 'WalletConnect';
+            up.on('display_uri', async (uri) => {
+                log('Solana WalletConnect pairing uri ready', label);
+                const link = wallet === 'trust' ? `https://link.trustwallet.com/wc?uri=${encodeURIComponent(uri)}` : uri;
+                await showQr(await qrDataUrl(uri), link, label);
+            });
+            try {
+                const session = await cancellable(up.connect({
+                    optionalNamespaces: { solana: { chains: [SOL_MAIN], methods: ['solana_signMessage'], events: [] } },
+                }));
+                hideQr();
+                const acc = (session.namespaces.solana?.accounts || [])[0];
+                if (!acc) throw new Error('No Solana account');
+                const address = String(acc).split(':').pop();
+                log('Solana WalletConnect account', address, session.peer?.metadata?.name);
+                const n = await nonce('solana', address);
+                const res = await cancellable(up.request({ method: 'solana_signMessage', params: { message: b58(enc.encode(n.message)), pubkey: address } }, SOL_MAIN));
+                return await verify({ nonce: n.nonce, signature: res.signature });
+            } finally {
+                hideQr();
+                up.disconnect().catch(() => {});
+            }
+        },
+        async solanaStd(w) {
+            log('Solana connect', w.name);
+            const res = await w.features['standard:connect'].connect();
+            const account = (res && res.accounts && res.accounts[0]) || w.accounts[0];
+            if (!account) throw new Error('No Solana account');
+            const n = await nonce('solana', account.address);
+            const out = await w.features['solana:signMessage'].signMessage({ account, message: enc.encode(n.message) });
+            const sig = (Array.isArray(out) ? out[0] : out).signature;
+            return verify({ nonce: n.nonce, signature: hex(sig) });
         },
         async solana() {
             const p = window.phantom?.solana || window.solflare || window.solana;
@@ -236,7 +388,9 @@
 .ws-qr-row{display:flex;gap:8px;align-items:center}.ws-qr a,.ws-qr button{display:inline-flex;align-items:center;gap:4px;padding:7px 11px;border:1px solid rgba(127,127,127,.35);border-radius:9px;background:transparent;color:inherit;font:600 12px system-ui,sans-serif;text-decoration:none;cursor:pointer}
 @media (pointer:coarse){.ws-qr img{width:150px;height:150px}}
 .ws-line{display:flex;align-items:center;gap:6px;margin:2px 0 6px}.ws-addr{font:12px ui-monospace,monospace;opacity:.7}
-.ws-out{margin-left:auto;border:0;background:transparent;color:inherit;cursor:pointer;opacity:.6;padding:2px}.ws-out:hover{opacity:1}
+.ws-signout{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;margin-top:9px;padding:8px 10px;border:1px solid rgba(127,127,127,.4);border-radius:10px;background:transparent;color:inherit;cursor:pointer;font:600 12px system-ui,sans-serif}
+.ws-hint{margin-top:8px;font:11px/1.35 system-ui,sans-serif;opacity:.75}
+.ws-signout:active{transform:scale(.97)}.ws-chain img{width:20px;height:20px;border-radius:5px;object-fit:contain}
 .ws-tag{display:inline-flex;align-items:center;gap:3px;padding:3px 7px;border-radius:9px;background:rgba(0,0,0,.06);font-size:12px}
 .ws-tag.gold{background:rgba(201,151,28,.15);color:#8a6510}
 @media (max-width:768px){.gallery-protected .site-header.is-menu-open ~ .ws-fab{opacity:0;visibility:hidden}}
@@ -249,6 +403,13 @@
         'No EVM wallet': 'No wallet in this browser. Use WalletConnect.',
         'No Sui wallet': MOBILE ? 'No Sui wallet here. Open in Slush.' : 'No Sui wallet extension found.',
         'No Solana wallet': 'No Solana wallet here.',
+        'GemWallet not found': 'GemWallet extension not found.',
+        'Crossmark not found': 'Crossmark extension not found.',
+        'Temple not found': 'Temple extension not found.',
+        'Beacon failed to load': 'Kukai connector failed to load.',
+        'Temple timeout': 'Temple did not answer.',
+        'signature mismatch': 'Signature not accepted.',
+        'nonce invalid': 'Expired. Try again.',
         Cancelled: 'Cancelled.',
         rejected: 'Rejected in wallet.',
         expired: 'Expired. Try again.',
@@ -287,9 +448,15 @@
         const btn = (o, onTap) => {
             const isLink = Boolean(o.href);
             const b = el(isLink ? 'a' : 'button', 'ws-chain');
-            if (isLink) { b.href = o.href; b.rel = 'noopener'; } else b.type = 'button';
-            const textGlyph = /^[A-Za-z]{2,}$/.test(o.glyph);
-            b.innerHTML = `<span class="ws-g${textGlyph ? ' t' : ''}">${o.glyph}</span><small></small>`;
+            if (isLink) { b.href = o.href; b.rel = 'noopener'; if (o.newTab) b.target = '_blank'; } else b.type = 'button';
+            const textGlyph = /^[A-Za-z]{2,}$/.test(o.glyph || '');
+            if (o.icon && /^(data:image\/|https:\/\/)/.test(o.icon)) {
+                b.innerHTML = '<span class="ws-g"><img alt="" width="20" height="20"></span><small></small>';
+                b.querySelector('img').src = o.icon;
+            } else {
+                b.innerHTML = `<span class="ws-g${textGlyph ? ' t' : ''}"></span><small></small>`;
+                b.firstChild.textContent = o.glyph || '•';
+            }
             b.lastChild.textContent = o.label;
             b.title = o.hint || o.label;
             b.setAttribute('aria-label', o.hint || o.label);
@@ -303,7 +470,7 @@
         };
 
         const renderFab = () => {
-            fab.innerHTML = ICON.wallet + (me ? `<span>${me.bought}</span>${me.tier ? `<span class="ws-star">${ICON.star}</span>` : ''}` : '');
+            fab.innerHTML = ICON.wallet + (me ? `<span>${Math.max(me.owned || 0, me.bought || 0)}</span>${me.tier ? `<span class="ws-star">${ICON.star}</span>` : ''}` : '');
             fab.title = me ? `${short(me.address)}${me.tier ? ` · ${me.tier.label}` : ''}` : 'Sign in with wallet';
         };
         const renderChains = () => {
@@ -312,7 +479,7 @@
             CHAINS.forEach((c) => row.appendChild(btn(c, () => renderOptions(c))));
             body.appendChild(row);
         };
-        const renderOptions = (c, keepStatus) => {
+        const renderOptions = async (c, keepStatus) => {
             lastChain = c;
             if (!keepStatus) setStatus('');
             body.innerHTML = '';
@@ -320,7 +487,11 @@
             const back = el('button', 'ws-chain back', '‹'); back.type = 'button'; back.title = 'Back'; back.setAttribute('aria-label', 'Back');
             back.addEventListener('click', (e) => { e.stopPropagation(); if (!busy) { setStatus(''); lastChain = null; renderChains(); } });
             row.appendChild(back);
-            const opts = c.options().filter(Boolean);
+            body.appendChild(row);
+            setStatus('Looking for wallets…', 'busy');
+            const opts = (await c.options()).filter(Boolean);
+            if (lastChain !== c) return;
+            setStatus('');
             opts.forEach((o) => row.appendChild(btn(o, (b) => {
                 if (o.copy) {
                     (navigator.clipboard ? navigator.clipboard.writeText(PAGE) : Promise.reject())
@@ -330,24 +501,32 @@
                 }
                 go(o.run, b, o.label);
             })));
-            body.appendChild(row);
             if (!opts.length) setStatus('No wallet option on this device.', 'err');
         };
         const renderMe = () => {
             body.innerHTML = '';
-            const line = el('div', 'ws-line', `<span class="ws-addr">${short(me.address)}</span>`);
-            const out = el('button', 'ws-out', ICON.out); out.type = 'button'; out.title = 'Sign out'; out.setAttribute('aria-label', 'Sign out');
+            const line = el('div', 'ws-line', `<span class="ws-addr"></span>`);
+            line.firstChild.textContent = `${(me.family || '').toUpperCase()} · ${short(me.address)}`;
+            body.appendChild(line);
+            const row = el('div', 'ws-row');
+            const tag = (cls, icon, text) => { const t = el('span', cls, icon + '<span></span>'); t.lastChild.textContent = text; return t; };
+            row.appendChild(tag('ws-tag', ICON.bag, `Owned ${me.owned ?? 0}`));
+            row.appendChild(tag('ws-tag', ICON.bag, `Bought ${me.bought}`));
+            if (me.gifts) row.appendChild(tag('ws-tag', ICON.gift, `Gifts ${me.gifts}`));
+            if (me.tier) row.appendChild(tag('ws-tag gold', ICON.star, `${me.tier.label} −${me.discountPct}%`));
+            body.appendChild(row);
+            const viaXaman = (load() || {}).via === 'xaman';
+            const xamanHint = 'To fully disconnect, remove Jack Beatnic Gallery in Xaman > Settings > Linked apps';
+            if (viaXaman) { const h = el('div', 'ws-hint'); h.textContent = xamanHint; body.appendChild(h); }
+            const out = el('button', 'ws-signout', `${ICON.out}<span>Sign out</span>`); out.type = 'button';
             out.addEventListener('click', async (e) => {
                 e.stopPropagation();
                 try { await api('/api/logout', { method: 'POST', body: '{}' }); } catch {}
-                sessionStorage.removeItem(KEY); me = null; pop.hidden = true; renderFab(); renderChains();
+                log('signed out');
+                sessionStorage.removeItem(KEY); me = null; renderFab(); renderChains();
+                if (viaXaman) setStatus(`Signed out. ${xamanHint}.`); else pop.hidden = true;
             });
-            line.appendChild(out); body.appendChild(line);
-            const row = el('div', 'ws-row');
-            row.appendChild(el('span', 'ws-tag', `${ICON.bag}${me.bought}`));
-            if (me.gifts) row.appendChild(el('span', 'ws-tag', `${ICON.gift}${me.gifts}`));
-            if (me.tier) row.appendChild(el('span', 'ws-tag gold', `${ICON.star}${me.tier.label} −${me.discountPct}%`));
-            body.appendChild(row);
+            body.appendChild(out);
         };
         const render = () => { setStatus(''); lastChain = null; me ? renderMe() : renderChains(); };
 
@@ -368,7 +547,7 @@
             pop.hidden = false;
             setStatus(MOBILE ? `Open ${label}, approve, come back` : `Scan with ${label}`, 'busy');
         };
-        hideQr = () => { if (me) return; if (lastChain) renderOptions(lastChain, true); else renderChains(); };
+        hideQr = async () => { if (me || !body.querySelector('.ws-qr')) return; if (lastChain) await renderOptions(lastChain, true); else renderChains(); };
 
         async function refresh() {
             me = null;
@@ -382,7 +561,10 @@
             b && b.classList.add('is-busy');
             setStatus(`${label || 'Wallet'}: confirm in wallet…`, 'busy');
             try {
-                save(await adapters[run]());
+                log('start', label);
+                const session = await (typeof run === 'function' ? run() : adapters[run]());
+                log('signed in', session.family, session.address, 'via', session.via);
+                save(session);
                 busy = false;
                 await refresh();
                 pop.hidden = true;
@@ -390,7 +572,7 @@
                 busy = false;
                 console.warn('wallet sign-in:', e && (e.message || e));
                 b && b.classList.remove('is-busy');
-                hideQr();
+                await hideQr();
                 setStatus(friendly(e), 'err');
                 fab.classList.add('ws-err'); setTimeout(() => fab.classList.remove('ws-err'), 1500);
             }
@@ -407,7 +589,7 @@
             if (busy) qrClosed = true; else pop.hidden = true;
         });
         refresh();
-        window.JBWalletSignIn = { me: () => me, refresh, signIn: (run) => go(run, null, run) };
+        window.JBWalletSignIn = { me: () => me, refresh, signIn: (run) => go(run, null, String(run)), evmWallets: () => [...evmProviders.values()].map((d) => d.info.name) };
     }
     document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', init) : init();
 })();

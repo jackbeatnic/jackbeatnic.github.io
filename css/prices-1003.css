@@ -1,5 +1,5 @@
 /* Prices tied to buttons (2026-10-03).
-   Each CTA is one line: label left, its own price (blue accent) + arrow right.
+   Each CTA is one line: label left, its own price (deep green) + arrow right.
    Light typography, no boxes; one thin rule above the group (redesign.css). */
 .gallery-protected .nft-card__actions.nft-card__actions--priced {
     flex-direction: column;
@@ -34,8 +34,9 @@
     font-weight: 400;
     letter-spacing: 0.01em;
     white-space: nowrap;
-    color: var(--rd-accent-ink);
+    color: var(--rd-green);
 }
+.gallery-protected .section-promo__price { color: var(--rd-green); }
 .gallery-protected .nft-card__actions--priced .cta__arrow {
     flex: 0 0 auto;
     color: var(--rd-faint);

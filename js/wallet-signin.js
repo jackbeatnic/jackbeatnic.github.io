@@ -217,6 +217,7 @@
                 session.chainId = String(cid);
                 return session;
             } finally {
+                if (lastEth === p) lastEth = null;
                 p.disconnect().catch(() => {});
             }
         },
@@ -623,9 +624,8 @@
                         rememberEvm(item);
                         renderFab();
                         renderMe();
-                        const eth = lastEth || window.ethereum;
-                        if (!eth || !eth.request) return;
-                        ensureEvmChain(eth, item.id).catch((err) => {
+                        if (!lastEth || !lastEth.request) return;
+                        ensureEvmChain(lastEth, item.id).catch((err) => {
                             const rejected = err && (err.code === 4001 || /reject|denied/i.test(String(err.message || err)));
                             setStatus(rejected
                                 ? 'Chain change rejected in the wallet. The count still follows the network you picked.'

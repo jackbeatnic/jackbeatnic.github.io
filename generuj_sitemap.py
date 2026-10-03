@@ -17,6 +17,8 @@ def main() -> None:
         for p in sorted(nft_dir.rglob("*.html")):
             if p.stat().st_size < 40:
                 continue
+            if p.name.endswith("-a.html"):  # Arena banner variant (noindex)
+                continue
             rel = p.relative_to(ROOT).as_posix()
             urls.append(f"{SITE}/{rel}")
 

@@ -849,6 +849,10 @@ def site_og_image_url(base_url: str, og_version: str) -> str:
 # robots.txt must keep /jbg-present/promo/ allowed for Twitterbot & co.
 PROMO_INDEX_JSON = ROOT / "data" / "promo_boards.json"
 PROMO_PUBLIC_BASE = "https://jackbeatnic.github.io/jbg-present/promo"
+# Horizontal banners (1200x630) for the Arena variant nft/<col>/<id>-a.html.
+# X keeps the square on nft/<col>/<id>.html; Arena (link preview, no attached
+# image) links the -a page so its preview shows the banner.
+PROMO_BANNER_PUBLIC_BASE = "https://jackbeatnic.github.io/jbg-present/promo_banner"
 _PROMO_INDEX: dict | None = None
 
 
@@ -917,6 +921,31 @@ def promo_board(nft: dict) -> dict | None:
     }
 
 
+def promo_banner(nft: dict) -> dict | None:
+    """Published horizontal banner (1200x630, jbg-present/promo_banner) or None."""
+    key = promo_board_key(nft)
+    if key is None:
+        return None
+    cid, tid = key
+    idx = promo_index()
+    entry = ((idx.get("banners") or {}).get(cid) or {}).get(f"{tid:04d}")
+    if not entry:
+        return None
+    width, height, sha = entry
+    base = (idx.get("banner_base") or PROMO_BANNER_PUBLIC_BASE).rstrip("/")
+    return {
+        "url": f"{base}/{cid}/{tid:04d}.jpg?v={sha[:8]}",
+        "width": int(width),
+        "height": int(height),
+    }
+
+
+def arena_share_path_for_nft(nft: dict) -> str:
+    """Arena variant: nft/{collection_slug}/{token_id}-a.html (og:image = banner)."""
+    rel = share_path_for_nft(nft)
+    return rel[: -len(".html")] + "-a.html"
+
+
 def promo_square_url(nft: dict) -> str | None:
     """Back-compat helper: public board URL or None."""
     board = promo_board(nft)
@@ -937,16 +966,30 @@ def share_og_image(nft: dict, base_url: str, og_version: str) -> tuple[str, int,
     return url, WIDTH, HEIGHT, "site"
 
 
-def share_page_html(nft: dict, info: dict, base_url: str, og_version: str) -> str:
+def share_page_html(
+    nft: dict,
+    info: dict,
+    base_url: str,
+    og_version: str,
+    *,
+    arena: bool = False,
+) -> str:
+    """Share landing. arena=True: the -a.html variant with the horizontal banner
+    as og:image (caller checks promo_banner(nft) first); noindex, same redirect."""
     token_id = int(nft["token_id"])
     collection = nft_collection_name(nft, info)
     artwork_title = nft_artwork_title(nft)
     price_text, price_hint = format_share_price(nft, info)
-    rel_path = share_path_for_nft(nft)
+    rel_path = arena_share_path_for_nft(nft) if arena else share_path_for_nft(nft)
     share_url = f"{base_url}/{rel_path}"
     # Crawlers (X, Telegram, Facebook, LinkedIn) read these tags.
     # Promo board (jbg-present Pages) first; og-preview.jpg if there is none.
-    og_image, og_w, og_h, _kind = share_og_image(nft, base_url, og_version)
+    banner = promo_banner(nft) if arena else None
+    if banner:
+        og_image, og_w, og_h = banner["url"], banner["width"], banner["height"]
+    else:
+        og_image, og_w, og_h, _kind = share_og_image(nft, base_url, og_version)
+    robots_meta = '\n    <meta name="robots" content="noindex">' if arena else ""
     twitter_image = og_image
     gallery_url = gallery_deep_link(nft, base_url)
     title = f"{artwork_title} | Jack Beatnic Gallery"
@@ -958,7 +1001,7 @@ def share_page_html(nft: dict, info: dict, base_url: str, og_version: str) -> st
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{html.escape(description)}">
-    <title>{html.escape(title)}</title>
+    <title>{html.escape(title)}</title>{robots_meta}
     <meta property="og:type" content="website">
     <meta property="og:url" content="{html.escape(share_url)}">
     <meta property="og:title" content="{html.escape(title)}">
@@ -1043,6 +1086,13 @@ def generate_share_pages(
         out.write_text(share_page_html(nft, info, base_url, og_version), encoding="utf-8")
         written.append(out)
         active_paths.add(out.resolve())
+        # Arena variant (banner og:image) only when the banner is published.
+        if promo_banner(nft):
+            out_a = ROOT / arena_share_path_for_nft(nft)
+            out_a.write_text(share_page_html(nft, info, base_url, og_version, arena=True), encoding="utf-8")
+            written.append(out_a)
+            active_paths.add(out_a.resolve())
+            per_kind["banner"] = per_kind.get("banner", 0) + 1
         share_url = f"{base_url}/{rel}"
         nft["share_url"] = share_url
         col = nft_collection_id(nft)
@@ -1075,7 +1125,8 @@ def generate_share_pages(
     for col, n in sorted(per_col.items()):
         print(f"[page] {col}: {n}")
     print(f"[page] og:image — promo board: {per_kind.get('board', 0)}, "
-          f"og-preview.jpg: {per_kind.get('site', 0)}")
+          f"og-preview.jpg: {per_kind.get('site', 0)}, "
+          f"Arena -a.html (banner): {per_kind.get('banner', 0)}")
     print(f"[page] razem {len(written)} plików")
     return written
 

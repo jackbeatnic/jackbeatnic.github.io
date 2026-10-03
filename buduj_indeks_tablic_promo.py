@@ -5,6 +5,8 @@ generuj_og_preview.py reads this index to put the work's promo board into
 og:image / twitter:image of nft/<collection>/<id>.html (fallback: og-preview.jpg).
 
 Board file name = ON-CHAIN token id, 4 digits: promo/<collection_id>/<NNNN>.jpg
+Horizontal banners (1200x630, Arena link previews) are indexed the same way from
+promo_banner/<collection_id>/<NNNN>.jpg into the "banners" key.
   (gallery token_id for NJ vol2 = 10000+n and AI Play = 700000000+n,
    so the generator uses onchain_token_id when present).
 
@@ -25,6 +27,7 @@ import os
 import struct
 import subprocess
 import sys
+import urllib.error
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
@@ -36,6 +39,8 @@ INDEX = ROOT / "data" / "promo_boards.json"
 PRESENT = Path(os.environ.get("JB_PRESENT_DIR") or (ROOT.parent / "jbg-present"))
 REPO = "jackbeatnic/jbg-present"
 PUBLIC_BASE = "https://jackbeatnic.github.io/jbg-present/promo"
+BANNER_DIR = "promo_banner"
+BANNER_BASE = "https://jackbeatnic.github.io/jbg-present/promo_banner"
 UA = "JackBeatnicGallery/1.0"
 
 
@@ -77,9 +82,14 @@ def gh_json(path: str) -> dict:
         return json.load(r)
 
 
-def list_github() -> dict[str, dict[str, str]]:
+def list_github(top: str = "promo") -> dict[str, dict[str, str]]:
     """{collection: {NNNN: blob_sha}} from the default branch of jbg-present."""
-    root = gh_json(f"repos/{REPO}/contents/promo")
+    try:
+        root = gh_json(f"repos/{REPO}/contents/{top}")
+    except urllib.error.HTTPError as exc:
+        if exc.code == 404 and top != "promo":
+            return {}
+        raise
     out: dict[str, dict[str, str]] = {}
     for d in root:
         if d.get("type") != "dir":
@@ -106,9 +116,9 @@ def _present_ref() -> str:
     raise SystemExit(f"{PRESENT}: brak origin/main i HEAD")
 
 
-def list_local() -> dict[str, dict[str, str]]:
+def list_local(top: str = "promo") -> dict[str, dict[str, str]]:
     r = subprocess.run(
-        ["git", "ls-tree", "-r", _present_ref(), "promo"],
+        ["git", "ls-tree", "-r", _present_ref(), top],
         cwd=PRESENT, capture_output=True, text=True, check=True,
     )
     out: dict[str, dict[str, str]] = {}
@@ -153,8 +163,8 @@ def sizes_local(items: list[tuple[str, str, str]]) -> dict[str, tuple[int, int]]
     return out
 
 
-def size_remote(col: str, stem: str) -> tuple[int, int] | None:
-    url = f"{PUBLIC_BASE}/{col}/{stem}.jpg"
+def size_remote(col: str, stem: str, base: str = PUBLIC_BASE) -> tuple[int, int] | None:
+    url = f"{base}/{col}/{stem}.jpg"
     for rng in ("bytes=0-4095", None):
         headers = {"User-Agent": UA}
         if rng:
@@ -170,9 +180,8 @@ def size_remote(col: str, stem: str) -> tuple[int, int] | None:
     return None
 
 
-def build(source: str) -> dict:
-    listing = list_local() if source == "local" else list_github()
-    old = (load_old().get("collections") or {})
+def build_part(source: str, top: str, old: dict, base: str) -> dict[str, dict[str, list]]:
+    listing = list_local(top) if source == "local" else list_github(top)
     cols: dict[str, dict[str, list]] = {}
     todo: list[tuple[str, str, str]] = []
     for col, files in sorted(listing.items()):
@@ -184,7 +193,7 @@ def build(source: str) -> dict:
                 cols[col][stem] = p
             else:
                 todo.append((col, stem, sha))
-    print(f"[promo-index] {sum(len(v) for v in listing.values())} boards, {len(todo)} to measure ({source})")
+    print(f"[promo-index] {top}: {sum(len(v) for v in listing.values())} boards, {len(todo)} to measure ({source})")
 
     failed = 0
     if source == "local":
@@ -198,7 +207,7 @@ def build(source: str) -> dict:
     else:
         def work(item):
             col, stem, _sha = item
-            return item, size_remote(col, stem)
+            return item, size_remote(col, stem, base)
 
         with ThreadPoolExecutor(max_workers=16) as ex:
             for (col, stem, sha), size in ex.map(work, todo):
@@ -207,14 +216,24 @@ def build(source: str) -> dict:
                     continue
                 cols[col][stem] = [size[0], size[1], sha[:10]]
     if failed:
-        print(f"[promo-index] WARN: {failed} boards without size (skipped)")
+        print(f"[promo-index] WARN: {top}: {failed} boards without size (skipped)")
+    return {c: v for c, v in cols.items() if v}
+
+
+def build(source: str) -> dict:
+    prev = load_old()
+    cols = build_part(source, "promo", prev.get("collections") or {}, PUBLIC_BASE)
+    banners = build_part(source, BANNER_DIR, prev.get("banners") or {}, BANNER_BASE)
     return {
         "_doc": "Public promo boards on jbg-present Pages. Key = on-chain token id (4 digits). "
-                "Value = [width, height, blob sha (cache-bust ?v=)]. Built by buduj_indeks_tablic_promo.py.",
+                "Value = [width, height, blob sha (cache-bust ?v=)]. 'banners' = horizontal 1200x630 boards "
+                "(promo_banner/, Arena share pages). Built by buduj_indeks_tablic_promo.py.",
         "base": PUBLIC_BASE,
         "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
         "source": source,
-        "collections": {c: v for c, v in cols.items() if v},
+        "collections": cols,
+        "banner_base": BANNER_BASE,
+        "banners": banners,
     }
 
 
@@ -226,8 +245,9 @@ def refresh(source: str | None = None, quiet: bool = False) -> dict:
     doc = build(source)
     total = sum(len(v) for v in doc["collections"].values())
     prev = load_old()
-    if prev.get("collections") == doc["collections"]:
-        print(f"[promo-index] bez zmian ({total} boards)")
+    nb = sum(len(v) for v in doc["banners"].values())
+    if prev.get("collections") == doc["collections"] and prev.get("banners") == doc["banners"]:
+        print(f"[promo-index] bez zmian ({total} boards, {nb} banners)")
         return prev
     INDEX.parent.mkdir(parents=True, exist_ok=True)
     INDEX.write_text(
@@ -237,7 +257,7 @@ def refresh(source: str | None = None, quiet: bool = False) -> dict:
     if not quiet:
         for c, v in doc["collections"].items():
             print(f"[promo-index] {c}: {len(v)}")
-    print(f"[promo-index] zapisano {INDEX.relative_to(ROOT)} ({total} boards)")
+    print(f"[promo-index] zapisano {INDEX.relative_to(ROOT)} ({total} boards, {nb} banners)")
     return doc
 
 

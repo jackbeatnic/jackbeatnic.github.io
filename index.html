@@ -66,7 +66,8 @@
     <link rel="stylesheet" href="css/gallery.css?v=20260925type2">
     <link rel="stylesheet" href="css/text-select.css?v=20260815copy">
     <link rel="stylesheet" href="css/redesign.css?v=20261001tag">
-    <link rel="stylesheet" href="css/hero-a.css?v=20261001bar089">
+    <link rel="stylesheet" href="css/hero-a.css?v=20261003ux">
+    <link rel="stylesheet" href="css/ux-1003.css?v=20261003ux">
 </head>
 <body class="gallery-protected home-hero-a">
     <header class="site-header site-header--sticky site-header--overlay" id="site-header">
@@ -163,6 +164,7 @@
                 <div class="hero-a-band__links">
                     <a href="#explore" class="hero-a-band__link">Explore the Gallery</a>
                     <a id="hero-marketplaces" href="#about-marketplaces" class="hero-a-band__link hero-a-band__link--ghost">Marketplaces</a>
+                    <a href="#about" class="hero-a-band__link hero-a-band__link--ghost">About</a>
                 </div>
             </div>
             <div id="hero-description" class="hero-a-band__prose"></div>
@@ -279,22 +281,30 @@
 
         <div id="gallery-grid" class="gallery-grid"></div>
 
-        <section id="about" class="about-section" aria-labelledby="about-title">
+        <section id="about" class="about-section about-hub" aria-labelledby="about-title">
             <h2 id="about-title" class="about-section__title">About</h2>
-            <div id="about-content" class="about-section__body"></div>
-            <div class="about-section__social">
-                <span class="social-links__label">Connect</span>
-                <nav id="about-social" class="social-links" aria-label="Social and community profiles" hidden></nav>
+            <div id="about-content" class="about-section__body">
+                <p>I'm Jack Beatnic — in NFTs since 2022, a photographer who opened the door to SI art without leaving the classical path: light, landscape, quiet composition.</p>
+                <p>Wander the works above — let mood and color lead you. Most pieces grow where photography meets the machine; now and then, something is drawn by hand. Glad you're exploring with me.</p>
             </div>
-            <div class="about-section__wallets">
-                <span class="social-links__label">Wallets</span>
-                <p class="wallet-names__hint">On-chain names — find, tip, or search on Zora, Base, OpenSea, OBJKT</p>
-                <div id="about-wallets" class="wallet-names" aria-label="Wallet names" hidden></div>
-            </div>
-            <div id="about-marketplaces" class="about-section__marketplaces">
-                <span class="social-links__label">Marketplaces</span>
-                <p class="marketplace-links__lead">OpenSea is the main hub for EVM works; photography and other chains live on their native platforms.</p>
-                <nav id="about-marketplaces-nav" class="marketplace-links" aria-label="NFT marketplaces" hidden></nav>
+            <div id="about-find" class="find-hub">
+                <p class="find-hub__kicker">Find me</p>
+                <p class="find-hub__lead">One name, a few open doors. Follow the new work, say hello, or collect a piece wherever you feel at home.</p>
+                <div class="find-hub__cols">
+                    <div class="find-hub__group">
+                        <h3 class="find-hub__label">Follow &amp; say hello</h3>
+                        <ul id="about-social" class="find-hub__list" aria-label="Social and community profiles" hidden></ul>
+                    </div>
+                    <div id="about-marketplaces" class="find-hub__group about-section__marketplaces">
+                        <h3 class="find-hub__label">Collect</h3>
+                        <ul id="about-marketplaces-nav" class="find-hub__list" aria-label="NFT marketplaces" hidden></ul>
+                    </div>
+                </div>
+                <div class="about-section__wallets">
+                    <span class="find-hub__label">On-chain names</span>
+                    <p class="wallet-names__hint">Search them on Zora, Base, OpenSea or OBJKT — or use them to send a tip.</p>
+                    <div id="about-wallets" class="wallet-names" aria-label="Wallet names" hidden></div>
+                </div>
             </div>
         </section>
 
@@ -311,6 +321,10 @@
             <p class="site-footer__copy">© Jack Beatnic — 2026</p>
         </footer>
     </main>
+
+    <button type="button" id="scroll-top-fab" class="scroll-top-fab" aria-label="Back to top" title="Back to top">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+    </button>
 
     <div id="tip-modal" class="tip-modal" hidden role="dialog" aria-modal="true" aria-labelledby="tip-modal-title">
         <div class="tip-modal__backdrop" aria-hidden="true"></div>
@@ -478,7 +492,7 @@
     <script src="js/shop.js?v=20261001shopcopy"></script>
     <script src="js/xrpl-mint.js?v=20261001modal"></script>
     <script src="js/sui-mint.js?v=20260906sui03"></script>
-    <script src="js/gallery.js?v=20261001ctanoprice"></script>
+    <script src="js/gallery.js?v=20261003ux"></script>
     <script src="js/nav-menu.js?v=20261001ux"></script>
     <script src="js/hero-a.js?v=20261001live"></script>
 </body>

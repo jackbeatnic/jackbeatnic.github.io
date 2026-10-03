@@ -3,7 +3,8 @@
 # including /jb-nft-assets/ (separate repo, same Pages host).
 
 # Link-preview bots (X cards, Telegram, Facebook, LinkedIn, …) must be able to
-# fetch the promo boards used as og:image on nft/<collection>/<id>.html.
+# fetch the promo boards used as og:image on nft/<collection>/<id>.html
+# (square) and nft/<collection>/<id>-a.html (Arena banner, promo_banner/).
 # Without this, X drops the card image (Twitterbot obeys robots.txt).
 User-agent: Twitterbot
 User-agent: TelegramBot
@@ -16,6 +17,7 @@ User-agent: Discordbot
 User-agent: WhatsApp
 User-agent: Applebot
 Allow: /jbg-present/promo/
+Allow: /jbg-present/promo_banner/
 Disallow: /jb-nft-assets/
 Disallow: /jb-nft-assets
 Disallow: /jbg-present/

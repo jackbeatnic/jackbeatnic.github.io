@@ -345,18 +345,17 @@ const Gallery = (() => {
                 nft.shop_status === 'coming' ||
                 (isShopNft(nft) && (nft.qty_available || 0) <= 0);
             const disabled = coming ? ' disabled' : '';
-            const shopLabel = escapeHtml(shopCtaLabel(nft));
+            const shopBtn = `<button type="button" class="btn btn--primary btn--block shop-buy cta"${disabled}>${ctaInner(shopCtaLabel(nft), shopPriceText(nft))}</button>`;
             if (osHref) {
-                const osLabel = escapeHtml(osCtaLabel(nft));
                 return `
-                <div class="nft-card__actions nft-card__actions--dual">
-                    <button type="button" class="btn btn--primary btn--block shop-buy"${disabled}>${shopLabel}</button>
-                    <a class="btn btn--ghost btn--block" href="${escapeHtml(osHref)}" target="_blank" rel="noopener noreferrer">${osLabel}</a>
+                <div class="nft-card__actions nft-card__actions--dual nft-card__actions--priced">
+                    ${shopBtn}
+                    <a class="btn btn--ghost btn--block cta" href="${escapeHtml(osHref)}" target="_blank" rel="noopener noreferrer">${ctaInner(osCtaLabel(nft), osPriceText(nft))}</a>
                 </div>`;
             }
             return `
-                <div class="nft-card__actions">
-                    <button type="button" class="btn btn--primary btn--block shop-buy"${disabled}>${shopLabel}</button>
+                <div class="nft-card__actions nft-card__actions--priced">
+                    ${shopBtn}
                 </div>`;
         }
         const dual = resolveDualMarketplaces(nft);
@@ -390,9 +389,9 @@ const Gallery = (() => {
         ) {
             const tp = escapeHtml(marketplaceUrl(nft));
             return `
-                <div class="nft-card__actions nft-card__actions--dual">
-                    <button type="button" class="btn btn--primary btn--block sui-mint">From the Studio</button>
-                    <a class="btn btn--ghost btn--block" href="${tp}" target="_blank" rel="noopener noreferrer">TradePort</a>
+                <div class="nft-card__actions nft-card__actions--dual nft-card__actions--priced">
+                    <button type="button" class="btn btn--primary btn--block sui-mint cta">${ctaInner('Studio Shop', suiStudioPriceText(nft))}</button>
+                    <a class="btn btn--ghost btn--block cta" href="${tp}" target="_blank" rel="noopener noreferrer">${ctaInner('TradePort', tradeportPriceText(nft))}</a>
                 </div>`;
         }
         const rawUrl = marketplaceUrl(nft);
@@ -405,11 +404,42 @@ const Gallery = (() => {
                 ? rawUrl
                 : OpenSeaLinks.buyUrl(rawUrl),
         );
+        // Single OpenSea / TradePort button: its price sits on the button.
+        const tied = singleTiedCta(nft);
+        if (tied) {
+            return `
+                <div class="nft-card__actions nft-card__actions--priced">
+                    <a class="btn btn--primary btn--block cta" href="${href}" target="_blank" rel="noopener noreferrer">${ctaInner(tied.label, tied.price)}</a>
+                </div>`;
+        }
         const label = escapeHtml(marketplaceLabel(nft));
         return `
                 <div class="nft-card__actions">
                     <a class="btn btn--primary btn--block" href="${href}" target="_blank" rel="noopener noreferrer">${label}</a>
                 </div>`;
+    }
+
+    /** OpenSea / TradePort single-button cards whose price belongs to that button. */
+    function singleTiedCta(nft) {
+        if (isShopNft(nft) || isObjktAuction(nft) || isManifoldAuction(nft)) return null;
+        if (isXrpCafeNft(nft) || isObjktNft(nft) || isDualMarketplaceNft(nft)) return null;
+        const name = marketplaceName(nft);
+        if (name === MARKETPLACE_NAMES.tradeport) {
+            const label = isLaunchpadMint(nft) ? 'Mint on TradePort' : 'TradePort';
+            return { label, price: tradeportPriceText(nft) };
+        }
+        if (name === MARKETPLACE_NAMES.opensea && isEvmChain(nft)) {
+            return { label: 'OpenSea', price: osPriceText(nft) };
+        }
+        return null;
+    }
+
+    /** Card has its prices on the buttons: the separate price line is not shown. */
+    function pricesOnButtons(nft) {
+        if (studioShopReady(nft)) return true;
+        if (isLaunchpadMint(nft) && typeof SuiMint !== 'undefined' && SuiMint.isLive()) return true;
+        if (resolveDualMarketplaces(nft) || canXrplMintCopy(nft)) return false;
+        return Boolean(marketplaceUrl(nft)) && Boolean(singleTiedCta(nft));
     }
 
     function tokenLabel(nft) {
@@ -856,12 +886,26 @@ const Gallery = (() => {
         const shop = new Map();
         const featured = new Map();
         const gallery = new Set();
+        // OpenSea listing of the gallery copy (OS report): the OpenSea price for
+        // the same work on Shop cards too (2026-10-03).
+        const galleryOs = new Map();
         for (const nft of nfts) {
             const k = catalogKey(nft);
             if (!k) continue;
             if (nft.medium === 'shop') shop.set(k, nft);
             else if (nft.medium === 'featured_promo') featured.set(k, nft);
-            else gallery.add(k);
+            else {
+                gallery.add(k);
+                const listed =
+                    nft.listing_status === 'For Sale' || nft.status === 'listed';
+                if (listed && isEvmChain(nft) && !galleryOs.has(k)) {
+                    const sym = currencyForNft(nft);
+                    const gp = priceField(nft, 'current_price', sym);
+                    if (gp != null && gp !== '' && Number(gp) > 0) {
+                        galleryOs.set(k, { price: gp, currency: sym });
+                    }
+                }
+            }
         }
         for (const nft of nfts) {
             const k = catalogKey(nft);
@@ -902,6 +946,11 @@ const Gallery = (() => {
                 }
                 if (!nft.opensea_url) nft.opensea_url = f.opensea_url;
             }
+            const own = galleryOs.get(k);
+            if (nft.os_list_price == null && own) {
+                nft.os_list_price = own.price;
+                nft.os_list_currency = String(own.currency || '').toUpperCase();
+            }
             if (nft.os_list_price == null && s?.os_price) {
                 nft.os_list_price = s.os_price;
                 nft.os_list_currency = (
@@ -935,14 +984,67 @@ const Gallery = (() => {
         return OpenSeaLinks.buyUrl(raw);
     }
 
-    // Card CTAs carry no price: prices are shown at the top of the card and in the modal.
-    // The first card button gets ' →' via CSS (redesign.css); the OpenSea link adds its own.
+    // Prices tied to buttons (2026-10-03, replaces the 2026-10-01 no-price CTAs):
+    // each price sits on its own button (Shop price on 'Studio Shop', OpenSea price
+    // on 'OpenSea', TradePort price on 'TradePort'). Unknown price = button without a price.
     function shopCtaLabel(nft) {
         return 'Studio Shop';
     }
 
     function osCtaLabel(nft) {
-        return 'OpenSea \u2192';
+        return 'OpenSea';
+    }
+
+    function hasPrice(v) {
+        if (v == null || v === '') return false;
+        const n = Number(v);
+        return Number.isFinite(n) && n > 0;
+    }
+
+    function shopPriceText(nft) {
+        const p = nft.shop_pay_amount || nft.pay_amount || nft.shop_price;
+        if (!hasPrice(p)) return '';
+        const cur = (nft.shop_currency || nft.listing_currency || nft.currency || 'AVAX').toUpperCase();
+        return `${p} ${cur}`;
+    }
+
+    function osPriceText(nft) {
+        let p = nft.os_list_price;
+        let cur = nft.os_list_currency || '';
+        if (!hasPrice(p) && nft.medium !== 'shop' && isEvmChain(nft)) {
+            // Gallery / Featured cards: own OpenSea listing (OS report / featured feed)
+            const listed = nft.listing_status === 'For Sale' || nft.status === 'listed';
+            if (listed) {
+                const sym = currencyForNft(nft);
+                p = priceField(nft, 'current_price', sym);
+                cur = sym;
+            }
+        }
+        if (!hasPrice(p)) return '';
+        return `${p} ${(cur || currencyForNft(nft) || '').toUpperCase()}`.trim();
+    }
+
+    function tradeportPriceText(nft) {
+        const listed = nft.listing_status === 'For Sale' || nft.status === 'listed';
+        const p =
+            nft.tradeport_price_sui ??
+            nft.mint_price_sui ??
+            (listed ? nft.current_price_sui : null);
+        return hasPrice(p) ? `${p} SUI` : '';
+    }
+
+    function suiStudioPriceText(nft) {
+        if (typeof SuiMint === 'undefined' || !SuiMint.priceOf) return '';
+        const p = SuiMint.priceOf(nft);
+        return hasPrice(p) ? `${p} SUI` : '';
+    }
+
+    /** Button content: label, its own price (blue), arrow. */
+    function ctaInner(label, price) {
+        const priceHtml = price
+            ? `<span class="cta__price">${escapeHtml(price)}</span>`
+            : '';
+        return `<span class="cta__label">${escapeHtml(label)}</span>${priceHtml}<span class="cta__arrow" aria-hidden="true">\u2192</span>`;
     }
 
     function channelMarksHtml(nft) {
@@ -1823,7 +1925,10 @@ const Gallery = (() => {
         instagram: { name: 'Instagram', group: 'follow' },
         farcaster: { name: 'Farcaster', group: 'follow' },
         base: { name: 'Base App', group: 'follow' },
-        arena: { name: 'Arena', group: 'follow' },
+        // Two Arena profiles (2026-10-03): photography first (the main one), SI art second.
+        // The SI art handle stays @JackBeatnicAI (cannot be renamed); only the label says SI.
+        arena: { name: 'Arena', group: 'follow', handle: '@JackBeatnic · Photography' },
+        'arena-ai': { name: 'Arena', group: 'follow', handle: '@JackBeatnicAI · SI art' },
         zora: { name: 'Zora', group: 'follow' },
         'zora-ai': { name: 'Zora', group: 'follow' },
         opensea: { name: 'OpenSea', group: 'collect', handle: 'All EVM collections' },
@@ -1836,7 +1941,7 @@ const Gallery = (() => {
         'xrp-cafe': { name: 'XRP.Cafe', group: 'collect', handle: 'XRPL works' },
     };
     const HUB_ORDER = [
-        'x', 'instagram', 'farcaster', 'base', 'arena', 'zora', 'zora-ai',
+        'x', 'instagram', 'farcaster', 'base', 'arena', 'arena-ai', 'zora', 'zora-ai',
         'opensea', 'tradeport-sui', 'objkt', 'objkt-main', 'objkt-ai', 'salvor-main', 'salvor-ai', 'xrp-cafe',
     ];
 
@@ -2282,6 +2387,12 @@ const Gallery = (() => {
         const priceAlt = price.alt
             ? `<span class="nft-card__price-alt">${escapeHtml(price.alt)}</span>`
             : '';
+        const priceLineHtml = pricesOnButtons(nft)
+            ? ''
+            : `<p class="nft-card__price" title="${escapeHtml(price.hint)}">
+                    <span class="nft-card__price-value">${escapeHtml(price.text)}</span>
+                    ${priceAlt}
+                </p>`;
 
         card.innerHTML = `
             <div class="nft-image-wrap">
@@ -2317,10 +2428,7 @@ const Gallery = (() => {
                         </button>
                     </div>
                 </div>
-                <p class="nft-card__price" title="${escapeHtml(price.hint)}">
-                    <span class="nft-card__price-value">${escapeHtml(price.text)}</span>
-                    ${priceAlt}
-                </p>
+                ${priceLineHtml}
                 ${descriptionHtml}
                 <div class="nft-card__tags">${tagsHtml}</div>
                 <div class="color-dots nft-card__palette">${colorsHtml}</div>

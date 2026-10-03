@@ -254,6 +254,151 @@ def try_launchpad_api_row(launchpad_id: str) -> dict | None:
     return rows[0] if rows else None
 
 
+# TradePort launchpad mint prices per edition token (shown on the site's TradePort
+# button). Tried in order; the first table that returns prices wins. On any failure
+# the previous (last good) price is kept, never a guessed one.
+LAUNCHPAD_PRICE_QUERIES = (
+    (
+        "launches_editions",
+        """
+query fetchLaunchpadEditionPrices($collectionId: uuid!) {
+  sui {
+    launches_editions(where: { collection_id: { _eq: $collectionId } }, limit: 5000) {
+      id
+      token_id
+      price
+    }
+  }
+}
+""",
+    ),
+    (
+        "edition_launches",
+        """
+query fetchEditionLaunchPrices($collectionId: uuid!) {
+  sui {
+    edition_launches(where: { collection_id: { _eq: $collectionId } }, limit: 5000) {
+      id
+      token_id
+      price
+    }
+  }
+}
+""",
+    ),
+)
+
+
+def _public_token_stage_price(launchpad_id: str, token_uuid: str) -> float | None:
+    """Active mint-stage price (SUI) of one edition token from the public launchpad API."""
+    query = urlencode({"page": 1, "pageSize": 20, "tokenId": token_uuid})
+    url = f"{LAUNCHPAD_PUBLIC_BASE}/{launchpad_id}/mint-stage?{query}"
+    req = urllib.request.Request(
+        url,
+        headers={"User-Agent": "JackBeatnicGallery/1.0", "Accept": "application/json"},
+        method="GET",
+    )
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        body = json.loads(resp.read().decode("utf-8"))
+    items = (body or {}).get("items") or []
+    total = int((body or {}).get("total") or 0)
+    if total > 20 or len(items) > 20:
+        # Filter not applied by the API: never attribute a collection-wide row to a token.
+        raise ValueError("tokenId filter ignored")
+    now = datetime.now(timezone.utc)
+    best: tuple[str, float] | None = None
+    for st in items:
+        price = sui_price(st.get("price"))
+        if price is None or price <= 0:
+            continue
+        start = str(st.get("startTime") or "")
+        try:
+            started = not start or datetime.fromisoformat(start.replace("Z", "+00:00")) <= now
+        except ValueError:
+            started = True
+        if not started:
+            continue
+        if best is None or start > best[0]:
+            best = (start, price)
+    return best[1] if best else None
+
+
+def fetch_launchpad_prices_public(launchpad_id: str, token_uuids: list[str]) -> dict[str, float]:
+    """Per-token public mint-stage prices (no API key). {} if the API is unusable."""
+    from concurrent.futures import ThreadPoolExecutor
+
+    uuids = [t for t in dict.fromkeys(token_uuids) if t]
+    if not launchpad_id or not uuids:
+        return {}
+    prices: dict[str, float] = {}
+    errors = 0
+
+    def one(tid: str) -> tuple[str, float | None, bool]:
+        for attempt in range(3):
+            try:
+                return tid, _public_token_stage_price(launchpad_id, tid), True
+            except ValueError:
+                return tid, None, False
+            except (urllib.error.URLError, TimeoutError, OSError, json.JSONDecodeError):
+                time.sleep(1.5 * (attempt + 1))
+        return tid, None, False
+
+    with ThreadPoolExecutor(max_workers=6) as pool:
+        for tid, price, ok in pool.map(one, uuids):
+            if not ok:
+                errors += 1
+            elif price is not None:
+                prices[tid] = price
+    print(f"  [tp-price] public mint-stage: prices for {len(prices)}/{len(uuids)} tokens, errors {errors}")
+    return prices
+
+
+def fetch_launchpad_prices(launchpad_id: str, token_uuids: list[str] | None = None) -> dict[str, float]:
+    """{edition token uuid: mint price in SUI} from TradePort; {} on failure."""
+    if not launchpad_id:
+        return {}
+    if token_uuids:
+        public = fetch_launchpad_prices_public(launchpad_id, token_uuids)
+        if public:
+            return public
+    for table, query in LAUNCHPAD_PRICE_QUERIES:
+        try:
+            data = graphql(query, {"collectionId": launchpad_id}, strict=False)
+        except SystemExit as exc:
+            print(f"  [tp-price] {table}: {str(exc).splitlines()[0][:160]}")
+            continue
+        rows = (data.get("sui") or {}).get(table) or []
+        prices: dict[str, float] = {}
+        for row in rows:
+            price = sui_price(row.get("price"))
+            if price is None or price <= 0:
+                continue
+            for key in (row.get("token_id"), row.get("id")):
+                if key:
+                    prices[str(key)] = price
+        if prices:
+            print(f"  [tp-price] {table}: {len(rows)} rows, prices for {len(prices)} keys")
+            return prices
+        print(f"  [tp-price] {table}: no prices")
+    return {}
+
+
+def apply_tradeport_prices(entries: list[dict], prices: dict[str, float], *, checked_at: str) -> int:
+    """Set tradeport_price_sui on launchpad entries found in prices; others keep their last good value."""
+    hit = 0
+    for entry in entries:
+        tid = str(entry.get("launchpad_token_id") or "")
+        if tid and tid in prices:
+            entry["tradeport_price_sui"] = prices[tid]
+            entry["tradeport_price_checked_at"] = checked_at
+            hit += 1
+    return hit
+
+
+def utc_now_iso() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
 def collection_public_url(slug: str) -> str:
     return f"https://www.tradeport.xyz/sui/collection/{slug}"
 
@@ -535,7 +680,7 @@ def build_launchpad_item_entry(
     if old:
         if old.get("likes_count") not in (None, ""):
             entry["likes_count"] = old["likes_count"]
-        for key in ("share_url", "og_image"):
+        for key in ("share_url", "og_image", "tradeport_price_sui", "tradeport_price_checked_at"):
             if old.get(key):
                 entry[key] = old[key]
         if old.get("ai", {}).get("dominant_colors") and not entry["ai"]["dominant_colors"]:
@@ -646,6 +791,15 @@ def sync_one_collection(
                 entries.append(lp_entry)
         if skipped_lp:
             print(f"  launchpad: pominięto bez obrazu: {skipped_lp}")
+        if entries:
+            hit = apply_tradeport_prices(
+                entries,
+                fetch_launchpad_prices(
+                    launchpad_id, [str(e.get("launchpad_token_id") or "") for e in entries]
+                ),
+                checked_at=utc_now_iso(),
+            )
+            print(f"  [tp-price] TradePort price on {hit}/{len(entries)} works (others keep last good / none)")
     elif launchpad_id:
         api_row = try_launchpad_api_row(launchpad_id)
         if api_row:
@@ -967,6 +1121,41 @@ def sync(
     return 0
 
 
+def refresh_prices_only(*, dry_run: bool = False, deploy: bool = False) -> int:
+    """Refresh only TradePort prices in the existing sui_gallery.json (keeps everything else)."""
+    if not OUTPUT_JSON.exists():
+        print("[tp-price] no sui_gallery.json")
+        return 1
+    data = load_json(OUTPUT_JSON)
+    entries = data.get("nfts") or []
+    checked_at = utc_now_iso()
+    total_hit = 0
+    for cfg in load_sui_tradeport_configs():
+        launchpad_id = (cfg.get("tradeport_launchpad_id") or "").strip()
+        col_key = cfg.get("id") or ""
+        col_entries = [e for e in entries if e.get("collection_id") == col_key]
+        if not launchpad_id or not col_entries:
+            continue
+        print(f"[tp-price] {col_key} · launchpad={launchpad_id} · {len(col_entries)} works")
+        prices = fetch_launchpad_prices(
+            launchpad_id, [str(e.get("launchpad_token_id") or "") for e in col_entries]
+        )
+        hit = apply_tradeport_prices(col_entries, prices, checked_at=checked_at)
+        print(f"[tp-price] {col_key}: TradePort price on {hit}/{len(col_entries)} works")
+        total_hit += hit
+    if not total_hit:
+        print("[tp-price] TradePort prices unavailable — sui_gallery.json left unchanged (last good data)")
+        return 1
+    if dry_run:
+        print("[dry-run] not writing sui_gallery.json")
+        return 0
+    save_json(OUTPUT_JSON, data)
+    print(f"[tp-price] saved {OUTPUT_JSON}")
+    if deploy:
+        return deploy_sui_gallery_to_github(dry_run=False)
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description="Sync Sui TradePort collections → sui_gallery.json (+ opcjonalnie deploy GH)"
@@ -991,7 +1180,14 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="Tylko commit+push istniejącego sui_gallery.json (bez odświeżania z API)",
     )
+    parser.add_argument(
+        "--prices-only",
+        action="store_true",
+        help="Only refresh TradePort mint prices in the existing sui_gallery.json (last good kept on failure)",
+    )
     args = parser.parse_args(argv)
+    if args.prices_only:
+        return refresh_prices_only(dry_run=args.dry_run, deploy=args.deploy)
     if args.deploy_only:
         return deploy_sui_gallery_to_github(dry_run=args.dry_run)
     return sync(

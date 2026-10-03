@@ -114,7 +114,7 @@
       },
       {
         "id": "base-eth-ai",
-        "label": "jackbeatnicai.base.eth"
+        "label": "jackbeatnicsi.base.eth"
       },
       {
         "id": "base-eth-photo",
@@ -131,7 +131,7 @@
     ],
     "evm_domains": [
       "jackbeatnic.base.eth",
-      "jackbeatnicai.base.eth",
+      "jackbeatnicsi.base.eth",
       "jackbeatnicphoto.base.eth"
     ],
     "tezos_domains": [
@@ -164,7 +164,7 @@
         "enabled": true,
         "label": "AI Art",
         "creator_wallet": "0xf0b840349b3f285fc05c89eac594ddd254183fb9",
-        "ens": "jackbeatnicai.base.eth",
+        "ens": "jackbeatnicsi.base.eth",
         "contracts": {
           "base": [
             "0x3ae3dd0baa83dfcb8f07e55ae6737bcd0d694347"
@@ -200,7 +200,7 @@
           "id": "ai",
           "label": "AI Art",
           "address": "0xf0b840349b3f285fc05c89eac594ddd254183fb9",
-          "ens": "jackbeatnicai.base.eth"
+          "ens": "jackbeatnicsi.base.eth"
         },
         {
           "id": "main",
@@ -312,7 +312,7 @@
     },
     "manifold_links": {
       "creator": "@jbeatnic",
-      "wallet_ens": "jackbeatnicai.base.eth",
+      "wallet_ens": "jackbeatnicsi.base.eth",
       "contract": {
         "address": "0x3ae3dd0baa83dfcb8f07e55ae6737bcd0d694347",
         "chain": "base",
@@ -340,7 +340,7 @@
           "id": "contract",
           "label": "Creator contract",
           "url": "https://manifold.xyz/@jbeatnic/contract/231786736",
-          "hint": "All works on jackbeatnicai.base.eth (Base)"
+          "hint": "All works on jackbeatnicsi.base.eth (Base)"
         },
         {
           "id": "gallery",
@@ -20178,7 +20178,7 @@
           "contract": "0xffbee7f9b4190d31bd97d7299100811eb3aa41a7",
           "community_url": "https://zora.co/@jackbeatnicai/creator-coin",
           "cta_label": "Zora creator coin →",
-          "wallet_ens": "jackbeatnicai.base.eth"
+          "wallet_ens": "jackbeatnicsi.base.eth"
         },
         {
           "id": "photo-arena",

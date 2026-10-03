@@ -9,6 +9,36 @@
     const API = ((script && script.dataset.api) || 'https://api.jackbeatnic.shop').replace(/\/$/, '');
     const KEY = 'jb_wallet_session';
     const EVM_CHAINS = [43114, 8453, 137, 1];
+    const EVM_NETS = [
+        { id: 43114, key: 'avalanche', label: 'Avalanche', rpc: 'https://api.avax.network/ext/bc/C/rpc', symbol: 'AVAX', explorer: 'https://snowtrace.io' },
+        { id: 8453, key: 'base', label: 'Base', rpc: 'https://mainnet.base.org', symbol: 'ETH', explorer: 'https://basescan.org' },
+        { id: 137, key: 'polygon', label: 'Polygon', rpc: 'https://polygon-rpc.com', symbol: 'POL', explorer: 'https://polygonscan.com' },
+        { id: 1, key: 'ethereum', label: 'Ethereum', rpc: 'https://cloudflare-eth.com', symbol: 'ETH', explorer: 'https://etherscan.io' },
+    ];
+    const EVM_VIEW = 'jb_wallet_evm_chain';
+    let lastEth = null;
+    let pickEvmNet = async () => EVM_NETS[0];
+    const evmNetById = (id) => EVM_NETS.find((n) => n.id === Number(id));
+    async function ensureEvmChain(eth, id) {
+        const hexId = `0x${Number(id).toString(16)}`;
+        try {
+            await eth.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: hexId }] });
+        } catch (e) {
+            const missing = e && (e.code === 4902 || /4902|unrecognized chain/i.test(String(e.message || e)));
+            const net = evmNetById(id);
+            if (!missing || !net) throw e;
+            await eth.request({
+                method: 'wallet_addEthereumChain',
+                params: [{
+                    chainId: hexId,
+                    chainName: net.label,
+                    nativeCurrency: { name: net.symbol, symbol: net.symbol, decimals: 18 },
+                    rpcUrls: [net.rpc],
+                    blockExplorerUrls: [net.explorer],
+                }],
+            });
+        }
+    }
     const MOBILE = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || (window.matchMedia && matchMedia('(pointer:coarse)').matches);
     const PAGE = location.href.split('#')[0];
     const svg = (p, s = 18) => `<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
@@ -151,12 +181,20 @@
         async evm(eth = window.ethereum, name = 'Browser') {
             if (!eth) throw new Error('No EVM wallet');
             log('EVM connect', name);
+            lastEth = eth;
             const [address] = await eth.request({ method: 'eth_requestAccounts' });
-            const cid = parseInt(await eth.request({ method: 'eth_chainId' }), 16);
-            const n = await nonce('evm', address, EVM_CHAINS.includes(cid) ? cid : 43114);
+            let cid = parseInt(await eth.request({ method: 'eth_chainId' }), 16);
+            if (!evmNetById(cid)) {
+                const net = await pickEvmNet();
+                await ensureEvmChain(eth, net.id);
+                cid = net.id;
+            }
+            const n = await nonce('evm', address, cid);
             log('EVM sign', name, address, 'chain', cid);
             const signature = await eth.request({ method: 'personal_sign', params: [`0x${hex(enc.encode(n.message))}`, address] });
-            return verify({ nonce: n.nonce, signature });
+            const session = await verify({ nonce: n.nonce, signature });
+            session.chainId = String(cid);
+            return session;
         },
         async evmWc() {
             const projectId = await wcProjectId();
@@ -164,12 +202,20 @@
             const p = await EthereumProvider.init({ projectId, optionalChains: EVM_CHAINS, showQrModal: true, metadata: WC_META });
             try {
                 await cancellable(p.connect());
+                lastEth = p;
                 const address = p.accounts?.[0];
                 if (!address) throw new Error('No account');
-                const cid = Number(p.chainId);
-                const n = await nonce('evm', address, EVM_CHAINS.includes(cid) ? cid : 43114);
+                let cid = Number(p.chainId);
+                if (!evmNetById(cid)) {
+                    const net = await pickEvmNet();
+                    await ensureEvmChain(p, net.id);
+                    cid = net.id;
+                }
+                const n = await nonce('evm', address, cid);
                 const signature = await cancellable(p.request({ method: 'personal_sign', params: [`0x${hex(enc.encode(n.message))}`, address] }));
-                return await verify({ nonce: n.nonce, signature });
+                const session = await verify({ nonce: n.nonce, signature });
+                session.chainId = String(cid);
+                return session;
             } finally {
                 p.disconnect().catch(() => {});
             }
@@ -393,10 +439,15 @@
 .ws-signout:active{transform:scale(.97)}.ws-chain img{width:20px;height:20px;border-radius:5px;object-fit:contain}
 .ws-tag{display:inline-flex;align-items:center;gap:3px;padding:3px 7px;border-radius:9px;background:rgba(0,0,0,.06);font-size:12px}
 .ws-tag.gold{background:rgba(201,151,28,.15);color:#8a6510}
+.ws-nets{display:flex;gap:4px;flex-wrap:wrap;margin:0 0 8px}
+.ws-net{display:inline-flex;flex-direction:column;align-items:flex-start;gap:1px;padding:5px 8px;border:1px solid rgba(0,0,0,.14);border-radius:9px;background:transparent;color:inherit;cursor:pointer;font:600 11px/1.2 system-ui,sans-serif}
+.ws-net small{font-weight:500;opacity:.7}
+.ws-net.is-on{background:rgba(0,0,0,.08)}
 @media (max-width:768px){.gallery-protected .site-header.is-menu-open ~ .ws-fab{opacity:0;visibility:hidden}}
 @media (prefers-color-scheme:dark){.ws-fab{background:rgba(20,20,20,.66);box-shadow:0 0 0 1px rgba(255,255,255,.1);color:#c8c8c8}
 .ws-pop{background:rgba(24,24,24,.96);color:#ddd;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 8px 28px rgba(0,0,0,.5)}
-.ws-chain{border-color:rgba(255,255,255,.16)}.ws-chain:hover{background:rgba(255,255,255,.07)}.ws-chain:active,.ws-chain.is-busy{background:rgba(255,255,255,.12)}.ws-tag{background:rgba(255,255,255,.08)}.ws-status.err{color:#ff7b6b}}`;
+.ws-chain{border-color:rgba(255,255,255,.16)}.ws-chain:hover{background:rgba(255,255,255,.07)}.ws-chain:active,.ws-chain.is-busy{background:rgba(255,255,255,.12)}.ws-tag{background:rgba(255,255,255,.08)}.ws-status.err{color:#ff7b6b}
+.ws-net{border-color:rgba(255,255,255,.18)}.ws-net.is-on{background:rgba(255,255,255,.12)}}`;
 
     function el(tag, cls, html) { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
     const FRIENDLY = {
@@ -436,6 +487,40 @@
         let errTimer = 0;
         let lastChain = null;
 
+        const evmView = () => {
+            const saved = sessionStorage.getItem(EVM_VIEW);
+            return EVM_NETS.find((n) => n.key === saved) || evmNetById(me && me.chainId) || EVM_NETS[0];
+        };
+        const rememberEvm = (net) => { if (net) sessionStorage.setItem(EVM_VIEW, net.key); };
+        const chainQty = (key) => {
+            const map = me && me.ownedByChain;
+            if (!map || !Object.prototype.hasOwnProperty.call(map, key)) return null;
+            const n = Number(map[key] || 0);
+            return (me.ownedCapped && me.ownedCapped[key]) ? `${n.toLocaleString()}+` : n.toLocaleString();
+        };
+        const boughtOn = (key) => (me.byCollection || []).reduce((sum, row) => {
+            if (row.chain !== key || row.kind === 'gift') return sum;
+            return sum + Number(row.q || 0);
+        }, 0);
+        pickEvmNet = () => new Promise((resolve, reject) => {
+            body.innerHTML = '';
+            const note = el('div', 'ws-hint');
+            note.textContent = 'Choose the network';
+            const row = el('div', 'ws-nets');
+            EVM_NETS.forEach((net) => {
+                const b = el('button', 'ws-net');
+                b.type = 'button';
+                b.textContent = net.label;
+                b.addEventListener('click', (e) => { e.stopPropagation(); pop._evmCancel = null; resolve(net); });
+                row.appendChild(b);
+            });
+            body.append(note, row);
+            pop.hidden = false;
+            setStatus('Choose the network', 'busy');
+            const cancel = () => { reject(new Error('Cancelled')); };
+            pop._evmCancel = cancel;
+        });
+
         const setStatus = (text, kind) => {
             clearTimeout(errTimer);
             if (!text) { status.hidden = true; status.innerHTML = ''; return; }
@@ -469,9 +554,20 @@
             return b;
         };
 
+        const fabNumber = () => {
+            if (me.family === 'evm') {
+                const shown = chainQty(evmView().key);
+                if (shown != null) return shown;
+            }
+            return Math.max(me.owned || 0, me.bought || 0).toLocaleString();
+        };
         const renderFab = () => {
-            fab.innerHTML = ICON.wallet + (me ? `<span>${Math.max(me.owned || 0, me.bought || 0)}</span>${me.tier ? `<span class="ws-star">${ICON.star}</span>` : ''}` : '');
-            fab.title = me ? `${short(me.address)}${me.tier ? ` · ${me.tier.label}` : ''}` : 'Sign in with wallet';
+            fab.innerHTML = ICON.wallet + (me ? `<span></span>${me.tier ? `<span class="ws-star">${ICON.star}</span>` : ''}` : '');
+            if (me) fab.querySelector('span').textContent = fabNumber();
+            const net = me && me.family === 'evm' ? evmView() : null;
+            fab.title = me
+                ? `${net ? `${net.label} · ` : ''}${short(me.address)}${me.tier ? ` · ${me.tier.label}` : ''}`
+                : 'Sign in with wallet';
         };
         const renderChains = () => {
             body.innerHTML = '';
@@ -505,13 +601,47 @@
         };
         const renderMe = () => {
             body.innerHTML = '';
+            const evm = me.family === 'evm';
+            const net = evm ? evmView() : null;
             const line = el('div', 'ws-line', `<span class="ws-addr"></span>`);
-            line.firstChild.textContent = `${(me.family || '').toUpperCase()} · ${short(me.address)}`;
+            line.firstChild.textContent = evm
+                ? `EVM · ${net.label} · ${short(me.address)}`
+                : `${(me.family || '').toUpperCase()} · ${short(me.address)}`;
             body.appendChild(line);
+            if (evm) {
+                const nets = el('div', 'ws-nets');
+                EVM_NETS.forEach((item) => {
+                    const b = el('button', `ws-net${item.key === net.key ? ' is-on' : ''}`);
+                    b.type = 'button';
+                    const count = chainQty(item.key);
+                    b.innerHTML = '<b></b><small></small>';
+                    b.firstChild.textContent = item.label;
+                    b.lastChild.textContent = count == null ? '…' : count;
+                    b.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        if (item.key === evmView().key) return;
+                        rememberEvm(item);
+                        renderFab();
+                        renderMe();
+                        const eth = lastEth || window.ethereum;
+                        if (!eth || !eth.request) return;
+                        ensureEvmChain(eth, item.id).catch((err) => {
+                            const rejected = err && (err.code === 4001 || /reject|denied/i.test(String(err.message || err)));
+                            setStatus(rejected
+                                ? 'Chain change rejected in the wallet. The count still follows the network you picked.'
+                                : 'The wallet stayed on its previous network. The count follows the network you picked.', 'err');
+                        });
+                    });
+                    nets.appendChild(b);
+                });
+                body.appendChild(nets);
+            }
             const row = el('div', 'ws-row');
             const tag = (cls, icon, text) => { const t = el('span', cls, icon + '<span></span>'); t.lastChild.textContent = text; return t; };
-            row.appendChild(tag('ws-tag', ICON.bag, `Owned ${me.owned ?? 0}`));
-            row.appendChild(tag('ws-tag', ICON.bag, `Bought ${me.bought}`));
+            const ownedLabel = evm ? (chainQty(net.key) || '0') : String(me.owned ?? 0);
+            const boughtLabel = evm ? boughtOn(net.key).toLocaleString() : String(me.bought ?? 0);
+            row.appendChild(tag('ws-tag', ICON.bag, `Owned ${ownedLabel}`));
+            row.appendChild(tag('ws-tag', ICON.bag, `Bought ${boughtLabel}`));
             if (me.gifts) row.appendChild(tag('ws-tag', ICON.gift, `Gifts ${me.gifts}`));
             if (me.tier) row.appendChild(tag('ws-tag gold', ICON.star, `${me.tier.label} −${me.discountPct}%`));
             body.appendChild(row);
@@ -523,7 +653,10 @@
                 e.stopPropagation();
                 try { await api('/api/logout', { method: 'POST', body: '{}' }); } catch {}
                 log('signed out');
-                sessionStorage.removeItem(KEY); me = null; renderFab(); renderChains();
+                sessionStorage.removeItem(KEY);
+                sessionStorage.removeItem(EVM_VIEW);
+                lastEth = null;
+                me = null; renderFab(); renderChains();
                 if (viaXaman) setStatus(`Signed out. ${xamanHint}.`); else pop.hidden = true;
             });
             body.appendChild(out);
@@ -563,7 +696,9 @@
             try {
                 log('start', label);
                 const session = await (typeof run === 'function' ? run() : adapters[run]());
-                log('signed in', session.family, session.address, 'via', session.via);
+                log('signed in', session.family, session.address, 'via', session.via, 'chain', session.chainId || '');
+                const signedNet = evmNetById(session.chainId);
+                if (signedNet) rememberEvm(signedNet);
                 save(session);
                 busy = false;
                 await refresh();
@@ -586,6 +721,7 @@
         document.addEventListener('click', (e) => { if (!busy && !pop.contains(e.target) && e.target !== fab) pop.hidden = true; });
         document.addEventListener('keydown', (e) => {
             if (e.key !== 'Escape') return;
+            if (pop._evmCancel) { const cancel = pop._evmCancel; pop._evmCancel = null; cancel(); return; }
             if (busy) qrClosed = true; else pop.hidden = true;
         });
         refresh();

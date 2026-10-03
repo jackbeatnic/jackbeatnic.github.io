@@ -1765,7 +1765,7 @@ const Gallery = (() => {
                         <h3 class="section-promo__title">OBJKT Auction</h3>
                         <p class="section-promo__token">
                             <span class="section-promo__symbol">${title}</span>
-                            <span class="section-promo__chain"> · ${escapeHtml(type)} · ${escapeHtml(price.text)}</span>
+                            <span class="section-promo__chain"> · ${escapeHtml(type)} · <span class="section-promo__price">${escapeHtml(price.text)}</span></span>
                         </p>
                         <a class="btn btn--primary btn--small section-promo__cta" href="${href}" target="_blank" rel="noopener noreferrer">${cta}</a>
                     </article>`;

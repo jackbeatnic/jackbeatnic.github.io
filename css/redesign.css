@@ -883,10 +883,10 @@
     font-size: 14px;
     font-weight: 300;
     font-variant-numeric: tabular-nums;
-    color: var(--rd-fg);
+    color: var(--rd-green);
 }
 .gallery-protected .nft-card__price-value { font-weight: 300; }
-.gallery-protected .nft-card__price-alt { color: var(--rd-faint); font-weight: 300; }
+.gallery-protected .nft-card__price-alt { color: var(--rd-green); font-weight: 300; }
 .gallery-protected .nft-card__description { font-size: 12.5px; color: var(--rd-muted); }
 .gallery-protected .nft-card__tags { display: block; margin: 8px 0 0; gap: 0; }
 .gallery-protected .nft-tag {
@@ -1159,7 +1159,7 @@
 #shop-modal-amount { font-family: var(--rd-ui); font-size: 22px; }
 .gallery-protected #xrpl-mint-amount,
 .gallery-protected #sui-mint-amount,
-.gallery-protected #shop-modal-amount { font-family: var(--rd-ui); font-size: 22px; font-weight: 300; }
+.gallery-protected #shop-modal-amount { font-family: var(--rd-ui); font-size: 22px; font-weight: 300; color: var(--rd-green); }
 /* "Destination tag (required)" label — important, green */
 .gallery-protected #xrpl-mint-modal .shop-modal__facts > div:nth-child(3) dt { color: var(--rd-green); }
 .gallery-protected .shop-modal__facts .btn--small,
@@ -1600,7 +1600,7 @@
     font-size: 18px;
     font-weight: 300;
     white-space: nowrap;
-    color: var(--rd-fg);
+    color: var(--rd-green);
 }
 .gallery-protected .shop-modal__price[hidden] { display: none; }
 /* pay */

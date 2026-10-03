@@ -2,7 +2,7 @@
   "version": 1,
   "updated_at": "2026-10-03T23:35:38Z",
   "source_csv": "listing/sale_index.csv",
-  "note": "Studio shop price list. JSON does not mint tokens. pool=gjb only in Shop. OS-listed units stay off this list.",
+  "note": "Studio shop price list. JSON does not mint tokens.",
   "defaults": {
     "pay_address_evm": "0xf0b840349b3f285fc05c89eac594ddd254183fb9",
     "pay_address_xrpl": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn"

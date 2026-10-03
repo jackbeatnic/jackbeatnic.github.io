@@ -86,7 +86,7 @@ echo "=== [2/4] Sync gallery.json ==="
 )
 
 echo ""
-echo "=== [3/4] OG preview (site card + karty → jbg-og) ==="
+echo "=== [3/4] OG preview (site card + share pages: promo board or og-preview.jpg) ==="
 (
     cd "$WWW_DIR"
     if $DRY_RUN; then

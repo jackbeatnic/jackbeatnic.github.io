@@ -1,0 +1,56 @@
+/* Prices tied to buttons (2026-10-03).
+   Each CTA is one line: label left, its own price (blue accent) + arrow right.
+   Light typography, no boxes; one thin rule above the group (redesign.css). */
+.gallery-protected .nft-card__actions.nft-card__actions--priced {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 7px;
+}
+.gallery-protected .nft-card__actions.nft-card__actions--priced .btn.cta {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.35;
+    color: var(--rd-fg);
+    cursor: pointer;
+}
+.gallery-protected .nft-card__actions.nft-card__actions--priced .btn.cta::after { content: none; }
+.gallery-protected .nft-card__actions--priced .cta__label {
+    flex: 0 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.gallery-protected .nft-card__actions--priced .cta__price {
+    flex: 0 0 auto;
+    margin-left: auto;
+    font-variant-numeric: tabular-nums;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    color: var(--rd-accent-ink);
+}
+.gallery-protected .nft-card__actions--priced .cta__arrow {
+    flex: 0 0 auto;
+    color: var(--rd-faint);
+    transition: transform 0.15s ease, color 0.15s ease;
+}
+.gallery-protected .nft-card__actions--priced .cta__label + .cta__arrow { margin-left: auto; }
+.gallery-protected .nft-card__actions--priced .btn.cta:hover .cta__label,
+.gallery-protected .nft-card__actions--priced .btn.cta:focus-visible .cta__label,
+.gallery-protected .nft-card__actions--priced .btn.cta:hover .cta__arrow { color: var(--rd-accent-ink); }
+.gallery-protected .nft-card__actions--priced .btn.cta:hover .cta__arrow { transform: translateX(2px); }
+.gallery-protected .nft-card__actions--priced .btn.cta[disabled] { cursor: default; }
+@media (max-width: 768px) {
+    .gallery-protected .nft-card__actions.nft-card__actions--priced { gap: 9px; }
+    .gallery-protected .nft-card__actions.nft-card__actions--priced .btn.cta { font-size: 12.5px; gap: 6px; }
+}
+@media (max-width: 420px) {
+    .gallery-protected .nft-card__actions.nft-card__actions--priced .btn.cta { font-size: 12px; gap: 5px; }
+}

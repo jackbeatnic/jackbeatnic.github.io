@@ -419,9 +419,9 @@
 
     /* ---------- UI ---------- */
     const css = `
-.ws-fab{position:fixed;left:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:150;display:inline-flex;align-items:center;gap:4px;height:40px;min-width:40px;padding:0 11px;border:0;border-radius:20px;background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 0 0 1px rgba(0,0,0,.08),0 2px 10px rgba(0,0,0,.08);color:#333;cursor:pointer;font:600 12px/1 system-ui,-apple-system,sans-serif;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.ws-fab{position:fixed;left:12px;bottom:calc(14px + var(--ws-lift, 0px) + env(safe-area-inset-bottom,0px));z-index:150;display:inline-flex;align-items:center;gap:4px;height:40px;min-width:40px;padding:0 11px;border:0;border-radius:20px;background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 0 0 1px rgba(0,0,0,.08),0 2px 10px rgba(0,0,0,.08);color:#333;cursor:pointer;font:600 12px/1 system-ui,-apple-system,sans-serif;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .ws-fab .ws-star{color:#c9971c;display:inline-flex}.ws-fab.ws-err{color:#c0392b}
-.ws-pop{position:fixed;left:12px;bottom:calc(62px + env(safe-area-inset-bottom,0px));z-index:151;min-width:180px;max-width:calc(100vw - 24px);padding:10px;border-radius:14px;background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 0 0 1px rgba(0,0,0,.08),0 8px 28px rgba(0,0,0,.14);color:#222;font:13px/1.3 system-ui,-apple-system,sans-serif}
+.ws-pop{position:fixed;left:12px;bottom:calc(62px + var(--ws-lift, 0px) + env(safe-area-inset-bottom,0px));z-index:151;min-width:180px;max-width:calc(100vw - 24px);padding:10px;border-radius:14px;background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 0 0 1px rgba(0,0,0,.08),0 8px 28px rgba(0,0,0,.14);color:#222;font:13px/1.3 system-ui,-apple-system,sans-serif}
 .ws-pop[hidden]{display:none}.ws-row{display:flex;gap:6px;flex-wrap:wrap}
 .ws-chain{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;width:56px;height:52px;padding:4px 2px;border:1px solid rgba(0,0,0,.12);border-radius:11px;background:transparent;color:inherit;cursor:pointer;text-decoration:none;font:600 16px/1 system-ui,sans-serif;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:transform .08s,background .12s}
 .ws-chain small{font:500 9.5px/1.1 system-ui,sans-serif;opacity:.75;max-width:54px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -681,6 +681,32 @@
             setStatus(MOBILE ? `Open ${label}, approve, come back` : `Scan with ${label}`, 'busy');
         };
         hideQr = async () => { if (me || !body.querySelector('.ws-qr')) return; if (lastChain) await renderOptions(lastChain, true); else renderChains(); };
+
+        // At the top of the page the mobile browser bar (back / home) covers the
+        // bottom edge. Lift the button by that overlap, and by a small amount
+        // even when the viewport already matches, so it sits just above the bar.
+        let liftRaf = 0;
+        const placeWallet = () => {
+            if (liftRaf) return;
+            liftRaf = requestAnimationFrame(() => {
+                liftRaf = 0;
+                const vv = window.visualViewport;
+                let lift = 0;
+                if (MOBILE) {
+                    if (vv) lift = window.innerHeight - vv.offsetTop - vv.height;
+                    if ((window.scrollY || 0) < 8) lift = Math.max(lift, 24);
+                    lift = Math.max(0, Math.min(96, Math.round(lift)));
+                }
+                document.documentElement.style.setProperty('--ws-lift', `${lift}px`);
+            });
+        };
+        placeWallet();
+        window.addEventListener('scroll', placeWallet, { passive: true });
+        window.addEventListener('resize', placeWallet);
+        if (window.visualViewport) {
+            visualViewport.addEventListener('resize', placeWallet);
+            visualViewport.addEventListener('scroll', placeWallet);
+        }
 
         async function refresh() {
             me = null;

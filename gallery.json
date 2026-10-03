@@ -78,8 +78,13 @@
       },
       {
         "id": "arena",
-        "label": "Arena",
+        "label": "Arena / Photography",
         "url": "https://arena.social/JackBeatnic"
+      },
+      {
+        "id": "arena-ai",
+        "label": "Arena / SI art",
+        "url": "https://arena.social/JackBeatnicAI"
       },
       {
         "id": "zora",

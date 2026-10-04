@@ -1839,10 +1839,15 @@ const Gallery = (() => {
                 const title = escapeHtml(token.title || '');
                 const symbol = escapeHtml(token.symbol || '');
                 const chain = escapeHtml(token.chain || '');
-                const contract = escapeHtml(token.contract || '');
+                const rawContract = String(token.contract || '').trim();
+                const contract = escapeHtml(rawContract);
+                const short = escapeHtml(shortContract(rawContract));
                 const url = escapeHtml(token.community_url || '#');
                 const cta = escapeHtml(token.cta_label || 'Learn more →');
                 const chainBit = chain ? `<span class="section-promo__chain"> · ${chain}</span>` : '';
+                const contractBit = rawContract
+                    ? `<button type="button" class="section-promo__contract" data-copy-contract="${contract}" data-label="${short}" title="Copy contract" aria-label="Copy contract ${contract}">${short}</button>`
+                    : '';
 
                 return `
                     <article class="section-promo__item">
@@ -1850,12 +1855,40 @@ const Gallery = (() => {
                         <p class="section-promo__token">
                             <span class="section-promo__symbol">${symbol}</span>${chainBit}
                         </p>
-                        <p class="section-promo__contract" title="${contract}">${contract}</p>
+                        ${contractBit}
                         <a class="btn btn--ghost btn--small section-promo__cta" href="${url}" target="_blank" rel="noopener noreferrer">${cta}</a>
                     </article>
                 `;
             })
             .join('');
+        bindContractCopy(listEl);
+    }
+
+    function shortContract(value) {
+        const raw = String(value || '').trim();
+        if (raw.length <= 16) return raw;
+        return `${raw.slice(0, 6)}…${raw.slice(-4)}`;
+    }
+
+    function bindContractCopy(root) {
+        if (!root) return;
+        root.querySelectorAll('[data-copy-contract]').forEach((btn) => {
+            btn.addEventListener('click', async () => {
+                const value = btn.getAttribute('data-copy-contract') || '';
+                const label = btn.getAttribute('data-label') || '';
+                let ok = false;
+                try {
+                    await navigator.clipboard.writeText(value);
+                    ok = true;
+                } catch {
+                    ok = false;
+                }
+                btn.textContent = ok ? 'Copied' : 'Copy failed';
+                window.setTimeout(() => {
+                    btn.textContent = label;
+                }, 1400);
+            });
+        });
     }
 
     function renderLinkPills(containerId, items) {

@@ -258,9 +258,9 @@ const GalleryShare = (() => {
             { id: 'copy', label: 'Copy link', action: 'copy' },
         ];
 
-        // Phone: the share sheet already attaches the square JPG. This copies
-        // that same file so it can be pasted outside X.
-        if (isMobileDevice() && promoBoardRef(nft)) {
+        // Same square JPG the phone share sheet attaches. On any screen this
+        // puts it on the clipboard so a post can be built by hand.
+        if (promoBoardRef(nft)) {
             items.push({ id: 'copy-graphic', label: 'Copy graphic', action: 'copy-graphic' });
         }
 
@@ -393,19 +393,25 @@ const GalleryShare = (() => {
         }, 1600);
     }
 
-    /** Square promo JPG → PNG on the clipboard (mobile paste targets want PNG). */
+    /** Square promo JPG → PNG on the clipboard. The blob promise is handed
+        to the clipboard immediately so the click still counts as the gesture. */
     async function copyGraphicFile(nft) {
-        const file = await withTimeout(boardFile(nft), 6000);
-        if (!file || !navigator.clipboard || typeof ClipboardItem === 'undefined') return false;
-        const bitmap = await createImageBitmap(file);
-        const canvas = document.createElement('canvas');
-        canvas.width = bitmap.width;
-        canvas.height = bitmap.height;
-        canvas.getContext('2d').drawImage(bitmap, 0, 0);
-        bitmap.close?.();
-        const png = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
-        if (!png) return false;
-        await navigator.clipboard.write([new ClipboardItem({ 'image/png': png })]);
+        if (!promoBoardRef(nft) || !navigator.clipboard || typeof ClipboardItem === 'undefined') {
+            return false;
+        }
+        const pngPromise = boardFile(nft).then(async (file) => {
+            if (!file) throw new Error('no board');
+            const bitmap = await createImageBitmap(file);
+            const canvas = document.createElement('canvas');
+            canvas.width = bitmap.width;
+            canvas.height = bitmap.height;
+            canvas.getContext('2d').drawImage(bitmap, 0, 0);
+            bitmap.close?.();
+            const png = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
+            if (!png) throw new Error('no png');
+            return png;
+        });
+        await navigator.clipboard.write([new ClipboardItem({ 'image/png': pngPromise })]);
         return true;
     }
 
@@ -432,6 +438,7 @@ const GalleryShare = (() => {
         workEl.textContent = col
             ? `${artworkTitle(nft)} · ${col}`
             : artworkTitle(nft);
+        boardFile(nft);
         grid.innerHTML = channels(nft, activeUrl, activeText)
             .map((item) => {
                 if (item.action) {

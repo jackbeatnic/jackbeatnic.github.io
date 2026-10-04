@@ -49,7 +49,16 @@ const GalleryShare = (() => {
         if (!nft || nft.token_id == null) return siteUrl;
         const col = encodeURIComponent(collectionId(nft));
         const tid = encodeURIComponent(String(nft.token_id));
-        return `${siteUrl}nft/${col}/${tid}.html`;
+        // Arena caches a link preview by the exact URL. This query forces a
+        // fresh read so the card-image redirect is what gets stored.
+        return `${siteUrl}nft/${col}/${tid}.html?v=20261004card`;
+    }
+
+    function withCardVersion(url) {
+        const value = String(url || '');
+        if (!/\/nft\/[^/?#]+\/\d+\.html(?:$|\?)/.test(value)) return value;
+        if (value.includes('v=20261004card')) return value;
+        return value + (value.includes('?') ? '&' : '?') + 'v=20261004card';
     }
 
     function workUrl(nft) {
@@ -66,7 +75,7 @@ const GalleryShare = (() => {
             nft?.share_url &&
             String(nft.share_url).includes(`/nft/${collectionId(nft)}/`)
         ) {
-            return nft.share_url;
+            return withCardVersion(nft.share_url);
         }
         if (!needsDeep && landing && nft?.collection_id) return landing;
 
@@ -75,7 +84,7 @@ const GalleryShare = (() => {
             String(nft.share_url).includes('/nft/') &&
             !/\/nft\/\d+\.html$/.test(String(nft.share_url))
         ) {
-            return nft.share_url;
+            return withCardVersion(nft.share_url);
         }
 
         const params = new URLSearchParams();

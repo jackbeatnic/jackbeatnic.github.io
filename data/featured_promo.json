@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-04T21:34:26.374503+00:00",
+  "updated_at": "2026-10-04T21:38:26.938215+00:00",
   "promo": {
     "label": "OFF 0% · 180 days",
     "pct_off": 0,
@@ -8,6 +8,22 @@
     "ends_at": "2027-03-17T01:19:50.051208+00:00"
   },
   "items": [
+    {
+      "collection_id": "avalanche_nature_jam_vol2",
+      "collection_name": "Nature Jam vol. 2",
+      "chain": "avalanche",
+      "token_id": 2,
+      "name": "NS #2",
+      "image_url": "https://jackbeatnic.github.io/jbg-present/avalanche_nature_jam_vol2/2.thumb.webp",
+      "price": 3.07693,
+      "currency": "AVAX",
+      "quantity": 10,
+      "days": 14,
+      "pct_off": 0,
+      "ends_at": "2026-10-18T21:38:26.937553+00:00",
+      "opensea_url": "https://opensea.io/assets/avalanche/0xfeafbadf5f0fe4821ae34d1d379625e6a4acb55a/2",
+      "marketplace_url": "https://opensea.io/assets/avalanche/0xfeafbadf5f0fe4821ae34d1d379625e6a4acb55a/2"
+    },
     {
       "collection_id": "base_flower_stories_vol3",
       "collection_name": "Flower Stories vol. 3",

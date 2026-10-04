@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-04T13:00:43Z",
+  "updated_at": "2026-10-04T15:36:55Z",
   "source_csv": "listing/sale_index.csv",
   "note": "Studio shop price list. JSON does not mint tokens. pool=gjb only in Shop. OS-listed units stay off this list.",
   "defaults": {
@@ -8,10 +8,10 @@
     "pay_address_xrpl": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn"
   },
   "counts": {
-    "all": 4575,
-    "shop": 4575,
+    "all": 4576,
+    "shop": 4576,
     "atelier": 0,
-    "live_shop": 4575,
+    "live_shop": 4576,
     "demo": 0
   },
   "items": [
@@ -128112,6 +128112,34 @@
       "note": "allocation=shop promo_window slice qty=1000 pay=0.03 (not price_tier; successive supply plaster → shop channel)",
       "starts_at": "2026-10-01T23:48:20Z",
       "ends_at": "2026-10-08T23:48:20Z",
+      "os_price": 3.594,
+      "pct_of_os": null
+    },
+    {
+      "sku": "gjb-ns-15-t4",
+      "collection_id": "avalanche_nature_stories",
+      "token_id": "15",
+      "name": "NS #15",
+      "chain": "avalanche",
+      "price": 1.4,
+      "pay_amount": "1.4",
+      "currency": "AVAX",
+      "price_usd": null,
+      "qty_available": 250,
+      "channel": "shop",
+      "pool": "gjb",
+      "fulfill": "stock",
+      "os_listed": false,
+      "os_listed_qty": 0,
+      "pay_address": "0xf0b840349b3f285fc05c89eac594ddd254183fb9",
+      "memo": "GJB-NS-15-T4",
+      "image_url": "https://jackbeatnic.github.io/jbg-present/avalanche_nature_stories/15.thumb.webp",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/15",
+      "status": "live",
+      "demo": false,
+      "note": "allocation=shop promo_window slice qty=250 pay=1.4 (not price_tier; successive supply plaster → shop channel)",
+      "starts_at": "2026-10-04T15:36:54Z",
+      "ends_at": "2026-10-11T15:36:54Z",
       "os_price": 3.594,
       "pct_of_os": null
     }

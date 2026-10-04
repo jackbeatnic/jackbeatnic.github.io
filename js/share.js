@@ -267,9 +267,9 @@ const GalleryShare = (() => {
             { id: 'copy', label: 'Copy link', action: 'copy' },
         ];
 
-        // Same square JPG the phone share sheet attaches. On any screen this
-        // puts it on the clipboard so a post can be built by hand.
-        if (promoBoardRef(nft)) {
+        // Promo square when we have one. Otherwise the gallery preview,
+        // so permanent works without a board can still be copied.
+        if (promoBoardRef(nft) || previewRef(nft)) {
             items.push({ id: 'copy-graphic', label: 'Copy graphic', action: 'copy-graphic' });
         }
 
@@ -402,23 +402,35 @@ const GalleryShare = (() => {
         }, 1600);
     }
 
-    /** Square promo JPG → PNG on the clipboard. The blob promise is handed
-        to the clipboard immediately so the click still counts as the gesture. */
+    /** Promo square, or the gallery preview when that square is missing.
+        The blob promise is handed to the clipboard immediately so the click
+        still counts as the gesture. */
     async function copyGraphicFile(nft) {
-        if (!promoBoardRef(nft) || !navigator.clipboard || typeof ClipboardItem === 'undefined') {
+        if ((!promoBoardRef(nft) && !previewRef(nft)) || !navigator.clipboard || typeof ClipboardItem === 'undefined') {
             return false;
         }
-        const pngPromise = boardFile(nft).then(async (file) => {
-            if (!file) throw new Error('no board');
-            const bitmap = await createImageBitmap(file);
-            const canvas = document.createElement('canvas');
-            canvas.width = bitmap.width;
-            canvas.height = bitmap.height;
-            canvas.getContext('2d').drawImage(bitmap, 0, 0);
-            bitmap.close?.();
-            const png = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
-            if (!png) throw new Error('no png');
-            return png;
+        const pngPromise = graphicFile(nft).then((file) => {
+            if (!file) throw new Error('no graphic');
+            return new Promise((resolve, reject) => {
+                const url = URL.createObjectURL(file);
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.naturalWidth;
+                    canvas.height = img.naturalHeight;
+                    canvas.getContext('2d').drawImage(img, 0, 0);
+                    URL.revokeObjectURL(url);
+                    canvas.toBlob((png) => {
+                        if (png) resolve(png);
+                        else reject(new Error('no png'));
+                    }, 'image/png');
+                };
+                img.onerror = () => {
+                    URL.revokeObjectURL(url);
+                    reject(new Error('decode'));
+                };
+                img.src = url;
+            });
         });
         await navigator.clipboard.write([new ClipboardItem({ 'image/png': pngPromise })]);
         return true;
@@ -447,7 +459,7 @@ const GalleryShare = (() => {
         workEl.textContent = col
             ? `${artworkTitle(nft)} · ${col}`
             : artworkTitle(nft);
-        boardFile(nft);
+        graphicFile(nft);
         grid.innerHTML = channels(nft, activeUrl, activeText)
             .map((item) => {
                 if (item.action) {
@@ -522,6 +534,20 @@ const GalleryShare = (() => {
         return promoBoardRef(nft)?.url || '';
     }
 
+    /** Larger gallery image (view, then thumb). Used when no promo square exists. */
+    function previewRef(nft) {
+        const cid = String(nft?.collection_id || '').trim().toLowerCase().replace(/-/g, '_');
+        const n = Number.parseInt(String(nft?.token_id ?? ''), 10);
+        if (!cid || !Number.isFinite(n) || n < 0) return null;
+        const id = String(n);
+        const slug = cid.replace(/_/g, '-');
+        return {
+            url: `${siteUrl}jbg-present/${cid}/${id}.view.webp`,
+            thumb: `${siteUrl}jbg-present/${cid}/${id}.thumb.webp`,
+            name: `jack-beatnic-${slug}-${id}-preview.webp`,
+        };
+    }
+
     /** Phone / tablet — desktop keeps the menu (X intent with text + URL). */
     function isMobileDevice() {
         if (navigator.userAgentData && typeof navigator.userAgentData.mobile === 'boolean') {
@@ -571,6 +597,42 @@ const GalleryShare = (() => {
             boardCache.set(ref.url, job);
         }
         return boardCache.get(ref.url);
+    }
+
+    const previewCache = new Map();
+
+    function fetchImageFile(url, name) {
+        return fetch(url, { mode: 'cors', credentials: 'omit' })
+            .then(async (res) => {
+                const type = (res.headers.get('content-type') || '').toLowerCase();
+                if (!res.ok || !type.startsWith('image/')) return null;
+                const blob = await res.blob();
+                if (!blob.size) return null;
+                return new File([blob], name, { type: blob.type || type });
+            })
+            .catch(() => null);
+    }
+
+    function previewFile(nft) {
+        const ref = previewRef(nft);
+        if (!ref) return Promise.resolve(null);
+        if (!previewCache.has(ref.url)) {
+            const job = fetchImageFile(ref.url, ref.name)
+                .then((file) => file || fetchImageFile(ref.thumb, ref.name))
+                .then((file) => {
+                    if (!file) previewCache.delete(ref.url);
+                    return file;
+                });
+            previewCache.set(ref.url, job);
+        }
+        return previewCache.get(ref.url);
+    }
+
+    /** Promo square first. Gallery preview when the square is missing. */
+    function graphicFile(nft) {
+        const board = promoBoardRef(nft);
+        if (!board) return previewFile(nft);
+        return boardFile(nft).then((file) => file || previewFile(nft));
     }
 
     function prefetchBoard(nft) {
@@ -743,7 +805,10 @@ const GalleryShare = (() => {
         button.setAttribute('aria-controls', 'share-popover');
         // Start fetching the promo board before the click lands, so
         // navigator.share() still runs inside the user's tap.
-        const warm = () => prefetchBoard(nft);
+        const warm = () => {
+            prefetchBoard(nft);
+            graphicFile(nft);
+        };
         button.addEventListener('pointerdown', warm, { passive: true });
         button.addEventListener('touchstart', warm, { passive: true });
         button.addEventListener('focus', warm);

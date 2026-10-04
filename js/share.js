@@ -567,7 +567,10 @@ const GalleryShare = (() => {
         if (!wantsFileShare(nft)) return 'none';
         const file = await withTimeout(boardFile(nft), 6000);
         if (!file) return 'none';
-        const data = { files: [file], text, url };
+        // File only, same as dropping the JPEG from disk. A separate page URL
+        // makes Arena build a link card and crop the square. The address stays
+        // in the caption.
+        const data = { files: [file], text: shareCopy(nft, url) };
         let ok = false;
         try {
             ok = navigator.canShare(data) || navigator.canShare({ files: [file] });

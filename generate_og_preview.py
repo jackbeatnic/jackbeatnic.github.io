@@ -851,10 +851,10 @@ def site_og_image_url(base_url: str, og_version: str) -> str:
 PROMO_INDEX_JSON = ROOT / "data" / "promo_boards.json"
 PROMO_PUBLIC_BASE = "https://jackbeatnic.github.io/jbg-present/promo"
 # Horizontal banners (1200x630) live at jbg-present/promo_banner.
-# The share page keeps the square as og:image (Arena's link preview shows that
-# square in full). twitter:image is the banner when one is published, so a
-# desktop post on X uses the wide card. nft/<col>/<id>-a.html is the same
-# banner for both tags.
+# The share page keeps the square as og:image. twitter:image points at
+# /card-image/ when a banner is published: X's crawler is redirected to the
+# banner, and every other client (including Arena) is redirected to the square.
+# nft/<col>/<id>-a.html puts the banner on both tags.
 PROMO_BANNER_PUBLIC_BASE = "https://jackbeatnic.github.io/jbg-present/promo_banner"
 _PROMO_INDEX: dict | None = None
 
@@ -943,6 +943,20 @@ def promo_board(nft: dict) -> dict | None:
     }
 
 
+CARD_IMAGE_BASE = "https://api.jackbeatnic.shop/card-image"
+
+
+def card_image_url(nft: dict, banner: dict) -> str:
+    """twitter:image target. The card-image service redirects Twitterbot to the
+    horizontal banner and every other client to the square."""
+    key = promo_board_key(nft)
+    if key is None:
+        return banner["url"]
+    cid, tid = key
+    sha = banner["url"].rsplit("v=", 1)[-1]
+    return f"{CARD_IMAGE_BASE}/{cid}/{tid:04d}?v={sha}"
+
+
 def promo_banner(nft: dict) -> dict | None:
     """Published horizontal banner (1200x630, jbg-present/promo_banner) or None."""
     key = promo_board_key(nft)
@@ -996,17 +1010,18 @@ def share_page_html(
     *,
     arena: bool = False,
 ) -> str:
-    """Share landing. The square promo board is og:image. twitter:image is the
-    horizontal banner when that file is published, otherwise the same square.
-    arena=True: the -a.html variant, banner on both tags, noindex."""
+    """Share landing. The square promo board is og:image. When a horizontal
+    banner is published, twitter:image is the card-image redirect (X receives
+    the banner, other clients receive the square). Otherwise twitter:image
+    is the same square. arena=True: the -a.html variant, banner on both tags, noindex."""
     token_id = int(nft["token_id"])
     collection = nft_collection_name(nft, info)
     artwork_title = nft_artwork_title(nft)
     price_text, price_hint = format_share_price(nft, info)
     rel_path = arena_share_path_for_nft(nft) if arena else share_path_for_nft(nft)
     share_url = f"{base_url}/{rel_path}"
-    # Facebook and Arena read og:image (the square). X reads twitter:image
-    # (the horizontal banner when one is published).
+    # og:image is the square. twitter:image is a redirect when a banner exists:
+    # Twitterbot is sent the horizontal banner, every other client the square.
     banner = promo_banner(nft)
     og_image, og_w, og_h, _kind = share_og_image(nft, base_url, og_version)
     twitter_image = og_image
@@ -1014,7 +1029,7 @@ def share_page_html(
         og_image, og_w, og_h = banner["url"], banner["width"], banner["height"]
         twitter_image = og_image
     elif banner:
-        twitter_image = banner["url"]
+        twitter_image = card_image_url(nft, banner)
     robots_meta = '\n    <meta name="robots" content="noindex">' if arena else ""
     gallery_url = gallery_deep_link(nft, base_url)
     title = f"{artwork_title} | Jack Beatnic Gallery"

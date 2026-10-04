@@ -503,13 +503,28 @@
 }
 .gallery-protected .section-promo__chain { color: var(--rd-muted); }
 .gallery-protected .section-promo__contract {
+    display: block;
+    max-width: 100%;
     margin: 2px 0 0;
+    padding: 0;
+    border: 0;
+    background: none;
     font-family: ui-monospace, Menlo, monospace;
     font-size: 11.5px;
+    line-height: 1.4;
+    text-align: left;
     color: var(--rd-faint);
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+    cursor: pointer;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+.gallery-protected .section-promo__contract:hover,
+.gallery-protected .section-promo__contract:focus-visible {
+    color: var(--rd-fg);
 }
 .gallery-protected .section-promo__item .section-promo__cta,
 .gallery-protected .section-promo__actions,

@@ -102,16 +102,26 @@
 
 @media (max-width: 768px) {
     .gallery-protected .nft-card__head { flex-direction: column; gap: 0; }
-    /* Full-width icon row; 4 × 44px hit areas spill a few px into the grid gutter */
+    /* Four icons stay inside the card. A row wider than the column was shifting the page sideways. */
+    .gallery-protected .nft-card { min-width: 0; }
+    .gallery-protected .gallery-grid { min-width: 0; }
     .gallery-protected .nft-card__engage {
-        width: calc(100% + 12px);
-        margin: 2px -6px -2px;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin: 2px 0 0;
         justify-content: space-between;
+        overflow: hidden;
     }
     .gallery-protected .nft-like,
     .gallery-protected .nft-save,
     .gallery-protected .nft-share,
-    .gallery-protected .nft-tip { min-width: 44px; min-height: 44px; }
+    .gallery-protected .nft-tip {
+        flex: 1 1 0;
+        min-width: 0;
+        max-width: 44px;
+        min-height: 44px;
+    }
     .gallery-protected .nft-icon { width: 22px; height: 22px; }
     .gallery-protected .nft-like__count { position: absolute; left: 31px; top: 9px; font-size: 10.5px; }
     .gallery-protected .nft-card__price { margin-top: 4px; }

@@ -474,6 +474,10 @@ const GalleryShare = (() => {
         'polygon_jb_ai_play',
         'polygon_nature_stories_vol2',
         'avalanche_jb_photography',
+        'sui_nature_stories_tradeport',
+        'sui_nature_stories_1of1_tradeport',
+        'xrpl_jb_ai_nature',
+        'tezos',
     ]);
 
     // Salvor photography listings use another collection id; the boards on
@@ -491,6 +495,12 @@ const GalleryShare = (() => {
             || nft?.source === 'salvor'
         ) {
             return PHOTO_BOARD;
+        }
+        // Objkt / Tezos boards are promo/tezos/<objkt token id>.jpg.
+        const chain = String(nft?.chain || '').trim().toLowerCase();
+        const medium = String(nft?.medium || '').trim().toLowerCase();
+        if (chain === 'tezos' || cid.startsWith('objkt_') || medium === 'objkt_auction') {
+            return 'tezos';
         }
         return cid;
     }

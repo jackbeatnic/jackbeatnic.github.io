@@ -425,6 +425,38 @@
   },
   "nfts": [
     {
+      "token_id": 2,
+      "name": "NS #2",
+      "opensea_url": "https://opensea.io/assets/avalanche/0xfeafbadf5f0fe4821ae34d1d379625e6a4acb55a/2",
+      "image_url": "https://jackbeatnic.github.io/jbg-present/avalanche_nature_jam_vol2/2.thumb.webp",
+      "supply": 30,
+      "traits": {},
+      "ai": {
+        "description": "",
+        "dominant_colors": [],
+        "vibe_tags": [],
+        "category": "",
+        "keywords": [
+          "avalanche",
+          "avalanche_nature_jam_vol2"
+        ]
+      },
+      "likes_count": 0,
+      "status": "listed",
+      "chain": "avalanche",
+      "contract_address": "0xfeafbadf5f0fe4821ae34d1d379625e6a4acb55a",
+      "collection_id": "avalanche_nature_jam_vol2",
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX",
+      "display_rank": 0,
+      "share_url": "https://jackbeatnic.github.io/nft/avalanche-nature-jam-vol2/2.html",
+      "og_image": "https://jackbeatnic.github.io/jbg-present/promo/avalanche_nature_jam_vol2/0002.jpg?v=c4cafa40",
+      "medium": "ai_art",
+      "ai_series": "nature_jam",
+      "edition_label": "Avalanche",
+      "current_price_avax": 3.07693
+    },
+    {
       "token_id": 300,
       "name": "FS #300",
       "opensea_url": "https://opensea.io/assets/base/0xca201a1654acd30580c0fbab4cac88bf0df65e7d/300",

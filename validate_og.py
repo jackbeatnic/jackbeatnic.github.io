@@ -175,7 +175,15 @@ def validate_page(url: str) -> int:
 
     og_image = meta.get("og:image", "")
     twitter_image = meta.get("twitter:image", "")
-    if og_image and twitter_image and og_image != twitter_image:
+    # twitter:image may be the card-image redirect (X gets the banner) or the
+    # banner file itself. og:image stays the square.
+    if (
+        og_image
+        and twitter_image
+        and og_image != twitter_image
+        and "/card-image/" not in twitter_image
+        and "/promo_banner/" not in twitter_image
+    ):
         errors.append("og:image and twitter:image differ")
 
     errors.extend(robots_issues(url))

@@ -5,7 +5,7 @@ generate_og_preview.py reads this index to put the work's promo board into
 og:image / twitter:image of nft/<collection>/<id>.html (fallback: og-preview.jpg).
 
 Board file name = ON-CHAIN token id, 4 digits: promo/<collection_id>/<NNNN>.jpg
-Horizontal banners (1200x630, Arena link previews) are indexed the same way from
+Horizontal banners (1200x630, X link previews) are indexed the same way from
 promo_banner/<collection_id>/<NNNN>.jpg into the "banners" key.
   (gallery token_id for NJ vol2 = 10000+n and AI Play = 700000000+n,
    so the generator uses onchain_token_id when present).

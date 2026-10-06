@@ -1,5 +1,5 @@
 /**
- * JB Gallery (Solana Edition) — "Mint on Solana" button + checkout.
+ * JB Gallery on Solana — "Mint on Solana" button + checkout.
  * One transaction built by the studio API (kasa): pay (SOL or USDC) to Jack + mint the Core asset to
  * the buyer. Kasa pre-signs as the collection's update delegate; the buyer's wallet signs and pays.
  * No private key in the browser. No personal data: wallet address only.
@@ -124,6 +124,45 @@ const SolMint = (() => {
             },
         };
     }
+    const isMobile = () => /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    let notify = (h) => status(h);
+    let web3mod = null;
+    async function web3() { return web3mod || (web3mod = await import('https://esm.sh/@solana/web3.js@1.98.4')); }
+    /** Injected (pre Wallet Standard) providers: Trust Wallet app browser / extension, Solflare, Phantom. */
+    function legacyProviders() {
+        const out = [], seen = new Set();
+        const add = (name, p) => { if (p && !seen.has(p) && typeof p.connect === 'function' && (p.signTransaction || p.signAndSendTransaction)) { seen.add(p); out.push({ name, p }); } };
+        const tw = window.trustwallet;
+        add('Trust Wallet', tw && tw.solana);
+        add('Solflare', window.solflare && window.solflare.isSolflare ? window.solflare : null);
+        add('Phantom', window.phantom && window.phantom.solana);
+        const s = window.solana;
+        add(s && (s.isTrust || s.isTrustWallet) ? 'Trust Wallet' : s && s.isPhantom ? 'Phantom' : 'Solana wallet', s);
+        return out;
+    }
+    function bytesOf(x) {
+        if (x instanceof Uint8Array) return x;
+        if (Array.isArray(x)) return Uint8Array.from(x);
+        if (typeof x === 'string') { try { return b64.from(x); } catch { return b58decode(x); } }
+        if (x && typeof x.serialize === 'function') return new Uint8Array(x.serialize({ requireAllSignatures: false, verifySignatures: false }));
+        throw new Error('Unexpected wallet reply');
+    }
+    async function connectLegacy(name, p) {
+        const r = await p.connect();
+        const pk = (r && r.publicKey) || p.publicKey;
+        if (!pk) throw new Error('No Solana account');
+        const address = typeof pk === 'string' ? pk : (pk.toBase58 ? pk.toBase58() : String(pk));
+        return {
+            address, label: name,
+            async sign(txB64) {
+                const { Transaction } = await web3();
+                const tx = Transaction.from(b64.from(txB64)); // keeps the server's message bytes and partial signatures
+                if (p.signTransaction) { const r = await p.signTransaction(tx); return { tx: b64.to(bytesOf(r || tx)) }; } // Trust Wallet may sign in place
+                const out = await p.signAndSendTransaction(tx);
+                return { signature: typeof out === 'string' ? out : out.signature };
+            },
+        };
+    }
     async function connectWc(kind) {
         const doc = await (await fetch('data/walletconnect.json', { cache: 'no-cache' })).json();
         const projectId = doc.projectId || doc.project_id;
@@ -131,14 +170,19 @@ const SolMint = (() => {
         const { default: UniversalProvider } = await import('https://esm.sh/@walletconnect/universal-provider@2.21.1');
         const up = await UniversalProvider.init({ projectId, metadata: { name: 'Jack Beatnic Gallery', description: 'Mint on Solana', url: location.origin, icons: [location.origin + '/favicon.ico'] } });
         const chain = CHAINS[apiCfg.network] || CHAINS.mainnet;
-        up.on('display_uri', (uri) => {
+        up.on('display_uri', async (uri) => {
             const link = kind === 'trust' ? `https://link.trustwallet.com/wc?uri=${encodeURIComponent(uri)}` : uri;
-            status(`Open your wallet to connect: <a href="${link}" target="_blank" rel="noopener">${kind === 'trust' ? 'Open Trust Wallet' : 'WalletConnect link'}</a>`);
-            if (kind === 'trust' && /Android|iPhone|iPad/i.test(navigator.userAgent)) location.href = link;
+            let qr = ''; // QR drawn in the browser: the pairing link never goes to a third-party server
+            if (!isMobile()) { try { qr = await (await import('https://esm.sh/qrcode@1.5.4')).default.toDataURL(uri, { width: 220, margin: 1 }); } catch { qr = ''; } }
+            notify(isMobile()
+                ? `Open your wallet to connect: <a href="${link}" target="_blank" rel="noopener">${kind === 'trust' ? 'Open Trust Wallet' : 'WalletConnect link'}</a>`
+                : `Scan with ${kind === 'trust' ? 'Trust Wallet (Settings → WalletConnect → scan)' : 'your wallet'}:<br>${qr ? `<img src="${qr}" width="220" height="220" alt="WalletConnect QR"><br>` : ''}<small><a href="#" data-copy>Copy link</a></small>`);
+            const c = document.querySelector('[data-copy]'); if (c) c.addEventListener('click', (e) => { e.preventDefault(); navigator.clipboard && navigator.clipboard.writeText(uri); });
+            if (kind === 'trust' && isMobile()) location.href = link;
         });
         const session = await up.connect({ optionalNamespaces: { solana: { chains: [chain], methods: ['solana_signTransaction', 'solana_signAndSendTransaction'], events: [] } } });
         const acc = (session.namespaces.solana?.accounts || [])[0];
-        if (!acc) throw new Error('No Solana account');
+        if (!acc) throw new Error('This wallet did not share a Solana account. In the wallet, enable Solana and try again.');
         const address = String(acc).split(':').pop();
         return {
             address, label: session.peer?.metadata?.name || 'WalletConnect', close: () => up.disconnect().catch(() => {}),
@@ -148,6 +192,32 @@ const SolMint = (() => {
                 return { tx: b64.to(withFeePayerSig(b64.from(txB64), b58decode(res.signature))) };
             },
         };
+    }
+    /** All ways to connect, best first: Wallet Standard, injected providers, Trust Wallet / WalletConnect, app deep links. */
+    async function walletOptions() {
+        const std = await standardWallets();
+        const opts = std.map((w) => ({ label: w.name, icon: w.icon, run: () => connectStandard(w) }));
+        for (const l of legacyProviders()) {
+            if (!opts.some((o) => o.label.toLowerCase().split(' ')[0] === l.name.toLowerCase().split(' ')[0])) opts.push({ label: l.name, run: () => connectLegacy(l.name, l.p) });
+        }
+        const injected = opts.length > 0;
+        if (!injected && isMobile()) {
+            const here = encodeURIComponent(location.href);
+            opts.push({ label: 'Open in Trust Wallet', href: `https://link.trustwallet.com/open_url?coin_id=501&url=${here}` },
+                { label: 'Open in Phantom', href: `https://phantom.app/ul/browse/${here}?ref=${encodeURIComponent(location.origin)}` },
+                { label: 'Open in Solflare', href: `https://solflare.com/ul/v1/browse/${here}?ref=${encodeURIComponent(location.origin)}` });
+        }
+        if (!opts.some((o) => /trust/i.test(o.label) && o.run)) opts.push({ label: 'Trust Wallet (WalletConnect)', run: () => connectWc('trust') });
+        opts.push({ label: 'WalletConnect', run: () => connectWc('wc') });
+        return opts;
+    }
+    function walletButton(o, onRun) {
+        const b = document.createElement(o.href ? 'a' : 'button');
+        b.className = 'btn btn--primary btn--block';
+        if (o.href) b.href = o.href; else b.type = 'button';
+        b.innerHTML = `${o.icon ? `<img src="${esc(o.icon)}" alt="" width="22" height="22">` : '<span aria-hidden="true">◎</span>'} ${esc(o.label)}`;
+        if (o.run) b.addEventListener('click', () => onRun(o));
+        return b;
     }
 
     /* ---------- modal ---------- */
@@ -164,7 +234,7 @@ const SolMint = (() => {
         modal.innerHTML = `<div class="shop-modal__backdrop" data-close></div><div class="shop-modal__panel">
 <button type="button" class="shop-modal__close" data-close aria-label="Close">×</button>
 <h2 class="shop-modal__title">Mint on Solana <span class="sol-net" hidden></span></h2>
-<p class="shop-modal__lead">A Solana Edition of this work, minted straight to your wallet in one transaction.</p>
+<p class="shop-modal__lead">A Solana copy of this work, minted straight to your wallet in one transaction.</p>
 <div style="display:flex;gap:.7rem;align-items:center"><img class="shop-modal__thumb sol-thumb" alt="" width="56" height="56" referrerpolicy="no-referrer">
 <div><p class="shop-modal__name sol-name"></p><p class="shop-modal__meta sol-meta"></p></div></div>
 <div class="sol-cur"><button type="button" class="btn btn--ghost" data-cur="SOL" aria-pressed="true">Pay in SOL</button><button type="button" class="btn btn--ghost" data-cur="USDC" aria-pressed="false">Pay in USDC</button></div>
@@ -195,7 +265,7 @@ const SolMint = (() => {
         current = { nft, key, cur: 'SOL', item: null, signer: null };
         modal.querySelector('.sol-net').hidden = apiCfg.network === 'mainnet';
         modal.querySelector('.sol-net').textContent = apiCfg.network;
-        modal.querySelector('.sol-name').textContent = `${nft.name} (Solana Edition)`;
+        modal.querySelector('.sol-name').textContent = `${nft.name} · Solana copy`;
         modal.querySelector('.sol-meta').textContent = 'Loading…';
         modal.querySelector('.sol-price').textContent = '';
         const th = modal.querySelector('.sol-thumb'); th.src = nft.image_url || ''; th.hidden = !nft.image_url;
@@ -209,21 +279,8 @@ const SolMint = (() => {
             paintPrice();
         } catch (e) { modal.querySelector('.sol-meta').textContent = ''; status(esc(e.message)); return; }
         if (current.item.left < 1) { status('Sold out on Solana.'); return; }
-        const opts = (await standardWallets()).map((w) => ({ label: w.name, icon: w.icon, run: () => connectStandard(w) }));
-        opts.push({ label: 'Trust Wallet', run: () => connectWc('trust') }, { label: 'WalletConnect', run: () => connectWc('wc') });
-        if (!opts.length || (opts.length === 2 && /Android|iPhone|iPad/i.test(navigator.userAgent))) {
-            const here = encodeURIComponent(location.href);
-            opts.unshift({ label: 'Open in Phantom', href: `https://phantom.app/ul/browse/${here}?ref=${encodeURIComponent(location.origin)}` },
-                { label: 'Open in Solflare', href: `https://solflare.com/ul/v1/browse/${here}?ref=${encodeURIComponent(location.origin)}` });
-        }
-        for (const o of opts) {
-            const b = document.createElement(o.href ? 'a' : 'button');
-            b.className = 'btn btn--primary btn--block';
-            if (o.href) b.href = o.href; else b.type = 'button';
-            b.innerHTML = `${o.icon ? `<img src="${esc(o.icon)}" alt="">` : '<span aria-hidden="true">◎</span>'} ${esc(o.label)}`;
-            if (o.run) b.addEventListener('click', () => buy(o));
-            wl.appendChild(b);
-        }
+        notify = (h) => status(h);
+        for (const o of await walletOptions()) wl.appendChild(walletButton(o, buy));
     }
     async function buy(opt) {
         const wl = modal.querySelector('.sol-wallets');
@@ -267,29 +324,32 @@ Owner (update authority, payout, royalties): <code>${esc(apiCfg.owner)}</code><b
 Existing collection: ${apiCfg.collection ? `<code>${esc(apiCfg.collection)}</code>` : 'none yet'}`;
         if (apiCfg.collection) { out('The collection already exists. Nothing to do.'); return; }
         const list = root.querySelector('.wallets');
-        for (const w of await standardWallets()) {
-            const b = document.createElement('button'); b.className = 'btn btn--primary'; b.type = 'button'; b.textContent = `Connect ${w.name}`;
-            b.addEventListener('click', async () => {
-                try {
-                    const s = await connectStandard(w);
-                    if (s.address !== apiCfg.owner) { out(`Connected <code>${esc(s.address)}</code>, but the owner wallet is <code>${esc(apiCfg.owner)}</code>. Switch account in the wallet.`); return; }
-                    out('Preparing the collection transaction…');
-                    const t = await fetch(`${site.api}/api/sol/setup-tx?owner=${encodeURIComponent(s.address)}`).then((r) => r.json());
-                    if (!t.tx) throw new Error(t.error || 'setup failed');
-                    out(`Approve in ${esc(w.name)}: create <b>${esc(t.name)}</b> (${esc(t.collection)}), royalties ${t.royalty_bps / 100}%, studio mint key <code>${esc(t.delegate)}</code> as update delegate.`);
-                    const signed = await s.sign(t.tx);
-                    if (signed.tx) await api('/api/sol/setup-submit', { collection: t.collection, tx: signed.tx });
-                    for (let i = 0; i < 30; i++) {
-                        await new Promise((r) => setTimeout(r, 2500));
-                        const c = await api('/api/sol/setup-confirm', { collection: t.collection }).catch(() => ({ status: 'pending' }));
-                        if (c.status === 'done') { out(`Done. Collection <a href="https://explorer.solana.com/address/${esc(t.collection)}${apiCfg.network === 'mainnet' ? '' : '?cluster=' + apiCfg.network}" target="_blank" rel="noopener">${esc(t.collection)}</a> created.`); return; }
-                    }
-                    out('Sent. Still confirming; reload this page in a minute.');
-                } catch (e) { out(esc(e.message || e)); }
-            });
-            list.appendChild(b);
-        }
-        if (!list.children.length) list.textContent = 'No Solana wallet extension found. Install Solflare or Phantom, or open this page in the wallet app browser.';
+        notify = out;
+        const run = async (o) => {
+            list.querySelectorAll('button').forEach((b) => { b.disabled = true; });
+            try {
+                out(`Connecting ${esc(o.label)}…`);
+                const s = await o.run();
+                if (s.address !== apiCfg.owner) { if (s.close) s.close(); out(`Connected <code>${esc(s.address)}</code>, but the owner wallet is <code>${esc(apiCfg.owner)}</code>. Switch to that account in the wallet and try again.`); return; }
+                out('Preparing the collection transaction…');
+                const t = await fetch(`${site.api}/api/sol/setup-tx?owner=${encodeURIComponent(s.address)}`).then((r) => r.json());
+                if (!t.tx) throw new Error(t.error || 'setup failed');
+                out(`Approve in ${esc(s.label)}: create <b>${esc(t.name)}</b> (${esc(t.collection)}), royalties ${t.royalty_bps / 100}%, studio mint key <code>${esc(t.delegate)}</code> as update delegate. Cost about 0.003 SOL.`);
+                const signed = await s.sign(t.tx);
+                if (signed.tx) await api('/api/sol/setup-submit', { collection: t.collection, tx: signed.tx });
+                out('Confirming on Solana…');
+                const cl = apiCfg.network === 'mainnet' ? '' : '?cluster=' + apiCfg.network;
+                for (let i = 0; i < 40; i++) {
+                    await new Promise((r) => setTimeout(r, 2500));
+                    const c = await api('/api/sol/setup-confirm', { collection: t.collection }).catch(() => ({ status: 'pending' }));
+                    if (c.status === 'done') { out(`Done. Collection <a href="https://explorer.solana.com/address/${esc(t.collection)}${cl}" target="_blank" rel="noopener">${esc(t.collection)}</a> created.`); if (s.close) s.close(); return; }
+                }
+                out('Sent. Still confirming; reload this page in a minute.');
+            } catch (e) {
+                out(/reject|denied|cancel/i.test(String(e && e.message)) ? 'Cancelled in the wallet. Nothing was sent.' : esc(e && e.message || e));
+            } finally { list.querySelectorAll('button').forEach((b) => { b.disabled = false; }); }
+        };
+        for (const o of await walletOptions()) list.appendChild(walletButton(o, run));
     }
 
     return { load, decorate, open, setup };

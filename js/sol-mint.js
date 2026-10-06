@@ -231,7 +231,7 @@ const SolMint = (() => {
         document.head.appendChild(st);
         modal = document.createElement('div');
         modal.className = 'shop-modal'; modal.hidden = true; modal.setAttribute('role', 'dialog'); modal.setAttribute('aria-modal', 'true');
-        modal.innerHTML = `<div class="shop-modal__backdrop" data-close></div><div class="shop-modal__panel">
+        modal.innerHTML = `<div class="shop-modal__backdrop" data-close></div><div class="shop-modal__dialog">
 <button type="button" class="shop-modal__close" data-close aria-label="Close">×</button>
 <h2 class="shop-modal__title">Mint on Solana <span class="sol-net" hidden></span></h2>
 <p class="shop-modal__lead">A Solana copy of this work in the <b>Nature &amp; Flowers</b> collection, minted straight to your wallet in one transaction.</p>

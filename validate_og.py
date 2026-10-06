@@ -212,7 +212,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "url",
         nargs="?",
-        default="https://jackbeatnic.github.io/",
+        default="https://jackbeatnic.art/",
         help="Page URL to validate (default: homepage)",
     )
     args = parser.parse_args(argv)

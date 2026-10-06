@@ -202,8 +202,8 @@ const ShopCheckout = (() => {
                 metadata: {
                     name: 'Jack Beatnic Gallery',
                     description: 'Studio shop',
-                    url: 'https://jackbeatnic.github.io',
-                    icons: ['https://jackbeatnic.github.io/assets/og-preview.jpg'],
+                    url: location.origin,
+                    icons: [location.origin + '/assets/og-preview.jpg'],
                 },
             });
         }

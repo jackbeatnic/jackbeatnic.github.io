@@ -32,7 +32,7 @@ OUTPUT = ROOT / "nature_jam_gallery.json"
 VOL2_ID = "avalanche_nature_jam_vol2"
 VOL2_RANK_OFFSET = 10_000
 PAGES_MEDIA = (
-    "https://jackbeatnic.github.io/jb-nft-assets/media/nature-jam-2/{id}.jpg"
+    "https://jackbeatnic.art/jb-nft-assets/media/nature-jam-2/{id}.jpg"
 )
 
 

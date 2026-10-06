@@ -13,7 +13,7 @@ const ImageProxy = (() => {
     const VIEW_MAX_HEIGHT = 1200;
     const WEBP_QUALITY = 82;
 
-    const PRESENT_BASE = 'https://jackbeatnic.github.io/jbg-present';
+    const PRESENT_BASE = 'https://jackbeatnic.art/jbg-present';
     // Only collections we actually built in jbg-present. Others stay on
     // the old sized-proxy path (XRPL jsDelivr, Tezos/Sui via weserv).
     const PRESENT_COLLECTIONS = new Set([
@@ -59,7 +59,7 @@ const ImageProxy = (() => {
             const o = window.location.origin;
             if (o && !o.startsWith('file:')) return o.replace(/\/$/, '');
         }
-        return 'https://jackbeatnic.github.io';
+        return 'https://jackbeatnic.art';
     }
 
     function shouldProxy(url) {

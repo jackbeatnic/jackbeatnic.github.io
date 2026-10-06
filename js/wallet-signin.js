@@ -54,8 +54,8 @@
     const WC_META = {
         name: 'Jack Beatnic Gallery',
         description: 'Wallet sign-in',
-        url: 'https://jackbeatnic.github.io',
-        icons: ['https://jackbeatnic.github.io/assets/og-preview.jpg'],
+        url: location.origin,
+        icons: [location.origin + '/assets/og-preview.jpg'],
     };
     const enc_ = encodeURIComponent;
     const log = (...a) => console.info('wallet sign-in:', ...a);

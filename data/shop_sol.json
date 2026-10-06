@@ -1,5 +1,5 @@
 {
-  "enabled": false,
+  "enabled": true,
   "api": "https://api.jackbeatnic.shop",
   "note": "Mint on Solana button. enabled=false hides it on the live site (preview: ?solmint=1, clear: ?solmint=0). Network, price and live state come from /api/sol/config on kasa."
 }

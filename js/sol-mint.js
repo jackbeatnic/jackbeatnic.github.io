@@ -227,19 +227,19 @@ const SolMint = (() => {
         const st = document.createElement('style');
         st.textContent = `.sol-mint-btn{margin-top:.4rem}.sol-wallets{display:grid;gap:.4rem;margin:.6rem 0}.sol-wallets button{display:flex;align-items:center;gap:.5rem;justify-content:flex-start}
 .sol-wallets img{width:22px;height:22px;border-radius:5px}.sol-cur{display:flex;gap:.4rem;margin:.5rem 0}.sol-cur button[aria-pressed="true"]{outline:2px solid currentColor}
-.sol-status{min-height:1.4em;font-size:.92rem;margin-top:.6rem;word-break:break-word}.sol-net{display:inline-block;font-size:.75rem;padding:.1rem .45rem;border-radius:99px;background:#f5a524;color:#111;margin-left:.4rem}`;
+.sol-status{min-height:1.4em;font-size:.92rem;margin-top:.6rem;word-break:break-word}.sol-net{display:inline-block;font-size:.75rem;padding:.1rem .45rem;border-radius:99px;background:transparent;color:var(--rd-green,#0b5c3a);border:1px solid currentColor;margin-left:.4rem;vertical-align:middle}`;
         document.head.appendChild(st);
         modal = document.createElement('div');
         modal.className = 'shop-modal'; modal.hidden = true; modal.setAttribute('role', 'dialog'); modal.setAttribute('aria-modal', 'true');
         modal.innerHTML = `<div class="shop-modal__backdrop" data-close></div><div class="shop-modal__dialog">
 <button type="button" class="shop-modal__close" data-close aria-label="Close">×</button>
 <h2 class="shop-modal__title">Mint on Solana <span class="sol-net" hidden></span></h2>
-<p class="shop-modal__lead">A Solana copy of this work in the <b>Nature &amp; Flowers</b> collection, minted straight to your wallet in one transaction.</p>
+<p class="shop-modal__lead">A Solana edition of this work in the <b>Nature &amp; Flowers</b> collection, minted straight to your wallet in one transaction.</p>
 <div style="display:flex;gap:.7rem;align-items:center"><img class="shop-modal__thumb sol-thumb" alt="" width="56" height="56" referrerpolicy="no-referrer">
 <div><p class="shop-modal__name sol-name"></p><p class="shop-modal__meta sol-meta"></p></div></div>
 <div class="sol-cur"><button type="button" class="btn btn--ghost" data-cur="SOL" aria-pressed="true">Pay in SOL</button><button type="button" class="btn btn--ghost" data-cur="USDC" aria-pressed="false">Pay in USDC</button></div>
 <p class="sol-price" style="font-size:1.15rem;font-weight:600"></p>
-<p class="shop-modal__meta">Plus Solana network fee and ~0.004 SOL account rent. Royalty on resales: 9%.</p>
+<p class="shop-modal__meta">Plus Solana network fee and ~0.003 SOL account rent. Royalty on resales: 9%.</p>
 <div class="sol-wallets"></div><p class="sol-status" aria-live="polite"></p></div>`;
         document.body.appendChild(modal);
         modal.addEventListener('click', (e) => { if (e.target.closest('[data-close]')) close(); });
@@ -263,9 +263,9 @@ const SolMint = (() => {
         ensureModal();
         const key = GalleryLikes.nftKey(nft);
         current = { nft, key, cur: 'SOL', item: null, signer: null };
-        modal.querySelector('.sol-net').hidden = apiCfg.network === 'mainnet';
+        modal.querySelector('.sol-net').hidden = false;
         modal.querySelector('.sol-net').textContent = apiCfg.network;
-        modal.querySelector('.sol-name').textContent = `${nft.name} · Solana copy`;
+        modal.querySelector('.sol-name').textContent = `${nft.name} · Solana edition`;
         modal.querySelector('.sol-meta').textContent = 'Loading…';
         modal.querySelector('.sol-price').textContent = '';
         const th = modal.querySelector('.sol-thumb'); th.src = nft.image_url || ''; th.hidden = !nft.image_url;
@@ -275,7 +275,7 @@ const SolMint = (() => {
         if (!apiCfg.live) { modal.querySelector('.sol-meta').textContent = 'Coming soon.'; status('Solana minting is not open yet.'); return; }
         try {
             current.item = await api(`/api/sol/item?key=${encodeURIComponent(key)}`);
-            modal.querySelector('.sol-meta').textContent = `${current.item.left} of ${current.item.cap} Solana copies left`;
+            modal.querySelector('.sol-meta').textContent = `${current.item.left} of ${current.item.cap} editions left`;
             paintPrice();
         } catch (e) { modal.querySelector('.sol-meta').textContent = ''; status(esc(e.message)); return; }
         if (current.item.left < 1) { status('Sold out on Solana.'); return; }

@@ -58,15 +58,83 @@ const SolMint = (() => {
         return (catalog[key.slice(0, i)] || {})[key.slice(i + 1)] || 0;
     }
 
+    /* Compact card control: Solana logo + its own price, in the same row as the last OS/Shop link (Jack, 2026-10-06). */
+    const SOL_SVG = '<svg class="sol-chip__logo" viewBox="0 0 398 312" width="12" height="10" aria-hidden="true" focusable="false"><path fill="currentColor" d="M64.6 237.9a14 14 0 0 1 9.9-4.1h317.4c6.3 0 9.4 7.5 5 11.9l-62.7 62.7a14 14 0 0 1-9.9 4.1H6.9c-6.3 0-9.4-7.5-5-11.9zM64.6 4.1A14.4 14.4 0 0 1 74.5 0h317.4c6.3 0 9.4 7.5 5 11.9l-62.7 62.7a14 14 0 0 1-9.9 4.1H6.9c-6.3 0-9.4-7.5-5-11.9zM333.1 120.1a14 14 0 0 0-9.9-4.1H5.8c-6.3 0-9.4 7.5-5 11.9l62.7 62.7a14 14 0 0 0 9.9 4.1h317.4c6.3 0 9.4-7.5 5-11.9z"/></svg>';
+    let cardCss = false;
+    function injectCardCss() {
+        if (cardCss) return; cardCss = true;
+        const st = document.createElement('style');
+        st.textContent = `.nft-card__actions.sol-grid,.gallery-protected .nft-card__actions.sol-grid{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:0;align-items:baseline;container-type:inline-size}
+.sol-grid>:not(.sol-chip){grid-column:1;min-width:0}
+.sol-grid>.sol-chip{grid-column:1;justify-self:end}
+@container (min-width: 250px){.sol-grid>.sol-chip{grid-column:2;grid-row:var(--sol-row,1);margin-left:10px!important}}
+.btn.sol-chip,.gallery-protected .nft-card__actions .btn.sol-chip{display:inline-flex;align-items:center;align-self:baseline;gap:4px;width:auto;min-height:0;margin:0;padding:0 0 0 10px;border:0;border-left:1px solid var(--rd-rule,#d9d9d9);border-radius:0;background:none;box-shadow:none;font-size:12.5px;font-weight:400;line-height:1.35;color:var(--rd-green,#0b5c3a);font-variant-numeric:tabular-nums;white-space:nowrap;cursor:pointer}
+.gallery-protected .nft-card__actions .btn.sol-chip::after{content:none}
+.sol-chip__logo{flex:0 0 auto;color:var(--rd-fg,#222);opacity:.7;transition:opacity .15s ease}
+.btn.sol-chip:hover .sol-chip__logo,.btn.sol-chip:focus-visible .sol-chip__logo{opacity:1}
+.gallery-protected .nft-card__actions .btn.sol-chip:hover{color:var(--rd-accent-ink,#0b5c3a)}`;
+        document.head.appendChild(st);
+    }
     function decorate(card, nft) {
         card.__solNft = nft;
         if (!catalog || !apiCfg || card.querySelector('.sol-mint-btn') || !capOf(nft)) return;
+        injectCardCss();
+        const key = GalleryLikes.nftKey(nft);
         const btn = document.createElement('button');
         btn.type = 'button';
-        btn.className = 'btn btn--ghost btn--block sol-mint-btn';
-        btn.innerHTML = '<span aria-hidden="true">◎</span> Mint on Solana';
+        btn.className = 'btn btn--ghost sol-mint-btn sol-chip';
+        btn.dataset.solKey = key;
+        btn.title = 'Mint a Solana edition';
+        btn.setAttribute('aria-label', `Mint on Solana${nft.name ? `: ${nft.name}` : ''}`);
+        btn.innerHTML = `${SOL_SVG}<span class="sol-chip__price"></span>`;
         btn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); open(nft); });
-        (card.querySelector('.nft-card__actions') || card.querySelector('.nft-card__body') || card).appendChild(btn);
+        const acts = card.querySelector('.nft-card__actions');
+        const ctas = acts ? [...acts.children].filter((el) => el.matches('a, button')).length : 0;
+        if (acts && ctas) {
+            // Own column on the last OS/Shop line (prices of the other links stay aligned); own short line on narrow cards.
+            acts.classList.add('sol-grid');
+            btn.style.setProperty('--sol-row', String(ctas));
+            acts.appendChild(btn);
+        } else {
+            (acts || card.querySelector('.nft-card__body') || card).appendChild(btn);
+        }
+        watchPrice(btn);
+    }
+
+    /* Card prices: fetched in batches only for cards near the viewport (GET /api/sol/prices). */
+    const priceCache = new Map();
+    const pending = new Map();
+    let io = null, flushT = null;
+    function watchPrice(btn) {
+        const k = btn.dataset.solKey;
+        if (priceCache.has(k)) return paintChip(btn, priceCache.get(k));
+        if (!('IntersectionObserver' in window)) return wantPrice(btn);
+        io = io || new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { io.unobserve(e.target); wantPrice(e.target); } }), { rootMargin: '600px 0px' });
+        io.observe(btn);
+    }
+    function wantPrice(btn) {
+        const k = btn.dataset.solKey;
+        if (priceCache.has(k)) return paintChip(btn, priceCache.get(k));
+        if (!pending.has(k)) pending.set(k, []);
+        pending.get(k).push(btn);
+        clearTimeout(flushT); flushT = setTimeout(flushPrices, 150);
+    }
+    async function flushPrices() {
+        const batch = [...pending.entries()].slice(0, 60);
+        if (!batch.length) return;
+        batch.forEach(([k]) => pending.delete(k));
+        try {
+            const r = await api(`/api/sol/prices?keys=${encodeURIComponent(batch.map(([k]) => k).join(','))}`);
+            for (const [k, bs] of batch) { const p = (r.prices || {})[k] || null; priceCache.set(k, p); bs.forEach((b) => paintChip(b, p)); }
+        } catch { batch.forEach(([, bs]) => bs.forEach((b) => paintChip(b, null))); }
+        if (pending.size) flushT = setTimeout(flushPrices, 400);
+    }
+    const fmtSol = (v) => (v < 1 ? v.toFixed(3) : v < 100 ? v.toFixed(2) : v.toFixed(0));
+    function paintChip(btn, p) {
+        const el = btn.querySelector('.sol-chip__price');
+        if (!p) { el.textContent = ''; btn.title = 'Mint a Solana edition'; return; }
+        el.textContent = p.left < 1 ? 'Sold out' : `${fmtSol(p.sol)} SOL`;
+        btn.title = `Mint a Solana edition · ${p.sol.toFixed(4)} SOL ≈ $${p.usd.toFixed(2)} · ${p.left.toLocaleString('en')} of ${p.cap.toLocaleString('en')} left`;
     }
 
     /* ---------- wallets ---------- */
@@ -225,7 +293,7 @@ const SolMint = (() => {
     function ensureModal() {
         if (modal) return modal;
         const st = document.createElement('style');
-        st.textContent = `.sol-mint-btn{margin-top:.4rem}.sol-wallets{display:grid;gap:.4rem;margin:.6rem 0}.sol-wallets button{display:flex;align-items:center;gap:.5rem;justify-content:flex-start}
+        st.textContent = `.sol-wallets{display:grid;gap:.4rem;margin:.6rem 0}.sol-wallets button{display:flex;align-items:center;gap:.5rem;justify-content:flex-start}
 .sol-wallets img{width:22px;height:22px;border-radius:5px}.sol-cur{display:flex;gap:.4rem;margin:.5rem 0}.sol-cur button[aria-pressed="true"]{outline:2px solid currentColor}
 .sol-status{min-height:1.4em;font-size:.92rem;margin-top:.6rem;word-break:break-word}.sol-net{display:inline-block;font-size:.75rem;padding:.1rem .45rem;border-radius:99px;background:transparent;color:var(--rd-green,#0b5c3a);border:1px solid currentColor;margin-left:.4rem;vertical-align:middle}`;
         document.head.appendChild(st);

@@ -70,6 +70,7 @@ const SolMint = (() => {
 @container (min-width: 250px){.sol-grid>.sol-chip{grid-column:2;grid-row:var(--sol-row,1);margin-left:10px!important}}
 .btn.sol-chip,.gallery-protected .nft-card__actions .btn.sol-chip{display:inline-flex;align-items:center;align-self:baseline;gap:4px;width:auto;min-height:0;margin:0;padding:0 0 0 10px;border:0;border-left:1px solid var(--rd-rule,#d9d9d9);border-radius:0;background:none;box-shadow:none;font-size:12.5px;font-weight:400;line-height:1.35;color:var(--rd-green,#0b5c3a);font-variant-numeric:tabular-nums;white-space:nowrap;cursor:pointer}
 .gallery-protected .nft-card__actions .btn.sol-chip::after{content:none}
+.btn.sol-chip[hidden],.gallery-protected .nft-card__actions .btn.sol-chip[hidden]{display:none}
 .sol-chip__logo{flex:0 0 auto;color:var(--rd-fg,#222);opacity:.7;transition:opacity .15s ease}
 .btn.sol-chip:hover .sol-chip__logo,.btn.sol-chip:focus-visible .sol-chip__logo{opacity:1}
 .gallery-protected .nft-card__actions .btn.sol-chip:hover{color:var(--rd-accent-ink,#0b5c3a)}`;
@@ -132,6 +133,7 @@ const SolMint = (() => {
     const fmtSol = (v) => (v < 1 ? v.toFixed(3) : v < 100 ? v.toFixed(2) : v.toFixed(0));
     function paintChip(btn, p) {
         const el = btn.querySelector('.sol-chip__price');
+        if (p && p.excluded) { btn.hidden = true; return; } // sol-ceny wyklucz: taken off Solana
         if (!p) { el.textContent = ''; btn.title = 'Mint a Solana edition'; return; }
         el.textContent = p.left < 1 ? 'Sold out' : `${fmtSol(p.sol)} SOL`;
         btn.title = `Mint a Solana edition · ${p.sol.toFixed(4)} SOL ≈ $${p.usd.toFixed(2)} · ${p.left.toLocaleString('en')} of ${p.cap.toLocaleString('en')} left`;

@@ -38,9 +38,9 @@ ROOT = Path(__file__).resolve().parent
 INDEX = ROOT / "data" / "promo_boards.json"
 PRESENT = Path(os.environ.get("JB_PRESENT_DIR") or (ROOT.parent / "jbg-present"))
 REPO = "jackbeatnic/jbg-present"
-PUBLIC_BASE = "https://jackbeatnic.github.io/jbg-present/promo"
+PUBLIC_BASE = "https://jackbeatnic.art/jbg-present/promo"
 BANNER_DIR = "promo_banner"
-BANNER_BASE = "https://jackbeatnic.github.io/jbg-present/promo_banner"
+BANNER_BASE = "https://jackbeatnic.art/jbg-present/promo_banner"
 UA = "JackBeatnicGallery/1.0"
 
 

@@ -1529,7 +1529,7 @@ const Gallery = (() => {
         const lockedHero = (info.hero_image || info.hero_bg || '').trim();
         const HARD_FALLBACKS = [
             'assets/hero-bg.jpg',
-            'https://jackbeatnic.github.io/jbg-present/avalanche_nature_stories/1.view.webp',
+            'https://jackbeatnic.art/jbg-present/avalanche_nature_stories/1.view.webp',
             'https://raw.githubusercontent.com/jackbeatnic/jackbeatnic.github.io/main/assets/hero-bg.jpg',
         ];
 

@@ -129,7 +129,7 @@ def build(
             "marketplace_url": (
                 f"https://bidds.com/nft/{nft_id}" if nft_id else None
             ),
-            "collection_url": "https://jackbeatnic.github.io",
+            "collection_url": "https://jackbeatnic.art",
             "image_url": img,
             "meta_url": CDN_META.format(id=tid),
             "supply": supply,
@@ -141,7 +141,7 @@ def build(
                 "description": (
                     f"{cfg['body']}\n\n"
                     f"(c) Jack Beatnic 2026 | XRPL Edition | {cfg['footer']}\n"
-                    "https://jackbeatnic.github.io"
+                    "https://jackbeatnic.art"
                 ),
                 "category": cfg["key"],
                 "vibe_tags": ["xrpl", cfg["prefix"].lower(), "semi-exclusive"],

@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-SITE = "https://jackbeatnic.github.io"
+SITE = "https://jackbeatnic.art"
 
 
 def main() -> None:

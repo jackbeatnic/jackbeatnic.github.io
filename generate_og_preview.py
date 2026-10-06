@@ -77,7 +77,7 @@ def save_gallery(data: dict) -> None:
 
 
 def site_base_url(info: dict) -> str:
-    url = (info.get("site_url") or "https://jackbeatnic.github.io/").rstrip("/")
+    url = (info.get("site_url") or "https://jackbeatnic.art/").rstrip("/")
     return url
 
 
@@ -842,20 +842,20 @@ def site_og_image_url(base_url: str, og_version: str) -> str:
 
 
 # Promo boards (white 1:1 board, ~683–687 px) — public on the jbg-present
-# Pages site: https://jackbeatnic.github.io/jbg-present/promo/<collection_id>/<NNNN>.jpg
+# Pages site: https://jackbeatnic.art/jbg-present/promo/<collection_id>/<NNNN>.jpg
 # NNNN = ON-CHAIN token id (NJ vol2 / AI Play gallery token_id is synthetic).
 # Which boards are actually published comes from data/promo_boards.json
 # (build_promo_board_index.py) — never guess from local files, a local board
 # that was not pushed would be a 404 card.
 # robots.txt must keep /jbg-present/promo/ allowed for Twitterbot & co.
 PROMO_INDEX_JSON = ROOT / "data" / "promo_boards.json"
-PROMO_PUBLIC_BASE = "https://jackbeatnic.github.io/jbg-present/promo"
+PROMO_PUBLIC_BASE = "https://jackbeatnic.art/jbg-present/promo"
 # Horizontal banners (1200x630) live at jbg-present/promo_banner.
 # The share page keeps the square as og:image. twitter:image points at
 # /card-image/ when a banner is published: X's crawler is redirected to the
 # banner, and every other client (including Arena) is redirected to the square.
 # nft/<col>/<id>-a.html puts the banner on both tags.
-PROMO_BANNER_PUBLIC_BASE = "https://jackbeatnic.github.io/jbg-present/promo_banner"
+PROMO_BANNER_PUBLIC_BASE = "https://jackbeatnic.art/jbg-present/promo_banner"
 _PROMO_INDEX: dict | None = None
 
 

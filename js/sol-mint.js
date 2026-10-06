@@ -234,7 +234,7 @@ const SolMint = (() => {
         modal.innerHTML = `<div class="shop-modal__backdrop" data-close></div><div class="shop-modal__panel">
 <button type="button" class="shop-modal__close" data-close aria-label="Close">×</button>
 <h2 class="shop-modal__title">Mint on Solana <span class="sol-net" hidden></span></h2>
-<p class="shop-modal__lead">A Solana copy of this work, minted straight to your wallet in one transaction.</p>
+<p class="shop-modal__lead">A Solana copy of this work in the <b>Nature &amp; Flowers</b> collection, minted straight to your wallet in one transaction.</p>
 <div style="display:flex;gap:.7rem;align-items:center"><img class="shop-modal__thumb sol-thumb" alt="" width="56" height="56" referrerpolicy="no-referrer">
 <div><p class="shop-modal__name sol-name"></p><p class="shop-modal__meta sol-meta"></p></div></div>
 <div class="sol-cur"><button type="button" class="btn btn--ghost" data-cur="SOL" aria-pressed="true">Pay in SOL</button><button type="button" class="btn btn--ghost" data-cur="USDC" aria-pressed="false">Pay in USDC</button></div>

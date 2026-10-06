@@ -32,6 +32,24 @@ ROOT = Path(__file__).resolve().parents[1]
 NEW = "https://jackbeatnic.art"
 PATTERN = re.compile(r"https?://jackbeatnic\.github\.io(?=[/\"'\s<>?#)\],;:&]|$)")
 SKIP_PREFIXES = ("archive/", "tools/domain_art_rewrite.py")
+# Follow-up edits after the URL rewrite (idempotent): WalletConnect metadata
+# must match the page origin, and CNAME names the custom domain.
+EXTRA_EDITS = {
+    "js/wallet-signin.js": [
+        ("url: 'https://jackbeatnic.art',", "url: location.origin,"),
+        ("icons: ['https://jackbeatnic.art/assets/og-preview.jpg'],",
+         "icons: [location.origin + '/assets/og-preview.jpg'],"),
+    ],
+    "js/shop.js": [
+        ("url: 'https://jackbeatnic.art',", "url: location.origin,"),
+        ("icons: ['https://jackbeatnic.art/assets/og-preview.jpg'],",
+         "icons: [location.origin + '/assets/og-preview.jpg'],"),
+    ],
+    "data/walletconnect.json": [
+        ("Public project id for jackbeatnic.github.io.",
+         "Public project id for jackbeatnic.art (and the legacy jackbeatnic.github.io)."),
+    ],
+}
 TEXT_SUFFIXES = {
     ".html", ".htm", ".js", ".mjs", ".css", ".json", ".xml", ".txt", ".py",
     ".sh", ".md", ".webmanifest", ".svg", ".toml", ".yml", ".yaml",
@@ -65,6 +83,25 @@ def main() -> int:
             hits += n
             if not args.check:
                 path.write_text(new, encoding="utf-8")
+    edits = 0
+    for rel, pairs in EXTRA_EDITS.items():
+        path = ROOT / rel
+        if not path.is_file():
+            continue
+        text = path.read_text(encoding="utf-8")
+        new = PATTERN.sub(NEW, text) if args.check else text
+        for old, rep in pairs:
+            if old in new:
+                new = new.replace(old, rep)
+                edits += 1
+        if not args.check and new != text:
+            path.write_text(new, encoding="utf-8")
+    cname = ROOT / "CNAME"
+    if not cname.is_file() or cname.read_text().strip() != "jackbeatnic.art":
+        edits += 1
+        if not args.check:
+            cname.write_text("jackbeatnic.art\n", encoding="utf-8")
+    print(f"extra edits (WalletConnect origin, CNAME): {edits}")
     mode = "would rewrite" if args.check else "rewrote"
     print(f"{mode} {hits} URL(s) in {files} file(s) -> {NEW}")
     return 0

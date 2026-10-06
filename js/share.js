@@ -2,7 +2,7 @@
  * Per-work sharing — copy link + social intents (no third-party widgets).
  */
 const GalleryShare = (() => {
-    let siteUrl = 'https://jackbeatnic.github.io/';
+    let siteUrl = 'https://jackbeatnic.art/';
     let popover = null;
     let grid = null;
     let anchor = null;

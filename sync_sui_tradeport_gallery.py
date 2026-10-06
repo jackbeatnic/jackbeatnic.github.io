@@ -963,7 +963,7 @@ def deploy_sui_gallery_to_github(*, dry_run: bool = False) -> int:
             print(f"[deploy] Error: {' '.join(cmd)} → exit {r.returncode}")
             return r.returncode or 1
 
-    print("[deploy] OK — GH Pages updates in ~1 min: https://jackbeatnic.github.io/")
+    print("[deploy] OK — GH Pages updates in ~1 min: https://jackbeatnic.art/")
     return 0
 
 

@@ -2494,6 +2494,7 @@ const Gallery = (() => {
             e.stopPropagation();
             if (typeof SuiMint !== 'undefined') SuiMint.open(nft);
         });
+        if (typeof SolMint !== 'undefined') SolMint.decorate(card, nft);
 
         return card;
     }

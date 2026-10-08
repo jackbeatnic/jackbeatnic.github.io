@@ -392,3 +392,31 @@
         color: #b0b0b0;
     }
 }
+
+/* Further works load as you scroll; the control also works without that. */
+.gallery-protected .gallery-more {
+    grid-column: 1 / -1;
+    justify-self: center;
+    margin: 0.35rem 0 0.6rem;
+    padding: 0.7rem 1.35rem;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    border-radius: 999px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.gallery-protected .gallery-more:hover {
+    border-color: rgba(0, 0, 0, 0.4);
+}
+@media (prefers-color-scheme: dark) {
+    .gallery-protected .gallery-more {
+        border-color: rgba(255, 255, 255, 0.22);
+    }
+    .gallery-protected .gallery-more:hover {
+        border-color: rgba(255, 255, 255, 0.55);
+    }
+}

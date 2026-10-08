@@ -6,6 +6,36 @@
     <title>Page not found | Jack Beatnic Gallery</title>
     <meta name="robots" content="noindex">
     <link rel="canonical" href="https://jackbeatnic.art/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+    <style>
+        :root { color-scheme: light dark; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 2rem 1.25rem;
+            background: #07131f;
+            color: #f4f1ea;
+            font-family: Inter, system-ui, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            margin: 0 0 0.6rem;
+            font-family: "Playfair Display", Georgia, serif;
+            font-weight: 500;
+            font-size: clamp(2.4rem, 6vw, 4rem);
+        }
+        p { margin: 0.35rem 0; color: rgba(244, 241, 234, 0.78); }
+        a {
+            display: inline-block;
+            margin-top: 1.4rem;
+            color: inherit;
+            text-underline-offset: 0.25em;
+        }
+    </style>
     <script>
         (function () {
             var m = location.pathname.match(/^\/nft\/([^/]+)\/([^/]+?)(?:\.html)?$/);
@@ -19,7 +49,10 @@
     </script>
 </head>
 <body>
-    <p>This page is missing.</p>
-    <p><a href="https://jackbeatnic.art/">Open Jack Beatnic Gallery</a></p>
+    <main>
+        <h1>This page is missing</h1>
+        <p>The link may be old, or the work has moved.</p>
+        <p><a href="https://jackbeatnic.art/">Open the gallery</a></p>
+    </main>
 </body>
 </html>

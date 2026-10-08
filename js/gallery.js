@@ -2060,10 +2060,21 @@ const Gallery = (() => {
         renderMarketplaceLinks(info);
     }
 
+    let moreObserver = null;
+
+    function stopMoreObserver() {
+        if (!moreObserver) return;
+        moreObserver.disconnect();
+        moreObserver = null;
+    }
+
     function render(filtered) {
         const container = document.getElementById('gallery-grid');
         const countEl = document.getElementById('filter-count');
         const generation = ++renderGeneration;
+        const pageSize = 36;
+
+        stopMoreObserver();
 
         if (countEl) {
             const total = sectionNfts.length;
@@ -2095,31 +2106,62 @@ const Gallery = (() => {
         container.innerHTML = '';
         container.classList.add('gallery-grid--busy');
 
-        const chunkSize = 48;
         let index = 0;
+        // A shared link (?work=) must include that card in the first page.
+        let firstEnd = pageSize;
+        const target = findWorkNft();
+        if (target && typeof GalleryLikes.nftKey === 'function') {
+            const key = GalleryLikes.nftKey(target);
+            const at = filtered.findIndex((n) => GalleryLikes.nftKey(n) === key);
+            if (at >= 0) firstEnd = Math.max(pageSize, at + 1);
+        }
 
-        function appendChunk() {
+        function appendThrough(endIndex) {
             if (generation !== renderGeneration) return;
 
             const frag = document.createDocumentFragment();
-            const end = Math.min(index + chunkSize, filtered.length);
+            const end = Math.min(endIndex, filtered.length);
             for (let i = index; i < end; i += 1) {
                 const nft = filtered[i];
                 frag.appendChild(
                     isLiveAuction(nft) ? buildAuctionCard(nft) : buildCard(nft),
                 );
             }
+            const sentinel = container.querySelector('.gallery-more');
+            if (sentinel && moreObserver) moreObserver.unobserve(sentinel);
             container.appendChild(frag);
             index = end;
 
             if (index < filtered.length) {
-                requestAnimationFrame(appendChunk);
-            } else {
-                container.classList.remove('gallery-grid--busy');
+                const el = sentinel || document.createElement('button');
+                if (!sentinel) {
+                    el.type = 'button';
+                    el.className = 'gallery-more';
+                    el.addEventListener('click', () => appendThrough(index + pageSize));
+                }
+                const left = filtered.length - index;
+                el.textContent = `Show more works (${left})`;
+                container.appendChild(el);
+                if (!moreObserver) {
+                    moreObserver = new IntersectionObserver((entries) => {
+                        if (
+                            generation === renderGeneration &&
+                            entries.some((entry) => entry.isIntersecting)
+                        ) {
+                            appendThrough(index + pageSize);
+                        }
+                    }, { rootMargin: '700px 0px' });
+                }
+                moreObserver.observe(el);
+            } else if (sentinel) {
+                sentinel.remove();
+                stopMoreObserver();
             }
+
+            container.classList.remove('gallery-grid--busy');
         }
 
-        requestAnimationFrame(appendChunk);
+        appendThrough(firstEnd);
     }
 
     // Artwork caption: full text on desktop; on phones a few lines, tap to read all.

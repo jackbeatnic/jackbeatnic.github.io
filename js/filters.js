@@ -448,7 +448,10 @@ const GalleryFilters = (() => {
             el.classList.remove('is-active');
         });
         const savedBtn = document.getElementById('filter-saved');
-        if (savedBtn) savedBtn.classList.remove('is-active');
+        if (savedBtn) {
+            savedBtn.classList.remove('is-active');
+            savedBtn.setAttribute('aria-pressed', 'false');
+        }
         listedOnly = false;
         const listedBtn = document.getElementById('filter-listed');
         if (listedBtn) listedBtn.classList.remove('is-active');
@@ -496,6 +499,7 @@ const GalleryFilters = (() => {
             const on = !GalleryLikes.getSavedOnly();
             GalleryLikes.setSavedOnly(on);
             btn.classList.toggle('is-active', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
             // Keep viewport on Explore — empty Saved list used to collapse the
             // grid and scroll the About/Marketplaces block into view.
             document.getElementById('explore')?.scrollIntoView({
@@ -518,7 +522,10 @@ const GalleryFilters = (() => {
             el.classList.remove('is-active');
         });
         const savedBtn = document.getElementById('filter-saved');
-        if (savedBtn) savedBtn.classList.remove('is-active');
+        if (savedBtn) {
+            savedBtn.classList.remove('is-active');
+            savedBtn.setAttribute('aria-pressed', 'false');
+        }
         listedOnly = false;
         const listedBtn = document.getElementById('filter-listed');
         if (listedBtn) listedBtn.classList.remove('is-active');

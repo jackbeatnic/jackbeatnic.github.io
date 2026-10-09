@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-08T23:00:06.258913+00:00",
+  "updated_at": "2026-10-09T00:00:12.779491+00:00",
   "promo": {
     "label": "OFF 0% · 180 days",
     "pct_off": 0,
@@ -135,22 +135,6 @@
       "ends_at": "2026-10-09T21:34:09.348528+00:00",
       "opensea_url": "https://opensea.io/assets/base/0x642073e93508606b94d0732324411135c8bc44c3/13",
       "marketplace_url": "https://opensea.io/assets/base/0x642073e93508606b94d0732324411135c8bc44c3/13"
-    },
-    {
-      "collection_id": "avalanche_nature_stories",
-      "collection_name": "Nature Stories",
-      "chain": "avalanche",
-      "token_id": 23,
-      "name": "NS #23",
-      "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/23.thumb.webp",
-      "price": 0.03077,
-      "currency": "AVAX",
-      "quantity": 1000,
-      "days": 7,
-      "pct_off": 0,
-      "ends_at": "2026-10-08T23:48:52.058071+00:00",
-      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/23",
-      "marketplace_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/23"
     },
     {
       "collection_id": "polygon_nature_stories_vol2",

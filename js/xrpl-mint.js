@@ -1,6 +1,5 @@
 /**
  * XRPL lazy mint — payment sheet. No private key in the browser.
- * The VPS checkout worker watches Destination Tag = catalog number.
  */
 const XrplMint = (() => {
     let modal;

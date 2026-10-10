@@ -5,7 +5,7 @@ Sets the NFT order in gallery.json by likes_count (descending).
 Source: likes_count on each NFT (updated by hand or from a stats export).
 Effect: display_rank 1 = top of the page after the daily run.
 
-Run (e.g. daily cron, after collecting stats):
+Run from this folder (for example a daily job, after collecting stats):
   python3 update_rank_from_likes.py
   ./refresh_and_push.sh --no-push   # local JSON only
   git add gallery.json && git commit -m "chore: daily likes sort" && git push

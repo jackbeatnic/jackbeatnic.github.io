@@ -904,7 +904,7 @@ def _meta_from_old_entries(collection_id: str, entries: list[dict], old_data: di
 
 
 def deploy_sui_gallery_to_github(*, dry_run: bool = False) -> int:
-    """Commit + push www/sui_gallery.json na jackbeatnic.github.io (GH Pages)."""
+    """Commit and push sui_gallery.json to the public gallery repository."""
     import subprocess
 
     if not OUTPUT_JSON.is_file():

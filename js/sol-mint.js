@@ -1,7 +1,7 @@
 /**
  * JB Gallery on Solana — "Mint on Solana" button + checkout.
- * One transaction built by the studio API: pay (SOL or USDC) to Jack and mint the Core asset to
- * the buyer. The studio key pre-signs as the collection update delegate; the buyer's wallet signs and pays.
+ * One transaction built by the studio API: pay (SOL or USDC) to the studio and mint the Core asset to
+ * the buyer. The studio pre-signs as the collection's update delegate; the buyer's wallet signs and pays.
  * No private key in the browser. No personal data: wallet address only.
  * Hidden unless data/shop_sol.json enabled=true, or preview with ?solmint=1 (?solmint=0 to clear).
  */

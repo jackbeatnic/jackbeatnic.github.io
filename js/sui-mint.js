@@ -1,6 +1,7 @@
 /**
  * SUI studio-signed lazy mint. No private key in the browser.
- * Checkout is the in-page shop modal — never window.confirm/alert.
+ * Live: PTB buy(art_id) on shared Vault. Studio checkout mints Copy S+1…2S.
+ * Checkout is the in-page shop modal (same as XRPL) — never window.confirm/alert.
  */
 const SuiMint = (() => {
     let modal;

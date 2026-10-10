@@ -1,9 +1,13 @@
 Jack Beatnic Gallery
-Proprietary. All rights reserved.
+Copyright (c) Jack Beatnic. All rights reserved.
 
-The public website displays the works. It is not a license to copy,
-modify, or republish the site, the gallery design, or any studio system
-behind it. This project is not open source and is not in the public domain.
+This repository is the public gallery site. It is not open source and it is
+not in the public domain. No license is granted to use, copy, modify, or
+redistribute the site code, studio tooling, or operational scripts.
 
-Portions of source files may have been drafted with AI tools. That does
-not place the design, the workflow, or these files in the public domain.
+The studio’s idea, design, and the way the gallery and sales tools behave
+are proprietary to Jack Beatnic, including where a file was drafted with
+software tools. Artwork terms are separate from this notice.
+
+Do not add a public license file. Do not place private operational notes,
+host names, or personal identity in this tree.

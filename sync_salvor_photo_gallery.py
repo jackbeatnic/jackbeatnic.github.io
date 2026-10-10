@@ -25,9 +25,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-JB_NFT = ROOT.parent
+STUDIO = ROOT.parent
 GALLERY_JSON = ROOT / "gallery.json"
-COLLECTIONS_JSON = JB_NFT / "raportowanie" / "kolekcje.json"
+COLLECTIONS_JSON = STUDIO / "raportowanie" / "kolekcje.json"
 SALVOR_API = "https://salvor.io/api"
 USER_AGENT = "JackBeatnicGallery/1.0"
 

@@ -2,7 +2,7 @@
   "version": 1,
   "updated_at": "2026-08-15T11:40:28Z",
   "source_csv": "listing/sale_index.example.csv",
-  "note": "Studio shop price list. JSON does not mint tokens. pool=gjb only in Shop. OS-listed units stay off this list.",
+  "note": "Studio shop price list. JSON does not mint tokens. Marketplace-listed units stay off this list.",
   "defaults": {
     "pay_address_evm": "0xf0b840349b3f285fc05c89eac594ddd254183fb9",
     "pay_address_xrpl": "rK4o7s2QDXPYWqB2jQRhH3ew9E8KeKYuxn"
@@ -128,7 +128,7 @@
       "opensea_url": null,
       "status": "coming",
       "demo": true,
-      "note": "XRPL mint-on-demand placeholder. Worker waits for VPS."
+      "note": "XRPL mint-on-demand placeholder. Mint runs after payment is confirmed."
     }
   ]
 }

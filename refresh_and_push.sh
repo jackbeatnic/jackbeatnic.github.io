@@ -14,11 +14,11 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-JB_NFT="$(dirname "$SCRIPT_DIR")"
-REPORTS_ROOT="$JB_NFT/raportowanie"
+STUDIO="$(dirname "$SCRIPT_DIR")"
+REPORTS_ROOT="$STUDIO/raportowanie"
 WWW_DIR="$SCRIPT_DIR"
-if [[ -x "$JB_NFT/venv/bin/python3" ]]; then
-    PYTHON="$JB_NFT/venv/bin/python3"
+if [[ -x "$STUDIO/venv/bin/python3" ]]; then
+    PYTHON="$STUDIO/venv/bin/python3"
 else
     PYTHON="python3"
 fi
@@ -114,12 +114,12 @@ cd "$WWW_DIR"
 
 if ! git rev-parse --git-dir >/dev/null 2>&1; then
     echo "Error: no git repository in $WWW_DIR" >&2
-    echo "First run: see the local deploy notes (~/jb_nft/notes/gh_internal/DEPLOY_GITHUB.txt)" >&2
+    echo "First run: see the local deploy notes (kept off this repo)." >&2
     exit 1
 fi
 
 if ! git remote get-url origin >/dev/null 2>&1; then
-    echo "Error: no 'origin' remote. See the local deploy notes (~/jb_nft/notes/gh_internal/DEPLOY_GITHUB.txt)" >&2
+    echo "Error: no 'origin' remote. See the local deploy notes (kept off this repo)." >&2
     exit 1
 fi
 

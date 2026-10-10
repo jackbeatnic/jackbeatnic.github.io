@@ -29,9 +29,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-JB_NFT = ROOT.parent
+STUDIO = ROOT.parent
 GALLERY_JSON = ROOT / "gallery.json"
-AUDIT_DIR = JB_NFT / "raportowanie" / "audyt"
+AUDIT_DIR = STUDIO / "raportowanie" / "audyt"
 GRAPHQL_URL = "https://data.objkt.com/v3/graphql"
 USER_AGENT = "JackBeatnicGallery/1.0"
 

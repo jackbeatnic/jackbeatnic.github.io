@@ -2,7 +2,6 @@
 # First-time hookup of the gallery to GitHub Pages (LOGIN.github.io).
 # Run after logging in: gh auth login
 #
-#   cd ~/jb_nft/www
 #   ./setup_github.sh YOUR-LOGIN
 #
 # Example:

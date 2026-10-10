@@ -7,9 +7,8 @@ Copy both layout review .docx files from Drive into THIS folder
 Source on Drive:
   Grok NFT - Jack Beatnic Gallery Layout
 
-Then in a terminal:
+Then in a terminal, from this folder:
 
-  cd ~/jb_nft/www/layout_notes
   python3 read_docx.py
 
 The extracted text is used to apply the layout fixes and publish them to

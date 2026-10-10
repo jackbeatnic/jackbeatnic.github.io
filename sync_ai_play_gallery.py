@@ -28,9 +28,9 @@ from pathlib import Path
 from web3 import Web3
 
 ROOT = Path(__file__).resolve().parent
-JB_NFT = ROOT.parent
-COLLECTIONS_JSON = JB_NFT / "raportowanie" / "kolekcje.json"
-REPORTS_DIR = JB_NFT / "raportowanie" / "raporty"
+STUDIO = ROOT.parent
+COLLECTIONS_JSON = STUDIO / "raportowanie" / "kolekcje.json"
+REPORTS_DIR = STUDIO / "raportowanie" / "raporty"
 AI_PLAY_JSON = ROOT / "ai_play_gallery.json"
 
 COLLECTION_ID = "polygon_jb_ai_play"
@@ -86,7 +86,7 @@ def load_env_file(path: Path) -> None:
 
 
 def bootstrap_env() -> None:
-    for path in (ROOT / ".env", JB_NFT / "raportowanie" / ".env"):
+    for path in (ROOT / ".env", STUDIO / "raportowanie" / ".env"):
         load_env_file(path)
 
 

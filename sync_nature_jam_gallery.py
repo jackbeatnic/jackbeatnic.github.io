@@ -26,9 +26,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-JB_NFT = ROOT.parent
-COLLECTIONS_JSON = JB_NFT / "raportowanie" / "kolekcje.json"
-REPORTS_DIR = JB_NFT / "raportowanie" / "raporty"
+STUDIO = ROOT.parent
+COLLECTIONS_JSON = STUDIO / "raportowanie" / "kolekcje.json"
+REPORTS_DIR = STUDIO / "raportowanie" / "raporty"
 OUTPUT_JSON = ROOT / "nature_jam_gallery.json"
 
 COLLECTION_ID = "avalanche_nature_jam"

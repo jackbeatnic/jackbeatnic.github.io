@@ -31,8 +31,8 @@ from pathlib import Path
 from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 
 ROOT = Path(__file__).resolve().parent
-JB_NFT = ROOT.parent
-COLLECTIONS_JSON = JB_NFT / "raportowanie" / "kolekcje.json"
+STUDIO = ROOT.parent
+COLLECTIONS_JSON = STUDIO / "raportowanie" / "kolekcje.json"
 OUTPUT_JSON = ROOT / "sui_gallery.json"
 
 GRAPHQL_URL = "https://api.indexer.xyz/graphql"
@@ -141,7 +141,7 @@ def load_env_file(path: Path) -> None:
 
 
 def bootstrap_env() -> None:
-    for path in (ROOT / ".env", JB_NFT / "raportowanie" / ".env"):
+    for path in (ROOT / ".env", STUDIO / "raportowanie" / ".env"):
         load_env_file(path)
 
 

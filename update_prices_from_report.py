@@ -22,9 +22,9 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-JB_NFT = SCRIPT_DIR.parent
-REPORTS_DIR = JB_NFT / "raportowanie" / "raporty"
-COLLECTIONS_JSON = JB_NFT / "raportowanie" / "kolekcje.json"
+STUDIO = SCRIPT_DIR.parent
+REPORTS_DIR = STUDIO / "raportowanie" / "raporty"
+COLLECTIONS_JSON = STUDIO / "raportowanie" / "kolekcje.json"
 DEFAULT_GALLERY = SCRIPT_DIR / "gallery.json"
 
 OPENSEA_ASSET_RE = re.compile(

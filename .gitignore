@@ -5,6 +5,9 @@ Thumbs.db
 .env
 .env.*
 
+# Cursor rules — local/VPS only (not public GitHub)
+.cursor/
+
 # Local notes / stray files (not deployed)
 layout_notes/*.docx
 /*.jpg

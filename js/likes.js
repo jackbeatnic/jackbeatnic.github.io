@@ -1,6 +1,6 @@
 /**
  * Likes & Save for later — LocalStorage (blueprint phase 4).
- * Global likes_count: vps/worker/likes_daily.py (CSV + cron) or the
+ * Global likes_count is filled by the studio schedule (CSV) or the
  * local likes-ranking script. Heart here = this browser only.
  */
 const GalleryLikes = (() => {

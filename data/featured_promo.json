@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-11T22:00:06.289646+00:00",
+  "updated_at": "2026-10-11T23:32:29.942590+00:00",
   "promo": {
     "label": "OFF 0% · 180 days",
     "pct_off": 0,
@@ -8,6 +8,22 @@
     "ends_at": "2027-03-17T01:19:50.051208+00:00"
   },
   "items": [
+    {
+      "collection_id": "avalanche_nature_stories",
+      "collection_name": "Nature Stories",
+      "chain": "avalanche",
+      "token_id": 150,
+      "name": "NS #150",
+      "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/150.thumb.webp",
+      "price": 0.09231,
+      "currency": "AVAX",
+      "quantity": 100,
+      "days": 7,
+      "pct_off": 0,
+      "ends_at": "2026-10-18T23:32:29.941936+00:00",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/150",
+      "marketplace_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/150"
+    },
     {
       "collection_id": "avalanche_nature_stories",
       "collection_name": "Nature Stories",

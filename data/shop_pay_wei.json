@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated_at": "2026-10-11T16:00:16Z",
+  "updated_at": "2026-10-11T22:00:06Z",
   "encoding": "buy(uint256)",
   "magic": "0xd96a094a",
   "legacy_gjb1": "0x474a4231",
@@ -41081,15 +41081,6 @@
       "wei": "30000000000000000",
       "chain": "avalanche",
       "qty_available": 500
-    },
-    {
-      "sku": "gjb-ns-22-t4",
-      "collection_id": "avalanche_nature_stories",
-      "token_id": 22,
-      "pay_amount": "1.357",
-      "wei": "1357000000000000000",
-      "chain": "avalanche",
-      "qty_available": 300
     },
     {
       "sku": "gjb-ns-25-t3",

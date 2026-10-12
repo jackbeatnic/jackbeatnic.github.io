@@ -137466,18 +137466,19 @@
         ]
       },
       "likes_count": 0,
-      "status": "minted",
+      "status": "listed",
       "chain": "polygon",
       "contract_address": "0xa0d6ff855d88cc5587f30de654966e0f33b3b30f",
       "collection_id": "polygon_nature_stories_vol2",
       "listing_status": "For Sale",
       "listing_currency": "WETH",
-      "display_rank": 940,
+      "display_rank": 0,
       "share_url": "https://jackbeatnic.art/nft/polygon-nature-stories-vol2/363.html",
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Polygon",
-      "current_price_weth": 0.00667
+      "current_price_weth": 0.00667,
+      "og_image": "https://jackbeatnic.art/jbg-present/promo/polygon_nature_stories_vol2/0363.jpg?v=4ff5a04d"
     },
     {
       "token_id": 364,

@@ -954,7 +954,7 @@
         ]
       },
       "likes_count": 0,
-      "status": "listed",
+      "status": "minted",
       "chain": "polygon",
       "contract_address": "0xa0d6ff855d88cc5587f30de654966e0f33b3b30f",
       "collection_id": "polygon_nature_stories_vol2",
@@ -966,7 +966,7 @@
       "medium": "ai_art",
       "ai_series": "nature_stories",
       "edition_label": "Polygon",
-      "current_price_weth": 0.00072
+      "current_price_weth": null
     },
     {
       "token_id": 3,

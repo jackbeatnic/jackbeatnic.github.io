@@ -659,6 +659,8 @@ const GallerySections = (() => {
         syncNavUi();
         writeUrl();
         emitSectionChange('full');
+        // Featured: land on the first artwork, not on the token promo / filters above the grid.
+        if (id === 'featured' && window.GalleryAnchor?.scrollTo?.('gallery-grid')) return;
         document.getElementById('gallery-root')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 

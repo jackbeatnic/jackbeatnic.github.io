@@ -202,6 +202,8 @@
 .gallery-protected .hero-a-band__link--ghost { opacity: 0.72; border-bottom-color: transparent; }
 .gallery-protected .hero-a-band__link:hover { opacity: 1; color: var(--rd-accent-ink); }
 .gallery-protected .hero-a-band__link[hidden] { display: none; }
+/* Featured sits next to Explore with the same full-strength underline (not ghost). */
+.gallery-protected .hero-a-band__link--featured { opacity: 1; }
 .gallery-protected .hero-a-band__prose,
 .gallery-protected .hero-a-band__prose p {
     font-family: var(--rd-body);

@@ -860,8 +860,12 @@ _PROMO_INDEX: dict | None = None
 
 
 def refresh_promo_index() -> None:
-    """With a local jbg-present clone (JB), re-read which boards are published
-    (origin/main) before writing share pages. JB_PROMO_INDEX_AUTO=0 disables."""
+    """Re-read which boards are published before writing share pages.
+
+    JB_PROMO_INDEX_AUTO=0 disables this. A huge diff is left on the saved
+    index: measuring every JPEG from the partial jbg-present clone fetches
+    one blob at a time and blows the promo timer.
+    """
     if os.environ.get("JB_PROMO_INDEX_AUTO", "1") == "0":
         return
     present = Path(os.environ.get("JB_PRESENT_DIR") or (ROOT.parent / "jbg-present"))
@@ -876,6 +880,46 @@ def refresh_promo_index() -> None:
         _PROMO_INDEX = None
     except Exception as exc:  # noqa: BLE001 — keep the committed index
         print(f"[promo] WARN: board index not refreshed ({exc}) — using {PROMO_INDEX_JSON.name}")
+
+
+def ensure_promo_entries(nfts: list[dict]) -> None:
+    """If this promo's board is missing from the index, measure that one file over HTTP."""
+    import hashlib
+
+    sys.path.insert(0, str(ROOT))
+    import build_promo_board_index as idx
+
+    index = promo_index()
+    changed = False
+    for nft in nfts:
+        key = promo_board_key(nft)
+        if key is None:
+            continue
+        cid, tid = key
+        stem = f"{tid:04d}"
+        for bucket, base in (
+            ("collections", idx.PUBLIC_BASE),
+            ("banners", idx.BANNER_BASE),
+        ):
+            col = index.setdefault(bucket, {}).setdefault(cid, {})
+            if col.get(stem):
+                continue
+            size = idx.size_remote(cid, stem, base)
+            if not size:
+                continue
+            digest = hashlib.sha1(f"{cid}/{stem}/{size[0]}x{size[1]}".encode()).hexdigest()[:10]
+            col[stem] = [size[0], size[1], digest]
+            changed = True
+            print(f"[promo] index {bucket} {cid}/{stem} {size[0]}x{size[1]}")
+    if not changed:
+        return
+    idx.INDEX.parent.mkdir(parents=True, exist_ok=True)
+    idx.INDEX.write_text(
+        json.dumps(index, ensure_ascii=False, separators=(",", ":"), sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    global _PROMO_INDEX
+    _PROMO_INDEX = index
 
 
 def promo_index() -> dict:
@@ -1099,6 +1143,10 @@ def generate_share_pages(
     refresh_promo_index()
     if nfts is None:
         nfts = collect_all_share_nfts(data)
+    if token_ids is not None:
+        ensure_promo_entries(
+            [n for n in nfts if token_id_int(n) is not None and token_id_int(n) in token_ids]
+        )
     output_dir.mkdir(parents=True, exist_ok=True)
     written: list[Path] = []
     active_paths: set[Path] = set()

@@ -180,6 +180,12 @@ def size_remote(col: str, stem: str, base: str = PUBLIC_BASE) -> tuple[int, int]
     return None
 
 
+# A promo tick must not re-read the whole board library. jbg-present on the
+# VPS is a partial clone: git cat-file fetches each missing JPEG from GitHub,
+# one request at a time, and never finishes inside the promo timer.
+MAX_MEASURE = 24
+
+
 def build_part(source: str, top: str, old: dict, base: str) -> dict[str, dict[str, list]]:
     listing = list_local(top) if source == "local" else list_github(top)
     cols: dict[str, dict[str, list]] = {}
@@ -194,6 +200,18 @@ def build_part(source: str, top: str, old: dict, base: str) -> dict[str, dict[st
             else:
                 todo.append((col, stem, sha))
     print(f"[promo-index] {top}: {sum(len(v) for v in listing.values())} boards, {len(todo)} to measure ({source})")
+    if len(todo) > MAX_MEASURE:
+        print(
+            f"[promo-index] {top}: {len(todo)} changed boards — "
+            "keeping the saved index (a full rescan does not run during promo)"
+        )
+        kept: dict[str, dict[str, list]] = {}
+        for col, files in listing.items():
+            prev = old.get(col) or {}
+            row = {stem: prev[stem] for stem in files if stem in prev}
+            if row:
+                kept[col] = row
+        return kept
 
     failed = 0
     if source == "local":

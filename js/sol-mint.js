@@ -51,9 +51,20 @@ const SolMint = (() => {
         return ready;
     }
 
+    // Catalog and the price API use the on-chain id. Nature Jam vol. 2 cards
+    // store 10000 + that id in token_id, so the Solana key must use onchain_token_id.
+    function artKey(nft) {
+        const on = nft && nft.onchain_token_id;
+        const token = on != null && on !== '' ? String(on) : String(nft?.token_id ?? '');
+        const chain = nft?.chain || '';
+        const contract = String(nft?.contract_address || '').toLowerCase();
+        if (chain && contract && token) return `${chain}:${contract}:${token}`;
+        return `${nft?.collection_id || 'nft'}:${token}`;
+    }
+
     function capOf(nft) {
         if (!catalog || !nft) return 0;
-        const key = typeof GalleryLikes !== 'undefined' ? GalleryLikes.nftKey(nft) : '';
+        const key = artKey(nft);
         const i = key.lastIndexOf(':');
         return (catalog[key.slice(0, i)] || {})[key.slice(i + 1)] || 0;
     }
@@ -80,7 +91,7 @@ const SolMint = (() => {
         card.__solNft = nft;
         if (!catalog || !apiCfg || card.querySelector('.sol-mint-btn') || !capOf(nft)) return;
         injectCardCss();
-        const key = GalleryLikes.nftKey(nft);
+        const key = artKey(nft);
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'btn btn--ghost sol-mint-btn sol-chip';
@@ -331,7 +342,7 @@ const SolMint = (() => {
     async function open(nft) {
         if (!(await load())) return;
         ensureModal();
-        const key = GalleryLikes.nftKey(nft);
+        const key = artKey(nft);
         current = { nft, key, cur: 'SOL', item: null, signer: null };
         modal.querySelector('.sol-net').hidden = false;
         modal.querySelector('.sol-net').textContent = apiCfg.network;

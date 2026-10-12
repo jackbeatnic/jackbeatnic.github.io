@@ -98,11 +98,16 @@ def resolve_report_path(collection_id: str) -> Path:
 
 
 def nft_key(nft: dict, contract_map: dict[str, dict]) -> tuple[str, str, str] | None:
-    if nft.get("chain") and nft.get("contract_address"):
+    # Report rows use the on-chain id. Some cards store a display id
+    # (Nature Jam vol. 2 is 10000 + on-chain, AI Play is 700000000 + on-chain).
+    raw = nft.get("onchain_token_id")
+    if raw in (None, ""):
+        raw = nft.get("token_id")
+    if nft.get("chain") and nft.get("contract_address") and raw not in (None, ""):
         return (
             nft["chain"],
             str(nft["contract_address"]).lower(),
-            str(nft["token_id"]),
+            str(raw),
         )
     parsed = parse_opensea_url(nft.get("opensea_url", ""))
     if parsed:
@@ -188,14 +193,12 @@ def sync_gallery(
         if report_row.get("opensea_url"):
             nft["opensea_url"] = report_row["opensea_url"]
 
-        if report_row.get("name"):
-            nft["name"] = report_row["name"]
+        # Do not copy report "name". It is a different number from the card
+        # title (token 300 is "FS #300" on the site and "FS #4976 B" in the report).
 
         updated += 1
 
     info = gallery.setdefault("collection_info", {})
-    if report_ids:
-        info["collection_id"] = report_ids[0] if len(report_ids) == 1 else report_ids
     if inferred_ids:
         first_col = contract_map.get(nft_key(nfts[0], contract_map)[1]) if nfts else None
         if first_col:

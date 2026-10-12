@@ -47735,6 +47735,102 @@
       "ai_series": "based_ai",
       "edition_label": "Base",
       "current_price_eth": 1.42
+    },
+    {
+      "token_id": 707,
+      "onchain_token_id": 707,
+      "name": "BAI2 #1592",
+      "opensea_url": "https://opensea.io/assets/base/0x879e260e861fec11a9f721baeabf347ec19c7725/707",
+      "marketplace_url": "https://opensea.io/assets/base/0x879e260e861fec11a9f721baeabf347ec19c7725/707",
+      "image_url": "https://jackbeatnic.art/jbg-present/base_jb_based_ai_vol2/707.thumb.webp",
+      "traits": {},
+      "ai": {
+        "description": "Based AI presents vibrant visions drawn from memories and pure creativity—each scene reinvented through the free play of imagination.\n\n(c) Jack Beatnic 2025 | Base Edition | Based AI vol. 2\nhttps://jackbeatnic.github.io",
+        "dominant_colors": [],
+        "vibe_tags": [],
+        "category": "",
+        "keywords": [
+          "base",
+          "base_jb_based_ai_vol2"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "base",
+      "contract_address": "0x879e260e861fec11a9f721baeabf347ec19c7725",
+      "collection_id": "base_jb_based_ai_vol2",
+      "listing_status": "For Sale",
+      "listing_currency": "ETH",
+      "display_rank": 1592,
+      "share_url": "https://jackbeatnic.art/nft/base-jb-based-ai-vol2/707.html",
+      "medium": "ai_art",
+      "ai_series": "based_ai",
+      "edition_label": "Base",
+      "current_price_eth": 1.42
+    },
+    {
+      "token_id": 708,
+      "onchain_token_id": 708,
+      "name": "BAI2 #1595",
+      "opensea_url": "https://opensea.io/assets/base/0x879e260e861fec11a9f721baeabf347ec19c7725/708",
+      "marketplace_url": "https://opensea.io/assets/base/0x879e260e861fec11a9f721baeabf347ec19c7725/708",
+      "image_url": "https://jackbeatnic.art/jbg-present/base_jb_based_ai_vol2/708.thumb.webp",
+      "traits": {},
+      "ai": {
+        "description": "Based AI presents vibrant visions drawn from memories and pure creativity—each scene reinvented through the free play of imagination.\n\n(c) Jack Beatnic 2025 | Base Edition | Based AI vol. 2\nhttps://jackbeatnic.github.io",
+        "dominant_colors": [],
+        "vibe_tags": [],
+        "category": "",
+        "keywords": [
+          "base",
+          "base_jb_based_ai_vol2"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "base",
+      "contract_address": "0x879e260e861fec11a9f721baeabf347ec19c7725",
+      "collection_id": "base_jb_based_ai_vol2",
+      "listing_status": "For Sale",
+      "listing_currency": "ETH",
+      "display_rank": 1595,
+      "share_url": "https://jackbeatnic.art/nft/base-jb-based-ai-vol2/708.html",
+      "medium": "ai_art",
+      "ai_series": "based_ai",
+      "edition_label": "Base",
+      "current_price_eth": 1.42
+    },
+    {
+      "token_id": 735,
+      "onchain_token_id": 735,
+      "name": "BAI2 #1618",
+      "opensea_url": "https://opensea.io/assets/base/0x879e260e861fec11a9f721baeabf347ec19c7725/735",
+      "marketplace_url": "https://opensea.io/assets/base/0x879e260e861fec11a9f721baeabf347ec19c7725/735",
+      "image_url": "https://jackbeatnic.art/jbg-present/base_jb_based_ai_vol2/735.thumb.webp",
+      "traits": {},
+      "ai": {
+        "description": "Based AI presents vibrant visions drawn from memories and pure creativity—each scene reinvented through the free play of imagination.\n\n(c) Jack Beatnic 2025 | Base Edition | Based AI vol. 2\nhttps://jackbeatnic.github.io",
+        "dominant_colors": [],
+        "vibe_tags": [],
+        "category": "",
+        "keywords": [
+          "base",
+          "base_jb_based_ai_vol2"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "base",
+      "contract_address": "0x879e260e861fec11a9f721baeabf347ec19c7725",
+      "collection_id": "base_jb_based_ai_vol2",
+      "listing_status": "For Sale",
+      "listing_currency": "ETH",
+      "display_rank": 1618,
+      "share_url": "https://jackbeatnic.art/nft/base-jb-based-ai-vol2/735.html",
+      "medium": "ai_art",
+      "ai_series": "based_ai",
+      "edition_label": "Base",
+      "current_price_eth": 1.42
     }
   ]
 }

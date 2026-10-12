@@ -1120,12 +1120,15 @@ const Gallery = (() => {
     function updateFeaturedChip(count) {
         const chip = document.getElementById('featured-chip');
         const countEl = document.getElementById('featured-chip-count');
+        const heroLink = document.getElementById('hero-featured');
         if (!chip) return;
         if (!count || count <= 0) {
             chip.hidden = true;
+            if (heroLink) heroLink.hidden = true;
             return;
         }
         chip.hidden = false;
+        if (heroLink) heroLink.hidden = false;
         if (countEl) {
             countEl.hidden = false;
             countEl.textContent = String(count);
@@ -2566,6 +2569,8 @@ const Gallery = (() => {
         return true;
     }
 
+    window.GalleryAnchor = { scrollTo: (id) => scrollToPageAnchor(id) };
+
     const PAGE_ANCHORS = ['about', 'about-marketplaces', 'about-find'];
 
     function bindHeroAnchors() {
@@ -2586,9 +2591,18 @@ const Gallery = (() => {
         });
     }
 
+    let featuredHashDone = false;
+
     function scrollHashTarget() {
         const id = (window.location.hash || '').replace(/^#/, '');
         if (!id) return;
+        if (id === 'featured') {
+            // /#featured: open the Featured section and land on its first artwork (once).
+            if (featuredHashDone) return;
+            featuredHashDone = true;
+            window.requestAnimationFrame(() => document.getElementById('hero-featured')?.click());
+            return;
+        }
         if (PAGE_ANCHORS.includes(id) || id === 'explore') {
             window.requestAnimationFrame(() => scrollToPageAnchor(id, { smooth: false }));
         }

@@ -1336,6 +1336,7 @@ const Gallery = (() => {
         const grid = document.getElementById('gallery-grid');
         // These catalogs are not needed for the first screen. Download them
         // alongside the home file, but do not wait for them before painting.
+        loadCaptions();
         const xrpLater = readGalleryJson(fetch('xrp_gallery.json'));
         const suiLater = readGalleryJson(fetch('sui_gallery.json'));
         const shopLater = loadSaleIndexNfts();
@@ -1509,6 +1510,7 @@ const Gallery = (() => {
             });
             syncSectionPromo();
             refresh();
+            fillVisibleCaptions();
             scrollToWorkFromUrl();
 
             document.addEventListener('gallery:filter', refresh);
@@ -2332,19 +2334,36 @@ const Gallery = (() => {
         });
     }
 
-    // Artwork caption: own ai.description, else the same work's caption from the main
-    // gallery (Featured / Shop entries carry no ai block). Read-only lookup.
+    // Card text: a unique reading in data/captions.json, otherwise one shared
+    // series line. Other catalogs may still carry ai.description on the work.
+    let captionWorks = {};
+    let captionSeries = {};
+    let captionsReady = false;
     let captionIndex = null;
     let captionIndexSize = -1;
-    function captionFor(nft) {
-        const own = typeof nft?.ai?.description === 'string' ? nft.ai.description.trim() : '';
+
+    function ownCaption(nft) {
+        const own = nft?.ai?.description;
+        return typeof own === 'string' ? own.trim() : '';
+    }
+
+    function directCaption(nft) {
+        const own = ownCaption(nft);
         if (own) return own;
+        if (!nft || nft.token_id == null || !nft.collection_id) return '';
+        const key = `${nft.collection_id}:${nft.token_id}`;
+        return captionWorks[key] || captionSeries[nft.collection_id] || '';
+    }
+
+    function captionFor(nft) {
+        const direct = directCaption(nft);
+        if (direct) return direct;
         if (!nft || nft.token_id == null || !nft.collection_id) return '';
         if (!captionIndex || captionIndexSize !== allNfts.length) {
             captionIndex = new Map();
             captionIndexSize = allNfts.length;
             allNfts.forEach((n) => {
-                const d = typeof n?.ai?.description === 'string' ? n.ai.description.trim() : '';
+                const d = directCaption(n);
                 if (d && n.collection_id && n.token_id != null) {
                     const k = `${n.collection_id}|${n.token_id}`;
                     if (!captionIndex.has(k)) captionIndex.set(k, d);
@@ -2354,10 +2373,47 @@ const Gallery = (() => {
         return captionIndex.get(`${nft.collection_id}|${nft.token_id}`) || '';
     }
 
+    function fillVisibleCaptions() {
+        if (!captionsReady) return;
+        document.querySelectorAll('#gallery-grid .nft-card').forEach((card) => {
+            const cid = card.dataset.collectionId;
+            const tid = card.dataset.tokenId;
+            if (!cid || tid == null || tid === '') return;
+            const text = captionFor({ collection_id: cid, token_id: tid });
+            if (!text) return;
+            let p = card.querySelector('.nft-card__description');
+            if (!p) {
+                p = document.createElement('p');
+                p.className = 'nft-card__description';
+                const price = card.querySelector('.nft-card__price');
+                if (price) price.insertAdjacentElement('afterend', p);
+                else card.querySelector('.nft-card__body')?.appendChild(p);
+                bindCaption(card);
+            }
+            if (p.textContent !== text) p.textContent = text;
+        });
+    }
+
+    function loadCaptions() {
+        fetch('data/captions.json')
+            .then((res) => (res.ok ? res.json() : {}))
+            .then((doc) => {
+                captionWorks = doc?.works || {};
+                captionSeries = doc?.series || {};
+                captionsReady = true;
+                captionIndex = null;
+                fillVisibleCaptions();
+            })
+            .catch((err) => console.warn('captions:', err));
+    }
+
+    window.GalleryCaptions = { text: captionFor };
+
     function buildAuctionCard(nft) {
         const card = document.createElement('article');
         card.className = 'nft-card nft-card--auction';
         card.dataset.tokenId = String(nft.token_id);
+        if (nft.collection_id) card.dataset.collectionId = String(nft.collection_id);
 
         const key = GalleryLikes.nftKey(nft);
         card.dataset.nftKey = key;
@@ -2458,6 +2514,7 @@ const Gallery = (() => {
         const card = document.createElement('article');
         card.className = 'nft-card';
         card.dataset.tokenId = String(nft.token_id);
+        if (nft.collection_id) card.dataset.collectionId = String(nft.collection_id);
 
         const key = GalleryLikes.nftKey(nft);
         card.dataset.nftKey = key;

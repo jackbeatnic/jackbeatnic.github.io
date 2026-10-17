@@ -413,7 +413,8 @@ const GalleryFilters = (() => {
                     nft.collection_name,
                     nft.token_id != null ? String(nft.token_id) : '',
                     nft.edition_label ? `${nft.edition_label} edition` : '',
-                    nft.ai?.description,
+                    (typeof GalleryCaptions !== 'undefined' && GalleryCaptions.text(nft)) ||
+                        nft.ai?.description,
                     nft.ai?.category,
                     nft.on_os ? 'os opensea' : '',
                     nft.in_shop ? 'shop studio' : '',

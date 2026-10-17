@@ -813,21 +813,7 @@ const Gallery = (() => {
         ];
     }
 
-    function appendSupplementaryGalleries(extras) {
-        const extraNfts = extras.flatMap((payload) => payload?.nfts || []);
-        if (!extraNfts.length) return;
-        allNfts = [...allNfts, ...extraNfts];
-        attachChannelLinks(allNfts);
-        if (typeof GallerySections !== 'undefined' && GallerySections.noteLoadedNfts) {
-            GallerySections.noteLoadedNfts(allNfts);
-        }
-        syncSectionNfts('full');
-        refresh();
-        scrollHashTarget();
-    }
-
     async function loadSupplementaryGalleries() {
-        const grid = document.getElementById('gallery-grid');
         try {
             const [aiPlayRes, natureJamRes, basedAiRes] = await Promise.all([
                 fetch('ai_play_gallery.json'),
@@ -837,11 +823,78 @@ const Gallery = (() => {
             const aiPlayData = aiPlayRes.ok ? await aiPlayRes.json() : { nfts: [] };
             const natureJamData = natureJamRes.ok ? await natureJamRes.json() : { nfts: [] };
             const basedAiData = basedAiRes.ok ? await basedAiRes.json() : { nfts: [] };
-            appendSupplementaryGalleries([aiPlayData, natureJamData, basedAiData]);
+            return [aiPlayData, natureJamData, basedAiData].flatMap(
+                (payload) => payload?.nfts || [],
+            );
         } catch (error) {
             console.warn('Supplementary gallery load:', error);
-        } finally {
-            grid?.classList.remove('gallery-grid--loading');
+            return [];
+        }
+    }
+
+    function viewStamp() {
+        const list = getDisplayList();
+        const head = list[0] ? GalleryLikes.nftKey(list[0]) : '';
+        const tail = list.length ? GalleryLikes.nftKey(list[list.length - 1]) : '';
+        return `${list.length}:${head}:${tail}`;
+    }
+
+    function applyChainCopy(xrpData, suiData) {
+        const xrpAi = xrpData?.site?.sections?.ai_art || {};
+        const suiAi = suiData?.site?.sections?.ai_art || {};
+        const xrpPhoto = xrpData?.site?.sections?.photography || {};
+        const ai = siteConfig?.sections?.ai_art;
+        const photo = siteConfig?.sections?.photography;
+        if (ai) {
+            if (xrpAi.subsections) ai.subsections = xrpAi.subsections;
+            ai.empty_messages = {
+                ...(ai.empty_messages || {}),
+                ...(xrpAi.empty_messages || {}),
+                ...(suiAi.empty_messages || {}),
+            };
+            ai.explore_titles = {
+                ...(ai.explore_titles || {}),
+                ...(xrpAi.explore_titles || {}),
+                ...(suiAi.explore_titles || {}),
+            };
+            ai.kind_promo = {
+                ...(ai.kind_promo || {}),
+                xrpl: {
+                    promo_eyebrow: xrpAi.promo_eyebrow,
+                    promo_lead: xrpAi.promo_lead,
+                    collection_url: xrpAi.collection_url,
+                    collection_cta: xrpAi.collection_cta,
+                    promo_collections: xrpAi.promo_collections,
+                },
+                sui: {
+                    promo_eyebrow: suiAi.promo_eyebrow,
+                    promo_lead: suiAi.promo_lead,
+                    collection_url: suiAi.collection_url,
+                    collection_cta: suiAi.collection_cta,
+                    promo_collections: suiAi.promo_collections,
+                },
+            };
+        }
+        if (photo) {
+            photo.empty_messages = {
+                ...(photo.empty_messages || {}),
+                ...(xrpPhoto.empty_messages || {}),
+            };
+            photo.explore_titles = {
+                ...(photo.explore_titles || {}),
+                ...(xrpPhoto.explore_titles || {}),
+            };
+            photo.kind_promo = {
+                ...(photo.kind_promo || {}),
+                xrpl: {
+                    promo_eyebrow: xrpPhoto.promo_eyebrow,
+                    promo_lead: xrpPhoto.promo_lead,
+                },
+            };
+        }
+        if (collectionInfo) {
+            collectionInfo.xrpl = xrpData?.collection_info || {};
+            collectionInfo.sui = suiData?.collection_info || {};
         }
     }
 
@@ -1236,7 +1289,7 @@ const Gallery = (() => {
 
     async function loadSaleIndexNfts() {
         try {
-            const res = await fetch('data/sale_index.json', { cache: 'no-cache' });
+            const res = await fetch('data/sale_index.json');
             if (!res.ok) {
                 updateShopChip(0);
                 return [];
@@ -1257,9 +1310,7 @@ const Gallery = (() => {
 
     async function loadFeaturedPromoNfts() {
         try {
-            const res = await fetch('data/featured_promo.json', {
-                cache: 'no-cache',
-            });
+            const res = await fetch('data/featured_promo.json');
             if (!res.ok) {
                 updateFeaturedChip(0);
                 return [];
@@ -1275,23 +1326,31 @@ const Gallery = (() => {
         }
     }
 
+    function readGalleryJson(resPromise) {
+        return Promise.resolve(resPromise)
+            .then((res) => (res && res.ok ? res.json() : { nfts: [] }))
+            .catch(() => ({ nfts: [] }));
+    }
+
     async function load() {
         const grid = document.getElementById('gallery-grid');
+        // These catalogs are not needed for the first screen. Download them
+        // alongside the home file, but do not wait for them before painting.
+        const xrpLater = readGalleryJson(fetch('xrp_gallery.json'));
+        const suiLater = readGalleryJson(fetch('sui_gallery.json'));
+        const shopLater = loadSaleIndexNfts();
+        const extraLater = loadSupplementaryGalleries();
         try {
-            const [mainRes, xrpRes, suiRes, auctionRes, objktAuctionRes, featuredNfts, shopNfts] =
-                await Promise.all([
-                    fetch('gallery.json'),
-                    fetch('xrp_gallery.json', { cache: 'no-cache' }),
-                    fetch('sui_gallery.json'),
-                    fetch('auctions_gallery.json'),
-                    fetch('objkt_auctions_gallery.json'),
-                    loadFeaturedPromoNfts(),
-                    loadSaleIndexNfts(),
-                ]);
+            const [mainRes, auctionRes, objktAuctionRes, featuredNfts] = await Promise.all([
+                fetch('gallery.json'),
+                fetch('auctions_gallery.json'),
+                fetch('objkt_auctions_gallery.json'),
+                loadFeaturedPromoNfts(),
+            ]);
             if (!mainRes.ok) throw new Error(`HTTP ${mainRes.status}`);
             const data = await mainRes.json();
-            const xrpData = xrpRes.ok ? await xrpRes.json() : { nfts: [] };
-            const suiData = suiRes.ok ? await suiRes.json() : { nfts: [] };
+            const xrpData = { nfts: [] };
+            const suiData = { nfts: [] };
             const auctionData = auctionRes.ok ? await auctionRes.json() : { nfts: [] };
             const objktAuctionData = objktAuctionRes.ok
                 ? await objktAuctionRes.json()
@@ -1306,9 +1365,6 @@ const Gallery = (() => {
             // Featured tab: Avalanche + Sui + … from one feed
             if (featuredNfts?.length) {
                 allNfts = [...allNfts, ...featuredNfts];
-            }
-            if (shopNfts?.length) {
-                allNfts = [...allNfts, ...shopNfts];
             }
             attachChannelLinks(allNfts);
             collectionInfo = {
@@ -1480,8 +1536,42 @@ const Gallery = (() => {
                 refresh();
             });
 
-            grid?.classList.add('gallery-grid--loading');
-            loadSupplementaryGalleries();
+            try {
+                const [xrpArrived, suiArrived, shopNfts, extraNfts] = await Promise.all([
+                    xrpLater,
+                    suiLater,
+                    shopLater,
+                    extraLater,
+                ]);
+                applyChainCopy(xrpArrived, suiArrived);
+                const more = [
+                    ...(xrpArrived?.nfts || []),
+                    ...(suiArrived?.nfts || []),
+                    ...(shopNfts || []),
+                    ...(extraNfts || []),
+                ];
+                if (more.length) {
+                    const before = viewStamp();
+                    allNfts = allNfts.concat(more);
+                    attachChannelLinks(allNfts);
+                    GallerySections.noteLoadedNfts(allNfts);
+                    const urlWork = findWorkNft();
+                    const urlKey = urlWork ? GalleryLikes.nftKey(urlWork) : '';
+                    const urlMissing =
+                        urlKey &&
+                        !document.querySelector(`[data-nft-key="${CSS.escape(urlKey)}"]`);
+                    sectionNfts = GallerySections.filterNfts(allNfts);
+                    if (urlMissing || viewStamp() !== before) {
+                        if (urlMissing) preselectWorkSection();
+                        syncSectionNfts(urlMissing ? 'full' : 'series');
+                        refresh();
+                        if (urlMissing) scrollToWorkFromUrl();
+                    }
+                }
+                syncSectionPromo();
+            } catch (laterError) {
+                console.warn('Later catalogs:', laterError);
+            }
         } catch (error) {
             console.error('Gallery load error:', error);
             grid.innerHTML = '<p class="gallery-error">Failed to load the gallery.</p>';
@@ -2646,11 +2736,8 @@ const Gallery = (() => {
         bindHeroAnchors();
         if (typeof XrplMint !== 'undefined') XrplMint.init();
         if (typeof SuiMint !== 'undefined') SuiMint.init();
-        const ready =
-            typeof SuiMint !== 'undefined' && SuiMint.load
-                ? SuiMint.load()
-                : Promise.resolve();
-        Promise.resolve(ready).then(() => load());
+        if (typeof SuiMint !== 'undefined' && SuiMint.load) SuiMint.load();
+        load();
     }
 
     return { init };

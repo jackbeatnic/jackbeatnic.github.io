@@ -1,7 +1,7 @@
 /**
  * JB Gallery on Solana — "Mint on Solana" button + checkout.
- * One transaction built by the studio API: pay (SOL or USDC) to Jack and mint the Core asset to
- * the buyer. The studio key pre-signs as the collection update delegate; the buyer's wallet signs and pays.
+ * One transaction built by the studio API: pay (SOL or USDC) to the studio and mint the Core asset to
+ * the buyer. The studio pre-signs as the collection's update delegate; the buyer's wallet signs and pays.
  * No private key in the browser. No personal data: wallet address only.
  * Hidden unless data/shop_sol.json enabled=true, or preview with ?solmint=1 (?solmint=0 to clear).
  */
@@ -57,7 +57,7 @@ const SolMint = (() => {
         const on = nft && nft.onchain_token_id;
         const token = on != null && on !== '' ? String(on) : String(nft?.token_id ?? '');
         const chain = nft?.chain || '';
-        const contract = String(nft?.contract_address || '').toLowerCase();
+        const contract = String(nft?.evm_contract || nft?.contract_address || '').toLowerCase();
         if (chain && contract && token) return `${chain}:${contract}:${token}`;
         return `${nft?.collection_id || 'nft'}:${token}`;
     }

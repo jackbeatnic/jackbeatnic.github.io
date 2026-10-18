@@ -941,6 +941,7 @@ const Gallery = (() => {
         // OpenSea listing of the gallery copy (OS report): the OpenSea price for
         // the same work on Shop cards too (2026-10-03).
         const galleryOs = new Map();
+        const galleryMaster = new Map();
         for (const nft of nfts) {
             const k = catalogKey(nft);
             if (!k) continue;
@@ -948,6 +949,7 @@ const Gallery = (() => {
             else if (nft.medium === 'featured_promo') featured.set(k, nft);
             else {
                 gallery.add(k);
+                if (!galleryMaster.has(k)) galleryMaster.set(k, nft);
                 const listed =
                     nft.listing_status === 'For Sale' || nft.status === 'listed';
                 if (listed && isEvmChain(nft) && !galleryOs.has(k)) {
@@ -964,6 +966,21 @@ const Gallery = (() => {
             if (!k) continue;
             const s = shop.get(k);
             const f = featured.get(k);
+            const g = galleryMaster.get(k);
+            // Same TOKEN: name, chain, contract (Solana key) follow the SI Art card.
+            if (g && (nft.medium === 'shop' || nft.medium === 'featured_promo')) {
+                if (g.name) nft.name = g.name;
+                if (g.chain) nft.chain = g.chain;
+                if (g.contract_address && String(g.contract_address).startsWith('0x')) {
+                    nft.evm_contract = g.contract_address;
+                    if (!String(nft.contract_address || '').startsWith('shop:')) {
+                        nft.contract_address = g.contract_address;
+                    }
+                }
+                if (g.onchain_token_id != null && g.onchain_token_id !== '') {
+                    nft.onchain_token_id = g.onchain_token_id;
+                }
+            }
             nft.in_shop = Boolean(s);
             nft.in_featured = Boolean(f);
             nft.in_gallery = gallery.has(k);
@@ -984,7 +1001,38 @@ const Gallery = (() => {
                 if (!nft.pool) nft.pool = s.pool;
                 if (nft.demo == null) nft.demo = s.demo;
             }
-            if (f) {
+            if (f && !nft.opensea_url) nft.opensea_url = f.opensea_url;
+            // OpenSea price: lowest live on the SI Art card (renew_system).
+            // A rotating Featured promo may already be cheaper than that card.
+            // Keep the lower figure so the promo is not hidden. Permanent pins
+            // follow the SI Art card. Shop pay is never replaced here.
+            const own = galleryOs.get(k);
+            const featuredPrice = f
+                ? firstPrice(f, [
+                    'current_price_avax',
+                    'current_price_eth',
+                    'current_price_weth',
+                    'current_price_sui',
+                    'current_price_xrp',
+                ])
+                : null;
+            const promoCheaper =
+                f &&
+                !f.permanent &&
+                hasPrice(featuredPrice) &&
+                (!own || Number(featuredPrice) < Number(own.price));
+            if (promoCheaper) {
+                nft.os_list_price = featuredPrice;
+                nft.os_list_currency = (f.listing_currency || '').toUpperCase();
+            } else if (own) {
+                nft.os_list_price = own.price;
+                nft.os_list_currency = String(own.currency || '').toUpperCase();
+                if (nft.medium === 'featured_promo' && !nft.permanent) {
+                    const suf = String(own.currency || 'AVAX').toLowerCase();
+                    nft[`current_price_${suf}`] = own.price;
+                    nft.listing_currency = String(own.currency || '').toUpperCase();
+                }
+            } else if (f) {
                 const fp = firstPrice(f, [
                     'current_price_avax',
                     'current_price_eth',
@@ -992,16 +1040,10 @@ const Gallery = (() => {
                     'current_price_sui',
                     'current_price_xrp',
                 ]);
-                if (fp != null) {
+                if (fp != null && nft.os_list_price == null) {
                     nft.os_list_price = fp;
                     nft.os_list_currency = (f.listing_currency || '').toUpperCase();
                 }
-                if (!nft.opensea_url) nft.opensea_url = f.opensea_url;
-            }
-            const own = galleryOs.get(k);
-            if (nft.os_list_price == null && own) {
-                nft.os_list_price = own.price;
-                nft.os_list_currency = String(own.currency || '').toUpperCase();
             }
             if (nft.os_list_price == null && s?.os_price) {
                 nft.os_list_price = s.os_price;
@@ -1148,6 +1190,7 @@ const Gallery = (() => {
                     promo_quantity: it.quantity,
                     promo_days: it.days != null ? it.days : promo.days,
                     promo_days_left: it.permanent ? null : left,
+                    permanent: Boolean(it.permanent),
                     pct_off: it.pct_off != null ? it.pct_off : promo.pct_off,
                     ends_at: ends,
                     opensea_url: it.opensea_url,

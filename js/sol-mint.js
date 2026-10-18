@@ -57,7 +57,7 @@ const SolMint = (() => {
         const on = nft && nft.onchain_token_id;
         const token = on != null && on !== '' ? String(on) : String(nft?.token_id ?? '');
         const chain = nft?.chain || '';
-        const contract = String(nft?.contract_address || '').toLowerCase();
+        const contract = String(nft?.evm_contract || nft?.contract_address || '').toLowerCase();
         if (chain && contract && token) return `${chain}:${contract}:${token}`;
         return `${nft?.collection_id || 'nft'}:${token}`;
     }

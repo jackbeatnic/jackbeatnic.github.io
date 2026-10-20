@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19T22:00:06.655374+00:00",
+  "updated_at": "2026-10-20T00:00:01.621320+00:00",
   "promo": {
     "label": "OFF 0% · 180 days",
     "pct_off": 0,
@@ -8,22 +8,6 @@
     "ends_at": "2027-03-17T01:19:50.051208+00:00"
   },
   "items": [
-    {
-      "collection_id": "polygon_nature_stories_vol2",
-      "collection_name": "Nature Stories vol. 2",
-      "chain": "polygon",
-      "token_id": 363,
-      "name": "NS #363",
-      "image_url": "https://jackbeatnic.art/jbg-present/polygon_nature_stories_vol2/363.thumb.webp",
-      "price": 0.00667,
-      "currency": "WETH",
-      "quantity": 200,
-      "days": 7,
-      "pct_off": 0,
-      "ends_at": "2026-10-19T23:26:28.680290+00:00",
-      "opensea_url": "https://opensea.io/assets/polygon/0xa0d6ff855d88cc5587f30de654966e0f33b3b30f/363",
-      "marketplace_url": "https://opensea.io/assets/polygon/0xa0d6ff855d88cc5587f30de654966e0f33b3b30f/363"
-    },
     {
       "collection_id": "avalanche_nature_stories",
       "collection_name": "Nature Stories",

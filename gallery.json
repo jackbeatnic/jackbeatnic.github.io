@@ -3304,30 +3304,9 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "dominant_colors": [
-          "#1C3A5F",
-          "#4682B4",
-          "#5F9EA0",
-          "#E0FFFF"
-        ],
-        "vibe_tags": [
-          "monumental",
-          "warm",
-          "minimal",
-          "airy",
-          "still"
-        ],
-        "category": "landscape",
-        "mood_score": 94,
-        "keywords": [
-          "coral sun",
-          "dark peak",
-          "blue foothills",
-          "layered bands",
-          "tiny birds"
-        ],
-        "image_seen": true,
-        "source": "jbg-present"
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "listed",
@@ -10422,31 +10401,9 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "image_seen": true,
-        "source": "jbg-present",
-        "dominant_colors": [
-          "#0A1017",
-          "#1B5E43",
-          "#1B4E75",
-          "#7AB8C6",
-          "#FFFFFF"
-        ],
-        "vibe_tags": [
-          "scenic",
-          "oceanic",
-          "celestial",
-          "stipple",
-          "serene"
-        ],
-        "category": "landscape",
-        "mood_score": 9,
-        "keywords": [
-          "silhouetted figure",
-          "small boat",
-          "green slopes",
-          "black orb",
-          "wave lines"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art\n\nEdition note: 10,000 editions of this token were sent to a burn address by mistake and are permanently out of circulation. To restore the edition, 10,000 new editions were minted under the same token ID with new artwork, up to a total of 20,000. The on-chain supply includes both the burned and the newly minted editions. Burned editions cannot be traded. More at jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "unlisted",
@@ -11329,35 +11286,9 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "dominant_colors": [
-          "#1E3A5F",
-          "#4682B4",
-          "#87CEEB",
-          "#F0F8FF",
-          "#000000"
-        ],
-        "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious",
-          "graphic"
-        ],
-        "category": "landscape",
-        "mood_score": 8,
-        "keywords": [
-          "abstract landscape",
-          "nature",
-          "serene",
-          "blue tones",
-          "minimalist",
-          "texture",
-          "waves",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "listed",
@@ -12484,35 +12415,9 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "dominant_colors": [
-          "#1E3A5F",
-          "#4682B4",
-          "#87CEEB",
-          "#F0F8FF",
-          "#000000"
-        ],
-        "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious",
-          "peaceful"
-        ],
-        "category": "landscape",
-        "mood_score": 9,
-        "keywords": [
-          "abstract landscape",
-          "nature",
-          "serene",
-          "blue tones",
-          "minimalist",
-          "celestial",
-          "birds",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "listed",
@@ -13474,35 +13379,9 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "dominant_colors": [
-          "#0A1628",
-          "#20B2AA",
-          "#4682B4",
-          "#F0F8FF",
-          "#1E3A5F"
-        ],
-        "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious",
-          "graphic"
-        ],
-        "category": "landscape",
-        "mood_score": 8,
-        "keywords": [
-          "abstract landscape",
-          "nature",
-          "serene",
-          "blue tones",
-          "minimalist",
-          "texture",
-          "graphic",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "listed",
@@ -16824,36 +16703,9 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "dominant_colors": [
-          "#0D1B2A",
-          "#1E4D6B",
-          "#2E8B7A",
-          "#FFFFFF",
-          "#4A90B0",
-          "#E8F4F8"
-        ],
-        "vibe_tags": [
-          "serene",
-          "minimalist",
-          "zen",
-          "contemplative",
-          "harmonious",
-          "iconic"
-        ],
-        "category": "landscape",
-        "mood_score": 8,
-        "keywords": [
-          "mountain peak",
-          "brush circle",
-          "snow accents",
-          "layered hills",
-          "white textures",
-          "japanese inspired",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ],
-        "image_seen": true
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "listed",
@@ -19716,31 +19568,9 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "image_seen": true,
-        "source": "jbg-present",
-        "dominant_colors": [
-          "#091218",
-          "#123238",
-          "#4A8DAE",
-          "#F4D3DC",
-          "#FFFFFF"
-        ],
-        "vibe_tags": [
-          "wildlife",
-          "botanical",
-          "woodland",
-          "serene",
-          "graphic"
-        ],
-        "category": "wildlife",
-        "mood_score": 10,
-        "keywords": [
-          "arctic wolf",
-          "fern branch",
-          "pink halo",
-          "evergreen silhouettes",
-          "wave lines"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "listed",
@@ -22455,32 +22285,9 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "image_seen": true,
-        "source": "jbg-present",
-        "dominant_colors": [
-          "#0F2A50",
-          "#5E9E8D",
-          "#D5E2EE",
-          "#275382",
-          "#071426"
-        ],
-        "vibe_tags": [
-          "majestic",
-          "serene",
-          "expressive",
-          "traditional"
-        ],
-        "category": "landscape",
-        "mood_score": 9,
-        "keywords": [
-          "gnarled pine",
-          "giant moon",
-          "ink-splattered waves",
-          "blue ranges",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "listed",
@@ -24847,32 +24654,9 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "image_seen": true,
-        "source": "jbg-present",
-        "dominant_colors": [
-          "#112C4E",
-          "#F5C6D6",
-          "#7AC1E4",
-          "#0A1528",
-          "#FBF7FA"
-        ],
-        "vibe_tags": [
-          "surreal",
-          "graphic",
-          "whimsical",
-          "poetic"
-        ],
-        "category": "landscape",
-        "mood_score": 9,
-        "keywords": [
-          "white whale",
-          "pink sun",
-          "dark sun",
-          "stylized trees",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "listed",
@@ -31344,32 +31128,9 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "image_seen": true,
-        "source": "jbg-present",
-        "dominant_colors": [
-          "#113054",
-          "#3DA37A",
-          "#7AC1E4",
-          "#0A1528",
-          "#F4F7F9"
-        ],
-        "vibe_tags": [
-          "minimalist",
-          "botanical",
-          "graphic",
-          "modern"
-        ],
-        "category": "landscape",
-        "mood_score": 9,
-        "keywords": [
-          "light fern frond",
-          "wave patterns",
-          "scattered dots",
-          "dark celestial sun",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "listed",
@@ -39513,32 +39274,9 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "image_seen": true,
-        "source": "jbg-present",
-        "dominant_colors": [
-          "#113054",
-          "#F5A3B5",
-          "#7AC1E4",
-          "#0A1528",
-          "#F4F7F9"
-        ],
-        "vibe_tags": [
-          "graphic",
-          "serene",
-          "poetic",
-          "atmospheric"
-        ],
-        "category": "landscape",
-        "mood_score": 9,
-        "keywords": [
-          "pink accent",
-          "blue mountains",
-          "celestial discs",
-          "river lines",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "listed",
@@ -50967,32 +50705,9 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "image_seen": true,
-        "source": "jbg-present",
-        "dominant_colors": [
-          "#113054",
-          "#3DA37A",
-          "#7AC1E4",
-          "#0A1528",
-          "#F4F7F9"
-        ],
-        "vibe_tags": [
-          "botanical",
-          "serene",
-          "graphic",
-          "abstract"
-        ],
-        "category": "abstract",
-        "mood_score": 9,
-        "keywords": [
-          "navy fern",
-          "blue sun",
-          "green slopes",
-          "stream ribbons",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "listed",
@@ -61998,13 +61713,9 @@
       "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/1052.thumb.webp",
       "traits": {},
       "ai": {
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art\n\nEdition note: 7,000 editions of this token were sent to a burn address by mistake and are permanently out of circulation. To restore the edition, 13,000 new editions were minted under the same token ID with new artwork, up to a total of 20,000. The on-chain supply includes both the burned and the newly minted editions. Burned editions cannot be traded. More at jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "minted",
@@ -63207,13 +62918,9 @@
       "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/1092.thumb.webp",
       "traits": {},
       "ai": {
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "minted",
@@ -63362,13 +63069,9 @@
       "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/1097.thumb.webp",
       "traits": {},
       "ai": {
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "minted",
@@ -64354,13 +64057,9 @@
       "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/1132.thumb.webp",
       "traits": {},
       "ai": {
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art\n\nEdition note: 7,000 editions of this token were sent to a burn address by mistake and are permanently out of circulation. To restore the edition, 13,000 new editions were minted under the same token ID with new artwork, up to a total of 20,000. The on-chain supply includes both the burned and the newly minted editions. Burned editions cannot be traded. More at jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "minted",
@@ -66803,13 +66502,9 @@
       "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/1212.thumb.webp",
       "traits": {},
       "ai": {
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art\n\nEdition note: 7,000 editions of this token were sent to a burn address by mistake and are permanently out of circulation. To restore the edition, 13,000 new editions were minted under the same token ID with new artwork, up to a total of 20,000. The on-chain supply includes both the burned and the newly minted editions. Burned editions cannot be traded. More at jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "minted",
@@ -68074,13 +67769,9 @@
       "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/1254.thumb.webp",
       "traits": {},
       "ai": {
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art\n\nEdition note: 10,000 editions of this token were sent to a burn address by mistake and are permanently out of circulation. To restore the edition, 10,000 new editions were minted under the same token ID with new artwork, up to a total of 20,000. The on-chain supply includes both the burned and the newly minted editions. Burned editions cannot be traded. More at jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "minted",
@@ -68105,13 +67796,9 @@
       "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/1255.thumb.webp",
       "traits": {},
       "ai": {
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art\n\nEdition note: 10,000 editions of this token were sent to a burn address by mistake and are permanently out of circulation. To restore the edition, 10,000 new editions were minted under the same token ID with new artwork, up to a total of 20,000. The on-chain supply includes both the burned and the newly minted editions. Burned editions cannot be traded. More at jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "minted",
@@ -68136,13 +67823,9 @@
       "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/1257.thumb.webp",
       "traits": {},
       "ai": {
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art\n\nEdition note: 10,000 editions of this token were sent to a burn address by mistake and are permanently out of circulation. To restore the edition, 10,000 new editions were minted under the same token ID with new artwork, up to a total of 20,000. The on-chain supply includes both the burned and the newly minted editions. Burned editions cannot be traded. More at jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "minted",
@@ -68167,13 +67850,9 @@
       "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/1258.thumb.webp",
       "traits": {},
       "ai": {
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art\n\nEdition note: 10,000 editions of this token were sent to a burn address by mistake and are permanently out of circulation. To restore the edition, 10,000 new editions were minted under the same token ID with new artwork, up to a total of 20,000. The on-chain supply includes both the burned and the newly minted editions. Burned editions cannot be traded. More at jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "minted",
@@ -69562,13 +69241,9 @@
       "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/1304.thumb.webp",
       "traits": {},
       "ai": {
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "minted",
@@ -70461,13 +70136,9 @@
       "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/1333.thumb.webp",
       "traits": {},
       "ai": {
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "minted",
@@ -70523,13 +70194,9 @@
       "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/1335.thumb.webp",
       "traits": {},
       "ai": {
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "minted",
@@ -101461,13 +101128,9 @@
       "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/342.thumb.webp",
       "traits": {},
       "ai": {
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art\n\nEdition note: 7,000 editions of this token were sent to a burn address by mistake and are permanently out of circulation. To restore the edition, 13,000 new editions were minted under the same token ID with new artwork, up to a total of 20,000. The on-chain supply includes both the burned and the newly minted editions. Burned editions cannot be traded. More at jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "minted",
@@ -101523,13 +101186,9 @@
       "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/806.thumb.webp",
       "traits": {},
       "ai": {
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art\n\nEdition note: 7,000 editions of this token were sent to a burn address by mistake and are permanently out of circulation. To restore the edition, 13,000 new editions were minted under the same token ID with new artwork, up to a total of 20,000. The on-chain supply includes both the burned and the newly minted editions. Burned editions cannot be traded. More at jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "minted",
@@ -101554,13 +101213,9 @@
       "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/928.thumb.webp",
       "traits": {},
       "ai": {
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art\n\nEdition note: 10,000 editions of this token were sent to a burn address by mistake and are permanently out of circulation. To restore the edition, 10,000 new editions were minted under the same token ID with new artwork, up to a total of 20,000. The on-chain supply includes both the burned and the newly minted editions. Burned editions cannot be traded. More at jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "minted",
@@ -101585,13 +101240,9 @@
       "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/929.thumb.webp",
       "traits": {},
       "ai": {
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art\n\nEdition note: 10,000 editions of this token were sent to a burn address by mistake and are permanently out of circulation. To restore the edition, 10,000 new editions were minted under the same token ID with new artwork, up to a total of 20,000. The on-chain supply includes both the burned and the newly minted editions. Burned editions cannot be traded. More at jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "minted",
@@ -101616,13 +101267,9 @@
       "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/930.thumb.webp",
       "traits": {},
       "ai": {
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art\n\nEdition note: 10,000 editions of this token were sent to a burn address by mistake and are permanently out of circulation. To restore the edition, 10,000 new editions were minted under the same token ID with new artwork, up to a total of 20,000. The on-chain supply includes both the burned and the newly minted editions. Burned editions cannot be traded. More at jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "minted",
@@ -101647,13 +101294,9 @@
       "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/931.thumb.webp",
       "traits": {},
       "ai": {
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art\n\nEdition note: 10,000 editions of this token were sent to a burn address by mistake and are permanently out of circulation. To restore the edition, 10,000 new editions were minted under the same token ID with new artwork, up to a total of 20,000. The on-chain supply includes both the burned and the newly minted editions. Burned editions cannot be traded. More at jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "minted",
@@ -403302,35 +402945,9 @@
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
-        "dominant_colors": [
-          "#1E3A5F",
-          "#4682B4",
-          "#FFB6C1",
-          "#F0F8FF",
-          "#000000"
-        ],
-        "vibe_tags": [
-          "serene",
-          "minimalist",
-          "ethereal",
-          "contemplative",
-          "harmonious",
-          "peaceful"
-        ],
-        "category": "landscape",
-        "mood_score": 9,
-        "keywords": [
-          "abstract landscape",
-          "nature",
-          "serene",
-          "wildlife",
-          "deer",
-          "fern",
-          "graphic",
-          "avalanche",
-          "avalanche_nature_stories",
-          "ns"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "listed",
@@ -403355,13 +402972,9 @@
       "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/1127.thumb.webp",
       "traits": {},
       "ai": {
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "minted",
@@ -403386,13 +402999,9 @@
       "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/1386.thumb.webp",
       "traits": {},
       "ai": {
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "minted",
@@ -403417,13 +403026,9 @@
       "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/1551.thumb.webp",
       "traits": {},
       "ai": {
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "image_seen": false,
+        "source": "assets",
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art"
       },
       "likes_count": 0,
       "status": "minted",
@@ -463938,14 +463543,9 @@
       "supply": 7000,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2025 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art\n\nEdition note: 7,000 editions of this token were sent to a burn address by mistake and are permanently out of circulation. To restore the edition, 13,000 new editions were minted under the same token ID with new artwork, up to a total of 20,000. The on-chain supply includes both the burned and the newly minted editions. Burned editions cannot be traded. More at jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -465412,14 +465012,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -465445,14 +465040,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -465478,14 +465068,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -465511,14 +465096,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -465544,14 +465124,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -465577,14 +465152,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -465610,14 +465180,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -465643,14 +465208,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -465676,14 +465236,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -465709,14 +465264,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -465742,14 +465292,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -465775,14 +465320,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -465808,14 +465348,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -465841,14 +465376,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -465874,14 +465404,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -465907,14 +465432,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -465940,14 +465460,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -465973,14 +465488,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466006,14 +465516,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466039,14 +465544,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466072,14 +465572,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466105,14 +465600,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466138,14 +465628,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466171,14 +465656,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466204,14 +465684,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466237,14 +465712,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466270,14 +465740,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466303,14 +465768,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466336,14 +465796,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466369,14 +465824,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466402,14 +465852,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466435,14 +465880,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466468,14 +465908,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466501,14 +465936,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466534,14 +465964,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466567,14 +465992,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466600,14 +466020,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466633,14 +466048,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466666,14 +466076,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466699,14 +466104,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466732,14 +466132,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466765,14 +466160,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466798,14 +466188,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466831,14 +466216,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466864,14 +466244,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466897,14 +466272,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466930,14 +466300,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466963,14 +466328,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -466996,14 +466356,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -467029,14 +466384,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -467062,14 +466412,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -467095,14 +466440,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -467128,14 +466468,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -467161,14 +466496,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -467194,14 +466524,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -467227,14 +466552,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -467260,14 +466580,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -467293,14 +466608,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -467326,14 +466636,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -467359,14 +466664,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",
@@ -467392,14 +466692,9 @@
       "supply": 1,
       "traits": {},
       "ai": {
-        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
-        "dominant_colors": [],
-        "vibe_tags": [],
-        "category": "",
-        "keywords": [
-          "avalanche",
-          "avalanche_nature_stories"
-        ]
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.art",
+        "image_seen": false,
+        "source": "assets"
       },
       "likes_count": 0,
       "status": "minted",

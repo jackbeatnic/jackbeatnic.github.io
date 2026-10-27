@@ -10418,7 +10418,7 @@
       "image_url": "https://gateway.pinata.cloud/ipfs/bafybeieh4ikiemkmvjd4o73whxxdf4ulnss7qrxl4vgn74wqmoour3qrxm",
       "supply": 7000,
       "mint_price_avax": 2.2,
-      "current_price_avax": null,
+      "current_price_avax": 5.69,
       "last_sale_price_avax": null,
       "traits": {},
       "ai": {
@@ -10453,7 +10453,7 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed",
+      "listing_status": "For Sale",
       "listing_currency": "AVAX",
       "display_rank": 372,
       "share_url": "https://jackbeatnic.art/nft/avalanche-nature-stories/193.html",
@@ -62011,13 +62011,14 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed",
+      "listing_status": "For Sale",
       "listing_currency": "AVAX",
       "display_rank": 2356,
       "share_url": "https://jackbeatnic.art/nft/avalanche-nature-stories/1052.html",
       "medium": "ai_art",
       "ai_series": "nature_stories",
-      "edition_label": "Avalanche"
+      "edition_label": "Avalanche",
+      "current_price_avax": 5.99
     },
     {
       "token_id": 1053,
@@ -64366,13 +64367,14 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed",
+      "listing_status": "For Sale",
       "listing_currency": "AVAX",
       "display_rank": 2634,
       "share_url": "https://jackbeatnic.art/nft/avalanche-nature-stories/1132.html",
       "medium": "ai_art",
       "ai_series": "nature_stories",
-      "edition_label": "Avalanche"
+      "edition_label": "Avalanche",
+      "current_price_avax": 5.99
     },
     {
       "token_id": 1133,
@@ -66814,13 +66816,14 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed",
+      "listing_status": "For Sale",
       "listing_currency": "AVAX",
       "display_rank": 2791,
       "share_url": "https://jackbeatnic.art/nft/avalanche-nature-stories/1212.html",
       "medium": "ai_art",
       "ai_series": "nature_stories",
-      "edition_label": "Avalanche"
+      "edition_label": "Avalanche",
+      "current_price_avax": 5.99
     },
     {
       "token_id": 1213,
@@ -68084,13 +68087,14 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed",
+      "listing_status": "For Sale",
       "listing_currency": "AVAX",
       "display_rank": 3033,
       "share_url": "https://jackbeatnic.art/nft/avalanche-nature-stories/1254.html",
       "medium": "ai_art",
       "ai_series": "nature_stories",
-      "edition_label": "Avalanche"
+      "edition_label": "Avalanche",
+      "current_price_avax": 5.69
     },
     {
       "token_id": 1255,
@@ -68114,13 +68118,14 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed",
+      "listing_status": "For Sale",
       "listing_currency": "AVAX",
       "display_rank": 3034,
       "share_url": "https://jackbeatnic.art/nft/avalanche-nature-stories/1255.html",
       "medium": "ai_art",
       "ai_series": "nature_stories",
-      "edition_label": "Avalanche"
+      "edition_label": "Avalanche",
+      "current_price_avax": 5.69
     },
     {
       "token_id": 1257,
@@ -68144,13 +68149,14 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed",
+      "listing_status": "For Sale",
       "listing_currency": "AVAX",
       "display_rank": 3035,
       "share_url": "https://jackbeatnic.art/nft/avalanche-nature-stories/1257.html",
       "medium": "ai_art",
       "ai_series": "nature_stories",
-      "edition_label": "Avalanche"
+      "edition_label": "Avalanche",
+      "current_price_avax": 5.69
     },
     {
       "token_id": 1258,
@@ -68174,13 +68180,14 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed",
+      "listing_status": "For Sale",
       "listing_currency": "AVAX",
       "display_rank": 1433,
       "share_url": "https://jackbeatnic.art/nft/avalanche-nature-stories/1258.html",
       "medium": "ai_art",
       "ai_series": "nature_stories",
-      "edition_label": "Avalanche"
+      "edition_label": "Avalanche",
+      "current_price_avax": 5.69
     },
     {
       "token_id": 1259,
@@ -101467,13 +101474,14 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed",
+      "listing_status": "For Sale",
       "listing_currency": "AVAX",
       "display_rank": 748,
       "share_url": "https://jackbeatnic.art/nft/avalanche-nature-stories/342.html",
       "medium": "ai_art",
       "ai_series": "nature_stories",
-      "edition_label": "Avalanche"
+      "edition_label": "Avalanche",
+      "current_price_avax": 5.99
     },
     {
       "token_id": 343,
@@ -101528,13 +101536,14 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed",
+      "listing_status": "For Sale",
       "listing_currency": "AVAX",
       "display_rank": 1590,
       "share_url": "https://jackbeatnic.art/nft/avalanche-nature-stories/806.html",
       "medium": "ai_art",
       "ai_series": "nature_stories",
-      "edition_label": "Avalanche"
+      "edition_label": "Avalanche",
+      "current_price_avax": 5.99
     },
     {
       "token_id": 928,
@@ -101558,13 +101567,14 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed",
+      "listing_status": "For Sale",
       "listing_currency": "AVAX",
       "display_rank": 2034,
       "share_url": "https://jackbeatnic.art/nft/avalanche-nature-stories/928.html",
       "medium": "ai_art",
       "ai_series": "nature_stories",
-      "edition_label": "Avalanche"
+      "edition_label": "Avalanche",
+      "current_price_avax": 5.69
     },
     {
       "token_id": 929,
@@ -101588,13 +101598,14 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed",
+      "listing_status": "For Sale",
       "listing_currency": "AVAX",
       "display_rank": 2035,
       "share_url": "https://jackbeatnic.art/nft/avalanche-nature-stories/929.html",
       "medium": "ai_art",
       "ai_series": "nature_stories",
-      "edition_label": "Avalanche"
+      "edition_label": "Avalanche",
+      "current_price_avax": 5.69
     },
     {
       "token_id": 930,
@@ -101618,13 +101629,14 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed",
+      "listing_status": "For Sale",
       "listing_currency": "AVAX",
       "display_rank": 2036,
       "share_url": "https://jackbeatnic.art/nft/avalanche-nature-stories/930.html",
       "medium": "ai_art",
       "ai_series": "nature_stories",
-      "edition_label": "Avalanche"
+      "edition_label": "Avalanche",
+      "current_price_avax": 5.69
     },
     {
       "token_id": 931,
@@ -101648,13 +101660,14 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed",
+      "listing_status": "For Sale",
       "listing_currency": "AVAX",
       "display_rank": 2037,
       "share_url": "https://jackbeatnic.art/nft/avalanche-nature-stories/931.html",
       "medium": "ai_art",
       "ai_series": "nature_stories",
-      "edition_label": "Avalanche"
+      "edition_label": "Avalanche",
+      "current_price_avax": 5.69
     },
     {
       "token_id": 10,
@@ -463939,14 +463952,15 @@
       "chain": "avalanche",
       "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
       "collection_id": "avalanche_nature_stories",
-      "listing_status": "Not Listed",
+      "listing_status": "For Sale",
       "listing_currency": "AVAX",
       "display_rank": 1590,
       "share_url": "https://jackbeatnic.art/nft/avalanche-nature-stories/808.html",
       "og_image": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/808.view.webp",
       "medium": "ai_art",
       "ai_series": "nature_stories",
-      "edition_label": "Avalanche"
+      "edition_label": "Avalanche",
+      "current_price_avax": 5.99
     },
     {
       "token_id": 2362,

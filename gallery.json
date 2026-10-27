@@ -465402,6 +465402,105 @@
       "ai_series": "nature_stories",
       "edition_label": "Polygon",
       "current_price_weth": 0.0204
+    },
+    {
+      "token_id": 32,
+      "name": "NS #5100",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/32",
+      "marketplace_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/32",
+      "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/32.thumb.webp",
+      "supply": 1,
+      "traits": {},
+      "ai": {
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
+        "dominant_colors": [],
+        "vibe_tags": [],
+        "category": "",
+        "keywords": [
+          "avalanche",
+          "avalanche_nature_stories"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX",
+      "display_rank": 5100,
+      "share_url": "https://jackbeatnic.art/nft/avalanche-nature-stories/32.html",
+      "og_image": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/32.view.webp",
+      "medium": "ai_art",
+      "ai_series": "nature_stories",
+      "edition_label": "Avalanche",
+      "current_price_avax": 5.01
+    },
+    {
+      "token_id": 33,
+      "name": "NS #5044",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/33",
+      "marketplace_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/33",
+      "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/33.thumb.webp",
+      "supply": 1,
+      "traits": {},
+      "ai": {
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
+        "dominant_colors": [],
+        "vibe_tags": [],
+        "category": "",
+        "keywords": [
+          "avalanche",
+          "avalanche_nature_stories"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX",
+      "display_rank": 5044,
+      "share_url": "https://jackbeatnic.art/nft/avalanche-nature-stories/33.html",
+      "og_image": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/33.view.webp",
+      "medium": "ai_art",
+      "ai_series": "nature_stories",
+      "edition_label": "Avalanche",
+      "current_price_avax": 5.01
+    },
+    {
+      "token_id": 2389,
+      "name": "NS #5095",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/2389",
+      "marketplace_url": "https://opensea.io/assets/avalanche/0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d/2389",
+      "image_url": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/2389.thumb.webp",
+      "supply": 1,
+      "traits": {},
+      "ai": {
+        "description": "Nature Stories creates surreal scenes of landscape and quiet wonder—shaped by observation, artworks, and free play of imagination.\n\n(c) Jack Beatnic 2026 | Avalanche Edition | Nature Stories\nhttps://jackbeatnic.github.io",
+        "dominant_colors": [],
+        "vibe_tags": [],
+        "category": "",
+        "keywords": [
+          "avalanche",
+          "avalanche_nature_stories"
+        ]
+      },
+      "likes_count": 0,
+      "status": "minted",
+      "chain": "avalanche",
+      "contract_address": "0x87e72dc1fda7f5a1f0846840b33888cc4b8f4a4d",
+      "collection_id": "avalanche_nature_stories",
+      "listing_status": "For Sale",
+      "listing_currency": "AVAX",
+      "display_rank": 5095,
+      "share_url": "https://jackbeatnic.art/nft/avalanche-nature-stories/2389.html",
+      "og_image": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/2389.view.webp",
+      "medium": "ai_art",
+      "ai_series": "nature_stories",
+      "edition_label": "Avalanche",
+      "current_price_avax": 5.01
     }
   ],
   "site": {

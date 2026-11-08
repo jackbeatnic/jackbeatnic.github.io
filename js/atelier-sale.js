@@ -339,10 +339,10 @@ const AtelierSale = (() => {
             if (card) cards.push(card);
         }
         if (!cards.length) {
-            const room = kind === "auctions" ? "auction" : "fixed-price work";
+            const room = kind === "auctions" ? "auction" : "fixed-price";
             return `<article class="section-promo__item atelier-sale atelier-sale--empty">
-                <h3 class="section-promo__title">Nothing listed</h3>
-                <p class="section-promo__collector">The ${escapeHtml(chain.name || "Avalanche")} contract is set, and no ${room} is open on this desk.</p>
+                <h3 class="section-promo__title">No sale yet</h3>
+                <p class="section-promo__collector">There is no sale yet. No ${room} listing is open on ${escapeHtml(chain.name || "Avalanche")}.</p>
             </article>`;
         }
         const more =
@@ -373,8 +373,8 @@ const AtelierSale = (() => {
         }
         if (!cards.length) {
             return `<article class="section-promo__item atelier-sale atelier-sale--empty">
-                <h3 class="section-promo__title">Nothing listed</h3>
-                <p class="section-promo__collector">The ${escapeHtml(chain.name || "Avalanche")} edition contract is set, and no run is open. Editions are separate from one-of-one sales.</p>
+                <h3 class="section-promo__title">No sale yet</h3>
+                <p class="section-promo__collector">There is no sale yet. No edition run is open on ${escapeHtml(chain.name || "Avalanche")}. Editions are separate from one-of-one sales.</p>
             </article>`;
         }
         const banner = paused
@@ -684,8 +684,8 @@ const AtelierSale = (() => {
                     parts.push(vault.html);
                 } else if (!oneAddress) {
                     parts.push(`<article class="section-promo__item atelier-sale atelier-sale--empty">
-                        <h3 class="section-promo__title">No vault lot is listed</h3>
-                        <p class="section-promo__collector">The ${escapeHtml(chainName)} vault address is set. No ${kind === "auctions" ? "auction" : "fixed-price"} lot is open. A lot is a unit pulled from a token the studio already holds.</p>
+                        <h3 class="section-promo__title">No sale yet</h3>
+                        <p class="section-promo__collector">There is no sale yet. No ${kind === "auctions" ? "auction" : "fixed-price"} lot is open on the ${escapeHtml(chainName)} vault.</p>
                     </article>`);
                 }
             } else {

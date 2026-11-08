@@ -1,6 +1,6 @@
 {
   "desk": "Atelier",
-  "deploy": "Do not deploy until Jack confirms. Contract addresses stay empty until that later deploy.",
+  "deploy": "Avalanche contracts are set. Base addresses stay empty until that later deploy.",
   "roles": "Owner and operator are separate, and neither key is stored here. The constructor takes the owner and the operator. The deployer is not the owner. Proceeds start at the owner. The operator can list and cancel an unsold sale with no bid.",
   "order": ["avalanche", "base"],
   "selectors_note": "Function selectors from cast sig after the contracts compiled. Keys are Solidity signatures.",
@@ -10,9 +10,9 @@
       "chainId": 43114,
       "rpc": "https://api.avax.network/ext/bc/C/rpc",
       "nativeSymbol": "AVAX",
-      "one": "",
-      "edition": "",
-      "vault": ""
+      "one": "0x2a13288007A2858a0dCE29d5DD934cCfB3ae2874",
+      "edition": "0x51c2c0CF47596A14f0bB3587F76d0f66BB8496f5",
+      "vault": "0x9b8D9e199aDD1B9f2b69aAe8Aa05547b3B29947D"
     },
     "base": {
       "name": "Base",

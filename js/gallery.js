@@ -1792,9 +1792,15 @@ const Gallery = (() => {
                     'The studio sales desk. One-of-one works sell at a fixed price or by auction. Editions are a separate contract. Avalanche is first.';
             }
             if (listEl) {
-                const collectorHint =
+                const collectorHint = String(
                     meta.promo_collector ||
-                    'The desk stays empty until Jack confirms a deploy. Your wallet pays the listed price.';
+                        'Your wallet pays the listed price on the desk.',
+                )
+                    .replace(
+                        'The desk stays empty until Jack confirms a deploy. ',
+                        '',
+                    )
+                    .trim();
                 const connectLabel = escapeHtml(AtelierWallet.connectLabel());
                 const connectBlock = AtelierWallet.connectEnabled()
                     ? `<button type="button" class="btn btn--primary btn--small section-promo__connect" id="atelier-connect-wallet">${connectLabel}</button>`

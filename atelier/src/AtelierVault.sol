@@ -2,11 +2,12 @@
 pragma solidity 0.8.24;
 
 /// @title Atelier vault
-/// @notice Escrow for a work the studio already holds. The owner pulls an
-///         approved ERC-1155 or ERC-721 into this contract and sells that
-///         same token. This contract does not mint. The original supply does
-///         not change: the balance moves wallet, vault, then buyer, or back
-///         to the depositor when the sale does not complete.
+/// @notice Escrow for a work a source wallet already holds. The owner or the
+///         operator pulls an approved ERC-1155 or ERC-721 from that depositor
+///         into this contract and sells that same token. The depositor is not
+///         the contract owner. This contract does not mint. The original
+///         supply does not change: the balance moves wallet, vault, then
+///         buyer, or back to the depositor when the sale does not complete.
 ///         While the units sit here they are not spendable from the wallet.
 ///         A one-of-one list on this desk would mint a second id. That path
 ///         is rejected. Deploy on Avalanche first, then Base, from this source.
@@ -43,6 +44,8 @@ contract AtelierVault {
     }
 
     address public owner;
+    /// @notice Separate key. It may deposit and cancel an unsold lot with no bid. It does not receive proceeds.
+    address public operator;
     address public proceeds;
     address public fallbackRoyaltyReceiver;
     uint96 public fallbackRoyaltyBps;
@@ -75,6 +78,7 @@ contract AtelierVault {
     event Paused(bool paused);
 
     error NotOwner();
+    error NotOperator();
     error BadState();
     error BadTime();
     error BadPrice();
@@ -86,6 +90,14 @@ contract AtelierVault {
 
     modifier onlyOwner() {
         if (msg.sender != owner) revert NotOwner();
+        _;
+    }
+
+    /// @dev Owner, or the operator once the owner has set one. An unset operator authorizes nobody.
+    modifier onlyOwnerOrOperator() {
+        if (msg.sender != owner && (operator == address(0) || msg.sender != operator)) {
+            revert NotOperator();
+        }
         _;
     }
 
@@ -176,7 +188,7 @@ contract AtelierVault {
         uint96 price,
         uint64 startTime,
         uint64 endTime
-    ) external nonReentrant onlyOwner {
+    ) external nonReentrant onlyOwnerOrOperator {
         if (price == 0) revert BadPrice();
         if (endTime != 0 && endTime <= startTime) revert BadTime();
         _pull(standard, collection, tokenId, qty, from);
@@ -202,7 +214,7 @@ contract AtelierVault {
         uint64 endTime,
         uint16 incrementBps,
         uint32 extensionSecs
-    ) external nonReentrant onlyOwner {
+    ) external nonReentrant onlyOwnerOrOperator {
         if (minBid == 0) revert BadPrice();
         if (reservePrice != 0 && reservePrice < minBid) revert BadPrice();
         if (endTime <= startTime || endTime - startTime > MAX_AUCTION) revert BadTime();
@@ -288,7 +300,7 @@ contract AtelierVault {
     }
 
     /// @notice Only before a bid. The same units go back to the depositor.
-    function cancel(uint256 lotId) external nonReentrant onlyOwner {
+    function cancel(uint256 lotId) external nonReentrant onlyOwnerOrOperator {
         Lot storage lot = _lots[lotId];
         if (!lot.listed || lot.sold) revert BadState();
         if (lot.kind == KIND_AUCTION && lot.bidder != address(0)) revert BadState();
@@ -327,6 +339,11 @@ contract AtelierVault {
     function transferOwnership(address next) external onlyOwner {
         require(next != address(0), "owner");
         owner = next;
+    }
+
+    function setOperator(address next) external onlyOwner {
+        require(next != address(0), "operator");
+        operator = next;
     }
 
     function onERC1155Received(address, address from, uint256 id, uint256 value, bytes calldata)

@@ -24,6 +24,8 @@ contract AtelierEdition {
     }
 
     address public owner;
+    /// @notice Separate key. It may list and cancel before the first copy sells. It does not receive proceeds.
+    address public operator;
     address public proceeds;
     address public royaltyReceiver;
     uint96 public royaltyBps;
@@ -53,6 +55,7 @@ contract AtelierEdition {
     event Paused(bool paused);
 
     error NotOwner();
+    error NotOperator();
     error BadState();
     error BadPrice();
     error BadSupply();
@@ -61,6 +64,14 @@ contract AtelierEdition {
 
     modifier onlyOwner() {
         if (msg.sender != owner) revert NotOwner();
+        _;
+    }
+
+    /// @dev Owner, or the operator once the owner has set one. An unset operator authorizes nobody.
+    modifier onlyOwnerOrOperator() {
+        if (msg.sender != owner && (operator == address(0) || msg.sender != operator)) {
+            revert NotOperator();
+        }
         _;
     }
 
@@ -100,7 +111,7 @@ contract AtelierEdition {
 
     function listFixed(uint256 id, uint32 supply, uint96 price, string calldata tokenUri)
         external
-        onlyOwner
+        onlyOwnerOrOperator
     {
         if (price == 0) revert BadPrice();
         _open(id, supply, tokenUri);
@@ -123,7 +134,7 @@ contract AtelierEdition {
         uint96 step,
         uint96 cap,
         string calldata tokenUri
-    ) external onlyOwner {
+    ) external onlyOwnerOrOperator {
         if (startPrice == 0 || step == 0) revert BadPrice();
         if (cap != 0 && cap < startPrice) revert BadPrice();
         _open(id, supply, tokenUri);
@@ -162,7 +173,7 @@ contract AtelierEdition {
     }
 
     /// @notice Only before the first copy sells. Unsold runs can be withdrawn from the desk.
-    function cancel(uint256 id) external onlyOwner {
+    function cancel(uint256 id) external onlyOwnerOrOperator {
         Run storage run = runs[id];
         if (!run.listed || run.sold != 0) revert BadState();
         run.listed = false;
@@ -198,6 +209,11 @@ contract AtelierEdition {
     function transferOwnership(address next) external onlyOwner {
         require(next != address(0), "owner");
         owner = next;
+    }
+
+    function setOperator(address next) external onlyOwner {
+        require(next != address(0), "operator");
+        operator = next;
     }
 
     function royaltyInfo(uint256, uint256 salePrice) external view returns (address, uint256) {

@@ -35,6 +35,8 @@ contract AtelierOne {
     }
 
     address public owner;
+    /// @notice Separate key. It may list and cancel an unsold sale. It does not receive proceeds.
+    address public operator;
     address public proceeds;
     address public royaltyReceiver;
     uint96 public royaltyBps;
@@ -63,6 +65,7 @@ contract AtelierOne {
     event Paused(bool paused);
 
     error NotOwner();
+    error NotOperator();
     error BadState();
     error BadTime();
     error BadPrice();
@@ -71,6 +74,14 @@ contract AtelierOne {
 
     modifier onlyOwner() {
         if (msg.sender != owner) revert NotOwner();
+        _;
+    }
+
+    /// @dev Owner, or the operator once the owner has set one. An unset operator authorizes nobody.
+    modifier onlyOwnerOrOperator() {
+        if (msg.sender != owner && (operator == address(0) || msg.sender != operator)) {
+            revert NotOperator();
+        }
         _;
     }
 
@@ -106,7 +117,7 @@ contract AtelierOne {
         uint96 price,
         uint64 startTime,
         uint64 endTime
-    ) external onlyOwner {
+    ) external onlyOwnerOrOperator {
         if (price == 0) revert BadPrice();
         if (endTime != 0 && endTime <= startTime) revert BadTime();
         _open(id, uri);
@@ -136,7 +147,7 @@ contract AtelierOne {
         uint64 endTime,
         uint16 incrementBps,
         uint32 extensionSecs
-    ) external onlyOwner {
+    ) external onlyOwnerOrOperator {
         if (minBid == 0) revert BadPrice();
         if (reservePrice != 0 && reservePrice < minBid) revert BadPrice();
         if (endTime <= startTime || endTime - startTime > MAX_AUCTION) revert BadTime();
@@ -221,7 +232,7 @@ contract AtelierOne {
         }
     }
 
-    function cancel(uint256 id) external onlyOwner nonReentrant {
+    function cancel(uint256 id) external onlyOwnerOrOperator nonReentrant {
         Piece storage piece = pieces[id];
         if (!piece.listed || piece.sold) revert BadState();
         if (piece.kind == KIND_AUCTION && piece.bidder != address(0)) revert BadState();
@@ -259,6 +270,11 @@ contract AtelierOne {
     function transferOwnership(address next) external onlyOwner {
         require(next != address(0), "owner");
         owner = next;
+    }
+
+    function setOperator(address next) external onlyOwner {
+        require(next != address(0), "operator");
+        operator = next;
     }
 
     function royaltyInfo(uint256, uint256 salePrice) external view returns (address, uint256) {

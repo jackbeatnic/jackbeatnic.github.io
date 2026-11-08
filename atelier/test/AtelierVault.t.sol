@@ -268,6 +268,105 @@ contract AtelierVaultTest is Test {
         assertEq(royaltyToken.totalSupply(ID), SUPPLY);
         assertEq(royaltyToken.balanceOf(buyer, ID), 1);
     }
+
+    function testOperatorDepositsOneUnitSupplyUnchangedAndSaleCreditsOwner() public {
+        address operator = address(0x0E1);
+        Royalty1155 royaltyToken = new Royalty1155(holder, ID, SUPPLY, address(0xFEE), 500);
+        vm.prank(holder);
+        royaltyToken.setApprovalForAll(address(vault), true);
+        uint256 supplyBefore = royaltyToken.totalSupply(ID);
+        assertEq(royaltyToken.totalSupply(), SUPPLY);
+
+        vm.prank(kasa);
+        vault.setOperator(operator);
+        assertEq(vault.operator(), operator);
+        assertEq(vault.proceeds(), kasa);
+
+        vm.prank(operator);
+        vault.depositFixed(std1155, address(royaltyToken), ID, 1, holder, 1 ether, 0, 0);
+
+        assertEq(royaltyToken.totalSupply(ID), supplyBefore);
+        assertEq(royaltyToken.totalSupply(), SUPPLY);
+        assertEq(royaltyToken.balanceOf(holder, ID), SUPPLY - 1);
+        assertEq(royaltyToken.balanceOf(address(vault), ID), 1);
+        assertEq(royaltyToken.balanceOf(operator, ID), 0);
+        assertEq(royaltyToken.balanceOf(kasa, ID), 0);
+
+        vm.prank(buyer);
+        vault.buy{value: 1 ether}(1);
+        assertEq(vault.withdrawable(kasa), 0.95 ether);
+        assertEq(vault.withdrawable(address(0xFEE)), 0.05 ether);
+        assertEq(vault.withdrawable(operator), 0);
+        assertEq(royaltyToken.balanceOf(buyer, ID), 1);
+        assertEq(royaltyToken.totalSupply(ID), SUPPLY);
+    }
+
+    function testStrangerCannotDeposit() public {
+        vm.prank(buyer);
+        vm.expectRevert(AtelierVault.NotOperator.selector);
+        vault.depositFixed(std1155, address(token), ID, 1, holder, 1 ether, 0, 0);
+        vm.prank(buyer);
+        vm.expectRevert(AtelierVault.NotOperator.selector);
+        vault.depositAuction(
+            std1155,
+            address(token),
+            ID,
+            1,
+            holder,
+            0.02 ether,
+            0,
+            uint64(block.timestamp),
+            uint64(block.timestamp) + 1 hours,
+            500,
+            0
+        );
+        assertEq(token.balanceOf(holder, ID), SUPPLY);
+        assertEq(token.totalSupply(ID), SUPPLY);
+        assertEq(vault.lotCount(), 0);
+    }
+
+    function testOperatorCannotGovernVault() public {
+        address operator = address(0x0E1);
+        vm.prank(kasa);
+        vault.setOperator(operator);
+        vm.startPrank(operator);
+        vm.expectRevert(AtelierVault.NotOwner.selector);
+        vault.setProceeds(operator);
+        vm.expectRevert(AtelierVault.NotOwner.selector);
+        vault.setFallbackRoyalty(operator, 100);
+        vm.expectRevert(AtelierVault.NotOwner.selector);
+        vault.transferOwnership(operator);
+        vm.expectRevert(AtelierVault.NotOwner.selector);
+        vault.setOperator(buyer);
+        vm.expectRevert(AtelierVault.NotOwner.selector);
+        vault.setPaused(true);
+        vm.stopPrank();
+        assertEq(vault.owner(), kasa);
+        assertEq(vault.proceeds(), kasa);
+        assertEq(vault.fallbackRoyaltyReceiver(), address(0));
+        assertEq(vault.fallbackRoyaltyBps(), 0);
+        assertEq(vault.operator(), operator);
+        assertFalse(vault.paused());
+    }
+
+    function testOperatorCancelReturnsTheUnitToTheDepositor() public {
+        address operator = address(0x0E1);
+        vm.prank(kasa);
+        vault.setOperator(operator);
+        uint64 start = uint64(block.timestamp);
+        vm.prank(operator);
+        vault.depositAuction(
+            std1155, address(token), ID, 1, holder, 0.02 ether, 0.02 ether, start, start + 1 hours, 500, 0
+        );
+        vm.prank(operator);
+        vault.cancel(1);
+        assertEq(token.balanceOf(holder, ID), SUPPLY);
+        assertEq(token.balanceOf(address(vault), ID), 0);
+        assertEq(token.balanceOf(operator, ID), 0);
+        assertEq(token.balanceOf(kasa, ID), 0);
+        assertEq(token.totalSupply(ID), SUPPLY);
+        assertEq(token.totalSupply(), SUPPLY);
+    }
 }
 
 contract Royalty1155 is Held1155 {

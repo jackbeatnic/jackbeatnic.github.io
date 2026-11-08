@@ -115,3 +115,5 @@ A new piece, minted by the technical wallet and not yet on SI Art, uses `collect
 - `promo/{collection_id}/{token_id as four digits}.jpg` — promo board
 
 Then refresh `data/promo_boards.json` with `build_promo_board_index.py` and set `image_url` to the thumb. The mint transaction is sent by the technical key. The piece does not need a second copy.
+
+Do not offer the Solana lazy-mint mirror on an Atelier card or on the Atelier section. SI Art, Shop, and Photography keep that mirror.

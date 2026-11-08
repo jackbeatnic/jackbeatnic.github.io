@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-08T16:16:11.529825+00:00",
+  "updated_at": "2026-11-08T16:16:42.650443+00:00",
   "promo": {
     "label": "OFF 0% · 180 days",
     "pct_off": 0,
@@ -8,6 +8,22 @@
     "ends_at": "2027-03-17T01:19:50.051208+00:00"
   },
   "items": [
+    {
+      "collection_id": "polygon_flower_stories_vol2",
+      "collection_name": "Flower Stories vol. 2",
+      "chain": "polygon",
+      "token_id": 2517,
+      "name": "FS #5492 P",
+      "image_url": "https://jackbeatnic.art/jbg-present/polygon_flower_stories_vol2/2517.thumb.webp",
+      "price": 0.00834,
+      "currency": "WETH",
+      "quantity": 300,
+      "days": 5,
+      "pct_off": 0,
+      "ends_at": "2026-11-13T16:16:42.645847+00:00",
+      "opensea_url": "https://opensea.io/assets/polygon/0x515ac12338a428df618f4c7c2720754e35d612b8/2517",
+      "marketplace_url": "https://opensea.io/assets/polygon/0x515ac12338a428df618f4c7c2720754e35d612b8/2517"
+    },
     {
       "collection_id": "polygon_nature_stories_vol2",
       "collection_name": "Nature Stories vol. 2",

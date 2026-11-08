@@ -466925,7 +466925,7 @@
           }
         },
         "promo_eyebrow": "The Atelier",
-        "promo_lead": "The studio's own sales desk. One-of-one works sell at a fixed price or by a single auction. Editions are a separate contract, from 10 to 1000 copies, at a fixed price or on a step curve. You pay the chain's native coin. Avalanche is first. Base follows with the same code. The older Manifold catalogue stays linked underneath.",
+        "promo_lead": "The studio's own sales desk. New one-of-one works are minted for a fixed price or a single auction. Editions are a separate contract, from 10 to 1000 copies. The vault is a third contract: it pulls a unit from a token the studio already holds and sells that same token, with no second id. You pay the chain's native coin. Avalanche is first. Base follows with the same code. The older Manifold catalogue stays linked underneath.",
         "promo_collector": "The desk stays empty until Jack confirms a deploy. Your wallet pays the listed price on the desk. The studio key never leaves the operator environment."
       }
     }

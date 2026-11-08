@@ -138,17 +138,40 @@ const AtelierSale = (() => {
     }
 
     function emptyDesk(chainName, kind) {
-        const room =
-            kind === "editions" ? "edition" : kind === "auctions" ? "auction" : "fixed-price";
+        if (kind === "editions") {
+            return `
+            <article class="section-promo__item atelier-sale atelier-sale--empty">
+                <h3 class="section-promo__title">The desk is empty</h3>
+                <p class="section-promo__collector">
+                    No edition contract is published on ${escapeHtml(chainName)} yet.
+                    The address is empty. Do not deploy until Jack confirms.
+                    Editions mint a new run. They are separate from the vault.
+                    Avalanche is first. Base uses the same contract later.
+                </p>
+            </article>`;
+        }
+        const room = kind === "auctions" ? "auction" : "fixed-price";
         return `
             <article class="section-promo__item atelier-sale atelier-sale--empty">
                 <h3 class="section-promo__title">The desk is empty</h3>
                 <p class="section-promo__collector">
-                    No ${room} contract is published on ${escapeHtml(chainName)} yet.
-                    The address is empty. Do not deploy until Jack confirms.
-                    Avalanche is first. Base uses the same contract later.
+                    No new one-of-one contract and no vault are published on ${escapeHtml(chainName)} yet.
+                    The addresses are empty. Do not deploy until Jack confirms.
+                    A new one-of-one is minted. A vault lot is one unit pulled from a token the studio already holds, sold as that same token, with no second id.
+                    Nothing is listed in this ${room} room until an address is set.
+                    Avalanche is first. Base uses the same contracts later.
                 </p>
             </article>`;
+    }
+
+    function addressOf(word) {
+        return "0x" + BigInt(word).toString(16).padStart(40, "0").slice(-40);
+    }
+
+    function shortAddress(address) {
+        const value = String(address || "");
+        if (value.length < 12) return value;
+        return `${value.slice(0, 6)}…${value.slice(-4)}`;
     }
 
     function decodePiece(hex) {
@@ -360,6 +383,142 @@ const AtelierSale = (() => {
         return banner + cards.join("");
     }
 
+    function decodeLotSale(hex) {
+        const w = wordsOf(hex);
+        if (w.length < 11) throw new Error("Short vault sale.");
+        return {
+            kind: Number(w[0]),
+            standard: Number(w[1]),
+            sold: w[2] !== 0n,
+            listed: w[3] !== 0n,
+            startTime: Number(w[4]),
+            endTime: Number(w[5]),
+            price: w[6],
+            reservePrice: w[7],
+            bid: w[8],
+            incrementBps: Number(w[9]),
+            extensionSecs: Number(w[10]),
+        };
+    }
+
+    function decodeLotAsset(hex) {
+        const w = wordsOf(hex);
+        if (w.length < 5) throw new Error("Short vault asset.");
+        return {
+            collection: addressOf(w[0]),
+            depositor: addressOf(w[1]),
+            tokenId: w[3],
+            qty: w[4],
+        };
+    }
+
+    function vaultCard(chain, vaultAddress, id, sale, asset, paused) {
+        const symbol = chain.nativeSymbol || "ETH";
+        const now = Math.floor(Date.now() / 1000);
+        const idText = id.toString();
+        const standard = sale.standard === 1 ? "ERC-721" : "ERC-1155";
+        const title = `Vault lot ${idText} · token ${asset.tokenId.toString()}`;
+        const origin = `${standard} · qty ${asset.qty.toString()} · ${shortAddress(asset.collection)} · original token, no second id`;
+        const to = escapeHtml(vaultAddress);
+        let detail = "";
+        let action = "";
+        if (sale.kind === 2) {
+            const min = sale.bid === 0n ? sale.price : nextBid(sale.bid, sale.incrementBps);
+            const bits = [`Minimum ${formatNative(min, symbol)}`];
+            if (sale.bid > 0n) bits.push(`High bid ${formatNative(sale.bid, symbol)}`);
+            if (sale.reservePrice > 0n) bits.push(`Reserve ${formatNative(sale.reservePrice, symbol)}`);
+            if (sale.endTime) bits.push(`Ends ${formatTime(sale.endTime)}`);
+            detail = bits.join(" · ");
+            if (sale.sold) {
+                action = `<p class="atelier-sale__note">Sold. The unit went to the buyer.</p>`;
+            } else if (!sale.listed) {
+                return "";
+            } else if (now < sale.startTime) {
+                action = `<p class="atelier-sale__note">Opens ${escapeHtml(formatTime(sale.startTime))}.</p>`;
+            } else if (now >= sale.endTime) {
+                action = paused
+                    ? `<p class="atelier-sale__note">Ended. Sales are paused.</p>`
+                    : `<div class="section-promo__actions">
+                        <button type="button" class="btn btn--primary btn--small" data-atelier-action="settle" data-to="${to}" data-id="${escapeHtml(idText)}">Settle</button>
+                       </div>
+                       <p class="atelier-sale__note" role="status"></p>`;
+            } else if (paused) {
+                action = `<p class="atelier-sale__note">Sales are paused. Withdraw still works on the contract.</p>`;
+            } else {
+                action = `<div class="atelier-sale__field">
+                    <input class="atelier-sale__input" data-bid inputmode="decimal" aria-label="Bid in ${escapeHtml(symbol)}" placeholder="${escapeHtml(symbol)}">
+                    <button type="button" class="btn btn--primary btn--small" data-atelier-action="bid" data-to="${to}" data-id="${escapeHtml(idText)}">Place bid</button>
+                   </div>
+                   <p class="atelier-sale__note" role="status"></p>`;
+            }
+        } else {
+            detail = `Price ${formatNative(sale.price, symbol)}`;
+            if (sale.startTime) detail += ` · Opens ${formatTime(sale.startTime)}`;
+            if (sale.endTime) detail += ` · Ends ${formatTime(sale.endTime)}`;
+            if (sale.sold) {
+                action = `<p class="atelier-sale__note">Sold. The unit went to the buyer.</p>`;
+            } else if (!sale.listed) {
+                return "";
+            } else if (paused) {
+                action = `<p class="atelier-sale__note">Sales are paused. Withdraw still works on the contract.</p>`;
+            } else if (
+                (sale.startTime && now < sale.startTime) ||
+                (sale.endTime && now > sale.endTime)
+            ) {
+                action = `<p class="atelier-sale__note">This listing is outside its sale window. An ended fixed-price lot can be returned to the depositor.</p>`;
+            } else {
+                action = `<div class="section-promo__actions">
+                    <button type="button" class="btn btn--primary btn--small" data-atelier-action="buy" data-to="${to}" data-id="${escapeHtml(idText)}" data-value="${sale.price.toString()}">Buy</button>
+                   </div>
+                   <p class="atelier-sale__note" role="status"></p>`;
+            }
+        }
+        const kindLabel = sale.kind === 2 ? "Vault auction" : "Vault fixed price";
+        return `
+            <article class="section-promo__item atelier-sale">
+                <h3 class="section-promo__title">${escapeHtml(title)}</h3>
+                <p class="section-promo__token">
+                    <span class="section-promo__symbol">${escapeHtml(kindLabel)}</span>
+                    <span class="section-promo__chain"> · ${escapeHtml(chain.name || "Avalanche")}</span>
+                </p>
+                <p class="atelier-sale__meta">${escapeHtml(origin)}</p>
+                <p class="atelier-sale__meta"><span class="atelier-sale__price">${escapeHtml(detail)}</span></p>
+                ${action}
+            </article>`;
+    }
+
+    async function renderVault(cfg, chain, address, kind) {
+        const pausedHex = await ethCall(chain.rpc, address, callData(cfg, "paused()")).catch(
+            () => "0x0"
+        );
+        const paused = BigInt(pausedHex) !== 0n;
+        const count = Number(BigInt(await ethCall(chain.rpc, address, callData(cfg, "lotCount()"))));
+        const cards = [];
+        const limit = Math.min(count, MAX_LISTINGS);
+        for (let i = 0; i < limit; i += 1) {
+            const id = BigInt(await ethCall(chain.rpc, address, callData(cfg, "lotIdAt(uint256)", [i])));
+            const sale = decodeLotSale(
+                await ethCall(chain.rpc, address, callData(cfg, "lotSale(uint256)", [id]))
+            );
+            if (kind === "fixed" && sale.kind !== 1) continue;
+            if (kind === "auctions" && sale.kind !== 2) continue;
+            const asset = decodeLotAsset(
+                await ethCall(chain.rpc, address, callData(cfg, "lotAsset(uint256)", [id]))
+            );
+            const card = vaultCard(chain, address, id, sale, asset, paused);
+            if (card) cards.push(card);
+        }
+        if (!cards.length) return { html: "", paused };
+        const more =
+            count > limit
+                ? `<p class="atelier-sale__status">Showing the first ${limit} vault lots.</p>`
+                : "";
+        const banner = paused
+            ? `<p class="atelier-sale__status">Vault sales are paused. Withdraw still works on the contract.</p>`
+            : `<p class="atelier-sale__status">Vault · pulled from an existing token. The original supply is unchanged.</p>`;
+        return { html: banner + cards.join("") + more, paused };
+    }
+
     function ensureBound(el) {
         if (el.dataset.bound === "1") return;
         el.dataset.bound = "1";
@@ -428,7 +587,7 @@ const AtelierSale = (() => {
                 const wei = parseNative(raw);
                 const tx = await send(
                     ctx.chain,
-                    ctx.address,
+                    btn.dataset.to || ctx.address,
                     callData(ctx.cfg, "bid(uint256)", [id]),
                     hexQuantity(wei)
                 );
@@ -438,7 +597,7 @@ const AtelierSale = (() => {
             if (action === "settle") {
                 const tx = await send(
                     ctx.chain,
-                    ctx.address,
+                    btn.dataset.to || ctx.address,
                     callData(ctx.cfg, "settle(uint256)", [id]),
                     "0x0"
                 );
@@ -454,13 +613,13 @@ const AtelierSale = (() => {
                 const quoted = BigInt(
                     await ethCall(
                         ctx.chain.rpc,
-                        ctx.address,
+                        btn.dataset.to || ctx.address,
                         callData(ctx.cfg, "quote(uint256,uint32)", [id, qty])
                     )
                 );
                 const tx = await send(
                     ctx.chain,
-                    ctx.address,
+                    btn.dataset.to || ctx.address,
                     callData(ctx.cfg, "buy(uint256,uint32)", [id, qty]),
                     hexQuantity(quoted)
                 );
@@ -469,7 +628,7 @@ const AtelierSale = (() => {
             }
             const tx = await send(
                 ctx.chain,
-                ctx.address,
+                btn.dataset.to || ctx.address,
                 callData(ctx.cfg, "buy(uint256)", [id]),
                 hexQuantity(btn.dataset.value || "0")
             );
@@ -492,18 +651,54 @@ const AtelierSale = (() => {
             if (!still()) return;
             const chainCfg = cfg.chains?.[chain];
             const chainName = chainCfg?.name || (chain === "base" ? "Base" : "Avalanche");
-            const address = contractFor(chainCfg, kind);
-            if (!chainCfg || !isAddress(address)) {
+            if (!chainCfg) {
                 el.innerHTML = emptyDesk(chainName, kind);
                 return;
             }
-            const html =
-                kind === "editions"
-                    ? await renderEditions(cfg, chainCfg, address)
-                    : await renderOnes(cfg, chainCfg, address, kind);
+            if (kind === "editions") {
+                const address = chainCfg.edition;
+                if (!isAddress(address)) {
+                    el.innerHTML = emptyDesk(chainName, kind);
+                    return;
+                }
+                const html = await renderEditions(cfg, chainCfg, address);
+                if (!still()) return;
+                el.innerHTML = html;
+                contexts.set(el, { cfg, chain: chainCfg, address, kind });
+                ensureBound(el);
+                return;
+            }
+            const oneAddress = isAddress(chainCfg.one) ? chainCfg.one : "";
+            const vaultAddress = isAddress(chainCfg.vault) ? chainCfg.vault : "";
+            if (!oneAddress && !vaultAddress) {
+                el.innerHTML = emptyDesk(chainName, kind);
+                return;
+            }
+            const parts = [];
+            if (oneAddress) {
+                parts.push(await renderOnes(cfg, chainCfg, oneAddress, kind));
+            }
+            if (vaultAddress) {
+                const vault = await renderVault(cfg, chainCfg, vaultAddress, kind);
+                if (vault.html) {
+                    parts.push(vault.html);
+                } else if (!oneAddress) {
+                    parts.push(`<article class="section-promo__item atelier-sale atelier-sale--empty">
+                        <h3 class="section-promo__title">No vault lot is listed</h3>
+                        <p class="section-promo__collector">The ${escapeHtml(chainName)} vault address is set. No ${kind === "auctions" ? "auction" : "fixed-price"} lot is open. A lot is a unit pulled from a token the studio already holds.</p>
+                    </article>`);
+                }
+            } else {
+                parts.push(`<p class="atelier-sale__status">The vault address is empty, so no pulled work is listed on ${escapeHtml(chainName)}.</p>`);
+            }
             if (!still()) return;
-            el.innerHTML = html;
-            contexts.set(el, { cfg, chain: chainCfg, address, kind });
+            el.innerHTML = parts.join("");
+            contexts.set(el, {
+                cfg,
+                chain: chainCfg,
+                address: oneAddress || vaultAddress,
+                kind,
+            });
             ensureBound(el);
         } catch (err) {
             if (!still()) return;

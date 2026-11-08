@@ -46,6 +46,7 @@
     "listStep(uint256,uint32,uint96,uint96,uint96,string)": "0xbf6e22d5",
     "buy(uint256,uint32)": "0xdf519f0b",
     "lotCount()": "0x7ae169e9",
+    "lotIdAt(uint256)": "0xd4326266",
     "lotSale(uint256)": "0x05c4971d",
     "lotAsset(uint256)": "0x3aef6e23",
     "depositFixed(uint8,address,uint256,uint256,address,uint96,uint64,uint64)": "0xaf7fd579",

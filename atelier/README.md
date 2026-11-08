@@ -18,11 +18,23 @@ After the end, anyone may settle. If the high bid meets the reserve (or there is
 
 A new bid must be at least 5% above the current bid. A bid in the last 5 minutes extends the end so that 5 minutes remain, up to one day past the original end.
 
+## Three desks
+
+These are different contracts. They share a source tree, and each chain gets its own deploy. Avalanche (43114) is first. Base (8453) is the same source later. Do not deploy until Jack confirms.
+
+**AtelierOne mints a new one-of-one.** Listing creates an ERC-721-style token that did not exist before. Fixed price or one auction. The new id is the work.
+
+**AtelierEdition mints a new run.** A separate contract. The run is 10 to 1000 copies of a new edition id. Fixed price until sold out, or a step curve. It does not touch tokens Jack already holds on OpenSea or the gallery.
+
+**AtelierVault does not mint.** Jack already holds the work on the studio wallet. The owner pulls an approved ERC-1155 (`safeTransferFrom`) or ERC-721 (`transferFrom`) into the vault. The quantity is chosen per deposit, so one unit can come out of a 20,000 supply. The original contract's supply does not change. The balance moves from the wallet to the vault, so that unit is not also spendable from the wallet. The lot records the original collection, the original token id, the quantity, and the depositor. There is no second token id for the same unit. Calling the one-of-one `listFixed` or `listAuction` on the vault reverts with `CloneId`.
+
+A vault lot sells at a fixed price or by one auction, in the same spirit as AtelierOne: minimum bid, optional reserve, increment, and an anti-snipe extension. The contract raises an increment below 5% to 5%, and an extension below 5 minutes to 5 minutes. On a winning settle the escrowed units go to the buyer and the proceeds are credited for `withdraw`. If the reserve is missed, if the owner cancels before a bid, or if a fixed-price window ends with no buyer, those same units go back to the depositor.
+
+If the original token implements EIP-2981, the sale pays that royalty, capped at 10%. Otherwise the studio sets a fallback receiver and rate, also capped at 10%. The vault does not list the work on another marketplace, and it does not stop the rest of the supply from staying where it is.
+
 ## AtelierVault
 
-Escrow for a token the studio already holds, including one unit of a large ERC-1155. The contract pulls that unit in. It does not mint, and the original supply does not change. A fixed price or one auction sells that same unit. Cancel before a bid, a missed reserve, or a fixed-price window that ends with no buyer sends the unit back to the depositor.
-
-If the original token implements EIP-2981, the sale pays that royalty, capped at 10%. Otherwise the studio sets a fallback receiver and rate, also capped at 10%. Other marketplaces are not blocked.
+The vault is the escrow desk above. It is not a hybrid of the minting contracts.
 
 ## Royalties
 
@@ -58,9 +70,12 @@ node atelier.mjs list-fixed --chain avalanche --id 1 --uri ipfs://... --price 1.
 node atelier.mjs list-auction --chain avalanche --id 2 --uri ipfs://... --min 0.5 --reserve 1 --start 1735689600 --end 1735776000 --increment-bps 500 --extension 600
 node atelier.mjs list-edition-fixed --chain avalanche --id 1 --supply 25 --price 0.08 --uri ipfs://...
 node atelier.mjs list-edition-step --chain avalanche --id 2 --supply 25 --start-price 0.05 --step 0.01 --cap 0.2 --uri ipfs://...
+node atelier.mjs deposit --chain avalanche --mode auction --standard 1155 --collection 0x... --token-id 7 --qty 1 --from 0x... --min 0.02 --reserve 0.02 --start 1735689600 --end 1735776000 --increment-bps 500 --extension 600
 ```
 
-The CLI reads addresses from `data/atelier.json`. If `ATELIER_OPERATOR_KEY` is missing, it exits. If the contract address for that chain is empty, it exits and does not send. Prices are native-coin amounts (AVAX on Avalanche, ETH on Base), not wei. `--chain base` is the same command, used only after the Base deploy.
+The CLI reads the studio key from `ATELIER_OPERATOR_KEY`. It never prints the key, and it refuses the key on the command line. Listing commands read addresses from `data/atelier.json`. If that address is empty, they exit and do not send. Prices are native-coin amounts (AVAX on Avalanche, ETH on Base), not wei. `--chain base` is the same command, used only after the Base deploy.
+
+`deposit` only encodes the pull. It prints the calldata and the operator address. It does not broadcast, and it does not open a network connection, including Avalanche and Base. `--send`, `--broadcast`, and `--rpc` are refused. An empty vault address still produces calldata and leaves `to` empty.
 
 ## Check locally
 

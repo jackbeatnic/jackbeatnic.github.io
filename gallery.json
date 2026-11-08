@@ -403589,18 +403589,19 @@
         ]
       },
       "likes_count": 0,
-      "status": "minted",
+      "status": "listed",
       "chain": "avalanche",
       "contract_address": "0x50866c1025f48e95de820482cde89c6c9082d1d6",
       "collection_id": "avalanche_flower_stories",
       "listing_status": "For Sale",
       "listing_currency": "AVAX",
-      "display_rank": 3362,
+      "display_rank": 0,
       "share_url": "https://jackbeatnic.art/nft/avalanche-flower-stories/2144.html",
       "medium": "ai_art",
       "ai_series": "flower_stories",
       "edition_label": "Avalanche",
-      "current_price_avax": 7.57
+      "current_price_avax": 1.97539,
+      "og_image": "https://jackbeatnic.art/jbg-present/promo/avalanche_flower_stories/2144.jpg?v=0a7c7174"
     },
     {
       "token_id": 2455,

@@ -137,30 +137,11 @@ const AtelierSale = (() => {
         return price;
     }
 
-    function emptyDesk(chainName, kind) {
-        if (kind === "editions") {
-            return `
-            <article class="section-promo__item atelier-sale atelier-sale--empty">
-                <h3 class="section-promo__title">The desk is empty</h3>
-                <p class="section-promo__collector">
-                    No edition contract is published on ${escapeHtml(chainName)} yet.
-                    The address is empty. Do not deploy until Jack confirms.
-                    Editions mint a new run. They are separate from the vault.
-                    Avalanche is first. Base uses the same contract later.
-                </p>
-            </article>`;
-        }
-        const room = kind === "auctions" ? "auction" : "fixed-price";
+    function emptyDesk(chainName) {
         return `
             <article class="section-promo__item atelier-sale atelier-sale--empty">
-                <h3 class="section-promo__title">The desk is empty</h3>
-                <p class="section-promo__collector">
-                    No new one-of-one contract and no vault are published on ${escapeHtml(chainName)} yet.
-                    The addresses are empty. Do not deploy until Jack confirms.
-                    A new one-of-one is minted. A vault lot is one unit pulled from a token the studio already holds, sold as that same token, with no second id.
-                    Nothing is listed in this ${room} room until an address is set.
-                    Avalanche is first. Base uses the same contracts later.
-                </p>
+                <h3 class="section-promo__title">On Avalanche for now</h3>
+                <p class="section-promo__collector">Nothing is offered on ${escapeHtml(chainName)} yet.</p>
             </article>`;
     }
 
@@ -223,7 +204,7 @@ const AtelierSale = (() => {
             if (piece.reservePrice > 0n) bits.push(`Reserve ${formatNative(piece.reservePrice, symbol)}`);
             if (piece.endTime) bits.push(`Ends ${formatTime(piece.endTime)}`);
             if (piece.extensionSecs) {
-                bits.push(`Anti-snipe ${piece.extensionSecs}s`);
+                bits.push("A bid near the end adds a little time");
             }
             detail = bits.join(" · ");
             if (piece.sold) {
@@ -240,7 +221,7 @@ const AtelierSale = (() => {
                        </div>
                        <p class="atelier-sale__note" role="status"></p>`;
             } else if (paused) {
-                action = `<p class="atelier-sale__note">Sales are paused. Withdraw still works on the contract.</p>`;
+                action = `<p class="atelier-sale__note">Sales are paused for the moment.</p>`;
             } else {
                 action = `<div class="atelier-sale__field">
                     <input class="atelier-sale__input" data-bid inputmode="decimal" aria-label="Bid in ${escapeHtml(symbol)}" placeholder="${escapeHtml(symbol)}">
@@ -257,12 +238,12 @@ const AtelierSale = (() => {
             } else if (!piece.listed) {
                 return "";
             } else if (paused) {
-                action = `<p class="atelier-sale__note">Sales are paused. Withdraw still works on the contract.</p>`;
+                action = `<p class="atelier-sale__note">Sales are paused for the moment.</p>`;
             } else if (
                 (piece.startTime && now < piece.startTime) ||
                 (piece.endTime && now > piece.endTime)
             ) {
-                action = `<p class="atelier-sale__note">This listing is outside its sale window.</p>`;
+                action = `<p class="atelier-sale__note">This offer has closed.</p>`;
             } else {
                 action = `<div class="section-promo__actions">
                     <button type="button" class="btn btn--primary btn--small" data-atelier-action="buy" data-id="${escapeHtml(idText)}" data-value="${piece.price.toString()}">Buy</button>
@@ -289,18 +270,17 @@ const AtelierSale = (() => {
         const step = run.curve === 2;
         const next = step ? unitPrice(run, run.sold) : run.price;
         const bits = [
-            step ? "Step curve" : "Fixed price",
+            step ? "The price rises with each sale" : "One price for every copy",
             `${run.sold} of ${run.supply} sold`,
             `Next ${formatNative(next, symbol)}`,
         ];
-        if (step && run.step > 0n) bits.push(`Step ${formatNative(run.step, symbol)}`);
-        if (step && run.cap > 0n) bits.push(`Cap ${formatNative(run.cap, symbol)}`);
+        if (step && run.cap > 0n) bits.push(`Rises until ${formatNative(run.cap, symbol)}`);
         let action = "";
         if (!run.listed || left === 0) {
             if (run.sold === 0) return "";
             action = `<p class="atelier-sale__note">Sold out.</p>`;
         } else if (paused) {
-            action = `<p class="atelier-sale__note">Sales are paused. Withdraw still works on the contract.</p>`;
+            action = `<p class="atelier-sale__note">Sales are paused for the moment.</p>`;
         } else {
             action = `<div class="atelier-sale__field">
                 <input class="atelier-sale__input" data-qty type="number" min="1" max="${left}" value="1" aria-label="Copies">
@@ -338,19 +318,13 @@ const AtelierSale = (() => {
             const card = pieceCard(chain, id, piece, paused);
             if (card) cards.push(card);
         }
-        if (!cards.length) {
-            const room = kind === "auctions" ? "auction" : "fixed-price";
-            return `<article class="section-promo__item atelier-sale atelier-sale--empty">
-                <h3 class="section-promo__title">No sale yet</h3>
-                <p class="section-promo__collector">There is no sale yet. No ${room} listing is open on ${escapeHtml(chain.name || "Avalanche")}.</p>
-            </article>`;
-        }
+        if (!cards.length) return "";
         const more =
             count > limit
                 ? `<p class="atelier-sale__status">Showing the first ${limit} listings.</p>`
                 : "";
         const banner = paused
-            ? `<p class="atelier-sale__status">Sales are paused. Withdraw still works on the contract.</p>`
+            ? `<p class="atelier-sale__status">Sales are paused for the moment.</p>`
             : "";
         return banner + cards.join("") + more;
     }
@@ -373,12 +347,12 @@ const AtelierSale = (() => {
         }
         if (!cards.length) {
             return `<article class="section-promo__item atelier-sale atelier-sale--empty">
-                <h3 class="section-promo__title">No sale yet</h3>
-                <p class="section-promo__collector">There is no sale yet. No edition run is open on ${escapeHtml(chain.name || "Avalanche")}. Editions are separate from one-of-one sales.</p>
+                <h3 class="section-promo__title">Nothing listed yet</h3>
+                <p class="section-promo__collector">No edition is open right now.</p>
             </article>`;
         }
         const banner = paused
-            ? `<p class="atelier-sale__status">Sales are paused. Withdraw still works on the contract.</p>`
+            ? `<p class="atelier-sale__status">Sales are paused for the moment.</p>`
             : "";
         return banner + cards.join("");
     }
@@ -416,9 +390,10 @@ const AtelierSale = (() => {
         const symbol = chain.nativeSymbol || "ETH";
         const now = Math.floor(Date.now() / 1000);
         const idText = id.toString();
-        const standard = sale.standard === 1 ? "ERC-721" : "ERC-1155";
-        const title = `Vault lot ${idText} · token ${asset.tokenId.toString()}`;
-        const origin = `${standard} · qty ${asset.qty.toString()} · ${shortAddress(asset.collection)} · original token, no second id`;
+        const title = `Piece ${asset.tokenId.toString()}`;
+        const origin = asset.qty === 1n
+            ? "From an existing work"
+            : `${asset.qty.toString()} from an existing work`;
         const to = escapeHtml(vaultAddress);
         let detail = "";
         let action = "";
@@ -430,7 +405,7 @@ const AtelierSale = (() => {
             if (sale.endTime) bits.push(`Ends ${formatTime(sale.endTime)}`);
             detail = bits.join(" · ");
             if (sale.sold) {
-                action = `<p class="atelier-sale__note">Sold. The unit went to the buyer.</p>`;
+                action = `<p class="atelier-sale__note">Sold.</p>`;
             } else if (!sale.listed) {
                 return "";
             } else if (now < sale.startTime) {
@@ -443,7 +418,7 @@ const AtelierSale = (() => {
                        </div>
                        <p class="atelier-sale__note" role="status"></p>`;
             } else if (paused) {
-                action = `<p class="atelier-sale__note">Sales are paused. Withdraw still works on the contract.</p>`;
+                action = `<p class="atelier-sale__note">Sales are paused for the moment.</p>`;
             } else {
                 action = `<div class="atelier-sale__field">
                     <input class="atelier-sale__input" data-bid inputmode="decimal" aria-label="Bid in ${escapeHtml(symbol)}" placeholder="${escapeHtml(symbol)}">
@@ -456,16 +431,16 @@ const AtelierSale = (() => {
             if (sale.startTime) detail += ` · Opens ${formatTime(sale.startTime)}`;
             if (sale.endTime) detail += ` · Ends ${formatTime(sale.endTime)}`;
             if (sale.sold) {
-                action = `<p class="atelier-sale__note">Sold. The unit went to the buyer.</p>`;
+                action = `<p class="atelier-sale__note">Sold.</p>`;
             } else if (!sale.listed) {
                 return "";
             } else if (paused) {
-                action = `<p class="atelier-sale__note">Sales are paused. Withdraw still works on the contract.</p>`;
+                action = `<p class="atelier-sale__note">Sales are paused for the moment.</p>`;
             } else if (
                 (sale.startTime && now < sale.startTime) ||
                 (sale.endTime && now > sale.endTime)
             ) {
-                action = `<p class="atelier-sale__note">This listing is outside its sale window. An ended fixed-price lot can be returned to the depositor.</p>`;
+                action = `<p class="atelier-sale__note">This offer has closed.</p>`;
             } else {
                 action = `<div class="section-promo__actions">
                     <button type="button" class="btn btn--primary btn--small" data-atelier-action="buy" data-to="${to}" data-id="${escapeHtml(idText)}" data-value="${sale.price.toString()}">Buy</button>
@@ -473,7 +448,7 @@ const AtelierSale = (() => {
                    <p class="atelier-sale__note" role="status"></p>`;
             }
         }
-        const kindLabel = sale.kind === 2 ? "Vault auction" : "Vault fixed price";
+        const kindLabel = sale.kind === 2 ? "Auction" : "A set price";
         return `
             <article class="section-promo__item atelier-sale">
                 <h3 class="section-promo__title">${escapeHtml(title)}</h3>
@@ -511,11 +486,11 @@ const AtelierSale = (() => {
         if (!cards.length) return { html: "", paused };
         const more =
             count > limit
-                ? `<p class="atelier-sale__status">Showing the first ${limit} vault lots.</p>`
+                ? `<p class="atelier-sale__status">Showing the first ${limit} works.</p>`
                 : "";
         const banner = paused
-            ? `<p class="atelier-sale__status">Vault sales are paused. Withdraw still works on the contract.</p>`
-            : `<p class="atelier-sale__status">Vault · pulled from an existing token. The original supply is unchanged.</p>`;
+            ? `<p class="atelier-sale__status">Sales are paused for the moment.</p>`
+            : "";
         return { html: banner + cards.join("") + more, paused };
     }
 
@@ -645,7 +620,7 @@ const AtelierSale = (() => {
         const gen = String(Date.now()) + Math.random().toString(16).slice(2);
         el.dataset.gen = gen;
         const still = () => el.dataset.gen === gen;
-        el.innerHTML = `<p class="atelier-sale__status">Reading the desk…</p>`;
+        el.innerHTML = `<p class="atelier-sale__status">Looking for works…</p>`;
         try {
             const cfg = await load();
             if (!still()) return;
@@ -676,20 +651,21 @@ const AtelierSale = (() => {
             }
             const parts = [];
             if (oneAddress) {
-                parts.push(await renderOnes(cfg, chainCfg, oneAddress, kind));
+                const oneHtml = await renderOnes(cfg, chainCfg, oneAddress, kind);
+                if (oneHtml) parts.push(oneHtml);
             }
+            let vaultHtml = "";
             if (vaultAddress) {
                 const vault = await renderVault(cfg, chainCfg, vaultAddress, kind);
-                if (vault.html) {
-                    parts.push(vault.html);
-                } else if (!oneAddress) {
-                    parts.push(`<article class="section-promo__item atelier-sale atelier-sale--empty">
-                        <h3 class="section-promo__title">No sale yet</h3>
-                        <p class="section-promo__collector">There is no sale yet. No ${kind === "auctions" ? "auction" : "fixed-price"} lot is open on the ${escapeHtml(chainName)} vault.</p>
-                    </article>`);
-                }
-            } else {
-                parts.push(`<p class="atelier-sale__status">The vault address is empty, so no pulled work is listed on ${escapeHtml(chainName)}.</p>`);
+                vaultHtml = vault.html || "";
+                if (vaultHtml) parts.push(vaultHtml);
+            }
+            if (!parts.length) {
+                const line = kind === "auctions" ? "No auction is open right now." : "Nothing at a set price right now.";
+                parts.push(`<article class="section-promo__item atelier-sale atelier-sale--empty">
+                    <h3 class="section-promo__title">Nothing listed yet</h3>
+                    <p class="section-promo__collector">${line}</p>
+                </article>`);
             }
             if (!still()) return;
             el.innerHTML = parts.join("");
@@ -702,7 +678,7 @@ const AtelierSale = (() => {
             ensureBound(el);
         } catch (err) {
             if (!still()) return;
-            el.innerHTML = `<p class="atelier-sale__status">The desk did not answer. ${escapeHtml(err?.message || "")}</p>`;
+            el.innerHTML = `<p class="atelier-sale__status">The works could not be loaded. Try again in a moment.</p>`;
         }
     }
 

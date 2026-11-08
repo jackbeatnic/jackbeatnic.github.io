@@ -1789,18 +1789,19 @@ const Gallery = (() => {
             if (leadEl) {
                 leadEl.textContent =
                     meta.promo_lead ||
-                    'The studio sales desk. One-of-one works sell at a fixed price or by auction. Editions are a separate contract. Avalanche is first.';
+                    'New work from the studio, sold here. A single piece at a set price, a single piece by auction, or a small edition of the same work.';
             }
             if (listEl) {
-                const collectorHint = String(
-                    meta.promo_collector ||
-                        'Your wallet pays the listed price on the desk.',
-                )
-                    .replace(
-                        'The desk stays empty until Jack confirms a deploy. ',
-                        '',
-                    )
-                    .trim();
+                const blurbs = meta.kind_blurbs || {};
+                const collectorHint = (
+                    chainKey === 'base'
+                        ? 'On Avalanche for now.'
+                        : String(
+                              blurbs[marketKind] ||
+                                  meta.promo_collector ||
+                                  'When a work is listed, you buy or bid from your wallet.',
+                          )
+                ).trim();
                 const connectLabel = escapeHtml(AtelierWallet.connectLabel());
                 const connectBlock = AtelierWallet.connectEnabled()
                     ? `<button type="button" class="btn btn--primary btn--small section-promo__connect" id="atelier-connect-wallet">${connectLabel}</button>`
@@ -1815,8 +1816,8 @@ const Gallery = (() => {
                     .join('');
                 const catalogue = linkButtons
                     ? `<article class="section-promo__item">
-                        <h3 class="section-promo__title">Older catalogue</h3>
-                        <p class="section-promo__collector">Earlier works remain on Manifold. New sales use this desk.</p>
+                        <h3 class="section-promo__title">Earlier works</h3>
+                        <p class="section-promo__collector">These remain on Manifold.</p>
                         <div class="atelier-catalogue__links">${linkButtons}</div>
                     </article>`
                     : '';

@@ -466906,27 +466906,32 @@
         "disabled_kinds": [],
         "disabled_chains": [],
         "explore_titles": {
-          "fixed": "Fixed price · The Atelier",
-          "auctions": "Auctions · The Atelier",
-          "editions": "Editions · The Atelier"
+          "fixed": "A set price · The Atelier",
+          "auctions": "An auction · The Atelier",
+          "editions": "A small edition · The Atelier"
+        },
+        "kind_blurbs": {
+          "fixed": "One work. One price. You pay in AVAX, and the piece is yours.",
+          "auctions": "One work. You place a bid. The highest bid at the close takes it.",
+          "editions": "A small run of one work, from ten copies to a thousand. Each copy costs the same, or the price steps up as they sell."
         },
         "empty_messages": {
           "fixed": {
-            "avalanche": "No fixed-price one-of-one is listed on the Avalanche desk yet. The studio sets one price. You pay AVAX and the work transfers to your wallet.",
-            "base": "The same fixed-price desk opens on Base after Avalanche. Nothing is listed here yet."
+            "avalanche": "Nothing at a set price right now.",
+            "base": "These offers are on Avalanche for now."
           },
           "auctions": {
-            "avalanche": "No auction is live on the Avalanche desk. A one-of-one auction has a minimum bid, an optional reserve, and an optional anti-snipe extension.",
-            "base": "Auctions on Base use the same contract later. Nothing is listed here yet."
+            "avalanche": "No auction is open right now.",
+            "base": "Auctions are on Avalanche for now."
           },
           "editions": {
-            "avalanche": "No edition run is listed yet. Editions are a separate contract: 10 to 1000 copies, either one price until sold out or a step that raises the next price.",
-            "base": "Edition runs on Base come after Avalanche, from the same contract. Nothing is listed here yet."
+            "avalanche": "No edition is open right now.",
+            "base": "Editions are on Avalanche for now."
           }
         },
         "promo_eyebrow": "The Atelier",
-        "promo_lead": "The studio's own sales desk. New one-of-one works are minted for a fixed price or a single auction. Editions are a separate contract, from 10 to 1000 copies. The vault is a third contract: it pulls a unit from a token the studio already holds and sells that same token, with no second id. You pay the chain's native coin. Avalanche is first. Base follows with the same code. The older Manifold catalogue stays linked underneath.",
-        "promo_collector": "The desk stays empty until Jack confirms a deploy. Your wallet pays the listed price on the desk. The studio key never leaves the operator environment."
+        "promo_lead": "New work from the studio, sold here. A single piece at a set price, a single piece by auction, or a small edition of the same work.",
+        "promo_collector": "When a work is listed, you buy or bid from your wallet."
       }
     }
   }

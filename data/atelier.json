@@ -1,0 +1,47 @@
+{
+  "desk": "Atelier",
+  "deploy": "Do not deploy until Jack confirms. Contract addresses stay empty until that later deploy.",
+  "order": ["avalanche", "base"],
+  "selectors_note": "Function selectors from cast sig after the contracts compiled. Keys are Solidity signatures.",
+  "chains": {
+    "avalanche": {
+      "name": "Avalanche",
+      "chainId": 43114,
+      "rpc": "https://api.avax.network/ext/bc/C/rpc",
+      "nativeSymbol": "AVAX",
+      "one": "",
+      "edition": ""
+    },
+    "base": {
+      "name": "Base",
+      "chainId": 8453,
+      "rpc": "https://mainnet.base.org",
+      "nativeSymbol": "ETH",
+      "one": "",
+      "edition": ""
+    }
+  },
+  "selectors": {
+    "saleCount()": "0xa1e89aec",
+    "saleIdAt(uint256)": "0xd42fce2f",
+    "pieces(uint256)": "0x8f64be30",
+    "tokenURI(uint256)": "0xc87b56dd",
+    "listFixed(uint256,string,uint96,uint64,uint64)": "0xc2868d4a",
+    "listAuction(uint256,string,uint96,uint96,uint64,uint64,uint16,uint32)": "0x3cbe393a",
+    "buy(uint256)": "0xd96a094a",
+    "bid(uint256)": "0x454a2ab3",
+    "settle(uint256)": "0x8df82800",
+    "cancel(uint256)": "0x40e58ee5",
+    "withdraw()": "0x3ccfd60b",
+    "setPaused(bool)": "0x16c38b3c",
+    "paused()": "0x5c975abb",
+    "runCount()": "0x9196b700",
+    "runIdAt(uint256)": "0xf655b8c0",
+    "runs(uint256)": "0xae66f57c",
+    "uri(uint256)": "0x0e89341c",
+    "quote(uint256,uint32)": "0xd5ca280a",
+    "listFixed(uint256,uint32,uint96,string)": "0xe011c40b",
+    "listStep(uint256,uint32,uint96,uint96,uint96,string)": "0xbf6e22d5",
+    "buy(uint256,uint32)": "0xdf519f0b"
+  }
+}

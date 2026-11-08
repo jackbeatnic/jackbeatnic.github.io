@@ -1428,10 +1428,6 @@ const Gallery = (() => {
             const xrpSections = xrpData.site?.sections || {};
             const suiSections = suiData.site?.sections || {};
             const auctionSections = auctionData.site?.sections || {};
-            const manifoldChains = collectionInfo.manifold?.chains || {};
-            const disabledMarketChains = Object.entries(manifoldChains)
-                .filter(([, cfg]) => cfg && cfg.enabled === false)
-                .map(([key]) => key);
             const mainMarket =
                 mainSections.atelier ||
                 mainSections.studio_market ||
@@ -1525,9 +1521,8 @@ const Gallery = (() => {
                         },
                     },
                     atelier: {
-                        ...mainMarket,
                         ...auctionMarket,
-                        disabled_chains: disabledMarketChains,
+                        ...mainMarket,
                     },
                 },
             };
@@ -1778,25 +1773,28 @@ const Gallery = (() => {
             const meta = GallerySections.getSectionMeta();
             const linkPack = collectionInfo.manifold_links || {};
             const navLinks = (linkPack.nav || []).filter((item) => item?.url && item?.label);
-            const show = navLinks.length > 0;
-            el.hidden = !show;
-            if (!show) return;
+            el.hidden = false;
 
             const marketKind = GallerySections.getMarketKind();
-            const chainLabel =
-                GallerySections.getMarketChain() === 'ethereum' ? 'Ethereum' : 'Base';
-            const kindLabel = marketKind === 'editions' ? 'Limited Editions' : 'Auctions';
+            const chainKey = GallerySections.getMarketChain();
+            const chainLabel = CHAIN_LABELS[chainKey] || 'Avalanche';
+            const kindLabel =
+                marketKind === 'fixed'
+                    ? 'Fixed price'
+                    : marketKind === 'editions'
+                      ? 'Editions'
+                      : 'Auctions';
 
             if (eyebrowEl) eyebrowEl.textContent = meta.promo_eyebrow || 'The Atelier';
             if (leadEl) {
                 leadEl.textContent =
                     meta.promo_lead ||
-                    'A private room for those who collect closely — rare auctions and numbered editions in small batches, offered straight from the studio.';
+                    'The studio sales desk. One-of-one works sell at a fixed price or by auction. Editions are a separate contract. Avalanche is first.';
             }
             if (listEl) {
                 const collectorHint =
                     meta.promo_collector ||
-                    'Returning collectors may soon unlock early access and quiet releases — nothing personal, only your wallet.';
+                    'The desk stays empty until Jack confirms a deploy. Your wallet pays the listed price.';
                 const connectLabel = escapeHtml(AtelierWallet.connectLabel());
                 const connectBlock = AtelierWallet.connectEnabled()
                     ? `<button type="button" class="btn btn--primary btn--small section-promo__connect" id="atelier-connect-wallet">${connectLabel}</button>`
@@ -1806,10 +1804,16 @@ const Gallery = (() => {
                         const href = escapeHtml(item.url);
                         const label = escapeHtml(item.label);
                         const hint = item.hint ? ` title="${escapeHtml(item.hint)}"` : '';
-                        const primary = item.id === 'studio' ? ' btn--primary' : ' btn--ghost';
-                        return `<a class="btn btn--small section-promo__cta${primary}" href="${href}" target="_blank" rel="noopener noreferrer"${hint}>${label}</a>`;
+                        return `<a class="btn btn--ghost btn--small section-promo__cta" href="${href}" target="_blank" rel="noopener noreferrer"${hint}>${label}</a>`;
                     })
                     .join('');
+                const catalogue = linkButtons
+                    ? `<article class="section-promo__item">
+                        <h3 class="section-promo__title">Older catalogue</h3>
+                        <p class="section-promo__collector">Earlier works remain on Manifold. New sales use this desk.</p>
+                        <div class="atelier-catalogue__links">${linkButtons}</div>
+                    </article>`
+                    : '';
 
                 listEl.innerHTML = `
                     <article class="section-promo__item">
@@ -1819,11 +1823,10 @@ const Gallery = (() => {
                             <span class="section-promo__chain"> · ${escapeHtml(chainLabel)}</span>
                         </p>
                         <p class="section-promo__collector">${escapeHtml(collectorHint)}</p>
-                        <div class="section-promo__actions">
-                            ${connectBlock}
-                            ${linkButtons}
-                        </div>
+                        ${connectBlock ? `<div class="section-promo__actions">${connectBlock}</div>` : ''}
                     </article>
+                    <div id="atelier-sale-root" class="atelier-sale-root"></div>
+                    ${catalogue}
                 `;
 
                 const connectBtn = listEl.querySelector('#atelier-connect-wallet');
@@ -1834,6 +1837,10 @@ const Gallery = (() => {
                         connectBtn.title = err?.message || 'Coming soon';
                     }
                 });
+                const saleRoot = listEl.querySelector('#atelier-sale-root');
+                if (saleRoot && typeof AtelierSale !== 'undefined' && AtelierSale.mount) {
+                    AtelierSale.mount(saleRoot, { chain: chainKey, kind: marketKind });
+                }
             }
             return;
         }

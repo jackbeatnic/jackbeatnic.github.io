@@ -466878,56 +466878,55 @@
         "label_short": "Atelier",
         "explore_title": "The Atelier",
         "default_kind": "auctions",
-        "default_chain": "base",
+        "default_chain": "avalanche",
         "kind_subsections": [
+          {
+            "id": "fixed",
+            "label": "Fixed price"
+          },
           {
             "id": "auctions",
             "label": "Auctions"
           },
           {
             "id": "editions",
-            "label": "Limited Editions"
+            "label": "Editions"
           }
         ],
         "chain_subsections": [
           {
-            "id": "base",
-            "label": "Base"
+            "id": "avalanche",
+            "label": "Avalanche"
           },
           {
-            "id": "ethereum",
-            "label": "Ethereum"
+            "id": "base",
+            "label": "Base"
           }
         ],
-        "disabled_kinds": [
-          "editions"
-        ],
-        "disabled_chains": [
-          "ethereum"
-        ],
-        "kind_notes": {
-          "editions": "Numbered editions in small batches — coming soon."
-        },
-        "chain_notes": {
-          "ethereum": "Reserved for select one-of-one works."
-        },
+        "disabled_kinds": [],
+        "disabled_chains": [],
         "explore_titles": {
+          "fixed": "Fixed price · The Atelier",
           "auctions": "Auctions · The Atelier",
-          "editions": "Limited Editions · The Atelier"
+          "editions": "Editions · The Atelier"
         },
         "empty_messages": {
+          "fixed": {
+            "avalanche": "No fixed-price one-of-one is listed on the Avalanche desk yet. The studio sets one price. You pay AVAX and the work transfers to your wallet.",
+            "base": "The same fixed-price desk opens on Base after Avalanche. Nothing is listed here yet."
+          },
           "auctions": {
-            "base": "No auction is live at the moment. The next piece will appear here when the gavel is set.",
-            "ethereum": "Select one-of-one auctions — reserved for a future chapter."
+            "avalanche": "No auction is live on the Avalanche desk. A one-of-one auction has a minimum bid, an optional reserve, and an optional anti-snipe extension.",
+            "base": "Auctions on Base use the same contract later. Nothing is listed here yet."
           },
           "editions": {
-            "base": "Numbered editions are in preparation — intimate batches, released at a gentle pace.",
-            "ethereum": "A dedicated room for photography — planned with its own contract."
+            "avalanche": "No edition run is listed yet. Editions are a separate contract: 10 to 1000 copies, either one price until sold out or a step that raises the next price.",
+            "base": "Edition runs on Base come after Avalanche, from the same contract. Nothing is listed here yet."
           }
         },
         "promo_eyebrow": "The Atelier",
-        "promo_lead": "A private room for those who collect closely — rare auctions and numbered editions in small batches, offered straight from the studio. Only live sales appear here; the wider studio catalogue lives on Manifold.",
-        "promo_collector": "Returning collectors may soon unlock early access and quiet releases — nothing personal, only your wallet."
+        "promo_lead": "The studio's own sales desk. One-of-one works sell at a fixed price or by a single auction. Editions are a separate contract, from 10 to 1000 copies, at a fixed price or on a step curve. You pay the chain's native coin. Avalanche is first. Base follows with the same code. The older Manifold catalogue stays linked underneath.",
+        "promo_collector": "The desk stays empty until Jack confirms a deploy. Your wallet pays the listed price on the desk. The studio key never leaves the operator environment."
       }
     }
   }

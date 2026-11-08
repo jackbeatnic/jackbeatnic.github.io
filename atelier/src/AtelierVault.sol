@@ -108,9 +108,12 @@ contract AtelierVault {
         locked = 1;
     }
 
-    constructor() {
-        owner = msg.sender;
-        proceeds = msg.sender;
+    constructor(address owner_, address operator_) {
+        require(owner_ != address(0), "owner");
+        require(operator_ != address(0), "operator");
+        owner = owner_;
+        proceeds = owner_;
+        operator = operator_;
     }
 
     function lotCount() external view returns (uint256) {

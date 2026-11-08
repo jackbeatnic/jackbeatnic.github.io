@@ -60,9 +60,9 @@ A metadata lock waits until the files move off GitHub to Arweave, and only after
 
 ## Owner and operator
 
-The owner is the seed wallet. That address deploys AtelierOne, AtelierEdition, and AtelierVault, and it receives proceeds. A completed sale credits the price there, minus the royalty. On AtelierOne and AtelierEdition the cut is `royaltyReceiver` / `royaltyBps` on that contract. On AtelierVault the sale tries EIP-2981 on the original token; if that token has no royalty, the vault uses its fallback receiver and rate. Every cut is capped at 10%.
+The constructor of AtelierOne, AtelierEdition, and AtelierVault takes the owner and the operator. The deployer is not the owner. Proceeds start at the owner. On Avalanche the owner address ends in 2477. That address owns the contracts and receives proceeds. A completed sale credits the price there, minus the royalty. On AtelierOne and AtelierEdition the royalty receiver starts as the owner and `royaltyBps` stays 0, so the cut is zero until the owner sets one. On AtelierVault the fallback royalty stays unset. The sale pays EIP-2981 from the original token, capped at 10%. If that token has no royalty, the vault uses its fallback receiver and rate, also capped at 10%.
 
-The operator is a separate key. The owner sets it with `setOperator`. Until then the operator address is unset, and an unset operator can do nothing. The operator can list a one-of-one (`listFixed`, `listAuction`), list an edition (`listFixed`, `listStep`), deposit a vault lot (`depositFixed`, `depositAuction`), and cancel an unsold sale that has no bid. The owner can list and cancel too.
+The operator address ends in f088. That key lists a one-of-one (`listFixed`, `listAuction`), lists an edition (`listFixed`, `listStep`), deposits a vault lot (`depositFixed`, `depositAuction`), and cancels an unsold sale that has no bid. The owner can list and cancel too. The owner rotates the operator later with `setOperator` from his own machine. `setOperator` is `onlyOwner` and rejects the zero address.
 
 The operator cannot change proceeds, royalty, the vault fallback royalty, pause, the operator address, or ownership. The operator does not receive proceeds. `buy`, `bid`, `settle`, `reclaim`, and `withdraw` stay with the buyer, anyone, or the account that was credited.
 
@@ -79,7 +79,7 @@ node atelier.mjs list-edition-step --chain avalanche --id 2 --supply 25 --start-
 node atelier.mjs deposit --chain avalanche --mode auction --standard 1155 --collection 0x... --token-id 7 --qty 1 --from 0x... --min 0.02 --reserve 0.02 --start 1735689600 --end 1735776000 --increment-bps 500 --extension 600
 ```
 
-The CLI reads the operator key from `ATELIER_OPERATOR_KEY`. Listing sends from that key, and it works once the owner has set that key's address as the operator. The CLI never prints the key, it refuses the key on the command line, and it does not read an owner key. Listing commands read addresses from `data/atelier.json`. If that address is empty, they exit and do not send. Prices are native-coin amounts (AVAX on Avalanche, ETH on Base), not wei. `--chain base` is the same command, used only after the Base deploy.
+The CLI reads the operator key from `ATELIER_OPERATOR_KEY`. Listing sends from that key. The constructor sets the operator, and the owner can rotate that address later with `setOperator`. The CLI never prints the key, it refuses the key on the command line, and it does not read an owner key. Listing commands read addresses from `data/atelier.json`. If that address is empty, they exit and do not send. Prices are native-coin amounts (AVAX on Avalanche, ETH on Base), not wei. `--chain base` is the same command, used only after the Base deploy.
 
 `deposit` only encodes the pull. It prints the calldata and the operator address. It does not broadcast, and it does not open a network connection, including Avalanche and Base. `--send`, `--broadcast`, and `--rpc` are refused. An empty vault address still produces calldata and leaves `to` empty.
 

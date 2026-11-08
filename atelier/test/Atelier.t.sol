@@ -8,13 +8,13 @@ import "../src/AtelierEdition.sol";
 contract AtelierOneTest is Test {
     AtelierOne desk;
     address artist = address(0xA11);
+    address operator = address(0x0E1);
     address buyer = address(0xB0B);
     address bidder = address(0xC0C);
     address other = address(0xD0D);
 
     function setUp() public {
-        vm.prank(artist);
-        desk = new AtelierOne();
+        desk = new AtelierOne(artist, operator);
         vm.deal(buyer, 100 ether);
         vm.deal(bidder, 100 ether);
         vm.deal(other, 100 ether);
@@ -151,18 +151,20 @@ contract AtelierOneTest is Test {
     }
 
     function testOwnerSetsOperatorAndOperatorListsSaleToProceeds() public {
-        address operator = address(0x0E1);
+        address next = address(0x0E2);
         address receiver = address(0xFEE);
-        assertEq(desk.operator(), address(0));
-        vm.prank(artist);
-        desk.setOperator(operator);
         assertEq(desk.operator(), operator);
         assertEq(desk.owner(), artist);
         assertEq(desk.proceeds(), artist);
+        assertTrue(desk.owner() != address(this));
+
+        vm.prank(artist);
+        desk.setOperator(next);
+        assertEq(desk.operator(), next);
 
         vm.prank(artist);
         desk.setRoyalty(receiver, 500);
-        vm.prank(operator);
+        vm.prank(next);
         desk.listFixed(21, "ipfs://op", 1 ether, 0, 0);
         vm.prank(buyer);
         desk.buy{value: 1 ether}(21);
@@ -171,13 +173,11 @@ contract AtelierOneTest is Test {
         assertEq(desk.withdrawable(artist), 0.95 ether);
         assertEq(desk.withdrawable(receiver), 0.05 ether);
         assertEq(desk.withdrawable(operator), 0);
+        assertEq(desk.withdrawable(next), 0);
     }
 
     function testOperatorCanListAuctionAndCancelWithNoBid() public {
-        address operator = address(0x0E1);
         uint64 start = uint64(block.timestamp);
-        vm.prank(artist);
-        desk.setOperator(operator);
         vm.prank(operator);
         desk.listAuction(22, "ipfs://a", 1 ether, 0, start, start + 1 hours, 500, 0);
         vm.prank(operator);
@@ -187,9 +187,6 @@ contract AtelierOneTest is Test {
     }
 
     function testOperatorCannotGovernOne() public {
-        address operator = address(0x0E1);
-        vm.prank(artist);
-        desk.setOperator(operator);
         vm.startPrank(operator);
         vm.expectRevert(AtelierOne.NotOwner.selector);
         desk.setProceeds(operator);
@@ -210,14 +207,28 @@ contract AtelierOneTest is Test {
         assertFalse(desk.paused());
     }
 
-    function testUnsetOperatorAndZeroAddressCannotList() public {
-        assertEq(desk.operator(), address(0));
-        vm.prank(address(0));
-        vm.expectRevert(AtelierOne.NotOperator.selector);
-        desk.listFixed(23, "ipfs://x", 1 ether, 0, 0);
+    function testConstructorRejectsZeroOwnerAndOperator() public {
+        vm.expectRevert(abi.encodeWithSignature("Error(string)", "owner"));
+        new AtelierOne(address(0), operator);
+        vm.expectRevert(abi.encodeWithSignature("Error(string)", "operator"));
+        new AtelierOne(artist, address(0));
+
+        address deployer = address(0xD00);
+        vm.prank(deployer);
+        AtelierOne deployed = new AtelierOne(artist, operator);
+        assertEq(deployed.owner(), artist);
+        assertEq(deployed.proceeds(), artist);
+        assertEq(deployed.operator(), operator);
+        assertEq(deployed.royaltyReceiver(), artist);
+        assertEq(deployed.royaltyBps(), 0);
+        assertTrue(deployed.owner() != deployer);
+
         vm.prank(artist);
         vm.expectRevert(abi.encodeWithSignature("Error(string)", "operator"));
         desk.setOperator(address(0));
+        vm.prank(buyer);
+        vm.expectRevert(AtelierOne.NotOperator.selector);
+        desk.listFixed(23, "ipfs://x", 1 ether, 0, 0);
     }
 
     function _piece(uint256 id)
@@ -245,11 +256,11 @@ contract AtelierOneTest is Test {
 contract AtelierEditionTest is Test {
     AtelierEdition desk;
     address artist = address(0xA11);
+    address operator = address(0x0E1);
     address buyer = address(0xB0B);
 
     function setUp() public {
-        vm.prank(artist);
-        desk = new AtelierEdition();
+        desk = new AtelierEdition(artist, operator);
         vm.deal(buyer, 1000 ether);
     }
 
@@ -315,16 +326,18 @@ contract AtelierEditionTest is Test {
     }
 
     function testOwnerSetsOperatorAndOperatorListsEditionToProceeds() public {
-        address operator = address(0x0E1);
+        address next = address(0x0E2);
         address receiver = address(0xFEE);
-        vm.startPrank(artist);
-        desk.setOperator(operator);
+        vm.prank(artist);
+        desk.setOperator(next);
+        vm.prank(artist);
         desk.setRoyalty(receiver, 500);
-        vm.stopPrank();
-        assertEq(desk.operator(), operator);
+        assertEq(desk.operator(), next);
         assertEq(desk.proceeds(), artist);
+        assertEq(desk.owner(), artist);
+        assertTrue(desk.owner() != address(this));
 
-        vm.prank(operator);
+        vm.prank(next);
         desk.listFixed(8, 10, 1 ether, "ipfs://e");
         vm.prank(buyer);
         desk.buy{value: 1 ether}(8, 1);
@@ -333,12 +346,10 @@ contract AtelierEditionTest is Test {
         assertEq(desk.withdrawable(artist), 0.95 ether);
         assertEq(desk.withdrawable(receiver), 0.05 ether);
         assertEq(desk.withdrawable(operator), 0);
+        assertEq(desk.withdrawable(next), 0);
     }
 
     function testOperatorCanListStepAndCancelBeforeFirstSale() public {
-        address operator = address(0x0E1);
-        vm.prank(artist);
-        desk.setOperator(operator);
         vm.prank(operator);
         desk.listStep(9, 10, 1 ether, 0.1 ether, 0, "ipfs://e");
         vm.prank(operator);
@@ -358,10 +369,31 @@ contract AtelierEditionTest is Test {
         desk.listStep(12, 10, 1 ether, 0.1 ether, 0, "ipfs://e");
     }
 
-    function testOperatorCannotGovernEdition() public {
-        address operator = address(0x0E1);
+    function testConstructorRejectsZeroOwnerAndOperator() public {
+        vm.expectRevert(abi.encodeWithSignature("Error(string)", "owner"));
+        new AtelierEdition(address(0), operator);
+        vm.expectRevert(abi.encodeWithSignature("Error(string)", "operator"));
+        new AtelierEdition(artist, address(0));
+
+        address deployer = address(0xD00);
+        vm.prank(deployer);
+        AtelierEdition deployed = new AtelierEdition(artist, operator);
+        assertEq(deployed.owner(), artist);
+        assertEq(deployed.proceeds(), artist);
+        assertEq(deployed.operator(), operator);
+        assertEq(deployed.royaltyReceiver(), artist);
+        assertEq(deployed.royaltyBps(), 0);
+        assertTrue(deployed.owner() != deployer);
+
         vm.prank(artist);
-        desk.setOperator(operator);
+        vm.expectRevert(abi.encodeWithSignature("Error(string)", "operator"));
+        desk.setOperator(address(0));
+        vm.prank(buyer);
+        vm.expectRevert(AtelierEdition.NotOperator.selector);
+        desk.listFixed(13, 10, 1 ether, "ipfs://e");
+    }
+
+    function testOperatorCannotGovernEdition() public {
         vm.startPrank(operator);
         vm.expectRevert(AtelierEdition.NotOwner.selector);
         desk.setProceeds(operator);

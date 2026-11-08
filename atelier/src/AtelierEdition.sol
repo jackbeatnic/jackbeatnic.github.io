@@ -82,10 +82,13 @@ contract AtelierEdition {
         locked = 1;
     }
 
-    constructor() {
-        owner = msg.sender;
-        proceeds = msg.sender;
-        royaltyReceiver = msg.sender;
+    constructor(address owner_, address operator_) {
+        require(owner_ != address(0), "owner");
+        require(operator_ != address(0), "operator");
+        owner = owner_;
+        proceeds = owner_;
+        operator = operator_;
+        royaltyReceiver = owner_;
     }
 
     function runCount() external view returns (uint256) {

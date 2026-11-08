@@ -79,14 +79,14 @@ contract AtelierVaultTest is Test {
     uint8 std1155;
     uint8 std721;
     address kasa = address(0xA11);
+    address operator = address(0x0E1);
     address holder = address(0xBEE);
     address buyer = address(0xB0B);
     uint256 constant ID = 7;
     uint256 constant SUPPLY = 20_000;
 
     function setUp() public {
-        vm.prank(kasa);
-        vault = new AtelierVault();
+        vault = new AtelierVault(kasa, operator);
         std1155 = vault.STD_1155();
         std721 = vault.STD_721();
         token = new Held1155(holder, ID, SUPPLY);
@@ -270,17 +270,16 @@ contract AtelierVaultTest is Test {
     }
 
     function testOperatorDepositsOneUnitSupplyUnchangedAndSaleCreditsOwner() public {
-        address operator = address(0x0E1);
         Royalty1155 royaltyToken = new Royalty1155(holder, ID, SUPPLY, address(0xFEE), 500);
         vm.prank(holder);
         royaltyToken.setApprovalForAll(address(vault), true);
         uint256 supplyBefore = royaltyToken.totalSupply(ID);
         assertEq(royaltyToken.totalSupply(), SUPPLY);
 
-        vm.prank(kasa);
-        vault.setOperator(operator);
         assertEq(vault.operator(), operator);
+        assertEq(vault.owner(), kasa);
         assertEq(vault.proceeds(), kasa);
+        assertTrue(vault.owner() != address(this));
 
         vm.prank(operator);
         vault.depositFixed(std1155, address(royaltyToken), ID, 1, holder, 1 ether, 0, 0);
@@ -326,9 +325,6 @@ contract AtelierVaultTest is Test {
     }
 
     function testOperatorCannotGovernVault() public {
-        address operator = address(0x0E1);
-        vm.prank(kasa);
-        vault.setOperator(operator);
         vm.startPrank(operator);
         vm.expectRevert(AtelierVault.NotOwner.selector);
         vault.setProceeds(operator);
@@ -349,10 +345,31 @@ contract AtelierVaultTest is Test {
         assertFalse(vault.paused());
     }
 
-    function testOperatorCancelReturnsTheUnitToTheDepositor() public {
-        address operator = address(0x0E1);
+    function testConstructorRejectsZeroOwnerAndOperator() public {
+        vm.expectRevert(abi.encodeWithSignature("Error(string)", "owner"));
+        new AtelierVault(address(0), operator);
+        vm.expectRevert(abi.encodeWithSignature("Error(string)", "operator"));
+        new AtelierVault(kasa, address(0));
+
+        address deployer = address(0xD00);
+        vm.prank(deployer);
+        AtelierVault deployed = new AtelierVault(kasa, operator);
+        assertEq(deployed.owner(), kasa);
+        assertEq(deployed.proceeds(), kasa);
+        assertEq(deployed.operator(), operator);
+        assertEq(deployed.fallbackRoyaltyReceiver(), address(0));
+        assertEq(deployed.fallbackRoyaltyBps(), 0);
+        assertTrue(deployed.owner() != deployer);
+
         vm.prank(kasa);
-        vault.setOperator(operator);
+        vm.expectRevert(abi.encodeWithSignature("Error(string)", "operator"));
+        vault.setOperator(address(0));
+        vm.prank(buyer);
+        vm.expectRevert(AtelierVault.NotOperator.selector);
+        vault.depositFixed(std1155, address(token), ID, 1, holder, 1 ether, 0, 0);
+    }
+
+    function testOperatorCancelReturnsTheUnitToTheDepositor() public {
         uint64 start = uint64(block.timestamp);
         vm.prank(operator);
         vault.depositAuction(

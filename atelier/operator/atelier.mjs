@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 /**
  * Lists work on the Atelier desk, and encodes a vault deposit.
- * The studio key is read from ATELIER_OPERATOR_KEY and is never printed.
+ * The operator key is read from ATELIER_OPERATOR_KEY and is never printed.
+ * Listing sends as that key once the owner has set its address with setOperator.
+ * This file does not read an owner key.
  * Listing reads addresses from data/atelier.json. An empty address sends nothing.
  * deposit encodes calldata only. It does not broadcast and does not contact a network.
  */
@@ -30,7 +32,7 @@ function fail(message) {
 
 if (!key || !String(key).trim()) {
   fail(
-    "ATELIER_OPERATOR_KEY is not set. The studio key stays in the environment and is never written into git."
+    "ATELIER_OPERATOR_KEY is not set. The operator key stays in the environment and is never written into git."
   );
 }
 
@@ -40,7 +42,7 @@ if (!/^[0-9a-fA-F]{64}$/.test(keyBody)) {
 }
 for (const arg of process.argv) {
   if (String(arg).toLowerCase().includes(keyBody.toLowerCase())) {
-    fail("Refusing a studio key passed on the command line.");
+    fail("Refusing an operator key passed on the command line.");
   }
 }
 
@@ -59,6 +61,8 @@ function usage() {
 Avalanche is first. Base uses the same commands after its own deploy.
 Prices are native-coin amounts (AVAX or ETH), not wei.
 deposit only prints calldata. It does not broadcast and does not contact mainnet.
+The key in ATELIER_OPERATOR_KEY is the operator. Listing works once the owner has set that address.
+This CLI does not read an owner key.
 Do not deploy until Jack confirms.`);
 }
 
@@ -321,6 +325,8 @@ const { createWalletClient, defineChain, http, parseEther, toFunctionSelector } 
 const { privateKeyToAccount } = await import("viem/accounts");
 
 function accountFromKey() {
+  // Sender is the operator. The owner must already have called setOperator for this address.
+  // This CLI never reads an owner key.
   const trimmed = String(key).trim();
   const normalized = trimmed.startsWith("0x") ? trimmed : `0x${trimmed}`;
   try {

@@ -1,6 +1,7 @@
 {
   "desk": "Atelier",
   "deploy": "Do not deploy until Jack confirms. Contract addresses stay empty until that later deploy.",
+  "roles": "Owner and operator are separate, and neither key is stored here. The owner is the seed wallet: it deploys the contracts and receives proceeds. The operator is a different key that can list and cancel an unsold sale with no bid.",
   "order": ["avalanche", "base"],
   "selectors_note": "Function selectors from cast sig after the contracts compiled. Keys are Solidity signatures.",
   "chains": {

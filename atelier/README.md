@@ -14,7 +14,7 @@ ERC-721-like desk for a single work.
 
 **Auction.** One auction per work. The studio sets a minimum bid, an optional reserve, and an optional anti-snipe extension. A new bid must clear the minimum, or the current bid plus the increment. The previous bidder is credited the old bid and withdraws it. A bid inside the extension window moves the end forward, up to a hard end one day after the original end. The auction cannot be cancelled once it has a bid.
 
-After the end, anyone may settle. If the high bid meets the reserve (or there is no reserve), the studio is credited the bid and the winner receives the work. If the reserve is missed, the bidder withdraws the bid and the work returns to the studio.
+After the end, anyone may settle. If the high bid meets the reserve (or there is no reserve), the proceeds address is credited the bid and the winner receives the work. If the reserve is missed, the bidder withdraws the bid and the work returns to the owner.
 
 A new bid must be at least 5% above the current bid. A bid in the last 5 minutes extends the end so that 5 minutes remain, up to one day past the original end.
 
@@ -26,9 +26,9 @@ These are different contracts. They share a source tree, and each chain gets its
 
 **AtelierEdition mints a new run.** A separate contract. The run is 10 to 1000 copies of a new edition id. Fixed price until sold out, or a step curve. It does not touch tokens Jack already holds on OpenSea or the gallery.
 
-**AtelierVault does not mint.** Jack already holds the work on the studio wallet. The owner, or an operator key the owner sets, pulls an approved ERC-1155 (`safeTransferFrom`) or ERC-721 (`transferFrom`) into the vault. The operator can also list on the minting desks and cancel before a bid or before the first edition copy. It cannot change proceeds, pause, or royalties, and it is not paid the sale. The quantity is chosen per deposit, so one unit can come out of a 20,000 supply. The original contract's supply does not change. The balance moves from the wallet to the vault, so that unit is not also spendable from the wallet. The lot records the original collection, the original token id, the quantity, and the depositor. There is no second token id for the same unit. Calling the one-of-one `listFixed` or `listAuction` on the vault reverts with `CloneId`.
+**AtelierVault does not mint.** A source wallet already holds the work. That wallet is the depositor, not the contract owner. The owner or the operator pulls an approved ERC-1155 (`safeTransferFrom`) or ERC-721 (`transferFrom`) from the depositor into the vault. The quantity is chosen per deposit, so one unit can come out of a 20,000 supply. The original contract's supply does not change. The balance moves from the wallet to the vault, so that unit is not also spendable from the wallet. The lot records the original collection, the original token id, the quantity, and the depositor. There is no second token id for the same unit. Calling the one-of-one `listFixed` or `listAuction` on the vault reverts with `CloneId`.
 
-A vault lot sells at a fixed price or by one auction, in the same spirit as AtelierOne: minimum bid, optional reserve, increment, and an anti-snipe extension. The contract raises an increment below 5% to 5%, and an extension below 5 minutes to 5 minutes. On a winning settle the escrowed units go to the buyer and the proceeds are credited for `withdraw`. If the reserve is missed, if the owner or the operator cancels before a bid, or if a fixed-price window ends with no buyer, those same units go back to the depositor.
+A vault lot sells at a fixed price or by one auction, in the same spirit as AtelierOne: minimum bid, optional reserve, increment, and an anti-snipe extension. The contract raises an increment below 5% to 5%, and an extension below 5 minutes to 5 minutes. On a winning settle the escrowed units go to the buyer and the price is credited to the proceeds address for `withdraw`, minus the royalty. If the reserve is missed, if the owner or the operator cancels before a bid, or if a fixed-price window ends with no buyer, those same units go back to the depositor.
 
 If the original token implements EIP-2981, the sale pays that royalty, capped at 10%. Otherwise the studio sets a fallback receiver and rate, also capped at 10%. The vault does not list the work on another marketplace, and it does not stop the rest of the supply from staying where it is.
 
@@ -38,7 +38,7 @@ The vault is the escrow desk above. It is not a hybrid of the minting contracts.
 
 ## Royalties
 
-AtelierOne and AtelierEdition take the configured royalty out of the price on each sale and credit the rest to proceeds. The cap is 10%. `royaltyInfo` reports the same split. This applies only to sales that settle here.
+AtelierOne and AtelierEdition take the configured royalty out of the price on each sale and credit the rest to the proceeds address. The cap is 10% (1000 bps). The royalty is still paid when the seller is the creator. `royaltyInfo` reports the same split. This applies only to sales that settle here.
 
 ## AtelierEdition
 
@@ -48,7 +48,7 @@ A separate contract from the one-of-one desk. A run is strictly 10 to 1000 copie
 
 **Step.** Each sale raises the price of the next copy by a fixed step. An optional cap stops the climb: once the next price would pass the cap, further copies sell at the cap.
 
-The studio can cancel a run only before the first copy sells.
+The owner or the operator can cancel a run only before the first copy sells.
 
 ## Later
 
@@ -56,11 +56,17 @@ A metadata lock waits until the files move off GitHub to Arweave, and only after
 
 ## Pause and payments
 
-`setPaused` blocks buys and bids. It does not block `withdraw`. Sale functions follow checks, effects, then interaction, and they use `nonReentrant`. The buyer or the studio pulls funds. The contract does not send them during the sale.
+`setPaused` blocks buys and bids. It does not block `withdraw`. Sale functions follow checks, effects, then interaction, and they use `nonReentrant`. The buyer or the credited account pulls funds. The contract does not send them during the sale.
 
-## Operator
+## Owner and operator
 
-The operator is the studio key, later, on the US VPS. The key stays in the environment. It is never written into git, the page, or a log line.
+The owner is the seed wallet. That address deploys AtelierOne, AtelierEdition, and AtelierVault, and it receives proceeds. A completed sale credits the price there, minus the royalty. On AtelierOne and AtelierEdition the cut is `royaltyReceiver` / `royaltyBps` on that contract. On AtelierVault the sale tries EIP-2981 on the original token; if that token has no royalty, the vault uses its fallback receiver and rate. Every cut is capped at 10%.
+
+The operator is a separate key. The owner sets it with `setOperator`. Until then the operator address is unset, and an unset operator can do nothing. The operator can list a one-of-one (`listFixed`, `listAuction`), list an edition (`listFixed`, `listStep`), deposit a vault lot (`depositFixed`, `depositAuction`), and cancel an unsold sale that has no bid. The owner can list and cancel too.
+
+The operator cannot change proceeds, royalty, the vault fallback royalty, pause, the operator address, or ownership. The operator does not receive proceeds. `buy`, `bid`, `settle`, `reclaim`, and `withdraw` stay with the buyer, anyone, or the account that was credited.
+
+The operator key stays in the environment. It is never written into git, the page, or a log line. This folder does not read an owner key.
 
 ```sh
 cd atelier/operator
@@ -73,7 +79,7 @@ node atelier.mjs list-edition-step --chain avalanche --id 2 --supply 25 --start-
 node atelier.mjs deposit --chain avalanche --mode auction --standard 1155 --collection 0x... --token-id 7 --qty 1 --from 0x... --min 0.02 --reserve 0.02 --start 1735689600 --end 1735776000 --increment-bps 500 --extension 600
 ```
 
-The CLI reads the studio key from `ATELIER_OPERATOR_KEY`. It never prints the key, and it refuses the key on the command line. Listing commands read addresses from `data/atelier.json`. If that address is empty, they exit and do not send. Prices are native-coin amounts (AVAX on Avalanche, ETH on Base), not wei. `--chain base` is the same command, used only after the Base deploy.
+The CLI reads the operator key from `ATELIER_OPERATOR_KEY`. Listing sends from that key, and it works once the owner has set that key's address as the operator. The CLI never prints the key, it refuses the key on the command line, and it does not read an owner key. Listing commands read addresses from `data/atelier.json`. If that address is empty, they exit and do not send. Prices are native-coin amounts (AVAX on Avalanche, ETH on Base), not wei. `--chain base` is the same command, used only after the Base deploy.
 
 `deposit` only encodes the pull. It prints the calldata and the operator address. It does not broadcast, and it does not open a network connection, including Avalanche and Base. `--send`, `--broadcast`, and `--rpc` are refused. An empty vault address still produces calldata and leaves `to` empty.
 

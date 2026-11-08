@@ -232,9 +232,9 @@ contract AtelierEdition {
         }
     }
 
-    function setApprovalForAll(address operator, bool approved) external {
-        isApprovedForAll[msg.sender][operator] = approved;
-        emit ApprovalForAll(msg.sender, operator, approved);
+    function setApprovalForAll(address spender, bool approved) external {
+        isApprovedForAll[msg.sender][spender] = approved;
+        emit ApprovalForAll(msg.sender, spender, approved);
     }
 
     function safeTransferFrom(address from, address to, uint256 id, uint256 value, bytes calldata)

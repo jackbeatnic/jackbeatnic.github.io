@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-08T16:14:03.776582+00:00",
+  "updated_at": "2026-11-08T16:14:35.947912+00:00",
   "promo": {
     "label": "OFF 0% · 180 days",
     "pct_off": 0,
@@ -8,6 +8,22 @@
     "ends_at": "2027-03-17T01:19:50.051208+00:00"
   },
   "items": [
+    {
+      "collection_id": "avalanche_flower_stories",
+      "collection_name": "Flower Stories",
+      "chain": "avalanche",
+      "token_id": 2144,
+      "name": "FS #3362",
+      "image_url": "https://jackbeatnic.art/jbg-present/avalanche_flower_stories/2144.thumb.webp",
+      "price": 1.97539,
+      "currency": "AVAX",
+      "quantity": 300,
+      "days": 5,
+      "pct_off": 0,
+      "ends_at": "2026-11-13T16:14:35.941513+00:00",
+      "opensea_url": "https://opensea.io/assets/avalanche/0x50866c1025f48e95de820482cde89c6c9082d1d6/2144",
+      "marketplace_url": "https://opensea.io/assets/avalanche/0x50866c1025f48e95de820482cde89c6c9082d1d6/2144"
+    },
     {
       "collection_id": "base_flower_stories_vol3",
       "collection_name": "Flower Stories vol. 3",

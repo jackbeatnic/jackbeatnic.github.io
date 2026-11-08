@@ -146,7 +146,7 @@ contract AtelierEdition {
         Run storage run = runs[id];
         run.sold += qty;
         if (run.sold == run.supply) run.listed = false;
-        _credit(proceeds, cost);
+        _pay(cost);
         _credit(msg.sender, msg.value - cost);
         balanceOf[id][msg.sender] += qty;
         emit TransferSingle(msg.sender, address(0), msg.sender, id, qty);
@@ -269,6 +269,12 @@ contract AtelierEdition {
         uint256 price = uint256(run.price) + uint256(run.step) * index;
         if (run.cap != 0 && price > run.cap) return run.cap;
         return price;
+    }
+
+    function _pay(uint256 amount) internal {
+        uint256 cut = (amount * royaltyBps) / 10000;
+        _credit(royaltyReceiver, cut);
+        _credit(proceeds, amount - cut);
     }
 
     function _credit(address to, uint256 amount) internal {

@@ -12,7 +12,9 @@ contract AtelierOne {
 
     uint8 public constant KIND_FIXED = 1;
     uint8 public constant KIND_AUCTION = 2;
+    uint16 public constant MIN_INCREMENT_BPS = 500;
     uint16 public constant MAX_INCREMENT_BPS = 5000;
+    uint32 public constant MIN_EXTENSION = 5 minutes;
     uint64 public constant MAX_AUCTION = 30 days;
     uint64 public constant MAX_EXTENSION = 1 hours;
     uint96 public constant MAX_ROYALTY_BPS = 1000;
@@ -140,8 +142,10 @@ contract AtelierOne {
         if (endTime <= startTime || endTime - startTime > MAX_AUCTION) revert BadTime();
         if (incrementBps > MAX_INCREMENT_BPS) revert BadPrice();
         if (extensionSecs > MAX_EXTENSION) revert BadTime();
+        if (incrementBps < MIN_INCREMENT_BPS) incrementBps = MIN_INCREMENT_BPS;
+        if (extensionSecs < MIN_EXTENSION) extensionSecs = MIN_EXTENSION;
         _open(id, uri);
-        uint64 hardEnd = extensionSecs == 0 ? endTime : endTime + 1 days;
+        uint64 hardEnd = endTime + 1 days;
         pieces[id] = Piece({
             kind: KIND_AUCTION,
             sold: false,
@@ -169,7 +173,7 @@ contract AtelierOne {
         uint256 price = piece.price;
         piece.sold = true;
         piece.listed = false;
-        _credit(proceeds, price);
+        _pay(price);
         _credit(msg.sender, msg.value - price);
         _transfer(address(this), msg.sender, id);
         emit Bought(id, msg.sender, price);
@@ -207,7 +211,7 @@ contract AtelierOne {
             (piece.reservePrice == 0 || piece.bid >= piece.reservePrice);
         if (won) {
             piece.sold = true;
-            _credit(proceeds, piece.bid);
+            _pay(piece.bid);
             _transfer(address(this), piece.bidder, id);
             emit Settled(id, piece.bidder, piece.bid, true);
         } else {
@@ -315,6 +319,12 @@ contract AtelierOne {
         uint256 step = (uint256(current) * bps) / 10000;
         if (step == 0) step = 1;
         return uint256(current) + step;
+    }
+
+    function _pay(uint256 amount) internal {
+        uint256 cut = (amount * royaltyBps) / 10000;
+        _credit(royaltyReceiver, cut);
+        _credit(proceeds, amount - cut);
     }
 
     function _credit(address to, uint256 amount) internal {

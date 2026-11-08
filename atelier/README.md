@@ -16,6 +16,18 @@ ERC-721-like desk for a single work.
 
 After the end, anyone may settle. If the high bid meets the reserve (or there is no reserve), the studio is credited the bid and the winner receives the work. If the reserve is missed, the bidder withdraws the bid and the work returns to the studio.
 
+A new bid must be at least 5% above the current bid. A bid in the last 5 minutes extends the end so that 5 minutes remain, up to one day past the original end.
+
+## AtelierVault
+
+Escrow for a token the studio already holds, including one unit of a large ERC-1155. The contract pulls that unit in. It does not mint, and the original supply does not change. A fixed price or one auction sells that same unit. Cancel before a bid, a missed reserve, or a fixed-price window that ends with no buyer sends the unit back to the depositor.
+
+If the original token implements EIP-2981, the sale pays that royalty, capped at 10%. Otherwise the studio sets a fallback receiver and rate, also capped at 10%. Other marketplaces are not blocked.
+
+## Royalties
+
+AtelierOne and AtelierEdition take the configured royalty out of the price on each sale and credit the rest to proceeds. The cap is 10%. `royaltyInfo` reports the same split. This applies only to sales that settle here.
+
 ## AtelierEdition
 
 A separate contract from the one-of-one desk. A run is strictly 10 to 1000 copies.
@@ -25,6 +37,10 @@ A separate contract from the one-of-one desk. A run is strictly 10 to 1000 copie
 **Step.** Each sale raises the price of the next copy by a fixed step. An optional cap stops the climb: once the next price would pass the cap, further copies sell at the cap.
 
 The studio can cancel a run only before the first copy sells.
+
+## Later
+
+A metadata lock waits until the files move off GitHub to Arweave, and only after a sale. It is not part of this desk.
 
 ## Pause and payments
 

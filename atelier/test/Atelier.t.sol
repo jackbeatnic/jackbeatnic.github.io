@@ -121,6 +121,18 @@ contract AtelierOneTest is Test {
         assertEq(desk.ownerOf(9), artist);
     }
 
+    function testRoyaltyIsTakenFromThePrice() public {
+        address receiver = address(0xFEE);
+        vm.startPrank(artist);
+        desk.setRoyalty(receiver, 500);
+        desk.listFixed(12, "ipfs://x", 1 ether, 0, 0);
+        vm.stopPrank();
+        vm.prank(buyer);
+        desk.buy{value: 1 ether}(12);
+        assertEq(desk.withdrawable(receiver), 0.05 ether);
+        assertEq(desk.withdrawable(artist), 0.95 ether);
+    }
+
     function testPauseBlocksBuyAndWithdrawStillWorks() public {
         vm.prank(artist);
         desk.listFixed(10, "ipfs://x", 1 ether, 0, 0);
@@ -200,6 +212,18 @@ contract AtelierEditionTest is Test {
         vm.prank(buyer);
         desk.buy{value: 210}(3, 2);
         assertEq(desk.quote(3, 2), 120 + 120);
+    }
+
+    function testEditionRoyaltyIsTakenFromThePrice() public {
+        address receiver = address(0xFEE);
+        vm.startPrank(artist);
+        desk.setRoyalty(receiver, 500);
+        desk.listFixed(6, 10, 1 ether, "ipfs://e");
+        vm.stopPrank();
+        vm.prank(buyer);
+        desk.buy{value: 1 ether}(6, 1);
+        assertEq(desk.withdrawable(receiver), 0.05 ether);
+        assertEq(desk.withdrawable(artist), 0.95 ether);
     }
 
     function testCannotBuyPastTheRun() public {

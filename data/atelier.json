@@ -10,7 +10,8 @@
       "rpc": "https://api.avax.network/ext/bc/C/rpc",
       "nativeSymbol": "AVAX",
       "one": "",
-      "edition": ""
+      "edition": "",
+      "vault": ""
     },
     "base": {
       "name": "Base",
@@ -18,7 +19,8 @@
       "rpc": "https://mainnet.base.org",
       "nativeSymbol": "ETH",
       "one": "",
-      "edition": ""
+      "edition": "",
+      "vault": ""
     }
   },
   "selectors": {
@@ -42,6 +44,13 @@
     "quote(uint256,uint32)": "0xd5ca280a",
     "listFixed(uint256,uint32,uint96,string)": "0xe011c40b",
     "listStep(uint256,uint32,uint96,uint96,uint96,string)": "0xbf6e22d5",
-    "buy(uint256,uint32)": "0xdf519f0b"
+    "buy(uint256,uint32)": "0xdf519f0b",
+    "lotCount()": "0x7ae169e9",
+    "lotSale(uint256)": "0x05c4971d",
+    "lotAsset(uint256)": "0x3aef6e23",
+    "depositFixed(uint8,address,uint256,uint256,address,uint96,uint64,uint64)": "0xaf7fd579",
+    "depositAuction(uint8,address,uint256,uint256,address,uint96,uint96,uint64,uint64,uint16,uint32)": "0xfafb10b6",
+    "reclaim(uint256)": "0x2dabbeed",
+    "setFallbackRoyalty(address,uint96)": "0x75d6afaf"
   }
 }

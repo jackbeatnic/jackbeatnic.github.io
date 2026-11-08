@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-08T16:14:35.947912+00:00",
+  "updated_at": "2026-11-08T16:15:08.578902+00:00",
   "promo": {
     "label": "OFF 0% · 180 days",
     "pct_off": 0,
@@ -8,6 +8,22 @@
     "ends_at": "2027-03-17T01:19:50.051208+00:00"
   },
   "items": [
+    {
+      "collection_id": "polygon_flower_stories_vol2",
+      "collection_name": "Flower Stories vol. 2",
+      "chain": "polygon",
+      "token_id": 3204,
+      "name": "FS #6470 P",
+      "image_url": "https://jackbeatnic.art/jbg-present/polygon_flower_stories_vol2/3204.thumb.webp",
+      "price": 0.00738,
+      "currency": "WETH",
+      "quantity": 300,
+      "days": 5,
+      "pct_off": 0,
+      "ends_at": "2026-11-13T16:15:08.574394+00:00",
+      "opensea_url": "https://opensea.io/assets/polygon/0x515ac12338a428df618f4c7c2720754e35d612b8/3204",
+      "marketplace_url": "https://opensea.io/assets/polygon/0x515ac12338a428df618f4c7c2720754e35d612b8/3204"
+    },
     {
       "collection_id": "avalanche_flower_stories",
       "collection_name": "Flower Stories",

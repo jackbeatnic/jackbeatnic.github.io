@@ -450122,19 +450122,19 @@
         ]
       },
       "likes_count": 0,
-      "status": "minted",
+      "status": "listed",
       "chain": "base",
       "contract_address": "0xca201a1654acd30580c0fbab4cac88bf0df65e7d",
       "collection_id": "base_flower_stories_vol3",
       "listing_status": "For Sale",
       "listing_currency": "ETH",
-      "display_rank": 6315,
+      "display_rank": 0,
       "share_url": "https://jackbeatnic.art/nft/base-flower-stories-vol3/1167.html",
-      "og_image": "https://jackbeatnic.art/jbg-present/base_flower_stories_vol3/1167.view.webp",
+      "og_image": "https://jackbeatnic.art/jbg-present/promo/base_flower_stories_vol3/1167.jpg?v=1d408f66",
       "medium": "ai_art",
       "ai_series": "flower_stories",
       "edition_label": "Base",
-      "current_price_eth": 0.0239
+      "current_price_eth": 0.00667
     },
     {
       "token_id": 1168,

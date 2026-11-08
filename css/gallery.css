@@ -1781,6 +1781,12 @@ body.tip-open {
     border-color: #0b5c3a;
 }
 
+.library-mark--atelier {
+    background: #6b3a2a;
+    color: #fff;
+    border-color: #6b3a2a;
+}
+
 .library-mark--featured {
     background: #6a6a6a;
     color: #fff;
@@ -2307,6 +2313,11 @@ body.tip-open {
 
 .nft-card__mark--shop {
     background: #0b5c3a;
+    color: #ffffff;
+}
+
+.nft-card__mark--atelier {
+    background: #6b3a2a;
     color: #ffffff;
 }
 

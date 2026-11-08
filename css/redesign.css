@@ -744,7 +744,8 @@
     box-shadow: inset 0 -1px 0 var(--rd-accent);
 }
 .gallery-protected .library-mark--os,
-.gallery-protected .library-mark--shop { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+.gallery-protected .library-mark--shop,
+.gallery-protected .library-mark--atelier { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
 .gallery-protected .library-mark--featured { text-transform: none; }
 .gallery-protected .library-mark--featured::before {
     content: '';

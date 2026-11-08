@@ -30,6 +30,8 @@ const ImageProxy = (() => {
         'polygon_jb_ai_play',
         'sui_nature_stories_tradeport',
         'sui_nature_stories_1of1_tradeport',
+        'atelier_one',
+        'atelier_edition',
     ]);
 
     /** After deploying the Worker: https://img.your-domain.com */

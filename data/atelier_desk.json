@@ -1,0 +1,5 @@
+{
+  "_doc": "Works on the Atelier desk. The VPS worker writes this file. collection_id plus token_id must match the SI Art card when the work already exists, so Featured uses the same preview and promo board. A new mint uses collection_id atelier_one or atelier_edition only after thumb.webp and view.webp are in jbg-present. featured true also places the card on the Featured tab with the ATELIER mark.",
+  "updated_at": "",
+  "items": []
+}

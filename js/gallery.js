@@ -5,6 +5,7 @@ const Gallery = (() => {
     const IMAGE_PROXY = 'weserv';
 
     let allNfts = [];
+    let atelierKeySet = new Set();
     let sectionNfts = [];
     let collectionInfo = {};
     let siteConfig = {};
@@ -934,7 +935,8 @@ const Gallery = (() => {
         return null;
     }
 
-    function attachChannelLinks(nfts) {
+    function attachChannelLinks(nfts, atelierKeys) {
+        const onAtelier = atelierKeys instanceof Set ? atelierKeys : new Set();
         const shop = new Map();
         const featured = new Map();
         const gallery = new Set();
@@ -983,7 +985,13 @@ const Gallery = (() => {
             }
             nft.in_shop = Boolean(s);
             nft.in_featured = Boolean(f);
+            nft.in_atelier = onAtelier.has(k);
             nft.in_gallery = gallery.has(k);
+            if (g && nft.in_atelier && nft !== g) {
+                if (g.image_url) nft.image_url = g.image_url;
+                if (g.ai) nft.ai = g.ai;
+                if (g.ai_series) nft.ai_series = g.ai_series;
+            }
             if (s && nft !== s) {
                 nft.shop_pay_amount = s.pay_amount || s.shop_price;
                 nft.shop_price = s.shop_price || s.pay_amount;
@@ -1145,6 +1153,7 @@ const Gallery = (() => {
         const marks = [];
         if (nft.on_os) marks.push(['os', 'OS']);
         if (nft.in_shop) marks.push(['shop', 'SHOP']);
+        if (nft.in_atelier) marks.push(['atelier', 'ATELIER']);
         if (nft.in_featured) marks.push(['featured', 'Featured']);
         if (!marks.length) return '';
         return `<div class="nft-card__marks" aria-hidden="true">${marks
@@ -1351,6 +1360,47 @@ const Gallery = (() => {
         }
     }
 
+    function atelierKey(item) {
+        const cid = String(item?.collection_id || '').trim();
+        const tid = String(item?.token_id ?? '').trim();
+        if (!cid || tid === '') return '';
+        return `${cid}:${tid}`;
+    }
+
+    function featuredFromAtelier(item, master) {
+        const cur = String(item.currency || master?.listing_currency || 'AVAX').toUpperCase();
+        const suf = cur.toLowerCase();
+        const nft = master
+            ? { ...master, medium: 'featured_promo' }
+            : {
+                medium: 'featured_promo',
+                token_id: item.token_id,
+                collection_id: item.collection_id,
+                collection_name: item.collection_name || 'Atelier',
+                name: item.name || `Atelier #${item.token_id}`,
+                chain: item.chain || 'avalanche',
+                image_url: item.image_url || '',
+            };
+        nft.listing_currency = cur;
+        nft.listing_status = 'For Sale';
+        nft.status = 'listed';
+        nft.permanent = Boolean(item.permanent);
+        if (item.price != null && item.price !== '') nft[`current_price_${suf}`] = item.price;
+        return nft;
+    }
+
+    async function loadAtelierDesk() {
+        try {
+            const res = await fetch('data/atelier_desk.json', { cache: 'no-store' });
+            if (!res.ok) return { items: [] };
+            const doc = await res.json();
+            return { items: Array.isArray(doc?.items) ? doc.items : [] };
+        } catch (err) {
+            console.warn('atelier desk:', err);
+            return { items: [] };
+        }
+    }
+
     async function loadFeaturedPromoNfts() {
         try {
             const res = await fetch('data/featured_promo.json');
@@ -1385,11 +1435,12 @@ const Gallery = (() => {
         const shopLater = loadSaleIndexNfts();
         const extraLater = loadSupplementaryGalleries();
         try {
-            const [mainRes, auctionRes, objktAuctionRes, featuredNfts] = await Promise.all([
+            const [mainRes, auctionRes, objktAuctionRes, featuredNfts, atelierDesk] = await Promise.all([
                 fetch('gallery.json'),
                 fetch('auctions_gallery.json'),
                 fetch('objkt_auctions_gallery.json'),
                 loadFeaturedPromoNfts(),
+                loadAtelierDesk(),
             ]);
             if (!mainRes.ok) throw new Error(`HTTP ${mainRes.status}`);
             const data = await mainRes.json();
@@ -1410,7 +1461,30 @@ const Gallery = (() => {
             if (featuredNfts?.length) {
                 allNfts = [...allNfts, ...featuredNfts];
             }
-            attachChannelLinks(allNfts);
+            const atelierItems = atelierDesk?.items || [];
+            atelierKeySet = new Set(atelierItems.map(atelierKey).filter(Boolean));
+            const atelierKeys = atelierKeySet;
+            const featuredKeys = new Set(
+                allNfts.filter((n) => n.medium === 'featured_promo').map(catalogKey).filter(Boolean),
+            );
+            const galleryByKey = new Map();
+            for (const nft of allNfts) {
+                if (nft.medium === 'shop' || nft.medium === 'featured_promo') continue;
+                const key = catalogKey(nft);
+                if (key && !galleryByKey.has(key)) galleryByKey.set(key, nft);
+            }
+            const atelierFeatured = [];
+            for (const item of atelierItems) {
+                if (!item || (item.featured !== true && item.featured !== 'true')) continue;
+                const key = atelierKey(item);
+                if (!key || featuredKeys.has(key)) continue;
+                const master = galleryByKey.get(key);
+                if (!master && !item.image_url) continue;
+                atelierFeatured.push(featuredFromAtelier(item, master));
+                featuredKeys.add(key);
+            }
+            if (atelierFeatured.length) allNfts = [...allNfts, ...atelierFeatured];
+            attachChannelLinks(allNfts, atelierKeys);
             collectionInfo = {
                 ...(data.collection_info || {}),
                 xrpl: xrpData.collection_info || {},
@@ -1428,10 +1502,6 @@ const Gallery = (() => {
             const xrpSections = xrpData.site?.sections || {};
             const suiSections = suiData.site?.sections || {};
             const auctionSections = auctionData.site?.sections || {};
-            const manifoldChains = collectionInfo.manifold?.chains || {};
-            const disabledMarketChains = Object.entries(manifoldChains)
-                .filter(([, cfg]) => cfg && cfg.enabled === false)
-                .map(([key]) => key);
             const mainMarket =
                 mainSections.atelier ||
                 mainSections.studio_market ||
@@ -1525,9 +1595,8 @@ const Gallery = (() => {
                         },
                     },
                     atelier: {
-                        ...mainMarket,
                         ...auctionMarket,
-                        disabled_chains: disabledMarketChains,
+                        ...mainMarket,
                     },
                 },
             };
@@ -1598,7 +1667,7 @@ const Gallery = (() => {
                 if (more.length) {
                     const before = viewStamp();
                     allNfts = allNfts.concat(more);
-                    attachChannelLinks(allNfts);
+                    attachChannelLinks(allNfts, atelierKeySet);
                     GallerySections.noteLoadedNfts(allNfts);
                     const urlWork = findWorkNft();
                     const urlKey = urlWork ? GalleryLikes.nftKey(urlWork) : '';
@@ -1778,38 +1847,52 @@ const Gallery = (() => {
             const meta = GallerySections.getSectionMeta();
             const linkPack = collectionInfo.manifold_links || {};
             const navLinks = (linkPack.nav || []).filter((item) => item?.url && item?.label);
-            const show = navLinks.length > 0;
-            el.hidden = !show;
-            if (!show) return;
+            el.hidden = false;
 
             const marketKind = GallerySections.getMarketKind();
-            const chainLabel =
-                GallerySections.getMarketChain() === 'ethereum' ? 'Ethereum' : 'Base';
-            const kindLabel = marketKind === 'editions' ? 'Limited Editions' : 'Auctions';
+            const chainKey = GallerySections.getMarketChain();
+            const chainLabel = CHAIN_LABELS[chainKey] || 'Avalanche';
+            const kindLabel =
+                marketKind === 'fixed'
+                    ? 'Fixed price'
+                    : marketKind === 'editions'
+                      ? 'Editions'
+                      : 'Auctions';
 
             if (eyebrowEl) eyebrowEl.textContent = meta.promo_eyebrow || 'The Atelier';
             if (leadEl) {
                 leadEl.textContent =
                     meta.promo_lead ||
-                    'A private room for those who collect closely — rare auctions and numbered editions in small batches, offered straight from the studio.';
+                    'New work from the studio, sold here. A single piece at a set price, a single piece by auction, or a small edition of the same work.';
             }
             if (listEl) {
-                const collectorHint =
-                    meta.promo_collector ||
-                    'Returning collectors may soon unlock early access and quiet releases — nothing personal, only your wallet.';
+                const blurbs = meta.kind_blurbs || {};
+                const collectorHint = (
+                    chainKey === 'base'
+                        ? 'On Avalanche for now.'
+                        : String(
+                              blurbs[marketKind] ||
+                                  meta.promo_collector ||
+                                  'When a work is listed, you buy or bid from your wallet.',
+                          )
+                ).trim();
                 const connectLabel = escapeHtml(AtelierWallet.connectLabel());
-                const connectBlock = AtelierWallet.connectEnabled()
-                    ? `<button type="button" class="btn btn--primary btn--small section-promo__connect" id="atelier-connect-wallet">${connectLabel}</button>`
-                    : '';
+                const connectBlock = `<button type="button" class="btn btn--primary btn--small section-promo__connect" id="atelier-connect-wallet">${connectLabel}</button>`;
                 const linkButtons = navLinks
                     .map((item) => {
                         const href = escapeHtml(item.url);
                         const label = escapeHtml(item.label);
                         const hint = item.hint ? ` title="${escapeHtml(item.hint)}"` : '';
-                        const primary = item.id === 'studio' ? ' btn--primary' : ' btn--ghost';
-                        return `<a class="btn btn--small section-promo__cta${primary}" href="${href}" target="_blank" rel="noopener noreferrer"${hint}>${label}</a>`;
+                        return `<a class="btn btn--ghost btn--small section-promo__cta" href="${href}" target="_blank" rel="noopener noreferrer"${hint}>${label}</a>`;
                     })
                     .join('');
+                const catalogue = linkButtons
+                    ? `<article class="section-promo__item">
+                        <h3 class="section-promo__title">Earlier works</h3>
+                        <p class="section-promo__collector">These remain on Manifold.</p>
+                        <div class="atelier-catalogue__links">${linkButtons}</div>
+                    </article>`
+                    : '';
 
                 listEl.innerHTML = `
                     <article class="section-promo__item">
@@ -1819,19 +1902,19 @@ const Gallery = (() => {
                             <span class="section-promo__chain"> · ${escapeHtml(chainLabel)}</span>
                         </p>
                         <p class="section-promo__collector">${escapeHtml(collectorHint)}</p>
-                        <div class="section-promo__actions">
-                            ${connectBlock}
-                            ${linkButtons}
-                        </div>
+                        ${connectBlock ? `<div class="section-promo__actions">${connectBlock}</div>` : ''}
                     </article>
+                    ${catalogue}
                 `;
 
                 const connectBtn = listEl.querySelector('#atelier-connect-wallet');
                 connectBtn?.addEventListener('click', async () => {
                     try {
-                        await AtelierWallet.connect();
+                        const addr = await AtelierSale.connect(chainKey);
+                        const short = AtelierSale.shortAddress(addr);
+                        if (short) connectBtn.textContent = short;
                     } catch (err) {
-                        connectBtn.title = err?.message || 'Coming soon';
+                        connectBtn.title = err?.message || 'Open this page in a wallet browser to buy or bid.';
                     }
                 });
             }
@@ -2213,6 +2296,26 @@ const Gallery = (() => {
         const pageSize = 36;
 
         stopMoreObserver();
+
+        if (
+            typeof GallerySections !== 'undefined' &&
+            GallerySections.isAtelierSection() &&
+            typeof AtelierSale !== 'undefined'
+        ) {
+            container.classList.remove('gallery-grid--busy', 'gallery-grid--empty');
+            container.classList.add('gallery-grid--atelier');
+            container.innerHTML = '<div id="atelier-sale-root" class="atelier-sale-root"></div>';
+            if (countEl) countEl.textContent = '';
+            AtelierSale.mount(container.querySelector('#atelier-sale-root'), {
+                chain: GallerySections.getMarketChain(),
+                kind: GallerySections.getMarketKind(),
+                onCount(n) {
+                    if (countEl) countEl.textContent = n ? `${n} ${n === 1 ? 'work' : 'works'}` : '';
+                },
+            });
+            return;
+        }
+        container.classList.remove('gallery-grid--atelier');
 
         if (countEl) {
             const total = sectionNfts.length;

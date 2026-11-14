@@ -1,0 +1,9 @@
+{
+  "name": "atelier-operator",
+  "private": true,
+  "type": "module",
+  "description": "Studio operator for the Atelier sales desk. The key stays in ATELIER_OPERATOR_KEY.",
+  "dependencies": {
+    "viem": "^2.21.0"
+  }
+}

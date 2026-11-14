@@ -466878,56 +466878,60 @@
         "label_short": "Atelier",
         "explore_title": "The Atelier",
         "default_kind": "auctions",
-        "default_chain": "base",
+        "default_chain": "avalanche",
         "kind_subsections": [
+          {
+            "id": "fixed",
+            "label": "Fixed price"
+          },
           {
             "id": "auctions",
             "label": "Auctions"
           },
           {
             "id": "editions",
-            "label": "Limited Editions"
+            "label": "Editions"
           }
         ],
         "chain_subsections": [
           {
-            "id": "base",
-            "label": "Base"
+            "id": "avalanche",
+            "label": "Avalanche"
           },
           {
-            "id": "ethereum",
-            "label": "Ethereum"
+            "id": "base",
+            "label": "Base"
           }
         ],
-        "disabled_kinds": [
-          "editions"
-        ],
-        "disabled_chains": [
-          "ethereum"
-        ],
-        "kind_notes": {
-          "editions": "Numbered editions in small batches — coming soon."
-        },
-        "chain_notes": {
-          "ethereum": "Reserved for select one-of-one works."
-        },
+        "disabled_kinds": [],
+        "disabled_chains": [],
         "explore_titles": {
-          "auctions": "Auctions · The Atelier",
-          "editions": "Limited Editions · The Atelier"
+          "fixed": "A set price · The Atelier",
+          "auctions": "An auction · The Atelier",
+          "editions": "A small edition · The Atelier"
+        },
+        "kind_blurbs": {
+          "fixed": "One work. One price. You pay in AVAX, and the piece is yours.",
+          "auctions": "One work. You place a bid. The highest bid at the close takes it.",
+          "editions": "A small run of one work, from ten copies to a thousand. Each copy costs the same, or the price steps up as they sell."
         },
         "empty_messages": {
+          "fixed": {
+            "avalanche": "Nothing at a set price right now.",
+            "base": "These offers are on Avalanche for now."
+          },
           "auctions": {
-            "base": "No auction is live at the moment. The next piece will appear here when the gavel is set.",
-            "ethereum": "Select one-of-one auctions — reserved for a future chapter."
+            "avalanche": "No auction is open right now.",
+            "base": "Auctions are on Avalanche for now."
           },
           "editions": {
-            "base": "Numbered editions are in preparation — intimate batches, released at a gentle pace.",
-            "ethereum": "A dedicated room for photography — planned with its own contract."
+            "avalanche": "No edition is open right now.",
+            "base": "Editions are on Avalanche for now."
           }
         },
         "promo_eyebrow": "The Atelier",
-        "promo_lead": "A private room for those who collect closely — rare auctions and numbered editions in small batches, offered straight from the studio. Only live sales appear here; the wider studio catalogue lives on Manifold.",
-        "promo_collector": "Returning collectors may soon unlock early access and quiet releases — nothing personal, only your wallet."
+        "promo_lead": "New work from the studio, sold here. A single piece at a set price, a single piece by auction, or a small edition of the same work.",
+        "promo_collector": "When a work is listed, you buy or bid from your wallet."
       }
     }
   }

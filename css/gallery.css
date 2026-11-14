@@ -766,6 +766,61 @@ a {
     display: none !important;
 }
 
+.atelier-sale-root {
+    margin-top: 0.15rem;
+}
+
+.atelier-sale__status,
+.atelier-sale__note {
+    margin: 0.45rem 0 0;
+    font-size: 0.72rem;
+    line-height: 1.45;
+    color: var(--gray-600);
+}
+
+.atelier-sale__meta {
+    margin: 0.4rem 0 0;
+    font-size: 0.72rem;
+    line-height: 1.5;
+    color: var(--gray-600);
+}
+
+.atelier-sale__price {
+    font-weight: 600;
+    color: var(--black);
+}
+
+.atelier-sale__field {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    align-items: center;
+    margin-top: 0.55rem;
+}
+
+.atelier-sale__input {
+    width: 7.5rem;
+    padding: 0.28rem 0.45rem;
+    border: 1px solid var(--gray-200);
+    border-radius: 2px;
+    background: var(--white);
+    color: var(--black);
+    font: inherit;
+    font-size: 0.72rem;
+}
+
+.atelier-sale--empty .section-promo__collector {
+    max-width: 36rem;
+}
+
+.atelier-catalogue__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.85rem;
+    margin-top: 0.45rem;
+    grid-column: 1;
+}
+
 @media (min-width: 768px) {
     .section-nav {
         display: none;
@@ -1726,6 +1781,12 @@ body.tip-open {
     border-color: #0b5c3a;
 }
 
+.library-mark--atelier {
+    background: #6b3a2a;
+    color: #fff;
+    border-color: #6b3a2a;
+}
+
 .library-mark--featured {
     background: #6a6a6a;
     color: #fff;
@@ -2252,6 +2313,11 @@ body.tip-open {
 
 .nft-card__mark--shop {
     background: #0b5c3a;
+    color: #ffffff;
+}
+
+.nft-card__mark--atelier {
+    background: #6b3a2a;
     color: #ffffff;
 }
 

@@ -2,7 +2,7 @@
 
 Atelier is the studio sales desk. Buyers pay the chain's native coin. Proceeds are pulled with `withdraw`. They are not pushed to the studio in the sale transaction.
 
-Do not deploy until Jack confirms. The addresses in `data/atelier.json` stay empty until that deploy. Nothing in this folder broadcasts a transaction by itself.
+Avalanche C-Chain is deployed. The three addresses are in `data/atelier.json`. Base addresses stay empty. Listing commands send only when `ATELIER_OPERATOR_KEY` is set in the shell. `deposit` never broadcasts.
 
 Avalanche comes first (chain id 43114). The same source is deployed on Base later (chain id 8453). One-of-one sales and edition runs are two contracts, not one.
 
@@ -20,7 +20,7 @@ A new bid must be at least 5% above the current bid. A bid in the last 5 minutes
 
 ## Three desks
 
-These are different contracts. They share a source tree, and each chain gets its own deploy. Avalanche (43114) is first. Base (8453) is the same source later. Do not deploy until Jack confirms.
+These are different contracts. They share a source tree, and each chain gets its own deploy. Avalanche (43114) is deployed. Base (8453) is the same source later.
 
 **AtelierOne mints a new one-of-one.** Listing creates an ERC-721-style token that did not exist before. Fixed price or one auction. The new id is the work.
 
@@ -91,6 +91,6 @@ cd atelier
 forge test
 ```
 
-Serve the site and open `?section=atelier`. Avalanche is the first chain. The sale tabs are Fixed price, Auctions, and Editions. Until an address is set, the desk says it is empty.
+Serve the site and open `?section=atelier`. Avalanche is the first chain. The sale tabs are Fixed price, Auctions, and Editions. With no listing yet, those rooms say nothing is for sale. `?atelier=preview` shows sample rooms and does not send a transaction.
 
 The older Manifold catalogue can stay linked under the desk. New sales use these contracts.

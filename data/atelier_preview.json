@@ -1,0 +1,121 @@
+{
+  "_doc": "Guest-desk preview only. Open with ?atelier=preview. These works are not listed and nothing here can be bought.",
+  "rooms": {
+    "fixed": [
+      {
+        "key": "fixed-open",
+        "title": "NS #3268",
+        "collection": "Nature Stories",
+        "image": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/1315.view.webp",
+        "marks": ["os", "shop", "atelier"],
+        "state": "available",
+        "price": "1.5",
+        "action": "buy"
+      },
+      {
+        "key": "fixed-sold",
+        "title": "FS #5622",
+        "collection": "Flower Stories",
+        "image": "https://jackbeatnic.art/jbg-present/avalanche_flower_stories/3865.view.webp",
+        "marks": ["atelier"],
+        "state": "sold",
+        "price": "1.92",
+        "action": "none"
+      }
+    ],
+    "auctions": [
+      {
+        "key": "auction-live",
+        "title": "NS #3685",
+        "collection": "Nature Stories",
+        "image": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/1558.view.webp",
+        "marks": ["atelier"],
+        "state": "live",
+        "price": "0.8",
+        "bid": "0.8",
+        "bidder": "0xA11ce0000000000000000000000000000000b0b1",
+        "incrementBps": 500,
+        "reserve": "1.2",
+        "extensionSecs": 300,
+        "countdownIn": 3720,
+        "action": "bid",
+        "bids": [
+          { "who": "0xB0b000000000000000000000000000000000c0de", "amount": "0.5", "ago": 5400 },
+          { "who": "0xA11ce0000000000000000000000000000000b0b1", "amount": "0.8", "ago": 900 }
+        ]
+      },
+      {
+        "key": "auction-won",
+        "title": "FS #5492",
+        "collection": "Flower Stories",
+        "image": "https://jackbeatnic.art/jbg-present/avalanche_flower_stories/3865.view.webp",
+        "marks": ["os", "atelier"],
+        "state": "ended",
+        "price": "0.4",
+        "bid": "1.1",
+        "bidder": "0xC0ffee0000000000000000000000000000001234",
+        "incrementBps": 500,
+        "reserve": "1.0",
+        "extensionSecs": 300,
+        "countdownIn": -120,
+        "action": "settle",
+        "won": true,
+        "bids": [
+          { "who": "0xC0ffee0000000000000000000000000000001234", "amount": "1.1", "ago": 4000 }
+        ]
+      },
+      {
+        "key": "auction-miss",
+        "title": "NS #3446",
+        "collection": "Nature Stories",
+        "image": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/1315.view.webp",
+        "marks": ["atelier"],
+        "state": "ended",
+        "price": "0.3",
+        "bid": "0.45",
+        "bidder": "0xD00d00000000000000000000000000000000abcd",
+        "incrementBps": 500,
+        "reserve": "2",
+        "extensionSecs": 300,
+        "countdownIn": -30,
+        "action": "settle",
+        "won": false,
+        "bids": [
+          { "who": "0xD00d00000000000000000000000000000000abcd", "amount": "0.45", "ago": 800 }
+        ]
+      }
+    ],
+    "editions": [
+      {
+        "key": "edition-step",
+        "title": "A small run",
+        "collection": "Atelier",
+        "image": "https://jackbeatnic.art/jbg-present/avalanche_flower_stories/3865.view.webp",
+        "marks": ["atelier"],
+        "state": "available",
+        "kind": "edition",
+        "curve": "step",
+        "supply": 25,
+        "sold": 7,
+        "price": "0.08",
+        "step": "0.01",
+        "cap": "0.2",
+        "action": "buy"
+      },
+      {
+        "key": "edition-flat",
+        "title": "One price",
+        "collection": "Atelier",
+        "image": "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/1558.view.webp",
+        "marks": ["atelier"],
+        "state": "available",
+        "kind": "edition",
+        "curve": "fixed",
+        "supply": 10,
+        "sold": 2,
+        "price": "0.1",
+        "action": "buy"
+      }
+    ]
+  }
+}

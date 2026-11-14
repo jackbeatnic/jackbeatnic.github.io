@@ -1877,9 +1877,7 @@ const Gallery = (() => {
                           )
                 ).trim();
                 const connectLabel = escapeHtml(AtelierWallet.connectLabel());
-                const connectBlock = AtelierWallet.connectEnabled()
-                    ? `<button type="button" class="btn btn--primary btn--small section-promo__connect" id="atelier-connect-wallet">${connectLabel}</button>`
-                    : '';
+                const connectBlock = `<button type="button" class="btn btn--primary btn--small section-promo__connect" id="atelier-connect-wallet">${connectLabel}</button>`;
                 const linkButtons = navLinks
                     .map((item) => {
                         const href = escapeHtml(item.url);
@@ -1906,22 +1904,19 @@ const Gallery = (() => {
                         <p class="section-promo__collector">${escapeHtml(collectorHint)}</p>
                         ${connectBlock ? `<div class="section-promo__actions">${connectBlock}</div>` : ''}
                     </article>
-                    <div id="atelier-sale-root" class="atelier-sale-root"></div>
                     ${catalogue}
                 `;
 
                 const connectBtn = listEl.querySelector('#atelier-connect-wallet');
                 connectBtn?.addEventListener('click', async () => {
                     try {
-                        await AtelierWallet.connect();
+                        const addr = await AtelierSale.connect(chainKey);
+                        const short = AtelierSale.shortAddress(addr);
+                        if (short) connectBtn.textContent = short;
                     } catch (err) {
-                        connectBtn.title = err?.message || 'Coming soon';
+                        connectBtn.title = err?.message || 'Open this page in a wallet browser to buy or bid.';
                     }
                 });
-                const saleRoot = listEl.querySelector('#atelier-sale-root');
-                if (saleRoot && typeof AtelierSale !== 'undefined' && AtelierSale.mount) {
-                    AtelierSale.mount(saleRoot, { chain: chainKey, kind: marketKind });
-                }
             }
             return;
         }
@@ -2301,6 +2296,26 @@ const Gallery = (() => {
         const pageSize = 36;
 
         stopMoreObserver();
+
+        if (
+            typeof GallerySections !== 'undefined' &&
+            GallerySections.isAtelierSection() &&
+            typeof AtelierSale !== 'undefined'
+        ) {
+            container.classList.remove('gallery-grid--busy', 'gallery-grid--empty');
+            container.classList.add('gallery-grid--atelier');
+            container.innerHTML = '<div id="atelier-sale-root" class="atelier-sale-root"></div>';
+            if (countEl) countEl.textContent = '';
+            AtelierSale.mount(container.querySelector('#atelier-sale-root'), {
+                chain: GallerySections.getMarketChain(),
+                kind: GallerySections.getMarketKind(),
+                onCount(n) {
+                    if (countEl) countEl.textContent = n ? `${n} ${n === 1 ? 'work' : 'works'}` : '';
+                },
+            });
+            return;
+        }
+        container.classList.remove('gallery-grid--atelier');
 
         if (countEl) {
             const total = sectionNfts.length;

@@ -92,5 +92,41 @@ assert.match(fixedHtml, /nft-card__mark--os/);
 assert.match(fixedHtml, /nft-card__mark--shop/);
 assert.match(fixedHtml, /nft-card__mark--atelier/);
 assert.match(fixedHtml, />Buy</);
+assert.doesNotMatch(html, /github\.io/i);
+assert.match(html, /Preview only|Nothing here is for sale|nothing was sent|Confirm preview|Preview\./i);
+
+const oneAddress = "0x2a13288007A2858a0dCE29d5DD934cCfB3ae2874";
+const editionAddress = "0x51c2c0CF47596A14f0bB3587F76d0f66BB8496f5";
+const chains = { avalanche: { one: oneAddress, edition: editionAddress } };
+const urls = sale.assetUrls(oneAddress, 7);
+assert.equal(urls.view, "https://jackbeatnic.art/atelier-assets/0x2a13288007a2858a0dce29d5dd934ccfb3ae2874/7/view.webp");
+assert.equal(urls.thumb, "https://jackbeatnic.art/atelier-assets/0x2a13288007a2858a0dce29d5dd934ccfb3ae2874/7/thumb.webp");
+assert.equal(urls.metadata, "https://jackbeatnic.art/atelier-assets/0x2a13288007a2858a0dce29d5dd934ccfb3ae2874/7/metadata.json");
+assert.equal(sale.assetUrls("not-a-contract", 7).view, "");
+assert.equal(sale.contractForDesk({ collection_id: "atelier_one", chain: "avalanche", token_id: 7 }, chains), oneAddress.toLowerCase());
+assert.equal(sale.contractForDesk({ collection_id: "atelier_edition", token_id: 3 }, chains), editionAddress.toLowerCase());
+assert.equal(sale.contractForDesk({ collection_id: "avalanche_nature_stories", token_id: 1315 }, chains), "");
+assert.equal(
+    sale.deskImage({ collection_id: "atelier_one", token_id: 7, chain: "avalanche" }, chains),
+    urls.view
+);
+assert.equal(
+    sale.deskImage(
+        {
+            collection_id: "atelier_one",
+            token_id: 7,
+            image_url: "https://jackbeatnic.github.io/jbg-present/atelier_one/7.view.webp",
+        },
+        chains
+    ),
+    urls.view
+);
+assert.equal(
+    sale.deskImage({ collection_id: "avalanche_nature_stories", token_id: 1315 }, chains),
+    "https://jackbeatnic.art/jbg-present/avalanche_nature_stories/1315.view.webp"
+);
+
+const desk = JSON.parse(readFileSync(new URL("../../data/atelier_desk.json", import.meta.url), "utf8"));
+assert.deepEqual(desk.items, []);
 
 console.log("atelier-sale tests ok");

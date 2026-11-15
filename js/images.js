@@ -30,8 +30,6 @@ const ImageProxy = (() => {
         'polygon_jb_ai_play',
         'sui_nature_stories_tradeport',
         'sui_nature_stories_1of1_tradeport',
-        'atelier_one',
-        'atelier_edition',
     ]);
 
     /** After deploying the Worker: https://img.your-domain.com */
@@ -143,7 +141,19 @@ const ImageProxy = (() => {
         ];
     }
 
+    function atelierAssetUrl(nft, kind) {
+        const cid = String(nft?.collection_id || '');
+        if (cid !== 'atelier_one' && cid !== 'atelier_edition') return '';
+        const contract = String(nft?.contract_address || '').trim().toLowerCase();
+        const tid = nft?.token_id;
+        if (!/^0x[a-f0-9]{40}$/.test(contract) || tid == null || tid === '') return '';
+        const file = kind === 'view' ? 'view.webp' : 'thumb.webp';
+        return `https://jackbeatnic.art/atelier-assets/${contract}/${tid}/${file}`;
+    }
+
     function presentUrl(nft, kind) {
+        const asset = atelierAssetUrl(nft, kind);
+        if (asset) return asset;
         const col = nft?.collection_id;
         const tid = nft?.token_id;
         if (!col || tid == null || tid === '') return '';

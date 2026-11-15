@@ -1367,9 +1367,17 @@ const Gallery = (() => {
         return `${cid}:${tid}`;
     }
 
-    function featuredFromAtelier(item, master) {
+    function atelierAssetUrls(item, chains) {
+        if (typeof AtelierSale === 'undefined' || !AtelierSale.assetUrls) return { view: '', thumb: '' };
+        const contract = AtelierSale.contractForDesk(item, chains);
+        return AtelierSale.assetUrls(contract, item?.token_id);
+    }
+
+    function featuredFromAtelier(item, master, chains) {
         const cur = String(item.currency || master?.listing_currency || 'AVAX').toUpperCase();
         const suf = cur.toLowerCase();
+        const urls = atelierAssetUrls(item, chains);
+        const contract = typeof AtelierSale !== 'undefined' ? AtelierSale.contractForDesk(item, chains) : '';
         const nft = master
             ? { ...master, medium: 'featured_promo' }
             : {
@@ -1379,7 +1387,8 @@ const Gallery = (() => {
                 collection_name: item.collection_name || 'Atelier',
                 name: item.name || `Atelier #${item.token_id}`,
                 chain: item.chain || 'avalanche',
-                image_url: item.image_url || '',
+                image_url: urls.view || item.image_url || '',
+                contract_address: contract,
             };
         nft.listing_currency = cur;
         nft.listing_status = 'For Sale';
@@ -1391,13 +1400,19 @@ const Gallery = (() => {
 
     async function loadAtelierDesk() {
         try {
-            const res = await fetch('data/atelier_desk.json', { cache: 'no-store' });
-            if (!res.ok) return { items: [] };
-            const doc = await res.json();
-            return { items: Array.isArray(doc?.items) ? doc.items : [] };
+            const [res, cfgRes] = await Promise.all([
+                fetch('data/atelier_desk.json', { cache: 'no-store' }),
+                fetch('data/atelier.json', { cache: 'no-store' }),
+            ]);
+            const doc = res.ok ? await res.json() : {};
+            const cfg = cfgRes.ok ? await cfgRes.json() : {};
+            return {
+                items: Array.isArray(doc?.items) ? doc.items : [],
+                chains: cfg.chains || {},
+            };
         } catch (err) {
             console.warn('atelier desk:', err);
-            return { items: [] };
+            return { items: [], chains: {} };
         }
     }
 
@@ -1462,6 +1477,7 @@ const Gallery = (() => {
                 allNfts = [...allNfts, ...featuredNfts];
             }
             const atelierItems = atelierDesk?.items || [];
+            const atelierChains = atelierDesk?.chains || {};
             atelierKeySet = new Set(atelierItems.map(atelierKey).filter(Boolean));
             const atelierKeys = atelierKeySet;
             const featuredKeys = new Set(
@@ -1479,8 +1495,9 @@ const Gallery = (() => {
                 const key = atelierKey(item);
                 if (!key || featuredKeys.has(key)) continue;
                 const master = galleryByKey.get(key);
-                if (!master && !item.image_url) continue;
-                atelierFeatured.push(featuredFromAtelier(item, master));
+                const asset = atelierAssetUrls(item, atelierChains);
+                if (!master && !item.image_url && !asset.view) continue;
+                atelierFeatured.push(featuredFromAtelier(item, master, atelierChains));
                 featuredKeys.add(key);
             }
             if (atelierFeatured.length) allNfts = [...allNfts, ...atelierFeatured];

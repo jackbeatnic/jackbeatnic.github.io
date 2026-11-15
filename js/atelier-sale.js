@@ -338,6 +338,44 @@ const AtelierSale = (() => {
         return raw.replace(/\.thumb\.webp(?=($|\?))/, ".view.webp");
     }
 
+    const ASSET_ORIGIN = "https://jackbeatnic.art/atelier-assets";
+
+    function assetUrls(contract, tokenId) {
+        const address = String(contract || "").trim().toLowerCase();
+        const id = String(tokenId ?? "").trim();
+        if (!isAddress(address) || id === "" || !/^\d+$/.test(id)) {
+            return { view: "", thumb: "", metadata: "" };
+        }
+        const folder = `${ASSET_ORIGIN}/${address}/${id}`;
+        return {
+            view: `${folder}/view.webp`,
+            thumb: `${folder}/thumb.webp`,
+            metadata: `${folder}/metadata.json`,
+        };
+    }
+
+    function contractForDesk(item, chains) {
+        if (!item) return "";
+        const cid = String(item.collection_id || "").trim();
+        const chainKey = item.chain === "base" ? "base" : "avalanche";
+        const chain = (chains && chains[chainKey]) || {};
+        const one = String(chain.one || "").toLowerCase();
+        const edition = String(chain.edition || "").toLowerCase();
+        const explicit = String(item.contract || item.contract_address || "").trim().toLowerCase();
+        if (isAddress(explicit) && (cid === "atelier_one" || cid === "atelier_edition" || explicit === one || explicit === edition)) {
+            return explicit;
+        }
+        if (cid === "atelier_one" && isAddress(one)) return one;
+        if (cid === "atelier_edition" && isAddress(edition)) return edition;
+        return "";
+    }
+
+    function publicImage(url) {
+        const clean = viewImage(url);
+        if (!clean || /github\.io/i.test(clean)) return "";
+        return clean;
+    }
+
     function emptyCopy(kind, chainName) {
         if (chainName === "Base") {
             return {
@@ -1058,13 +1096,30 @@ const AtelierSale = (() => {
         });
     }
 
-    function deskImage(item) {
+    function deskImage(item, chains) {
         if (!item) return "";
-        if (item.image_url) return viewImage(item.image_url);
-        if (item.collection_id && item.token_id != null) {
-            return `https://jackbeatnic.art/jbg-present/${item.collection_id}/${item.token_id}.view.webp`;
+        const owned = assetUrls(contractForDesk(item, chains), item.token_id).view;
+        const explicit = publicImage(item.image_url);
+        if (explicit && !(owned && /github\.io|\/jbg-present\//i.test(explicit))) return explicit;
+        if (owned) return owned;
+        const cid = String(item.collection_id || "").trim();
+        if (cid && cid !== "atelier_one" && cid !== "atelier_edition" && item.token_id != null && item.token_id !== "") {
+            return `https://jackbeatnic.art/jbg-present/${cid}/${item.token_id}.view.webp`;
         }
         return "";
+    }
+
+    async function metaFromAssets(contract, tokenId) {
+        const urls = assetUrls(contract, tokenId);
+        if (!urls.metadata) return {};
+        try {
+            const res = await fetch(urls.metadata);
+            if (!res.ok) return {};
+            const json = await res.json();
+            return { title: json.name || "", image: urls.view };
+        } catch {
+            return {};
+        }
     }
 
     async function metaFromUri(uri) {
@@ -1127,16 +1182,16 @@ const AtelierSale = (() => {
             const uri = decodeString(
                 await ethCall(chain.rpc, address, callData(cfg, "tokenURI(uint256)", [id])).catch(() => "0x")
             );
-            const meta = await metaFromUri(uri);
+            const [meta, fileMeta] = await Promise.all([metaFromUri(uri), metaFromAssets(address, id)]);
             const item = matchDesk(desk, { saleId: id, tokenId: id });
             const view = viewFromPiece(chain, id, piece, {
                 now,
                 paused,
                 rate,
                 to: address,
-                title: item?.name || meta.title,
+                title: item?.name || fileMeta.title || meta.title,
                 collection: item?.collection_name || "",
-                image: deskImage(item) || meta.image,
+                image: deskImage(item, cfg.chains) || assetUrls(address, id).view || publicImage(meta.image),
                 marks: ["atelier"],
                 bids: logs.get(id.toString()) || [],
                 prefix: "one",
@@ -1157,14 +1212,14 @@ const AtelierSale = (() => {
             const uri = decodeString(
                 await ethCall(chain.rpc, address, callData(cfg, "uri(uint256)", [id])).catch(() => "0x")
             );
-            const meta = await metaFromUri(uri);
+            const [meta, fileMeta] = await Promise.all([metaFromUri(uri), metaFromAssets(address, id)]);
             const item = matchDesk(desk, { saleId: id, tokenId: id });
             const view = viewFromRun(chain, id, run, {
                 paused,
                 rate,
-                title: item?.name || meta.title,
+                title: item?.name || fileMeta.title || meta.title,
                 collection: item?.collection_name || "Atelier",
-                image: deskImage(item) || meta.image,
+                image: deskImage(item, cfg.chains) || assetUrls(address, id).view || publicImage(meta.image),
             });
             if (view) views.push(view);
         }
@@ -1205,7 +1260,7 @@ const AtelierSale = (() => {
                 to: address,
                 title: item?.name || `Piece ${asset.tokenId}`,
                 collection: item?.collection_name || "From an existing work",
-                image: deskImage(item),
+                image: deskImage(item, cfg.chains),
                 bids: logs.get(id.toString()) || [],
                 prefix: "vault",
             });
@@ -1316,6 +1371,9 @@ const AtelierSale = (() => {
         boardHtml,
         decodePiece,
         decodeLotAsset,
+        assetUrls,
+        contractForDesk,
+        deskImage,
     };
 })();
 

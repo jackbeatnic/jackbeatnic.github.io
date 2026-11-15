@@ -92,7 +92,7 @@ Ship layout to the live site only on purpose (`--layout`), after the branch is m
 
 A work offered on the Atelier desk is marked ATELIER on its SI Art card, next to OS and SHOP. The library filter of the same name appears once at least one work carries the mark. `featured: true` also places that card on the Featured tab.
 
-The VPS worker writes `data/atelier_desk.json` only. One item:
+The VPS worker writes `data/atelier_desk.json` only, and only after a listing exists on Avalanche. An empty `items` list leaves the room empty. It is not a place for a sample sale. One item:
 
 ```json
 {
@@ -108,12 +108,12 @@ The VPS worker writes `data/atelier_desk.json` only. One item:
 
 `collection_id` and `token_id` must be the SI Art pair. Featured, Shop, and the Atelier card then use that card's preview and its promo board. Do not invent a second image.
 
-A new piece, minted by the technical wallet and not yet on SI Art, uses `collection_id` `atelier_one` or `atelier_edition`. Before `featured` is true, commit in `jbg-present`:
+A new piece, minted by the technical wallet and not yet on SI Art, uses `collection_id` `atelier_one` or `atelier_edition` and the same `token_id` as the listing. Its files are not on GitHub Pages. They are served from `https://jackbeatnic.art/atelier-assets/<contract lowercase>/<tokenId>/`:
 
-- `{collection_id}/{token_id}.thumb.webp` — small preview
-- `{collection_id}/{token_id}.view.webp` — large preview
-- `promo/{collection_id}/{token_id as four digits}.jpg` — promo board
+- `view.webp` — large preview
+- `thumb.webp` — small preview
+- `metadata.json` — name and the rest of the token text
 
-Then refresh `data/promo_boards.json` with `build_promo_board_index.py` and set `image_url` to the thumb. The mint transaction is sent by the technical key. The piece does not need a second copy.
+`<contract>` is AtelierOne for `atelier_one` and AtelierEdition for `atelier_edition`, written in lowercase. `featured: true` then places that card on Featured. The mint transaction is sent by the technical key. The piece does not need a second copy. `?atelier=preview` stays a sample room and does not send a transaction. Manifold on Base stays a separate catalogue.
 
 Do not offer the Solana lazy-mint mirror on an Atelier card or on the Atelier section. SI Art, Shop, and Photography keep that mirror.

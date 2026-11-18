@@ -12,6 +12,7 @@ const GalleryFilters = (() => {
     const MARK_FLAGS = {
         os: (nft) => nft.on_os === true,
         shop: (nft) => nft.in_shop === true,
+        atelier: (nft) => nft.in_atelier === true,
         featured: (nft) => nft.in_featured === true,
     };
 
@@ -212,13 +213,14 @@ const GalleryFilters = (() => {
     }
 
     function setupLibraryMarks(nfts) {
-        const has = { os: false, shop: false, featured: false };
+        const has = { os: false, shop: false, atelier: false, featured: false };
         (nfts || []).forEach((nft) => {
             if (MARK_FLAGS.os(nft)) has.os = true;
             if (MARK_FLAGS.shop(nft)) has.shop = true;
+            if (MARK_FLAGS.atelier(nft)) has.atelier = true;
             if (MARK_FLAGS.featured(nft)) has.featured = true;
         });
-        ['os', 'shop', 'featured'].forEach((mark) => {
+        ['os', 'shop', 'atelier', 'featured'].forEach((mark) => {
             const btn = document.getElementById(`filter-${mark}`);
             if (!btn) return;
             const show = has[mark];
@@ -418,6 +420,7 @@ const GalleryFilters = (() => {
                     nft.ai?.category,
                     nft.on_os ? 'os opensea' : '',
                     nft.in_shop ? 'shop studio' : '',
+                    nft.in_atelier ? 'atelier' : '',
                     nft.in_featured ? 'featured promo' : '',
                     ...(nft.ai?.vibe_tags || []),
                     ...(nft.ai?.keywords || []),
@@ -478,7 +481,7 @@ const GalleryFilters = (() => {
             btn.classList.toggle('is-active', listedOnly);
             dispatchChange();
         });
-        ['os', 'shop', 'featured'].forEach((mark) => {
+        ['os', 'shop', 'atelier', 'featured'].forEach((mark) => {
             document.getElementById(`filter-${mark}`)?.addEventListener('click', (e) => {
                 const btn = e.currentTarget;
                 if (activeMarks.has(mark)) {

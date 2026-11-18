@@ -541,6 +541,16 @@ const GalleryShare = (() => {
         if (!cid || !Number.isFinite(n) || n < 0) return null;
         const id = String(n);
         const slug = cid.replace(/_/g, '-');
+        if (cid === 'atelier_one' || cid === 'atelier_edition') {
+            const contract = String(nft?.contract_address || '').trim().toLowerCase();
+            if (!/^0x[a-f0-9]{40}$/.test(contract)) return null;
+            const folder = `https://jackbeatnic.art/atelier-assets/${contract}/${id}`;
+            return {
+                url: `${folder}/view.webp`,
+                thumb: `${folder}/thumb.webp`,
+                name: `jack-beatnic-${slug}-${id}-preview.webp`,
+            };
+        }
         return {
             url: `${siteUrl}jbg-present/${cid}/${id}.view.webp`,
             thumb: `${siteUrl}jbg-present/${cid}/${id}.thumb.webp`,

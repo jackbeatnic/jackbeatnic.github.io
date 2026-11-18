@@ -1,0 +1,5 @@
+{
+  "_doc": "Works on the Atelier desk. The VPS worker writes this file only after a real Avalanche listing exists. An empty items list is an empty room, not a sample sale. collection_id plus token_id must match the SI Art card when the work already exists, so Featured uses that same preview. A new mint uses collection_id atelier_one or atelier_edition. Its pictures are https://jackbeatnic.art/atelier-assets/<contract lowercase>/<tokenId>/view.webp, thumb.webp, and metadata.json. featured true also places the card on the Featured tab with the ATELIER mark. The ?atelier=preview rooms are separate and never send a transaction.",
+  "updated_at": "",
+  "items": []
+}

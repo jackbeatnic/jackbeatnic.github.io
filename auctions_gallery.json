@@ -39,56 +39,8 @@
         "label_short": "Atelier",
         "explore_title": "The Atelier",
         "default_kind": "auctions",
-        "default_chain": "base",
-        "kind_subsections": [
-          {
-            "id": "auctions",
-            "label": "Auctions"
-          },
-          {
-            "id": "editions",
-            "label": "Limited Editions"
-          }
-        ],
-        "chain_subsections": [
-          {
-            "id": "base",
-            "label": "Base"
-          },
-          {
-            "id": "ethereum",
-            "label": "Ethereum"
-          }
-        ],
-        "disabled_kinds": [
-          "editions"
-        ],
-        "disabled_chains": [
-          "ethereum"
-        ],
-        "kind_notes": {
-          "editions": "Numbered editions in small batches — coming soon."
-        },
-        "chain_notes": {
-          "ethereum": "Reserved for select one-of-one works."
-        },
-        "explore_titles": {
-          "auctions": "Auctions · The Atelier",
-          "editions": "Limited Editions · The Atelier"
-        },
-        "empty_messages": {
-          "auctions": {
-            "base": "No auction is live at the moment. The next piece will appear here when the gavel is set.",
-            "ethereum": "Select one-of-one auctions — reserved for a future chapter."
-          },
-          "editions": {
-            "base": "Numbered editions are in preparation — intimate batches, released at a gentle pace.",
-            "ethereum": "A dedicated room for photography — planned with its own contract."
-          }
-        },
-        "promo_eyebrow": "The Atelier",
-        "promo_lead": "A private room for those who collect closely — rare auctions and numbered editions in small batches, offered straight from the studio. Only live sales appear here; the wider studio catalogue lives on Manifold.",
-        "promo_collector": "Returning collectors may soon unlock early access and quiet releases — nothing personal, only your wallet."
+        "default_chain": "avalanche",
+        "note": "Desk copy lives in gallery.json. This file only fills gaps. Avalanche is first. Editions are enabled."
       }
     }
   },

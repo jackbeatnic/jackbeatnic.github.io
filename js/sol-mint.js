@@ -87,8 +87,20 @@ const SolMint = (() => {
 .gallery-protected .nft-card__actions .btn.sol-chip:hover{color:var(--rd-accent-ink,#0b5c3a)}`;
         document.head.appendChild(st);
     }
+    function atelierCard(nft) {
+        if (!nft) return false;
+        const cid = String(nft.collection_id || '');
+        if (cid === 'atelier_one' || cid === 'atelier_edition') return true;
+        if (nft.medium === 'featured_promo' && nft.in_atelier) return true;
+        if (typeof GallerySections !== 'undefined' && GallerySections.isAtelierSection && GallerySections.isAtelierSection()) {
+            return true;
+        }
+        return false;
+    }
+
     function decorate(card, nft) {
         card.__solNft = nft;
+        if (atelierCard(nft)) return;
         if (!catalog || !apiCfg || card.querySelector('.sol-mint-btn') || !capOf(nft)) return;
         injectCardCss();
         const key = artKey(nft);

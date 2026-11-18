@@ -11,7 +11,7 @@ const GallerySections = (() => {
     let currentPhotoChain = 'tezos';
     let collectionToSeries = {};
     let currentMarketKind = 'auctions';
-    let currentMarketChain = 'base';
+    let currentMarketChain = 'avalanche';
     let loadedEditionKeys = new Set();
     let editionsIndexed = false;
 
@@ -408,7 +408,7 @@ const GallerySections = (() => {
         currentPhotoKind = photoCfg?.default_subsection || 'photo';
         currentPhotoChain = photoCfg?.default_chain || 'tezos';
         currentMarketKind = mCfg?.default_kind || 'auctions';
-        currentMarketChain = mCfg?.default_chain || 'base';
+        currentMarketChain = mCfg?.default_chain || 'avalanche';
         rebuildCollectionToSeries();
         syncSectionNavLabels();
         syncAiSubnavLabels();
@@ -570,10 +570,10 @@ const GallerySections = (() => {
 
         if (currentSection === 'atelier') {
             currentMarketKind = market || atelierCfg()?.default_kind || 'auctions';
-            currentMarketChain = chain || atelierCfg()?.default_chain || 'base';
+            currentMarketChain = chain || atelierCfg()?.default_chain || 'avalanche';
         } else {
             currentMarketKind = atelierCfg()?.default_kind || 'auctions';
-            currentMarketChain = atelierCfg()?.default_chain || 'base';
+            currentMarketChain = atelierCfg()?.default_chain || 'avalanche';
         }
 
         syncNavUi();
@@ -625,7 +625,7 @@ const GallerySections = (() => {
         }
         if (currentSection === 'atelier') {
             const defKind = atelierCfg()?.default_kind || 'auctions';
-            const defChain = atelierCfg()?.default_chain || 'base';
+            const defChain = atelierCfg()?.default_chain || 'avalanche';
             if (currentMarketKind !== defKind) {
                 params.set('market', currentMarketKind);
             }
@@ -654,7 +654,7 @@ const GallerySections = (() => {
         }
         if (id === 'atelier') {
             currentMarketKind = atelierCfg()?.default_kind || 'auctions';
-            currentMarketChain = atelierCfg()?.default_chain || 'base';
+            currentMarketChain = atelierCfg()?.default_chain || 'avalanche';
         }
         syncNavUi();
         writeUrl();
@@ -903,7 +903,7 @@ const GallerySections = (() => {
             }
         }
 
-        const disabledKinds = new Set(atelierCfg()?.disabled_kinds || ['editions']);
+        const disabledKinds = new Set(atelierCfg()?.disabled_kinds || []);
         document.querySelectorAll('[data-market-kind]').forEach((el) => {
             const kind = el.dataset.marketKind;
             const disabled = disabledKinds.has(kind);
@@ -922,7 +922,7 @@ const GallerySections = (() => {
             }
         });
 
-        const disabledChains = new Set(atelierCfg()?.disabled_chains || ['ethereum']);
+        const disabledChains = new Set(atelierCfg()?.disabled_chains || []);
         document.querySelectorAll('[data-market-chain]').forEach((el) => {
             const chain = el.dataset.marketChain;
             const disabled = disabledChains.has(chain);
@@ -1021,8 +1021,9 @@ const GallerySections = (() => {
                 return kind === currentPhotoKind;
             }
             if (currentSection === 'atelier') {
-                const chainKey = nft.chain_key || nft.chain || 'base';
+                const chainKey = nft.chain_key || nft.chain || 'avalanche';
                 if (chainKey !== currentMarketChain) return false;
+                if (currentMarketKind === 'fixed') return false;
                 if (currentMarketKind === 'auctions') {
                     return medium === 'manifold_auction';
                 }
@@ -1144,11 +1145,7 @@ const GallerySections = (() => {
         const kindBlock = msgs[currentMarketKind];
         if (typeof kindBlock === 'string') return kindBlock;
         if (kindBlock && typeof kindBlock === 'object') {
-            return (
-                kindBlock[currentMarketChain] ||
-                kindBlock.base ||
-                'Nothing here yet.'
-            );
+            return kindBlock[currentMarketChain] || 'Nothing listed on this desk yet.';
         }
         return 'Nothing here yet.';
     }
@@ -1249,7 +1246,7 @@ const GallerySections = (() => {
             currentPhotoKind = kind;
             currentPhotoChain = chain;
         } else if (medium === 'manifold_auction') {
-            const chainKey = nft.chain_key || nft.chain || 'base';
+            const chainKey = nft.chain_key || nft.chain || 'avalanche';
             if (
                 currentSection === 'atelier' &&
                 currentMarketKind === 'auctions' &&
@@ -1261,7 +1258,7 @@ const GallerySections = (() => {
             currentMarketKind = 'auctions';
             currentMarketChain = chainKey;
         } else if (medium === 'manifold_edition') {
-            const chainKey = nft.chain_key || nft.chain || 'base';
+            const chainKey = nft.chain_key || nft.chain || 'avalanche';
             currentSection = 'atelier';
             currentMarketKind = 'editions';
             currentMarketChain = chainKey;

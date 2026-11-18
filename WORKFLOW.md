@@ -87,3 +87,33 @@ git checkout -b cursor/short-name
 ```
 
 Ship layout to the live site only on purpose (`--layout`), after the branch is merged.
+
+## Atelier mark
+
+A work offered on the Atelier desk is marked ATELIER on its SI Art card, next to OS and SHOP. The library filter of the same name appears once at least one work carries the mark. `featured: true` also places that card on the Featured tab.
+
+The VPS worker writes `data/atelier_desk.json` only, and only after a listing exists on Avalanche. An empty `items` list leaves the room empty. It is not a place for a sample sale. One item:
+
+```json
+{
+  "collection_id": "avalanche_flower_stories",
+  "token_id": 4967,
+  "chain": "avalanche",
+  "name": "FS #6722",
+  "currency": "AVAX",
+  "price": "0.02",
+  "featured": true
+}
+```
+
+`collection_id` and `token_id` must be the SI Art pair. Featured, Shop, and the Atelier card then use that card's preview and its promo board. Do not invent a second image.
+
+A new piece, minted by the technical wallet and not yet on SI Art, uses `collection_id` `atelier_one` or `atelier_edition` and the same `token_id` as the listing. Its files are not on GitHub Pages. They are served from `https://jackbeatnic.art/atelier-assets/<contract lowercase>/<tokenId>/`:
+
+- `view.webp` — large preview
+- `thumb.webp` — small preview
+- `metadata.json` — name and the rest of the token text
+
+`<contract>` is AtelierOne for `atelier_one` and AtelierEdition for `atelier_edition`, written in lowercase. `featured: true` then places that card on Featured. The mint transaction is sent by the technical key. The piece does not need a second copy. `?atelier=preview` stays a sample room and does not send a transaction. Manifold on Base stays a separate catalogue.
+
+Do not offer the Solana lazy-mint mirror on an Atelier card or on the Atelier section. SI Art, Shop, and Photography keep that mirror.

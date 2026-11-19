@@ -517,6 +517,12 @@ const GalleryShare = (() => {
         return cid;
     }
 
+    // TEST 2026-11-19: fetch these boards from raw GitHub (jbg-present main)
+    // instead of the jbg-present Pages site. Only NS #1 for now. The Pages
+    // URL stays as the fallback when the raw fetch fails.
+    const RAW_BOARD_BASE = 'https://raw.githubusercontent.com/jackbeatnic/jbg-present/main/';
+    const RAW_BOARD_TEST = new Set(['avalanche_nature_stories/0001']);
+
     function promoBoardRef(nft) {
         const cid = boardFolder(nft);
         if (!BOARD_COLLECTIONS.has(cid)) return null;
@@ -524,8 +530,12 @@ const GalleryShare = (() => {
         const n = Number.parseInt(String(raw ?? ''), 10);
         if (!Number.isFinite(n) || n < 0) return null;
         const id = String(n).padStart(4, '0');
+        const pagesUrl = `${siteUrl}jbg-present/promo/${cid}/${id}.jpg`;
+        const useRaw = RAW_BOARD_TEST.has(`${cid}/${id}`);
         return {
-            url: `${siteUrl}jbg-present/promo/${cid}/${id}.jpg`,
+            url: pagesUrl,
+            fetchUrl: useRaw ? `${RAW_BOARD_BASE}promo/${cid}/${id}.jpg` : pagesUrl,
+            fallbackUrl: useRaw ? pagesUrl : '',
             name: `jack-beatnic-${cid.replace(/_/g, '-')}-${id}.jpg`,
         };
     }
@@ -581,7 +591,7 @@ const GalleryShare = (() => {
         const ref = promoBoardRef(nft);
         if (!ref) return Promise.resolve(null);
         if (!boardCache.has(ref.url)) {
-            const job = fetch(ref.url, { mode: 'cors', credentials: 'omit' })
+            const getJpeg = (src) => fetch(src, { mode: 'cors', credentials: 'omit' })
                 .then(async (res) => {
                     const type = res.headers.get('content-type') || '';
                     if (!res.ok || !type.startsWith('image/')) return null;
@@ -589,7 +599,9 @@ const GalleryShare = (() => {
                     if (!blob.size) return null;
                     return new File([blob], ref.name, { type: 'image/jpeg' });
                 })
-                .catch(() => null)
+                .catch(() => null);
+            const job = getJpeg(ref.fetchUrl || ref.url)
+                .then((file) => file || (ref.fallbackUrl ? getJpeg(ref.fallbackUrl) : null))
                 .then((file) => {
                     if (!file) boardCache.delete(ref.url); // retry later
                     return file;
